@@ -1,0 +1,1186 @@
+IEEE TRANSACTIONS ON SIGNAL PROCESSING, VOL. 72, 2024 3805
+A Novel Joint Angle-Range-Velocity Estimation
+Method for MIMO-OFDM ISAC Systems
+Zichao Xiao ,R a n gL i u ,Member, IEEE ,M i n gL i ,Senior Member, IEEE ,
+Qian Liu ,Member, IEEE , and A. Lee Swindlehurst ,Fellow, IEEE
+Abstract —Integrated sensing and communication (ISAC) is
+emerging as a key technique for next-generation wireless systems.In order to expedite the practical implementation of ISACin pervasive mobile networks, it is crucial to have widelydeployed base stations with rada r sensing capabilities. Thus,
+the utilization of standardized multiple-input multiple-output(MIMO) orthogonal frequency div ision multiplexing (OFDM)
+hardware architectures and waveforms is pivotal for realizingseamless integration of effective communication and sensingfunctionalities. In this paper, we introduce a novel joint angle-range-velocity estimation algorithm for MIMO-OFDM ISACsystems. This approach exclusi vely depends on the format of
+conventional MIMO-OFDM waveforms that are widely adoptedin wireless communications. Speciﬁcally, the angle-range-velocityinformation of potential targets is jointly extracted by utilizing
+all the received echo signals within a coherent processing interval
+(CPI). The proposed joint estimation algorithm can achieve largersignal-to-noise-ratio (SNR) processing gains and higher resolu-tion by fully exploiting the echo signals and jointly estimatingthe angle-range-velocity information. A theoretical analysis formaximum unambiguous range, resolution, and SNR processinggains is provided to verify the advantages of the proposed jointestimation algorithm. Finally, the results of extensive numericalexperiments are presented to demonstrate that the proposedjoint estimation approach can achieve signiﬁcantly lower root-mean-square-error (RMSE) performance for angle/range/velocityestimation for both single- and multi-target scenarios.
+Manuscript received 30 April 2024; accepted 8 August 2024. Date of publi-
+cation 13 August 2024; date of current version 28 August 2024. This work was
+supported in part by the National Natural Science Foundation of China under
+Grant 62371090 and Grant 62071083; in part by Liaoning Applied Basic
+Research Program under Grant 2023JH2/101300201 and Grant 2023JH2/
+101700364; and in part by Dalian Science and Technology Innovation Project
+under Grant 2022JJ12GX014. The work of A. Lee Swindlehurst was supportedby the U.S. National Science Found ation under Grant CCF-2225575 and
+Grant CCF-2322191. The associate editor coordinating the review of this
+article and approving it for publication is Prof. Mohammed Nabil El Korso.
+(Corresponding author: Rang Liu.)
+Zichao Xiao and Ming Li are with th e School of Information and Commu-
+nication Engineering, Dalian Univer sity of Technology, Dalian 116024, China
+(e-mail: xiaozichao@mail.dlut.edu.cn ;mli@dlut.edu.cn ).
+Rang Liu was with the School of Information and Communication Engi-
+neering, Dalian University of T echnology, Dalian 116024, China. She is now
+with the Center for Pervasive Commun ications and Computing, University of
+California, Irvine, CA 92697 USA (e-mail: rangl2@uci.edu ).
+Qian Liu is with the School of Computer Science and Technology,
+Dalian University of Technol ogy, Dalian 116024, China (e-mail: qianliu@
+dlut.edu.cn ).
+A. Lee Swindlehurst is with the C enter for Pervasive Communications
+and Computing, University of C alifornia, Irvine, CA 92697 USA (e-mail:
+swindle@uci.edu ).
+Digital Object Identiﬁ er 10.1109/TSP.2024.3442886Index Terms —Integrated sensing and communication (ISAC),
+multiple-input multiple-output orthogonal frequency divisionmultiplexing (MIMO-OFDM), parameter estimation.
+I. INTRODUCTION
+NEXT-GENERATION wireless systems are expected to
+develop beyond traditional communication services and
+further facilitate a series of innovative applications such as
+intelligent transportation, manufacturing, healthcare, etc. These
+emerging applications not only impose higher demands on com-munication performance but also require more robust sensing
+capabilities. In addition, with the exponential growth of wire-
+less devices and communication demands, spectral resourcesare becoming increasingly scarce. Radar frequency bands that
+occupy large portions of the available spectrum are therefore
+regarded as a promising choice for communication usage. Froma technical point of view, the technology trend of joint wire-
+less communication and radar sensing is highly self-consistent,
+as they both seek the use of higher frequencies, wider band-widths, larger antenna arrays, more attention to line-of-sight
+channels, and distributed dense deployments. Thus, wireless
+communication and radar sensing exhibit increasing common-ality in system design, hardwar e platforms, s ignal processing,
+etc., which provides a strong motivation for integrating their
+functionalities. Owing to these factors, integrated sensing and
+communication (ISAC) has emerged, which focuses on the
+coexistence, cooperation, and co-design of communication andsensing systems. ISAC has been recognized as a key enabling
+technology for sixth generation (6G) wireless systems [1]and
+has aroused extensive research attention from both academiaand industry [2],[3],[4].
+Many approaches for ISAC have been proposed, and these
+approaches can be generally categorized as based on eithertraditional radar syst em design, traditional communication sys-
+tem design, or dual-functional designs that require special cus-
+tomization. Radar-based ISAC systems focus on embeddingcommunication symbols into existing radar sensing signals,
+e.g., linear frequency modulated continuous wave (LFMCW)
+[5]or frequency-hopping (FH) radar [6]. Communication-based
+ISAC systems rely on existing communication hardware ar-
+chitectures and waveforms to perform dual-functional tasks
+[7],[8],[9]. The third category of dual-functional systems are
+not restricted to current radar/communication infrastructure or
+1053-587X © 2024 IEEE. Personal use is permitted, but repub lication/redistribution requires IEEE permission.
+See https://www.ieee.org/publications/right s/index.html for more information.
+Authorized licensed use limited to: Queen Mary University of London. Downloaded on March 06,2026 at 13:37:12 UTC from IEEE Xplore.  Restrictions apply. 
+3806 IEEE TRANSACTIONS ON SIGNAL PROCESSING, VOL. 72, 2024
+waveforms [10],[11]. Given the ubiquitous availability of wire-
+less communication networks, communication-centric designs
+are the most likely to facilitate the practical development ofISAC, and thus it is critical to investigate the use of commu-
+nication transceiver architectures and waveforms to empower
+wireless networks w ith sensing capabilities.
+In existing commercial wireless communication networks,
+orthogonal frequency division m ultiplexing (OFDM) has been
+widely adopted as the dominant waveform type. OFDM ben-eﬁts from its ability to overcom e frequency selective fading
+to achieve high spectral efﬁci ency. In addition, OFDM pro-
+vides satisfactory radar sensing performance by harnessing fre-quency diversity to enhance target detection [12],[13] and
+parameter estimation [14]. By exploiting the cyclic preﬁx (CP)
+signal structure, OFDM can entirely eliminate inter-range-cell
+interference [15],[16]. Due to the above, OFDM has been
+recognized as an attractive practical candidate for realizingISAC. Since OFDM is communication-oriented, how to realize
+high-performance radar sensing functionality based on existing
+OFDM communication systems is a crucial task for facilitatingpractical ISAC applications.
+Many researchers have explored OFDM waveform design
+and echo signal processing algorithms for ISAC systems, inwhich the dual-functional OFDM waveform is optimized to
+simultaneously per form single/multiple-u ser communications
+and target detection/estimation/tracking. In particular, the sem-inal work in [17] presented a novel algorithm for estimating
+the range and velocity of potential targets using OFDM wave-
+forms. High-resolution estimation methods have been presentedin[18],[19],[20], and a deep-learning algorithm for terahertz
+systems was developed in [21]. In addition, subcarrier power
+allocation has been investigated [22],[23],[24] to achieve a
+better performance trade-off for OFDM ISAC systems. While
+the studies [17],[18],[19],[20],[21],[22],[23],[24] above
+have veriﬁed the potential viability of employing OFDM wave-
+forms for ISAC, their scope was limited to exploring scenarios
+involving only a singl e-antenna transmitter.
+Multi-input multi-output (MIMO) architectures with multi-
+ple transmit and receive antennas have been widely employed in
+both communication and radar sensing systems. MIMO archi-tectures provide additional spatial degrees-of-freedom (DoFs)
+that can be exploited to achieve s patial multiplexing, spatial
+diversity, and beamforming gain for both communication andradar sensing functions [25],[26]. Thus, MIMO is regarded as a
+key component of future ISAC systems. However, when OFDM
+ISAC is implemented with multip le transmit ant ennas, the dual-
+functional transmit waveforms include random communication
+symbols that are subsequently mixed in the spatial domain and
+inﬂuence the reﬂections from the targets. This greatly compli-cates the data decoding and radar target parameter estimation,
+and necessitates the use of advanced echo signal processingalgorithms in MIMO-OFDM ISAC systems.
+To avoid the mixture of signals emitted from different anten-
+nas, the authors in [27] proposed to allocate different subcar-
+riers to each antenna, which makes the subsequent parameter
+estimation much easier. However, since the available frequency
+resources are not fully exploited, it is obvious that this methodwill signiﬁcantly reduce the communication capacity. Later,
+[8]proposed a compressed sensing (CS)-based method for
+tackling radar parameter estimation using typical MIMO-OFDM communication signals, but this approach is usually
+computationally prohibitive. More recently, [28] and[29] in-
+troduced a novel estimation strategy that involves ﬁrst estimat-ing the target angle information and then extracting the target
+range and velocity. In particular, the authors of [28] employed
+multiple signal classiﬁcation (MU SIC) for angle estimation
+and a two-dimensional (2D) discrete Fourier transform (DFT)
+for range and velocity extraction. Although this MUSIC-based
+approach can provide high-resolution angle estimation, it iscomplex to implement and its performance degrades in sce-
+narios with a large number of targets or low signal-to-noise
+ratio (SNR). In [29], a suboptimal but efﬁcient approach based
+on the DFT and cross-correlation was proposed. Although this
+approach is computationally friendly, the estimation of angleand range only exploits the received echoes from one OFDM
+symbol. Compared with traditional radar algorithms that are
+performed during a coherent processing interval (CPI) cov-ering multiple OFDM symbols, [29] suffers from low SNR
+processing gain and has difﬁculty handling low SNR scenar-
+ios. Moreover, the angle-range-velocity of potential targets aresequentially estimated in both [28] and[29], which inevitably
+leads to error propagation, and [29] relies on the cross-
+correlation (ambiguity functi on) of the transmitted dual-
+functional signals, which makes it sensitive to the randomness
+in the communication information.
+Motivated by the above ﬁndings, in this paper we focus
+on echo signal processing for achieving better parameter esti-
+mation performance in MIMO-OFDM ISAC systems. In par-
+ticular, we consider a syste m in which a multi-antenna base
+station (BS) transmits conventional OFDM waveforms to si-
+multaneously serve multiple comm unication users and estimate
+the parameters of multiple point -like targets via processing the
+received echo signals. We propose a joint angle-range-velocity
+estimation approach to fully exploit the available informationin the spatial, fast-time (frequency), and slow-time (temporal)
+domains of the MIMO-OFDM echo signals. The main contri-
+butions are outlined below.
+• First, we propose a novel estimation method for processing
+the echoes of MIMO-OFDM waveforms to jointly esti-
+mate the targets’ angle, range, and velocity by fully uti-lizing all the full three-dimensional (3D) data cube across
+the spatial, fast-time, and slow-time domains. A DFT-
+based spectral analysis is ﬁrst conducted along the spatialdimension to reallocate the signal power according to the
+angular components. Then, a novel approach is proposed
+to remove the random communication symbols contained
+in the cube. Afterwards, spectral analysis along the fast-
+and slow-time dimensions is performed. Finally, the angle-range-velocity parameters are jointly estimated via peak
+ﬁnding. This joint estimation strategy provides substantial
+SNR processing gains compared with existing approachesthat rely on only part of the data cube. In addition, the
+sensing resolution is signiﬁcantly improved since the pa-
+rameters are jointly rather than sequentially estimated.
+Authorized licensed use limited to: Queen Mary University of London. Downloaded on March 06,2026 at 13:37:12 UTC from IEEE Xplore.  Restrictions apply. 
+XIAO et al.: A NOVEL JOINT ANGLE-RANGE-VELOCITY ESTIMATION METHOD FOR MIMO-OFDM ISAC SYSTEMS 3807
+Fig. 1. The considered MIMO-OFDM ISAC system.
+• Next, we provide a theoretical analysis for the maximum
+unambiguous range, resolution, and SNR processing gainobtained by the proposed joint estimation approach, from
+which we gain valuable insights into the achievable sens-
+ing performance improvements.
+• Finally, simulation results are presented to validate the
+feasibility and advantages of the p roposed joint estimation
+method. Compared to existing work, the proposed method
+provides superior root-mean-squared-error (RMSE) per-
+formance and SNR gains for angle-range-velocity es-timation. Moreover, we show that, without sacriﬁcing
+communication performance, the use of conventional
+MIMO-OFDM communication waveforms together withthe proposed estimation method leads to only a mi-
+nor sensing performance loss compared to that achieved
+by standard radar systems employing typical LFMCWwaveforms.
+Notation : Lower-case, boldface lower-case, and upper-case
+letters indicate scalars, column vectors, and matrices, respec-tively. The operators (·)
+Tand(·)Hdenote the transpose and
+conjugate-transpose operations, respectively, E{·}represents
+statistical expectation, |a|is the magnitude of scalar a,Cde-
+notes the set of complex numbers, and ⌊·⌋rounds a real number
+to the nearest integer less than or equal to it.
+II. S YSTEM MODEL
+We consider a mono-static MIMO-OFDM ISAC system as
+illustrated in Fig. 1, in which a dual-functional BS equipped
+with two separate uniform linear arrays (ULAs) of Ntxtrans-
+mit antennas and Mrxreceive antennas simultaneously per-
+forms downlink multi-user co mmunications and radar target
+parameter estimation. We assume that the BS operates in full-
+duplex mode with perfect self-interference (SI) cancellation
+with the aid of advanced full-duplex techniques [30],[31],[32].Speciﬁcally, the BS transmits OFDM waveforms to commu-
+nicate with Ksingle-antenna us ers and simultaneously illu-
+minates multiple point-like tar gets. Meanwhile, the received
+echo signals are processed to estimate the angle-range-velocity
+information of potential targets.
+A. Transmitted Signal Model
+In the considered OFDM system, the carrier frequency is fc,
+and the wavelength is λc=c/fc, wherecdenotes the speed of
+light. There are Ns-subcarriers with frequency spacing Δf=
+1/Td, whereTdis the OFDM symbol duration. For the l-th
+OFDM symbol, we denote the dual-functional baseband sig-nal transmitted on the i-th subcarrier as x
+i[l]∈CNtx,i=
+0,1,...,N s−1,l=0,1,...,L−1, where Lis the frame
+length of one CPI.
+As depicted in Fig. 1,t h eNsNtx-dimensional frequency-
+domain baseband signals xi[l]collected in different subcarriers
+are rearranged into NtxNs-dimensional vectors collected from
+different transmit antennas. Then, Ns-point inverse DFT (IDFT)
+processors are utilized to trans form these frequency-domain
+vectors to the time domain. These signals are then arranged
+serially in chronological order, and an Ncp-point CP of duration
+Tcpis inserted to avoid inter-symbol interference (ISI) for both
+communication and sensing. The CP length should be greater
+than the length of the channel impulse response to avoid ISI
+for downlink communications. In order to eliminate ISI at thesensing receiver, the CP duration should also be larger than the
+roundtrip delay between the BS and the furthest target. After
+conversion to analog, the baseband signal is expressed as
+/tildewidex(t)/definesNs−1/summationdisplay
+i=0L−1/summationdisplay
+l=0xi[l]ej2πiΔftrect/parenleftbiggt−lT
+T/parenrightbigg
+, (1)
+whereT/definesTd+Tcpis the total symbol duration and rect(t/T)
+denotes a rectangular pulse of duration T. Finally, the
+Authorized licensed use limited to: Queen Mary University of London. Downloaded on March 06,2026 at 13:37:12 UTC from IEEE Xplore.  Restrictions apply. 
+3808 IEEE TRANSACTIONS ON SIGNAL PROCESSING, VOL. 72, 2024
+baseband analog signal is up-converted to the radio frequency
+(RF) domain via NtxRF chains with carrier frequency fcand
+then emitted through the antennas.
+B. Communication Signal Model
+After propagating through downlink communication chan-
+nels, the OFDM signals are received by the single-antenna users
+and then demodulated into communication symbols. The com-munication receiver employs a series of operations including
+down-conversion, analog-to-digital converting (ADC), CP re-
+moval, serial-to-parallel conversion, and an N
+s-point DFT. For
+thek-th user, the frequency-domain signal on the i-th subcarrier
+during the l-th OFDM symbol is written as
+yi,k[l]/defineshH
+i,kxi[l]+zi,k[l], (2)
+where the vector hi,k∈CNtxdenotes the frequency domain
+channel between the BS and the k-th user, and zi,k∈CN(0,σ2
+c)
+denotes additive white Gaussian noise (AWGN).
+C. Sensing Signal Model
+From the radar sensing perspective, the dual-functional BS
+attempts to estimate the angle-range-velocity information ofmultiple point-like targets by p rocessing the received echo sig-
+nals. We assume that there are Qtargets within the area of inter-
+est, and the angle-range-velocity information of the q-th target
+is denoted as θ
+q,Rq, andvq, respectively, q∈Q/defines{1,...,Q}.
+Note that the angle of arrival (AoA) and the angle of depar-
+ture (AoD) are both equal to θqin the considered mono-static
+ISAC system.
+The emitted signals will ﬁrst reach the Qtargets and then be
+reﬂected back to the receive antennas of the BS. During this
+process, signals will experience the relative propagation delay
+between the transmit/receive antennas, the round- trip propaga-
+tion delay between the array reference points, and potentially
+a Doppler frequency shift. Thus, the baseband echo signal re-
+ceived by the m-th antenna can be expressed as
+/tildewidey(m,t)/definesQ/summationdisplay
+q=1βqaH(θq)/tildewidex(t−2Rq/c)
+e−j2πmdrsinθq/λcej2πfD,qt+/tildewidez(m,t), (3)
+wherem=0,1,...,M rx−1.I n( 3),βqis the attenuation co-
+efﬁcient of the q-th target with power E{|βq|2}=σ2
+β;a(θ)/defines
+[ej2π0dtsinθ/λc,ej2π1dtsinθ/λc,...,ej2π(Ntx−1)dtsinθ/λc]Tis the
+transmit steering vector for AoD θ, wheredtrepresents the
+transmit antenna spacing; dris the receive antenna spac-
+ing;fD,q=2vqfc/cindicates the Doppler frequency; and
+/tildewidez(m,t)denotes independently and identica lly distributed (i.i.d.)
+AWGN. It is generally assumed that the attenuation coefﬁcient
+and the angle-range-velocity of the targets are constant duringone CPI. Considering that the signal bandwidth is usually much
+smaller than the carrier frequency, the phase shifts along the
+spatial axis and the Doppler phase shift within one OFDMsymbol are respectively assumed to be identical on all subcarri-
+ers. In addition, only ﬁrst-order reﬂections from the targets are
+considered due to high attenuation.As shown in Fig. 1, the baseband analog signals ( 3)a r e
+ﬁrst processed by ADCs with sampling frequency F
+s/definesNsΔf,
+and the CP is removed from the digital samples. The resultingsampled echo signals for the l-th symbol-slot can be written as
+/hatwidey(m,j,l)/defines/tildewidey(m,lT+j/F
+s+Tcp), (4)
+wherej=0,...,N s−1is the sample index. After serial-to-
+parallel conversion and application of an Ns-point DFT along
+the sample index dimension, the echo signals are ﬁnally ob-
+tained. The corresponding mathematical expression for the echosignal received by the m-th receive antenna on the i-th subcar-
+rier is acquired by substituting expressions ( 1) and ( 3)i n t o( 4)
+and performing the DFT:
+y(m,i,l)/definesQ/summationdisplay
+q=1βqaH(θq)xi[l]e−j2πmdrsinθq/λc
+e−j4πiΔfRq/cej4πlTvqfc/c+z(m,i,l),(5a)
+=Q/summationdisplay
+q=1βqaH(θq)xi[l]ejmωa(θq)ejiωr(Rq)
+ejlωv(vq)+z(m,i,l), (5b)
+wherez(m,i,l)∼CN(0,σ2
+s)denotes the DFT of the AWGN.
+For conciseness, in ( 5b) we respectively deﬁne the digital fre-
+quencies related to the angle, range, and velocity of the q-th
+target as
+ωa(θq)/defines−2πdrsinθq/λc, (6a)
+ωr(Rq)/defines−4πΔfRq/c, (6b)
+ωv(vq)/defines4πTvqfc/c. (6c)
+In this paper, we focus on the radar sensing problem of
+estimating the angle-range-velocity parameters of the targets
+based on the received echo signals in ( 5) within one CPI. We see
+from expression ( 5b) that the target angle, range, and velocity
+are determined by the complex sinusoids of digital frequencies
+ωr(θq),ωr(Rq), andωv(vq), respectively. However, these sinu-
+soidal functions are multip lied by the signal-dependent coefﬁ-
+cientaH(θq)xi[l], which changes with the t ransmitted signals
+and the target AoDs to be estimated. Thus, the target parameterscannot be directly extracted by performing spectral analysis on
+(5). In order to tackle this difﬁculty and improve the param-
+eter estimation performance, we propose a novel joint angle-
+range-velocity estimation method to remove the inﬂuence of
+the signal-dependent coefﬁcients and fully exploit the receivedecho signals during one CPI.
+III. J
+OINT ANGLE- RANGE- VELOCITY ESTIMATION
+In this section, we focus on extracting the angle-range-
+velocity information of potential targets from the echo signals
+(5). A novel joint estimation method is proposed to fully exploit
+the 3D data cube during one CPI and jointly estimate the targetparameters. Following traditional radar terminology, we refer
+to the subcarrier dimension, i.e., {i=0,1,...,N
+s−1},a sfast-
+time and the symbol slot dimension, i.e., {l=0,1,...,L−1},
+Authorized licensed use limited to: Queen Mary University of London. Downloaded on March 06,2026 at 13:37:12 UTC from IEEE Xplore.  Restrictions apply. 
+XIAO et al.: A NOVEL JOINT ANGLE-RANGE-VELOCITY ESTIMATION METHOD FOR MIMO-OFDM ISAC SYSTEMS 3809
+asslow-time . The dimension corresponding to the receive an-
+tennas, i.e., {m=0,1,...,M rx−1}, is referred to as the spa-
+tial dimension .
+A. Echo Signal Observations
+Based on the expression for the echo signals in ( 5), we have
+the following observations.
+• Along the spatial dimension for any given i,l, the echo
+signals can be regarded as the summation of Qcomplex
+sinusoids with frequencies ωa(θq)and constant ampli-
+tudes. Thus, the frequencies along the spatial dimensionare determined by only the target angle.
+• Along the fast-time dimension for any given m,l,t h e
+echo signals are composed of Qsinusoids with frequencies
+ω
+r(Rq), multiplied by the si gnal-dependent coef ﬁcients
+aH(θq)xi[l]. Thus, the digital frequencies along the fast-
+time dimension are determined by the target range and
+signal-dependent coefﬁcients.
+• Along the slow-time dimension for any given m,i,t h e
+echo signals also consist of Qsinusoidal functions of fre-
+quencies ωv(vq), also multiplied b y the signal-dependent
+coefﬁcients aH(θq)xi[l]. As a result, the digital frequen-
+cies along the slow-time dimension are determined by the
+target velocity and signal-dependent coefﬁcients.
+• The signal-dependent coefﬁcient aH(θq)xi[l]is related to
+the angle θqto be estimated and the transmitted signal
+xi[l]. In the considered ISAC syst em, the transmitted dual-
+functional signal xi[l]is embedded with random com-
+munication symbols, which means that xi[l]will change
+randomly for different indices iandl. These signal-
+dependent coefﬁcients will cause random ﬂuctuations in
+the fast- and slow-time dimensions, and thus will signiﬁ-
+cantly hinder the analysis needed to obtain the range andvelocity information.
+Based on the above observations, it is clear that the angle-
+range-velocity information is fused across different dimen-sions of the data cube, and the signal-dependent coefﬁcients
+a
+H(θq)xi[l]are the major obstacle to extracting the target pa-
+rameters. In the following, a novel joint estimation methodis developed to extract the angle-range-velocity information
+coupled with the troublesome signal-dependent coefﬁcient.
+B. Step 1: Spectral Analysis Along the Spatial Dimension
+We ﬁrst analyze the frequency spectrum of the data cube
+along the spatial dimension to determine the target angles θ
+q.
+In order to facilitate the analysis, the echo signal ( 5)i sﬁ r s tr e -
+arranged as
+y(m,i,l)=Q/summationdisplay
+q=1A(q,i,l)ejmωa(θq)+z(m,i,l), (7)
+whereA(q,i,l)does not depend on the spatial index mand is
+deﬁned as
+A(q,i,l)/definesβqaH(θq)xi[l]ejiωr(Rq)ejlωv(vq). (8)According to expression ( 7), each sequence {y(m,i,l),m=
+0,...,M rx−1},∀i,∀lalong the spatial dimension can be
+viewed as a sum of noise and Qcomplex sinusoids with angle-
+dependent frequencies ωa(θq)and amplitude A(q,i,l). While
+one can easily obtain the angles of potential targets via spectral
+analysis by using only one such sequence as in [29], this ignores
+information from other available echo signals. Furthermore,
+although the estimated angles could be used to remove the
+signal-dependent coefﬁcients, the angle estimation error willbe propagated and even ampliﬁed in the estimation of the other
+parameters. Therefore, instead of directly obtaining angle infor-
+mation, the main purpose of spectral analysis along the spatialdimension is to capture the characteristics of echo signals in
+different angular bins.
+The angular spectral analysis can be conducted by vari-
+ous algorithms, such as the DFT [33],M U S I C [34], ESPRIT
+[35], compressed sensing based methods [8],[9], etc. Each
+of these has its strengths and limitations. Detailed compar-
+isons can be found in [36],[37]. Due to its superior robust-
+ness and versatility, we will use the standard DFT approach
+to develop the proposed joint estimation method that fully uti-
+lizes all received echoes in one CPI. In particular, by applying
+anN
+a-point (Na≥Mrx) normalized DFT on {y(m,i,l),m=
+0,...,M rx−1}, we can obtain the sequences {Yi,l(na),n a=
+−⌊Na/2⌋,...,⌊Na/2⌋−1},∀i,∀l, given by
+Yi,l(na)=1
+MrxMrx−1/summationdisplay
+m=0y(m,i,l)e−jm/tildewideωa(na), (9)
+where the na-th frequency component ranging from −πtoπis
+deﬁned as
+/tildewideωa(na)/defines2πna
+Na. (10)
+Using the spectral analysis in ( 9), each echo signal ( 7),
+composed of Qcomplex sinusoids with frequency ωa(θq)and
+amplitude A(q,i,l), is converted into the summation of Na
+complex sinusoids with frequency /tildewideωa(na)and amplitude
+Yi,l(na)as
+y(m,i,l)=⌊Na/2⌋−1/summationdisplay
+na=−⌊Na/2⌋Yi,l(na)ejm/tildewideωa(na). (11)
+Thus, the echo signals are extracted into different bins corre-
+sponding to the angles of potential targets, as shown in Fig. 2(b).
+Speciﬁcally, the power present in the na-th angular bin is
+|Yi,l(na)|2, which is related to the probability of the existence of
+targets whose angle-dependent frequencies ωa(θq)are approxi-
+mately equal to /tildewideωa(na). Next, we will utilize this characteristic
+to facilitate removal of t he signal-dependent coefﬁcient.
+LetQnadenote the index set of the targets whose angles are
+within the na-th angular bin, and assu me the set has cardinality
+|Qna|=Qna. It is obvious that Qna⊆Q,0≤Qna≤Q,Qna∩
+Qn/prime
+a=∅,∀na/negationslash=n/prime
+a, and/summationtext
+naQna=Q. For the angles within
+binna, we have the following approximation
+ωa(θq)≈/tildewideωa(na),∀q∈Qna. (12)
+Authorized licensed use limited to: Queen Mary University of London. Downloaded on March 06,2026 at 13:37:12 UTC from IEEE Xplore.  Restrictions apply. 
+3810 IEEE TRANSACTIONS ON SIGNAL PROCESSING, VOL. 72, 2024
+(a) (b) (c) (d)
+Fig. 2. A visualization of the proposed joint estim ation process for the single-target scenario.
+With the deﬁnition ( 6a), the angles of the targets in the na-th
+angular bin can be further approximated as
+θq≈arcsin/parenleftbigg
+−naλc
+drNa/parenrightbigg
+,∀q∈Qna, (13)
+and we deﬁne θna/definesarcsin(−naλc/(drNa)).
+Substituting ( 7) and ( 8)i n t o( 9) and using the approximations
+in (12) and ( 13), the amplitude of the na-th angular bin can be
+approximated as
+Yi,l(na)≈/summationdisplay
+q∈QnaA(q,i,l),
+≈/summationdisplay
+q∈QnaβqaH(θna)xi[l]ejiωr(Rq)ejlωv(vq),(14)
+where the noise component is ignored to focus on extracting
+the desired parameters from the target echo signals. We ob-serve that Y
+i,l(na)consists of Qnacomponents, each of which
+is the signal-dependent coefﬁcient aH(θna)xi[l]multiplied by
+complex sinusoids whose frequencies are related to the rangeand velocity of the targets. Since the signal-dependent coefﬁ-
+cient changes along both the fast- and slow-time dimensions,
+it hinders the estimation of range and velocity using standard
+spectral analysis algorithms. Thus, the next step is to eliminate
+the impact of this signal-dependent coefﬁcient.
+C. Step 2: Signal-Dependent Coefﬁcients Removing
+After spectral analysis along the spatial dimension, the am-
+plitudes of the echo signals with different angle-dependent
+frequencies are extracted. Then the signal-dependent term
+a
+H(θna)xi[l]is removed to eliminate its inﬂuence on the spec-
+tral analysis along the fast- and slow-time dimensions to ex-
+tract the estimates of range and ve locity. Since the transmitted
+signalsxi[l]are known at the dual-functional BS, it would
+be straightforward to use this information together with the
+estimated target angle bins to remove the signal-dependent term
+aH(θna)xi[l], as is done in [28] and[29]. However, only part
+of the 3D data cube is used in this sequential strategy, and in
+addition, the angle estimation errors will propagate and degradethe subsequent range and velocity estimation. Moreover, the
+method in [29] is sensitive to the ambiguity function associated
+with the transmitted signals, and its performance degrades dueto the randomness of the communication symbols. To avoid
+these drawbacks, we propose to completely remove the signal-
+dependent term for each angular bin instead of only focusingon the few estimated target angular bins associated with poten-
+tial targets. Thus, our approach performs a joint angle-range-
+velocity estimation to enhance per formance by fully exploiting
+all echo signals during each CPI.
+From equation ( 14), we observe that the signal-dependent
+terma
+H(θna)xi[l]could be directly removed by point-wise
+division. However, since the magnitude of the signal-dependent
+term is not identical for different angular bins, directly dividingY
+i,l(na)by the signal-dependent coefﬁcient will destroy the
+properties of the echo signals in the spatial dimension. In partic-
+ular, the spatial characteristics of the echo signals are changedafter dividing Y
+i,l(na)by different amplitude values, which will
+deteriorate the angle estimation performance.
+To eliminate the impact of the signal-dependent term, we
+modify the data to maintain the spatial characteristics of the
+echo signals, and not change the relationship between the pow-
+ers of different angle bins. For this purpose, we introduce ascaling factor α
+nafor thena-th angular bin and propose to
+modifyYi,l(na)as follows:
+yi,l(na)/defines⎧
+⎪⎨
+⎪⎩Yi,l(na)
+αnaaH(θna)xi[l],ifaH(θna)xi[l]/negationslash=0,
+Yi,l(na), ifaH(θna)xi[l]=0,(15)
+where the selection is to eliminate dividing by zero. Then, based
+on the above discussions, the scaling factor αnais chosen such
+that the power of the na-th angular bin remains unchanged, i.e.,
+/summationdisplay
+i,l|yi,l(na)|2=/summationdisplay
+i,l|Yi,l(na)|2,∀na, (16)
+with leads to the following equation for the scaling factor:
+αna=/radicaltp/radicalvertex/radicalvertex/radicalvertex/radicalbt/summationtext
+i,l,aH(θna)xi[l]/negationslash=0/vextendsingle/vextendsingle/vextendsingleYi,l(na)
+aH(θna)xi[l]/vextendsingle/vextendsingle/vextendsingle2
+/summationtext
+i,l,aH(θna)xi[l]/negationslash=0|Yi,l(na)|2. (17)
+According to the approximation in ( 14), we can further write
+each sample in ( 15)a s
+yi,l(na)≈/summationdisplay
+q∈Qnaβq/αnaejiωr(Rq)ejlωv(vq), (18)
+where the special case with aH(θna)xi[l]=0 can be ignored
+without inﬂuencing the result. Now we clearly see from equa-tion ( 18) that the resulting sequences obtained along the fast-
+time dimension {y
+i,l(na),∀i}or the slow-time dimension
+{yi,l(na),∀l}are composed of Qnasinusoidal functions whose
+Authorized licensed use limited to: Queen Mary University of London. Downloaded on March 06,2026 at 13:37:12 UTC from IEEE Xplore.  Restrictions apply. 
+XIAO et al.: A NOVEL JOINT ANGLE-RANGE-VELOCITY ESTIMATION METHOD FOR MIMO-OFDM ISAC SYSTEMS 3811
+frequencies are determined by the range Rqor the velocity vq.
+Thus, it is straightforward to perform spectral analysis along the
+two dimensions and jointly estimate the desired angle-range-velocity information, as presented in the next subsection.
+D. Step 3: Spectral Analysis along the Fast- and Slow-Time
+Dimensions and Joint Estimation
+In this section, we show how to employ a 2D-DFT operation
+along the fast- and slow-time dimensions of the signal in ( 15)t o
+extract the echo signals into different range and Doppler bins.
+Then, together with the previously obtained angular spectrum, a
+joint angle-range-velocity estimation from the three dimensions
+is proposed.
+Speciﬁcally, a normalized (N
+r,Nv)-point (Nr≥Ns,Nv≥
+L) 2D-DFT analysis is implemented on the obtained sequences
+{yi,l(na),∀i,∀l}, yielding the sequences {Y(na,nr,nv),nr=
+−Nr+1,...,0,n v=−⌊Nv/2⌋,...,⌊Nv/2⌋−1},∀na.T h e
+amplitude Y(na,nr,nv)can be calculated as
+Y(na,nr,nv)=1
+NsLNs−1/summationdisplay
+i=0L−1/summationdisplay
+l=0yi,l(na)e−jl/tildewideωv(nv)e−ji/tildewideωr(nr),
+(19)
+where the frequency components of the nr-th range bin and the
+nv-th Doppler bin are respectively deﬁned as
+/tildewideωr(nr)/defines2πnr
+Nr, (20a)
+/tildewideωv(nv)/defines2πnv
+Nv. (20b)
+After the steps described above, the echo signals are extracted
+into theNa×Nr×Nvangular-range-Doppler bins with the
+amplitudes given in ( 19). Therefore, we can jointly estimate the
+targets from these 3D bins via peak ﬁnding. In particular, we
+can apply cell-averaging constant false alarm rate (CA-CFAR)processing with a 3D cell to obtain several signal clusters with
+high amplitudes, and then choose the maximum value of each
+cluster as the peak, whose 3D coordinate we denote by T
+q.
+Finally, the estimated angle-range-velocity of the q-th target,
+deﬁned as /tildewideθq,/tildewideRq,/tildewidevq, can be recovered using the 3D index
+Tq={(na,nr,nv)}as
+/tildewideθq=arcsin/parenleftbigg
+−naλc
+drNa/parenrightbigg
+, (21a)
+/tildewideRq=−cnr
+2NrΔf, (21b)
+/tildewidevq=cnv
+2NvTfc. (21c)
+We observe that larger values for Na/Nr/Nvyield narrower
+angular/range/Doppler bins and thus better estimation perfor-mance. However, considering that the computational complex-
+ity of the DFT increases with N
+a/Nr/Nv, a proper value for the
+size of the DFT should be selected. Our experiments indicatethatN
+a=3Mrx/Nr=3Ns/Nv=3Lprovides excellent perfor-
+mance with relatively small computational cost. In addition,
+interpolation-based approaches can be employed to compensateAlgorithm 1 Proposed Joint Angle-Range-Velocity Estimator
+Input:y(m,i,l),Ntx,Mrx,Ns,L,Na,Nr,Nv,dt,dr,λc,c,
+fc,T,Δf,xi[l],∀m,i,l .
+Output: θq,Rq,vq.
+1:PerformNa-point DFT on y(m,i,l)along the spatial di-
+mension to obtain Yi,l(na),∀i,l,n ain (9).
+2:Calculate scaling factor αnain (17).
+3:Remove signal-dependent coefﬁcients to obtain yi,l(na)in
+(15).
+4:Perform 2D-DFT along the fast- and slow-time dimensions
+to obtain Y(na,nr,nv)in (19).
+5:Find the peaks of [Y(na,nr,nv),∀na,nr,nv]to obtain the
+index set {Tq,∀q}.
+6:Recover the estimated /tildewideθq,/tildewideRq, and/tildewidevqby (21).
+7:Returnθq=/tildewideθq,Rq=/tildewideRq, andvq=/tildewidevq.
+for the performance loss due to smaller Na/Nr/Nv, as discussed
+in Sec. 3.35 of [37].
+We emphasize that the angle-range-velocity information is
+estimated jointly in the 3D space, rather than estimating these
+quantities sequentially as in prev ious approaches, and thus the
+proposed algorithm achieves better estimation performance, es-
+pecially when the targets are closely spaced along a particular
+dimension.
+E. Summary and Complexity Analysis
+Based on the above descriptions, the proposed joint
+angle-range-velocity estimation approach is summarized in
+Algorithm 1and depicted in Fig. 2. In summary, spectral
+analysis along the spatial dimension is ﬁrst performed to
+extract the angular components of the echo signals. Then,a scaling factor is introduced to assist in removing the
+signal-dependent term in each angular bin without destroying
+the spatial characteristics of the echo signals. Afterwards, a2D-DFT is performed for the fast- and slow-time dimensions
+to extract the range and Doppler components of the signal
+returns. Finally, the angle-range-velocity information is jointlyestimated by ﬁnding peaks among the obtained 3D bins.
+Next, we provide a brief complexity analysis. In Step 1,
+the complexity of the DFT along the spatial dimension isof order O(N
+sLNalogMrx)via the Fast Fourier Trans-
+form (FFT). In Step 2, the computational complexity is
+mainly due to the multiplication aH(θna)xi[l],∀na,i,l, which
+is of order O(NtxNaNsL). In Step 3, the 2D-DFT re-
+quiresO(NaLNrlogNs+NaNrNvlogL)operations. The
+complexity of the CA-CFAR-based peak ﬁnding is of order
+O(gNaNrNv), where the value of gis positively and linearly
+related to the size of the search cells. Therefore, the total com-putational complexity of the proposed algorithm is of order
+O((logM
+rx+Ntx+logNs+logL+g)MrxNsL). For com-
+parison, the complexity of the state-of-the-art approaches in[28] and[29] is also presented in Table I, where peak ﬁnding
+factorsg,g
+/prime, andg/prime/primeare linearly related to the size of the cells
+in the three, two, and one-dimensional searches, respectively.
+Authorized licensed use limited to: Queen Mary University of London. Downloaded on March 06,2026 at 13:37:12 UTC from IEEE Xplore.  Restrictions apply. 
+3812 IEEE TRANSACTIONS ON SIGNAL PROCESSING, VOL. 72, 2024
+TABLE I
+COMPUTATIONAL COMPLEXITY OF ESTIMATION METHODS FOR MIMO -OFDM ISAC S YSTEMS
+Proposed O((logMrx+Ntx+logNs+logL+g)MrxNsL)
+Sequential [28]O/parenleftbig
+NsL+Mrx)M2
+rx+(Ntx+logNs+logL+g/prime)QLNs/parenrightbig
+Sequential [29]O/parenleftbig
+(logMrx+g/prime/prime)MrxNsL+(Ntx+logNs+g/prime/prime)QNsL+(logL+g/prime/prime)QL/parenrightbig
+We can observe that the complexity of the proposed method
+is related to the size of the 3D data cube, i.e., MrxNsL, since
+we jointly estimate the target parameters by fully exploiting the
+received echo signals during one CPI. Moreover, our proposedalgorithm is more efﬁcient than the method of [28] which re-
+quires high-complexity eigenva lue decomposition operations.
+While the algorithm proposed in [29] has lower computational
+complexity, it will suffer from inferior performance since it only
+utilizes part of the echo signal dat a cube. Numerical results in
+Sec. Vwill further verify the efﬁciency of the proposed method.
+IV . P
+ERFORMANCE ANALYSIS
+In this section we conduct a theoretical analysis to evaluate
+the performance of the proposed joint estimation algorithm.In particular, we derive the achievable maximum unambiguous
+range and resolution achieved by the algorithm, which are two
+key performance indicators generally considered in conven-tional radar systems. Furthermore, the SNR processing gain that
+representing the ability of the algorithm to overcome the noise
+is also included.
+A. Maximum Unambiguous Range
+To avoid ambiguities, the frequencies related to the angle-
+range-velocity information should satisfy the following
+relationships:
+−π≤ω
+a(θ)≤π, (22a)
+−2π≤ωr(R)≤0, (22b)
+−π≤ωv(v)≤π. (22c)
+Assuming these conditi ons are met, then from ( 6) the maximum
+unambiguous range of the angle, range, and velocity can be
+respectively calculated as
+θmax/definesarcsin(λc/2dr), (23a)
+Rmax/definesc
+2Δf, (23b)
+vmax/definesc
+4Tfc. (23c)
+The maximum unambiguous range is determined by the wave-
+length, the antenna spacing, the frequency spacing, the symbol
+duration, and the carrier frequency, but is independent of size
+of the transmit antenna array and the transmit power budget.
+B. Resolution
+The proposed joint estimation algorithm estimates the targets
+by distinguishing the angular-range-Doppler bins. Since these
+bins are obtained using a DFT, the resolution is determined
+using DFT analysis [33]. In particular, the DFT frequencyresolution for an N-point transform is 2π/N . Thus, according
+to the deﬁnitions of the frequencies in ( 6), the resolution along
+the spatial dimension Δa, the fast-time dimension Δr, and the
+slow-time dimension Δv, respectively, satisfy
+ωa(θ+Δa)−ωa(θ)=2π/Mrx, (24a)
+ωr(R+Δr)−ωr(R)=2π/Ns, (24b)
+ωv(v+Δv)−ωv(v)=2π/L, (24c)
+which results in
+Δa=λc
+Mrxdr, (25a)
+Δr=c
+2NsΔf, (25b)
+Δv=c
+2fcLT. (25c)
+Since the proposed algorithm jointly uses the DFT along the
+spatial, fast-time, and slow-time dimensions, the targets can beseparated when any one of the resolution requirements is satis-
+ﬁed. However, for the existing approaches that sequentially es-
+timate the angle, range, and velocity parameters, the resolutioncriterion for the ﬁrst estimation step must be satisﬁed in order
+to separate two different targets. Therefore, the proposed joint
+estimation algorithm can greatly improve the target resolution.
+C. SNR Processing Gain
+In addition to the typical me trics of maximum unambiguous
+range and resolution, robustness to noise is also a critical factor.
+To evaluate this, the SNR processing gain, which is the ratio of
+the output SNR to the input SNR, is analyzed in this subsection.
+Based on the received echo signal model in ( 5), the input
+SNR of the q-th target during one CPI can be calculated as
+SNR
+i,q/definesE/braceleftBigg/summationdisplay
+m,i,l/vextendsingle/vextendsingleβqaH(θq)xi[l]ejmωa(θq)
+ejiωr(Rq)ejlωv(vq)/vextendsingle/vextendsingle2/bracerightBigg/slashBigg
+E/braceleftBigg/summationdisplay
+m,i,l|z(m,i,l)|2/bracerightBigg
+(26a)
+=σ2
+βE/braceleftbig/summationtext
+m,i,l|aH(θq)xi[l]|2/bracerightbig
+MrxNsLσ2s(26b)
+=σ2
+β/summationtext
+i,l|aH(θq)xi[l]|2
+NsLσ2s. (26c)
+To derive the output SNR of the proposed algorithm, as-
+sume that the q-th target is determined to be in the (na,nr,
+nv)-th angle-range-Doppler bin, i.e., (ωa(θq),ωr(Rq),ωv(vq))
+≈/parenleftbig
+/tildewideωa(na),/tildewideωr(nr),/tildewideωv(nv)/parenrightbig
+. The amplitude Y(na,nr,nv)of
+this bin can be calculated by substituting ( 18)i n t o( 19)a s
+Y(na,nr,nv)≈βq/αna. (27)
+Authorized licensed use limited to: Queen Mary University of London. Downloaded on March 06,2026 at 13:37:12 UTC from IEEE Xplore.  Restrictions apply. 
+XIAO et al.: A NOVEL JOINT ANGLE-RANGE-VELOCITY ESTIMATION METHOD FOR MIMO-OFDM ISAC SYSTEMS 3813
+Meanwhile, using the same procedure as that for processing
+the target echo signals in ( 9), (15) and ( 19), the amplitude
+Z(na,nr,nv)corresponding to the received AWGN z(m,i,l)
+is given by
+Z(na,nr,nv)
+/defines/summationdisplay
+m,i,lz(m,i,l)e−jm/tildewideωa(na)e−jl/tildewideωv(nv)e−ji/tildewideωr(nr)
+MrxNsLαnaaH(θna)xi[l],(28)
+which follows
+Z(na,nr,nv)∼CN(0,σ2
+z,na), (29)
+with noise power
+σ2
+z,na=/summationdisplay
+i,lσ2
+s
+MrxN2sL2α2na|aH(θna)xi[l]|2. (30)
+Thus, the output SNR of the q-th target can be calculated as
+SNR o,q/definesE/braceleftbig
+|βq/αna|2/bracerightbig
+σ2z,na(31a)
+≈MrxN2
+sL2σ2
+β/summationtext
+i,lσ2s/|aH(θq)xi[l]|2, (31b)
+where ( 31b) is obtained due to the approximation in ( 13). Then,
+the SNR processing gain for estimating the parameters of the
+q-th target is given by
+SNR o,q
+SNR i,q≈MrxN3
+sL3//summationtext
+i,l|aH(θq)xi[l]|2
+/summationtext
+i,l1/|aH(θq)xi[l]|2(32a)
+≤MrxNsL, (32b)
+where the upper-bound ( 32b) is derived using the Cauchy-
+Schwarz inequality, and equality hol ds if and only if the signal-
+dependent coefﬁcient has constant modulus, i.e., |aH(θ)xi[l]|=
+constant, ∀i,l. In summary, by fully utilizing the Mrx×Ns×
+L-dimensional data cube of the received echo signals, the pro-
+posed algorithm can provide up to an MrxNsL-fold improve-
+ment in SNR performance.
+V. N UMERICAL RESULTS
+In this section, we provide numerical experiments to verify
+the advantages of the proposed joint estimation method in termsof resolution and robustness to noise. It should be emphasized
+that the proposed method is dedicated to processing the echoes
+of MIMO-OFDM waveforms used in general communicationsystems. Therefore, the processing at the communication end
+is the same as that of conventional communication systems
+and is ignored in the following simulations. Unless otherwisespeciﬁed, we use the settings bas ed on the 3GPP 5G NR high-
+frequency standard [38],[39], as listed in Table II. To focus
+on the evaluation of the proposed algorithm and simplify the
+transmit waveform design, we consider an ISAC scenario where
+the communication user is also the target to be sensed
+1.
+1The proposed algorithm can be readily applied to more general ISAC
+scenarios with separate communication users and sen sing targets. In order to
+achieve better performance in such scen arios, a more sophisticated transmit
+waveform design should be investigated, which is beyond the scope of this
+paper.TABLE II
+SYSTEM SETTINGS
+Parameter Symbol Value
+Carrier frequency fc 28GHz
+Subcarrier spacing Δf 120kHz
+Number of subcarriers Ns 512
+OFDM symbol duration Td 8.33μs
+CP duration Tcp 0.59μs
+Total symbol duration T 8.92μs
+CPI length L 256
+Number of transmit antennas Ntx 16
+Number of receive antennas Mrx 16
+Transmit antenna spacing dt 0.5c/f c
+Receive antenna spacing dt 0.5c/f c
+The targets are assumed to be randomly located at angles
+between[−30◦,30◦], ranges between [40m,80m] , and radial
+velocities between [−50m/s,50m/s], where a negative veloc-
+ity refers to movement away from the receiving platform. We
+assume a zero-forcing (ZF) precoded communication waveform
+as follows [40]:
+xi[l]=Wisi[l],∀i,l, (33)
+whereWi∈CNtx×Kdenotes the linear ZF beamformer, si[l]∈
+CKis the communication symbol vector whose elements are
+independently drawn from a 16- quadrature amplitude modu-
+lation (QAM) constellation. In addition to the proposed joint
+estimation algorithm labeled “Proposed”, we also include threebenchmarks for comparisons. One is the proposed estimation
+algorithm without scaling when removing the signal-dependent
+coefﬁcient (denoted as “W/o scal.”) to show the importance ofmaintaining the sum-of-sinusoids model in the spatial domain.
+The other two are the state-of-the-art algorithms proposed in
+[28] and[29]. These sequential estimation schemes are denoted
+as “Sequential [28]” and “Sequential [29]”. In addition, the
+performance of a radar system employing a standard LFMCW
+waveform with the 3D-DFT estimation algorithm is also sim-
+ulated, and is denoted as “3D-DFT, LFMCW”. The LFMCW
+waveform does not carry random communication symbols, andis known to exhibit excellent sensing performance given the
+same time-frequency resources [41], e.g., the same power bud-
+get, bandwidth, and beamforming pattern as the OFDM wave-form. The LFMCW waveform emitted by N
+txantennas within
+one CPI is given as [42]
+xLFMCW(t)/defineswL−1/summationdisplay
+l=0ej2π(fct+NsΔf(t−lT)2
+T2)rect/parenleftbiggt−lT
+T/parenrightbigg
+,
+(34)
+wherew∈CNtx×1is the beamforming vector obtained using
+the ZF scheme [40] in order to guarantee the same beampattern
+as that of the OFDM waveform for a fair comparison. At the
+receiver side, a standard LFMCW radar receiver with Mrx
+antennas uses the classic 3D-DFT estimation method [42],[43],
+[44] to estimate the target parameters.
+Both single- and multi-target scenarios are considered to
+illustrate the parameter estim ation performance, which is
+Authorized licensed use limited to: Queen Mary University of London. Downloaded on March 06,2026 at 13:37:12 UTC from IEEE Xplore.  Restrictions apply. 
+3814 IEEE TRANSACTIONS ON SIGNAL PROCESSING, VOL. 72, 2024
+Fig. 3. Estimation performance versus SNR fo r different numbers of receive antennas, Mrx=4,16,64.
+Fig. 4. Estimation performance versu s SNR for different CPI lengths, L=16,64,256.
+evaluated in terms of the RMSE of the estimated angle/
+range/velocity; for example, for the angle parameter
+we have
+RMSE/defines/radicaltp/radicalvertex/radicalvertex/radicalbt
+E/braceleftBigg
+1
+QQ/summationdisplay
+q=1(θq−/tildewideθq)2/bracerightBigg
+, (35)
+whereθqis the actual AoA of the q-target and /tildewideθqis the estimate.
+A. Single-Target Scenario
+For the single target case, we set the numbers of angular,
+range, and velocity bins of all the estimation methods the same,
+respectively Na=Mrx,Nr=Ns, andNv=L.W eﬁ r s ts h o w
+the angle/range/velocity RMSE versus the SNR for differentnumbers of receive antennas in Fig. 3. Not surprisingly, the
+estimation error of all schemes decreases as the SNR or the
+number of receive ant ennas increases . In addition, we observe
+that the RMSE converges to an error ﬂoor at high SNR, since
+the estimation error is lower bounded by the width of each
+angular/range/Doppler bin. The RMSE ﬂoor for the angle es-timate decreases as the number of receive antennas grows,
+since a larger number of angular bins leads to a narrower bin
+width. Since the spatial characteristics of the echo signals are
+destroyed when the signal-dependent coefﬁcient is removed,
+angle estimation for the ‘W/o scal.’ approach is ineffective.Without our proposed scaling, the range and velocity estimation
+performance will also be signiﬁcantly degraded. Moreover, our
+proposed joint estimation algorithm signiﬁcantly outperformsboth of the existing algorithms [28] and[29], since we exploit
+the full 3D data cube. Most importantly, the sensing perfor-
+mance obtained using the OFDM communication waveform isvery close to that achieved by the LFMCW radar waveform.
+This result conﬁrms the advantages of the proposed algorithm
+and also indicates that the OFDM waveform is an attractive
+candidate for future ISAC systems.
+Next in Fig. 4we show the RMSE performance for different
+CPI lengths. As already noted, by fully utilizing the received
+echo signals, the proposed algorithm achieves the lowest RMSE
+at each SNR and its performance is very close to the LFMCWradar-only scheme. Si nce only one OFDM symbol is utilized for
+the angle estimation in [29], the estimation performance will
+be limited for a large L. Speciﬁcally, when Lincreases from
+16to256, the proposed method shows a notable performance
+improvement of 10dB , while [28] only improves by about 5dB
+and[29] by0dB.
+To further quantify the proposed algorithm’s robustness to
+noise, in Fig. 5we plot the output SNR for a 10dB input
+SNR versus the number of receive antennas, subcarriers, andCPI length, respectively. Since the algorithm ‘W/o scal.’ cannot
+provide correct results in this case, results for this approach are
+not presented in the following simulations. In addition, given
+Authorized licensed use limited to: Queen Mary University of London. Downloaded on March 06,2026 at 13:37:12 UTC from IEEE Xplore.  Restrictions apply. 
+XIAO et al.: A NOVEL JOINT ANGLE-RANGE-VELOCITY ESTIMATION METHOD FOR MIMO-OFDM ISAC SYSTEMS 3815
+Fig. 5. Output-SNR versus the number of receive antenna s, subcarriers, and CPI length, respectively (input SNR: 10dB ).
+that the performance of the sequential strategy depends mainly
+on the initial angle estimatio n results, the output SNR shown
+for[28] and[29] is taken to be the output SNR of the angle
+estimation only. We see that the output SNR of the proposed
+algorithm increases linearly with the number of receive anten-
+nas, subcarriers, and the CPI length. This is consistent with our
+analytical expression ( 31b) and veriﬁes that the proposed joint
+estimation algorithm can fully exploit the echo signals fromall three dimensions. Comparatively, the output SNR obtained
+by the sequential estimation algorithms [28] and[29] increases
+only with the number of receive antennas M
+rx, since their
+performance is mainly determined by the ﬁrst-step angle es-
+timation which is related to Mrx. We observe that the proposed
+algorithm has a substantially higher output SNR than its coun-terparts, about 15dB higher than [28] and45dB higher than
+[29], and thus the proposed method is more reliable in handling
+low SNR situations. Moreover, we see that the output SNRobtained using the OFDM communication waveform together
+with the proposed estimation algorithm is comparable to that
+achieved by the radar-only LFMCW scheme.
+For practical consideration, in Fig. 6, we show the execution
+time per estimation versus the number of transmit antennas, re-
+ceive antennas, subcarriers, and CPI length. We clearly observe
+that the relationship between the execution times required by
+different algorithms is consistent with the theoretical analysis inSec. III-E . Speciﬁcally, the algorithm in [29] that only utilizes
+a portion of the echoes is the most computationally efﬁcient,
+the algorithm [28] using eigenvalue decomposition requires
+the most execution time, and the proposed algorithm lies in
+between them. Although the proposed algorithm is not the most
+computationally efﬁcient, the required execution time is stillacceptable. Moreover, the substantial estimation performance
+improvement and the high achievable communication rate en-
+able the proposed join t estimation algorithm to be a competitive
+candidate for practical ISAC applications.
+B. Multi-Target Scenario
+In order to illustrate the estim ation performance in terms
+of resolution, we consider multi- target scenarios in this sec-
+tion. To ensure satisfactory estimation performance, we set theFig. 6. Execution time per estimation versus the number of transmit
+antennas, receive antennas, s ubcarriers, and CPI length.
+number of angular bins for the MUSIC-based angle estimation
+algorithm [28] asNa=30Mrx, and set the number of angular,
+range, and velocity bins for the other estimation approaches as
+Na=3Mrx,Nr=3Ns, andNv=3L. The number of receive
+antennas is set as Mrx=8.
+We ﬁrst present the RMSE versus the number of targets in
+Fig. 7. We observe that when the number of targets equals
+Authorized licensed use limited to: Queen Mary University of London. Downloaded on March 06,2026 at 13:37:12 UTC from IEEE Xplore.  Restrictions apply. 
+3816 IEEE TRANSACTIONS ON SIGNAL PROCESSING, VOL. 72, 2024
+Fig. 7. Estimation performance versus the number of targets, Mrx=8.
+Fig. 8. Target estimation results.
+the number of receive antennas, the RMSE of the sequential
+method [29] increases quickly, while the proposed method
+maintains a relatively stable performance thanks to the joint
+estimation process. When the number of targets is greater than
+the number of receive antennas, the sequential method [28] no
+longer provides valid estimates since it is based on the MUSIC
+method, which requires that the number of angles be less than
+the number of antennas. Although the process of removing thesignal-dependent term introduces a certain performance loss,
+the proposed algorithm using OFDM communication wave-
+forms still achieves performance comparable to the LFMCWradar-only scheme, which provides satisfactory communication
+and sensing performance for ISAC applications.
+In order to obtain better intuition about the performance gap,
+in Fig. 8we show the results for a speciﬁc case where Q=5
+point-like targets exist with the angle-range-velocity parameterslisted in Table III. We see that the sequential method [29]
+exhibits notably worse performance in localizing targets with
+similar angles because it distinguishes the targets based only ontheir angle information from the spatial dimension. Although
+the method in [28] also initially observes the data cube from
+one dimension, it employs the MUSIC method which providesTABLE III
+TARGET PARAMETERS
+Angle Range Velocity
+30◦69 m −30 m/s
+0◦70 m 10 m /s
+10◦60 m 25 m /s
+−25◦50 m 30 m /s
+−15◦65 m −5m/s
+better resolution. Compared to these two benchmarks, the pro-
+posed joint estimation algorithm provides more accurate results
+close to the LFMCW radar-only scheme using the 3D-DFT.
+VI. C ONCLUSION
+In this paper we proposed a novel algorithm for jointly es-
+timating the parameters of multiple targets based on the use
+of conventional MIMO-OFDM waveforms in an ISAC sys-tem. The algorithm jointly estimates the angle-range-velocity
+information of potential targets b y fully exploiting the received
+echo signals within a coherent processing interval. A theoreti-
+cal analysis for the maximum unambiguous range, resolution,
+and SNR processing gain was provided to evaluate the perfor-mance of the proposed algorithm. Extensive simulation results
+veriﬁed that the proposed approach can achieve much better
+parameter estimation performance than the existing algorithmsusing MIMO-OFDM communication waveforms, as well as
+performance close to that achieved by a radar-only system
+using LFMCW waveforms. Based on this initial work, we willfurther investigate algorithm design for ultra-wideband (UWB)
+MIMO-OFDM waveforms and transmit waveform design for
+general ISAC scenarios in which the users and targets are indifferent positions.
+R
+EFERENCES
+[1] ITU-R, Draft New Recommendation, “Framework and overall objectives
+of the future development of IMT for 2030 and beyond,” Jun. 2023.
+[2] L. Zheng, M. Lops, Y . C. Eldar, and X. Wang, “Radar and communi-
+cation coexistence: An overview: A review of recent methods,” IEEE
+Signal Process. Mag. , vol. 36, no. 5, pp. 85–99, Sep. 2019.
+[3] J. A. Zhang et al., “An overview of signal processing techniques for joint
+communication and radar sensing,” IEEE J. Sel. Topics Signal Process. ,
+vol. 15, no. 6, pp. 1295–1315, Nov. 2021.
+Authorized licensed use limited to: Queen Mary University of London. Downloaded on March 06,2026 at 13:37:12 UTC from IEEE Xplore.  Restrictions apply. 
+XIAO et al.: A NOVEL JOINT ANGLE-RANGE-VELOCITY ESTIMATION METHOD FOR MIMO-OFDM ISAC SYSTEMS 3817
+[4] F. Liu et al., “Seventy years of radar and communications: The road
+from separation to integration,” IEEE Signal Process. Mag. , vol. 40,
+no. 5, pp. 106–121, Jul. 2023.
+[5] Y . Zhang, Q. Li, L. Huang, and J. Song, “Waveform design for joint
+radar-communication system with mu lti-user based on MIMO radar,” in
+Proc. IEEE Radar Conf. (RadarConf) , Seattle, WA, USA, May 2017,
+pp. 415–418.
+[6] K. Wu, J. A. Zhang, X. Huang, and Y . J. Guo, “Frequency-hopping
+MIMO radar-based communications: An overview,” IEEE Aerosp. Elec-
+tron. Syst. Mag. , vol. 37, no. 4, pp. 42–54, Apr. 2022.
+[7] G. Han, J. Choi, and R. W. Heath, “Radar imaging based on IEEE
+802.11ad waveform in V2I communications,” IEEE Trans. Signal Pro-
+cess. , vol. 70, pp. 4981–4996, 2022.
+[8] M. L. Rahman, J. A. Zhang, X. Huang, Y . J. Guo, and R. W. Heath,
+“Framework for a perceptive mobile network using joint communication
+and radar sensing,” IEEE Trans. Aerosp. Electron. Syst. , vol. 56, no. 3,
+pp. 1926–1941, Jun. 2020.
+[9] J. A. Zhang, M. L. Rahman, X. Huang, Y . J. Guo, S. Chen, and R. W.
+Heath, “Perceptive mobile network: Cellular networks with radio vision
+via joint communication and radar sensing,” IEEE Veh. Technol. Mag. ,
+vol. 16, no. 2, pp. 20–30, Jun. 2021.
+[10] R. Liu, M. Li, Q. Liu, and A. L. Swindlehurst, “Joint waveform and
+ﬁlter designs for STAP-SLP-based MIMO-DFRC systems,” IEEE J. Sel.
+Areas Commun. , vol. 40, no. 6, pp. 1918–1931, Jun. 2022.
+[11] R. Liu, M. Li, Y . Liu, Q. Wu, and Q. Liu, “Joint transmit waveform
+and passive beamforming design for RIS-aided DFRC systems,” IEEE
+J. Sel. Topics Signal Process. , vol. 16, no. 5, pp. 995–1010, Aug. 2022.
+[12] S. Sen and A. Nehorai, “Adaptive OFDM radar for target detection
+in multipath scenarios,” IEEE Trans. Signal Process. , vol. 59, no. 1,
+pp. 78–90, Jan. 2011
+[13] S. Sen, “OFDM radar space-time adaptive processing by exploiting
+spatio-temporal sparsity,” IEEE Trans. Signal Process. , vol. 61, no. 1,
+pp. 118–130, Jan. 2013.
+[14] X. H. Wu, A. A. Kishk, and A. W. Glisson, “MIMO-OFDM radar for
+direction estimation,” IET Radar Sonar Navig. , vol. 4, no. 1, pp. 28–36,
+Feb. 2010.
+[15] T. Zhang, X.-G. Xia and L. Kong, “IRCI free range reconstruction for
+SAR imaging with arbitrary length OFDM pulse,” IEEE Trans. Signal
+Process. , vol. 62, no. 18, pp. 4748–4759, Sep. 2014.
+[16] Y .-H. Cao, X.-G. Xia, and S.-H. Wang, “IRCI free colocated MIMO
+radar based on sufﬁcient cyclic preﬁx OFDM waveforms,” IEEE Trans.
+Aerosp. Electron. Syst. , vol. 51, no. 3, pp. 2107–2120, Jul. 2015.
+[17] C. Sturm and W. Wiesbeck, “Waveform design and signal processing
+aspects for fusion of wireless co mmunications and radar sensing,” IEEE
+Proc. , vol. 99, no. 7, pp. 1236–1259, Jul. 2011.
+[18] L. Zheng and X. Wang, “Super-re solution delay-Doppler estimation for
+OFDM passive radar,” IEEE Trans. Signal Process. , vol. 65, no. 9,
+pp. 2197–2210, May 2017.
+[19] Y . Liu, G. Liao, Y . Chen, J. Xu, and Y . Yin, “Super-resolution range and
+velocity estimations with OFDM integrated radar and communicationswaveform,” IEEE Trans. Veh. Technol. , vol. 69, no. 10, pp. 11659–11672,
+Oct. 2020.
+[20] J. B. Sanson, P. M. Tomé, D. Castanheira, A. Gameiro, and P. P.
+Monteiro, “High-resolution delay -Doppler estimation using received
+communication signals for OFDM radar-communication system,” IEEE
+Trans. Veh. Technol. , vol. 69, no. 11, pp. 13112–13123, Nov. 2020.
+[21] Y . Wu, F. Lemic, C. Han, and Z. Chen, “Sensing integrated DFT-
+Spread OFDM waveform and deep learning-powered receiver design for
+terahertz integrated sensin g and communication systems,”
+IEEE Trans.
+Commun. , vol. 71, no. 1, pp. 595–610, Jan. 2023.
+[22] Y . Liu, G. Liao, Z. Yang, and J. Xu, “Multiobjective optimal waveform
+design for OFDM integrated radar and communication systems,” Signal
+Process. , vol. 141, pp. 331–342, Jun. 2017.
+[23] Y . Liu, G. Liao, J. Xu, Z. Yang, and Y . Zhang, “Adaptive OFDM inte-
+grated radar and communications waveform design based on informationtheory,” IEEE Commun. Lett. , vol. 21, no. 10, pp. 2174–2177, Oct. 2017.
+[24] M. F. Keskin, V . Koivunen, and H. Wymeersch, “Limited feedforward
+waveform design for OFDM dual-functional radar-communications,”IEEE Trans. Signal Process. , vol. 69, pp. 2955–2970, Apr. 2021.
+[25] J. Li and P. Stoica, “MIMO r adar with colocated antennas,” IEEE Signal
+Process. Mag. , vol. 24, no. 5, pp. 106–114, Sep. 2007.
+[26] E. Björnson, Y . C. Eldar, E. G. Larsson, A. Lozano, and H. V . Poor,
+“Twenty-ﬁve years of signal processing advances for multiantennacommunications: From theory to mainstream technology,” IEEE Signal
+Process. Mag. , vol. 40, no. 4, pp. 107–117, Jun. 2023.
+[27] Y . Liu, G. Liao, Z. Yang, and J. X u, “Joint range and angle estimation
+for an integrated system combining MIMO radar with OFDM com-munication,” Multidimensional Syst. Signal Process. , vol. 30, no. 2,
+pp. 661–687, 2019.
+[28] M. A. Islam, G. C. Alexandropoulos, and B. Smida, “Integrated sensing
+and communication with m illimeter wave full duplex hybrid beamform-
+ing,” in Proc. IEEE Int. Conf. Commun. (ICC) , Seoul, Korea, May 2022,
+pp. 4673–4678.
+[29] Z. Xu and A. Petropulu, “A bandwidth efﬁcient dual-function radar com-
+munication system based on a MIMO radar using OFDM waveforms,”IEEE Trans. Signal Process. , vol. 71, pp. 401–416, 2023.
+[30] M. Bernhardt, F. Gregorio, J. Cousseau, and T. Riihonen, “Self-
+interference cancelation through advanced sampling,” IEEE Trans. Sig-
+nal Process. , vol. 66, no. 7, pp. 1721–1733, Apr. 2018.
+[31] C. B. Barneto, S. D. Liyanaarachchi, M. Heino, T. Riihonen, and
+M. Valkama, “Full duplex radio/ radar technology: The enabler for
+advanced joint comm unication and sensing,” IEEE Wireless Commun. ,
+vol. 28, no. 1, pp. 82–88, 2021.
+[32] G. C. Alexandropoulos, M. A. Islam, and B. Smida, “Full-duplex
+massive multiple-input, multiple-out put architectures: Recent advances,
+applications, and future directions,” IEEE Veh. Technol. Mag. , vol. 17,
+no. 4, pp. 83–91, Dec. 2022.
+[33] J. G. Proakis, “The discrete Fourier transform: Its properties and
+applications,” Digital Signal Processing: Principles, Algorithms and
+Applications , 4th ed. Upper Saddle River, NJ, USA: Pearson Education,
+2007, pp. 449–502.
+[34] R. O. Schmidt, “Multiple emitter location and signal parameter estima-
+tion,” IEEE Trans. Antennas Propag. , vol. 34, pp. 276–280, Mar. 1986.
+[35] R. Roy and T. Kailath, “ESPRIT-estimation of signal parameters via
+rotational invariance techniques,” IEEE Trans. Acoust., Speech, Signal
+Process. , vol. 37, no. 7, pp. 984–995, Jul. 1989.
+[36] M. Braun, C. Sturm, and F. K. Jondral, “On the single-target accuracy of
+OFDM radar algorithms,” in Proc. IEEE 22nd Int. Symp. Pers., Indoor
+Mobile Radio Commun. , Toronto, Canada, 2011, pp. 794–798.
+[37] M. Braun, “OFDM radar algorithms in mobile communication net-
+works,” Ph.D. dissertation, Dept. I nst. Commun. Eng., Karlsruher In-
+stituts fur Technologie, Karlsruhe, Germany, 2014.
+[38] 3GPP, “3GPP TS 38.104 V17.8.0 ( 2022-12) 3rd Generation Partnership
+Project; Technical Speciﬁcation Group Radio Access Network; NR; Base
+Station (BS) radio transmissi on and reception (Release 17),” 2022.
+[39] 3GPP, “3GPP TS 38.211 V17.4.0 ( 2022-12) 3rd Generation Partnership
+Project; Technical Speciﬁcation Gr oup Radio Access Network; NR;
+Physical channels and modulation (Release 17),” 2022.
+[40] Q. H. Spencer, A. L. Swindlehurst , and M. Haardt, “Zero-forcing meth-
+ods for downlink spatial multiplexi ng in multiuser MIMO channels,”
+IEEE Trans. Signal Process. , vol. 52, no. 2, pp. 461–471, Feb. 2004.
+[41] N. Levanon and E. Mozeson, Radar Signals . Hoboken, NJ, USA: Wiley,
+2004.
+[42] M. Jankiraman, FMCW Radar Design . Norwood, MA, USA: Artech
+House, 2008.
+[43] S. Saponara and B. Neri, “Radar sensor signal acquisition and multi-
+dimensional FFT processing for s urveillance applications in transport
+systems,” IEEE Trans. Instrum. Meas. , vol. 66, no. 4, pp. 604–615,
+Apr. 2017.
+[44] X. Li, X. Wang, Q. Yang, and S. Fu, “Signal processing for TDM
+MIMO FMCW millimeter-wave radar sensors,” IEEE Access ,v o l .9 ,
+pp. 167959–167971, 2021.
+Zichao Xiao received the B.S. degree in electronics
+and information engineer ing and the M.S. degree in
+information and communication engineering fromDalian University of Technology, Dalian, China, in
+2021 and 2024, respectively. His research interests
+include signal processing, reconﬁgurable intelligentsurfaces, and integrated sensing and communica-
+tion. He was the recipient of the National Schol-
+arship in 2021.
+Authorized licensed use limited to: Queen Mary University of London. Downloaded on March 06,2026 at 13:37:12 UTC from IEEE Xplore.  Restrictions apply. 
+3818 IEEE TRANSACTIONS ON SIGNAL PROCESSING, VOL. 72, 2024
+Rang Liu (Member, IEEE) received the B.S. degree
+in electronics information e ngineering from Dalian
+University of Technology, Dalian, China, in 2018,and the Ph.D. degree from the School of Infor-mation and Communication Engineering, Dalian
+University of Technology, Dalian, China, in 2023.
+Currently, she is working a s a Postdoctoral Scholar
+with the Department of Electrical Engineering andComputer Science, Univers ity of California, Irvine.
+Her research interests include on signal processing,
+massive MIMO systems, r econﬁgurable intelligent
+surfaces, and integrated sensing and communications.
+Ming Li (Senior Member, IEEE) received the M.S.
+and Ph.D. degrees in electrical engineering from theState University of New York at Buffalo (SUNY-
+Buffalo), Buffalo, in 2005 and 2010, respectively.
+From 2011 to 2013, he was a Postdoctoral Re-search Associate with th e Department of Electrical
+Engineering, SUNY-Buffalo. From 2013 to 2014,
+he joined as a Senior Engi neer with the Qualcomm
+Technologies Inc. Since 2014, he has been with theSchool of Information and Communication Engi-
+neering, Dalian University of Technology, Dalian,
+China, where currently he is a Profe ssor. His research interests include
+communication theory and signal proce ssing with applications to integrated
+sensing and communication, reconﬁgur able intelligent surfaces, mmWave
+communications, massive MIMO system s, and secure wireless communi-
+cations. He has served as a TPC Chair/Member of various internationalﬂagship conferences. He was a recipien t of an Exemplary Reviewer of IEEE
+T
+RANSACTIONS ON COMMUNICATIONS .
+Qian Liu (Member, IEEE) received the B.S. and
+M.S. degrees from Dalian University of Technol-
+ogy, Dalian, China, in 2006 and 2009, respectively,
+and the Ph.D. degree from the State Universityof New York at Buffalo (SUNY-Buffalo), Buffalo,
+NY , USA, in 2013. Currently, she is a Professor
+with the School of Computer Science and Technol-ogy, Dalian University of Technology, China. Herresearch interests include haptic communications
+and signal processing, wi reless multimedia com-
+munications, and haptic-oriented human–computerinteraction. From 2013 to 2015, she was a Postdoctoral Fellow with the
+Ubiquitous Multimedia Laboratory, SUNY-Buffalo. She was an Alexander
+von Humboldt Fellow with the Chair of Media Technology and the Chairof Communication Networks, Technical University of Munich from 2016 to
+2017. She provides services to the IEEE Haptic Codec Task Group as a
+secretary for standardizing haptic c odecs in the Tactile In ternet. She also
+served as the Technical Program Co -Chair of 2017 IEEE Haptic Audio
+Visual Environments and Games (HA VE’17), HA VE’18, AsiaHaptics 2020,and AsiaHaptics 2022.
+A. Lee Swindlehurst (Fellow, IEEE) received the
+B.S. and M.S. degrees from Brigham Young Uni-versity (BYU), in 1985 and 1986, respectively, andthe Ph.D. degree from Stanford University, in 1991,
+all in electrical engineering. He was with the De-
+partment of Electrical and Computer Engineering,BYU from 1990 to 2007, where he served asthe Department Chair from 2003 to 2006. From
+1996 to 1997, he held a joint appointment as a
+Visiting Scholar with Uppsala University and theRoyal Institute of Technology, Sweden. From 2006
+to 2007, he was on leave working as a Vice President of Research for
+ArrayComm LLC, San Jose, CA, USA. Since 2007, he has been with theElectrical Engineering and Computer S cience (EECS) Department, University
+of California Irvine, where he is a Di stinguished Professor and currently
+serving as the Department Chair. His re search interests include array signal
+processing for radar, wireless comm unications, and biomedical applications.
+From 2014 to 2017, he was a Hans Fischer Senior Fellow with the Institutefor Advanced Studies, Technical Univ ersity of Munich, and in 2016, he was
+elected as a Foreign Member with the Royal Swedish Academy of Engineering
+Sciences (IV A). He received the 2000 IEEE W. R. G. Baker Prize PaperAward, the 2006 IEEE Communications Society Stephen O. Rice Prize inthe Field of Communication Theory, the 2006, 2010, and 2021 IEEE Signal
+Processing Society’s Best Paper Awards, the 2017 IEEE Signal Processing
+Society Donald G. Fink Overview Paper Award, the Best Paper Award at the2020 and 2024 IEEE International Conferences on Communications, the 2022Claude Shannon-Harry Nyquist Technical Achievement Award from the IEEE
+Signal Processing Society, and 2024 Fred W. Ellersick Prize from the IEEE
+Communications Society.
+Authorized licensed use limited to: Queen Mary University of London. Downloaded on March 06,2026 at 13:37:12 UTC from IEEE Xplore.  Restrictions apply. 

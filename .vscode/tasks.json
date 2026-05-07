@@ -1,0 +1,19 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Run MATLAB Project",
+            "type": "shell",
+            "command": "& 'E:\\Matlab R2024a\\bin\\matlab.exe' -batch \"run('main.m')\"",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "presentation": {
+                "reveal": "always",
+                "panel": "new"
+            },
+            "problemMatcher": []
+        }
+    ]
+}

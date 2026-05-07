@@ -1,0 +1,9 @@
+main_snr_rmse_quicklook 运行报告
+时间: 2026-04-01 19:32:38
+MATLAB: 24.1.0.2537033 (R2024a)
+平台: PCWIN64
+SNR 点数: 3
+有效样本统计(按 SNR): [1 1 1]
+N_test=1, N_trial=1
+FFT 尺寸: [Na=4, Nd=96, Nv=64]
+错误条目数: 0

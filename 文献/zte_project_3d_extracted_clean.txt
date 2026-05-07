@@ -1,0 +1,331 @@
+1
+I. System Model
+A mono-static MIMO-OFDM ISAC system, in which a dual-functional BS equipped with two separate
+UP As of Ntx transmit antennas and Mrx receive antennas simultaneously performs downlink multi-user
+communications and radar target parameter estimation. Specifically , the BS transmits OFDM waveforms
+to communicate with K single-antenna users and simultaneously illuminates multiple point-like targets.
+Meanwhile, the received echo signals are processed to estimate the angle-range-velocity of targets.
+A. T ransmitted Signal Model
+In the considered OFDM system, the carrier frequency is fc, and the wavelength is λc=c/fc, where c
+denotes the speed of light. There are Ns-subcarriers with frequency spacing ∆f= 1/Td, where Tdis the
+OFDM symbol duration. F or the l-th OFDM symbol, we denote the baseband signal transmitted on the i-th
+subcarrier as xi[l]∈CNtx,i= 0,1, . . . , N s−1,l= 0,1, . . . , L −1, where L is the frame length of one CPI.
+The NsNtx-dimensional frequency-domain baseband signals xi[l]collected in different subcarriers are
+rearranged into NtxNs-dimensional vectors collected from different transmit antennas. Then, Ns-point inverse
+DFT (IDFT) processors are utilized to transform these frequency-domain vectors to the time domain. These
+signals are then arranged serially in chronological order, and an Ncp-point CP of duration Tcp is inserted to
+avoid inter-symbol interference (ISI) for both communication and sensing. The CP length should be greater
+than the length of the channel impulse response to avoid ISI for downlink communications. In order to
+eliminate ISI at the sensing receiver, the CP duration should also be larger than the roundtrip delay between
+the BS and the furthest target. After conversion to analog, the baseband signal is expressed as
+ex(t)≜Ns−1X
+i=0L−1X
+l=0xi[l]eȷ2πi∆ftrectt−lT
+T
+, (1)
+where T≜Td+Tcp is the total symbol duration and rect(t/T)denotes a rectangular pulse of duration T.
+Finally , the baseband analog signal is up-converted to the radio frequency (RF) domain via Ntx RF chains
+with carrier frequency fcand then emitted through the antennas.
+B. Communication Signal Model
+After propagating through downlink communication channels, the OFDM signals are received by the single-
+antenna users and then demodulated into communication symbols. The communication receiver employs a
+series of operations including down-conversion, analog-to-digital converting (ADC), CP removal, serial-to-
+parallel conversion, and an Ns-point DFT. F or the k-th user, the frequency-domain signal on the i-th subcarrier
+during the l-th OFDM symbol is written as
+yi,k[l]≜hH
+i,kxi[l] +zi,k[l], (2)
+where the vector hi,k∈CNtx denotes the frequency domain channel between the BS and the k-th user, and
+zi,k∈ CN (0, σ2
+c)denotes additive white Gaussian noise (A WGN).
+2
+C. Sensing Signal Model
+F rom the radar sensing perspective, the dual-functional BS attempts to estimate the angle-range-velocity
+information of multiple point-like targets by processing the received echo signals. W e assume that there are
+Q targets within the area of interest, and the azimuth/elevate angle-range-velocity information of the q-th
+target is denoted as θq,ϕq,Rq, and vq, respectively , q∈ Q≜{1, . . . , Q }. Note that the angle of arrival (AoA)
+and the angle of departure (AoD) are both equal.
+The emitted signals will first reach the Q targets and then be reflected back to the receive antennas of the
+BS. During this process, signals will experience the relative propagation delay between the transmit/receive
+antennas, the round-trip propagation delay between the array reference points, and potentially a Doppler
+frequency shift. Thus, the baseband echo signal received by the ( mx,my)-th antenna can be expressed as
+ey(mx, my, t)≜QX
+q=1βqaH(θq, ϕq)ex(t−2Rq/c)e−ȷ2π
+λcd(mxsinθqcosϕq+mysinθqsinϕq)eȷ2πfD,qt+ez(mx, my, t), (3)
+where {mx, my}= 0,1, . . . , M rx−1, Mry−1. In (3), βqis the attenuation coeﬀicient of the q-th target with
+power E{|βq|2}=σ2
+β;aH(θ, ϕ)≜ax(θq, ϕq)⊗ay(θq, ϕq)is the transmit steering vector for AoD θ, with
+ax(θq, ϕq) =2
+66666641
+e−ȷ2π
+λcdt,xsinθqcosϕq
+...
+e−ȷ2π
+λc(Nx−1)dt,xsinθqcosϕq3
+7777775, (4)
+ay(θq, ϕq) =2
+66666641
+e−ȷ2π
+λcdt,ysinθqsinϕq
+...
+e−ȷ2π
+λc(Ny−1)dt,ysinθqsinϕq3
+7777775. (5)
+where drepresents antenna spacing; fD,q= 2vqfc/c indicates the Doppler frequency; and ez(m, t)denotes
+independently and identically distributed (i.i.d.) A WGN. It is generally assumed that the attenuation coef-
+ficient and the angle-range-velocity of the targets are constant during one CPI. Considering that the signal
+bandwidth is usually much smaller than the carrier frequency , the phase shifts along the spatial axis and the
+Doppler phase shift within one OFDM symbol are respectively assumed to be identical on all subcarriers. In
+addition, only first-order reflections from the targets are considered due to high attenuation.
+The baseband analog signals (3) are first processed by ADCs with sampling frequency Fs≜Ns∆f, and
+the CP is removed from the digital samples. The resulting sampled echo signals for the l-th symbol-slot can
+be written as
+by(mx, my, j, l)≜ey
+mx, my, lT+j
+Fs+Tcp
+, (6)
+where j= 0, . . . , N s−1is the sample index. After serial-to-parallel conversion and application of an Ns-
+point DFT along the sample index dimension, the echo signals are finally be obtained. The corresponding
+3
+mathematical expression for the echo signal received by the (mx, my)-th receive antenna on the i-th subcarrier
+is acquired by substituting expressions (1) and (3) into (6) and performing the DFT:
+y(mx, my, i, l)≜QX
+q=1βqaH(θq, ϕq)xi[l]e−ȷ2π
+λcd(mxsinθqcosϕq+mysinθqsinϕq)e−ȷ4πi∆fRq/ceȷ4πlTv qfc/c+z(mx, my, i, l)
+=QX
+q=1βqaH(θq, ϕq)xi[l]eȷmxωa,x(θq,ϕq)eȷmyωa,y(θq,ϕq)eȷiωr(Rq)eȷlωv(vq)+z(mx, my, i, l). (7a)
+where z(mx, my, i, l)∼ CN (0, σ2
+s)denotes the DFT of the A WGN. F or conciseness, we respectively define
+the digital frequencies related to the angle, range, and velocity of the q-th target as
+ωa,x(θq, ϕq)≜−2πd
+λcsinθqcosϕq, (8a)
+ωa,y(θq, ϕq)≜−2πd
+λcsinθqsinϕq, (8b)
+ωr(Rq)≜−4π∆fRq/c, (8c)
+ωv(vq)≜4πTv qfc/c. (8d)
+In this paper, we focus on the radar sensing problem of estimating the angle-range-velocity parameters of
+the targets based on the received echo signals in (7) within one CPI. W e see that the target angle, range, and
+velocity are determined by the complex sinusoids of digital frequencies ωa,x(θq, ϕq),ωa,y(θq, ϕq),ωr(Rq), and
+ωv(vq), respectively . However, these sinusoidal functions are multiplied by the signal-dependent coeﬀicient
+aH(θq, ϕq)xi[l], which changes with the transmitted signals and the target AoDs to be estimated. Thus, the
+target parameters cannot be directly extracted by performing spectral analysis on (7). In order to tackle this
+diﬀiculty and improve the parameter estimation performance, we propose a novel joint angle-range-velocity
+estimation method to remove the influence of the signal-dependent coeﬀicients and fully exploit the received
+echo signals during one CPI.
+II. Joint Angle-Range-V elocity Estimation
+In this section, we focus on extracting the angle-range-velocity information of potential targets from the
+echo signals (7). A novel joint estimation method is proposed to fully exploit the 3D data cube during one CPI
+and jointly estimate the target parameters. F ollowing traditional radar terminology , we refer to the subcarrier
+dimension, i.e., {i= 0,1, . . . , N s−1}, as fast-time and the symbol slot dimension, i.e., {l= 0,1, . . . , L −1}, as
+slow-time. The dimension corresponding to the receive antennas, i.e., {{mx, my}= 0,1, . . . , M rx−1, Mry−1},
+is referred to as the spatial dimension.
+A. Echo Signal Observations
+Based on the expression for the echo signals in (7), we have the following observations.
+•Along the spatial dimension for any given i, l , the echo signals can be regarded as the summation
+ofQ complex sinusoids with frequencies ωa,x(θq, ϕq),ωa,y(θq, ϕq)and constant amplitudes. Thus, the
+frequencies along the spatial dimension are determined by only the target angle.
+4
+•Along the fast-time dimension for any given m, l , the echo signals are composed of Q sinusoids with
+frequencies ωr(Rq), multiplied by the signal-dependent coeﬀicients aH(θq, ϕq)xi[l]. Thus, the digital
+frequencies along the fast-time dimension are determined by the target range and signal-dependent
+coeﬀicients.
+•Along the slow-time dimension for any given m, i , the echo signals also consist of Q sinusoidal functions
+of frequencies ωv(vq), also multiplied by the signal-dependent coeﬀicients aH(θq, ϕq)xi[l]. As a result,
+the digital frequencies along the slow-time dimension are determined by the target velocity and signal-
+dependent coeﬀicients.
+•The signal-dependent coeﬀicient aH(θq, ϕq)xi[l]is related to the angle θqto be estimated and the
+transmitted signal xi[l]. In the considered ISAC system, the transmitted dual-functional signal xi[l]
+is embedded with random communication symbols, which means that xi[l]will change randomly for
+different indices iandl. These signal-dependent coeﬀicient will cause random fluctuations in the fast-
+and slow-time dimensions, and thus will significantly hinder the analysis needed to obtain the range and
+velocity information.
+Based on the above observations, it is clear that the angle-range-velocity information is fused across different
+dimensions of the data cube, and the signal-dependent coeﬀicients aH(θq, ϕq)xi[l]are the major obstacle to
+extracting the target parameters. In the following, a novel joint estimation method is developed to extract
+the angle-range-velocity information coupled with the troublesome signal-dependent coeﬀicient.
+B. Step 1: Spectral Analysis along the Spatial Dimension
+W e first analyze the frequency spectrum of the data cube along the spatial dimension to determine the
+target angles (θq, ϕq). In order to facilitate the analysis, the echo signal (7) is first re-arranged as
+y(mx, my, i, l) =QX
+q=1A(q, i, l )eȷmxωa,x(θq,ϕq)eȷmyωa,y(θq,ϕq)+z(mx, my, i, l), (9)
+where A(q, i, l )does not depend on the spatial index mxandmy, and is defined as
+A(q, i, l )≜βqaH(θq, ϕq)xi[l]eȷiωr(Rq)eȷlωv(vq). (10)
+According to (9), each sequence {y(mx, my, i, l), mx= 0, . . . , M rx−1, my= 0, . . . , M ry−1},∀i,∀l, along the
+spatial dimension can be viewed as a sum of noise and Q complex sinusoids with angle-dependent frequencies
+ωa,x(θq, ϕq)andωa,y(θq, ϕq), and amplitude A(q, i, l ). While one can easily obtain the angles of potential
+targets via spectral analysis by using only one such sequence, this ignores information from other available
+echo signals. F urthermore, although the estimated angles could be used to remove the signal-dependent
+coeﬀicients, the angle estimation error will be propagated and even amplified in the estimation of the other
+parameters. Therefore, instead of directly obtaining angle information, the main purpose of spectrum analysis
+along the spatial dimension is to capture the characteristics of echo signals in different angular bins.
+The angular spectral analysis can be conducted by various algorithms, such as the DFT, MUSIC, ESPRIT,
+compressed sensing based methods, etc. Each of these has its strengths and limitations. Due to its superior
+robustness and versatility , we will use the standard DFT approach to develop the proposed joint estimation
+5
+method that fully utilizes all received echoes in one CPI. In particular, by applying an Na,x-point and an
+Na,y-point normalized DFT on {y(mx, my, i, l), mx= 0, . . . , M rx−1, my= 0, . . . , M ry−1}, where Na,x≥Mrx
+and Na,y≥Mry, we can obtain the sequences {Yi,l(na,x, na,y), n a,x=−j
+Na,x
+2k
+, . . . ,j
+Na,x
+2k
+−1, na,y=
+−j
+Na,y
+2k
+, . . . ,j
+Na,y
+2k
+−1,∀i,∀l}, given by
+Yi,l(na,x, na,y) =1
+MrxMryMrx−1X
+mx=0Mry−1X
+my=0y(mx, my, i, l)e−ȷmxeωa,x(na,x)e−ȷmyeωa,y(na,y), , (11)
+where the (na,x, na,y)-th frequency component ranging from −πtoπis defined as
+eωa,x(na,x)≜2πna,x
+Na,x, (12)
+eωa,y(na,y)≜2πna,y
+Na,y. (13)
+Using the spectral analysis in (11), each echo signal (9), composed of Q complex sinusoids with frequency
+ωa,x(θq, ϕq)andωa,y(θq, ϕq)and amplitude A(q, i, l ), is converted into the summation of Na,xNa,y complex
+sinusoids with frequency eωa,x(na,x)andeωa,y(na,y)and amplitude Yi,l(na)as
+y(mx, my, i, l) =⌊Na,x/2⌋−1X
+na,x=−⌊Na,x/2⌋⌊Na,y/2⌋−1X
+na,y=−⌊Na,y/2⌋Yi,l(na,x, na,y)eȷmxeωa,x(na,x)eȷmyeωa,y(na,y).. (14)
+Thus, the echo signals are extracted into different bins corresponding to the angles of potential targets
+Specifically , the power present in the (na,x, na,y)angular bin isYi,l(na,x, na,y)2, which is related to the
+probability of the existence of targets whose angle-dependent frequencies ωa,x(θq, ϕq)and ωa,y(θq, ϕq)are
+approximately equal to eωa,x(na,x)andeωa,y(na,y). Next, we will utilize this characteristic to facilitate removal
+of the signal-dependent coeﬀicient.
+F or the angles within bin (na,x, na,y), we have the following approximation
+ωa,x(θq, ϕq)≈eωa,x(na,x),∀q∈ Q na,x,na,y, (15)
+ωa,y(θq, ϕq)≈eωa,y(na,y),∀q∈ Q na,x,na,y. (16)
+The angles of the targets in the (na,x, na,y)-th angular bin can be further approximated as
+sinθqcosϕq≈ −na,xλc
+dNa,x,∀q∈ Q na,x,na,y, (17)
+sinθqsinϕq≈ −na,yλc
+dNa,y,∀q∈ Q na,x,na,y. (18)
+Accordingly , we define the representative direction cosines of the (na,x, na,y)-th angular bin as
+una,x≜−na,xλc
+dNa,x, (19a)
+vna,y≜−na,yλc
+dNa,y. (19b)
+Substituting (9) and (10) into (11) and using the approximations in (16) and (17), the amplitude of the
+(na,x, na,y)-th angular bin can be approximated as
+Yi,l(na,x, na,y)≈X
+q∈Qna,x,na,yA(q, i, l )
+≈X
+q∈Qna,x,na,yβqaH(una,x, vna,y)xi[l]eȷiωr(Rq)eȷlωv(vq),(20)
+6
+where the noise component is ignored to focus on extracting the desired parameters from the target echo
+signals. W e observe that Yi,l(na,x, na,y)consists of Qna,x,na,ycomponents, each of which is the signal-dependent
+coeﬀicient aH(una,x, vna,y)xi[l]multiplied by complex sinusoids whose frequencies are related to the range and
+velocity of the targets. Since the signal-dependent coeﬀicient changes along both the fast- and slow-time
+dimensions, it hinders the estimation of range and velocity using standard spectral analysis algorithms. Thus,
+the next step is to eliminate the impact of this signal-dependent coeﬀicient.
+C. Step 2: Signal-Dependent Coeﬀicients Removing
+After spectral analysis along the spatial dimension, the amplitude of the echo signals with different
+angle-dependent frequencies is extracted. Then the signal-dependent term aH(una,x, vna,y)xi[l]is removed
+to eliminate its influence on the spectral analysis along the fast- and slow-time dimensions to extract the
+estimates of range and velocity . Since the transmitted signals xi[l]are known at the dual-functional BS, it
+would be straightforward to use this information together with the estimated target angle bins to remove
+the signal-dependent term aH(una,x, vna,y)xi[l]. However, only part of the 4D data cube is used in this
+sequential strategy , and in addition, the angle estimation errors will propagate and degrade the subsequent
+range and velocity estimation. Moreover, the method is sensitive to the ambiguity function associated with
+the transmitted signals, and its performance degrades due to the randomness of the communication symbols.
+T o avoid these drawbacks, we propose to completely remove the signal-dependent term for each angular bin
+instead of only focusing on the few estimated target angule bins associated with potential targets. Thus, our
+approach performs a joint angle-range-velocity estimation to enhance performance by fully exploiting all echo
+signals during each CPI.
+F rom equation (20), we observe that the signal-dependent term aH(una,x, vna,y)xi[l]could be directly
+removed by point-wise division. However, since the magnitude of the signal-dependent term is not identical
+for different angular bins, directly dividing Yi,l(na,x, na,y)by the signal-dependent coeﬀicient will destroy the
+properties of the echo signals in the spatial dimension. In particular, the spatial characteristics of the echo
+signals are changed after dividing Yi,l(na,x, na,y)by different amplitude values, which will deteriorate the
+angle estimation performance.
+T o eliminate the impact of the signal-dependent term, we modify the data to maintain the spatial
+characteristics of the echo signals, and not change the relationship between the powers of different angle
+bins. F or this purpose, we introduce a scaling factor αna,x,na,y for the (na,x, na,y)-th angular bin and propose
+to modify Yi,l(na,x, na,y)as follows:
+yi,l(na,x, na,y)≜8
+>><
+>>:Yi,l(na,x, na,y)
+αna,x,na,yaH(una,x, vna,y)xi[l],ifaH(una,x, vna,y)xi[l]̸= 0,
+Yi,l(na,x, na,y), ifaH(una,x, vna,y)xi[l] = 0 ,(21)
+where the selection is eliminate dividing by zero. Then, based on the above discussions, the scaling factor
+αna,x,na,y is chosen such that the power of the (na,x, na,y)-th angular bin remains unchanged, i.e.,
+X
+i,l|yi,l(na,x, na,y)|2=X
+i,l|Yi,l(na,x, na,y)|2,∀na,x,∀na,y, (22)
+7
+with leads to the following equation for the scaling factor:
+αna,x,na,y=vuuuuuutP
+i,l,aH(una,x,vna,y)xi[l]̸=0Yi,l(na,x, na,y)
+aH(una,x, vna,y)xi[l]2
+P
+i,l,aH(una,x,vna,y)xi[l]̸=0|Yi,l(na,x, na,y)|2. (23)
+According to the approximation in (20), we can further write each sample in (21) as
+yi,l(na,x, na,y)≈X
+q∈Qna,x,na,yβq/αna,x,na,yeȷiωr(Rq)eȷlωv(vq), (24)
+where the special case with aH(una,x, vna,y)xi[l] = 0 can be ignored without influencing the result. Now
+we clearly see from equation (24) that the resulting sequences obtained along the fast-time dimension
+{yi,l(na,x, na,y),∀i}or the slow-time dimension {yi,l(na,x, na,y),∀l}are composed of Qna,x,na,y sinusoidal
+functions whose frequencies are determined by the range Rqor the velocity vq. Thus, it is straightforward
+to perform spectral analysis along the two dimensions and jointly estimate the desired angle-range-velocity
+information, as presented in the next subsection.
+D. Step 3: Spectral Analysis along the F ast- and Slow-Time Dimensions and Joint Estimation
+In this section, we show how to employ a 2D-DFT operation along the fast- and slow-time dimensions of
+the signal in (21) to extract the echo signals into different range and Doppler bins. Then, together with the
+previously obtained angular spectrum, a joint angle-range-velocity estimation from the three dimensions is
+proposed.
+Specifically , a normalized (Nr, Nv)-point ( Nr≥Ns, N v≥L) 2D-DFT is implemented on the obtained
+sequences {yi,l(na,x, na,y),∀i,∀l},, yielding the sequences {Y(na,x, na,y, nr, nv), nr=−Nr+ 1, . . . , 0, nv=
+−⌊Nv/2⌋, . . . ,⌊Nv/2⌋ −1},∀na,x,∀na,y. The amplitude Y(na,x, na,y, nr, nv)can be calculated as
+Y(na,x, na,y, nr, nv) =1
+NsLNs−1X
+i=0L−1X
+l=0yi,l(na,x, na,y)e−ȷleωv(nv)e−ȷieωr(nr), (25)
+where the frequency components of the nr-th range bin and the nv-th Doppler bin are respectively defined as
+eωr(nr)≜2πnr
+Nr, (26a)
+eωv(nv)≜2πnv
+Nv. (26b)
+After the steps described above, the echo signals are extracted into the Na,x×Na,y×Nr×Nvangular-range-
+Doppler bins with the amplitudes given. Therefore, we can jointly estimate the targets from these 4D bins
+via peak finding. In particular, we can apply cell-averaging constant false alarm rate (CA-CF AR) processing
+with a 4D cell to obtain several signal clusters with high amplitudes, and then choose the maximum value of
+8
+Algorithm 1 Proposed Joint Angle-Range-V elocity Estimator
+Input: y(mx, my, i, l),Ntx,Mrx,Ns,L,N a,Nr,N v,d,λc,c,fc,T,∆f,xi[l],∀mx, my, i, l .
+Output: θq, ϕq, Rq, vq.
+1: Perform (Na,x, Na,y)-point 2D-DFT on y(mx, my, i, l) along the spatial dimension to obtain
+Yi,l(na,x, na,y),∀i, l, n a,x, na,y in (11).
+2: Calculate scaling factor αna,x,na,y in (23).
+3: Remove signal-dependent coeﬀicients to obtain yi,l(na,x, na,y)in (21).
+4: Perform 2D-DFT along the fast- and slow-time dimensions to obtain Y(na,x, na,y, nr, nv).
+5: Find the peaks of [Y(na,x, na,y, nr, nv),∀na,x, na,y, nr, nv]to obtain the index set {Tq,∀q}.
+6: Recover the estimated eθq,eϕq,eRq, andevqby (27).
+7: Return θq=eθq,ϕq=eϕq,Rq=eRq, and vq=evq.
+each cluster as the peak, whose 4D coordinate we denote by Tq. Finally , the estimated angle-range-velocity
+of the q-th target, defined as eθq,eϕq,eRq, andevq, can be recovered using the 4D index
+euq=−na,xλc
+dNa,x, (27a)
+ev(dir)
+q =−na,yλc
+dNa,y, (27b)
+eθq= arcsinq
+eu2q+
+ev(dir)
+q2
+, (27c)
+eϕq= atan2
+ev(dir)
+q,euq
+, (27d)
+eRq=−cnr
+2Nr∆f, (27e)
+evq=cnv
+2NvTfc. (27f)
+W e emphasize that the angle-range-velocity information is estimated jointly in the 3D space, rather than
+estimating these quantities sequentially as in previous approaches, and thus the proposed algorithm achieves
+better estimation performance, especially when the targets are closely spaced along a particular dimension.

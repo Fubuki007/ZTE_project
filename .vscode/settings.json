@@ -1,0 +1,6 @@
+{
+    "matlab.installPath": "E:\\Matlab R2024a\\bin\\matlab.exe",
+    "terminal.integrated.env.windows": {
+        "Path": "${env:Path};E:\\Matlab R2024a\\bin"
+    }
+}
