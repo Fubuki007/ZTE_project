@@ -20,6 +20,9 @@ params.alpha = [1.0, 0.8];
 params.SNR = 10;
 params.mod_order = 16;     % 16-QAM, 对齐论文
 params.pilot_spacing = 0;  % 不再使用
+params.Ntx      = 4;
+params.Nty      = 4;
+params.K_stream = 1;
 
 n_rb = 264;
 n_sc_per_rb = 12;
@@ -107,7 +110,9 @@ for idx = 1:numel(cc_candidates)
     rmse_v_samples = nan(1, bw_rmse_mc);
     for mc_i = 1:bw_rmse_mc
         try
-            tx_i = generate_OFDM_signal(struct('N', params_bw.N, 'K', params_bw.K, 'mod_order', params_bw.mod_order, 'pilot_spacing', params_bw.pilot_spacing));
+            cfg_tx = params_bw; cfg_tx.Ntx = params_bw.Ntx; cfg_tx.Nty = params_bw.Nty; cfg_tx.K_stream = params_bw.K_stream;
+            tx = generate_mimo_ofdm_waveform(cfg_tx);
+            tx_i = tx.X;
             rx_i = simulate_radar_channel_3d(tx_i, params_bw);
             % 统一使用 4D 联合 DFT 估计器（estimator_mode 仅保留作为日志标记）
             [th_i, ph_i, r_i, v_i] = joint_angle_range_velocity_estimator(rx_i, tx_i, params_bw);
