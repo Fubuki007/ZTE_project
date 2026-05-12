@@ -18,8 +18,8 @@ params.R_true = [600.88, 600.81];
 params.v_true = [15.1, -5.4];
 params.alpha = [1.0, 0.8];
 params.SNR = 10;
-params.mod_order = 4;
-params.pilot_spacing = 4;
+params.mod_order = 16;     % 16-QAM, 对齐论文
+params.pilot_spacing = 0;  % 不再使用
 
 n_rb = 264;
 n_sc_per_rb = 12;
@@ -109,11 +109,8 @@ for idx = 1:numel(cc_candidates)
         try
             tx_i = generate_OFDM_signal(struct('N', params_bw.N, 'K', params_bw.K, 'mod_order', params_bw.mod_order, 'pilot_spacing', params_bw.pilot_spacing));
             rx_i = simulate_radar_channel_3d(tx_i, params_bw);
-            if strcmpi(estimator_mode, 'local_esprit')
-                [th_i, ph_i, r_i, v_i] = local_ESPRIT_estimator_3d(rx_i, tx_i, params_bw);
-            else
-                [th_i, ph_i, r_i, v_i] = ZTE_3D_estimator(rx_i, tx_i, params_bw);
-            end
+            % 统一使用 4D 联合 DFT 估计器（estimator_mode 仅保留作为日志标记）
+            [th_i, ph_i, r_i, v_i] = joint_angle_range_velocity_estimator(rx_i, tx_i, params_bw);
             compare_i = evaluate_estimation(th_i, ph_i, r_i, v_i, params_bw, false);
             rmse_angle_samples(mc_i) = compare_i.rmse_angle;
             rmse_R_samples(mc_i) = compare_i.rmse_R;

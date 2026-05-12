@@ -38,8 +38,8 @@ params.R_SI = 10 * (params.c / params.fc); % R_SI: SI项传播距离(约10lambda
 params.v_SI = 0; % v_SI: SI项径向速度(m/s)
 
 % [发射信号参数]
-params.mod_order = 4; % M_mod: 调制阶数(4表示QPSK)
-params.pilot_spacing = 4; % pilot_spacing: 导频间隔(子载波数)
+params.mod_order = 16; % M_mod: 调制阶数 (16 表示 16-QAM, 对齐论文 Table II)
+params.pilot_spacing = 0; % 已弃用: 新版 generate_OFDM_signal 不再插入导频 (论文 Step 2 要求符号随机)
 
 % [3GPP FR2 OFDM参数]
 n_rb = 264; % N_RB: 资源块数量
@@ -127,7 +127,7 @@ params_no_si = params;
 params_no_si.enable_SI = false;
 rx_cube = simulate_radar_channel_3d(tx_signal, params_no_si);
 tic;
-[theta_est, phi_est, R_est, v_est, info] = local_ESPRIT_estimator_3d(rx_cube, tx_signal, params_no_si);
+[theta_est, phi_est, R_est, v_est, info] = joint_angle_range_velocity_estimator(rx_cube, tx_signal, params_no_si);
 base_runtime = toc;
 base_compare = evaluate_estimation(theta_est, phi_est, R_est, v_est, params_no_si, true);
 base_result = struct('label', '无SI', 'beta_SI', 0, 'beta_SI_abs', 0, 'theta_est', theta_est, 'phi_est', phi_est, 'R_est', R_est, 'v_est', v_est, 'info', info, 'compare', base_compare, 'runtime', base_runtime);
@@ -155,7 +155,7 @@ for idx = 1:numel(scale_list)
     tic;
     for mc = 1:num_mc_si
         rx_cube = simulate_radar_channel_3d(tx_signal, params_run);
-        [theta_est, phi_est, R_est, v_est, info] = local_ESPRIT_estimator_3d(rx_cube, tx_signal, params_run);
+        [theta_est, phi_est, R_est, v_est, info] = joint_angle_range_velocity_estimator(rx_cube, tx_signal, params_run);
         compare = evaluate_estimation(theta_est, phi_est, R_est, v_est, params_run, false);
         rmse_theta_mc(mc) = compare.rmse_theta;
         rmse_phi_mc(mc) = compare.rmse_phi;
@@ -191,7 +191,7 @@ for idx = 1:numel(scale_list)
     results(idx).rmse_R_mean = compare_mean.rmse_R;
     results(idx).rmse_v_mean = compare_mean.rmse_v;
 
-    fprintf('三维估计完成（local_esprit），用时 %.3f 秒（%d次平均）\n', cost_time, num_mc_si);
+    fprintf('三维估计完成（joint_arv 4D），用时 %.3f 秒（%d次平均）\n', cost_time, num_mc_si);
     fprintf('平均RMSE: 角度=%.3f°, 方位=%.3f°, 距离=%.3fm, 速度=%.3fm/s\n', compare_mean.rmse_theta, compare_mean.rmse_phi, compare_mean.rmse_R, compare_mean.rmse_v);
 end
 

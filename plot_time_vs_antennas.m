@@ -20,8 +20,8 @@ params.R_true = [150.36, 200.78];
 params.v_true = [15.1, -5.4];
 params.alpha = [1.0, 0.8];
 params.SNR = 10;
-params.mod_order = 4;
-params.pilot_spacing = 4;
+params.mod_order = 16;     % 16-QAM, 对齐论文
+params.pilot_spacing = 0;  % 不再使用
 params.use_interpolation = true; 
 
 % --- 2. 仿真配置 ---
@@ -54,12 +54,12 @@ for i = 1:num_tests
     
     % 2. 预热 (仅为了 MATLAB 内部 JIT 编译公平，不计入正式时间)
     if i == 1
-        ZTE_3D_estimator(rx_cube, tx_signal, params);
+        joint_angle_range_velocity_estimator(rx_cube, tx_signal, params);
     end
     
     % 3. 正式测时
     t_start = tic;
-    ZTE_3D_estimator(rx_cube, tx_signal, params);
+    joint_angle_range_velocity_estimator(rx_cube, tx_signal, params);
     time_records(i) = toc(t_start);
     
     fprintf('耗时: %.4f 秒\n', time_records(i));

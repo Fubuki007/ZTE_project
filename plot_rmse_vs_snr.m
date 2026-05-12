@@ -22,8 +22,8 @@ base.R_true = [600.80, 600.20];
 base.v_true = [15.1, -5.4];
 base.alpha = [1.0, 0.8];
 
-base.mod_order = 4;
-base.pilot_spacing = 4;
+base.mod_order = 16;       % 16-QAM, 对齐论文
+base.pilot_spacing = 0;    % 不再使用
 
 % OFDM 参数
 n_rb = 264;
@@ -95,7 +95,7 @@ for im = 1:num_mx
 
         for mc = 1:num_mc
             rx_cube = simulate_radar_channel_3d(tx_signal, params);
-            [theta_est, phi_est, R_est, v_est, ~] = local_ESPRIT_estimator_3d(rx_cube, tx_signal, params);
+            [theta_est, phi_est, R_est, v_est, ~] = joint_angle_range_velocity_estimator(rx_cube, tx_signal, params);
 
             if isempty(theta_est)
                 continue;

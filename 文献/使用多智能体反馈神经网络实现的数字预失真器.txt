@@ -1,0 +1,234 @@
+文章编号：1003- 0530(2023)03- 0450- 09
+
+# 使用多智能体反馈神经网络实现的数字预失真器
+
+杨肠1.2 刘畅李凯李阳孙芳蕾张国威4（1. 上海科技大学信息科学与技术学院，上海201210；2. 特斯联科技集团有限公司，北京100027；3. 曼彻斯特大学，英国曼彻斯特M13 9PL；4. 曲阜师范大学，山东曲阜273165）
+
+摘要：近年来，深度学习（Deep Learning，DL）在通信场景中的应用逐渐兴起，其中就包括射频发射机的数字预失真（Digital Predistortion，DPD）处理。然而，由于射频功率放大器（Power Amplifier，PA）固有的非线性失真和记忆效应特点，如果直接应用传统DL算法去实现DPD会出现拟合效果不佳、自适应性差等现象。针对这个问题，本文提出了一种由多智能体反馈神经网络实现的数字预失真器（Multi- Agent Feedback Enabled Neural Network for Digital Predistortion，MAFENN- DPD），该网络引入了具有高纠错能力的反馈智能体结构，其主要特点是基于Stackelberg博弈理论去加速网络训练和收敛，同时我们还应用信息瓶颈理论指导网络超参数设计以增强MAFENN- DPD对PA记忆效应变化的动态适应能力。我们进行了一系列的实验来验证MAFENN- DPD的有效性。与使用典型前馈网络实现的DPD方案相比，基于MAFENN- DPD的方案在相邻信道功率比（Adjacent Channel Power Ratio，ACPR）指标上提高了约5dB。同时，在没有通信过程中的大量先验知识的情况下，MAFENN- DPD实现了与使用记忆多项式方法建模的DPD方案十分接近的ACPR性能。仿真结果说明MAFENN- DPD相比传统神经网络可进一步提升ACPR性能，同时相比记忆多项式方法具有更好的自适应建模能力和通用性，并且具有多智能体反馈结构特征的神经网络未来在其他的通信场景中也具有应用推广的潜力。
+
+关键词：多智能体系统；反馈神经网络；数字预失真；功率放大器；信息瓶颈理论
+
+中图分类号：TN911.72 文献标识码：A DOI：10.16798/j. issn.1003- 0530.2023.03.008
+
+引用格式：杨肠，刘畅，李凯，等，使用多智能体反馈神经网络实现的数字预失真器[J].信号处理，2023，39（3）：450- 458. DOI:10.16798/j. issn.1003- 0530.2023.03.008.
+
+Reference format: YANG Yang, LIU Chang, LI Kai, et al. Multi- agent feedback enabled neural network for digital predi- . tortion[J]. Journal of Signal Processing, 2023, 39(3) : 450- 458. DOI: 10.16798/j. issn.1003- 0530.2023.03.008.
+
+# Multi-Agent Feedback Enabled Neural Network for Digital Predistortion
+
+YANG Yang1.2 LIU Chang LI Kai LI Yang SUN Fanglei ZHANG Guowei
+
+(1. School of Information Science and Technology, ShanghaiTech University, Shanghai 201210, China; 2. Terminus Group, Beijing 100027, China; 3. The University of Manchester, Manchester M13 9PL, U. K.; 4. Qufu Normal University, Qufu, Shandong 273165, China)
+
+Abstract: In recent years, deep learning (DL) has been increasingly used in communication scenarios, such as for digital predistortion (DPD) of radio frequency (RF) transmitters. However, the nonlinear distortion and memory effects of power amplifiers (PAs) are non- negligible obstacles for traditional DL algorithms. Therefore, in this paper, we proposed a Multi- Agent Feedback Enabled Neural Network for Digital Predistortion (MAFENN- DPD), which employed a feedback agent with high error correction capability. In addition, we employed information bottleneck theory to guide the network hyperpa- rameter design and facilitated network training acceleration via Stackelberg game theory. We performed a series of experi
+
+ments to validate our proposed MAFENN- DPD. The adjacent channel power ratio (ACPR) was improved by about 5 dB compared to the DPD implemented using a typical feedforward network. At the same time, without extensive prior knowledge of the communication process, the MAFENN- DPD achieved a nearly equivalent ACPR performance to the DPD modeled by memory polynomials. Therefore, we can assume that MAFENN, a novel network structure, has the ability to solve the nonlinearity problem and memory effects of PA and has the potential to be applied in other communication scenarios.
+
+Key words: multi- agent system; feedback neural network; digital predistortion; power amplifier; information bottleneck theory
+
+## 1 引言
+
+第五代无线通信系统（5G）对通信速率和通信时延的要求相比4G都有不小的提升，为了提高瞬时上下行速率以及频谱利用率，调制方案往往会采用更高的阶数。然而高阶调制信号具有高峰均功率比的特点，当这种信号通过射频功率放大器（PowerAmplifier，PA）后会因为PA固有的非线性失真和记忆效应导致频谱再生，严重干扰相邻子信道从而增加整个系统的误码率。
+
+针对PA的非线性失真带来的不良影响，国内外学者提出了多种不同的线性化方案，包括前馈[1]、反馈[2]和数字预失真（DigitalPredistortion，DPD）[3]。目前DPD被普遍认为是解决这一问题的最有效的方法之一。其主要特点是在信号进入PA之前进行预失真，以此来减轻甚至抵消PA引入的非线性失真和记忆效应。
+
+传统的DPD实现是使用一组公式对PA的响应进行建模，然后直接或间接地调整公式的参数来逼近真实的系统响应，许多方案使用的公式大多数是基于记忆多项式进行推广的。其特点是左发射端天线前使用一个反馈回路捕获PA的输出信号，再将信号通过一个带通滤波器，以此模拟接收机的行为，并通过最终得到的基带信号来调整公式模型的参数。采用这种使用公式建模的方法需要很多通信系统和器件模型的先验知识，例如PA的非线性阶数、记忆效应长度以及反馈回路中带通滤波器的带宽等等[3]。因此对于一个参数未知的PA，进行有效且准确的建模是十分困难且费力人的。不仅如此，即便是具有相同性能指标的不同PA其频谱响应也会存在差异，使用公式建模的方法往往面临着通用性不佳的问题。在实际应用过程中，记忆多项式模型结构可能需要对不同的PA进行针对性的调整，这将给研发人员带来更大的工作量。
+
+随着近年来神经网络的快速发展，其超强的拟合能力和自适应性吸引了众多DPD研究者。例如文献[6]中就使用了前馈网络去进行PA逆系统的拟合，这一类方法大多具有简洁的网络结构和易于实现的优点，但对PA的记忆效应则没有针对性的解决方案。在此基础上也衍生出了一些针对DPD问题固有的一些特征进行优化的前馈网络方案，例如训练不同的子DPD模块并自适应切换来应对复杂非线性的方案[7]，该方案针对动态变化的信号包络，结合了静态和动态策略。除此之外，在文献[8]和[9]中也出现了给前馈网络提供历史输入信息的方法，显著地提高了拟合效果。但与此同时，前馈网络也存在不足，例如其训练所需的数据集往往会十分庞大。一些研究人员尝试使用强化学习的方法来实现DPD[10]，这种方法理论上可以得到一个很好的拟合效果，但是一方面在线强化学习方法与环境互动的速度会大大增加训练过程中的时间消耗，这将导致网络的学习过程不能快速收敛。另一方面由于PA的非线性失真具有一个巨大的动作空间，所以如果使用离线强化学习，那么其训练所需的数据量将过于庞大。
+
+在近来的人工智能领域研究中，将反馈回路引入神经网络是一个值得关注的趋势，如AlphaFold。因为反馈回路可以有效改善网络的收敛性。网络中的反馈回路与灵长类动物的反思过程非常相似，这在神经科学中也得到了一些印证[11]。然而，目前大多数使用反馈结构的网络都是直接反馈数据本身或结构，没有对反馈传递的信息进行二次加工处理。
+
+考虑到反馈回路的特点以及现有DPD实现中存在的一些问题，本文基于一种新型神经网络结构框架——多智能体反馈神经网络（Multi- Agent Feedback Enabled Neural Network, MAFENN[12]）构建了DPD模型，简称MAFENN- DPD。MAFENN结构具有以下两大特点：第一，MAFENN包含三个相互合
+
+作的智能体，其中的反馈智能体能够通过反馈信息进行自适应学习，在提升纠错能力的同时也加快了网络整体的收敛速度；第二，基于Stackelberg博弈理论实现的MAFENN结构能够进一步提升网络收敛性能[13]。本文提出的MAFENN- DPD在此基础上进行了建模精度和通用性方面的拓展，包括如下创新点：根据DPD问题相关的数据和模型特点，在特征提取时引入了高阶振幅项，进一步提升了网络模型的训练精度；参考了物理信息机器学习[14]的理念，使用确定性信息瓶颈理论[15]进行网络结构的超参数设计，融合了模型驱动和数据驱动两种学习方式，提升了网络动态适应不同的通信场景的能力。
+
+基于上述创新优化，MAFENN- DPD可以有效地缓解PA的非线性失真和记忆效应，并且无须对通信过程和器件性能进行专门建模。我们也通过仿真进行了验证，在输出信号的相邻信道功率比（AdjacentChannelPowerRatio，ACPR）指标方面，MAFENN- DPD相比典型前馈网络提高了约5dB。同时，MAFENN- DPD实现了与传统的记忆多项式建模的DPD几乎相当的性能，并且可以相对容易地迁移到不同的PA和通信场景中，从而有效节省人力成本。在本文中，网络训练和预失真仿真验证的数据集是使用Simu- link实现的射频无线发送链路仿真程序生成的。
+
+后文章节安排如下：第2节介绍了本文对DPD问题的建模以及MAFENN- DPD系统的结构；第3节介绍了MAFENN- DPD的网络优化方法；第4节介绍了网络训练和仿真的实验设置及其理论依据；第5节给出了网络的训练结果和仿真结果，并与其他各种模型进行了比较；第6节介绍了结论和未来的工作方向。
+
+## 2 问题建模和系统结构
+
+如果我们把PA视作一个封闭的系统，输入的数据是由复数组成的一个时间序列，那么该系统可以视作是一个复数到复数的映射关系。而MAFENN- DPD的目的就是在除去PA的功率放大效应后对剩余的非线性失真和记忆效应进行一个逆操作，使失真信号恢复为原信号，这个过程称为后逆。所以我们将使用神经网络实现DPD的问题描述为一个具有记忆效应的复杂非线性回归问题。对于DPD问题来说，我们通常可以认为后逆系统和前逆系统是可以等价替换的[5]，因此本文的离线学习和在线仿
+
+真的流程框图可以表示为图1。
+
+<center>图1 离线学习和在线仿真的流程框图Fig.1 Block diagram containing offline learning and online implementation</center>
+
+本文首先是采集PA两端的调制符号时间序列，随后将两个时间序列分别作为MAFENN- DPD的输入和目标输出，并基于这两个时间序列对网络进行权重参数训练。当网络模型逐渐收敛并且训练评估指标达到我们的预期之后，我们再将MAFENN- DPD嵌入到仿真系统当中，并且置于PA前面实现预失真，最后通过观察频谱分析仪的各项指标进行最终的性能评估。
+
+在这个过程中我们可以使用不同的神经网络结构来进行PA后逆系统的拟合，然而不是所有的神经网络系统都适合DPD的这个应用场景。相比于时下流行的生成对抗网络的1bit反馈信息，MAFENN- DPD中的反馈智能体具有更高的智能和纠错能力，可以处理更加复杂的反馈信息。网络中的其他智能体也可以在反馈信息的帮助下，显著提高整个学习过程的效率。图2展示了MAFENN- DPD的结构框图，它由三个相互协作的智能体组成，即编码器、处理器和反馈器。
+
+算法1展示了MAFENN- DPD在训练的过程中数据流向的算法流程
+
+在第 \(i\) 个时隙，特征提取后的输入信号矢量可以表示为
+
+\[\pmb {x}(i) = \left[\mathrm{Re}\left\{x(i)\right\} ,\mathrm{Im}\left\{x(i)\right\} ,\mathrm{lx}(i)\right],\mathrm{lx}(i)\mathrm{l},\mathrm{lx}(i)\mathrm{l}^{2},\mathrm{lx}(i)\mathrm{l}^{3}\right]\]
+
+其中 \(\mathrm{Re}\left\{x(i)\right\}\) 和 \(\operatorname {Im}\left\{x(i)\right\}\) 是原始输入复数信号 \(x(i)\) 的实部和虚部。将复数输入的实部和虚部分割成两路信号是许多神经网络实现中常用的操作。如果将一个复数直接输入到神经网络中会导致网络出现复数的权重并且增加参数优化的复杂度，还会影响网
+
+络的学习效率和收敛性。 \(\mathrm{lx}(i)\) 是当前输入复数信号的振幅， \(\mathrm{lx}(i)^{\mathrm{p}}\) 和 \(\mathrm{lx}(i)^{\mathrm{p}}\) 是振幅的二次和三次项。根据神经网络本身具有的特点，网络的输入数据和我们期望提取到的特征之间相关性越强，最终的训练效果就会越好，收敛速度也会越快。所以本文参考了文献[8]的方法，在输入数据中加入了振幅项的特征，这样网络就可以产生高阶互调项。
+
+反馈器的输出矩阵可以表示为
+
+\(X_{i e c}(i) = [x_{i e c}(i),x_{i e c}(i - 1)\dots x_{i e c}(i - K)]\) (2)其中 \(x_{i e c}(i)\) 表示第 \(i\) 时刻反馈器的输出向量，向量
+
+长度与 \(\mathbf{x}(i)\) 是一致的。 \(K\) 表示缓冲器长度，也可以理解为反馈回路的时间窗长度，因此 \(X_{i e c}(i)\) 包含了反馈器当前时刻以及过去 \(K\) 个时刻的输出向量。
+
+编码器的输入数据矩阵可以表示为 \([x(i);X_{i e c}(i)]\) ，它是由当前时刻的输入和缓冲器的输出矩阵拼接而成的。编码器由三个网络层组成。第一层是长短期记忆（Long Short- Term Memory，LSTM）层，它有两个子层，其作用主要是应对PA的记忆效应，进行时间序列的前后相关信息提取处理。第二层是一个全连接层，第三层是一个修正线性单元（Rectified Linear Activation Function,ReLU），属于激活层，这两层能够给网络增加非线性拟合的能力。编码器的作用是提取时间序列前后数据之间的相关特征后输出一个中间变量 \(z(i)\) 。反馈器的训练目标是消除由PA的非线性和记忆效应引入的失真，从 \(z(i)\) 中解析出无失真的信号。在经过了 \(N\) 次反馈循环后，我们将反馈器的最后一次输出保存到缓冲器中，并将此刻的隐藏变量 \(z(i)\) 传递给处理器。处理器再以复数形式输出最终结果。对于MAFENN- DPD，网络训练所使用的数据集是由 \((x(i),y(i))\) 值对组成的时间序列。
+
+## 3 网络优化
+
+与前馈网络和传统的反馈网络相比，我们在反馈回路中增加了一个具有反思能力和纠错能力的智能体，即反馈器。并且MAFENN- DPD的三个智能体是为一个统一的目标而相互协作的，所以多智能体反馈系统在信息提取、知识学习和自我纠错方面具有明显的优势。然而，三个可学习的智能体之
+
+<center>图2 MAFENN-DPD的结构 Fig.2 Block diagram of MAFENN-DPD</center>
+
+间的相互依赖关系也给神经网络训练和模型优化带来了新的挑战。因此，我们将MAFENN- DPD的训练过程描述为一个Stackelberg博弈。
+
+设 \(P\) 为玩家的集合，即 \(P = \{\mathrm{Player1},\mathrm{Player2},\) Player3]。根据数据在网络中的流向，我们假定编码器（Player1）为领导者；处理器（Player3）是反馈器的领导者，同时也是编码器的追随者；而反馈器（Player2）是其他两个玩家的追随者。在我们的MAFENN- DPD系统中，三个玩家的动作集为 \(\chi_{1},\chi_{2},\chi_{3}\) 。并将 \(l_{1},\) \(l_{2},l_{3}\) 设为对应玩家的损失函数。在本文中，我们使用最小绝对误差损失函数（L1- loss）和均方误差损失函数（L2- loss）的联合来进行网络的反向传播和权重参数的更新。Player2的损失函数由以下公式给出
+
+\[\begin{array}{l}{l_{2} = \frac{1}{n}\sum_{j = 1}^{n}\vert \pmb{x}_{i_{\mathrm{end}}}(i)^{(j)} - \hat{y}_{i_{\mathrm{end}}}(i)^{(j)}\vert +}\\ {\frac{1}{n}\sum_{j = 1}^{n}(\pmb{x}_{i_{\mathrm{end}}}(i)^{(j)} - \hat{y}_{i_{\mathrm{end}}}(i)^{(j)})^{2}} \end{array} \quad (3)\]
+
+其中 \(n\) 是特征数，本文 \(n\) 都设置为5， \(\hat{y}_{i_{\mathrm{end}}}(i)\) 是对目标输出 \(\hat{y} (i)\) 提取 \(n\) 个特征后的版本， \(\hat{y}_{i_{\mathrm{end}}}(i)^{(j)}\) 是向量 \(\hat{y}_{i_{\mathrm{end}}}(i)\) 的第 \(j\) 个特征，Player3的损失函数为
+
+\[\begin{array}{l}{l_{3} = \frac{1}{2}\Big[\mathrm{Re}\big\{y(i)\big\} -\mathrm{Re}\big\{\hat{y} (i)\big\} \big] + }\\ {\mathrm{Im}\big\{y(i)\big\} -\mathrm{Im}\big\{\hat{y} (i)\big\} \big] + }\\ {\frac{1}{2}\Big[\Big(\mathrm{Re}\big\{y(i)\big\} -\mathrm{Re}\big\{\hat{y} (i)\big\} \Big)^{2} + }\\ {\Big(\mathrm{Im}\big\{y(i)\big\} -\mathrm{Im}\big\{\hat{y} (i)\big\} \Big)^{2}\Big]} \end{array} \quad (4)\]
+
+其中 \(\mathrm{Re}\{\cdot \}\) 和 \(\mathrm{Im}\{\cdot \}\) 分别表示复数的实部和虚部， \(y(i)\) 是处理器的输出， \(\hat{y} (i)\) 是处理器的输出的训练目标。 \(l_{1}\) 被设计为 \(l_{2}\) 和 \(l_{3}\) 的组合
+
+\[l_{1} = l_{2} + \alpha l_{3} \quad (5)\]
+
+其中 \(\alpha\) 是一个可以调整的常数，用于控制Player2和Player3的损失函数权重占比，本文中将其设置为1。为了更好地拟合，我们将多次反馈循环过程中得到的损失函数累积在一起进行反向传播训练。
+
+与其他使用神经网络实现的DPD相同，我们使用归一化最小均方误差（NormalizedMinimumMeanSquaredError，NMSE）作为网络预测误差的衡量标准
+
+\[\mathrm{NMSE}_{\mathrm{dB}} = 10\times \log_{10}\frac{\frac{1}{m}\sum_{i = 1}^{m}y(i) - \hat{y} (i)^{\mathrm{R}}}{1 - \frac{1}{m}\sum_{i = 1}^{m}\hat{y} (i)^{\mathrm{R}}} \quad (6)\]
+
+其中 \(m\) 是验证数据集的数量
+
+基于Stackelberg博弈理论，在博弈开始时，领导者首先宣布他的决定。然后，追随者在充分理解领导者的决定的同时，根据领导者给出的决定去制定他们的下一步行动策略。这种操作模式允许领导者在更新其参数和策略时使用所有的这些信息。所以领导者的训练目标可以描述为解决以下优化问题：
+
+\[\begin{array}{rl} & {\underset {x_1\in \mathcal{X}_1}{\min}l_1(x_1,x_2,x_3)}\\ & {\mathrm{s.t.}x_2\in \underset {y\in \mathcal{X}_2}{\arg \min}l_2(x_1,y,x_3),}\\ & {\mathrm{s.t.}x_3\in \underset {y\in \mathcal{X}_3}{\arg \min}l_3(x_1,x_2,z)} \end{array} \quad (7)\]
+
+我们注意到，之所以上式中 \(l_{2}\) 的输入参数包含 \(x_{3}\) 与我们对 \(l_{2}\) 的定义无关，其原因是我们认为在整个优化的过程中，Player3隐式地影响着Player2。因此，MAFENN- DPD中的三个智能体是完全相互协作的，模型最终可以收敛到一个稳定点，并且可以避免收敛到鞍点。收敛性分析和证明参见文献[13]和文献[16]。
+
+## 4 实验设置
+
+### 4.1 仿真系统设置
+
+本文使用的仿真环境是R2022a版本的MATLAB和Simulink。射频发射机发送一个类5G的OFDM波形，主频3.7GHz，带宽100MHz，调制格式为64- QAM，采样率为122.88MHz，采样周期为8.138e- 9s。功率放大器模块采用一个双端口的PA模型，使用一个从Volterra方程简化得来的记忆多项式对输入和输出信号之间的非线性关系进行建模，放大倍数为27.3842。信号源采用固定的随机种子来产生随机信号，确保不同的DPD方案可以使用相同的输入数据，便于直接进行性能对比。
+
+### 4.2 神经网络训练设置
+
+网络的训练环境使用的是一台装有Windows10的戴尔台式电脑，CPU为6核intel i7- 8700，主频为3.2GHz，使用64GB内存和一块由CUDAv11.3驱动的GeForceGTX1070显卡，Cuda核心数为1920个。
+
+为了训练MAFENN- DPD，我们使用Simulink仿真程序从发射机中PA模块的两端连续抓取61377个随机生成的复数对。这些数据使用的调制格式是64- QAM，我们使用前20000对数据进行训练，中间的10000对数据作为验证集，其余的数据作为测试集。
+
+在综合考虑了指标变化的趋势以及训练期间的时间损耗后，我们将训练次数设置为200个epoch，LSTM的隐藏层大小为特征数 \(n\) 的两倍，优化器使用的是Adam。
+
+### 4.3 网络超参数设置
+
+在神经网络的相关研究中，如何设置网络超参数一直是研究人员关心的问题之一。例如灰盒理论就简化了使用神经网络重建公式模型的难度，并且一定程度上保留了模型的可解释性。又比如物理信息机器学习使用了物理学定律中的不变量来指导网络参数的设计。
+
+在本文的应用场景中，MAFENN- DPD的反馈器和编码器之间的反馈循环次数 \(N\) 是一个重要的超参数，它能够直接影响网络的时间复杂度和自我纠错能力的强弱。图3显示了不同 \(N\) 的取值下的NMSE性能。
+
+<center>图3在不同的 \(N\) 的情况下，网络预测的归一化均方误差与网络训练时长 Fig.3 NMSE and training time of different \(N\) </center>
+
+从图3中，我们可以看到当 \(N\) 的值大于5后，NMSE的减少量随 \(N\) 的增加趋于平缓。所以本文在后续的实验中，综合考虑了训练时间成本和训练结果的性能增益之间的平衡，将 \(N\) 设置为5。与此同时，当 \(N\) 等于0时，MAFENN- DPD将退化为一个前馈网络。由于难以获得其他研究者的具体网络结构和参数，所以本文将 \(N\) 等于0的情况视作一个典型前馈网络的仿真实现基准。
+
+MAFENN- DPD中可以调整的另一个关键的超参数是缓冲器长度 \(K\) ，它能够影响到网络的结构和
+
+维度。 \(K\) 为神经网络的缓存记忆容量，可对应于PA的记忆效应长度。我们也可以通过向PA发送脉冲信号后观察拖尾效应的长度来确定 \(K\) 的取值。然而，此类启发式设计往往缺乏说服力，所以我们使用了确定性信息瓶颈（Deterministic Information Bottleneck，DIB）理论分析该网络，并最终依据目标函数的变化趋势确定了 \(K\) 的取值。根据该理论，如果神经网络层的信息流量是受限的，那么为了能够最大化预测正确率，网络在训练的过程中会逐渐抛弃不相关的信息，只保留相关性最强的几个特征。因此如果在神经网络的主要处理信息模型上优化信息处理维度，不仅可以降低网络的计算复杂度，而且可以保证网络对于特征提取的性能表现。所以DIB的训练目标就是最小化以下目标函数 \(L_{\mathrm{DIB}}\)
+
+\[L_{\mathrm{DIB}} = H(\hat{X}) - \beta I(\hat{X};Y) \quad (8)\]
+
+\[H(\hat{X}) = -\sum_{x\in \hat{X}}p(x)\log p(x) \quad (9)\]
+
+\[I(\hat{X};Y) = \sum_{y\in Y}\sum_{x\in \hat{X}}p(x,y)\log \left(\frac{p(x,y)}{p(x)p(y)}\right) \quad (10)\]
+
+其中 \(\hat{X}\) 和 \(Y\) 是神经网络中两个关键位置的信息向量， \(H(\hat{X})\) 是 \(\hat{X}\) 的信息熵。 \(I(\hat{X};Y)\) 是 \(\hat{X}\) 和 \(Y\) 的互相关，反映了 \(\hat{X}\) 在压缩后保留的关于 \(Y\) 的相关信息。 \(p(x,y)\) 是 \(\hat{X}\) 和 \(Y\) 的联合概率分布函数， \(p(x)\) 和 \(p(y)\) 是 \(\hat{X}\) 和 \(Y\) 的边缘概率分布函数。将DIB理论应用到本文的场景后，使用 \(\hat{X}\) 代表 \(z(i)\) 的时间序列， \(Y\) 代表 \(y(i)\) 的时间序列。由于我们希望压缩后的 \(\hat{X}\) 尽可能地多保留 \(Y\) 的相关信息，所以将 \(\beta\) 设为10。在对取值连续的数据进行合理的近似离散量化后，可以得到 \(L_{\mathrm{DIB}}\) 与缓冲器长度 \(K\) 之间的关系，如图4所示。
+
+从图中可以看出，当 \(K\) 的值大于7之后，DIB的目标函数值就只在一个范围内进行小幅波动。我们还同时比较了MAFENN- DPD的测试集在不同缓冲器长度 \(K\) 情况下的NMSE。实验结果也验证了DIB的分析结果。因此在综合考虑网络训练复杂度和特征提取能力之后，本文在后续实验中设置 \(K\) 为7，这样能够在网络参数规模较小的同时兼顾一个可接受的性能表现。
+
+## 5 实验结果
+
+### 5.1 神经网络优化结果
+
+根据本文在网络优化过程中所使用的Stackel
+
+berg博弈理论的思想，当三个玩家充分共享信息并合作时，网络的收敛性将得到提升。因此我们进行了比较实验，并以此来证明其有效性。如图5所示，当三个智能体分别训练时，网络的整体性能指标出现较大的波动。当三个智能体合作训练时，不仅收敛速度更快，收敛效果更好，而且在训练过程中性能指标也是平稳变化的。与每四个epoch切换一个智能体进行训练相比，同步训练可以带来4.5dB的性能提升。
+
+<center>图5不同训练间隔的情况下，epoch与归一化均方误差关系的网络训练结果 Fig.5 NMSE of different training skip</center>
+
+### 5.2 神经网络训练结果
+
+我们假定以MAFENN- DPD的反馈循环次数 \(N\) 等于0的情况作为前馈网络的一个典型样例。除此之外，对于前馈网络和MAFENN- DPD都尽可能地
+
+使用相同的网络结构和参数，如隐藏层的数量和激活函数的类型等。在前馈网络中，为了更加直观地比较这两个网络的性能，我们保留了相同的输人历史信息。原本MAFENN- DPD的缓冲器被保留了下来，用于直接储存过去 \(K\) 个时刻的输人数据。我们使用每个epoch中验证集的NMSE作为网络训练的性能指标，图6展示了前馈网络与MAFENN- DPD的性能对比结果。
+
+<center>图6不同网络结构的情况下，epoch与归一化均方误差关系的网络训练结果 Fig.6 NMSE of different network structure </center>
+
+从图中我们可以发现，在包含相同过去信息的情况下，MAFENN- DPD的最终NMSE性能与前馈网络相比有超过1dB的改善。并且由于反馈回路具有纠错能力，MAFENN- DPD在训练过程中性能指标的波动也比较小。
+
+### 5.3 仿真结果
+
+对于一个理想的发射机来说，主信道的带宽往往包含了其输出信号的绝大多数功率。然而，由于射频发射机中PA的非线性失真，有一些信号功率会落人相邻的子信道频段中，因而导致最终输出信号的ACPR性能的下降。在本文的仿真过程当中，我们将训练好的MAFENN- DPD和典型前馈网络一并嵌人到Simulink仿真系统当中，和记忆多项式方法实现的DPD直接比较其数字预先真的性能。图7给出了使用不同的DPD方案时发射机输出信号的功率谱密度。
+
+从图中可以看出，射频发射机中没有经过DPD处理的PA产生了严重的带外失真。而经过DPD处理后，相邻信道的功率泄漏得到了明显的抑制。图7中各DPD方案的ACPR指标见表1。
+
+<center>图7 不同DPD方案的功率谱密度仿真结果 Fig.7 The power spectral density of various models</center>
+
+表1 不同模型ACPR性能指标 Tab.1 The ACPR performance of various models
+
+<table>数字预失真模型ACPR(下边带/上边带)未经过DPD处理/dBc-29.72/-29.90前馈网络DPD/dBc-33.28/-34.52MAFENN-DPD/dBc-38.40/-39.93多项式方法DPD/dBc-38.88/-39.41</table>
+
+从表1中我们可以看到，当射频发射机使用MAFENN- DPD对PA进行线性化处理时，ACPR指标比没有采用任何DPD处理的方案有10dB的性能提升，比采用前馈网络的DPD方案能提升4\~5dB，与使用多项式方法建模的DPD方案性能十分接近。
+
+综上所述，与典型的前馈网络和多项式方法相比，MAFENN- DPD的优势在于可以在不考虑通信过程中各种影响因素的情况下，依然能够有效地对射频PA进行线性化预失真。因而在神经网络中引入反馈结构的有效性也得到了验证。由于MAFENN- DPD结合了模型驱动和数据驱动的优点，因此它具有良好的鲁棒性，可以在不同的通信场景中对不同的功率放大器进行线性化处理，并且不需要耗费大量人力修改模型。
+
+## 6 结论
+
+本文提出了一种新的网络结构MAFENN- DPD，并将其应用在射频发射机PA的数字预失真。这种具有三个智能体的结构使得我们的网络具有更强的反馈学习能力、自我纠错能力和更高的智能。我们把DPD问题建模成了一种能够使用神经网络的形式，并在DIB理论的指导下进行了超参数的选择并对应调整了MAFENN- DPD的结构。随后我们通过
+
+Simulink仿真生成了网络训练和预失真仿真所使用的数据集。此外，我们将MAFENN- DPD系统三个智能体之间的协作关系建模为一个Stackelberg博弈，提升了模型的收敛性能。最后，我们将MAFENN- DPD的线性化性能分别与一个典型前馈网络实现的DPD方案和多项式方法建模的DPD方案进行了比较。最终实验表明，MAFENN- DPD在较小的训练数据集下可以获得比典型的前馈网络更好的表现，并且可以实现与多项式方法建模的DPD几乎相同的性能。同时，因为MAFENN- DPD不需要依赖于大量通信系统的先验知识，所以该模型比较容易拓展应用到不同种类的PA和通信场景中，这将大大减少研究人员调整多项式模型的工作量。后续我们将继续研究MAFENN在其他更多领域中的应用。
+
+## 参考文献
+
+[1] GHADAM A, BURGELCHNER S, GOKCEOGLU A H, et al. Implementation and performance of DSP- oriented feedforward power amplifier linearizer[J]. IEEE Transactions on Circuits and Systems I: Regular Papers, 2012, 59(2):409- 425.
+[2] KIM J, WOO Y Y, MOON J, et al. A new wideband adaptive digital predistortion technique employing feedback linearization[J]. IEEE Transactions on Microwave Theory and Techniques, 2008, 56(2):385- 392.
+[3] LIU Ying, PAN Wensheng, SHAO Shihai, et al. A general digital predistortion architecture using constrained feedback bandwidth for wideband power amplifiers[J]. IEEE Transactions on Microwave Theory and Techniques, 2015, 63(5):1544- 1555.
+[4] 代志江，孔淑曼，李明玉，等.基于改进的稀疏最小二乘双子支撑向量回归的数字预失真技术[J].电子与信息学报，2022，44：1- 9.
+DAI Zhijiang, KONG Shuman, LI Mingyu, et al. A digital predistortion technique based on improved sparse least squares twin support vector regression[J]. Journal of Electronics & Information Technology, 2022, 44:1- 9. (in Chinese)
+[5] MORGAN D R, MA Z, KIM J, et al. A generalized memory polynomial model for digital predistortion of RF power amplifiers[J]. IEEE Transactions on Signal Processing, 2006, 54(10):3852- 3860.
+[6] DE SILVA U, KOIKE- AKINO T, MA Rui, et al. A modular 1D- CNN architecture for real- time digital predistortion[C]//2022 IEEE Topical Conference on RF/Mi
+[7] SUN Jinlong, WANG Juan, GUO Liang, et al. Adaptive deep learning aided digital predistorter considering dynamic envelope[J]. IEEE Transactions on Vehicular Technology, 2020, 69(4): 4487- 4491.
+[8] WANG Dongming, AZIZ M, HELAOUI M, et al. Augmented real- valued time- delay neural network for compensation of distortions and impairments in wireless transmitters[J]. IEEE Transactions on Neural Networks and Learning Systems, 2019, 30(1): 242- 254.
+[9] 焦斌, 梁彦, 季薇, 等. 基于多路实值时延神经网络的 大规模 MIMO 系统发射机射频失真补偿方案[J]. 信号处理, 2021, 37(9): 1763- 1769.
+JIAO Bin, LIANG Yan, JI Wei, et al. Radio frequency distortion compensation scheme of massive MIMO system transmitter based on multi- channel real- valued time- delay neural network[J]. Journal of Signal Processing, 2021, 37(9): 1763- 1769. (in Chinese)
+[10] SONG Jinxiang, HE Zonglong, HAGER C, et al. Over- the- fiber digital predistortion using reinforcement learning [C]//2021 European Conference on Optical Communication. Bordeaux, France. IEEE, 2021: 1- 4.
+[11] SIKKENS T, BOSMAN C A, OLCESE U. The role of top- down modulation in shaping sensory processing across brain states: Implications for consciousness[J]. Frontiers in Systems Neuroscience, 2019, 13: 31.
+[12] LI Yang, SUN Fanglei, ZU Weiqin, et al. MAFENN: multi- agent feedback enabled neural network for wireless channel equalization[C]//2021 IEEE Global Communications Conference. Madrid, Spain. IEEE, 2021: 1- 6.
+[13] FIEZ T, CHASNOV B, RATLIFF L. Implicit learning dynamics in stackelberg games: Equilibria characterization, convergence analysis, and empirical study[C]//International Conference on Machine Learning. PMLR, 2020: 3133- 3144.
+[14] KARNIADAKIS G E, KEVREKIDIS I G, LU Lu, et al. Physics- informed machine learning[J]. Nature Reviews Physics, 2021, 3(6): 422- 440.
+[15] STROUSE D J, SCHWAB D J. The deterministic information bottleneck[J]. Neural Computation, 2017, 29(6): 1611- 1630.
+[16] SUN Fanglei, LI Yang, WEN Ying, et al. Multi- agent feedback enabled neural networks for intelligent communications[J]. IEEE Transactions on Wireless Communi- .
+cations, 2022, 21(8): 6167- 6179.
+[17] LIN Zhouyang, LI Kai, YANG Yang, et al. DRESIA: deep reinforcement learning- enabled gray box approach for large- scale dynamic cyber- twin system simulation[J]. IEEE Open Journal of the Computer Society, 2021, 2: 321- 333.
+
+## 作者简介
+
+杨 肠 男, 1974年生, 江苏南京人。上海科技大学教授, 特斯联科技集团首席科学家, 主要研究方向为5G/6G移动通信系统、智能物联网、多层次算力网络、开放无线测试验证平台等。
+E- mail: dr.yangyang@tslsmart.com
+
+刘 畅 男, 1998年生, 江西九江人。上海科技大学硕士研究生, 主要研究方向为通信过程中的深度学习应用、无线通信。
+E- mail: liuchang3@shanghaitech.edu.cn
+
+李 凯 男, 1973年生, 四川人。上海科技大学高级工程师, 主要研究方向为新一代无线仿真平台研发和关键技术研究、网络数字孪生技术研究。
+E- mail: likai@shanghaitech.edu.cn
+
+李 阳 男, 1997年生, 安徽芜湖人。英国曼彻斯特大学计算机科学博士研究生, 主要研究方向为多智能体学习。
+E- mail: yang.li- 60@postgrad.manchester.ac.uk
+
+孙芳蕾 女, 1979年生, 陕西西安人。上海科技大学副研究员, 主要研究方向为智能通信、深度学习、强化学习等。
+E- mail: sunfl@shanghaitech.edu.cn
+
+张国威 男, 1990年生, 山东济宁人。曲阜师范大学讲师, 主要研究方向为移动计算网络、资源管理调度、算法设计优化。
+E- mail: zhanggw@qfnu.edu.cn
