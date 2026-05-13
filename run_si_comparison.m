@@ -51,13 +51,20 @@ phi_SI_val   = 30.0;                    % SI 方位角 (度)
 R_SI_val     = 10 * params.lambda;      % SI 距离 = 10λ
 v_SI_val     = 0;                       % SI 速度 = 0 (静止)
 beta_q_max   = max(params.alpha);       % 最强目标反射系数
-si_scale_list = [10, 100, 1000, 10000]; % beta_SI / beta_q 的倍数
+% SI 强度倍数: 以 0.01~10 倍为细粒度门限扫描带, 10~10000 倍为饱和带定点验证
+% 目的: 找到 beta_SI / beta_q 为几时估计结果开始失锁 (判据: R 误差 > 5m)
+si_scale_list = [0.01, 0.03, 0.1, 0.3, 0.5, 0.7, 1, 1.5, 2, 3, 5, 10, 100, 1000, 10000];
+
+% 失锁判据 (用于汇总表标红)
+threshold_theta_deg = 2.0;     % 角度误差阈值 (度)
+threshold_R_m       = 5.0;     % 距离误差阈值 (m)
 
 fprintf('SI 参数: θ_SI=%.1f°, φ_SI=%.1f°, R_SI=%.4fm (%.1fλ), v_SI=%.1fm/s\n', ...
     theta_SI_val, phi_SI_val, R_SI_val, R_SI_val/params.lambda, v_SI_val);
 fprintf('SI 强度倍数: [%s] × beta_q (beta_q_max=%.4f)\n', ...
-    strjoin(arrayfun(@(x) sprintf('%d', x), si_scale_list, 'UniformOutput', false), ', '), ...
+    strjoin(arrayfun(@(x) sprintf('%g', x), si_scale_list, 'UniformOutput', false), ', '), ...
     beta_q_max);
+fprintf('失锁判据: θ 误差 > %.1f° 或 R 误差 > %.1f m\n', threshold_theta_deg, threshold_R_m);
 
 % 总实验数 (基线 + N 个 SI 强度)
 n_total_exp = 1 + length(si_scale_list);
@@ -99,7 +106,7 @@ for idx = 1:length(si_scale_list)
     scale = si_scale_list(idx);
     beta_SI_val = beta_q_max * scale;
     
-    fprintf('\n[%d/%d] --- SI 强度 = %d × beta_q (beta_SI=%.4f) ---\n', ...
+    fprintf('\n[%d/%d] --- SI 强度 = %g × beta_q (beta_SI=%.4f) ---\n', ...
         exp_counter, n_total_exp, scale, beta_SI_val);
     
     % 构造带 SI 的参数
@@ -130,7 +137,7 @@ for idx = 1:length(si_scale_list)
     si_compare = evaluate_estimation(theta_est_si, phi_est_si, R_est_si, v_est_si, params_si, true);
     
     si_results{idx} = struct( ...
-        'label', sprintf('SI=%dx', scale), ...
+        'label', sprintf('SI=%gx', scale), ...
         'beta_SI', beta_SI_val, ...
         'scale', scale, ...
         'theta_est', theta_est_si, 'phi_est', phi_est_si, ...
@@ -144,27 +151,54 @@ end
 fprintf('\n=================================================\n');
 fprintf('  汇总对比: 无SI vs 各SI强度\n');
 fprintf('=================================================\n');
-fprintf('%-12s | %-10s | %-10s | %-10s | %-10s | %-8s\n', ...
-    '场景', 'θ误差(°)', 'φ误差(°)', 'R误差(m)', 'v误差(m/s)', '耗时(s)');
-fprintf('%s\n', repmat('-', 1, 72));
+fprintf('%-12s | %-10s | %-10s | %-10s | %-10s | %-8s | %-6s\n', ...
+    '场景', 'θ误差(°)', 'φ误差(°)', 'R误差(m)', 'v误差(m/s)', '耗时(s)', '失锁?');
+fprintf('%s\n', repmat('-', 1, 82));
 
 % 基线
 if isstruct(base_compare) && isfield(base_compare, 'theta_err')
-    fprintf('%-12s | %-10.4f | %-10.4f | %-10.4f | %-10.4f | %-8.3f\n', ...
+    fprintf('%-12s | %-10.4f | %-10.4f | %-10.4f | %-10.4f | %-8.3f | %-6s\n', ...
         '无SI', mean(abs(base_compare.theta_err)), mean(abs(base_compare.phi_err)), ...
-        mean(abs(base_compare.R_err)), mean(abs(base_compare.v_err)), base_runtime);
+        mean(abs(base_compare.R_err)), mean(abs(base_compare.v_err)), base_runtime, '-');
 end
 
-% 各 SI 结果
+% 各 SI 结果 + 失锁判定
+first_failure_scale = NaN;   % 记录首次失锁的倍数
 for idx = 1:length(si_results)
     r = si_results{idx};
     if isstruct(r.compare) && isfield(r.compare, 'theta_err')
-        fprintf('%-12s | %-10.4f | %-10.4f | %-10.4f | %-10.4f | %-8.3f\n', ...
-            r.label, mean(abs(r.compare.theta_err)), mean(abs(r.compare.phi_err)), ...
-            mean(abs(r.compare.R_err)), mean(abs(r.compare.v_err)), r.runtime);
+        err_theta = mean(abs(r.compare.theta_err));
+        err_phi   = mean(abs(r.compare.phi_err));
+        err_R     = mean(abs(r.compare.R_err));
+        err_v     = mean(abs(r.compare.v_err));
+        is_failed = (err_theta > threshold_theta_deg) || (err_R > threshold_R_m);
+        fail_mark = '-';
+        if is_failed
+            fail_mark = '✗';
+            if isnan(first_failure_scale)
+                first_failure_scale = r.scale;
+            end
+        end
+        fprintf('%-12s | %-10.4f | %-10.4f | %-10.4f | %-10.4f | %-8.3f | %-6s\n', ...
+            r.label, err_theta, err_phi, err_R, err_v, r.runtime, fail_mark);
     else
         fprintf('%-12s | 估计失败或无法匹配目标\n', r.label);
+        if isnan(first_failure_scale)
+            first_failure_scale = r.scale;
+        end
     end
+end
+
+% 门限结论
+fprintf('%s\n', repmat('-', 1, 82));
+if ~isnan(first_failure_scale)
+    rho_th_db = 10 * log10(first_failure_scale);
+    fprintf('【门限结论】从 beta_SI/beta_q = %g 倍 (ρ_SI ≈ %+.1f dB) 开始出现失锁\n', ...
+        first_failure_scale, rho_th_db);
+    fprintf('            判据: θ 误差 > %.1f° 或 R 误差 > %.1f m\n', ...
+        threshold_theta_deg, threshold_R_m);
+else
+    fprintf('【门限结论】所有测试倍数都未触发失锁, 请扩大 scale_list 到更大值\n');
 end
 
 % ---- 7. 保存结果 ----
