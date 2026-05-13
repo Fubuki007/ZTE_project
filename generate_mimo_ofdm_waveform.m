@@ -42,11 +42,22 @@ function tx = generate_mimo_ofdm_waveform(params)
 %   若缺省, 则把通信用户方向默认指向第一个雷达目标 (theta_true(1),
 %   phi_true(1)), 与作者 "communication user is also the target" 的设定一致.
 %
+%   precoder_type   'zf' | 'nullspace' | 'lagrange' (默认 'zf')
+%     'zf'        —— 传统 ZF (作者原始实现, 不考虑自干扰)
+%     'nullspace' —— 文档公式 (17), 在 Hc 零空间里压 ||H_SI*W||
+%     'lagrange'  —— 文档公式 (16), 拉格朗日封闭解
+%
+%   H_SI   (Nt_total × Nt_total) 或 (Nr_any × Nt_total) 自干扰信道,
+%          频率平坦假设: 所有子载波共用. 仅当 precoder_type ~= 'zf' 时必需.
+%
+%   H_SI_per_cc   (Nt_total × Nt_total × Ns) 若给定则逐子载波不同, 覆盖 H_SI
+%
 % 输出 tx (struct):
 %   S        (K_stream, L, Ns) 通信符号 s_i[l], 单位平均功率
-%   W        (Ntx·Nty, K_stream, Ns) ZF 预编码, 每个子载波 Frobenius 归一
+%   W        (Ntx·Nty, K_stream, Ns) 预编码, 每个子载波 Frobenius 归一
 %   X        (Ntx, Nty, Ns, L) 发射信号 x_i[l] = W_i · s_i[l]
 %   H        (Ntx·Nty, K_stream, Ns) 用户 URA 信道 (仅 LoS 导向矢量)
+%   precoder_info  struct: method, si_leak_avg, comm_err_avg 等诊断量
 %   K_stream, M_qam, user_theta_rad, user_phi_rad 便于调试
 % =========================================================================
 
@@ -111,15 +122,62 @@ end
 H = repmat(H_flat, [1, 1, Ns]);                % (Nt_total, K_stream, Ns)
 
 % -------------------------------------------------------------------------
-% 2. ZF 预编码 W (对齐作者源代码 48-53 行)
-%    每个子载波独立做伪逆 + Frobenius 归一化
+% 2. 预编码 W (对齐作者源代码 48-53 行)
+%    每个子载波独立求预编码 + Frobenius 归一化
+%    三种方式:
+%      'zf'        —— 传统 ZF (作者实现, 不抑制自干扰)
+%      'nullspace' —— 公式 (17), 零空间法
+%      'lagrange'  —— 公式 (16), 拉格朗日法
 % -------------------------------------------------------------------------
+% 选择预编码方法
+if isfield(params, 'precoder_type') && ~isempty(params.precoder_type)
+    precoder_type = lower(params.precoder_type);
+else
+    precoder_type = 'zf';
+end
+
+% 准备 H_SI (自干扰信道, 频率平坦或逐子载波)
+H_SI_perCC = [];
+if ~strcmp(precoder_type, 'zf')
+    if isfield(params, 'H_SI_per_cc') && ~isempty(params.H_SI_per_cc)
+        H_SI_perCC = params.H_SI_per_cc;   % (Nr × Nt × Ns)
+        if size(H_SI_perCC, 3) ~= Ns
+            error('H_SI_per_cc 第 3 维必须为 Ns=%d, 实际 %d', Ns, size(H_SI_perCC, 3));
+        end
+    elseif isfield(params, 'H_SI') && ~isempty(params.H_SI)
+        H_SI_perCC = repmat(params.H_SI, [1, 1, Ns]);
+    else
+        error(['precoder_type=%s 需要 params.H_SI (Nr × Nt) 或 ' ...
+               'params.H_SI_per_cc (Nr × Nt × Ns)'], precoder_type);
+    end
+    if size(H_SI_perCC, 2) ~= Nt_total
+        error('H_SI 列数 (%d) 必须等于 Nt_total (%d)', ...
+            size(H_SI_perCC, 2), Nt_total);
+    end
+end
+
 W = zeros(Nt_total, K_stream, Ns);
+si_leak_all  = zeros(1, Ns);
+comm_err_all = zeros(1, Ns);
 for i = 1:Ns
-    H_i  = H(:, :, i);
-    Gram = H_i' * H_i;
-    W_i  = H_i / Gram;                         % ZF 伪逆
-    W(:, :, i) = W_i / norm(W_i, 'fro');       % Frobenius 单位化
+    H_i = H(:, :, i);
+    switch precoder_type
+        case 'zf'
+            Gram = H_i' * H_i;
+            W_i  = H_i / Gram;
+            W_i  = W_i / max(norm(W_i, 'fro'), eps);
+            si_leak_all(i)  = NaN;           % 没有 H_SI 时填 NaN
+            comm_err_all(i) = norm(H_i' * W_i - eye(K_stream), 'fro')^2;
+        case {'nullspace', 'lagrange'}
+            H_SI_i = H_SI_perCC(:, :, i);
+            [W_i, d_i] = design_precoder(H_i, H_SI_i, precoder_type, ...
+                struct('normalize', true));
+            si_leak_all(i)  = d_i.si_leak;
+            comm_err_all(i) = d_i.comm_err;
+        otherwise
+            error('未知 precoder_type: %s', precoder_type);
+    end
+    W(:, :, i) = W_i;
 end
 
 % -------------------------------------------------------------------------
@@ -166,5 +224,11 @@ tx = struct( ...
     'Ntx', Ntx, ...
     'Nty', Nty, ...
     'user_theta_rad', user_theta, ...
-    'user_phi_rad',   user_phi);
+    'user_phi_rad',   user_phi, ...
+    'precoder_info', struct( ...
+        'method',       precoder_type, ...
+        'si_leak_per_cc',  si_leak_all, ...
+        'comm_err_per_cc', comm_err_all, ...
+        'si_leak_avg',  mean(si_leak_all(~isnan(si_leak_all))), ...
+        'comm_err_avg', mean(comm_err_all)));
 end

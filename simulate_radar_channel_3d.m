@@ -123,49 +123,108 @@ end
 
 % -------------------------- 可选 SI 项 -----------------------------------
 if isfield(params, 'enable_SI') && params.enable_SI
-    u_si = sind(params.theta_SI) * cosd(params.phi_SI);
-    v_si = sind(params.theta_SI) * sind(params.phi_SI);
-    omega_ax_si = -2 * pi * params.d * u_si / params.lambda;
-    omega_ay_si = -2 * pi * params.d * v_si / params.lambda;
-    omega_r_si  = -4 * pi * delta_f * params.R_SI / params.c;
-    omega_v_si  =  4 * pi * params.Ts * params.v_SI * params.fc / params.c;
+    % 两种 SI 模型:
+    %   (A) 点散射 (默认): beta_SI * a_rx(θ_SI,φ_SI) * a_tx^H(θ_SI,φ_SI)
+    %                      * x * exp(距离/多普勒相位)
+    %   (B) 矩阵 H_SI (若 params.H_SI_matrix 非空): 直接用 H_SI × x,
+    %       对应文档公式 (11)-(13) 的 Rician 矩阵模型.
+    use_matrix_si = isfield(params, 'H_SI_matrix') && ~isempty(params.H_SI_matrix);
 
-    a_rx_x_si = exp(1j * (0:Mx-1).' * omega_ax_si);
-    a_rx_y_si = exp(1j * (0:My-1)   * omega_ay_si);
-    a_rx_si   = a_rx_x_si * a_rx_y_si;
-
-    phase_n_si = exp(1j * (0:Ns-1).' * omega_r_si);
-    phase_l_si = exp(1j * (0:L-1)    * omega_v_si);
-    phase_si   = phase_n_si * phase_l_si;
-
-    switch tx_mode
-        case 'scalar'
-            si_sig = tx_signal;
-        case 'mimo'
-            ax_tx_x_si = exp(1j * kw * nx_tx * u_si);
-            ax_tx_y_si = exp(1j * kw * ny_tx * v_si);
-            a_tx_si    = ax_tx_x_si * ax_tx_y_si.';
-            conj_atx_si = conj(a_tx_si);
-            % 逐天线累加, 避免大临时数组
-            si_sig = zeros(Ns, L, 'like', tx_signal);
-            for ntx_i = 1:Ntx
-                for nty_i = 1:Nty
-                    si_sig = si_sig + conj_atx_si(ntx_i, nty_i) * ...
-                        squeeze(tx_signal(ntx_i, nty_i, :, :));
-                end
-            end
+    if use_matrix_si && strcmp(tx_mode, 'scalar')
+        error('矩阵 SI 模式仅支持 MIMO tx_signal (Ntx·Nty 展平), 不支持 scalar 模式');
     end
 
     beta_si_abs = params.beta_SI;
     if isfield(params, 'beta_SI_abs'), beta_si_abs = params.beta_SI_abs; end
     if beta_si_abs == 0, beta_si_abs = realmin; end
 
-    echo_si = beta_si_abs * (si_sig .* phase_si);
-    a_rx_si_mismatch = a_rx_si .* g_rx;
-    % 分块累加 SI, 避免广播产生大临时数组
-    for l_idx = 1:L
-        rx_cube(:,:,:,l_idx) = rx_cube(:,:,:,l_idx) + ...
-            a_rx_si_mismatch .* reshape(echo_si(:,l_idx), 1, 1, Ns);
+    if use_matrix_si
+        % ============== (B) 矩阵 H_SI 模式 ==============
+        % y_SI(:, i, l) = beta_SI * H_SI * x(:, i, l)
+        % 频率平坦假设 (文档默认): H_SI 对所有子载波相同
+        % 若需要逐子载波不同, 可用 params.H_SI_matrix_per_cc (Nr_total×Nt_total×Ns)
+        Nt_total = Ntx * Nty;
+        Nr_total = Mx * My;
+
+        if isfield(params, 'H_SI_matrix_per_cc') && ~isempty(params.H_SI_matrix_per_cc)
+            H_SI_cube = params.H_SI_matrix_per_cc;   % (Nr_total × Nt_total × Ns)
+        else
+            H_SI_mat = params.H_SI_matrix;
+            if size(H_SI_mat, 1) ~= Nr_total || size(H_SI_mat, 2) ~= Nt_total
+                error('H_SI_matrix 形状必须为 (Nr_total=%d × Nt_total=%d), 实际 (%d × %d)', ...
+                    Nr_total, Nt_total, size(H_SI_mat, 1), size(H_SI_mat, 2));
+            end
+            H_SI_cube = repmat(H_SI_mat, [1, 1, Ns]);
+        end
+
+        % 可选多普勒/距离相位 (若 SI 有距离和速度, 保留相位项)
+        if isfield(params, 'R_SI') && params.R_SI > 0
+            omega_r_si = -4 * pi * delta_f * params.R_SI / params.c;
+        else
+            omega_r_si = 0;
+        end
+        if isfield(params, 'v_SI')
+            omega_v_si = 4 * pi * params.Ts * params.v_SI * params.fc / params.c;
+        else
+            omega_v_si = 0;
+        end
+        phase_n_si = exp(1j * (0:Ns-1).' * omega_r_si);     % (Ns, 1)
+        phase_l_si = exp(1j * (0:L-1)    * omega_v_si);     % (1,  L)
+
+        % 逐子载波/符号: 把 (Ntx, Nty, i, l) 展平成 (Nt_total, 1), 乘 H_SI_i
+        % 得到 (Nr_total, 1), reshape 回 (Mx, My, 1, 1) 再加到 rx_cube
+        for i = 1:Ns
+            H_SI_i = H_SI_cube(:, :, i);    % (Nr_total × Nt_total)
+            for l_idx = 1:L
+                x_il = tx_signal(:, :, i, l_idx);                % (Ntx, Nty)
+                x_flat = x_il(:);                                % (Nt_total, 1)
+                y_flat = H_SI_i * x_flat;                        % (Nr_total, 1)
+                y_mat  = reshape(y_flat, Mx, My);                % (Mx, My)
+                scale  = beta_si_abs * phase_n_si(i) * phase_l_si(l_idx);
+                rx_cube(:, :, i, l_idx) = rx_cube(:, :, i, l_idx) + ...
+                    (g_rx .* y_mat) * scale;
+            end
+        end
+    else
+        % ============== (A) 点散射 SI 模式 (原实现) ==============
+        u_si = sind(params.theta_SI) * cosd(params.phi_SI);
+        v_si = sind(params.theta_SI) * sind(params.phi_SI);
+        omega_ax_si = -2 * pi * params.d * u_si / params.lambda;
+        omega_ay_si = -2 * pi * params.d * v_si / params.lambda;
+        omega_r_si  = -4 * pi * delta_f * params.R_SI / params.c;
+        omega_v_si  =  4 * pi * params.Ts * params.v_SI * params.fc / params.c;
+
+        a_rx_x_si = exp(1j * (0:Mx-1).' * omega_ax_si);
+        a_rx_y_si = exp(1j * (0:My-1)   * omega_ay_si);
+        a_rx_si   = a_rx_x_si * a_rx_y_si;
+
+        phase_n_si = exp(1j * (0:Ns-1).' * omega_r_si);
+        phase_l_si = exp(1j * (0:L-1)    * omega_v_si);
+        phase_si   = phase_n_si * phase_l_si;
+
+        switch tx_mode
+            case 'scalar'
+                si_sig = tx_signal;
+            case 'mimo'
+                ax_tx_x_si = exp(1j * kw * nx_tx * u_si);
+                ax_tx_y_si = exp(1j * kw * ny_tx * v_si);
+                a_tx_si    = ax_tx_x_si * ax_tx_y_si.';
+                conj_atx_si = conj(a_tx_si);
+                si_sig = zeros(Ns, L, 'like', tx_signal);
+                for ntx_i = 1:Ntx
+                    for nty_i = 1:Nty
+                        si_sig = si_sig + conj_atx_si(ntx_i, nty_i) * ...
+                            squeeze(tx_signal(ntx_i, nty_i, :, :));
+                    end
+                end
+        end
+
+        echo_si = beta_si_abs * (si_sig .* phase_si);
+        a_rx_si_mismatch = a_rx_si .* g_rx;
+        for l_idx = 1:L
+            rx_cube(:,:,:,l_idx) = rx_cube(:,:,:,l_idx) + ...
+                a_rx_si_mismatch .* reshape(echo_si(:,l_idx), 1, 1, Ns);
+        end
     end
 end
 

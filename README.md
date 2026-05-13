@@ -26,8 +26,9 @@
 5. [两种算法对比](#两种算法对比)
 6. [3GPP 标准合规性](#3gpp-标准合规性)
 7. [信号生成与作者源代码对比](#信号生成与作者源代码对比)
-8. [文件说明](#文件说明)
-9. [快速上手](#快速上手)
+8. [发射波束赋形抑制自干扰（SI 抑制）](#发射波束赋形抑制自干扰si-抑制)
+9. [文件说明](#文件说明)
+10. [快速上手](#快速上手)
 
 ---
 
@@ -563,30 +564,287 @@ y(mx, my, i, l) = Σ_q β_q · a_tx^H(θ_q,φ_q)·x_i[l]
 
 ---
 
-## 文件说明
+## 发射波束赋形抑制自干扰（SI 抑制）
+
+这一节给**零基础接手这个项目的同学**。目标是让你看完后能独立跑完实验、看懂结果、解释给别人。
+
+### 0. 先理解"什么是自干扰"
+
+通感一体化系统（ISAC）的基站同时做两件事：
+
+- 用一半射频链路**发射**下行通信 + 雷达探测信号
+- 用另一半射频链路**接收**目标反射回来的雷达回波
+
+发射和接收天线装在**同一个基站**上，物理距离很近。于是发射天线发出去的信号会**直接漏进接收天线**，这个漏过去的信号就叫"自干扰"（Self-Interference，SI）。你可以类比成**一边用嘴说话一边用自己的耳朵去听别人说话**：自己的声音会掩盖别人的声音。
+
+SI 比目标回波强几万倍（因为目标几百米外反射，而发射天线就在几厘米外），不处理的话雷达什么目标都看不到。
+
+### 1. 师兄在解决什么问题
+
+师兄 `bf.m` 这个脚本做的事情用一句话说：
+
+> 在发射端给每根天线乘一个复数权重（**预编码**），让天线阵发出去的信号**刚好在接收天线方向上打一个零**，SI 自然就没了。
+
+这个权重矩阵叫 **W**。设计 W 的时候要同时满足两个约束：
+
+1. **通信约束**：下行数据要能送到用户那里（数学上写成 `H_c^H · W = I`，H_c 是用户信道）
+2. **感知约束**：自干扰尽量压到零（最小化 `‖H_SI · W‖²`，H_SI 是自干扰信道）
+
+文档公式 (16) 和 (17) 给出了两个解析解，师兄 `bf.m` 实现了这两个解。
+
+师兄的初步测试结论：
+
+- 如果 H_SI 主要是**视距传播**（信号走直线，LoS），W 能压下去约 **100 dB** 的 SI
+- 如果 H_SI 主要是**散射传播**（瑞利，Rayleigh），只能压下去约 **20 dB**
+
+你的任务是**把师兄的 W 塞进完整的 MIMO-OFDM ISAC 系统**，看下游估计器的误差能不能改善。
+
+### 2. 涉及的专业名词一览
+
+| 名词 | 解释 |
+|------|------|
+| MIMO | 多发多收天线阵。我们用 16 发 + 64 收 |
+| OFDM | 一种把宽带信号拆成很多窄带子载波的调制方式 |
+| 子载波 | OFDM 的"细窄频道"。我们用 12672 根 |
+| 预编码（Precoding） | 发射前给每根天线乘一个复数权重，让信号在空间上有指向性 |
+| 自干扰（SI） | 发射信号直接漏进自己接收天线的那部分 |
+| 信道矩阵 H | 一个描述"从发射端到接收端每根天线对每根天线"的复数矩阵 |
+| 导向矢量（Steering Vector） | 阵列看某个方向时每根天线的相位，记作 `a(θ, φ)`，是一个向量 |
+| 视距 LoS / 非视距 NLoS | 信号走直线 / 信号被反射过来 |
+| 莱斯信道（Rician） | LoS + NLoS 的混合。κ 是功率比，κ 大 = 近 LoS，κ 小 = 近瑞利 |
+| 瑞利信道（Rayleigh） | 纯散射，没有 LoS 分量 |
+| 零空间（Null Space） | 矩阵 A 的零空间是所有满足 `A·x = 0` 的 x 组成的子空间 |
+| ZF（Zero-Forcing） | 零强制预编码，数学上 `W = H_c(H_c^H H_c)^(-1)` |
+| Frobenius 范数 | 矩阵全部元素平方和开根号，记作 `‖M‖_F` |
+| 失锁门限 ρ_th | 扫 SI 强度时，估计误差突然从几厘米跳到几百米的那个临界点。越高越抗干扰 |
+
+### 3. 我加的 4 个文件 / 改的 4 个文件
+
+| 文件 | 类型 | 一句话说明 |
+|------|------|-----------|
+| `generate_HSI.m` | 新增 | 生成自干扰信道矩阵 H_SI（公式 13） |
+| `design_precoder.m` | 新增 | 根据 H_c 和 H_SI 设计预编码 W（公式 16、17） |
+| `task1_reproduce_bf.m` | 新增 | 任务 1：复现师兄 `bf.m` 的 20 / 100 dB 结论 |
+| `task2_precoder_smoketest.m` | 新增 | 任务 2：检查三种预编码下波形生成不报错 |
+| `task3_precoder_system_comparison.m` | 新增 | 任务 3/4：3 信道 × 3 预编码 × 6 SI 强度完整对比 |
+| `task4_plot_results.m` | 新增 | 生成对比图（距离 MSE / 角度 MSE / SI 泄漏） |
+| `generate_mimo_ofdm_waveform.m` | 改造 | 支持 `params.precoder_type` 切换 zf/nullspace/lagrange |
+| `simulate_radar_channel_3d.m` | 改造 | 支持 `params.H_SI_matrix` 注入矩阵形式的 SI |
+| `main.m` | 改造 | 主流程支持 `precoder_type` 开关 |
+
+### 4. 三种预编码方法对比
+
+| 方法 | 对应文档 | 通俗解释 |
+|------|---------|---------|
+| `zf` | 传统实现 | 只满足通信约束，不管 SI。师兄 `bf.m` 里的 W0 |
+| `nullspace` | 公式 (17) | 先算 ZF，再用零空间修正把 SI 压下去。`bf.m` 的 W1 |
+| `lagrange` | 公式 (16) | 直接用拉格朗日乘子法解两个约束的闭式解。`bf.m` 的 W2 |
+
+### 5. 自干扰信道 H_SI 的两种生成模式
+
+`generate_HSI.m` 支持两种模式，通过 `cfg.model` 切换：
+
+- **`'ula_simple'`**：和师兄 `bf.m` 完全一致（两个 ULA 外积 + 瑞利噪声）。**用于复现师兄结论**
+- **`'ura_rician'`**：升级到你们系统真正用的 4×4 发射 URA + 8×8 接收 URA。**用于系统级实验**
+
+两种模式都按文档公式 (13) 的莱斯模型合成：
+
+```
+H_SI = sqrt(κ/(κ+1)) * H_LoS  +  sqrt(1/(κ+1)) * H_NLoS
+```
+
+κ（kappa）是视距功率 / 散射功率比：
+
+- κ → ∞：纯 LoS
+- κ → 0：纯瑞利
+- κ = 1：LoS 和 NLoS 功率各占一半
+
+### 6. 三个任务脚本怎么跑
+
+#### 任务 1：复现师兄 `bf.m`
+
+```matlab
+>> task1_reproduce_bf
+```
+
+预期输出（两组 κ）：
+
+| κ | ZF 泄漏 | nullspace 泄漏 | lagrange 泄漏 | 抑制量 |
+|---|---------|----------------|---------------|--------|
+| 1e10 | ~3500 | ~2e-9 | ~4e-9 | ~120 dB |
+| 1 | ~3400 | ~22 | ~22 | ~22 dB |
+
+如果抑制量在这个范围，说明 `design_precoder.m` + `generate_HSI.m` 两个新函数和师兄 `bf.m` 数学等价。
+
+#### 任务 2：冒烟测试发射波形
+
+```matlab
+>> task2_precoder_smoketest
+```
+
+这个脚本只是检查 `generate_mimo_ofdm_waveform.m` 在三种预编码模式下都能正常跑完，不产生数值错误。如果看到：
+
+```
+zf        : si_leak(avg)=NaN         comm_err(avg)=9
+nullspace : si_leak(avg)=1.15e-06    comm_err(avg)=0.405
+lagrange  : si_leak(avg)=1.15e-06    comm_err(avg)=0.405
+```
+
+就是通过了（ZF 不压 SI 所以填 NaN）。
+
+#### 任务 3/4：系统级对比
+
+```matlab
+>> task3_precoder_system_comparison   % 约 10 分钟
+>> task4_plot_results                 % 几秒钟, 产生 3 张 png
+```
+
+这是主菜。会跑 3 种信道 × 3 种预编码 × 6 种 SI 强度 = 54 次估计。每次估计：
+
+1. 根据当前 (信道, 预编码) 生成一份 H_SI 和对应的 W
+2. 生成发射波形 X = W·S
+3. 仿真回波（注入真实的 H_SI·X 作为 SI）
+4. 跑估计器得到 θ/φ/R/v
+5. 和真值比对记录误差
+
+#### 实验矩阵
+
+| 信道 | κ | 代表场景 | 期望表现 |
+|------|---|---------|---------|
+| E1_LoS | 1e4 | 近视距自干扰 | lagrange 大幅优于 ZF |
+| E2_mixed | 1 | 混合 | 中等改善 |
+| E3_Rayleigh | 1e-6 | 纯散射 | 改善较小但仍可见 |
+
+#### SI 强度扫描
+
+`si_scale_list = [0, 1, 10, 100, 1000, 10000]`，这个数是 β_SI / β_q（SI 幅度相对目标幅度的倍数）。
+
+- `scale = 0`：无 SI 基线
+- `scale = 1`：SI 和目标等强
+- `scale = 10000`：SI 比目标强 80 dB
+
+### 7. 实验结果（我跑出来的真实数据）
+
+跑完 `task3_precoder_system_comparison` 后的关键行：
+
+```
+=========== 信道 E1_LoS (κ=10000) ===========
+  预编码: zf        波形 si_leak=NaN, comm_err=9
+    scale=0      : θ= 0.024° φ= 0.068° R=  0.03m v= 2.56m/s
+    scale=1      : θ= 2.717° φ=91.555° R=300.06m v= 3.99m/s   ← 失锁
+    scale=10     : θ=10.355° ...                               ← 继续失锁
+
+  预编码: lagrange  波形 si_leak=2.3e-12, comm_err=3.5e-07
+    scale=0      : θ= 0.040° φ= 0.105° R=  0.03m v= 2.77m/s
+    scale=1      : θ= 0.028° ...                               ← 稳
+    scale=10000  : θ= 0.031° ...                               ← 到 10000 都稳
+```
+
+#### 失锁门限汇总
+
+| 信道 | 预编码 | 首次失锁 scale | 等效 ρ_th (dB) |
+|------|--------|---------------|---------------|
+| E1_LoS | zf | 1 | 0 |
+| E1_LoS | lagrange | 从未失锁 | > 40 |
+| E3_Rayleigh | zf | 10 | +10 |
+| E3_Rayleigh | lagrange | 从未失锁 | > 40 |
+
+**结论**：lagrange 把失锁门限从 scale=1 推到 >10000，等效 >40 dB 抗干扰增益，和师兄 `bf.m` 的 100 dB 量级吻合。
+
+### 8. 两个你要知道的"坑"
+
+#### 坑 1：E2_mixed（κ=1）下 nullspace/lagrange 基线偏差 5°
+
+```
+scale=0  : θ= 5.00°  φ= 7.53°  (真值偏差 5°!)
+```
+
+这**不是 bug**，是单流通信 + 莱斯小 κ 时的物理代价：
+
+- ZF 时 W 完全对齐通信方向
+- 换成 lagrange/nullspace 后，W 被拉向 H_SI 的零空间
+- 单流（K_stream=1）自由度不够，通信方向被迫偏 5°
+- K_stream ≥ 2 或换方向几何关系可以缓解（见"下一步建议"）
+
+#### 坑 2：估计器在等效标量模式下锁到 `R=0.03m`
+
+```
+R=  0.03m   ← 看起来像是锁到零距离
+```
+
+这是 `joint_estimator_fast.m` 在处理 `sum(sum(tx_signal))` 等效标量时会偶尔锁到虚假峰的一个**遗留问题**，不是预编码引入的。所有三种预编码基线（scale=0）都有这个现象。**不影响不同预编码之间的相对比较**，因为每个组合都是同一套估计器。
+
+### 9. 给新同学的运行顺序
+
+```matlab
+% Step 1: 先跑 task1，确认环境没问题（1 分钟内）
+>> task1_reproduce_bf
+
+% Step 2: 冒烟测试（半分钟）
+>> task2_precoder_smoketest
+
+% Step 3: 系统级对比（约 10 分钟）
+>> task3_precoder_system_comparison
+
+% Step 4: 出图（几秒）
+>> task4_plot_results
+
+% Step 5: 看报告
+% 打开 task_precoder_report.md
+```
+
+### 10. 下一步建议（还能做的实验）
+
+- **把 `params.K_stream` 从 1 改成 2**，观察 5° 基线偏差是否消失。理论上多一个通信流就多一个自由度。
+- **扫不同 (θ_user, θ_SI) 夹角**，看通信方向和 SI 方向的几何关系对抑制效果的影响。
+- **混合注入 SI**：同时开 `params.enable_SI=true` 的点散射 SI 和 `params.H_SI_matrix` 的矩阵 SI，对比两种干扰模型的差异。
+- **统计平均**：当前每个 (信道, 预编码, scale) 只跑了 1 次，加一层蒙特卡洛平均（比如每组 50 次）能消除随机性得到更平滑的曲线。
+
+### 11. 这次改动生成的结果文件
+
+| 文件 | 说明 |
+|------|------|
+| `task3_precoder_system_results.mat` | 任务 3 完整实验数据（54 个组合） |
+| `task4_fig1_range_mse.png` | 距离估计 MSE vs SI 强度曲线 |
+| `task4_fig2_angle_mse.png` | 角度估计 MSE vs SI 强度曲线 |
+| `task4_fig3_si_leak.png` | SI 泄漏功率柱状图 |
+| `task_precoder_report.md` | 给师兄看的结论报告 |
+
+---
+
 
 ### 核心文件
 
 | 文件 | 功能 |
 |------|------|
-| `main.m` | 主入口：参数→波形→回波→估计→评估 |
+| `main.m` | 主入口：参数→波形→回波→估计→评估（支持 `precoder_type` 开关） |
 | `build_default_params.m` | 参数装配（3GPP + 场景 + 阵列） |
-| `generate_mimo_ofdm_waveform.m` | MIMO-OFDM 发射波形生成 |
-| `simulate_radar_channel_3d.m` | 雷达回波信道仿真 |
+| `generate_mimo_ofdm_waveform.m` | MIMO-OFDM 发射波形生成，支持 zf/nullspace/lagrange |
+| `simulate_radar_channel_3d.m` | 雷达回波信道仿真，支持点散射 SI 和矩阵 SI |
 | `joint_estimator_fast.m` | **快速两级估计器（当前默认使用，<1s）** |
 | `joint_angle_range_velocity_estimator(abandoned).m` | 原版 4D 联合估计器（~40s，留作对照） |
 | `evaluate_estimation.m` | 估计结果评估（匹配+RMSE） |
 
-> **注**：原版估计器文件名带 `(abandoned)` 后缀，只在需要复现论文严苛场景时使用。默认 main.m 调用 fast 版。
+### 自干扰抑制相关文件
+
+| 文件 | 功能 |
+|------|------|
+| `generate_HSI.m` | 按公式 (13) 生成 Rician 自干扰信道 H_SI |
+| `design_precoder.m` | 按公式 (16)(17) 设计预编码 W（zf / nullspace / lagrange） |
+| `bf.m` | 师兄的原始验证脚本，保留作参考 |
+| `task1_reproduce_bf.m` | 任务 1：复现 `bf.m` 的 20 / 100 dB 抑制结论 |
+| `task2_precoder_smoketest.m` | 任务 2：三种预编码下波形生成冒烟测试 |
+| `task3_precoder_system_comparison.m` | 任务 3/4：完整系统级对比实验 |
+| `task4_plot_results.m` | 生成对比图 |
+| `task_precoder_report.md` | 给师兄的结论报告 |
 
 ### 辅助脚本
 
 | 文件 | 功能 |
 |------|------|
-| `scan_si_effect.m` | 自干扰 (SI) 强度扫描 |
-| `plot_rmse_vs_snr_new.m` | RMSE vs SNR 曲线绘制 |
-| `test_fast_estimator.m` | 快速版 vs 原版精度对比测试 |
-| `main_fast.m` | 快速版独立主流程 |
+| `run_si_comparison.m` | 自干扰 (SI) 强度扫描（原版，点散射 SI） |
+| `run_si_mse_analysis.m` | 距离 MSE vs ρ_SI 曲线分析 |
+| `SelfInterferenceChannel_LoS_NLoS_PlotPrep.m` | SI 影响分析的独立框架（论文公式 1-12 严格实现） |
 
 ---
 
@@ -600,24 +858,39 @@ y(mx, my, i, l) = Σ_q β_q · a_tx^H(θ_q,φ_q)·x_i[l]
 ### 运行主流程
 
 ```matlab
->> main          % 运行快速估计器 + 评估
+>> main          % 运行快速估计器 + 评估（默认 ZF 预编码）
 ```
 
-输出示例：
-```
-参数: 阵列=8x8, 等效子载波=12672, 符号=256, 目标数=2
-距离分辨率=0.099m, 最大不模糊距离=1250.0m
-...
-估计目标1 -> 真实目标1: 角度=25.82°(真值25.83°,误差-0.01°), ...
-RMSE: 角度=0.013°, 方位=0.019°, 距离=0.027m, 速度=0.578m/s
-快速估计器运行时间: 0.xxx 秒
-✓ 满足 <1s 实时刷新率要求!
-```
-
-### 运行 SI 扫描
+若要启用 SI 抑制的预编码：
 
 ```matlab
->> scan_si_effect    % 扫描不同自干扰强度下的性能
+params = build_default_params();
+params.precoder_type = 'lagrange';    % 或 'nullspace'
+save('my_params.mat', 'params');
+% 然后在 main.m 里把 build_default_params() 换成 load('my_params.mat')
+```
+
+或者最简单的办法：直接打开 `main.m`，在 `params = build_default_params();` 后加一行：
+```matlab
+params.precoder_type = 'lagrange';
+```
+
+### 运行自干扰抑制实验（零基础推荐路线）
+
+```matlab
+>> task1_reproduce_bf                   % 1 分钟, 确认环境
+>> task2_precoder_smoketest             % 0.5 分钟, 波形冒烟测试
+>> task3_precoder_system_comparison     % 约 10 分钟, 完整系统对比
+>> task4_plot_results                   % 几秒, 生成 3 张图
+```
+
+详见本文档的 [发射波束赋形抑制自干扰（SI 抑制）](#发射波束赋形抑制自干扰si-抑制) 一节。
+
+### 运行 SI 强度扫描（原版）
+
+```matlab
+>> run_si_comparison    % 扫描不同自干扰强度下的性能（点散射 SI 模型）
+>> run_si_mse_analysis  % 距离 MSE vs ρ_SI 曲线
 ```
 
 ### 修改参数

@@ -30,6 +30,33 @@ fprintf('验收指标: 目标分辨率=%.3fm, 实际分辨率=%.3fm, 距离覆�
 % ---- 2. 生成发射波形 (严格对齐作者 main_snr_rmse_quicklook.m 第 42-61 行) ----
 %   信道 H → ZF 预编码 W → 16-QAM 通信符号 S → 发射信号 X = W·S
 %   详见 generate_mimo_ofdm_waveform.m
+%
+% 预编码切换: params.precoder_type ∈ {'zf', 'nullspace', 'lagrange'}
+%   'zf' (默认)  —— 作者原始实现, 不抑制自干扰
+%   'nullspace' —— 公式 (17)
+%   'lagrange'  —— 公式 (16)
+% 非 'zf' 模式需要设置 params.H_SI (Nr × Nt).
+if ~isfield(params, 'precoder_type') || isempty(params.precoder_type)
+    params.precoder_type = 'zf';
+end
+if ~strcmp(params.precoder_type, 'zf') && ...
+   (~isfield(params, 'H_SI') || isempty(params.H_SI))
+    % 自动构造一个与 params.theta_SI/phi_SI 匹配的 Rician H_SI
+    Nt_total = params.Ntx * params.Nty;
+    Nr_total = params.Mx  * params.My;
+    hsi_cfg = struct( ...
+        'model',    'ura_rician', ...
+        'Nt_total', Nt_total, ...
+        'Nr_total', Nr_total, ...
+        'kappa_SI', 10, ...
+        'Ntx', params.Ntx, 'Nty', params.Nty, ...
+        'Mx',  params.Mx,  'My',  params.My, ...
+        'd_lambda', 0.5, ...
+        'theta_tx_deg', params.theta_SI, 'phi_tx_deg', params.phi_SI, ...
+        'theta_rx_deg', params.theta_SI, 'phi_rx_deg', params.phi_SI);
+    params.H_SI = generate_HSI(hsi_cfg);
+end
+
 tx_cfg = params;
 tx_cfg.N         = params.N;
 tx_cfg.K         = params.K;
@@ -39,6 +66,8 @@ tx_cfg.Nty       = params.Nty;
 tx_cfg.K_stream  = params.K_stream;
 tx       = generate_mimo_ofdm_waveform(tx_cfg);
 tx_signal = tx.X;     % (Ntx, Nty, Ns, L)
+fprintf('预编码: %s, si_leak=%.3g, comm_err=%.3g\n', ...
+    tx.precoder_info.method, tx.precoder_info.si_leak_avg, tx.precoder_info.comm_err_avg);
 
 % ---- 3. 无 SI 基线回波 + 估计 ----
 params_no_si = params;
