@@ -1,0 +1,72 @@
+===== Page 1 =====
+
+毫米波通感实时感知与预警算法方案
+
+I.系统模型
+
+A.发射模型 发射信号
+
+\[\tilde{\mathbf{x}}(t)\triangleq \sum_{i = 0}^{N_{s} - 1}\sum_{l = 0}^{L - 1}\mathbf{x}_{i}[l]e^{j2\pi i\Delta f t}\mathrm{rect}\left(\frac{t - lT}{T}\right), \quad (1)\]
+
+参数含义
+
+
+</td>IndexTotalMeaningiNx子载波数lL快拍数 (frame length)Ntx发射天线数Ntx接收天线数</td>
+
+其中
+
+\[\mathbf{x}_{i}[l] = \mathbf{W}_{i}\mathbf{s}_{i}[l]\in \mathbb{C}^{N_{tx}\times 1} \quad (2)\]
+
+为了保证用户干扰为0,可采用迫零beamforming,即
+
+\[\mathbf{H}_{c}\mathbf{W} = \mathbf{I}\Leftrightarrow \mathbf{W} = \mathbf{H}_{c}^{\mathrm{H}}(\mathbf{H}_{c}\mathbf{H}_{c}^{\mathrm{H}})^{-1} \quad (3)\]
+
+B.通信模型
+
+\[y_{i,k}[l]\triangleq \mathbf{h}_{i,k}^{H}\mathbf{x}_{i}[l] + z_{i,k}[l], \quad (4)\]
+
+C.感知模型
+
+\[\widetilde{\mathbf{y}} (t) = \sum_{q = 1}^{Q}\beta_{q}\mathbf{b}(\phi_{q},\psi_{q})\mathbf{a}^{H}(\phi_{q},\psi_{q})\widetilde{\mathbf{x}}\left(t - \frac{2R_{q}}{c}\right)e^{j2\pi f_{D,q}t} + \widetilde{\mathbf{z}} (t), \quad (5)\]
+
+其中
+
+\[\begin{array}{r l} & {\mathbf{b}(\phi_{q},\psi_{q}) = \left[1,\ldots ,e^{-j\frac{2\pi}{\lambda_{c}}((N_{t x,x} - 1)d_{t x,x}\sin \psi_{q}\cos \phi_{q} + (N_{t x,y} - 1)d_{t x,y}\sin \psi_{q}\sin \phi_{q})}\right]^{T}}\\ & {\mathbf{a}(\phi_{q},\psi_{q}) = \left[1,\ldots ,e^{j\frac{2\pi}{\lambda_{c}}((N_{t x,x} - 1)d_{t x,x}\sin \psi_{q}\cos \phi_{q} + (N_{t x,y} - 1)d_{t x,y}\sin \psi_{q}\sin \phi_{q})}\right]^{T}} \end{array} \quad (6)\]
+
+采样后做DFT得到
+
+\[\begin{array}{l}{{\mathbf{y}_{i}[l]=\sum_{q=1}^{Q}\beta_{q}\mathbf{b}(\phi_{q},\psi_{q})\mathbf{a}^{H}(\phi_{q},\psi_{q})\mathbf{x}_{i}[l]e^{-j4\pi i\Delta f R_{q}/c}e^{j4\pi iT v_{q}f_{c}/c}+\mathbf{z}_{i}[l]}}\\ {{=\sum_{q=1}^{Q}\beta_{q}\mathbf{b}(\phi_{q},\psi_{q})\mathbf{a}^{H}(\phi_{q},\psi_{q})\mathbf{x}_{i}[l]e^{j i\omega_{i}(R_{q})}e^{j i\omega_{v}(v_{q})}+\mathbf{z}_{i}[l]}}\end{array} \quad (9)\]
+
+其中
+
+\[\begin{array}{r l} & {\omega_{i}(R_{q}) = -4\pi \Delta f R_{q} / c}\\ & {\omega_{\nu}(v_{q}) = 4\pi T v_{q}f_{c} / c} \end{array} \quad (10)\]
+
+===== Page 2 =====
+
+考虑共址的自收自发
+
+\[\mathbf{y}_i[t] = \sum_{q = 1}^Q \beta_q \mathbf{b}(\phi_q, \psi_q) \mathbf{a}^H (\phi_q, \psi_q) \mathbf{x}_i[t] e^{j\omega_s (R_q)} e^{j\omega_s (v_q)} + \sqrt{\rho_{\mathrm{SI}}} \mathbf{H}_{\mathrm{SI}}[i] \mathbf{x}_i[t] + \mathbf{z}_i[t] \quad (12)\]
+
+其中
+
+\[\mathbf{H}_{\mathrm{SI}}[i] = \sqrt{\frac{\kappa_{\mathrm{SI}}}{\kappa_{\mathrm{SI}} + 1}} \mathbf{H}_{\mathrm{SI}}^{\mathrm{LoS}}[i] + \sqrt{\frac{1}{\kappa_{\mathrm{SI}} + 1}} \mathbf{H}_{\mathrm{SI}}^{\mathrm{NLoS}}[i]. \quad (13)\]
+
+此时设计两种发射波束波形方法：来抑制干扰信道：
+
+\[\begin{array}{rl} & {\mathcal{P}1:\min_{\mathbf{W}}\| \mathbf{H}_{\mathrm{SI}}\mathbf{W}\| ^2}\\ & {\qquad \mathrm{s.t.}\mathbf{H}_c\mathbf{W} = \mathbf{I}} \end{array} \quad (14b)\]
+
+\[\mathcal{P}2:\min_{\mathbf{W}}\| \mathbf{H}_c\mathbf{W} - \mathbf{I}\| ^2 +\rho \| \mathbf{H}_{\mathrm{SI}}\mathbf{W}\| ^2 \quad (15)\]
+
+求解（P1）：
+
+·当 \(\mathbf{H}_{\mathrm{SI}}^{\mathrm{H}}\mathbf{H}_{\mathrm{SI}}\) 满秩时的封闭表达式为：令 \(\mathbf{R} = \mathbf{H}_{\mathrm{SI}}^{\mathrm{H}}\mathbf{H}_{\mathrm{SI}}\) ，则
+
+\[\mathbf{W} = \mathbf{R}^{-1}\mathbf{H}_c^{\mathrm{H}}\left[\mathbf{H}_c\mathbf{R}^{-1}\mathbf{H}_c^{\mathrm{H}}\right]^{-1} \quad (16)\]
+
+·当 \(\mathbf{H}_{\mathrm{SI}}^{\mathrm{H}}\mathbf{H}_{\mathrm{SI}}\) 不满秩时，采用零空间方法求解：在 \(\mathbf{H}_c\) 的列空间抑制用户间干扰，在 \(\mathbf{H}_c\) 的零空间抑制收发自干扰。对应的 \(\mathbf{W}\) 为
+
+\[\mathbf{W} = \mathbf{W}_0 - \mathbf{N}_c(\mathbf{H}_{\mathrm{SI}}\mathbf{N}_c)^{\dagger}\mathbf{H}_{\mathrm{SI}}\mathbf{W}_0 \quad (17)\]
+
+其中 \(\mathbf{W}_0 = \mathbf{H}_c^{\mathrm{H}}(\mathbf{H}_c\mathbf{H}_c^{\mathrm{H}})^{- 1}\) ，而 \(\mathbf{N}_c\) 为 \(\mathbf{H}_c\) 的零空间， \(\dagger\) 表示矩阵的伪逆
+
+求解（P2）：
