@@ -174,27 +174,27 @@ else
     Nt_x = size(tx_signal, 1);
     Nt_y = size(tx_signal, 2);
     kx = 2*pi*params.d/params.lambda;
-    % conj(a_tx) 在 u_na 处: exp(-j·kx·nx·u_na), 即 Ax 本身就是 conj(a_tx)
     Ax = exp(-1j * kx * (0:Nt_x-1).' * u_na.');   % (Nt_x, Na_x)
     Ay = exp(-1j * kx * (0:Nt_y-1).' * v_na.');   % (Nt_y, Na_y)
 
-    % 小心内存: 此时 mixed_coef 是 (Na_x, Na_y, Ns, L), 和 Y_spatial 同量级
-    % mixed_coef(na_x, na_y, i, l) = a^H(θ_{na}) · x_i[l]
-    %   = Σ_nx Σ_ny conj(a_tx(nx,ny)) · x(nx,ny,i,l)
-    %   = (Ax.' * x) * Ay   (转置不共轭, 因为 Ax 本身已经是 conj(a_tx))
+    % ---- 向量化计算 mixed_coef (消除双 for 循环) ----
+    % mixed_coef(na_x, na_y, i, l) = Σ_{nx,ny} conj(a_tx(nx,ny)) · x(nx,ny,i,l)
+    %   = (Ax.' * X_2d) 再乘 Ay, 其中 X_2d = reshape(tx_signal, Nt_x, Nt_y*Ns*L)
+    % 第一步: Tmp_flat = Ax.' * reshape(tx_signal, Nt_x, [])  → (Na_x, Nt_y*Ns*L)
+    tx_flat = reshape(tx_signal, Nt_x, []);        % (Nt_x, Nt_y*Ns*L)
+    Tmp_flat = Ax.' * tx_flat;                      % (Na_x, Nt_y*Ns*L) — 一次 GEMM
+    Tmp_4d = reshape(Tmp_flat, Na_x, Nt_y, Ns, L); % (Na_x, Nt_y, Ns, L)
+    clear tx_flat Tmp_flat;
+
+    % 第二步: mixed_coef = Tmp_4d 沿 Nt_y 维乘 Ay → (Na_x, Na_y, Ns, L)
+    % 对每个 na_x 做一次 GEMM (Na_x 只有 8, 循环 8 次很快)
     mixed_coef = zeros(Na_x, Na_y, Ns, L, 'like', Y_spatial);
-    Tmp = zeros(Na_x, Nt_y, Ns, L, 'like', Y_spatial);
-    for i = 1:Ns
-        for l = 1:L
-            Tmp(:, :, i, l) = Ax.' * tx_signal(:, :, i, l);
-        end
+    for iax = 1:Na_x
+        slice_nty = reshape(Tmp_4d(iax, :, :, :), Nt_y, Ns*L);  % (Nt_y, Ns*L)
+        mc_slice = Ay.' * slice_nty;                              % (Na_y, Ns*L) — 一次 GEMM
+        mixed_coef(iax, :, :, :) = reshape(mc_slice, 1, Na_y, Ns, L);
     end
-    for i = 1:Ns
-        for l = 1:L
-            mixed_coef(:, :, i, l) = reshape(Tmp(:, :, i, l), Na_x, Nt_y) * Ay;
-        end
-    end
-    clear Tmp;
+    clear Tmp_4d Tmp_3d;
 
     eps_div = 1e-12;
     nonzero_mask = abs(mixed_coef) > eps_div;
@@ -215,98 +215,45 @@ clear A_div Y_spatial;
 
 % -------------------------------------------------------------------------
 % 3. Step 3: 沿 fast-time / slow-time 做 2D-DFT (论文式 (25))
-%    —— 流式实现: 按 (na_x, na_y) 逐切片 2D-FFT, 只保留 top-K 局部峰值,
-%       避免一次性构造 Na_x × Na_y × Nr × Nv 的大数组
-%    —— 同时保存峰值相邻 bin 的功率, 用于后续二次插值
+%    —— 向量化实现: 对 y_tilde 整体做 fft, 然后全局取 top-K 峰值
+%    —— 内存: Na_x × Na_y × Nr × Nv × 4B(single) ≈ 当前配置 1.66 GB
 % -------------------------------------------------------------------------
-local_topk = max(1, round(cfg.local_topk));
-total_cand = Na_x * Na_y * local_topk;
-
-% 候选池: 记录每个切片 top-K 的 (na_x, na_y, ir, iv, power, 邻域功率)
-cand_na_x = zeros(total_cand, 1, 'uint32');
-cand_na_y = zeros(total_cand, 1, 'uint32');
-cand_ir   = zeros(total_cand, 1, 'uint32');
-cand_iv   = zeros(total_cand, 1, 'uint32');
-if cfg.use_double_power
-    cand_pow = zeros(total_cand, 1, 'double');
-    % 距离维邻域: [ir-1, ir+1] 的功率
-    cand_pow_r_left  = zeros(total_cand, 1, 'double');
-    cand_pow_r_right = zeros(total_cand, 1, 'double');
-    % 多普勒维邻域: [iv-1, iv+1] 的功率
-    cand_pow_v_left  = zeros(total_cand, 1, 'double');
-    cand_pow_v_right = zeros(total_cand, 1, 'double');
-else
-    cand_pow = zeros(total_cand, 1, 'single');
-    cand_pow_r_left  = zeros(total_cand, 1, 'single');
-    cand_pow_r_right = zeros(total_cand, 1, 'single');
-    cand_pow_v_left  = zeros(total_cand, 1, 'single');
-    cand_pow_v_right = zeros(total_cand, 1, 'single');
-end
-cand_cnt = 0;
-
-for ia_x = 1:Na_x
-    for ia_y = 1:Na_y
-        % 提取 (Ns, L) 切片, 做 (Nr, Nv)-点 2D-FFT
-        slice_il = reshape(y_tilde(ia_x, ia_y, :, :), Ns, L);
-        S = fft(slice_il, Nr, 1);       % (Nr, L)
-        S = fft(S, Nv, 2);              % (Nr, Nv)
-        S = fftshift(S, 2);             % 多普勒 shift 到中心, 距离不 shift
-        if cfg.use_double_power
-            P2 = abs(S).^2;
-        else
-            P2 = single(abs(S).^2);
-        end
-
-        % 切片内取 top-K
-        [topv, topidx] = maxk(P2(:), min(local_topk, numel(P2)));
-        [ir_list, iv_list] = ind2sub([Nr, Nv], topidx);
-
-        n_add = numel(topv);
-        rng_w = cand_cnt + (1:n_add);
-        cand_na_x(rng_w) = ia_x;
-        cand_na_y(rng_w) = ia_y;
-        cand_ir(rng_w)   = ir_list;
-        cand_iv(rng_w)   = iv_list;
-        cand_pow(rng_w)  = topv;
-
-        % 保存距离/多普勒维邻域功率 (循环边界处理)
-        for kk = 1:n_add
-            ir_k = ir_list(kk);
-            iv_k = iv_list(kk);
-            % 距离维邻域 (循环)
-            ir_left  = mod(ir_k - 2, Nr) + 1;
-            ir_right = mod(ir_k, Nr) + 1;
-            cand_pow_r_left(cand_cnt + kk)  = P2(ir_left, iv_k);
-            cand_pow_r_right(cand_cnt + kk) = P2(ir_right, iv_k);
-            % 多普勒维邻域 (循环)
-            iv_left  = mod(iv_k - 2, Nv) + 1;
-            iv_right = mod(iv_k, Nv) + 1;
-            cand_pow_v_left(cand_cnt + kk)  = P2(ir_k, iv_left);
-            cand_pow_v_right(cand_cnt + kk) = P2(ir_k, iv_right);
-        end
-        cand_cnt = cand_cnt + n_add;
-    end
-end
+Ycube = fft(y_tilde, Nr, 3);      % (Na_x, Na_y, Nr, L)
+Ycube = fft(Ycube,   Nv, 4);      % (Na_x, Na_y, Nr, Nv)
+Ycube = fftshift(Ycube, 4);       % 多普勒 shift 到中心
 clear y_tilde;
 
-cand_na_x = cand_na_x(1:cand_cnt);
-cand_na_y = cand_na_y(1:cand_cnt);
-cand_ir   = cand_ir(1:cand_cnt);
-cand_iv   = cand_iv(1:cand_cnt);
-cand_pow  = cand_pow(1:cand_cnt);
-cand_pow_r_left  = cand_pow_r_left(1:cand_cnt);
-cand_pow_r_right = cand_pow_r_right(1:cand_cnt);
-cand_pow_v_left  = cand_pow_v_left(1:cand_cnt);
-cand_pow_v_right = cand_pow_v_right(1:cand_cnt);
+P4d = single(abs(Ycube).^2);      % 4D 功率谱 (single 省内存)
+clear Ycube;
+
+% 全局取 top-K 候选
+num_cand_pool = min(cfg.num_candidates * 4, numel(P4d));  % 多取一些, 留给 NMS 筛
+[cand_pow_all, cand_idx_all] = maxk(P4d(:), num_cand_pool);
+[cand_ia_x, cand_ia_y, cand_ir_all, cand_iv_all] = ind2sub([Na_x, Na_y, Nr, Nv], cand_idx_all);
+
+% 为抛物线插值保存邻域功率 (距离维和多普勒维各左右一个 bin)
+cand_pow_r_left  = zeros(num_cand_pool, 1, 'single');
+cand_pow_r_right = zeros(num_cand_pool, 1, 'single');
+cand_pow_v_left  = zeros(num_cand_pool, 1, 'single');
+cand_pow_v_right = zeros(num_cand_pool, 1, 'single');
+for kk = 1:num_cand_pool
+    iax = cand_ia_x(kk); iay = cand_ia_y(kk);
+    ir_k = cand_ir_all(kk); iv_k = cand_iv_all(kk);
+    ir_left  = mod(ir_k - 2, Nr) + 1;
+    ir_right = mod(ir_k, Nr) + 1;
+    iv_left  = mod(iv_k - 2, Nv) + 1;
+    iv_right = mod(iv_k, Nv) + 1;
+    cand_pow_r_left(kk)  = P4d(iax, iay, ir_left, iv_k);
+    cand_pow_r_right(kk) = P4d(iax, iay, ir_right, iv_k);
+    cand_pow_v_left(kk)  = P4d(iax, iay, ir_k, iv_left);
+    cand_pow_v_right(kk) = P4d(iax, iay, ir_k, iv_right);
+end
+clear P4d;
 
 % -------------------------------------------------------------------------
 % 4. Step 4: 全局排序 + 4D NMS + 物理量反演
-%    角度精化: 借鉴 local_ESPRIT 思路, 对每个候选目标回到原始 rx_cube,
-%    利用粗检测的距离/多普勒信息做相位补偿聚焦, 提取空间快拍后用
-%    2D-ESPRIT 精估角度. 距离/速度仍用 FFT + 抛物线插值.
 % -------------------------------------------------------------------------
-num_cand = min(cfg.num_candidates, cand_cnt);
-[~, global_order] = maxk(cand_pow, num_cand);
+num_cand = min(cfg.num_candidates, num_cand_pool);
 
 nr_vec = (0 : Nr - 1).';                                   % fast-time 未 shift
 nv_vec = (-floor(Nv/2) : (ceil(Nv/2) - 1)).';              % 多普勒已 shift
@@ -356,15 +303,14 @@ v_est     = zeros(1, Q);
 indices4  = zeros(Q, 4);
 detected  = 0;
 
-for kk = 1:numel(global_order)
+for kk = 1:num_cand_pool
     if detected >= Q
         break;
     end
-    ic = global_order(kk);
-    ia_x = double(cand_na_x(ic));
-    ia_y = double(cand_na_y(ic));
-    ir   = double(cand_ir(ic));
-    iv   = double(cand_iv(ic));
+    ia_x = double(cand_ia_x(kk));
+    ia_y = double(cand_ia_y(kk));
+    ir   = double(cand_ir_all(kk));
+    iv   = double(cand_iv_all(kk));
 
     % 4D 非极大值抑制
     if detected > 0
@@ -425,9 +371,9 @@ for kk = 1:numel(global_order)
     % =====================================================================
     nr_frac = double(nr_here);
     if use_interp
-        Pl = double(cand_pow_r_left(ic));
-        Pc = double(cand_pow(ic));
-        Pr = double(cand_pow_r_right(ic));
+        Pl = double(cand_pow_r_left(kk));
+        Pc = double(cand_pow_all(kk));
+        Pr = double(cand_pow_r_right(kk));
         denom_interp = Pl - 2*Pc + Pr;
         if abs(denom_interp) > eps
             delta_r = 0.5 * (Pl - Pr) / denom_interp;
@@ -439,9 +385,9 @@ for kk = 1:numel(global_order)
 
     nv_frac = double(nv_here);
     if use_interp
-        Pl = double(cand_pow_v_left(ic));
-        Pc = double(cand_pow(ic));
-        Pr = double(cand_pow_v_right(ic));
+        Pl = double(cand_pow_v_left(kk));
+        Pc = double(cand_pow_all(kk));
+        Pr = double(cand_pow_v_right(kk));
         denom_interp = Pl - 2*Pc + Pr;
         if abs(denom_interp) > eps
             delta_v = 0.5 * (Pl - Pr) / denom_interp;
@@ -479,6 +425,6 @@ info.alpha_bin_mean    = mean(alpha_bin(:));
 info.alpha_bin_max     = max(alpha_bin(:));
 info.use_full_steering = use_full_steering;
 info.num_candidates    = num_cand;
-info.local_topk        = local_topk;
+info.num_cand_pool     = num_cand_pool;
 info.mem_peak_gb       = mem_peak / 1e9;
 end

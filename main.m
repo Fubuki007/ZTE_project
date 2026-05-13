@@ -1,7 +1,6 @@
 % =========================================================================
 % main.m  MIMO-OFDM ISAC 三维联合估计主流程 (基线)
 % -------------------------------------------------------------------------
-% 本脚本只跑 "无 SI" 单次基线, 用于快速验证参数、回波生成与估计器接口.
 % SI 强度扫描已经拆出到独立脚本:  scan_si_effect.m
 % 公共参数装配: build_default_params.m
 % 公共评估函数: evaluate_estimation.m
@@ -10,7 +9,7 @@ clear; close all; clc;
 t_total = tic;
 warning('off', 'all');
 fprintf('=================================================\n');
-fprintf('  MIMO-OFDM ISAC 三维联合估计主流程 (基线)\n');
+fprintf('  MIMO-OFDM ISAC 三维联合估计主流程\n');
 fprintf('=================================================\n');
 
 % ---- 1. 参数装配 ----
@@ -79,5 +78,4 @@ else
 end
 fprintf('主流程总运行时间: %.3f 秒\n', out.total_runtime);
 fprintf('=================================================\n');
-fprintf('如需做精度对比 (RMSE), 请单独运行:  test_fast_estimator\n');
-fprintf('如需做 SI 强度扫描, 请单独运行:  scan_si_effect\n');
+fprintf('如需做 SI 强度扫描对比, 请单独运行:  run_si_comparison\n');

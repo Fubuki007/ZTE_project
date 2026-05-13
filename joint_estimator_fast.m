@@ -54,18 +54,29 @@ if isfield(cfg, 'num_candidates')
 end
 
 % -------------------------------------------------------------------------
-% 1. 信道均衡 (去除发射信号影响)
+% 1. 信道均衡 (去除发射信号影响) - 分块操作节省内存
 % -------------------------------------------------------------------------
 sz_tx = size(tx_signal);
 if isequal(sz_tx, [Ns, L])
     tx_eq = tx_signal;
-    rx_eq = rx_cube .* conj(reshape(tx_signal, 1, 1, Ns, L));
+    % 分块均衡, 避免广播产生 (Mx,My,Ns,L) 临时数组
+    conj_tx = conj(tx_signal);  % (Ns, L)
+    for l_idx = 1:L
+        rx_cube(:,:,:,l_idx) = rx_cube(:,:,:,l_idx) .* ...
+            reshape(conj_tx(:,l_idx), 1, 1, Ns);
+    end
+    rx_eq = rx_cube;  % in-place, 不额外分配
 else
     % MIMO 发射端: 用各天线求和后的等效标量做均衡
     tx_sum = squeeze(sum(sum(tx_signal, 1), 2));   % (Ns, L)
     tx_eq = tx_sum;
     tx_sum_norm = tx_sum ./ max(abs(tx_sum), eps);
-    rx_eq = rx_cube .* conj(reshape(tx_sum_norm, 1, 1, Ns, L));
+    conj_tx_norm = conj(tx_sum_norm);  % (Ns, L)
+    for l_idx = 1:L
+        rx_cube(:,:,:,l_idx) = rx_cube(:,:,:,l_idx) .* ...
+            reshape(conj_tx_norm(:,l_idx), 1, 1, Ns);
+    end
+    rx_eq = rx_cube;
 end
 
 % -------------------------------------------------------------------------

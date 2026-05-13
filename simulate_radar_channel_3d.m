@@ -52,7 +52,7 @@ else
     error('tx_signal 维度非法: 仅支持 (Ns, L) 或 (Ntx, Nty, Ns, L).');
 end
 
-rx_cube = zeros(Mx, My, Ns, L);
+rx_cube = zeros(Mx, My, Ns, L, 'like', tx_signal);
 
 % 可选: 接收阵幅相失配 (高 SNR 误差地板)
 g_rx = ones(Mx, My);
@@ -100,18 +100,25 @@ for q = 1:Q
         case 'mimo'
             ax_tx_x = exp(1j * kw * nx_tx * u);      % (Ntx, 1)
             ax_tx_y = exp(1j * kw * ny_tx * vdir);   % (Nty, 1)
-            a_tx_q  = ax_tx_x * ax_tx_y.';           % (Ntx, Nty)  (无共轭)
-            % a_tx^H · x  按 (Ntx, Nty) 两维 sum: sum_{nx, ny} conj(a_tx) .* x
+            a_tx_q  = ax_tx_x * ax_tx_y.';           % (Ntx, Nty)
             conj_atx = conj(a_tx_q);
-            % (Ntx, Nty, Ns, L) 与 (Ntx, Nty, 1, 1) 相乘后对前两维求和
-            prod_nt = tx_signal .* reshape(conj_atx, Ntx, Nty, 1, 1);
-            ax_q_sig = reshape(sum(sum(prod_nt, 1), 2), Ns, L);
+            % 逐天线累加 a_tx^H · x, 避免分配 (Ntx,Nty,Ns,L) 临时数组
+            ax_q_sig = zeros(Ns, L, 'like', tx_signal);
+            for ntx_i = 1:Ntx
+                for nty_i = 1:Nty
+                    ax_q_sig = ax_q_sig + conj_atx(ntx_i, nty_i) * ...
+                        squeeze(tx_signal(ntx_i, nty_i, :, :));
+                end
+            end
     end
 
     echo_q = params.alpha(q) * (ax_q_sig .* phase);
     a_rx_mismatch = a_rx .* g_rx;
-    rx_cube = rx_cube + reshape(a_rx_mismatch, Mx, My, 1, 1) ...
-                     .* reshape(echo_q,       1,  1,  Ns, L);
+    % 分块累加到 rx_cube, 避免广播产生 (Mx,My,Ns,L) 临时数组
+    for l_idx = 1:L
+        rx_cube(:,:,:,l_idx) = rx_cube(:,:,:,l_idx) + ...
+            a_rx_mismatch .* reshape(echo_q(:,l_idx), 1, 1, Ns);
+    end
 end
 
 % -------------------------- 可选 SI 项 -----------------------------------
@@ -139,8 +146,14 @@ if isfield(params, 'enable_SI') && params.enable_SI
             ax_tx_y_si = exp(1j * kw * ny_tx * v_si);
             a_tx_si    = ax_tx_x_si * ax_tx_y_si.';
             conj_atx_si = conj(a_tx_si);
-            prod_nt_si  = tx_signal .* reshape(conj_atx_si, Ntx, Nty, 1, 1);
-            si_sig      = reshape(sum(sum(prod_nt_si, 1), 2), Ns, L);
+            % 逐天线累加, 避免大临时数组
+            si_sig = zeros(Ns, L, 'like', tx_signal);
+            for ntx_i = 1:Ntx
+                for nty_i = 1:Nty
+                    si_sig = si_sig + conj_atx_si(ntx_i, nty_i) * ...
+                        squeeze(tx_signal(ntx_i, nty_i, :, :));
+                end
+            end
     end
 
     beta_si_abs = params.beta_SI;
@@ -148,14 +161,23 @@ if isfield(params, 'enable_SI') && params.enable_SI
     if beta_si_abs == 0, beta_si_abs = realmin; end
 
     echo_si = beta_si_abs * (si_sig .* phase_si);
-    rx_cube = rx_cube + reshape(a_rx_si .* g_rx, Mx, My, 1, 1) ...
-                     .* reshape(echo_si,         1,  1,  Ns, L);
+    a_rx_si_mismatch = a_rx_si .* g_rx;
+    % 分块累加 SI, 避免广播产生大临时数组
+    for l_idx = 1:L
+        rx_cube(:,:,:,l_idx) = rx_cube(:,:,:,l_idx) + ...
+            a_rx_si_mismatch .* reshape(echo_si(:,l_idx), 1, 1, Ns);
+    end
 end
 
-% -------------------------- AWGN -----------------------------------------
+% -------------------------- AWGN (分块生成, 降低峰值内存) ----------------
 SNR_linear = 10^(params.SNR / 10);
 sig_pow    = mean(abs(rx_cube(:)).^2);
 noise_pow  = sig_pow / SNR_linear;
-noise      = sqrt(noise_pow / 2) * (randn(size(rx_cube)) + 1j * randn(size(rx_cube)));
-rx_cube    = rx_cube + noise;
+noise_std  = sqrt(noise_pow / 2);
+% 按最后一维 (符号维 L) 分块加噪, 避免一次性分配整个噪声矩阵
+% 使用 'like' 匹配 rx_cube 的精度 (single/double)
+for l_idx = 1:L
+    rx_cube(:,:,:,l_idx) = rx_cube(:,:,:,l_idx) + ...
+        noise_std * (randn(Mx, My, Ns, 'like', rx_cube) + 1j * randn(Mx, My, Ns, 'like', rx_cube));
+end
 end
