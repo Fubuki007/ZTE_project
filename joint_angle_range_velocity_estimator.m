@@ -3,6 +3,7 @@ function [theta_est, phi_est, R_est, v_est, info] = joint_angle_range_velocity_e
 % JOINT_ANGLE_RANGE_VELOCITY_ESTIMATOR  4D 联合角度-距离-速度估计器
 % -------------------------------------------------------------------------
 % 参考文献:
+%！！！此为还原原作者代码的流程，由于运行时间太长已被改用为joint_es_fast函数，此函数未实际调用！！！
 %   [1] Z. Xiao, R. Liu, M. Li, Q. Liu and A. L. Swindlehurst,
 %       "A Novel Joint Angle-Range-Velocity Estimation Method for MIMO-OFDM
 %       ISAC Systems," IEEE TSP, vol. 72, pp. 3805-3819, 2024.
