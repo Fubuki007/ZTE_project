@@ -423,6 +423,111 @@ fprintf('距离差: %.4f m, 速度差: %.4f m/s\n', abs(R_f-R_o), abs(v_f-v_o));
 
 ---
 
+### 附加：内存优化改动（不影响精度）
+
+在 SI 对比实验中，`rx_cube` (8,8,12672,256) 和 `tx_signal` (4,4,12672,256) 各占约 2.6 GB（double），加上中间变量峰值内存超过 8 GB，导致 OOM。以下改动**纯粹是内存分配优化，数值完全等价**：
+
+#### 改动 A：回波生成分块累加（`simulate_radar_channel_3d.m`）
+
+**原版**：
+```matlab
+rx_cube = rx_cube + reshape(a_rx, Mx, My, 1, 1) .* reshape(echo_q, 1, 1, Ns, L);
+```
+广播乘法会隐式分配一个 (8,8,12672,256) 的临时数组 ≈ 2.6 GB。
+
+**改后**：
+```matlab
+for l_idx = 1:L
+    rx_cube(:,:,:,l_idx) = rx_cube(:,:,:,l_idx) + ...
+        a_rx_mismatch .* reshape(echo_q(:,l_idx), 1, 1, Ns);
+end
+```
+每次只分配 (8,8,12672) ≈ 10 MB 的临时数组。
+
+**精度影响**：零。纯粹把第 4 维的广播拆成循环，数学等价。
+
+#### 改动 B：噪声分块生成（`simulate_radar_channel_3d.m`）
+
+**原版**：
+```matlab
+noise = sqrt(noise_pow/2) * (randn(size(rx_cube)) + 1j*randn(size(rx_cube)));
+rx_cube = rx_cube + noise;
+```
+峰值额外分配 2 个 (8,8,12672,256) 实数数组 + 1 个复数数组 ≈ 7.8 GB。
+
+**改后**：
+```matlab
+for l_idx = 1:L
+    rx_cube(:,:,:,l_idx) = rx_cube(:,:,:,l_idx) + ...
+        noise_std * (randn(Mx, My, Ns, 'like', rx_cube) + 1j*randn(Mx, My, Ns, 'like', rx_cube));
+end
+```
+每次只分配 (8,8,12672) ≈ 10 MB。
+
+**精度影响**：零。噪声统计特性不变（每个元素独立 CN(0, noise\_pow)）。
+
+#### 改动 C：发射端内积逐天线累加（`simulate_radar_channel_3d.m`）
+
+**原版**：
+```matlab
+prod_nt = tx_signal .* reshape(conj_atx, Ntx, Nty, 1, 1);   % 分配 (4,4,12672,256) ≈ 2.6GB
+ax_q_sig = reshape(sum(sum(prod_nt, 1), 2), Ns, L);
+```
+
+**改后**：
+```matlab
+ax_q_sig = zeros(Ns, L, 'like', tx_signal);
+for ntx_i = 1:Ntx
+    for nty_i = 1:Nty
+        ax_q_sig = ax_q_sig + conj_atx(ntx_i, nty_i) * squeeze(tx_signal(ntx_i, nty_i, :, :));
+    end
+end
+```
+只分配 (12672,256) ≈ 26 MB。循环次数 = Ntx×Nty = 16，开销可忽略。
+
+**精度影响**：零。`Σ conj(a_k) * x_k` 的求和顺序不影响结果。
+
+#### 改动 D：估计器均衡 in-place（`joint_estimator_fast.m`）
+
+**原版**：
+```matlab
+rx_eq = rx_cube .* conj(reshape(tx_sum_norm, 1, 1, Ns, L));   % 分配新 (8,8,12672,256)
+```
+
+**改后**：
+```matlab
+for l_idx = 1:L
+    rx_cube(:,:,:,l_idx) = rx_cube(:,:,:,l_idx) .* reshape(conj_tx_norm(:,l_idx), 1, 1, Ns);
+end
+rx_eq = rx_cube;   % 原地覆盖
+```
+不额外分配 (8,8,12672,256) 数组，节省 2.6 GB。
+
+**精度影响**：零。均衡后 `rx_cube` 不再被使用，in-place 修改安全。
+
+#### 改动 E：支持 single 精度（`simulate_radar_channel_3d.m`）
+
+```matlab
+rx_cube = zeros(Mx, My, Ns, L, 'like', tx_signal);   % 跟随输入精度
+```
+
+当 `run_si_comparison.m` 传入 `single(tx.X)` 时，所有中间数组自动为 single，内存再减半。
+
+**精度影响**：single 有约 7 位有效数字（vs double 的 16 位）。对 SNR=10dB 的场景，量化噪声远低于热噪声，不影响估计精度。在高 SNR（>30dB）场景下可能引入微小误差地板，此时应使用 double。
+
+#### 内存优化前后对比
+
+| 场景 | 优化前峰值内存 | 优化后峰值内存 |
+|------|--------------|--------------|
+| double 模式 | ~10 GB（OOM） | ~5.2 GB |
+| single 模式 | — | ~2.6 GB |
+
+#### 总结
+
+改动 A-D 是**纯粹的内存分配优化**，不改变任何数值计算逻辑，对算法精度零影响。改动 E（single 精度）在常规 SNR 下也不影响精度，仅在极高 SNR 场景需注意。
+
+---
+
 ## 3GPP 标准合规性
 
 本系统严格遵循 **3GPP 5G NR FR2** 高频标准，具体对齐如下：
