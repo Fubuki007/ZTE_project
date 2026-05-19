@@ -12,7 +12,7 @@ D = eye(K);
 %%% Communication channel
 Hk = 1/sqrt(2)*(randn(M,K)+1j*randn(M,K)); 
 
-%%% Interference Channel
+%%% Interference Channel ZF预编码
 % Hint = 100*ULA(N,-65)*ULA(M,65)'; 
 % Hint = 100*1/sqrt(2)*(randn(N,M)+1j*randn(N,M)); 
 kap=1e10;
@@ -21,12 +21,12 @@ Hint = 10* (sqrt(kap/(1+kap))*ULA(N,-65)*ULA(M,65)'+sqrt(1/(1+kap))*1/sqrt(2)*(r
 W0 = Hk/(Hk'*Hk); W0 = 1/norm(W0,'fro')*W0;
 Hk'*W0;
 int0 = norm(Hint*W0,'fro')^2;
-
+%%拉格朗日
 Nc = null(Hk');
 W1 = W0-Nc*pinv(Hint*Nc)*Hint*W0; W1 = 1/norm(W1,'fro')*W1;
 Hk'*W1;
 int1 =  norm(Hint*W1,'fro')^2;
-
+%%零空间法
 R = Hint'*Hint;
 W2 = R^(-1)*Hk*(Hk'*R^(-1)*Hk)^(-1); W2 = 1/norm(W2,'fro')*W2;
 Hk'*W2;
