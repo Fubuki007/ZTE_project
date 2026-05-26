@@ -43,21 +43,40 @@ switch lower(method)
             % 没有零空间自由度, 只能退化成 ZF
             W = W0;
         else
-            W = W0 - Nc * pinv(H_SI * Nc) * (H_SI * W0);
+            % Tikhonov 正则化伪逆, 防止高 κ 时修正项过大破坏波束方向图
+            % λ 自适应: 与 H_SI*Nc 的 Gram 矩阵迹成正比
+            if ~isfield(opts, 'ns_lambda'), opts.ns_lambda = 1e-3; end
+            H_SI_Nc = H_SI * Nc;
+            H_SI_W0 = H_SI * W0;
+            Gram = H_SI_Nc' * H_SI_Nc;         % (dim(Nc), dim(Nc))
+            dim_Nc = size(Nc, 2);
+            lambda = opts.ns_lambda * trace(Gram) / dim_Nc;
+            c = (Gram + lambda * eye(dim_Nc)) \ (H_SI_Nc' * H_SI_W0);
+            W = W0 - Nc * c;
         end
 
     case 'lagrange'
         % R = H_SI^H * H_SI (Nt × Nt)
-        R = H_SI' * H_SI + opts.eps_reg * eye(Nt);
+        % 自适应正则化: λ 与 R 的迹成正比, 避免 κ 低时欠正则
+        if ~isfield(opts, 'lg_lambda'), opts.lg_lambda = 1e-3; end
+        R_raw = H_SI' * H_SI;
+        lambda_lg = max(opts.eps_reg, opts.lg_lambda * trace(R_raw) / Nt);
+        R = R_raw + lambda_lg * eye(Nt);
         Rinv = R \ eye(Nt);
         M = H_c' * Rinv * H_c;
-        W = Rinv * H_c / (M + opts.eps_reg * I_K);
+        W_lambda = max(opts.eps_reg, opts.lg_lambda * trace(M) / K);
+        W = Rinv * H_c / (M + W_lambda * I_K);
 
     otherwise
         error('未知 precoder method: %s (可选 zf | nullspace | lagrange)', method);
 end
 
-% ------------------- Frobenius 归一 --------------------------------------
+% ------------------- 诊断指标 (归一化前: 通信约束) ------------------------
+diag_info = struct();
+diag_info.comm_err = norm(H_c' * W - I_K, 'fro')^2;   % 通信约束偏差 (设计质量)
+diag_info.w_fro_design = norm(W, 'fro')^2;
+
+% ------------------- Frobenius 归一 (功率约束) ----------------------------
 if opts.normalize
     fro = norm(W, 'fro');
     if fro > eps
@@ -65,10 +84,8 @@ if opts.normalize
     end
 end
 
-% ------------------- 诊断指标 --------------------------------------------
-diag_info = struct();
-diag_info.si_leak  = norm(H_SI * W, 'fro')^2;
-diag_info.comm_err = norm(H_c' * W - I_K, 'fro')^2;   % 通信约束偏差
+% ------------------- 诊断指标 (归一化后: SI 泄漏) -------------------------
+diag_info.si_leak  = norm(H_SI * W, 'fro')^2;         % 实际 SI 泄漏 (含归一化)
 diag_info.w_fro    = norm(W, 'fro')^2;
 diag_info.method   = lower(method);
 end

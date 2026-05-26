@@ -137,23 +137,25 @@ else
 end
 
 % 准备 H_SI (自干扰信道, 频率平坦或逐子载波)
+% ZF 模式 H_SI 为可选: 有则计算 si_leak, 无则填 NaN
 H_SI_perCC = [];
-if ~strcmp(precoder_type, 'zf')
-    if isfield(params, 'H_SI_per_cc') && ~isempty(params.H_SI_per_cc)
-        H_SI_perCC = params.H_SI_per_cc;   % (Nr × Nt × Ns)
-        if size(H_SI_perCC, 3) ~= Ns
-            error('H_SI_per_cc 第 3 维必须为 Ns=%d, 实际 %d', Ns, size(H_SI_perCC, 3));
-        end
-    elseif isfield(params, 'H_SI') && ~isempty(params.H_SI)
-        H_SI_perCC = repmat(params.H_SI, [1, 1, Ns]);
-    else
-        error(['precoder_type=%s 需要 params.H_SI (Nr × Nt) 或 ' ...
-               'params.H_SI_per_cc (Nr × Nt × Ns)'], precoder_type);
+H_SI_available = false;
+if isfield(params, 'H_SI_per_cc') && ~isempty(params.H_SI_per_cc)
+    H_SI_perCC = params.H_SI_per_cc;   % (Nr × Nt × Ns)
+    if size(H_SI_perCC, 3) ~= Ns
+        error('H_SI_per_cc 第 3 维必须为 Ns=%d, 实际 %d', Ns, size(H_SI_perCC, 3));
     end
-    if size(H_SI_perCC, 2) ~= Nt_total
-        error('H_SI 列数 (%d) 必须等于 Nt_total (%d)', ...
-            size(H_SI_perCC, 2), Nt_total);
-    end
+    H_SI_available = true;
+elseif isfield(params, 'H_SI') && ~isempty(params.H_SI)
+    H_SI_perCC = repmat(params.H_SI, [1, 1, Ns]);
+    H_SI_available = true;
+elseif ~strcmp(precoder_type, 'zf')
+    error(['precoder_type=%s 需要 params.H_SI (Nr × Nt) 或 ' ...
+           'params.H_SI_per_cc (Nr × Nt × Ns)'], precoder_type);
+end
+if H_SI_available && size(H_SI_perCC, 2) ~= Nt_total
+    error('H_SI 列数 (%d) 必须等于 Nt_total (%d)', ...
+        size(H_SI_perCC, 2), Nt_total);
 end
 
 W = zeros(Nt_total, K_stream, Ns);
@@ -165,13 +167,24 @@ for i = 1:Ns
         case 'zf'
             Gram = H_i' * H_i;
             W_i  = H_i / Gram;
-            W_i  = W_i / max(norm(W_i, 'fro'), eps);
-            si_leak_all(i)  = NaN;           % 没有 H_SI 时填 NaN
+            % 通信误差在归一化前计算, 反映 ZF 条件 H'*W=I 的真实拟合
             comm_err_all(i) = norm(H_i' * W_i - eye(K_stream), 'fro')^2;
+            % Frobenius 功率归一化
+            W_i  = W_i / max(norm(W_i, 'fro'), eps);
+            % 自干扰泄漏: 有 H_SI 则计算, 无则 NaN
+            if H_SI_available
+                H_SI_i = H_SI_perCC(:, :, i);
+                si_leak_all(i) = norm(H_SI_i * W_i, 'fro')^2;
+            else
+                si_leak_all(i) = NaN;
+            end
         case {'nullspace', 'lagrange'}
             H_SI_i = H_SI_perCC(:, :, i);
-            [W_i, d_i] = design_precoder(H_i, H_SI_i, precoder_type, ...
-                struct('normalize', true));
+            prec_opts = struct('normalize', true);
+            if isfield(params, 'ns_lambda')
+                prec_opts.ns_lambda = params.ns_lambda;
+            end
+            [W_i, d_i] = design_precoder(H_i, H_SI_i, precoder_type, prec_opts);
             si_leak_all(i)  = d_i.si_leak;
             comm_err_all(i) = d_i.comm_err;
         otherwise

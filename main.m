@@ -39,9 +39,9 @@ fprintf('验收指标: 目标分辨率=%.3fm, 实际分辨率=%.3fm, 距离覆�
 if ~isfield(params, 'precoder_type') || isempty(params.precoder_type)
     params.precoder_type = 'zf';
 end
-if ~strcmp(params.precoder_type, 'zf') && ...
-   (~isfield(params, 'H_SI') || isempty(params.H_SI))
+if ~isfield(params, 'H_SI') || isempty(params.H_SI)
     % 自动构造一个与 params.theta_SI/phi_SI 匹配的 Rician H_SI
+    % (ZF 模式下也构造, 用于计算 si_leak 诊断指标)
     Nt_total = params.Ntx * params.Nty;
     Nr_total = params.Mx  * params.My;
     hsi_cfg = struct( ...

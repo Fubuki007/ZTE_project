@@ -79,6 +79,20 @@ enable_carrier_aggregation = true;     % 启用 3GPP FR2 载波聚合 (满足 0.
 % 估计器开关
 params.use_interpolation = true;
 
+% ====================== 快速估计器配置 (v4 工程版) ========================
+% joint_estimator_fast.m 的行为参数, 可通过覆盖调节精度/速度平衡
+% 当前默认值目标: 估计器耗时 0.7-0.9s (满足 <1s 刷新率要求)
+params.fast_estimator = struct( ...
+    'preserve_antenna_dim', false,  ...  % 天线维均衡 (默认关: 数学等价于空间先求和)
+    'n_samp_r',             1024,   ...  % ESPRIT 距离维采样点数 (越大角度越准)
+    'n_samp_l',             256,    ...  % ESPRIT 多普勒维采样点数
+    'n_pad_v',              512,    ...  % 多普勒 FFT 补零点数 (2x, 改善速度精度)
+    'enable_hann',          true,   ...  % 2D Hann 窗 (降旁瓣)
+    'enable_refine',        true,   ...  % 抛物线插值后迭代精化
+    'num_candidates',       32,     ...  % 候选峰值数
+    'nms_r',                2,      ...  % NMS 距离保护间隔
+    'nms_v',                2);          % NMS 多普勒保护间隔
+
 % 4D DFT 补零倍数
 % 受内存限制 (Na_x*Na_y*Ns*L*16B), 空间维不补零, 改用峰值二次插值
 % 提升亚 bin 精度 (论文 Section III-D 结尾提到的 interpolation 补偿)
