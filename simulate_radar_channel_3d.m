@@ -80,16 +80,18 @@ for q = 1:Q
     % 接收空间相位 (URA)
     u = sind(theta_q) * cosd(phi_q);
     vdir = sind(theta_q) * sind(phi_q);
-    omega_ax = -2 * pi * params.d * u    / params.lambda;
-    omega_ay = -2 * pi * params.d * vdir / params.lambda;
-    omega_r  = -4 * pi * delta_f * params.R_true(q) / params.c;
-    omega_v  =  4 * pi * params.Ts * params.v_true(q) * params.fc / params.c;
-
+    omega_ax = -2 * pi * params.d * u    / params.lambda;% x 方向空间相位，决定俯仰/方位
+    omega_ay = -2 * pi * params.d * vdir / params.lambda;% y 方向空间相位，决定俯仰/方位
+    omega_r  = -4 * pi * delta_f * params.R_true(q) / params.c;% y 方向空间相位，决定俯仰/方位
+    omega_v  =  4 * pi * params.Ts * params.v_true(q) * params.fc / params.c;% 速度相位，随 OFDM 符号变化
+%空间相位变化 → 目标从哪个方向来
+%子载波相位变化 → 目标距离多远
+%符号间相位变化 → 目标速度多快
     a_rx_x = exp(1j * (0:Mx-1).' * omega_ax);
     a_rx_y = exp(1j * (0:My-1)   * omega_ay);
-    a_rx   = a_rx_x * a_rx_y;                  % (Mx, My)
+    a_rx   = a_rx_x * a_rx_y;                  % (Mx, My)构造接收 steering
 
-    phase_n = exp(1j * (0:Ns-1).' * omega_r);
+    phase_n = exp(1j * (0:Ns-1).' * omega_r);  %再构造距离/速度相位
     phase_l = exp(1j * (0:L-1)    * omega_v);
     phase   = phase_n * phase_l;               % (Ns, L)
 
@@ -112,7 +114,7 @@ for q = 1:Q
             end
     end
 
-    echo_q = params.alpha(q) * (ax_q_sig .* phase);
+    echo_q = params.alpha(q) * (ax_q_sig .* phase);%最后把发射信号经过目标反射之后加到 rx_cube 里
     a_rx_mismatch = a_rx .* g_rx;
     % 分块累加到 rx_cube, 避免广播产生 (Mx,My,Ns,L) 临时数组
     for l_idx = 1:L
@@ -139,25 +141,28 @@ if isfield(params, 'enable_SI') && params.enable_SI
     if beta_si_abs == 0, beta_si_abs = realmin; end
 
     if use_matrix_si
-        % ============== (B) 矩阵 H_SI 模式 ==============
+        % ============== (B) 矩阵 H_SI 模式 (向量化加速) ==============
         % y_SI(:, i, l) = beta_SI * H_SI * x(:, i, l)
-        % 频率平坦假设 (文档默认): H_SI 对所有子载波相同
-        % 若需要逐子载波不同, 可用 params.H_SI_matrix_per_cc (Nr_total×Nt_total×Ns)
+        % 频率平坦假设: H_SI 对所有子载波相同
+        % 向量化: 逐符号做 H_SI * X_l, X_l 为 (Nt × Ns)
         Nt_total = Ntx * Nty;
         Nr_total = Mx * My;
 
         if isfield(params, 'H_SI_matrix_per_cc') && ~isempty(params.H_SI_matrix_per_cc)
             H_SI_cube = params.H_SI_matrix_per_cc;   % (Nr_total × Nt_total × Ns)
+            freq_flat = false;
         else
             H_SI_mat = params.H_SI_matrix;
             if size(H_SI_mat, 1) ~= Nr_total || size(H_SI_mat, 2) ~= Nt_total
                 error('H_SI_matrix 形状必须为 (Nr_total=%d × Nt_total=%d), 实际 (%d × %d)', ...
                     Nr_total, Nt_total, size(H_SI_mat, 1), size(H_SI_mat, 2));
             end
-            H_SI_cube = repmat(H_SI_mat, [1, 1, Ns]);
+            % 频率平坦: 保留单矩阵, 不 repmat 到 Ns (向量化快速路径)
+            H_SI_cube = H_SI_mat;                    % (Nr_total × Nt_total)
+            freq_flat = true;
         end
 
-        % 可选多普勒/距离相位 (若 SI 有距离和速度, 保留相位项)
+        % 可选多普勒/距离相位
         if isfield(params, 'R_SI') && params.R_SI > 0
             omega_r_si = -4 * pi * delta_f * params.R_SI / params.c;
         else
@@ -171,19 +176,26 @@ if isfield(params, 'enable_SI') && params.enable_SI
         phase_n_si = exp(1j * (0:Ns-1).' * omega_r_si);     % (Ns, 1)
         phase_l_si = exp(1j * (0:L-1)    * omega_v_si);     % (1,  L)
 
-        % 逐子载波/符号: 把 (Ntx, Nty, i, l) 展平成 (Nt_total, 1), 乘 H_SI_i
-        % 得到 (Nr_total, 1), reshape 回 (Mx, My, 1, 1) 再加到 rx_cube
-        for i = 1:Ns
-            H_SI_i = H_SI_cube(:, :, i);    % (Nr_total × Nt_total)
-            for l_idx = 1:L
-                x_il = tx_signal(:, :, i, l_idx);                % (Ntx, Nty)
-                x_flat = x_il(:);                                % (Nt_total, 1)
-                y_flat = H_SI_i * x_flat;                        % (Nr_total, 1)
-                y_mat  = reshape(y_flat, Mx, My);                % (Mx, My)
-                scale  = beta_si_abs * phase_n_si(i) * phase_l_si(l_idx);
-                rx_cube(:, :, i, l_idx) = rx_cube(:, :, i, l_idx) + ...
-                    (g_rx .* y_mat) * scale;
+        % ★ 向量化: 逐符号一次矩阵乘, 替代原来的 Ns×L 双重循环 ★
+        for l_idx = 1:L
+            % 把 (Ntx, Nty, Ns) 展平 → (Nt_total, Ns)
+            x_l = reshape(tx_signal(:, :, :, l_idx), Nt_total, Ns);
+            if freq_flat
+                % 所有子载波共用同一 H_SI → 一次大矩阵乘 (Nr×Nt) × (Nt×Ns) = (Nr×Ns)
+                y_l = H_SI_cube * x_l;                       % (Nr_total, Ns)
+            else
+                % 逐子载波不同 H_SI → 逐列乘
+                y_l = zeros(Nr_total, Ns, 'like', tx_signal);
+                for i = 1:Ns
+                    y_l(:, i) = H_SI_cube(:, :, i) * x_l(:, i);
+                end
             end
+            % 加距离相位 + 符号间多普勒相位 + 接收阵失配
+            y_l = y_l .* phase_n_si.';                       % (Nr, Ns) 逐子载波相位
+            y_l = beta_si_abs * phase_l_si(l_idx) * y_l;     % 多普勒 + 幅度
+            % reshape 回 (Mx, My, Ns) 并叠加到 rx_cube
+            rx_cube(:, :, :, l_idx) = rx_cube(:, :, :, l_idx) + ...
+                reshape(g_rx(:) .* y_l, Mx, My, Ns);
         end
     else
         % ============== (A) 点散射 SI 模式 (原实现) ==============

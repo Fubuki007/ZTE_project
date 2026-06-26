@@ -129,25 +129,53 @@ Hlos = Hlos * sqrt(Nt * Nr / (norm(Hlos, 'fro')^2 + eps));
 end
 
 % ========================================================================
-% 内部: URA LoS (二维导向矢量外积)
+% 内部: URA LoS (近场逐天线对距离 + 1/R 路径损耗)
+% 参考: SelfInterferenceChannel.m (Balti et al., 2023)
 % ========================================================================
 function Hlos = local_los_ura(cfg)
-kw  = 2 * pi * cfg.d_lambda;  % d/λ 为单位, 相位常数
-% 发射 URA
-u_t = sind(cfg.theta_tx_deg) * cosd(cfg.phi_tx_deg);
-v_t = sind(cfg.theta_tx_deg) * sind(cfg.phi_tx_deg);
-ax_t = exp(1j * kw * (0:cfg.Ntx-1).' * u_t) / sqrt(cfg.Ntx);
-ay_t = exp(1j * kw * (0:cfg.Nty-1).' * v_t) / sqrt(cfg.Nty);
-a_tx = kron(ay_t, ax_t);       % (Nt_total × 1), x 先 y 后 与 permute 约定一致
-% 接收 URA
-u_r = sind(cfg.theta_rx_deg) * cosd(cfg.phi_rx_deg);
-v_r = sind(cfg.theta_rx_deg) * sind(cfg.phi_rx_deg);
-ax_r = exp(1j * kw * (0:cfg.Mx-1).' * u_r) / sqrt(cfg.Mx);
-ay_r = exp(1j * kw * (0:cfg.My-1).' * v_r) / sqrt(cfg.My);
-a_rx = kron(ay_r, ax_r);       % (Nr_total × 1)
+% 收发面板平行正对, 间距 d_sep_wl (单位: 波长)
+% TX: Ntx × Nty, 阵元间距 d_lambda
+% RX: Mx  × My,  阵元间距 d_lambda
+% 每个 TX-RX 天线对的距离 R 独立计算, 相位 exp(-j2πR/λ), 幅度 1/R
 
-Hlos = a_rx * a_tx';
-Hlos = Hlos * sqrt(cfg.Nt_total * cfg.Nr_total / (norm(Hlos, 'fro')^2 + eps));
+cfg = local_default(cfg, 'd_sep_wl', 10);   % 面板间距 (波长), 默认 10λ≈10.7cm@28GHz
+d_wl  = cfg.d_lambda;                        % 阵元间距 (波长)
+d_sep = cfg.d_sep_wl;
+
+Ntx = cfg.Ntx;  Nty = cfg.Nty;
+Mx  = cfg.Mx;   My  = cfg.My;
+Nt  = cfg.Nt_total;
+Nr  = cfg.Nr_total;
+
+% TX 展平索引: kron(ay,ax) → 元素 (ntx,nty) → idx = nty*Ntx + ntx + 1
+% 为计算距离, 先把每个元素的物理坐标算出来 (单位: 波长)
+tx_x = (0:Ntx-1) * d_wl;   % (1 × Ntx)
+tx_y = (0:Nty-1) * d_wl;   % (1 × Nty)
+rx_x = (0:Mx-1)  * d_wl;   % (1 × Mx)
+rx_y = (0:My-1)  * d_wl;   % (1 × My)
+
+% 逐天线对计算距离矩阵 R (Nr × Nt)
+% 展平顺序与 kron(ay_t,ax_t) 一致: y 方向外层, x 方向内层
+Hlos = zeros(Nr, Nt);
+for nty = 0:Nty-1
+    for ntx = 0:Ntx-1
+        tx_idx = nty * Ntx + ntx + 1;   % MATLAB 1-indexed
+        for my = 0:My-1
+            for mx = 0:Mx-1
+                rx_idx = my * Mx + mx + 1;
+                % 三维距离: Δx, Δy 在面板平面, d_sep 在垂直方向
+                dx = rx_x(mx+1) - tx_x(ntx+1);
+                dy = rx_y(my+1) - tx_y(nty+1);
+                R  = sqrt(d_sep^2 + dx^2 + dy^2);      % 距离 (波长)
+                Hlos(rx_idx, tx_idx) = exp(-1j * 2 * pi * R) / R;
+            end
+        end
+    end
+end
+
+% 归一化 (保留相对幅度结构, 对齐当前规范: ||H_LoS||_F² = Nt·Nr)
+T = trace(Hlos * Hlos');
+Hlos = Hlos * sqrt(Nt * Nr / (T + eps));
 end
 
 % ========================================================================
