@@ -123,6 +123,9 @@ for q = 1:Q
     end
 end
 
+% ★ 在 SI 注入前保存目标回波功率 (用于 SNR 定义, 不受 SI 污染)
+target_sig_pow = mean(abs(rx_cube(:)).^2);
+
 % -------------------------- 可选 SI 项 -----------------------------------
 if isfield(params, 'enable_SI') && params.enable_SI
     % 两种 SI 模型:
@@ -242,8 +245,7 @@ end
 
 % -------------------------- AWGN (分块生成, 降低峰值内存) ----------------
 SNR_linear = 10^(params.SNR / 10);
-sig_pow    = mean(abs(rx_cube(:)).^2);
-noise_pow  = sig_pow / SNR_linear;
+noise_pow  = target_sig_pow / SNR_linear;   % ★ 基于目标回波功率 (不含 SI)
 noise_std  = sqrt(noise_pow / 2);
 % 按最后一维 (符号维 L) 分块加噪, 避免一次性分配整个噪声矩阵
 % 使用 'like' 匹配 rx_cube 的精度 (single/double)

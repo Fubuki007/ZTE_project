@@ -6,9 +6,10 @@
 %
 % 与 task5_rmse_vs_snr.m 的区别:
 %   - enable_SI = true (核心改动)
-%   - SNR 范围聚焦 -30:5:15 dB (去掉完全噪声的极低 SNR)
-%   - 蒙特卡洛 3 次/点 (平衡统计与耗时)
-%   - H_SI 在每个 SNR 点重新注入 (含噪声的 SI 回波)
+%   - SNR 范围 0:5:20 dB (工程合理范围)
+%   - 蒙特卡洛 10 次/点
+%   - H_SI 在预处理阶段固定 (与预编码器同一 H_SI)
+%   - ★ SNR 基于目标回波功率定义 (不含 SI, 2026-06-26 修正)
 % =========================================================================
 clear; close all; clc;
 t_all = tic;
@@ -27,13 +28,20 @@ override_cfg = struct(...
 params = build_default_params(override_cfg);
 params.K_stream = 4;
 
-% --- 快速模式 ---
-params.K = 64;
-params.joint_fft_3d.Nv = 64;
+% --- 全尺寸模式 (3GPP 5G NR FR2 标准: L=256) ---
+% K=256 保证速度分辨率 Δv=c/(2·K·Ts·fc)≈2.34 m/s
+% (K=64 时 Δv≈9.37 m/s, 两目标仅隔 2.2 bin, 无法准确估计)
+params.K = 256;
+params.joint_fft_3d.Nv = 256;
 params.joint_4d.memory_cap_gb = 4;
 
+% --- ★ 加速优化 (K=256 数据量大, 折中精度换速度) ---
+% n_pad_v=256 (不做多普勒补零, 省 ~50% FFT 时间)
+% MC=5 (原 10, 够看趋势)
+params.fast_estimator.n_pad_v = 256;
+
 % --- ★ 开启 SI ★ ---
-params.enable_SI = true;
+params.enable_SI = false;
 params.beta_SI   = 0.02;       % ★ SI 残差 = 2% 目标 (硬件模拟域抑制后)
 
 % --- 构造 H_SI (固定 SI 信道，保证对比公平) ---
@@ -62,15 +70,15 @@ fprintf('用户角度 (°): [%s], Rmax=%.1fm, ΔR=%.3fm\n', ...
 
 % ---- 2. 实验矩阵 ----
 precoders     = {'zf', 'nullspace', 'lagrange'};
-snr_list      = 0:5:20;          % 工程合理 SNR 范围
-n_mc          = 10;             % 蒙特卡洛次数
+snr_list      = -30:5:10;          % SNR 范围 -30~10 dB
+n_mc          = 30;                % 蒙特卡洛次数 (提高以获得可靠误差棒)
 n_prec        = numel(precoders);
 n_snr         = numel(snr_list);
 
 fprintf('SNR 范围: [%d, %d] dB, 共 %d 点\n', snr_list(1), snr_list(end), n_snr);
 fprintf('蒙特卡洛: %d 次/点, 总计 %d 次估计\n', n_mc, n_snr * n_prec * n_mc);
 est_total = n_snr * n_prec * n_mc;
-fprintf('预估耗时: ~%.0f 分钟\n\n', est_total * 2.0 / 60);
+fprintf('预估耗时: ~%.0f 分钟 (~%.1f 小时)\n\n', est_total * 28 / 60, est_total * 28 / 3600);
 
 % ---- 3. 预编码器准备 (波形生成一次, 信道固定) ----
 fprintf('--- 生成波形 (3种预编码, SI 开启) ---\n');
@@ -113,9 +121,8 @@ for snr_i = 1:n_snr
         for mc_i = 1:n_mc
             est_done = est_done + 1;
 
-            if mc_i > 1
-                rng('shuffle');
-            end
+            % 显式绑定迭代索引，避免 rng('shuffle') 在 batch 模式同秒碰撞
+            rng(sum(100*clock) + mc_i * 1000 + snr_i * 100 + prec_i);
 
             t_est = tic;
             rx_cube = simulate_radar_channel_3d(tx_signal, p);
@@ -153,9 +160,10 @@ end
 fprintf('\n');
 
 % 每 SNR 点取中位数
-rmse_R_med     = nanmedian(rmse_R, 3);
-rmse_theta_med = nanmedian(rmse_theta, 3);
-rmse_v_med     = nanmedian(rmse_v, 3);
+% 用 median(..., 'omitnan') 替代 nanmedian —— 不需要统计工具箱
+rmse_R_med     = median(rmse_R, 3, 'omitnan');
+rmse_theta_med = median(rmse_theta, 3, 'omitnan');
+rmse_v_med     = median(rmse_v, 3, 'omitnan');
 
 % ---- 5. 保存结果 ----
 results = struct();
@@ -190,3 +198,10 @@ end
 fprintf('============================================================\n');
 fprintf('全部完成! 总耗时 %.1f 分钟\n', results.total_runtime / 60);
 fprintf('============================================================\n');
+
+% 桌面通知 (自动定位脚本所在目录)
+try
+    toast_py = fullfile(fileparts(mfilename('fullpath')), 'toast_notify.py');
+    system(['python "' toast_py '" "Task5完成" "SI-ON MC=30 仿真结束"']);
+catch
+end

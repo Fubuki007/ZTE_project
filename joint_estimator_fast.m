@@ -71,40 +71,65 @@ end
 % --- 1b. 均衡 (移除发射信号调制) ---
 tx_norm = tx_eff ./ max(abs(tx_eff), eps);
 
-if cfg.preserve_antenna_dim
-    % v4 模式: 先在天线维做完整均衡, 再空间求和
-    % rx_cube: (Mx, My, Ns, L), conj(tx_norm): (Ns, L)
-    % 使用隐式扩展: reshape(conj_tx_norm, 1,1,Ns,L) .* rx_cube
-    rx_eq = rx_cube .* reshape(conj(tx_norm), 1, 1, Ns, L);
-    % 空间求和 → (Ns, L)
-    rx_eq_sum = squeeze(sum(rx_eq, [1 2]));
-else
-    % v3 兼容模式: 先空间求和, 再做均衡 (数学等价)
-    rx_sum = squeeze(sum(rx_cube, [1 2]));   % (Ns, L)
-    rx_eq_sum = rx_sum .* conj(tx_norm);      % (Ns, L)
-end
-
-% --- 1c. 2D Hann 窗 (可选) ---
-if cfg.enable_hann
-    win_r = hann(Ns, 'periodic');
-    win_l = hann(L,  'periodic');
-    win_2d = win_r * win_l.';                   % (Ns, L)
-    rx_eq_sum = rx_eq_sum .* win_2d;
-end
-
-% --- 1d. 2D-FFT (距离维 + 多普勒维补零) ---
+% --- 1c. 多普勒补零参数 (两个分支共用, 提前计算) ---
 Nv_pad = max(L, cfg.n_pad_v);
 if abs(Nv_pad - round(Nv_pad)) > eps || mod(Nv_pad, 2) ~= 0
     Nv_pad = 2^nextpow2(max(L, Nv_pad));         % 确保是 2 的幂
 end
 
-RD = fft(rx_eq_sum, Ns, 1);                      % 距离维 FFT
-RD = fft(RD, Nv_pad, 2);                         % 多普勒维 FFT (补零)
-RD = fftshift(RD, 2);                            % 多普勒 shift
-P = abs(RD).^2;
+% --- 1d. 空间处理 + RD 检测 ---
+if cfg.preserve_antenna_dim
+    % v4 模式: 先在天线维做完整均衡, 再空间求和 + 加窗 + FFT
+    rx_eq = rx_cube .* reshape(conj(tx_norm), 1, 1, Ns, L);
+    rx_eq_sum = squeeze(sum(rx_eq, [1 2]));             % (Ns, L)
+    if cfg.enable_hann
+        win_r = hann(Ns, 'periodic');
+        win_l = hann(L,  'periodic');
+        rx_eq_sum = rx_eq_sum .* (win_r * win_l.');
+    end
+    RD = fft(rx_eq_sum, Ns, 1);
+    RD = fft(RD, Nv_pad, 2);
+    RD = fftshift(RD, 2);
+    P = abs(RD).^2;
+else
+    % ★ 多波束空间处理 (替代等增益求和)
+    % 根因: sum(rx_cube,[1 2]) 等同 broadside 单波束, 离轴目标被衰减
+    % 方案: 2D 空间 FFT 形成 64 个正交波束, 选最强 N 个分别 RD, 非相干累积
+    top_n_spatial = min(8, Mx * My);
+
+    % 空间 2D Hann 窗 (压低旁瓣 -13dB→-31dB, 防止强目标掩盖弱目标)
+    win_sx = hann(Mx, 'periodic');
+    win_sy = hann(My, 'periodic');
+    rx_cube_win = rx_cube .* (win_sx * win_sy.');
+
+    rx_bf = fftshift(fftshift(fft2(rx_cube_win), 1), 2);  % (Mx, My, Ns, L)
+
+    % 预选最强的空间 bin (基于平均功率)
+    P_spatial = squeeze(mean(mean(abs(rx_bf).^2, 3), 4));   % (Mx, My)
+    [~, sort_idx] = sort(P_spatial(:), 'descend');
+    top_idx = sort_idx(1:top_n_spatial);
+
+    % 对每个强空间 bin 做 RD 检测, 非相干功率累积
+    P = zeros(Ns, Nv_pad);
+    for k = 1:numel(top_idx)
+        [mx_i, my_i] = ind2sub([Mx, My], top_idx(k));
+        rx_s = squeeze(rx_bf(mx_i, my_i, :, :));            % (Ns, L)
+        rx_s_eq = rx_s .* conj(tx_norm);                    % 均衡
+        if cfg.enable_hann
+            win_r = hann(Ns, 'periodic');
+            win_l = hann(L,  'periodic');
+            rx_s_eq = rx_s_eq .* (win_r * win_l.');
+        end
+        RD_k = fft(rx_s_eq, Ns, 1);                         % 距离 FFT
+        RD_k = fft(RD_k, Nv_pad, 2);                        % 多普勒 FFT
+        RD_k = fftshift(RD_k, 2);
+        P = P + abs(RD_k).^2;                                % 非相干累积
+    end
+    P = P / numel(top_idx);                                  % 归一化
+end
 
 % --- 1e. 峰值检测 ---
-[~, idx] = maxk(P(:), min(num_candidates * 4, numel(P)));
+[~, idx] = maxk(P(:), min(num_candidates * 4, numel(P)));%找最大峰值候选，再用 NMS 去掉太近的重复峰
 
 % 距离/多普勒 bin 向量
 nr_vec = (0 : Ns - 1).';                         % 距离 (0-based)
@@ -118,10 +143,8 @@ doppler_scale = L / Nv_pad;   % 补零后 bin 间距缩放
 % 阶段 2: ESPRIT 角度精估计 (局部窗口, 逐目标)
 % =========================================================================
 
-% 预计算 ESPRIT 采样网格
-esprit_n_idx = round(linspace(1, Ns, n_samp_r));
+% 预计算 ESPRIT 多普勒采样网格 (全范围, K=256 不大)
 esprit_l_idx = round(linspace(1, L,  n_samp_l));
-esprit_n_vec = esprit_n_idx(:) - 1;   % 0-based
 esprit_l_vec = esprit_l_idx(:) - 1;
 
 % 输出变量初始化
@@ -153,6 +176,21 @@ for ii = 1:numel(idx)
             continue;
         end
     end
+    
+    % 距离门限: 排除近距离假峰 (SI残余在 R≈0 处, 对应 nr≈Ns)
+    if isfield(cfg, 'R_min_gate') && cfg.R_min_gate > 0
+        R_check = params.c * (Ns - nr) / (2 * Ns * delta_f);
+        if R_check < cfg.R_min_gate
+            continue;
+        end
+    end
+    
+    % 局部距离窗口: 以检测 bin 为中心, 缩小范围减少跨目标串扰
+    r_win = max(128, round(Ns / 40));  % ~317 bins ≈ 31m
+    n_start = max(1, ir - r_win);
+    n_end   = min(Ns, ir + r_win);
+    esprit_n_idx = round(linspace(n_start, n_end, n_samp_r));
+    esprit_n_vec = esprit_n_idx(:) - 1;   % 0-based
     
     % -----------------------------------------------------------------
     % 2.1 ESPRIT 角度精化
@@ -196,9 +234,161 @@ for ii = 1:numel(idx)
     phi_val   = atan2d(v_hat, u_hat);
     
     % -----------------------------------------------------------------
-    % 2.2 距离估计: FFT bin + 抛物线插值 + 可选迭代精化
+    % v4.1 方向感知均衡精化 (仅 MIMO 模式, 当 tx_signal 为 4D 张量)
+    % 问题: 仿真回波用 a_tx^H(θ_q,φ_q)·X (方向相关), 但均衡用
+    %       sum(sum(X)) (标量求和), 模型不一致造成高 SNR 误差地板.
+    % 方案: 用初始 ESPRIT 角度估计重建 Tx 导向矢量 a_tx(θ̂,φ̂),
+    %       重新计算方向相关的 tx_eff, 再均衡→再 ESPRIT→再 RD.
     % -----------------------------------------------------------------
-    nr_frac = double(nr);
+    mimo_refined = false;
+    if ndims(tx_signal) == 4
+        Ntx = size(tx_signal, 1);
+        Nty = size(tx_signal, 2);
+        kw_tx = 2 * pi * params.d / params.lambda;
+        
+        u_dir = sind(theta_val) * cosd(phi_val);
+        v_dir = sind(theta_val) * sind(phi_val);
+        
+        a_tx_x = exp(1j * kw_tx * (0:Ntx-1).' * u_dir);
+        a_tx_y = exp(1j * kw_tx * (0:Nty-1).' * v_dir);
+        a_tx_est = a_tx_x * a_tx_y.';   % (Ntx, Nty)
+        conj_atx = conj(a_tx_est);
+        
+        % --- 精化角度: 正确 tx_eff 均衡 + 重新 ESPRIT ---
+        tx_local_ref = zeros(n_samp_r, n_samp_l, 'like', tx_signal);
+        for ntx_i = 1:Ntx
+            for nty_i = 1:Nty
+                tx_local_ref = tx_local_ref + conj_atx(ntx_i, nty_i) * ...
+                    squeeze(tx_signal(ntx_i, nty_i, esprit_n_idx, esprit_l_idx));
+            end
+        end
+        
+        X_local_ref = rx_cube(:, :, esprit_n_idx, esprit_l_idx);
+        tx_local_ref_norm = tx_local_ref ./ max(abs(tx_local_ref), eps);
+        X_local_ref = X_local_ref .* reshape(conj(tx_local_ref_norm), 1, 1, n_samp_r, n_samp_l);
+        
+        spatial_snap_ref = sum(X_local_ref .* reshape(W_focus, 1, 1, n_samp_r, n_samp_l), [3 4]);
+        
+        sx1 = spatial_snap_ref(1:end-1, :);
+        sx2 = spatial_snap_ref(2:end, :);
+        phi_x = angle(sum(conj(sx1(:)) .* sx2(:)));
+        
+        sy1 = spatial_snap_ref(:, 1:end-1);
+        sy2 = spatial_snap_ref(:, 2:end);
+        phi_y = angle(sum(conj(sy1(:)) .* sy2(:)));
+        
+        u_hat = -phi_x * params.lambda / (2 * pi * params.d);
+        v_hat = -phi_y * params.lambda / (2 * pi * params.d);
+        u_hat = max(min(u_hat, 1), -1);
+        v_hat = max(min(v_hat, 1), -1);
+        
+        sin_theta_ref = min(sqrt(u_hat^2 + v_hat^2), 1);
+        theta_val = asind(sin_theta_ref);
+        phi_val   = atan2d(v_hat, u_hat);
+        
+        % --- 精化距离/速度: 用正确 tx_eff 重建全尺寸 RD ---
+        % 关键: 必须重建全尺寸 RD, 因为 tx_eff 偏差可能导致
+        % 峰值偏移远超局部窗口. 对 K_stream>1 尤为重要.
+        tx_eff_full = zeros(Ns, L, 'like', tx_signal);
+        for ntx_i = 1:Ntx
+            for nty_i = 1:Nty
+                tx_eff_full = tx_eff_full + conj_atx(ntx_i, nty_i) * ...
+                    squeeze(tx_signal(ntx_i, nty_i, :, :));
+            end
+        end
+        
+        rx_sum_local = squeeze(sum(rx_cube, [1 2]));
+        tx_full_norm = tx_eff_full ./ max(abs(tx_eff_full), eps);
+        rx_eq_ref = rx_sum_local .* conj(tx_full_norm);
+        
+        if cfg.enable_hann
+            win_r = hann(Ns, 'periodic');
+            win_l = hann(L, 'periodic');
+            rx_eq_ref = rx_eq_ref .* (win_r * win_l.');
+        end
+        
+        RD_ref = fft(rx_eq_ref, Ns, 1);
+        RD_ref = fft(RD_ref, Nv_pad, 2);
+        RD_ref = fftshift(RD_ref, 2);
+        P_ref = abs(RD_ref).^2;
+        
+        % 在原检测到的 (ir, iv) 附近搜索精化峰值
+        % 搜索窗: 距离 ±Ns/16, 多普勒 ±Nv_pad/8
+        r_search = max(4, round(Ns / 160));  % ~79 bins ≈ 7.8m (严格隔离两目标)
+        v_search = max(2, round(Nv_pad / 8));
+        ir_min = max(1, ir - r_search);
+        ir_max = min(Ns, ir + r_search);
+        iv_raw = round(nv / doppler_scale) + floor(Nv_pad/2) + 1;
+        iv_min = max(1, iv_raw - v_search);
+        iv_max = min(Nv_pad, iv_raw + v_search);
+        
+        P_roi = P_ref(ir_min:ir_max, iv_min:iv_max);
+        [~, idx_roi] = max(P_roi, [], 'all');
+        [ir_roi, iv_roi] = ind2sub(size(P_roi), idx_roi);
+        ir_ref = ir_min + ir_roi - 1;
+        iv_ref = iv_min + iv_roi - 1;
+        
+        % 合理性守卫: 精化结果不应偏离粗 bin 太远 (防止跨目标跳峰)
+        ir_dev = abs(ir_ref - ir);
+        iv_dev = abs(iv_ref - iv_raw);
+        if ir_dev > 5 || iv_dev > 3     % >~0.5m or >~7m/s deviation → reject
+            % 回退: 保留 ESPRIT 角度, 距离/速度走非 MIMO 路径 (mimo_refined stays false)
+        else
+            % 距离精化 (用原始 P)
+            nr_ref = nr_vec(ir_ref);
+            if ir_ref > 1 && ir_ref < Ns
+                Pl_r = P(ir_ref-1, iv_ref);
+                Pc_r = P(ir_ref, iv_ref);
+                Pr_r = P(ir_ref+1, iv_ref);
+                d_r = Pl_r - 2*Pc_r + Pr_r;
+                if abs(d_r) > eps
+                    delta_r = 0.5 * (Pl_r - Pr_r) / d_r;
+                    nr_ref = nr_ref + max(min(delta_r, 0.5), -0.5);
+                end
+            end
+            nr_frac = nr_ref;
+            R_val = mod(-params.c * nr_frac / (2 * Ns * delta_f), Rmax_val);
+            
+            % 速度精化 (用原始 P, 因为 P_ref 的峰值形状被 tx_eff_ref 扭曲)
+            nv_raw_ref = nv_vec(iv_ref);
+            nv_ref = nv_raw_ref * doppler_scale;
+            nv_frac_ref = nv_ref;
+            if iv_ref > 1 && iv_ref < Nv_pad
+                Pl_v = P(ir_ref, iv_ref-1);
+                Pc_v = P(ir_ref, iv_ref);
+                Pr_v = P(ir_ref, iv_ref+1);
+                d_v = Pl_v - 2*Pc_v + Pr_v;
+                if abs(d_v) > eps
+                    delta_v = 0.5 * (Pl_v - Pr_v) / d_v;
+                    nv_raw_frac = nv_raw_ref + max(min(delta_v, 0.5), -0.5);
+                    nv_frac_ref = nv_raw_frac * doppler_scale;
+                end
+            end
+            nv_frac = nv_frac_ref;
+            v_val = params.c * nv_frac / (2 * L * params.Ts * params.fc);
+            
+            
+            % 同步更新 W_focus 用于后续 ESPRIT (影响下一个目标的聚焦)
+            omega_r_ref = 2 * pi * nr_ref / Ns;
+            omega_v_ref = 2 * pi * nv_ref / L;
+            W_r_ref = exp(-1j * esprit_n_vec * omega_r_ref);
+            W_l_ref = exp(-1j * esprit_l_vec * omega_v_ref);
+            W_focus = W_r_ref * W_l_ref.';
+            
+            % 更新 bin 索引
+            ir = ir_ref;
+            nv = nv_ref;
+            
+            mimo_refined = true;
+        end
+    end
+    
+    % -----------------------------------------------------------------
+    % 2.2 距离估计: FFT bin + 抛物线插值 + 可选迭代精化
+    % (MIMO 模式下已在方向感知精化块中完成, 此处跳过)
+    % -----------------------------------------------------------------
+    if ~mimo_refined
+        nr_frac = double(nr);
     ir_left  = mod(ir - 2, Ns) + 1;
     ir_right = mod(ir, Ns) + 1;
     
@@ -208,7 +398,7 @@ for ii = 1:numel(idx)
     Pr = P(ir_right, iv);
     denom_interp = Pl - 2*Pc + Pr;
     if abs(denom_interp) > eps
-        delta_r = 0.5 * (Pl - Pr) / denom_interp;
+        delta_r = 0.5 * (Pl - Pr) / denom_interp;  %抛物线插值
         delta_r = max(min(delta_r, 0.5), -0.5);
         nr_frac = nr_frac + delta_r;
     end
@@ -280,6 +470,8 @@ for ii = 1:numel(idx)
     % 速度计算: v = c * nv / (2 * L * Ts * fc)
     % nv 为多普勒 bin 索引 (对应 L 点 FFT)
     v_val = params.c * nv_frac / (2 * L * params.Ts * params.fc);
+    
+    end  % if ~mimo_refined
     
     % -----------------------------------------------------------------
     % 2.4 记录

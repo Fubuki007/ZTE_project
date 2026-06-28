@@ -95,8 +95,8 @@ if isfield(params, 'user_phi_rad') && ~isempty(params.user_phi_rad)
 else
     user_phi = deg2rad(params.phi_true(1));
 end
-if numel(user_theta) == 1 && K_stream > 1, user_theta = user_theta * ones(K_stream, 1); end
-if numel(user_phi)   == 1 && K_stream > 1, user_phi   = user_phi   * ones(K_stream, 1); end
+if isscalar(user_theta) && K_stream > 1, user_theta = user_theta * ones(K_stream, 1); end
+if isscalar(user_phi) && K_stream > 1, user_phi   = user_phi   * ones(K_stream, 1); end
 if numel(user_theta) ~= K_stream || numel(user_phi) ~= K_stream
     error('user_theta_rad / user_phi_rad 的长度必须等于 K_stream=%d', K_stream);
 end
@@ -222,7 +222,7 @@ end
 %    simulate_radar_channel_3d / joint_angle_range_velocity_estimator
 %    的 4D 接口一致 (模式 B).
 % -------------------------------------------------------------------------
-X_flat = pagemtimes(W, S);                      % (Nt_total, L, Ns)
+X_flat = pagemtimes(W, S);                      % (Nt_total, L, Ns)发射信号
 X = reshape(X_flat, Ntx, Nty, L, Ns);           % (Ntx, Nty, L, Ns)
 X = permute(X, [1, 2, 4, 3]);                   % (Ntx, Nty, Ns, L)
 

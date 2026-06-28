@@ -37,7 +37,7 @@ fprintf('验收指标: 目标分辨率=%.3fm, 实际分辨率=%.3fm, 距离覆�
 %   'lagrange'  —— 公式 (16)
 % 非 'zf' 模式需要设置 params.H_SI (Nr × Nt).
 if ~isfield(params, 'precoder_type') || isempty(params.precoder_type)
-    params.precoder_type = 'zf';
+    params.precoder_type = 'nullspace';
 end
 if ~isfield(params, 'H_SI') || isempty(params.H_SI)
     % 自动构造一个与 params.theta_SI/phi_SI 匹配的 Rician H_SI

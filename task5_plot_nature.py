@@ -1,9 +1,10 @@
 """
 task5_plot_nature.py
-Nature 期刊风格: Output SNR vs N_rx / N_s / L 三幅图
+Nature 期刊风格: Processing Gain (dB) vs N_rx / N_s / L 三幅图
 三种预编码方案 (ZF / Nullspace / Lagrange) 三条曲线
 """
 import json
+import math
 import os
 import matplotlib
 matplotlib.use('Agg')
@@ -53,7 +54,9 @@ NATURE_MARKERS = {
 # ============================================================
 # 数据目录
 # ============================================================
-data_dir = r'D:\AA 学习项目\AAA 智能反射面辅助通信感知\AAA ZTE_project\task5_results'
+# 使用脚本所在目录的相对路径, 兼容 C:/D: 盘迁移
+_script_dir = os.path.dirname(os.path.abspath(__file__))
+data_dir = os.path.join(_script_dir, 'task5_results')
 out_dir = data_dir  # 图片也放在这里
 
 def load_json(fname):
@@ -92,23 +95,29 @@ def make_figure(data, xlabel, ylabel, title, out_name):
               framealpha=0.9, loc='lower right', borderpad=0.4,
               handlelength=1.5, handletextpad=0.5)
     
-    # X 轴对数刻度 (如果数据范围跨数量级)
+    # X 轴对数刻度 (base=10, 标签显示 10^1 10^2 ...)
     x_range = max(x) / max(min(x), 1)
     if x_range > 5:
-        ax.set_xscale('log', base=2)
-        ax.xaxis.set_major_formatter(ticker.ScalarFormatter())
+        ax.set_xscale('log', base=10)
+        lo = int(np.floor(np.log10(min(x))))
+        hi = int(np.ceil(np.log10(max(x))))
+        tick_vals = [10 ** e for e in range(lo, hi + 1)]
+        tick_labels = [f'$10^{{{e}}}$' for e in range(lo, hi + 1)]
+        ax.set_xticks(tick_vals)
+        ax.set_xticklabels(tick_labels)
+        pad = 0.05
+        ax.set_xlim(10 ** (np.log10(min(x)) - pad),
+                    10 ** (np.log10(max(x)) + pad))
         ax.xaxis.set_minor_formatter(ticker.NullFormatter())
     
     # 紧凑布局
     fig.tight_layout(pad=0.8)
     
-    # 保存 PNG + SVG
+    # 保存 PNG
     png_path = os.path.join(out_dir, out_name + '.png')
-    svg_path = os.path.join(out_dir, out_name + '.svg')
     fig.savefig(png_path, dpi=300)
-    fig.savefig(svg_path, dpi=300)
     plt.close(fig)
-    print(f'  ✓ {out_name}.png + .svg')
+    print(f'  ✓ {out_name}.png')
 
 # ============================================================
 # Fig 1: Output SNR vs 接收天线数 N_rx

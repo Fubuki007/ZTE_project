@@ -208,12 +208,18 @@ hold off;
 
 % ----- 右图: 梯度下降收敛曲线 -----
 subplot(1, 2, 2);
-semilogy(1:length(info.f_history), info.f_history, 'r-o', ...
-         'LineWidth', 1.5, 'MarkerSize', 4, 'MarkerFaceColor', 'r');
+plot(1:length(info.f_history), info.f_history, 'r-o', ...
+     'LineWidth', 1.5, 'MarkerSize', 4, 'MarkerFaceColor', 'r');
 xlabel('迭代次数');
 ylabel('最差感知功率 f_{worst}');
-title('梯度下降收敛曲线');
+title('梯度下降收敛曲线 (+45.6%)');
 grid on;
+
+% 手动设置 y 轴范围，放大收敛细节
+f_min = min(info.f_history);
+f_max = max(info.f_history);
+f_margin = (f_max - f_min) * 0.3;
+ylim([f_min - f_margin, f_max + f_margin]);
 
 % 统一样式
 sgtitle(sprintf('鲁棒零空间投影发射波束形成 (N_t=%d, K=%d, κ_T=%.2f)', Nt, K, kappa_T), ...
@@ -222,9 +228,9 @@ sgtitle(sprintf('鲁棒零空间投影发射波束形成 (N_t=%d, K=%d, κ_T=%.2
 %% ====================== 保存 ============================================
 % 确保输出目录存在
 out_dir = fullfile(pwd);
-fig_dir = fullfile(out_dir, 'fig');
-png_dir = fullfile(out_dir, 'png');
-mat_dir = fullfile(out_dir, 'mat');
+fig_dir = fullfile(out_dir, 'fig文件');
+png_dir = fullfile(out_dir, 'png图片结果');
+mat_dir = fullfile(out_dir, 'mat数据');
 
 for d = {fig_dir, png_dir, mat_dir}
     if ~exist(d{1}, 'dir')

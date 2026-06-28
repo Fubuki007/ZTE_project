@@ -25,9 +25,11 @@ override_cfg = struct(...
 params = build_default_params(override_cfg);
 params.K_stream = 4;
 
-% --- 快速模式 (控制 ~5min 总耗时) ---
-params.K = 64;
-params.joint_fft_3d.Nv = 64;
+% --- 全尺寸模式 (3GPP 5G NR FR2 标准: L=256) ---
+% K=256 保证速度分辨率 Δv=c/(2·K·Ts·fc)≈2.34 m/s
+% (K=64 时 Δv≈9.37 m/s, 两目标仅隔 2.2 bin, 无法准确估计)
+params.K = 256;
+params.joint_fft_3d.Nv = 256;
 params.joint_4d.memory_cap_gb = 4;
 
 % --- 关闭 SI (纯对比预编码波束方向图) ---
@@ -58,9 +60,9 @@ fprintf('用户角度 (°): [%s], Rmax=%.1fm, ΔR=%.3fm\n', ...
 
 % ---- 2. 实验矩阵 ----
 precoders     = {'zf', 'nullspace', 'lagrange'};
-% SNR 范围 (先试 -30:10:20, 若无下降趋势则扩到 -40:5:10)
-snr_list      = -50:5:5;
-n_mc          = 5;                % 蒙特卡洛次数 (控制总时长)
+% SNR 范围: -20~10 dB (聚焦实用区间)
+snr_list      = -20:5:10;
+n_mc          = 3;                % 蒙特卡洛次数 (看趋势, 不需太多)
 n_prec        = numel(precoders);
 n_snr         = numel(snr_list);
 
@@ -115,8 +117,8 @@ for snr_i = 1:n_snr
 
             t_est = tic;
             rx_cube = simulate_radar_channel_3d(tx_signal, p);
-            tx_sum = squeeze(sum(sum(tx_signal, 1), 2));
-            [th, ph, R, v, ~] = joint_estimator_fast(rx_cube, tx_sum, p);
+            % v4.1: 传递完整 4D tx_signal 张量, 支持方向感知均衡精化
+            [th, ph, R, v, ~] = joint_estimator_fast(rx_cube, tx_signal, p);
             rt = toc(t_est);
 
             cmp = evaluate_estimation(th, ph, R, v, p, false);
@@ -150,9 +152,10 @@ end
 fprintf('\n');
 
 % 每 SNR 点取中位数 (稳健, 抗野值)
-rmse_R_med     = nanmedian(rmse_R, 3);
-rmse_theta_med = nanmedian(rmse_theta, 3);
-rmse_v_med     = nanmedian(rmse_v, 3);
+% 用 median(..., 'omitnan') 替代 nanmedian —— 不需要统计工具箱
+rmse_R_med     = median(rmse_R, 3, 'omitnan');
+rmse_theta_med = median(rmse_theta, 3, 'omitnan');
+rmse_v_med     = median(rmse_v, 3, 'omitnan');
 
 % ---- 5. 保存结果 ----
 results = struct();

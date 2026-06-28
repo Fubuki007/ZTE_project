@@ -28,7 +28,7 @@ params.K  = 256;       % L: CPI 内 OFDM 符号数 (论文 Table II: L=256)
 params.num_targets = 2;                    % Q: 目标数量
 params.theta_true  = [25.83, 15.94];       % θ_q: 各目标俯仰角真值 (度)
 params.phi_true    = [28.51, 13.58];       % φ_q: 各目标方位角真值 (度)
-params.R_true      = [600.80, 600.20];     % R_q: 各目标径向距离真值 (m)
+params.R_true      = [200.6, 210.4];     % R_q: 各目标径向距离真值 (m)
 params.v_true      = [15.1, -5.4];         % v_q: 各目标径向速度真值 (m/s)
 params.alpha       = [1.0, 0.8];           % β_q: 各目标复反射系数幅度
 params.SNR         = 10;                   % 接收端信噪比 (dB)
@@ -84,14 +84,15 @@ params.use_interpolation = true;
 % 当前默认值目标: 估计器耗时 0.7-0.9s (满足 <1s 刷新率要求)
 params.fast_estimator = struct( ...
     'preserve_antenna_dim', false,  ...  % 天线维均衡 (默认关: 数学等价于空间先求和)
-    'n_samp_r',             1024,   ...  % ESPRIT 距离维采样点数 (越大角度越准)
+    'n_samp_r',             1024,   ...  % ESPRIT 距离维采样点数 (局部窗口内高密度采样)
     'n_samp_l',             256,    ...  % ESPRIT 多普勒维采样点数
     'n_pad_v',              512,    ...  % 多普勒 FFT 补零点数 (2x, 改善速度精度)
     'enable_hann',          true,   ...  % 2D Hann 窗 (降旁瓣)
     'enable_refine',        true,   ...  % 抛物线插值后迭代精化
-    'num_candidates',       32,     ...  % 候选峰值数
+    'num_candidates',       64,     ...  % 候选峰值数 (提高以捕获弱目标)
     'nms_r',                2,      ...  % NMS 距离保护间隔
-    'nms_v',                2);          % NMS 多普勒保护间隔
+    'nms_v',                2,      ...  % NMS 多普勒保护间隔
+    'R_min_gate',           20);         % 距离门限 (m): 排除近距离假峰 (SI残余)
 
 % 4D DFT 补零倍数
 % 受内存限制 (Na_x*Na_y*Ns*L*16B), 空间维不补零, 改用峰值二次插值
@@ -172,6 +173,16 @@ params.local_esprit.eps_div              = 1e-6;
 params.local_esprit.coeff_refine_blend   = 0.5;
 
 % 派生量 (便于打印/保存)
+% ---- 雷达有效子载波数 (排除 DC / 保护带 / 导频) ----
+% 每 CC 不可用子载波:
+%   DC: 1 个, 保护带: 上下各 6 RB (=144 个), 导频: ~25% (=792 个)
+%   不可用合计: 1 + 144 + 792 ≈ 937 → 有效 ≈ 3168 - 937 ≈ 2231 个/CC
+n_dc_per_cc        = 1;
+n_guard_per_cc     = 2 * 6 * n_sc_per_rb;           % 上下各 6 RB
+n_pilot_per_cc     = round(0.25 * N_per_cc);         % 导频 25%
+Ns_eff_per_cc      = N_per_cc - n_dc_per_cc - n_guard_per_cc - n_pilot_per_cc;
+params.Ns_eff      = n_cc * Ns_eff_per_cc;           % 聚合后有效子载波数
+
 params.meta = struct( ...
     'N_per_cc', N_per_cc, ...
     'B_per_cc', B_per_cc, ...
