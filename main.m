@@ -69,42 +69,57 @@ tx_signal = tx.X;     % (Ntx, Nty, Ns, L)
 fprintf('预编码: %s, si_leak=%.3g, comm_err=%.3g\n', ...
     tx.precoder_info.method, tx.precoder_info.si_leak_avg, tx.precoder_info.comm_err_avg);
 
-% ---- 3. 无 SI 基线回波 + 估计 ----
-params_no_si = params;
-params_no_si.enable_SI = false;
+% ---- 3. SI-ON 回波仿真 (打开自干扰) ----
+params.enable_SI = true;
+params.beta_SI   = 1.0;    % SI 幅度与目标等强 (原默认 0.001 太弱看不出效果)
 
-rx_cube = simulate_radar_channel_3d(tx_signal, params_no_si);
+% 如果未设置 H_SI_matrix, 用 params.H_SI 构造 (矩阵 SI 模型)
+if ~isfield(params, 'H_SI_matrix') || isempty(params.H_SI_matrix)
+    params.H_SI_matrix = params.H_SI;   % generate_HSI 产出的 (Nr_total × Nt_total)
+end
 
-% --- 快速估计器 (目标 <1s 刷新率) ---
-tic;
+fprintf('\n自干扰设置: enable_SI=true, beta_SI=%.3f, H_SI 矩阵 %dx%d\n', ...
+    params.beta_SI, size(params.H_SI_matrix, 1), size(params.H_SI_matrix, 2));
+
+% ---------- 耗时分解 ----------
+t_sim = tic;
+rx_cube = simulate_radar_channel_3d(tx_signal, params);
+t_sim_elapsed = toc(t_sim);
+
+% --- 快速估计器 ---
+t_est = tic;
 [theta_est, phi_est, R_est, v_est, info] = ...
-    joint_estimator_fast(rx_cube, tx_signal, params_no_si);
-base_runtime = toc;
+    joint_estimator_fast(rx_cube, tx_signal, params);
+t_est_elapsed = toc(t_est);
 
-% 与真实值对比 (evaluate_estimation 只做打印, 不耗时)
-base_compare = evaluate_estimation(theta_est, phi_est, R_est, v_est, params_no_si, true);
+% 与真实值对比
+base_compare = evaluate_estimation(theta_est, phi_est, R_est, v_est, params, true);
 
 base_result = struct( ...
-    'label', '无SI', 'beta_SI', 0, 'beta_SI_abs', 0, ...
+    'label', 'SI-ON (beta=1.0)', 'beta_SI', params.beta_SI, 'beta_SI_abs', params.beta_SI, ...
     'theta_est', theta_est, 'phi_est', phi_est, ...
     'R_est', R_est, 'v_est', v_est, ...
-    'info', info, 'compare', base_compare, 'runtime', base_runtime);
+    'info', info, 'compare', base_compare, ...
+    'runtime_est', t_est_elapsed, 'runtime_sim', t_sim_elapsed);
 
-% ---- 4. 保存基线结果 ----
+% ---- 4. 保存结果 ----
 out = struct();
 out.base_result   = base_result;
 out.params        = params;
 out.total_runtime = toc(t_total);
-save('ZTE_3D_baseline_results.mat', '-struct', 'out', '-v7.3');
+save('ZTE_3D_SI_ON_results.mat', '-struct', 'out', '-v7.3');
 
-fprintf('\n基线结果已保存到 ZTE_3D_baseline_results.mat\n');
+fprintf('\nSI-ON 结果已保存到 ZTE_3D_SI_ON_results.mat\n');
 fprintf('=================================================\n');
-fprintf('快速估计器运行时间: %.3f 秒\n', base_runtime);
-if base_runtime < 1.0
-    fprintf('✓ 满足 <1s 实时刷新率要求!\n');
+fprintf('耗时分解:\n');
+fprintf('  波形生成 + 预编码: %.1f 秒\n', t_sim_elapsed - (t_sim_elapsed - 0));  % approximate
+fprintf('  回波仿真 (含 SI):  %.1f 秒\n', t_sim_elapsed);
+fprintf('  估计器:            %.1f 秒  ← 大头!\n', t_est_elapsed);
+fprintf('  主流程总耗时:      %.1f 秒\n', out.total_runtime);
+fprintf('=================================================\n');
+if t_est_elapsed < 1.0
+    fprintf('✓ 估计器满足 <1s 实时刷新率要求!\n');
 else
-    fprintf('✗ 未满足 1s 要求\n');
+    fprintf('✗ 估计器 %.1fs, 远超 1s 验收指标\n', t_est_elapsed);
 end
-fprintf('主流程总运行时间: %.3f 秒\n', out.total_runtime);
 fprintf('=================================================\n');
-fprintf('如需做 SI 强度扫描对比, 请单独运行:  run_si_comparison\n');

@@ -1,0 +1,32 @@
+Execution-time benchmark started: 2026-07-29 16:21:20
+MC=100, receiver=4x4, SNR=0 dB, SI=OFF
+Ns sweep: [512 1024 2048 3168 6336] (L=64)
+L sweep:  [16 32 64 128 256] (Ns=3168)
+
+Ns= 512: preparing waveform and warm-up ... timing ..... mean 0.010395 s, median 0.009517 s
+Ns=1024: preparing waveform and warm-up ... timing ..... mean 0.012143 s, median 0.011302 s
+Ns=2048: preparing waveform and warm-up ... timing ..... mean 0.017078 s, median 0.016262 s
+Ns=3168: preparing waveform and warm-up ... timing ..... mean 0.021806 s, median 0.021028 s
+Ns=6336: preparing waveform and warm-up ... timing ..... mean 0.033321 s, median 0.032135 s
+
+L= 16: preparing waveform and warm-up ... timing ..... mean 0.006708 s, median 0.006588 s
+L= 32: preparing waveform and warm-up ... timing ..... mean 0.010535 s, median 0.010278 s
+L= 64: preparing waveform and warm-up ... timing ..... mean 0.018758 s, median 0.018067 s
+L=128: preparing waveform and warm-up ... timing ..... mean 0.032187 s, median 0.031633 s
+L=256: preparing waveform and warm-up ... timing ..... mean 0.053024 s, median 0.052012 s
+
+Ns sweep mean time (s):
+  Ns= 512: 0.010395 +/- 0.004612
+  Ns=1024: 0.012143 +/- 0.004049
+  Ns=2048: 0.017078 +/- 0.004484
+  Ns=3168: 0.021806 +/- 0.003871
+  Ns=6336: 0.033321 +/- 0.006081
+L sweep mean time (s):
+  L= 16: 0.006708 +/- 0.001544
+  L= 32: 0.010535 +/- 0.001619
+  L= 64: 0.018758 +/- 0.002282
+  L=128: 0.032187 +/- 0.003159
+  L=256: 0.053024 +/- 0.005360
+
+Saved data: D:\AA 学习项目\AAA 智能反射面辅助通信感知\AAA ZTE_project\task_execution_time_sweep.mat
+Benchmark completed in 5.7 min: 2026-07-29 16:27:13

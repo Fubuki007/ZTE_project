@@ -31,7 +31,7 @@ params.K_stream = 4;
 % --- 全尺寸模式 (3GPP 5G NR FR2 标准: L=256) ---
 % K=256 保证速度分辨率 Δv=c/(2·K·Ts·fc)≈2.34 m/s
 % (K=64 时 Δv≈9.37 m/s, 两目标仅隔 2.2 bin, 无法准确估计)
-params.K = 256;
+params.K = 64;
 params.joint_fft_3d.Nv = 256;
 params.joint_4d.memory_cap_gb = 4;
 
@@ -40,9 +40,9 @@ params.joint_4d.memory_cap_gb = 4;
 % MC=5 (原 10, 够看趋势)
 params.fast_estimator.n_pad_v = 256;
 
-% --- ★ 开启 SI ★ ---
-params.enable_SI = false;
-params.beta_SI   = 0.02;       % ★ SI 残差 = 2% 目标 (硬件模拟域抑制后)
+% --- ★ SI 开关 (改这一处即可) ★ ---
+params.enable_SI = true;      % true=开启SI, false=关闭SI
+params.beta_SI   = 0.02;       % SI 残差 = 2% 目标 (硬件模拟域抑制后)
 
 % --- 构造 H_SI (固定 SI 信道，保证对比公平) ---
 Nt_total = params.Ntx * params.Nty;
@@ -70,8 +70,8 @@ fprintf('用户角度 (°): [%s], Rmax=%.1fm, ΔR=%.3fm\n', ...
 
 % ---- 2. 实验矩阵 ----
 precoders     = {'zf', 'nullspace', 'lagrange'};
-snr_list      = -30:5:10;          % SNR 范围 -30~10 dB
-n_mc          = 30;                % 蒙特卡洛次数 (提高以获得可靠误差棒)
+snr_list      = -35:5:10;          % SNR 范围 -35~10 dB (10点)
+n_mc          = 70;               % 蒙特卡洛次数
 n_prec        = numel(precoders);
 n_snr         = numel(snr_list);
 
@@ -113,10 +113,12 @@ for snr_i = 1:n_snr
 
         p = params;
         p.SNR = snr_val;
-        p.enable_SI = true;        % ★ 确保 SI 开启 ★
-        p.H_SI_matrix = H_SI;      % ★ 矩阵 SI 模式 (与预编码器同一 H_SI)
-        p.beta_SI = 0.02;          % ★ SI 残差 = 2% 目标
-        p.R_SI = 0;                % 矩阵模式: SI 无特定距离
+        p.enable_SI = params.enable_SI;        % 跟随上方开关
+        if params.enable_SI
+            p.H_SI_matrix = H_SI;            % 矩阵 SI 模式
+            p.beta_SI = 0.02;                % SI 残差
+            p.R_SI = 0;                      % 矩阵模式: SI 无特定距离
+        end
 
         for mc_i = 1:n_mc
             est_done = est_done + 1;
@@ -170,7 +172,7 @@ results = struct();
 results.snr_list       = snr_list;
 results.precoders      = {precoders};
 results.n_mc           = n_mc;
-results.si_enabled     = true;
+results.si_enabled     = params.enable_SI;
 results.rmse_R         = rmse_R;
 results.rmse_theta     = rmse_theta;
 results.rmse_v         = rmse_v;
@@ -202,6 +204,6 @@ fprintf('============================================================\n');
 % 桌面通知 (自动定位脚本所在目录)
 try
     toast_py = fullfile(fileparts(mfilename('fullpath')), 'toast_notify.py');
-    system(['python "' toast_py '" "Task5完成" "SI-ON MC=30 仿真结束"']);
+    system(['python "' toast_py '" "Task5完成" "SI-OFF MC=15 SNR-35~10 仿真结束"']);
 catch
 end

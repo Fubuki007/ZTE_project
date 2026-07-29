@@ -26,8 +26,8 @@ params.K  = 256;       % L: CPI 内 OFDM 符号数 (论文 Table II: L=256)
 
 % ====================== 目标场景 =========================================
 params.num_targets = 2;                    % Q: 目标数量
-params.theta_true  = [25.83, 15.94];       % θ_q: 各目标俯仰角真值 (度)
-params.phi_true    = [28.51, 13.58];       % φ_q: 各目标方位角真值 (度)
+params.theta_true  = [60.83, 15.94];       % θ_q: 各目标俯仰角真值 (度)
+params.phi_true    = [28.51, 11.53];       % φ_q: 各目标方位角真值 (度)
 params.R_true      = [200.6, 210.4];     % R_q: 各目标径向距离真值 (m)
 params.v_true      = [15.1, -5.4];         % v_q: 各目标径向速度真值 (m/s)
 params.alpha       = [1.0, 0.8];           % β_q: 各目标复反射系数幅度
@@ -79,17 +79,15 @@ enable_carrier_aggregation = true;     % 启用 3GPP FR2 载波聚合 (满足 0.
 % 估计器开关
 params.use_interpolation = true;
 
-% ====================== 快速估计器配置 (v4 工程版) ========================
-% joint_estimator_fast.m 的行为参数, 可通过覆盖调节精度/速度平衡
-% 当前默认值目标: 估计器耗时 0.7-0.9s (满足 <1s 刷新率要求)
+% ====================== 快速估计器配置 (对齐论文 III.B 节参数) ========================
+% 论文: 两阶段设计 — (1) RD 粗检测 + (2) ESPRIT 角度精估计 + 抛物线插值
+% 目标: <1s 刷新率 (验收硬指标), 适中的检测精度
 params.fast_estimator = struct( ...
-    'preserve_antenna_dim', false,  ...  % 天线维均衡 (默认关: 数学等价于空间先求和)
-    'n_samp_r',             1024,   ...  % ESPRIT 距离维采样点数 (局部窗口内高密度采样)
-    'n_samp_l',             256,    ...  % ESPRIT 多普勒维采样点数
-    'n_pad_v',              512,    ...  % 多普勒 FFT 补零点数 (2x, 改善速度精度)
+    'n_samp_r',             256,    ...  % 局部距离窗口 Ω_r (论文公式 23), 适中
+    'n_samp_l',             64,     ...  % 局部多普勒窗口 Ω_v
+    'n_pad_v',              256,    ...  % 不补零 (论文公式 19 用 L), 减少 FFT 开销
     'enable_hann',          true,   ...  % 2D Hann 窗 (降旁瓣)
-    'enable_refine',        true,   ...  % 抛物线插值后迭代精化
-    'num_candidates',       64,     ...  % 候选峰值数 (提高以捕获弱目标)
+    'num_candidates',       64,     ...  % 候选峰值数
     'nms_r',                2,      ...  % NMS 距离保护间隔
     'nms_v',                2,      ...  % NMS 多普勒保护间隔
     'R_min_gate',           20);         % 距离门限 (m): 排除近距离假峰 (SI残余)
