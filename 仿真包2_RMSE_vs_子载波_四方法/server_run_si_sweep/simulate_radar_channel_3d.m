@@ -80,31 +80,18 @@ for q = 1:Q
     end
 end
 
-% =================== SI injection (Eq. 28) ==================================
+% =================== 自干扰注入 (公式 28) ==================================
 target_sig_pow = mean(abs(rx_cube(:)).^2);
 
-% Noise level used for both data AWGN and the SIC pilot-based LS estimate.
-SNR_linear = 10^(params.SNR / 10);
-noise_pow  = target_sig_pow / SNR_linear;
-noise_std  = sqrt(noise_pow / 2);
-
-% use_matrix is needed by the digital-SIC block even when SI injection is
-% disabled, so define it before the enable_SI branch.
-use_matrix = isfield(params, 'H_SI_matrix') && ~isempty(params.H_SI_matrix);
-H_SI_mat   = [];
-if use_matrix
-    H_SI_mat = params.H_SI_matrix;
-end
-beta_si = 0;
-if isfield(params, 'beta_SI')
-    beta_si = params.beta_SI;
-end
-
 if isfield(params, 'enable_SI') && params.enable_SI
+    beta_si = params.beta_SI;
     if beta_si == 0, beta_si = realmin; end
-
+    
+    use_matrix = isfield(params, 'H_SI_matrix') && ~isempty(params.H_SI_matrix);
+    
     if use_matrix
-        % Per-symbol matrix multiply (Nr x Nt)*(Nt x Ns)=(Nr x Ns).
+        H_SI_mat = params.H_SI_matrix;
+        % 逐符号矩阵乘 (Nr×Nt)×(Nt×Ns)=(Nr×Ns), 256 次, 每次 64×12672
         for l_idx = 1:L
             x_l = reshape(tx_signal(:, :, :, l_idx), Nt_total, Ns);
             y_si_l = beta_si * H_SI_mat * x_l;               % (Nr, Ns)
@@ -112,20 +99,20 @@ if isfield(params, 'enable_SI') && params.enable_SI
                 reshape(y_si_l, Mx, My, Ns);
         end
     else
-        % Point-scatterer SI model.
+        % 点散射 SI
         u_si = sind(params.theta_SI) * cosd(params.phi_SI);
         v_si = sind(params.theta_SI) * sind(params.phi_SI);
-
+        
         a_rx_x_si = exp(-1j * kw * mx_vec * u_si);
         a_rx_y_si = exp(-1j * kw * my_vec * v_si);
         b_si = a_rx_x_si * a_rx_y_si.';
-
+        
         a_tx_x_si = exp(1j * kw * nx_vec * u_si);
         a_tx_y_si = exp(1j * kw * ny_vec * v_si);
         a_tx_si = a_tx_x_si * a_tx_y_si.';
-
+        
         si_sig = squeeze(sum(conj(a_tx_si) .* tx_signal, [1 2]));
-
+        
         if isfield(params, 'R_SI') && params.R_SI > 0
             r_phase = exp(1j*(0:Ns-1).'*(-4*pi*delta_f*params.R_SI/params.c));
         else
@@ -136,7 +123,7 @@ if isfield(params, 'enable_SI') && params.enable_SI
         else
             v_phase = ones(1, L);
         end
-
+        
         echo_si = beta_si * si_sig .* (r_phase * v_phase);
         for l_idx = 1:L
             rx_cube(:, :, :, l_idx) = rx_cube(:, :, :, l_idx) + ...
@@ -145,73 +132,23 @@ if isfield(params, 'enable_SI') && params.enable_SI
     end
 end
 
-% =================== Digital SIC (paper IV.B, Eq. 50) =======================
-% Same approach as SIC.m: estimate the effective SI channel
-%   G_eff = beta_SI * H_SI
-% with a known pilot using least squares (LS), then subtract G_hat * x.
-% Set params.sic_use_true_channel = true to use the legacy perfect-SIC
-% (genie-aided) behavior instead.
+% =================== 数字自干扰消除 (论文 IV.B, 公式 50) ===================
 if isfield(params, 'enable_SIC') && params.enable_SIC && use_matrix
-    if isfield(params, 'sic_use_true_channel') && params.sic_use_true_channel
-        G_sic = beta_si * H_SI_mat;
-    else
-        G_sic = estimate_si_channel_ls(params, H_SI_mat, beta_si, noise_std);
-    end
-
     for l_idx = 1:L
         x_l = reshape(tx_signal(:, :, :, l_idx), Nt_total, Ns);
-        y_sic_l = G_sic * x_l;
+        y_sic_l = beta_si * H_SI_mat * x_l;
         rx_cube(:, :, :, l_idx) = rx_cube(:, :, :, l_idx) - ...
             reshape(y_sic_l, Mx, My, Ns);
     end
 end
 
-% =================== AWGN (z_i[l] in Eq. 6) =================================
+% =================== AWGN (公式 6 的 z_i[l]) ================================
+SNR_linear = 10^(params.SNR / 10);
+noise_pow  = target_sig_pow / SNR_linear;
+noise_std  = sqrt(noise_pow / 2);
 for l_idx = 1:L
     rx_cube(:, :, :, l_idx) = rx_cube(:, :, :, l_idx) + ...
         noise_std * (randn(Mx, My, Ns, 'like', rx_cube) + ...
                      1j * randn(Mx, My, Ns, 'like', rx_cube));
 end
-end
-
-% =========================================================================
-% local function: pilot-based LS estimate of the effective SI channel
-%   G_eff = beta_SI * H_SI_matrix
-% Mirrors SIC.m:
-%   Y0 = G_eff * X0 + noise,  G_hat = Y0 * X0' * (X0 * X0')^{-1}
-% =========================================================================
-function G_hat = estimate_si_channel_ls(params, H_SI_mat, beta_si, noise_std)
-    Nt = size(H_SI_mat, 2);
-    Nr = size(H_SI_mat, 1);
-
-    if isfield(params, 'SIC_pilot_len') && ~isempty(params.SIC_pilot_len)
-        Lp = max(Nt, round(params.SIC_pilot_len));
-    else
-        Lp = 64;    % same order as L=64 in SIC.m
-    end
-
-    % Use a pre-generated fixed pilot if supplied, otherwise draw a random
-    % 16-QAM pilot (same modulation as SIC.m).
-    if isfield(params, 'SIC_pilot') && ~isempty(params.SIC_pilot) && ...
-       size(params.SIC_pilot, 1) == Nt && size(params.SIC_pilot, 2) >= Nt
-        X0 = params.SIC_pilot(:, 1:min(Lp, size(params.SIC_pilot, 2)));
-        Lp = size(X0, 2);
-    elseif exist('qammod', 'file') == 2
-        pilot_idx = randi([0 15], Nt, Lp);
-        X0 = qammod(pilot_idx, 16, 'UnitAveragePower', true);
-    else
-        % Fallback without the Communications Toolbox: unit-power Gaussian.
-        X0 = (randn(Nt, Lp) + 1j * randn(Nt, Lp)) / sqrt(2);
-    end
-
-    % Pilot reception contains SI only (no radar targets), as in SIC.m.
-    Y0 = beta_si * (H_SI_mat * X0) + ...
-         noise_std * (randn(Nr, Lp) + 1j * randn(Nr, Lp));
-
-    % LS estimate of the effective SI channel.
-    if rcond(X0 * X0') < 1e-12
-        G_hat = Y0 / X0;    % QR-based fallback for ill-conditioned pilot
-    else
-        G_hat = Y0 * X0' / (X0 * X0');   % same normal-equation form as SIC.m
-    end
 end

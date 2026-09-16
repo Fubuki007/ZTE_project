@@ -1,37 +1,21 @@
 function [theta_est, phi_est, R_est, v_est, info] = joint_estimator_fast(rx_cube, tx_signal, params)
 % =========================================================================
-% JOINT_ESTIMATOR_FAST  两阶段联合估计器 (严格按论文 III.B 节实现)
-% -------------------------------------------------------------------------
-% 论文: 《毫米波通感实时感知与预警算法方案》第 III.B 节, 公式 (17)-(27)
-%
-% 阶段 1: 距离-速度粗检测
-%   公式(17): ȳ_i[l] = y_i[l] · x_ref*[i,l]            (均衡)
-%   公式(18): s(i,l) = Σₘₓ Σₘy ȳ(mₓ,m_y,i,l)        (空间求和)
-%   公式(19): D(n_r,n_v) = Σᵢ Σₗ s(i,l)·e^{-j2π n_r i/N_s}·e^{-j2π n_v l/L}  (2D-FFT)
-%   公式(20): P(n_r,n_v) = |D(n_r,n_v)|²                  (功率谱)
-%   公式(21): 峰值检测 → 候选目标 {(n̂_r,q, n̂_v,q)}
-%
-% 阶段 2: 角度精估计 (ESPRIT)
-%   公式(22): ω̂_r = 2π·n̂_r/N_s,  ω̂_v = 2π·n̂_v/L       (相位因子)
-%   公式(23): Y_snap = Σᵢ,ₗ Ȳ_i[l]·e^{-jω̂_r}·e^{-jω̂_v}  (空间快拍)
-%   公式(24-25): 相位差 ω_{a,x}, ω_{a,y}
-%   公式(26): û = -λ_c/(2πd)·ω̂_{a,x},  v̂ = -λ_c/(2πd)·ω̂_{a,y}
-%   公式(27): ψ̂ = arcsin(√(û²+v̂²)),  φ̂ = atan2(v̂,û)
-%
-% 距离/速度精细化: 抛物线插值 (论文本身用峰值 bin + 插值, 不是 MIMO 精化)
-%
-% 性能目标: <1s (满足验收"刷新率 <1s"要求)
+% JOINT_ESTIMATOR_FAST  RD 粗检测 + 角度估计 + 距离/速度峰值插值
+% 输入: rx_cube (Mx x My x N x K), tx_signal (Ntx x Nty x N x K)
+%       或已经求和的发射参考 (N x K)。K 是 OFDM 符号数。
+% 输出: 估计值均为 1 x detected_targets 行向量，单位依次为度、度、米、m/s。
+% 假设: MIMO 参考采用 TX 天线求和近似；适用范围需用目标场景评估。
 % =========================================================================
 
-[Mx, My, Ns, L] = size(rx_cube);
+[~, ~, Ns, L] = size(rx_cube);
 Q = params.num_targets;
 delta_f = params.B / Ns;
 
 % ---- 可配置参数 ----
 cfg = struct();
-cfg.n_samp_r       = 256;   % 局部距离窗口 (ESPRIT), 论文 Ω_r 大小
-cfg.n_samp_l       = 64;    % 局部多普勒窗口, 论文 Ω_v 大小
-cfg.n_pad_v        = L;     % 多普勒不补零, 论文公式(19) 用 L
+cfg.n_samp_r       = 256;   % 聚焦快拍选取的距离采样数
+cfg.n_samp_l       = 64;    % 聚焦快拍选取的 OFDM 符号数
+cfg.n_pad_v        = L;     % 多普勒 FFT 点数，至少为 L
 cfg.enable_hann    = true;  % Hann 窗降旁瓣
 cfg.num_candidates = 64;    % 候选峰值数
 cfg.nms_r          = 2;     % NMS 距离保护
@@ -54,7 +38,7 @@ end
 n_samp_r = min(Ns, max(64, cfg.n_samp_r));
 n_samp_l = min(L,  max(16, cfg.n_samp_l));
 Nv_pad   = max(L, cfg.n_pad_v);
-% 确保 Nv_pad 是 2 的幂 (FFT 高效)
+% 奇数 FFT 长度补到下一个 2 的幂；偶数长度保持配置值。
 if mod(Nv_pad, 2) ~= 0
     Nv_pad = 2^nextpow2(Nv_pad);
 end
@@ -65,7 +49,7 @@ num_candidates = max(2*Q, cfg.num_candidates);
 % =========================================================================
 
 % --- 公式(17): 均衡 ---
-% 发射参考: 论文用 x_ref = a^H·x, 实际用 TX 天线求和近似 (broadside)
+% 发射参考用 TX 天线求和近似 (broadside)，不是真值目标方向的 a^H*x。
 sz_tx = size(tx_signal);
 if isequal(sz_tx, [Ns, L])
     tx_ref = tx_signal;
@@ -81,8 +65,8 @@ rx_eq = rx_sum .* conj(tx_ref_norm);               % (Ns, L)
 
 % --- 公式(19-20): 2D-FFT → 功率谱 ---
 if cfg.enable_hann
-    win_r = hann(Ns, 'periodic');
-    win_v = hann(L,  'periodic');
+    win_r = local_periodic_hann(Ns);
+    win_v = local_periodic_hann(L);
     rx_eq = rx_eq .* (win_r * win_v.');
 end
 RD = fft(rx_eq, Ns, 1);                            % 距离 FFT
@@ -99,7 +83,7 @@ nv_vec = (-floor(Nv_pad/2) : (ceil(Nv_pad/2) - 1)).';
 doppler_scale = L / Nv_pad;   % 补零后 bin 缩放
 
 % =========================================================================
-% 阶段 2: ESPRIT 角度精估计 + 抛物线插值 (公式 22-27)
+% 阶段 2: 空间相位差角度估计 + 抛物线插值
 % =========================================================================
 
 % 输出初始化
@@ -110,7 +94,6 @@ v_est     = zeros(1, Q);
 detected  = 0;
 selected_ir = zeros(1, Q);
 selected_iv = zeros(1, Q);
-n_detected  = 0;   % 实际尝试过的候选数
 
 for ii = 1:numel(idx)
     if detected >= Q, break; end
@@ -139,10 +122,8 @@ for ii = 1:numel(idx)
         if R_check > cfg.R_max_gate, continue; end
     end
     
-    n_detected = n_detected + 1;
-    
     % --- 局部窗口 (公式 22-23 的 Ω_r, Ω_v) ---
-    % 以检测峰为中心取局部窗口, 避免全距离轴 ESPRIT
+    % 以检测峰为中心选取局部快拍，避免在全距离轴做空间聚焦。
     r_win = max(32, round(Ns / 100));               % ~127 bins ≈ 12.5m
     v_win = max(8,  round(L / 32));                 % ~8 bins
     n_start = max(1, ir - r_win);
@@ -173,7 +154,7 @@ for ii = 1:numel(idx)
     % Y_snap = Σᵢ Σₗ Ȳ_i[l] · e^{-jω̂_r} · e^{-jω̂_v}
     Y_snap = sum(X_local_eq .* reshape(W_focus, 1, 1, n_samp_r, n_samp_l), [3 4]);
     
-    % --- 公式(24-25): 2D-ESPRIT 相位差 ---
+    % 相邻 RX 阵元共轭乘积的相位差；未构造子空间 ESPRIT 算子。
     Y_x1 = Y_snap(1:end-1, :);
     Y_x2 = Y_snap(2:end, :);
     phi_x = angle(sum(conj(Y_x1(:)) .* Y_x2(:)));
@@ -246,7 +227,7 @@ R_est     = R_est(1:detected);
 v_est     = v_est(1:detected);
 
 info = struct();
-info.detector         = 'joint_estimator_paper';
+info.detector         = 'rd_phase_difference';
 info.detected_targets = detected;
 info.Ns = Ns;
 info.L  = L;
@@ -254,4 +235,14 @@ info.Nv_pad = Nv_pad;
 info.n_samp_r = n_samp_r;
 info.n_samp_l = n_samp_l;
 info.cfg = cfg;
+end
+
+% 工程内置周期 Hann 窗，避免对 Signal Processing Toolbox 的强制依赖。
+function w = local_periodic_hann(n)
+if n <= 1
+    w = ones(n, 1);
+else
+    k = (0:n-1).';
+    w = 0.5 - 0.5 * cos(2*pi*k/n);
+end
 end

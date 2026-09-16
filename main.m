@@ -15,6 +15,10 @@ fprintf('=================================================\n');
 % ---- 1. 参数装配 ----
 params = build_default_params();
 
+% 最大距离门限: 滤除频率平坦 SI 在 R=Rmax=1250m 处的相干假峰,
+% 与 server_run_si_sweep/task_si_strength_sweep.m 保持一致。
+params.fast_estimator.R_max_gate = 600;
+
 fprintf('参数: 阵列=%dx%d, 单载波子载波=%d, 聚合后等效子载波=%d, 符号=%d, 目标数=%d\n', ...
     params.Mx, params.My, params.meta.N_per_cc, params.N, params.K, params.num_targets);
 fprintf('距离分辨率=%.3fm, 最大不模糊距离=%.1fm\n', ...
@@ -71,7 +75,7 @@ fprintf('预编码: %s, si_leak=%.3g, comm_err=%.3g\n', ...
 
 % ---- 3. SI-ON 回波仿真 (打开自干扰) ----
 params.enable_SI = true;
-params.beta_SI   = 1.0;    % SI 幅度与目标等强 (原默认 0.001 太弱看不出效果)
+params.beta_SI   = 100;    % SI 幅度与目标等强 (原默认 0.001 太弱看不出效果)
 
 % 如果未设置 H_SI_matrix, 用 params.H_SI 构造 (矩阵 SI 模型)
 if ~isfield(params, 'H_SI_matrix') || isempty(params.H_SI_matrix)

@@ -1,13 +1,11 @@
 function rx_cube = simulate_radar_channel_3d(tx_signal, params)
-% =========================================================================
-% SIMULATE_RADAR_CHANNEL_3D  感知回波仿真 (严格按论文公式 (6) + (28))
-% -------------------------------------------------------------------------
-% 论文: 《毫米波通感实时感知与预警算法方案》
-%
-% 公式(6):  y_i[l] = Σ_q β_q·b(φ_q,ψ_q)·a^H(φ_q,ψ_q)·x_i[l]·e^{jiω_s(R_q)}·e^{jlω_s(v_q)} + z_i[l]
-% 公式(28): + √ρ_SI·H_SI[i]·x_i[l] (自干扰项)
-% 公式(50): y_i^{SIC}[l] = y_i[l] - Ĝ_SI[i]·x_i[l]   (数字自干扰消除, IV.B)
-% =========================================================================
+%SIMULATE_RADAR_CHANNEL_3D Simulate target echoes, SI, SIC and AWGN.
+%   TX_SIGNAL: (Ntx x Nty x N x K); RX_CUBE: (Mx x My x N x K).
+%   Matrix SI uses a frequency-flat H_SI_matrix (Mx*My x Ntx*Nty), with
+%   MATLAB column-major array flattening. beta_SI multiplies its amplitude.
+%   With enable_SIC, an isolated, target-free pilot estimates beta_SI*H_SI
+%   by LS before subtraction; sic_use_true_channel uses the ideal matrix.
+%   Noise variance is based on target-only power, independent of SI power.
 
 Mx = params.Mx;
 My = params.My;
@@ -30,7 +28,9 @@ else
     error('tx_signal 维度非法');
 end
 Nt_total = Ntx * Nty;
-Nr_total = Mx * My;
+if strcmp(tx_mode, 'mimo') && (Ntx ~= params.Ntx || Nty ~= params.Nty)
+    error('TX dimensions must match params.Ntx x params.Nty.');
+end
 
 rx_cube = zeros(Mx, My, Ns, L, 'like', tx_signal);
 
@@ -50,17 +50,17 @@ for q = 1:Q
     u = sind(theta_q) * cosd(phi_q);
     v = sind(theta_q) * sind(phi_q);
     
-    % b: 接收阵列导向矢量 (负指数) — 论文公式(5)
+    % RX 导向矢量使用负指数。
     a_rx_x = exp(-1j * kw * mx_vec * u);
     a_rx_y = exp(-1j * kw * my_vec * v);
     b_vec  = a_rx_x * a_rx_y.';                          % (Mx, My)
     
-    % a: 发射阵列导向矢量 (正指数) — 论文公式(5)
+    % TX 导向矢量使用正指数，和发射波形函数的阵元顺序一致。
     a_tx_x = exp(1j * kw * nx_vec * u);
     a_tx_y = exp(1j * kw * ny_vec * v);
     a_tx   = a_tx_x * a_tx_y.';                          % (Ntx, Nty)
     
-    % a^H·x: 一次性内积, 替代逐天线循环 — 论文公式(6) 核心
+    % a^H*x 在 TX 阵元维求和，得到每个子载波/符号的目标回波幅度。
     switch tx_mode
         case 'scalar'
             tx_eff_q = tx_signal;                        % (Ns, L)
@@ -68,7 +68,7 @@ for q = 1:Q
             tx_eff_q = squeeze(sum(conj(a_tx) .* tx_signal, [1 2]));  % (Ns, L)
     end
     
-    % 距离/速度相位 — 论文公式(9)
+    % 距离相位沿子载波变化，速度相位沿 OFDM 符号变化。
     phase_r = exp(1j * (0:Ns-1).' * (-4*pi*delta_f*R_q / params.c));
     phase_v = exp(1j * (0:L-1)    * (4*pi*params.Ts*v_q*params.fc / params.c));
     echo_q  = beta_q * tx_eff_q .* (phase_r * phase_v);  % (Ns, L)
@@ -88,12 +88,13 @@ SNR_linear = 10^(params.SNR / 10);
 noise_pow  = target_sig_pow / SNR_linear;
 noise_std  = sqrt(noise_pow / 2);
 
-% use_matrix is needed by the digital-SIC block even when SI injection is
-% disabled, so define it before the enable_SI branch.
 use_matrix = isfield(params, 'H_SI_matrix') && ~isempty(params.H_SI_matrix);
 H_SI_mat   = [];
 if use_matrix
     H_SI_mat = params.H_SI_matrix;
+    if ~strcmp(tx_mode, 'mimo') || ~isequal(size(H_SI_mat), [Mx*My, Nt_total])
+        error('H_SI_matrix must be (Mx*My) x (Ntx*Nty) in MIMO mode.');
+    end
 end
 beta_si = 0;
 if isfield(params, 'beta_SI')
@@ -101,8 +102,6 @@ if isfield(params, 'beta_SI')
 end
 
 if isfield(params, 'enable_SI') && params.enable_SI
-    if beta_si == 0, beta_si = realmin; end
-
     if use_matrix
         % Per-symbol matrix multiply (Nr x Nt)*(Nt x Ns)=(Nr x Ns).
         for l_idx = 1:L
@@ -145,13 +144,14 @@ if isfield(params, 'enable_SI') && params.enable_SI
     end
 end
 
-% =================== Digital SIC (paper IV.B, Eq. 50) =======================
-% Same approach as SIC.m: estimate the effective SI channel
-%   G_eff = beta_SI * H_SI
-% with a known pilot using least squares (LS), then subtract G_hat * x.
-% Set params.sic_use_true_channel = true to use the legacy perfect-SIC
-% (genie-aided) behavior instead.
-if isfield(params, 'enable_SIC') && params.enable_SIC && use_matrix
+% =================== Digital SIC ===========================================
+% A target-free pilot estimates G_eff = beta_SI*H_SI. No subtraction is
+% performed on the no-SI baseline, and SIC requires the matrix SI model.
+if isfield(params, 'enable_SIC') && params.enable_SIC && ...
+        isfield(params, 'enable_SI') && params.enable_SI
+    if ~use_matrix
+        error('Digital SIC requires H_SI_matrix (matrix SI model).');
+    end
     if isfield(params, 'sic_use_true_channel') && params.sic_use_true_channel
         G_sic = beta_si * H_SI_mat;
     else
@@ -174,12 +174,7 @@ for l_idx = 1:L
 end
 end
 
-% =========================================================================
-% local function: pilot-based LS estimate of the effective SI channel
-%   G_eff = beta_SI * H_SI_matrix
-% Mirrors SIC.m:
-%   Y0 = G_eff * X0 + noise,  G_hat = Y0 * X0' * (X0 * X0')^{-1}
-% =========================================================================
+% Pilot-only LS estimate: Y0 = beta_SI*H_SI*X0 + AWGN.
 function G_hat = estimate_si_channel_ls(params, H_SI_mat, beta_si, noise_std)
     Nt = size(H_SI_mat, 2);
     Nr = size(H_SI_mat, 1);
@@ -187,13 +182,14 @@ function G_hat = estimate_si_channel_ls(params, H_SI_mat, beta_si, noise_std)
     if isfield(params, 'SIC_pilot_len') && ~isempty(params.SIC_pilot_len)
         Lp = max(Nt, round(params.SIC_pilot_len));
     else
-        Lp = 64;    % same order as L=64 in SIC.m
+        Lp = 64;
     end
 
-    % Use a pre-generated fixed pilot if supplied, otherwise draw a random
-    % 16-QAM pilot (same modulation as SIC.m).
-    if isfield(params, 'SIC_pilot') && ~isempty(params.SIC_pilot) && ...
-       size(params.SIC_pilot, 1) == Nt && size(params.SIC_pilot, 2) >= Nt
+    % A supplied pilot overrides the generated 16-QAM pilot.
+    if isfield(params, 'SIC_pilot') && ~isempty(params.SIC_pilot)
+        if size(params.SIC_pilot, 1) ~= Nt || size(params.SIC_pilot, 2) < Nt
+            error('SIC_pilot must have Nt rows and at least Nt columns.');
+        end
         X0 = params.SIC_pilot(:, 1:min(Lp, size(params.SIC_pilot, 2)));
         Lp = size(X0, 2);
     elseif exist('qammod', 'file') == 2
@@ -204,7 +200,7 @@ function G_hat = estimate_si_channel_ls(params, H_SI_mat, beta_si, noise_std)
         X0 = (randn(Nt, Lp) + 1j * randn(Nt, Lp)) / sqrt(2);
     end
 
-    % Pilot reception contains SI only (no radar targets), as in SIC.m.
+    % The calibration pilot contains SI only, without target echoes.
     Y0 = beta_si * (H_SI_mat * X0) + ...
          noise_std * (randn(Nr, Lp) + 1j * randn(Nr, Lp));
 
@@ -212,6 +208,6 @@ function G_hat = estimate_si_channel_ls(params, H_SI_mat, beta_si, noise_std)
     if rcond(X0 * X0') < 1e-12
         G_hat = Y0 / X0;    % QR-based fallback for ill-conditioned pilot
     else
-        G_hat = Y0 * X0' / (X0 * X0');   % same normal-equation form as SIC.m
+        G_hat = Y0 * X0' / (X0 * X0');
     end
 end
