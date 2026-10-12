@@ -42,6 +42,11 @@ params.theta_SI             = 10.5;        % SI 俯仰角 (度)
 params.phi_SI               = 10.5;        % SI 方位角 (度)
 params.R_SI                 = 10 * (params.c / params.fc);  % SI 距离 ≈ 10λ
 params.v_SI                 = 0;           % SI 径向速度 (m/s)
+params.enable_SIC           = false;       % 公式(50): 数字域重构并相消
+params.sic_use_true_channel = false;       % true 仅用于 genie-aided 上界
+params.SIC_pilot_len        = 128;         % L_p, 公式(46), 且 L_p >= N_tx
+params.SIC_pilot            = [];          % 可选固定导频 X_p
+params.sic_error_db         = [];          % []: 论文同热噪声基线; 有限值: LS估计NMSE灵敏度
 
 % ====================== 发射端 (MIMO) ====================================
 % 论文公式 (2): x_i[l] = W_i · s_i[l]

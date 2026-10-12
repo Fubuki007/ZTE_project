@@ -1,4 +1,4 @@
-function rx_cube = simulate_radar_channel_3d(tx_signal, params)
+function [rx_cube, sim_info] = simulate_radar_channel_3d(tx_signal, params)
 % =========================================================================
 % SIMULATE_RADAR_CHANNEL_3D  感知回波仿真 (严格按论文公式 (6) + (28))
 % -------------------------------------------------------------------------
@@ -33,6 +33,7 @@ Nt_total = Ntx * Nty;
 Nr_total = Mx * My;
 
 rx_cube = zeros(Mx, My, Ns, L, 'like', tx_signal);
+sim_info = struct();
 
 mx_vec = (0:Mx-1).';
 my_vec = (0:My-1).';
@@ -40,6 +41,20 @@ nx_vec = (0:Ntx-1).';
 ny_vec = (0:Nty-1).';
 
 % =================== 目标回波 (公式 6) =====================================
+% Optional RIS-assisted target path.  The model is deliberately injected
+% before SI/noise so that the no-SI experiment measures a real sensing-gain
+% effect instead of reusing the RIS-SIC objective.
+ris_model = [];
+if isfield(params, 'ris_target_model') && ~isempty(params.ris_target_model)
+    ris_model = params.ris_target_model;
+    if ~isfield(ris_model, 'direct_beam') || ~isfield(ris_model, 'ris_beam')
+        error('params.ris_target_model must contain direct_beam and ris_beam');
+    end
+    if size(ris_model.direct_beam, 1) ~= Q || size(ris_model.direct_beam, 2) ~= Ns
+        error('RIS target model direct_beam must be Q x Ns');
+    end
+end
+
 for q = 1:Q
     theta_q = params.theta_true(q);
     phi_q   = params.phi_true(q);
@@ -67,6 +82,24 @@ for q = 1:Q
         case 'mimo'
             tx_eff_q = squeeze(sum(conj(a_tx) .* tx_signal, [1 2]));  % (Ns, L)
     end
+
+    % RIS-assisted target path.  For the current single-stream waveform the
+    % direct beam coefficient is known, hence the RIS path can be added as a
+    % per-subcarrier beam-ratio without storing a 4-D antenna channel.
+    if ~isempty(ris_model)
+        if ~isfield(ris_model, 'phi') || isempty(ris_model.phi)
+            phi_ris = zeros(size(ris_model.ris_beam, 1), 1);
+        else
+            phi_ris = ris_model.phi(:);
+        end
+        ris_q = squeeze(sum(ris_model.ris_beam(:, q, :) .* reshape(phi_ris, [], 1, 1), 1));
+        ris_q = reshape(ris_q, Ns, 1);
+        direct_q = reshape(ris_model.direct_beam(q, :).', Ns, 1);
+        if any(abs(direct_q) < 1e-12)
+            error('RIS target model has a near-zero direct beam coefficient');
+        end
+        tx_eff_q = tx_eff_q .* ((direct_q + ris_q) ./ direct_q);
+    end
     
     % 距离/速度相位 — 论文公式(9)
     phase_r = exp(1j * (0:Ns-1).' * (-4*pi*delta_f*R_q / params.c));
@@ -85,8 +118,18 @@ target_sig_pow = mean(abs(rx_cube(:)).^2);
 
 % Noise level used for both data AWGN and the SIC pilot-based LS estimate.
 SNR_linear = 10^(params.SNR / 10);
-noise_pow  = target_sig_pow / SNR_linear;
+if isfield(params, 'noise_power_override') && ~isempty(params.noise_power_override)
+    noise_pow = params.noise_power_override;
+elseif isfield(params, 'noise_reference_target_power') && ...
+        ~isempty(params.noise_reference_target_power)
+    noise_pow = params.noise_reference_target_power / SNR_linear;
+else
+    noise_pow = target_sig_pow / SNR_linear;
+end
 noise_std  = sqrt(noise_pow / 2);
+sim_info.target_signal_power = target_sig_pow;
+sim_info.data_noise_power = noise_pow;
+sim_info.sic = struct('applied', false);
 
 % use_matrix is needed by the digital-SIC block even when SI injection is
 % disabled, so define it before the enable_SI branch.
@@ -100,7 +143,8 @@ if isfield(params, 'beta_SI')
     beta_si = params.beta_SI;
 end
 
-if isfield(params, 'enable_SI') && params.enable_SI
+si_enabled = isfield(params, 'enable_SI') && params.enable_SI;
+if si_enabled
     if beta_si == 0, beta_si = realmin; end
 
     if use_matrix
@@ -151,39 +195,62 @@ end
 % with a known pilot using least squares (LS), then subtract G_hat * x.
 % Set params.sic_use_true_channel = true to use the legacy perfect-SIC
 % (genie-aided) behavior instead.
-if isfield(params, 'enable_SIC') && params.enable_SIC && use_matrix
+if isfield(params, 'enable_SIC') && params.enable_SIC && use_matrix && si_enabled
+    G_true = beta_si * H_SI_mat;
     if isfield(params, 'sic_use_true_channel') && params.sic_use_true_channel
-        G_sic = beta_si * H_SI_mat;
+        G_sic = G_true;
+        sic_info = struct( ...
+            'mode', 'true_channel', ...
+            'requested_nmse_db', -Inf, ...
+            'achieved_nmse_db', -Inf, ...
+            'pilot_noise_power', 0, ...
+            'pilot_length', 0, ...
+            'pilot_gram_rcond', NaN);
     else
-        G_sic = estimate_si_channel_ls(params, H_SI_mat, beta_si, noise_std);
+        X0 = select_sic_pilot(params, Nt_total);
+        target_nmse_db = [];
+        if isfield(params, 'sic_error_db')
+            target_nmse_db = params.sic_error_db;
+        end
+        [G_sic, sic_info] = estimate_si_channel_ls( ...
+            G_true, X0, noise_std, target_nmse_db);
     end
 
+    si_energy = 0;
+    residual_energy = 0;
     for l_idx = 1:L
         x_l = reshape(tx_signal(:, :, :, l_idx), Nt_total, Ns);
         y_sic_l = G_sic * x_l;
+        y_si_l = G_true * x_l;
+        si_energy = si_energy + sum(abs(y_si_l(:)).^2);
+        residual_energy = residual_energy + ...
+            sum(abs(y_si_l(:) - y_sic_l(:)).^2);
         rx_cube(:, :, :, l_idx) = rx_cube(:, :, :, l_idx) - ...
             reshape(y_sic_l, Mx, My, Ns);
     end
+    normalization = Nr_total * Ns * L;
+    sic_info.applied = true;
+    sic_info.si_power_before = si_energy / normalization;
+    sic_info.si_power_after = residual_energy / normalization;
+    sic_info.suppression_db = 10 * log10( ...
+        max(sic_info.si_power_before, realmin) / ...
+        max(sic_info.si_power_after, realmin));
+    sim_info.sic = sic_info;
 end
 
 % =================== AWGN (z_i[l] in Eq. 6) =================================
-for l_idx = 1:L
-    rx_cube(:, :, :, l_idx) = rx_cube(:, :, :, l_idx) + ...
-        noise_std * (randn(Mx, My, Ns, 'like', rx_cube) + ...
-                     1j * randn(Mx, My, Ns, 'like', rx_cube));
+% SNR=Inf is used to construct a reusable noise-free target cube. Skipping
+% zero-valued random draws is exactly equivalent and avoids substantial work.
+if noise_std > 0
+    for l_idx = 1:L
+        rx_cube(:, :, :, l_idx) = rx_cube(:, :, :, l_idx) + ...
+            noise_std * (randn(Mx, My, Ns, 'like', rx_cube) + ...
+                         1j * randn(Mx, My, Ns, 'like', rx_cube));
+    end
 end
 end
 
-% =========================================================================
-% local function: pilot-based LS estimate of the effective SI channel
-%   G_eff = beta_SI * H_SI_matrix
-% Mirrors SIC.m:
-%   Y0 = G_eff * X0 + noise,  G_hat = Y0 * X0' * (X0 * X0')^{-1}
-% =========================================================================
-function G_hat = estimate_si_channel_ls(params, H_SI_mat, beta_si, noise_std)
-    Nt = size(H_SI_mat, 2);
-    Nr = size(H_SI_mat, 1);
-
+function X0 = select_sic_pilot(params, Nt)
     if isfield(params, 'SIC_pilot_len') && ~isempty(params.SIC_pilot_len)
         Lp = max(Nt, round(params.SIC_pilot_len));
     else
@@ -195,7 +262,6 @@ function G_hat = estimate_si_channel_ls(params, H_SI_mat, beta_si, noise_std)
     if isfield(params, 'SIC_pilot') && ~isempty(params.SIC_pilot) && ...
        size(params.SIC_pilot, 1) == Nt && size(params.SIC_pilot, 2) >= Nt
         X0 = params.SIC_pilot(:, 1:min(Lp, size(params.SIC_pilot, 2)));
-        Lp = size(X0, 2);
     elseif exist('qammod', 'file') == 2
         pilot_idx = randi([0 15], Nt, Lp);
         X0 = qammod(pilot_idx, 16, 'UnitAveragePower', true);
@@ -204,14 +270,4 @@ function G_hat = estimate_si_channel_ls(params, H_SI_mat, beta_si, noise_std)
         X0 = (randn(Nt, Lp) + 1j * randn(Nt, Lp)) / sqrt(2);
     end
 
-    % Pilot reception contains SI only (no radar targets), as in SIC.m.
-    Y0 = beta_si * (H_SI_mat * X0) + ...
-         noise_std * (randn(Nr, Lp) + 1j * randn(Nr, Lp));
-
-    % LS estimate of the effective SI channel.
-    if rcond(X0 * X0') < 1e-12
-        G_hat = Y0 / X0;    % QR-based fallback for ill-conditioned pilot
-    else
-        G_hat = Y0 * X0' / (X0 * X0');   % same normal-equation form as SIC.m
-    end
 end

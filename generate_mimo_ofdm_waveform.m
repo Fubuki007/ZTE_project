@@ -197,22 +197,14 @@ end
 % 3. 通信符号 s_i[l] (对齐作者源代码 55-60 行, 16-QAM, UnitAveragePower)
 % -------------------------------------------------------------------------
 DATA = randi([0, M - 1], K_stream, L, Ns);
-S    = zeros(K_stream, L, Ns);
-if exist('qammod', 'file') == 2
-    for i = 1:Ns
-        S(:, :, i) = qammod(DATA(:, :, i), M, 'UnitAveragePower', true);
-    end
+if sqrt(M) == fix(sqrt(M))
+    % One base-MATLAB mapping replaces Ns individual toolbox calls while
+    % preserving MATLAB's Gray labels and the original random DATA tensor.
+    S = square_qam_gray(DATA,M);
+elseif exist('qammod', 'file') == 2
+    S = reshape(qammod(DATA(:),M,'UnitAveragePower',true),size(DATA));
 else
-    % 无通信工具箱的手写回退 (方形 M-QAM)
-    mside = round(sqrt(M));
-    if abs(sqrt(M) - mside) > eps
-        error('无 qammod 时仅支持方形 QAM (M = 4, 16, 64, 256)');
-    end
-    norm_factor = sqrt((2/3) * (M - 1));
-    levels = (2*(0:mside-1) - (mside - 1)) / norm_factor;
-    i_idx = mod(DATA, mside) + 1;
-    q_idx = floor(DATA / mside) + 1;
-    S = levels(i_idx) + 1j * levels(q_idx);
+    error('Without qammod, only square QAM orders are supported.');
 end
 
 % -------------------------------------------------------------------------

@@ -218,7 +218,7 @@ y_SIC = y_rx - Ĝ_SI · x_tx
 
 因为我们知道发射信号 `x_tx` 和 SI 信道 `H_SI`，可以把 SI 贡献算出来再减掉。
 
-> ⚠️ **实际限制**：SIC 的效果受 SI 信道估计精度的影响。在仿真中我们假设 SI 信道完美已知（`enable_SIC = true` 时直接减），实际系统中信道估计误差会限制 SIC 的增益。
+> ⚠️ **实际限制**：SIC 的效果受 SI 信道估计精度影响。默认按照公式(46)-(47)，使用与感知数据同功率的接收热噪声生成导频观测并进行 LS 估计；这属于论文理想基线，不代表有限动态范围硬件的消除上限。
 
 ### 3.5 SI 对估计器的影响机制
 
@@ -433,6 +433,7 @@ task_mrx_si_sweep
 | `params.kappa_SI` | 10 | - | Rician K 因子 | 越大 LoS 越强 |
 | `params.H_SI_matrix` | auto | - | SI 信道矩阵 (Nr × Nt) | 自动生成，也可手动注入 |
 | `params.enable_SIC` | false | - | 是否启用数字 SI 消除 | 需要 H_SI_matrix |
+| `params.sic_error_db` | [] | dB | 公式(47)的 LS 信道估计 NMSE | `[]` 为论文热噪声基线；有限负值用于灵敏度分析 |
 | `params.precoder_type` | 'nullspace' | - | 预编码方案 | 'zf' / 'nullspace' / 'lagrange' |
 | `params.beta_SI_scale_list` | [1,10,100,1000,10000] | - | SI 强度扫描列表 | run_si_comparison 使用 |
 
@@ -562,9 +563,10 @@ end
 
 ```matlab
 if enable_SIC
+    G_hat = estimate_si_channel_ls(beta_SI * H_SI_mat, X_pilot, ...);
     for l_idx = 1:L
         x_l = reshape(tx_signal(:,:,:,l_idx), Nt_total, Ns);
-        y_sic_l = beta_SI * H_SI_mat * x_l;  % 重建 SI
+        y_sic_l = G_hat * x_l;               % 用公式(47)的 LS 估计重建 SI
         rx_cube(:,:,:,l_idx) -= reshape(y_sic_l, Mx, My, Ns);  % 减去
     end
 end
@@ -619,10 +621,10 @@ A：取决于场景：
 
 **Q3：SIC 为什么没有完全消除 SI？**
 
-A：代码中 SIC 用已知的 H_SI 重建 SI，理论上完美。但：
+A：代码中 SIC 按公式(46)-(47)从导频观测中 LS 估计等效信道，再按公式(50)重建 SI。但：
 - 实际系统中 H_SI 有估计误差
 - 发射机非线性失真（PA 非线性）无法用线性模型消除
-- 可以通过添加 `params.sic_error_db`（信道估计误差）模拟实际限制
+- `params.sic_error_db=[]` 时严格使用式(46)的同热噪声论文基线；设置有限负值（例如 `-60`）时，通过缩放导频噪声 `Z_p` 使式(47)的 LS 信道估计达到指定 NMSE，用于评估有限信道估计精度下的 SIC 灵敏度
 
 **Q4：如何手动构造不同的 H_SI 来测试？**
 

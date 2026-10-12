@@ -82,7 +82,7 @@ rx_eq = rx_sum .* conj(tx_ref_norm);               % (Ns, L)
 % --- 公式(19-20): 2D-FFT → 功率谱 ---
 if cfg.enable_hann
     win_r = hann(Ns, 'periodic');
-    win_v = hann(L,  'periodic');
+    win_v = hann(L, 'periodic');
     rx_eq = rx_eq .* (win_r * win_v.');
 end
 RD = fft(rx_eq, Ns, 1);                            % 距离 FFT

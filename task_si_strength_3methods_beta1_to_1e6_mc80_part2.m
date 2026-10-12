@@ -1,0 +1,3 @@
+function task_si_strength_3methods_beta1_to_1e6_mc80_part2
+task_si_strength_3methods_beta1_to_1e6_mc80_worker(2, false);
+end
