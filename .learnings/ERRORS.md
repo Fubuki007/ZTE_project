@@ -489,3 +489,11 @@ The failure is not proven to be an OOM or specifically caused by four workers. A
 Four tiny idle controls (base MATLAB, one Hann call, one QAM call, and Hann without JVM) reproduced native allocator faults at about two minutes. Valgrind then recorded invalid writes in `vNAZCAVud41d` inside the installed `libmwlmgrimpl.so`, at offsets 0, 1 and 2 bytes beyond a 326-byte calloc allocation made by that function. This identifies an actual corrupting write rather than only a detection site. See `server-results/native_heap_diagnosis_20261010/memcheck-native.3824481.log`. The installed library needs comparison with a clean official installation/update; short per-case processes are mitigation, not a native-library repair. Do not infer a universal R2022b defect or a modified binary without further evidence.
 
 ---
+
+
+## [ERR-20261012-STAGE3] resolved
+
+- Windows PDF text output failed under GBK; explicitly used UTF-8 and visually rendered the PDF because embedded Chinese font mappings were not extractable.
+- Bundled Python pip stalled and direct PyPI wheel TLS downloads failed; installed pinned binary wheels using uv and a verified PyPI mirror. Server system Python lacked ensurepip; used an isolated Python 3.11 venv and existing conda pip --python, without changing system packages.
+- Test-only phase quantization assertions needed integer rounding instead of remainder near floating-point phase boundaries.
+- An overly small 128-tone smoke configuration could not resolve the two targets during the short coarse CPI. Increased the smoke bandwidth to 512 tones; full production dimensions remain 12672 tones / 256 symbols. Failed smoke results retained separately and never used as production evidence.

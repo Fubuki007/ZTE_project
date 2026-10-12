@@ -1,0 +1,66 @@
+{
+  "config": {
+    "fc": 28000000000.0,
+    "c": 300000000.0,
+    "df": 120000.0,
+    "cp_time": 6e-07,
+    "ns": 512,
+    "lc": 32,
+    "lf": 32,
+    "tx_nx": 4,
+    "tx_ny": 4,
+    "rx_nx": 4,
+    "rx_ny": 4,
+    "ris_nx": 8,
+    "ris_ny": 8,
+    "bits": 2,
+    "ris_position": [
+      12.0,
+      -10.0,
+      8.0
+    ],
+    "truth": [
+      [
+        200.6,
+        15.1,
+        60.83,
+        28.51
+      ],
+      [
+        210.4,
+        -5.4,
+        15.94,
+        11.53
+      ]
+    ],
+    "user_angles": [
+      35.0,
+      20.0
+    ],
+    "hop_amplitude": 0.7,
+    "user_ris_amplitude": 0.15,
+    "communication_noise": 0.02,
+    "gamma": 2.0,
+    "ao_iterations": 2,
+    "sca_iterations": 2,
+    "phase_sweeps": 2,
+    "refinement_iterations": 8,
+    "seed": 20261012
+  },
+  "snr_db": [
+    -30.0,
+    -5.0,
+    20.0
+  ],
+  "mc": 1,
+  "profile": "smoke",
+  "code_sha256": "2b1f12c1cfe6bad8a42ac4b28b99bbbda21c1317fa4b90e3ec2117ef4a0ff3e2",
+  "batch": 128,
+  "angle_metric": "sqrt(mean over MC,targets,theta/phi of squared degree error)",
+  "noise_reference": "mean DD-only ZF echo power, same variance in every method",
+  "waveform": "known unit-modulus QPSK; observations losslessly demodulated",
+  "velocity_model": "BS-radial constant velocity; geometry frozen within CPI",
+  "target_count": "two known targets",
+  "self_interference": false,
+  "id": "c35e5c3e49c30f4fe4e903dbdf703e200442c70921a8697e25465b0c459149a9"
+}

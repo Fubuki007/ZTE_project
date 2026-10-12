@@ -1,5 +1,13 @@
 # Learnings
 
+## [LRN-20261012-001] correction
+
+**Priority**: high
+**Status**: promoted
+**Area**: simulation
+
+用户明确：正式脚本必须全量、在服务器跑；本地可以跑冒烟。已加入 AGENTS.md 和持久记忆。不得把缩小规模验证当成交付的正式实验。
+
 Corrections, insights, and knowledge gaps captured during development.
 
 **Categories**: correction | insight | knowledge_gap | best_practice

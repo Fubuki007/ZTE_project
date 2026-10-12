@@ -1,0 +1,15 @@
+{
+  "complete": true,
+  "counts": [
+    1,
+    1,
+    1
+  ],
+  "total_completed": 3,
+  "total_expected": 3,
+  "snr_db": [
+    -30.0,
+    -5.0,
+    20.0
+  ]
+}

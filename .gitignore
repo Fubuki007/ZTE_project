@@ -1,0 +1,9 @@
+# Local runtimes, credentials, and generated scratch files
+.venv-stage3/
+.matlab_prefs*/
+__pycache__/
+tmp/
+RIS_stage3/.venv*/
+RIS_stage3/results_*/case_*/
+*.pem
+*.p12
