@@ -1,0 +1,17 @@
+{
+  "date": "2026-10-20",
+  "scope": "protocol_static_check_only_no_simulation_or_training",
+  "checks": {
+    "physical_matches_baseline": true,
+    "legacy_count": true,
+    "heldout_count": true,
+    "methods_unique": true,
+    "truth_matches_legacy": true,
+    "training_test_seeds_distinct": true,
+    "full_server_policy": true
+  },
+  "protocol_sha256": "0103e651c70a442ade612c3de3d5e4e108c39fd72792dd42988a0c217cfd8acf",
+  "baseline_model_sha256": "f1fd1e4e3d611f38e05266f682fd3ff18bfd22d27ebf3bdbfb70e2a8580d150c",
+  "training_cases": 384,
+  "validation_cases": 96
+}

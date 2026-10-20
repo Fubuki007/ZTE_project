@@ -1,0 +1,101 @@
+{
+  "schema_version": 1,
+  "status": "PROPOSED_NOT_RUN",
+  "profile": "full",
+  "run_location": "server_only",
+  "source_backup_commit": "e3e18591a8ce868fc788a17ffedb7e8c0dddd556",
+  "physical": {
+    "fc": 28000000000.0,
+    "df": 120000.0,
+    "ns": 12672,
+    "lc": 128,
+    "lf": 128,
+    "tx_nx": 4,
+    "tx_ny": 4,
+    "rx_nx": 8,
+    "rx_ny": 8,
+    "ris_nx": 8,
+    "ris_ny": 8,
+    "bits": 2,
+    "cp_time": 0.0000006,
+    "communication_noise": 0.02,
+    "gamma": 2.0,
+    "hop_amplitude": 0.7,
+    "user_ris_amplitude": 0.15,
+    "ris_position": [12.0, -10.0, 8.0],
+    "refinement_iterations": 12,
+    "dtype": "float64/complex128"
+  },
+  "learning": {
+    "architecture": "learned_projected_gradient_initialization",
+    "layers": 6,
+    "train_scenes": 128,
+    "validation_scenes": 32,
+    "snr_db": [-30, -5, 20],
+    "noise_replicates_per_scene_snr": 1,
+    "scene_seed": 2026102001,
+    "noise_seed": 2026102002,
+    "model_seed": 2026102003,
+    "input_truth": false,
+    "all_subcarriers_in_objective": true,
+    "split_unit": "geometry_scene",
+    "checkpoint_selection": "validation_only",
+    "hyperparameters_status": "finalize_on_training_and_validation_before_test"
+  },
+  "scene_domain": {
+    "range_m": [160, 260],
+    "velocity_mps": [-20, 20],
+    "theta_from_z_deg": [15, 75],
+    "phi_deg": [-50, 50],
+    "user_theta_from_z_deg": [20, 65],
+    "user_phi_deg": [-45, 45],
+    "min_target_range_gap_m": 6,
+    "min_target_direction_gap_deg": 5,
+    "exclude_legacy_geometry_from_training": true
+  },
+  "legacy_test": {
+    "snr_db": [-30, -25, -20, -15, -10, -5, 0, 5, 10, 15, 20],
+    "mc": 100,
+    "seed": 2026102004,
+    "expected_paired_cases": 1100,
+    "truth": [[200.6, 15.1, 60.83, 28.51], [210.4, -5.4, 15.94, 11.53]],
+    "user_angles": [35, 20]
+  },
+  "heldout_test": {
+    "scenes": 32,
+    "snr_db": [-30, -25, -20, -15, -10, -5, 0, 5, 10, 15, 20],
+    "mc_per_scene_snr": 3,
+    "scene_seed": 2026102005,
+    "noise_seed": 2026102006,
+    "expected_paired_cases": 1056
+  },
+  "methods": [
+    {"id": "dd_joint", "design": "zf_no_ris"},
+    {"id": "stage3_original", "ao": 3, "sca": 3, "phase_sweeps": 2},
+    {"id": "stage3_short", "ao": 1, "sca": 1, "phase_sweeps": 1},
+    {"id": "untrained_physics", "layers": 6, "repair_ao": 1, "repair_sca": 1, "repair_phase_sweeps": 1},
+    {"id": "learned_physics", "layers": 6, "repair_ao": 1, "repair_sca": 1, "repair_phase_sweeps": 1},
+    {"id": "stage3_extended", "ao": 8, "sca": 5, "phase_sweeps": 3}
+  ],
+  "evaluation": {
+    "noise_reference": "DD_ZF_full_CPI_per_scene_shared_across_methods",
+    "paired_noise": true,
+    "same_assignment_for_all_metrics": true,
+    "report_algorithm_failures": true,
+    "report_raw_and_repaired_feasibility": true,
+    "include_repair_and_fallback_in_latency": true,
+    "cuda_synchronize_for_timing": true,
+    "bootstrap_replicates": 2000,
+    "bootstrap_seed": 2026102007,
+    "heldout_resampling_unit": "geometry_scene",
+    "separate_latency_budget_sweep_required": true
+  },
+  "execution": {
+    "batch_subcarriers": 128,
+    "workers_initial": 1,
+    "blas_threads_per_worker": 4,
+    "full_size_pilot_required_before_parallelism": true,
+    "per_sample_checkpoints": true,
+    "source_and_model_hashes_required": true
+  }
+}
