@@ -1,0 +1,148 @@
+{
+  "scope": "LOCAL_TRAINING_SMOKE_NOT_FORMAL_TRAINING_OR_RMSE",
+  "sequence": [
+    "--smoke --limit 2: paused after initial validation and one optimizer update",
+    "--smoke resume: four updates and three validation samples complete"
+  ],
+  "sources": {
+    "RIS_stage3/stage3_model.py": "f1fd1e4e3d611f38e05266f682fd3ff18bfd22d27ebf3bdbfb70e2a8580d150c",
+    "RIS_stage3/streaming.py": "5a30923cdff9055789614e46270fd937cd071725aaf5ee1272c40aa22eb744bb",
+    "RIS_stage3_ai/context.py": "0b7546339ca5c06e7fff3b14b75775c801c076dad1e482933c5eda2b25c172ac",
+    "RIS_stage3_ai/generate_dataset.py": "4d2894a3f03535964415f8e467f09bf5fbb0c82a988be9b6e9757eb04413c08c",
+    "RIS_stage3_ai/physics_numpy.py": "5ecbdd66c12a3ce60e62e15da098879db44acd5a3410144de4f6bde93f9743a7",
+    "RIS_stage3_ai/physics_torch.py": "4fd468e55c9aed1edf6149e32e228bf20bcb1ead7657a366f8778fbc5709dc14",
+    "RIS_stage3_ai/protocol.py": "a593c31b7163c81a8b1e0c122511a77bb0bb936682888a18418a77df5d1cbed6",
+    "RIS_stage3_ai/repair.py": "0b4efa601d65afb1b6578fd69d8505a24edfa9948d3fdc21acb135be2ad47a17",
+    "RIS_stage3_ai/scenes.py": "7e01b6897616e9742214f8edbab6c1519e7a7373817eeece6da0418ecc72e515",
+    "RIS_stage3_ai/storage.py": "33480ba3bd405b198880ed3dcc106bc4e1c3c1ae027f206233956b065c9e580e",
+    "RIS_stage3_ai/train.py": "20cf912ca1aefe560f2dd330b1768e2bc5299d134c9a5ed3e20d6e2d4470c293",
+    "RIS_stage3_ai/unfolded_design.py": "f9dafdb5f043c637e6af373906b1200e7886b75b78f6482af3d924cc315094ee"
+  },
+  "progress": {
+    "manifest_id": "4441c23378fc9e403fc799c333acf2bb4985b971e9df951ab126d2a2ae652023",
+    "profile": "smoke",
+    "phase": "complete",
+    "epoch": 2,
+    "position": 0,
+    "complete": true,
+    "training_updates": 4,
+    "expected_training_updates": 4,
+    "validation_samples": 3,
+    "expected_validation_samples": 3,
+    "current_weights_changed": true,
+    "best_epoch": 2,
+    "selected_weights_changed": true,
+    "best_validation": {
+      "epoch": 2,
+      "samples": 1,
+      "failures": 0,
+      "fallbacks": 0,
+      "mean_repaired_min_illumination": 0.4717347825888939
+    },
+    "revision": 7,
+    "updated": "2026-10-20T04:23:35.116726+00:00",
+    "failure_attempts": 0
+  },
+  "selected": {
+    "training_id": "4441c23378fc9e403fc799c333acf2bb4985b971e9df951ab126d2a2ae652023",
+    "dataset_id": "96cd0f7bd0285bde299aad997b0aa3d6299d2419afed900e7b50e27d4dce79c8",
+    "profile": "smoke",
+    "checkpoint": {
+      "manifest_id": "4441c23378fc9e403fc799c333acf2bb4985b971e9df951ab126d2a2ae652023",
+      "checkpoint": "checkpoints/000007_01768ca5e94d4f3991495e21d17fa8b7.pt",
+      "sha256": "3fe35044f3ff3297b3eb2c8c2995d495057bd5d30fafe6adbee9b9587b8563b2",
+      "revision": 7,
+      "saved_at": "2026-10-20T04:22:59.237880+00:00"
+    },
+    "selected": {
+      "epoch": 2,
+      "samples": 1,
+      "failures": 0,
+      "fallbacks": 0,
+      "mean_repaired_min_illumination": 0.4717347825888939
+    },
+    "weight_sha256": "b62fe5dddc5773003ec882f03a8437076ab84a777b45e8d0be149b1e3ce303c9",
+    "weights_changed": true,
+    "validation_history": [
+      {
+        "epoch": 0,
+        "samples": 1,
+        "failures": 0,
+        "fallbacks": 0,
+        "mean_repaired_min_illumination": 0.4702349430729771
+      },
+      {
+        "epoch": 1,
+        "samples": 1,
+        "failures": 0,
+        "fallbacks": 0,
+        "mean_repaired_min_illumination": 0.47027032108576317
+      },
+      {
+        "epoch": 2,
+        "samples": 1,
+        "failures": 0,
+        "fallbacks": 0,
+        "mean_repaired_min_illumination": 0.4717347825888939
+      }
+    ]
+  },
+  "event_summary": [
+    {
+      "kind": "INITIALIZED",
+      "epoch": null,
+      "sample_id": null,
+      "loss": null,
+      "seconds": null
+    },
+    {
+      "kind": "validation",
+      "epoch": 0,
+      "sample_id": "validation_0000_snr00_rep0000",
+      "loss": null,
+      "seconds": 0.07361850002780557
+    },
+    {
+      "kind": "train",
+      "epoch": 1,
+      "sample_id": "train_0000_snr00_rep0000",
+      "loss": -0.903433202360568,
+      "seconds": 0.6276452000020072
+    },
+    {
+      "kind": "train",
+      "epoch": 1,
+      "sample_id": "train_0001_snr00_rep0000",
+      "loss": -0.14120655279110902,
+      "seconds": 0.5417259999667294
+    },
+    {
+      "kind": "validation",
+      "epoch": 1,
+      "sample_id": "validation_0000_snr00_rep0000",
+      "loss": null,
+      "seconds": 0.07192330004181713
+    },
+    {
+      "kind": "train",
+      "epoch": 2,
+      "sample_id": "train_0000_snr00_rep0000",
+      "loss": -0.9042500356852279,
+      "seconds": 0.5461736999568529
+    },
+    {
+      "kind": "train",
+      "epoch": 2,
+      "sample_id": "train_0001_snr00_rep0000",
+      "loss": -0.13755669685229915,
+      "seconds": 0.5520708000403829
+    },
+    {
+      "kind": "validation",
+      "epoch": 2,
+      "sample_id": "validation_0000_snr00_rep0000",
+      "loss": null,
+      "seconds": 0.0648949000169523
+    }
+  ]
+}

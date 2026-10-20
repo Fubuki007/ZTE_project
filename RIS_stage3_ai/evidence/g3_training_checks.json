@@ -1,0 +1,75 @@
+{
+  "scope": "LOCAL_SMOKE_NOT_FORMAL_TRAINING_OR_RMSE",
+  "suite": "training",
+  "passed": true,
+  "date": "2026-10-20T12:21:27.524581+08:00",
+  "python": "3.12.14 (main, Aug 25 2026, 14:01:42) [MSC v.1944 64 bit (AMD64)]",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "torch": "2.8.0+cpu",
+  "numpy": "2.2.6",
+  "scipy": "1.15.3",
+  "device": "cpu",
+  "tests_run": 7,
+  "tests": [
+    {
+      "test": "RIS_stage3_ai.test_training.TrainingTests.test_actual_training_changes_parameters_and_covers_validation",
+      "status": "PASS",
+      "seconds": 0.05154809996020049
+    },
+    {
+      "test": "RIS_stage3_ai.test_training.TrainingTests.test_checkpoint_corruption_and_identity_change_are_rejected",
+      "status": "PASS",
+      "seconds": 0.20598129997961223
+    },
+    {
+      "test": "RIS_stage3_ai.test_training.TrainingTests.test_failed_commit_replays_step_without_advancing_saved_optimizer",
+      "status": "PASS",
+      "seconds": 3.5043219000217505
+    },
+    {
+      "test": "RIS_stage3_ai.test_training.TrainingTests.test_resume_exactly_matches_uninterrupted_training",
+      "status": "PASS",
+      "seconds": 2.8789339000359178
+    },
+    {
+      "test": "RIS_stage3_ai.test_training.TrainingTests.test_selection_can_keep_initial_model_and_penalizes_failed_samples",
+      "status": "PASS",
+      "seconds": 0.0004879999905824661
+    },
+    {
+      "test": "RIS_stage3_ai.test_training.TrainingTests.test_smoke_and_incomplete_data_cannot_be_formal_models",
+      "status": "PASS",
+      "seconds": 0.2025529000093229
+    },
+    {
+      "test": "RIS_stage3_ai.test_training.TrainingTests.test_validation_retains_physical_failure_and_propagates_infrastructure_failure",
+      "status": "PASS",
+      "seconds": 0.03417339996667579
+    }
+  ],
+  "seconds": 12.19288480002433,
+  "source_unchanged_during_checks": true,
+  "source_sha256": {
+    "RIS_stage3_ai/__init__.py": "590918098130cdfb07f2f9d8cba5e8b33df243b816ce1d0edf36ccd9cc9b2769",
+    "RIS_stage3_ai/context.py": "0b7546339ca5c06e7fff3b14b75775c801c076dad1e482933c5eda2b25c172ac",
+    "RIS_stage3_ai/generate_dataset.py": "4d2894a3f03535964415f8e467f09bf5fbb0c82a988be9b6e9757eb04413c08c",
+    "RIS_stage3_ai/physics_numpy.py": "5ecbdd66c12a3ce60e62e15da098879db44acd5a3410144de4f6bde93f9743a7",
+    "RIS_stage3_ai/physics_torch.py": "4fd468e55c9aed1edf6149e32e228bf20bcb1ead7657a366f8778fbc5709dc14",
+    "RIS_stage3_ai/protocol.py": "a593c31b7163c81a8b1e0c122511a77bb0bb936682888a18418a77df5d1cbed6",
+    "RIS_stage3_ai/repair.py": "0b4efa601d65afb1b6578fd69d8505a24edfa9948d3fdc21acb135be2ad47a17",
+    "RIS_stage3_ai/run_checks.py": "2fd502c7455f64817f8337c3a55915cd0631a416756eb40773b738f715356304",
+    "RIS_stage3_ai/scenes.py": "7e01b6897616e9742214f8edbab6c1519e7a7373817eeece6da0418ecc72e515",
+    "RIS_stage3_ai/storage.py": "33480ba3bd405b198880ed3dcc106bc4e1c3c1ae027f206233956b065c9e580e",
+    "RIS_stage3_ai/test_dataset.py": "76335cbf33ff5bd86f561df18ea51de2bec206711c5106841e99ed020e8c9146",
+    "RIS_stage3_ai/test_design.py": "fe3743699226216120cb69927fd770b66c228a1fad0ebcdcdbc9dae267d6e84d",
+    "RIS_stage3_ai/test_training.py": "21467624a6a3abf87d193a0fbd2a89c4a579d8335ce40e1c11e8bc5ad1f24b27",
+    "RIS_stage3_ai/train.py": "20cf912ca1aefe560f2dd330b1768e2bc5299d134c9a5ed3e20d6e2d4470c293",
+    "RIS_stage3_ai/unfolded_design.py": "f9dafdb5f043c637e6af373906b1200e7886b75b78f6482af3d924cc315094ee",
+    "RIS_stage3/stage3_model.py": "f1fd1e4e3d611f38e05266f682fd3ff18bfd22d27ebf3bdbfb70e2a8580d150c",
+    "RIS_stage3/streaming.py": "5a30923cdff9055789614e46270fd937cd071725aaf5ee1272c40aa22eb744bb",
+    "RIS_stage3_ai/requirements.txt": "719fbba16289ea0cad49910db89920315793ff36f28ba81f58815dd5734bb7c3",
+    "RIS_stage3_ai/experiment_v1.json": "0103e651c70a442ade612c3de3d5e4e108c39fd72792dd42988a0c217cfd8acf",
+    "RIS_stage3_ai/training_v1.json": "41f4361a46bc0cdaa81462ffdf3990b29d132ec96616687d0d4ae5c917b56c7b"
+  },
+  "transcript": "test_actual_training_changes_parameters_and_covers_validation (RIS_stage3_ai.test_training.TrainingTests.test_actual_training_changes_parameters_and_covers_validation) ... ok\ntest_checkpoint_corruption_and_identity_change_are_rejected (RIS_stage3_ai.test_training.TrainingTests.test_checkpoint_corruption_and_identity_change_are_rejected) ... ok\ntest_failed_commit_replays_step_without_advancing_saved_optimizer (RIS_stage3_ai.test_training.TrainingTests.test_failed_commit_replays_step_without_advancing_saved_optimizer) ... ok\ntest_resume_exactly_matches_uninterrupted_training (RIS_stage3_ai.test_training.TrainingTests.test_resume_exactly_matches_uninterrupted_training) ... ok\ntest_selection_can_keep_initial_model_and_penalizes_failed_samples (RIS_stage3_ai.test_training.TrainingTests.test_selection_can_keep_initial_model_and_penalizes_failed_samples) ... ok\ntest_smoke_and_incomplete_data_cannot_be_formal_models (RIS_stage3_ai.test_training.TrainingTests.test_smoke_and_incomplete_data_cannot_be_formal_models) ... ok\ntest_validation_retains_physical_failure_and_propagates_infrastructure_failure (RIS_stage3_ai.test_training.TrainingTests.test_validation_retains_physical_failure_and_propagates_infrastructure_failure) ... ok\n\n----------------------------------------------------------------------\nRan 7 tests in 12.152s\n\nOK\n"
+}

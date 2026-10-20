@@ -1,0 +1,26 @@
+{
+  "schema": 1,
+  "status": "PREDECLARED_NOT_FORMALLY_RUN",
+  "epochs": 20,
+  "continuous_epochs": 5,
+  "learning_rate": 0.01,
+  "gradient_clip_norm": 5.0,
+  "optimizer": "Adam",
+  "batch_size": 1,
+  "validation_every_epoch": true,
+  "selection": "fewest_failures_then_mean_repaired_min_illumination",
+  "include_initial_model_in_selection": true,
+  "checkpoint_every_sample": true,
+  "network": {
+    "layers": 6,
+    "temperature": 0.03,
+    "qos_weight": 5.0,
+    "initial_w_step": 0.1,
+    "initial_phase_step": 0.2,
+    "max_w_step": 0.5,
+    "max_phase_step": 0.5,
+    "gradient_epsilon": 1e-12
+  },
+  "repair": {"ao": 1, "sca": 1, "phase_sweeps": 1},
+  "fallback": {"ao": 3, "sca": 3, "phase_sweeps": 2}
+}

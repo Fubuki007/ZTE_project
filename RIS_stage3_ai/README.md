@@ -12,8 +12,10 @@
 - `protocol.py` / `scenes.py`：全量物理配置校验、训练/验证/测试场景隔离、可重现噪声种子；正式计算限制在服务器 jzm。
 - `storage.py` / `generate_dataset.py`：原子 JSON、进程独占写锁、真实 DD 回波与粗估计、逐样本保存/校验/续跑；只生成训练和验证的粗输入。
 - `test_dataset.py`：真实粗估计链路、同噪声配对、分场景隔离、故障/断点/损坏检测，共 8 项本地检查。
+- `train.py` / `training_v1.json`：完整训练、验证集选模、逐样本模型/Adam/随机状态恢复；预先声明预算，拒绝不完整或身份冲突的模型。
+- `test_training.py`：真实小规模参数更新、精确恢复、提交中断、验证选模和模型隔离，共 7 项本地检查。
 
-G3 的数据脚本已实现，使用说明见 [G3_DATA.md](G3_DATA.md)。正式训练、完整 RMSE 比较、服务器启动与作图脚本仍待实现。当前网络初始化或本地四步参数更新测试都不代表正式训练完成。
+G3 的数据、训练与验证选模脚本已实现，使用说明见 [G3_DATA.md](G3_DATA.md) 和 [G3_TRAINING.md](G3_TRAINING.md)。完整 RMSE 比较、服务器启动与作图脚本仍待实现。当前本地冒烟训练不代表服务器正式训练完成，也不能证明 RMSE 改善。
 
 ## 本地运行（仅数学与冒烟检查）
 
@@ -24,6 +26,7 @@ uv venv --python .venv-stage3/Scripts/python.exe .venv-stage3-ai
 uv pip install --python .venv-stage3-ai/Scripts/python.exe -r RIS_stage3_ai/requirements.txt
 .venv-stage3-ai/Scripts/python.exe -X utf8 -m RIS_stage3_ai.run_checks
 .venv-stage3-ai/Scripts/python.exe -X utf8 -m RIS_stage3_ai.run_checks --suite dataset
+.venv-stage3-ai/Scripts/python.exe -X utf8 -m RIS_stage3_ai.run_checks --suite training
 ```
 
 已有环境时不要重复创建；后续直接执行检查命令。服务器单独使用 Python 3.11 AI 环境；CUDA wheel、设备与驱动信息将在部署时记录。

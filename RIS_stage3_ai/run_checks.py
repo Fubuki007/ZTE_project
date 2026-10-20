@@ -44,18 +44,22 @@ class RecordedResult(unittest.TextTestResult):
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--suite', choices=('design', 'dataset'), default='design')
+    parser.add_argument('--suite', choices=('design', 'dataset', 'training'), default='design')
     parser.add_argument('--output', type=Path)
     args = parser.parse_args()
-    if args.suite == 'dataset':
+    if args.suite == 'training':
+        from . import test_training
+        module = test_training
+    elif args.suite == 'dataset':
         from . import test_dataset
         module = test_dataset
     else:
         module = test_design
     if args.output is None:
-        args.output = Path('RIS_stage3_ai/evidence')/('g3_dataset_checks.json' if args.suite == 'dataset' else 'g2_design_checks.json')
+        args.output = Path('RIS_stage3_ai/evidence')/dict(design='g2_design_checks.json', dataset='g3_dataset_checks.json', training='g3_training_checks.json')[args.suite]
     root = Path(__file__).resolve().parent.parent
     files = sorted((root/'RIS_stage3_ai').glob('*.py'))+[root/'RIS_stage3/stage3_model.py', root/'RIS_stage3/streaming.py', root/'RIS_stage3_ai/requirements.txt', root/'RIS_stage3_ai/experiment_v1.json']
+    files += [root/'RIS_stage3_ai/training_v1.json']
     hashes_before = {str(p.relative_to(root)).replace('\\', '/'): hashlib.sha256(p.read_bytes()).hexdigest() for p in files}
     stream = io.StringIO()
     started = time.perf_counter()
