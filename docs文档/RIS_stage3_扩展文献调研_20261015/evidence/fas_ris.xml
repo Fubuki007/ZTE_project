@@ -1,0 +1,620 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<feed xmlns:opensearch="http://a9.com/-/spec/opensearch/1.1/" xmlns:arxiv="http://arxiv.org/schemas/atom" xmlns="http://www.w3.org/2005/Atom">
+  <id>https://arxiv.org/api/3yvXUsMwuwLl4vumjk2gnDpau5M</id>
+  <title>arXiv Query: search_query=all:"RIS" AND (all:"fluid antenna" OR all:"movable antenna")&amp;id_list=&amp;start=0&amp;max_results=25</title>
+  <updated>2026-10-15T13:54:16Z</updated>
+  <link href="https://arxiv.org/api/query?search_query=all:%22RIS%22+AND+(all:%22fluid+antenna%22+OR+all:%22movable+antenna%22)&amp;start=0&amp;max_results=25&amp;id_list=" type="application/atom+xml"/>
+  <opensearch:itemsPerPage>25</opensearch:itemsPerPage>
+  <opensearch:totalResults>54</opensearch:totalResults>
+  <opensearch:startIndex>0</opensearch:startIndex>
+  <entry>
+    <id>http://arxiv.org/abs/2311.06501v1</id>
+    <title>Sum-Rate Optimization for RIS-Aided Multiuser Communications with Movable Antenna</title>
+    <updated>2023-11-11T07:44:41Z</updated>
+    <link href="https://arxiv.org/abs/2311.06501v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2311.06501v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Reconfigurable intelligent surface (RIS) is known as a promising technology to improve the performance of wireless communication networks, which has been extensively studied. Movable antenna (MA) is a novel technology that fully exploits the antenna position for enhancing the channel capacity. In this paper, we propose a new RIS-aided multiuser communication system with MAs. The sum-rate is maximized by jointly optimizing the beamforming, the reflection coefficient (RC) values of RIS and the positions of MAs. A fractional programming-based iterative algorithm is proposed to solve the formulated non-convex problem, considering three assumptions for the RIS. Numerical results are presented to verify the effectiveness of the proposed algorithm and the superiority of the proposed MA-based system in terms of sum-rate.</summary>
+    <category term="eess.SP" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2023-11-11T07:44:41Z</published>
+    <arxiv:comment>5 pages</arxiv:comment>
+    <arxiv:primary_category term="eess.SP"/>
+    <author>
+      <name>Yunan Sun</name>
+    </author>
+    <author>
+      <name>Hao Xu</name>
+    </author>
+    <author>
+      <name>Chongjun Ouyang</name>
+    </author>
+    <author>
+      <name>Hongwen Yang</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2606.11519v1</id>
+    <title>Joint Movable Antenna Positioning and RIS Partitioning for Sum-Rate Maximization</title>
+    <updated>2026-06-09T23:40:05Z</updated>
+    <link href="https://arxiv.org/abs/2606.11519v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2606.11519v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>This paper investigates the utility of the movable antenna (MA) and reconfigurable intelligent surface (RIS) framework for downlink wireless communications. In the considered scenario, a base station (BS) is equipped with two sub-arrays of MAs transmits signals to the users via the RIS. By jointly exploiting the antenna-positioning flexibility of MAs and the RIS element selection capability, the proposed joint MA-RIS framework introduces additional design degrees of freedom to enhance desired signals and mitigate inter-user interference, thereby maximizing the network sum-rate. To this end, we formulate a joint optimization problem involving MA positioning, sub-array beamforming, and RIS element selection, subject to the minimum antenna separation and transmit power constraints. The resulting problem is highly non-convex and challenging to solve directly. To address this issue, an alternating optimization framework is developed that decomposes the problem into three tractable subproblems. Specifically, zero-forcing beamforming is employed for transmit beamformer design, a low-complexity one-dimensional search is derived for RIS element selection, and the MA positioning problem is solved using block coordinate descent (BCD) and convex optimization techniques implemented via CVX. Simulation results demonstrate that the proposed joint MA-RIS framework significantly improves the achievable sum-rate compared with conventional fixed MAs and benchmark schemes with random configurations.</summary>
+    <category term="cs.IT" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-06-09T23:40:05Z</published>
+    <arxiv:comment>6 pages, 4 figures, conference</arxiv:comment>
+    <arxiv:primary_category term="cs.IT"/>
+    <author>
+      <name>Mohammed Saif</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2407.03228v2</id>
+    <title>Movable Antenna-enabled RIS-aided Integrated Sensing and Communication</title>
+    <updated>2024-09-11T16:18:43Z</updated>
+    <link href="https://arxiv.org/abs/2407.03228v2" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2407.03228v2" rel="related" type="application/pdf" title="pdf"/>
+    <summary>In this paper, we investigate a movable antenna (MA)-aided integrated sensing and communication (ISAC) system, where a reconfigurable intelligent surface (RIS) is employed to enhance wireless communication and sensing performance in dead zones. Specifically, this paper aims to maximize the minimum beampattern gain at the RIS by jointly optimizing beamforming matrix at the base station (BS), the reflecting coefficients at the RIS and the positions of the MAs, subject to signal-to-interference-plus-noise ratio (SINR) constraint for the users and maximum transmit power at the BS. To tackle this non-convex optimization problem, we propose an alternating optimization (AO) algorithm and employ semidefinite relaxation (SDR), sequential rank-one constraint relaxation (SRCR) and successive convex approximation (SCA) techniques. Numerical results indicate that the MA and RIS-aided ISAC system outperforms conventional fixed position antenna (FPA) and RIS-aided systems. In addition, the application of MAs can reduce the similarity of user channels and enhance channel gain in the ISAC system.</summary>
+    <category term="eess.SP" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2024-07-03T15:55:27Z</published>
+    <arxiv:comment>14 pages, 11 figures</arxiv:comment>
+    <arxiv:primary_category term="eess.SP"/>
+    <author>
+      <name>Haisu Wu</name>
+    </author>
+    <author>
+      <name>Hong Ren</name>
+    </author>
+    <author>
+      <name>Cunhua Pan</name>
+    </author>
+    <author>
+      <name>Yang Zhang</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2512.23242v2</id>
+    <title>Sum Rate optimization for RIS-Aided RSMA system with Movable Antenna</title>
+    <updated>2026-03-10T07:24:57Z</updated>
+    <link href="https://arxiv.org/abs/2512.23242v2" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2512.23242v2" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Rate-Splitting Multiple Access (RSMA) is a key enabling technique for sixth-generation (6G) wireless systems due to its powerful interference management, and Reconfigurable Intelligent Surface (RIS) improves communication performance by shaping wireless propagation. However, conventional RSMA--RIS architectures employ fixed antennas, limiting spatial degrees of freedom and system performance. To address this, we propose a movable-antenna (MA) assisted RSMA--RIS framework and formulate a sum-rate maximization problem that jointly optimizes the transmit beamforming matrix, RIS reflection matrix, common-rate partition, and MA positions. After yielding a closed-form solution for common rate splitting, the problem is transformed via fractional programming (FP). Using Karush--Kuhn--Tucker (KKT) conditions, we give iterative updates for Lagrange multipliers and beamforming matrix, obtain the RIS reflection matrix via the dual problem, and determine optimal antenna positions via gradient ascent. Numerical results show that with the existence of RIS, integrating MA yields additional gains of approximately 33.3\% for SDMA and 35.6\% for RSMA.</summary>
+    <category term="cs.IT" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2025-12-29T06:50:08Z</published>
+    <arxiv:primary_category term="cs.IT"/>
+    <author>
+      <name>Mingyu Hu</name>
+    </author>
+    <author>
+      <name>Nan Liu</name>
+    </author>
+    <author>
+      <name>Wei Kang</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2511.01575v1</id>
+    <title>Optimizing Movable Antenna Position and Transmissive RIS Phase for Efficient Base Station Design</title>
+    <updated>2025-11-03T13:45:04Z</updated>
+    <link href="https://arxiv.org/abs/2511.01575v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2511.01575v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Movable antennas (MA) and transmissive reconfigurable intelligent surfaces (TRIS) represent two innovative technologies that significantly enhance the flexibility of wireless communication systems. In this paper, we propose a novel and compact base station architecture that synergistically integrates a movable antenna with a transmissive RIS in the near field, enabling joint optimization of antenna positioning and TRIS phase adjustments. The proposed model compensates for phase quantization loss and significantly enhances signal strength, even with low-resolution (1-2 bit) phase shifters. Leveraging this framework, we systematically evaluate system performance as a function of TRIS size and antenna placement. Our results indicate that antenna mobility provides an additional degree of freedom to enhance the desired signal and achieve a higher SNR, particularly when combined with TRIS capabilities. These findings demonstrate that MA-TRIS integration offers a cost-effective and energy-efficient pathway toward compact 6G base stations, combining hardware simplicity with strong performance gains.</summary>
+    <category term="eess.SP" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.IT" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2025-11-03T13:45:04Z</published>
+    <arxiv:primary_category term="eess.SP"/>
+    <author>
+      <name>Marjan Boloori</name>
+    </author>
+    <author>
+      <name>Chu Li</name>
+    </author>
+    <author>
+      <name>Aydin Sezgin</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2402.16116v1</id>
+    <title>On Performance of RIS-Aided Fluid Antenna Systems</title>
+    <updated>2024-02-25T15:29:28Z</updated>
+    <link href="https://arxiv.org/abs/2402.16116v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2402.16116v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>This letter studies the performance of reconfigurable intelligent surface (RIS)-aided communications for a fluid antenna system (FAS) enabled receiver. Specifically, a fixed singleantenna base station (BS) transmits information through a RIS to a mobile user (MU) which is equipped with a planar fluid antenna in the absence of a direct link.We first analyze the spatial correlation structures among the positions (or ports) in the planar FAS, and then derive the joint distribution of the equivalent channel gain at the user by exploiting the central limit theorem. Furthermore, we obtain compact analytical expressions for the outage probability (OP) and delay outage rate (DOR). Numerical results illustrate that using FAS with only one activated port into the RIS-aided communication network can greatly enhance the performance, when compared to traditional antenna systems (TAS).</summary>
+    <category term="cs.IT" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="eess.SP" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2024-02-25T15:29:28Z</published>
+    <arxiv:primary_category term="cs.IT"/>
+    <author>
+      <name>Farshad Rostami Ghadi</name>
+    </author>
+    <author>
+      <name>Kai-Kit Wong</name>
+    </author>
+    <author>
+      <name>Wee Kiat New</name>
+    </author>
+    <author>
+      <name>Hao Xu</name>
+    </author>
+    <author>
+      <name>Ross Murch</name>
+    </author>
+    <author>
+      <name>Yangyang Zhang</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2504.07417v1</id>
+    <title>Secure Directional Modulation with Movable Antenna Array Aided by RIS</title>
+    <updated>2025-04-10T03:14:30Z</updated>
+    <link href="https://arxiv.org/abs/2504.07417v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2504.07417v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>In this paper, to fully exploit the performance gains from moveable antennas (MAs) and reconfigurable intelligent surface (RIS), a RIS-aided directional modulation \textcolor{blue}{(DM)} network with movable antenna at base station (BS) is established Based on the principle of DM, a BS equipped with MAs transmits legitimate information to a single-antenna user (Bob) while exploiting artificial noise (AN) to degrade signal reception at the eavesdropper (Eve). The combination of AN and transmission beamforming vectors is modeled as joint beamforming vector (JBV) to achieve optimal power allocation. The objective is to maximize the achievable secrecy rate (SR) by optimizing MAs antenna position, phase shift matrix (PSM) of RIS, and JBV. The limited movable range (MR) and discrete candidate positions of the MAs at the BS are considered, which renders the optimization problem non-convex. To address these challenges, an optimization method under perfect channel state information (CSI) is firstly designed, in which the MAs antenna positions are obtained using compressive sensing (CS) technology, and JBV and PSM are iteratively optimized. Then, the design method and SR performance under imperfect CSI is investigated. The proposed algorithms have fewer iterations and lower complexity. Simulation results demonstrate that MAs outperform fixed-position antennas in SR performance when there is an adequately large MR available.</summary>
+    <category term="eess.SP" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2025-04-10T03:14:30Z</published>
+    <arxiv:primary_category term="eess.SP"/>
+    <author>
+      <name>Maolin Li</name>
+    </author>
+    <author>
+      <name>Jingdie Xin</name>
+    </author>
+    <author>
+      <name>Feng Shu</name>
+    </author>
+    <author>
+      <name>Xuehui Wang</name>
+    </author>
+    <author>
+      <name>Yongpeng Wu</name>
+    </author>
+    <author>
+      <name>Cunhua Pan</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2605.08610v1</id>
+    <title>Fluid Antennas Assisted RIS-NOMA Communication Networks</title>
+    <updated>2026-05-09T02:11:08Z</updated>
+    <link href="https://arxiv.org/abs/2605.08610v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2605.08610v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>This paper introduces a fluid antenna system (FAS) into reconfigurable intelligent surface (RIS) assisted non-orthogonal multiple access (NOMA) communication networks, where the non-orthogonal users are equipped with planar fluid antennas. Specifically, we formulate a sum rate maximization problem for FAS-RIS-NOMA networks, which jointly optimizes the fluid ports, the RIS deployment, and the phase shift matrix. To solve the resulting non-convex optimization problem involving highly coupled variables, an iterative algorithm based on alternating optimization is employed to decompose the original problem into three subproblems. Exhaustive search is employed for optimizing the fluid ports, particle swarm optimization is used for the RIS deployment, and semidefinite relaxation with successive convex approximation is adopted for optimizing the phase shift matrix. Finally, the simulation results show that: 1) compared with traditional antenna systems and orthogonal multiple access, the FAS-RIS-NOMA networks achieve higher system throughput under high signal-to-noise ratio conditions; and 2) by increasing the number of RIS elements and enlarging the FAS size, the sum rate of FAS-RIS-NOMA networks can be significantly enhanced.</summary>
+    <category term="cs.IT" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-05-09T02:11:08Z</published>
+    <arxiv:primary_category term="cs.IT"/>
+    <author>
+      <name>Xinwei Yue</name>
+    </author>
+    <author>
+      <name>He Geng</name>
+    </author>
+    <author>
+      <name>Jingjing Zhao</name>
+    </author>
+    <author>
+      <name>Xianli Gong</name>
+    </author>
+    <author>
+      <name>Aryan Kaushik</name>
+    </author>
+    <author>
+      <name>Arumugam Nallanathan</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2607.25924v1</id>
+    <title>Secure Energy-Efficient Uplink Transmission in Movable-Element RIS-aided Systems with Movable Antennas and Artificial Noise</title>
+    <updated>2026-07-28T16:15:03Z</updated>
+    <link href="https://arxiv.org/abs/2607.25924v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2607.25924v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Secure energy efficiency (SEE) has emerged as a key performance metric for next-generation wireless networks, where energy sustainability and information security must be jointly guaranteed. This paper investigates secure uplink transmission in a full-duplex (FD) base station (BS) system equipped with movable antennas (MAs) and assisted by a movable-element reconfigurable intelligent surface (ME-RIS) in the presence of multiple cooperative passive eavesdroppers. The objective is to maximize SEE by jointly optimizing the users' transmit powers, BS receive postcoders, artificial noise (AN) transmit power and beamforming, RIS phase shifts, and the two-dimensional positions of both the BS antennas and RIS elements. The resulting optimization problem is highly nonconvex due to the fractional SEE objective, coupled secrecy-rate expressions, residual self-interference (SI), unit-modulus RIS phase-shift constraints, movable-position constraints, inter-element spacing requirements, and the nonlinear dependence of the channels on the movable antenna and RIS-element positions. To address these challenges, we propose a hybrid gradient-based meta-learning (H-GML) framework. In the proposed method, the BS receive postcoders and AN direction are updated using closed-form solutions derived from generalized Rayleigh quotient formulations, while the remaining coupled variables are updated by neural meta-optimizers that learn gradient-based update directions directly from the SEE optimization objective without requiring offline labeled training data. Simulation results show that the proposed H-GML design achieves better performance than the AO benchmark and significantly outperforms fixed-geometry, random RIS, no-AN, and no-Eve-knowledge baselines.</summary>
+    <category term="eess.SP" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-07-28T16:15:03Z</published>
+    <arxiv:primary_category term="eess.SP"/>
+    <author>
+      <name>Ayda Nodel Hokmabadi</name>
+    </author>
+    <author>
+      <name>Mohamed Elhattab</name>
+    </author>
+    <author>
+      <name>Chadi Assi</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2604.18138v1</id>
+    <title>Semi-Blind Receivers for RIS-Aided Fluid Antenna Systems</title>
+    <updated>2026-04-20T12:05:17Z</updated>
+    <link href="https://arxiv.org/abs/2604.18138v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2604.18138v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Reconfigurable intelligent surfaces (RISs) and fluid antennas (FAs) are key technologies for enhancing spatial degrees of freedom in future wireless networks. However, channel acquisition in RIS-aided FA systems is challenging as cascaded links depend on time-varying antenna-port selections and RIS configurations, leading to high training overhead in conventional pilot-based methods. We propose a semi-blind estimation framework for this joint architecture to estimate channels and symbols concurrently. Two hierarchical transmission protocols are introduced, resulting in distinct tensor models. Protocol 1 uses a two-time-scale structure yielding a PARAFAC (PF) model, while Protocol 2 employs a single-time-scale structure with blockwise spatial variations, leading to a Nested PARAFAC2 (NPF) model. For both, we develop semi-blind receivers based on trilinear alternating least squares to jointly estimate user-to-RIS channels, RIS-to-BS channels, and transmitted symbols by exploiting spatio-temporal diversity from FA and RIS reconfiguration. We derive identifiability conditions and computational complexity, revealing a fundamental trade-off: the PF receiver (Protocol 1) more aggressively exploits joint RIS/FA reconfiguration for stronger robustness, whereas the NPF receiver (Protocol 2) offers a flexible, lower-complexity alternative. Simulations show the proposed receivers achieve accurate recovery with significantly reduced training overhead, demonstrating the effectiveness of tensor-based semi-blind processing for RIS-aided fluid antenna communications.</summary>
+    <category term="eess.SP" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-04-20T12:05:17Z</published>
+    <arxiv:primary_category term="eess.SP"/>
+    <author>
+      <name>Josué V. de Araújo</name>
+    </author>
+    <author>
+      <name>Gilderlan T. de Araújo</name>
+    </author>
+    <author>
+      <name>André L. F. de Almeida</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2502.09023v1</id>
+    <title>Joint Transceiver Design for RIS Enhanced Dual-Functional Radar-Communication with Movable Antenna</title>
+    <updated>2025-02-13T07:20:40Z</updated>
+    <link href="https://arxiv.org/abs/2502.09023v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2502.09023v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Movable antennas (MAs) have shown significant potential in enhancing the performance of dual-functional radar-communication (DFRC) systems. In this paper, we investigate the MA-based transceiver design for DFRC systems, where a reconfigurable intelligent surface (RIS) is employed to enhance the communication quality in dead zones. To enhance the radar sensing performance, we formulate an optimization problem to maximize the radar signal-to-interference-plus-noise ratio (SINR) by jointly optimizing the beamforming vectors, receiving filter, antenna positions, and RIS reflecting coefficients. To tackle this challenging problem, we develop a fractional programming-based optimization framework, incorporating block coordinate descent (BCD), successive convex approximation (SCA), and penalty techniques. Simulation results demonstrate that the proposed method can significantly improve the radar SINR and achieve a satisfactory balance between the radar and communication performance compared with existing benchmark schemes.</summary>
+    <category term="eess.SP" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2025-02-13T07:20:40Z</published>
+    <arxiv:primary_category term="eess.SP"/>
+    <author>
+      <name>Ran Yang</name>
+    </author>
+    <author>
+      <name>Zheng Dong</name>
+    </author>
+    <author>
+      <name>Peng Cheng</name>
+    </author>
+    <author>
+      <name>Yue Xiu</name>
+    </author>
+    <author>
+      <name>Yan Li</name>
+    </author>
+    <author>
+      <name>Ning Wei</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2511.11193v2</id>
+    <title>Blockage-aware Hierarchical Codebook Design for RIS-Assisted Movable Antenna Systems</title>
+    <updated>2026-03-19T12:31:55Z</updated>
+    <link href="https://arxiv.org/abs/2511.11193v2" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2511.11193v2" rel="related" type="application/pdf" title="pdf"/>
+    <summary>In this paper, we propose a novel blockage-aware hierarchical beamforming framework for movable antenna (MA) systems operating at millimeter-wave (mm-Wave) frequencies. While existing works on MA systems have demonstrated performance gains over conventional systems, they often neglect the design of specialized codebooks to leverage MA's unique capabilities and address the challenges of increased energy consumption and latency inherent to MA systems. To address these aspects, we first integrate blockage detection into the codebook design process based on the Gerchberg-Saxton (GS) algorithm, significantly reducing inefficiencies due to beam evaluations done in blocked directions. Then, we use a two-stage approach to reduce the complexity of the joint beamforming and Reconfigurable Intelligent Surfaces (RIS) optimization problem. The simulations demonstrate that the proposed adaptive codebook successfully improves the Energy Efficiency (EE) and reduces the beam training overhead, substantially boosting the practical deployment potential of RIS-assisted MA systems in future wireless networks.</summary>
+    <category term="eess.SP" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2025-11-14T11:46:25Z</published>
+    <arxiv:comment>17 pages</arxiv:comment>
+    <arxiv:primary_category term="eess.SP"/>
+    <author>
+      <name>Yan Zhang</name>
+    </author>
+    <author>
+      <name>Indrakshi Dey</name>
+    </author>
+    <author>
+      <name>Nicola Marchetti</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2408.14969v1</id>
+    <title>Secrecy Performance Analysis of RIS-Aided Fluid Antenna Systems</title>
+    <updated>2024-08-27T11:22:14Z</updated>
+    <link href="https://arxiv.org/abs/2408.14969v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2408.14969v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>This paper examines the impact of emerging fluid antenna systems (FAS) on reconfigurable intelligent surface (RIS)-aided secure communications. Specifically, we consider a classic wiretap channel, where a fixed-antenna transmitter sends confidential information to an FAS-equipped legitimate user with the help of an RIS, while an FAS-equipped eavesdropper attempts to decode the message. To evaluate the proposed wireless scenario, we first introduce the cumulative distribution function (CDF) and probability density function (PDF) of the signal-to-noise ratio (SNR) at each node, using the central limit theorem and the Gaussian copula function. We then derive a compact analytical expression for the secrecy outage probability (SOP). Our numerical results reveal how the incorporation of FAS and RIS can significantly enhance the performance of secure communications.</summary>
+    <category term="cs.IT" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="eess.SP" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2024-08-27T11:22:14Z</published>
+    <arxiv:primary_category term="cs.IT"/>
+    <author>
+      <name>Farshad Rostami Ghadi</name>
+    </author>
+    <author>
+      <name>Kai-Kit Wong</name>
+    </author>
+    <author>
+      <name>Masoud Kaveh</name>
+    </author>
+    <author>
+      <name>F. Javier Lopez-Martinez</name>
+    </author>
+    <author>
+      <name>Wee Kiat New</name>
+    </author>
+    <author>
+      <name>Hao Xu</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2504.19511v1</id>
+    <title>Novel Selection Schemes for Multi-RIS-Assisted Fluid Antenna Systems</title>
+    <updated>2025-04-28T06:19:39Z</updated>
+    <link href="https://arxiv.org/abs/2504.19511v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2504.19511v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>This paper investigates the performance of a multi-reconfigurable intelligent surface (RIS)-assisted fluid antenna system (FAS). In this system, a single-antenna transmitter communicates with a receiver equipped with a planar FAS through multiple RISs in the absence of a direct link. To enhance the system performance, we propose two novel selection schemes: \textit{Max-Max} and \textit{Max-Sum}. In particular, the \textit{Max-Max} scheme selects the best combination of a single RIS and a single fluid antenna (FA) port that offers the maximum signal-to-noise ratio (SNR) at the receiver. On the other hand, the \textit{Max-Sum} scheme selects one RIS while activating all FA ports providing the highest overall SNR. We conduct a detailed performance analysis of the proposed system under Nakagami-$m$ fading channels. First, we derive the cumulative distribution function (CDF) of the SNR for both selection schemes. The derived CDF is then used to obtain approximate theoretical expressions for the outage probability (OP) and the delay outage rate (DOR). Next, a high-SNR asymptotic analysis is carried out to provide further insights into the system performance in terms of diversity and coding gains. Finally, the analytical results are validated through extensive Monte Carlo simulations, demonstrating their accuracy and providing a comprehensive understanding of the system's performance.</summary>
+    <category term="eess.SP" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2025-04-28T06:19:39Z</published>
+    <arxiv:comment>10 pages</arxiv:comment>
+    <arxiv:primary_category term="eess.SP"/>
+    <author>
+      <name>Mahmoud Aldababsa</name>
+    </author>
+    <author>
+      <name>Taissir Y. Elganimi</name>
+    </author>
+    <author>
+      <name>Mahmoud A. Albreem</name>
+    </author>
+    <author>
+      <name>Saeed Abdallah</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2601.22109v1</id>
+    <title>Towards Joint Optimization for UAV-Integrated RIS-Assisted Fluid Antenna Systems</title>
+    <updated>2026-01-29T18:38:38Z</updated>
+    <link href="https://arxiv.org/abs/2601.22109v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2601.22109v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Unmanned aerial vehicles (UAVs) integrated into cellular networks face significant challenges from air-to-ground interference. To address this, we propose a downlink UAV communication system that leverages a fluid antenna system (FAS)- assisted reconfigurable intelligent surface (RIS) to enhance signal quality. By jointly optimizing the FAS port positions and RIS phase shifts, we maximize the achievable rate. The resulting nonconvex optimization problem is solved using successive convex approximation (SCA) based on second-order cone programming (SOCP), which reformulates the constraints into a tractable form. Simulation results show that the proposed algorithm significantly improves both outage probability and achievable rate over conventional fixed-position antenna (FPA) schemes, with particularly large gains in large-scale RIS configurations. Moreover, the algorithm converges rapidly, making it suitable for real-time applications</summary>
+    <category term="eess.SP" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-01-29T18:38:38Z</published>
+    <arxiv:comment>11 pages, 8 figures</arxiv:comment>
+    <arxiv:primary_category term="eess.SP"/>
+    <arxiv:journal_ref>IEEE Transactions on Vehicular Technology, 2026</arxiv:journal_ref>
+    <author>
+      <name>Ali Reda</name>
+    </author>
+    <author>
+      <name>Tamer Mekkawy</name>
+    </author>
+    <author>
+      <name>Theodoros A. Tsiftsis</name>
+    </author>
+    <author>
+      <name>Chan-Byoung Chae</name>
+    </author>
+    <author>
+      <name>Kai-Kit Wong</name>
+    </author>
+    <arxiv:doi>10.1109/TVT.2026.3658088</arxiv:doi>
+    <link rel="related" href="https://doi.org/10.1109/TVT.2026.3658088" title="doi"/>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2503.06080v3</id>
+    <title>Fluid Antenna Meets RIS: Random Matrix Analysis and Two-Timescale Design for Multi-User Communications</title>
+    <updated>2025-09-26T03:22:18Z</updated>
+    <link href="https://arxiv.org/abs/2503.06080v3" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2503.06080v3" rel="related" type="application/pdf" title="pdf"/>
+    <summary>The reconfigurability of fluid antenna systems (FASs) and reconfigurable intelligent surfaces (RISs) provides significant flexibility in optimizing channel conditions by jointly adjusting the positions of fluid antennas and the phase shifts of RISs. However, it is challenging to acquire the instantaneous channel state information (CSI) for both fluid antennas and RISs, while frequent adjustment of antenna positions and phase shifts will significantly increase the system complexity. To tackle this issue, this paper investigates the two-timescale design for FAS-RIS multi-user systems with linear precoding, where only the linear precoder design requires instantaneous CSI of the end-to-end channel, while the FAS and RIS optimization relies on statistical CSI. The main challenge comes from the complex structure of channel and inverse operations in linear precoding, such as regularized zero-forcing (RZF) and zero-forcing (ZF). Leveraging on random matrix theory (RMT), we first investigate the fundamental limits of FAS-RIS systems with RZF/ZF precoding by deriving the ergodic sum rate (ESR). This result is utilized to determine the minimum number of selected antennas to achieve a given ESR. Based on the evaluation result, we propose an algorithm to jointly optimize the antenna selection, regularization factor of RZF, and phase shifts at the RIS. Numerical results validate the accuracy of performance evaluation and demonstrate that the performance gain brought by joint FAS and RIS design is more pronounced with a larger number of users.</summary>
+    <category term="cs.IT" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2025-03-08T06:06:48Z</published>
+    <arxiv:primary_category term="cs.IT"/>
+    <author>
+      <name>Xin Zhang</name>
+    </author>
+    <author>
+      <name>Dongfang Xu</name>
+    </author>
+    <author>
+      <name>Jingjing Wang</name>
+    </author>
+    <author>
+      <name>Shenghui Song</name>
+    </author>
+    <author>
+      <name>Derrick Wing Kwan Ng</name>
+    </author>
+    <author>
+      <name>Mérouane Debbah</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2501.09351v1</id>
+    <title>RIS-Aided Fluid Antenna Array-Mounted UAV Networks</title>
+    <updated>2025-01-16T08:04:02Z</updated>
+    <link href="https://arxiv.org/abs/2501.09351v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2501.09351v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>This paper investigates reconfigurable intelligent surface (RIS)-assisted unmanned aerial vehicle (UAV) downlink networks with fluid antennas (FA), where RIS enables non-line-of-sight (NLoS) transmissions. Moreover, the FA is equipped on the UAV offering dynamic antenna position adjustment, enhancing spatial diversity besides UAV deployment. We aim at total downlink rate maximization while ensuring minimum user rate requirement. We consider joint optimization of active UAV beamforming, passive RIS beamforming, UAV deployment and FA position adjustment. To address the complex problem, we propose beamfomring for RIS/UAV and FA-UAV deployment (BRAUD) scheme by employing alternative optimization, successive convex approximation (SCA) and sequential rank-one constraint relaxation (SROCR) method for the decomposed subproblems. Simulation results demonstrate the effectiveness of RIS-FA-UAV, achieving the highest rate among existing architectures without FA/UAV/RIS deployment and without proper beamforming. Moreover, BRAUD achieves the highest rate among benchmarks of drop-rank method, heuristic optimizations and conventional zero-forcing beamforming as well as random method.</summary>
+    <category term="cs.IT" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="eess.SP" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2025-01-16T08:04:02Z</published>
+    <arxiv:comment>accepted by IEEE WCL</arxiv:comment>
+    <arxiv:primary_category term="cs.IT"/>
+    <author>
+      <name>Li-Hsiang Shen</name>
+    </author>
+    <author>
+      <name>Yi-Hsuan Chiu</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2601.08922v1</id>
+    <title>Joint Beamforming and Position Optimization for Movable-Antenna and Movable-Element RIS-Aided Full-Duplex 6G MISO Systems</title>
+    <updated>2026-01-13T19:01:55Z</updated>
+    <link href="https://arxiv.org/abs/2601.08922v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2601.08922v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Full-duplex communication substantially enhances spectral efficiency by enabling simultaneous transmission and reception on the same time-frequency resources. However, its practical deployment remains hindered by strong residual self-interference and inter-user interference, which severely degrade system performance. This work investigates a full-duplex MISO network that leverages movable-antenna base stations (MA-BS) and movable-element reconfigurable intelligent surfaces (ME-RIS) to overcome these limitations in next-generation 6G systems. Unlike conventional fixed-geometry architectures, the proposed framework jointly optimizes antenna and RIS element positions, together with RIS phase shifts, to strengthen desired links while suppressing interference. Our design objective is to maximize the system sum rate through the joint optimization of transmit and receive beamforming vectors, uplink transmit powers, RIS phase shifts, and the spatial locations of both the BS antennas and RIS elements. To solve this challenging nonconvex problem, an alternating optimization algorithm is developed, employing semidefinite relaxation for beamforming design and successive convex approximation for position optimization. Simulation results demonstrate that the proposed ME-RIS-assisted architecture with movable BS antennas offers substantial gains over conventional fixed-position full-duplex networks. These findings highlight the potential of integrating movable antennas with movable RIS elements as a key enabler for high-performance full-duplex operation in future 6G wireless systems.</summary>
+    <category term="eess.SP" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-01-13T19:01:55Z</published>
+    <arxiv:primary_category term="eess.SP"/>
+    <author>
+      <name>Ayda Nodel Hokmabadi</name>
+    </author>
+    <author>
+      <name>Chadi Assi</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2603.28559v1</id>
+    <title>Joint Energy Efficiency Optimization for Uplink Multiuser Movable Antenna-Based Wireless Systems Assisted by Movable-Element RIS</title>
+    <updated>2026-03-30T15:19:50Z</updated>
+    <link href="https://arxiv.org/abs/2603.28559v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2603.28559v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>This paper investigates energy efficiency (EE) optimization for an uplink multiuser system assisted by a movable-element reconfigurable intelligent surface (ME-RIS) and a base station equipped with movable antennas (MA-BS). We jointly optimize the uplink postcoder vectors, user transmit powers, RIS phase shift, and the positions of both the BS antennas and RIS elements to maximize the system EE. The resulting non-convex fractional problem is solved using an alternating optimization (AO) framework, where subproblems are handled via Dinkelbach's method combined with successive convex approximation (SCA). Simulation results show that the proposed scheme achieves significant EE gains over fixed-antenna BS and fixed-element RIS benchmarks.</summary>
+    <category term="eess.SP" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-03-30T15:19:50Z</published>
+    <arxiv:primary_category term="eess.SP"/>
+    <author>
+      <name>Ayda Nodel Hokmabadi</name>
+    </author>
+    <author>
+      <name>Mohamed Elhattab</name>
+    </author>
+    <author>
+      <name>Chadi Assi</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2506.07610v2</id>
+    <title>Robust Transceiver Design for RIS Enhanced Dual-Functional Radar-Communication with Movable Antenna</title>
+    <updated>2026-01-30T08:44:59Z</updated>
+    <link href="https://arxiv.org/abs/2506.07610v2" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2506.07610v2" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Movable antennas (MAs) have demonstrated significant potential in enhancing the performance of dual-functional radar-communication (DFRC) systems. In this paper, we explore an MA-aided DFRC system that utilizes a reconfigurable intelligent surface (RIS) to enhance signal coverage for communications in dead zones. To enhance the radar sensing performance in practical DFRC environments, we propose a unified robust transceiver design framework aimed at maximizing the minimum radar signal-to-interference-plus-noise ratio (SINR) in a cluttered environment. Our approach jointly optimizes transmit beamforming, receive filtering, antenna placement, and RIS reflecting coefficients under imperfect channel state information (CSI) for both sensing and communication channels. To deal with the channel uncertainty-constrained issue, we leverage the convex hull method to transform the primal problem into a more tractable form. We then introduce a two-layer block coordinate descent (BCD) algorithm, incorporating fractional programming (FP), successive convex approximation (SCA), S-Lemma, and penalty techniques to reformulate it into a series of semidefinite program (SDP) subproblems that can be efficiently solved. We provide a comprehensive analysis of the convergence and computational complexity for the proposed design framework. Simulation results demonstrate the robustness of the proposed method, and show that the MA-based design framework can significantly enhance the radar SINR performance while achieving an effective balance between the radar and communication performance.</summary>
+    <category term="eess.SP" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2025-06-09T10:23:12Z</published>
+    <arxiv:primary_category term="eess.SP"/>
+    <author>
+      <name>Ran Yang</name>
+    </author>
+    <author>
+      <name>Zheng Dong</name>
+    </author>
+    <author>
+      <name>Yue Xiu</name>
+    </author>
+    <author>
+      <name>Guangyi Liu</name>
+    </author>
+    <author>
+      <name>Wanting Lyu</name>
+    </author>
+    <author>
+      <name>Xiangxin Meng</name>
+    </author>
+    <author>
+      <name>Yan Li</name>
+    </author>
+    <author>
+      <name>Ning Wei</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2410.03426v1</id>
+    <title>Movable-Antenna Aided Secure Transmission for RIS-ISAC Systems</title>
+    <updated>2024-10-04T13:36:01Z</updated>
+    <link href="https://arxiv.org/abs/2410.03426v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2410.03426v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Integrated sensing and communication (ISAC) systems have the issue of secrecy leakage when using the ISAC waveforms for sensing, thus posing a potential risk for eavesdropping. To address this problem, we propose to employ movable antennas (MAs) and reconfigurable intelligent surface (RIS) to enhance the physical layer security (PLS) performance of ISAC systems, where an eavesdropping target potentially wiretaps the signals transmitted by the base station (BS). To evaluate the synergistic performance gain provided by MAs and RIS, we formulate an optimization problem for maximizing the sum-rate of the users by jointly optimizing the transmit/receive beamformers of the BS, the reflection coefficients of the RIS, and the positions of MAs at communication users, subject to a minimum communication rate requirement for each user, a minimum radar sensing requirement, and a maximum secrecy leakage to the eavesdropping target. To solve this non-convex problem with highly coupled variables, a two-layer penalty-based algorithm is developed by updating the penalty parameter in the outer-layer iterations to achieve a trade-off between the optimality and feasibility of the solution. In the inner-layer iterations, the auxiliary variables are first obtained with semi-closed-form solutions using Lagrange duality. Then, the receive beamformer filter at the BS is optimized by solving a Rayleigh-quotient subproblem. Subsequently, the transmit beamformer matrix is obtained by solving a convex subproblem. Finally, the majorization-minimization (MM) algorithm is employed to optimize the RIS reflection coefficients and the positions of MAs. Extensive simulation results validate the considerable benefits of the proposed MAs-aided RIS-ISAC systems in enhancing security performance compared to traditional fixed position antenna (FPA)-based systems.</summary>
+    <category term="cs.IT" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="eess.SP" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2024-10-04T13:36:01Z</published>
+    <arxiv:comment>13 pages</arxiv:comment>
+    <arxiv:primary_category term="cs.IT"/>
+    <author>
+      <name>Yaodong Ma</name>
+    </author>
+    <author>
+      <name>Kai Liu</name>
+    </author>
+    <author>
+      <name>Yanming Liu</name>
+    </author>
+    <author>
+      <name>Lipeng Zhu</name>
+    </author>
+    <author>
+      <name>Zhenyu Xiao</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2504.09178v1</id>
+    <title>Hybrid Beamforming for RIS-Assisted Multiuser Fluid Antenna Systems</title>
+    <updated>2025-04-12T10:55:53Z</updated>
+    <link href="https://arxiv.org/abs/2504.09178v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2504.09178v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Recent advances in reconfigurable antennas have led to the new concept of the fluid antenna system (FAS) for shape and position flexibility, as another degree of freedom for wireless communication enhancement. This paper explores the integration of a transmit FAS array for hybrid beamforming (HBF) into a reconfigurable intelligent surface (RIS)-assisted communication architecture for multiuser communications in the downlink, corresponding to the downlink RIS-assisted multiuser multiple-input single-output (MISO) FAS model (Tx RIS-assisted-MISO-FAS). By considering Rician channel fading, we formulate a sum-rate maximization optimization problem to alternately optimize the HBF matrix, the RIS phase-shift matrix, and the FAS position. Due to the strong coupling of multiple optimization variables, the multi-fractional summation in the sum-rate expression, the modulus-1 limitation of analog phase shifters and RIS, and the antenna position variables appearing in the exponent, this problem is highly non-convex, which is addressed through the block coordinate descent (BCD) framework in conjunction with semidefinite relaxation (SDR) and majorization-minimization (MM) methods. To reduce the computational complexity, we then propose a low-complexity grating-lobe (GL)-based telescopic-FAS (TFA) with multiple delicately deployed RISs under the sub-connected HBF architecture and the line-of-sight (LoS)-dominant channel condition, to allow closed-form solutions for the HBF and TFA position. Our simulation results illustrate that the former optimization scheme significantly enhances the achievable rate of the proposed system, while the GL-based TFA scheme also provides a considerable gain over conventional fixed-position antenna (FPA) systems, requiring statistical channel state information (CSI) only and with low computational complexity.</summary>
+    <category term="eess.SP" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2025-04-12T10:55:53Z</published>
+    <arxiv:primary_category term="eess.SP"/>
+    <author>
+      <name>Jiangong Chen</name>
+    </author>
+    <author>
+      <name>Yue Xiao</name>
+    </author>
+    <author>
+      <name>Zhendong Peng</name>
+    </author>
+    <author>
+      <name>Jing Zhu</name>
+    </author>
+    <author>
+      <name>Xia Lei</name>
+    </author>
+    <author>
+      <name>Christos Masouros</name>
+    </author>
+    <author>
+      <name>Kai-Kit Wong</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2606.00423v1</id>
+    <title>Joint Channel and Symbol Estimation for RIS-Assisted Fluid Antenna Systems</title>
+    <updated>2026-05-29T23:19:19Z</updated>
+    <link href="https://arxiv.org/abs/2606.00423v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2606.00423v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>This paper addresses joint channel and symbol estimation in reconfigurable intelligent surface (RIS)-aided multiuser uplink systems with fluid antennas (FAs) at the base station. We propose the Nested Tucker for Fluid Antenna Systems (NTFAS) protocol, in which FA port selection and user-dependent coding vary across blocks while the transmitted symbol matrix is shared across observations. This structure yields coupled Tucker models with common channel and data factors. A two-stage semi-blind bilinear alternating least squares (BALS) receiver is then developed to estimate the cascaded channel and symbols, and to separate the user-to-RIS and RIS-to-BS channels through the embedded PARAFAC structure. Simulations show that NTFAS improves cascaded-channel NMSE and spectral efficiency (SE) with respect to a competing semi-blind benchmark, while maintaining comparable BER performance.</summary>
+    <category term="eess.SP" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-05-29T23:19:19Z</published>
+    <arxiv:primary_category term="eess.SP"/>
+    <author>
+      <name>Josué V. de Araújo</name>
+    </author>
+    <author>
+      <name>Daniel C. Alcantara</name>
+    </author>
+    <author>
+      <name>Gilderlan T. de Araújo</name>
+    </author>
+    <author>
+      <name>André L. F. de Almeida</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2606.10190v1</id>
+    <title>Optimal Illumination via Joint Movement and Phase Optimization for Movable Antenna-RIS Configuration</title>
+    <updated>2026-06-08T21:28:29Z</updated>
+    <link href="https://arxiv.org/abs/2606.10190v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2606.10190v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Reconfigurable intelligent surfaces (RIS) enable programmable control of wireless propagation but remain vulnerable to persistent deep fades in static deployments. This paper introduces a Movable Antenna-enhanced RIS (MA-RIS) architecture where antenna elements physically reposition to sample independent spatial channels, enabling mobility-induced diversity. We model antenna motion using a Stochastic Differential Equation (SDE) framework capturing controlled drift and environmental diffusion. It^o calculus-based analysis characterizes steady-state antenna distributions, spatial decorrelation, and outage probability, revealing fundamental trade-offs between control strength and mobility randomness. To maximize long-term SNR while accounting for control overhead, we propose an overhead-aware Two-timescale framework separating slow antenna trajectory control from fast phase adaptation. The stochastic optimal control problem is solved via predictive approximation of the Hamilton-Jacobi-Bellman (HJB) formulation, enabling real-time implementation. Simulations validate theoretical predictions: the Two-timescale strategy achieves up to 36 dB steady-state SNR with remarkable stability, outperforming position-only control by up to 15 dB and uncontrolled baselines by over 30 dB. Despite experiencing a lower SNR than Active RIS, the proposed approach delivers up to 16 times higher energy efficiency (EE) across varying system scales, establishing a new paradigm of mobility-enabled channel adaptation for resilient wireless systems.</summary>
+    <category term="eess.SP" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-06-08T21:28:29Z</published>
+    <arxiv:primary_category term="eess.SP"/>
+    <author>
+      <name>Yan Zhang</name>
+    </author>
+    <author>
+      <name>Nicola Marchetti</name>
+    </author>
+    <author>
+      <name>Indrakshi Dey</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2603.04788v1</id>
+    <title>Adaptive Personalized Federated Reinforcement Learning for RIS-Assisted Aerial Relays in SAGINs with Fluid Antennas</title>
+    <updated>2026-03-05T04:08:41Z</updated>
+    <link href="https://arxiv.org/abs/2603.04788v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2603.04788v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Space-air-ground integrated networks (SAGINs) interconnect satellites, uncrewed aerial vehicles (UAVs), and ground devices to enable flexible and ubiquitous wireless services. The integration of reconfigurable intelligent surfaces (RISs) and fluid antenna systems (FASs) further enhances radio environment controllability. However, the tight integration of cross-layer facilities and radio enhancement technologies leads to pronounced environmental dynamics and heterogeneity, posing fundamental challenges for system modeling and optimization in large-scale SAGINs. This paper investigates a SAGIN in which low Earth orbit (LEO) satellite constellations communicate with multiple ground hotspots via RIS-assisted UAV relays, serving both FAS-equipped and conventional users. A system model is developed that explicitly captures satellite mobility, UAV trajectories, RIS phase control, and heterogeneous user reception capabilities. Accordingly, a multi-hotspot downlink rate maximization problem is studied, whose solvability is analyzed through a hierarchical Stackelberg game. To address heterogeneous and time-varying multi-hotspot environments, an adaptive personalized federated reinforcement learning (FRL) algorithm is proposed for adaptive optimization of UAV trajectories and RIS phase controls. Simulation results demonstrate superior performance and validate the effectiveness of personalization in dynamic heterogeneous SAGIN scenarios.</summary>
+    <category term="cs.NI" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-03-05T04:08:41Z</published>
+    <arxiv:comment>under review at IEEE Transactions on Mobile Computing</arxiv:comment>
+    <arxiv:primary_category term="cs.NI"/>
+    <author>
+      <name>Yuxuan Yang</name>
+    </author>
+    <author>
+      <name>Bin Lyu</name>
+    </author>
+    <author>
+      <name>Abbas Jamalipour</name>
+    </author>
+  </entry>
+</feed>

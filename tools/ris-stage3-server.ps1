@@ -1,6 +1,6 @@
 [CmdletBinding()]
 param(
-    [Parameter(Position=0)][ValidateSet('upload','run','status','fetch')][string]$Action='status',
+    [Parameter(Position=0)][ValidateSet('upload','run','status','fetch','metrics','metrics-status','fetch-metrics')][string]$Action='status',
     [ValidatePattern('^[A-Za-z0-9_]+$')][string]$RunName='results_full_mc100',
     [ValidateRange(1,10000)][int]$Mc=100,
     [ValidateRange(1,4)][int]$Workers=2,
@@ -39,6 +39,26 @@ switch($Action){
         Remote "cd $remote && .venv311/bin/python run_stage3.py --aggregate-only --partial --output $RunName"
         & scp @sshOptions "${target}:$remote/$RunName/angle_rmse_vs_snr.csv" "${target}:$remote/$RunName/angle_rmse_vs_snr.png" "${target}:$remote/$RunName/angle_rmse_vs_snr.svg" "${target}:$remote/$RunName/manifest.json" "${target}:$remote/$RunName/progress.json" $dest
         if($LASTEXITCODE -ne 0){throw 'Fetch failed'}
+        Write-Output "RESULTS=$dest"
+    }
+    metrics {
+        $script=Join-Path $localRoot 'RIS_stage3/collect_rmse.py'
+        & scp @sshOptions $script "${target}:$remote/collect_rmse.py"
+        if($LASTEXITCODE -ne 0){throw 'Metrics script upload failed'}
+        Remote "cd $remote && .venv311/bin/python -u collect_rmse.py --source $RunName > $RunName/range_velocity_metrics.log 2>&1 && cat $RunName/range_velocity_metrics.log"
+    }
+    'metrics-status' {
+        Remote "cd $remote && cat $RunName/range_velocity_metrics/state && cat $RunName/range_velocity_metrics/metrics_progress.json"
+    }
+    'fetch-metrics' {
+        $dest=Join-Path $localRoot "server-results/stage3/$RunName/range_velocity_metrics"
+        New-Item -ItemType Directory -Force -Path $dest | Out-Null
+        $names=@('range_rmse_vs_snr.csv','range_rmse_vs_snr.png','range_rmse_vs_snr.svg',
+                 'velocity_rmse_vs_snr.csv','velocity_rmse_vs_snr.png','velocity_rmse_vs_snr.svg',
+                 'per_sample_range_velocity_errors.csv','metrics_progress.json','state')
+        $sources=$names | ForEach-Object { "${target}:$remote/$RunName/range_velocity_metrics/$_" }
+        & scp @sshOptions @sources $dest
+        if($LASTEXITCODE -ne 0){throw 'Metrics fetch failed'}
         Write-Output "RESULTS=$dest"
     }
 }

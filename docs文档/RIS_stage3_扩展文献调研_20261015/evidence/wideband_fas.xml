@@ -1,0 +1,709 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<feed xmlns:opensearch="http://a9.com/-/spec/opensearch/1.1/" xmlns:arxiv="http://arxiv.org/schemas/atom" xmlns="http://www.w3.org/2005/Atom">
+  <id>https://arxiv.org/api/VNXnAudkPXrzI55PTRc4EPjvcnw</id>
+  <title>arXiv Query: search_query=all:"wideband" AND (all:"fluid antenna" OR all:"movable antenna")&amp;id_list=&amp;start=0&amp;max_results=30</title>
+  <updated>2026-10-15T13:53:25Z</updated>
+  <link href="https://arxiv.org/api/query?search_query=all:%22wideband%22+AND+(all:%22fluid+antenna%22+OR+all:%22movable+antenna%22)&amp;start=0&amp;max_results=30&amp;id_list=" type="application/atom+xml"/>
+  <opensearch:itemsPerPage>30</opensearch:itemsPerPage>
+  <opensearch:totalResults>22</opensearch:totalResults>
+  <opensearch:startIndex>0</opensearch:startIndex>
+  <entry>
+    <id>http://arxiv.org/abs/2504.12885v2</id>
+    <title>Optimizing Movable Antennas in Wideband Multi-User MIMO With Hardware Impairments</title>
+    <updated>2025-06-02T15:27:07Z</updated>
+    <link href="https://arxiv.org/abs/2504.12885v2" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2504.12885v2" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Movable antennas represent an emerging field in telecommunication research and a potential approach to achieving higher data rates in multiple-input multiple-output (MIMO) communications when the total number of antennas is limited. Most solutions and analyses to date have been limited to \emph{narrowband} setups. This work complements the prior studies by quantifying the benefit of using movable antennas in \emph{wideband} MIMO communication systems. First, we derive a novel uplink wideband system model that also accounts for distortion from transceiver hardware impairments. We then formulate and solve an optimization task to maximize the average sum rate by adjusting the antenna positions using particle swarm optimization. Finally, the performance with movable antennas is compared with fixed uniform arrays and the derived theoretical upper bound. The numerical study concludes that the data rate improvement from movable antennas over other arrays heavily depends on the level of hardware impairments, the richness of the multi-path environments, and the number of subcarriers. The present study provides vital insights into the most suitable use cases for movable antennas in future wideband systems.</summary>
+    <category term="cs.IT" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="eess.SP" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2025-04-17T12:20:46Z</published>
+    <arxiv:comment>To appear at 2025 IEEE International Workshop on Signal Processing and Artificial Intelligence for Wireless Communications (SPAWC), 5 pages, 6 figures</arxiv:comment>
+    <arxiv:primary_category term="cs.IT"/>
+    <author>
+      <name>Amna Irshad</name>
+    </author>
+    <author>
+      <name>Emil Björnson</name>
+    </author>
+    <author>
+      <name>Alva Kosasih</name>
+    </author>
+    <author>
+      <name>Vitaly Petrov</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2407.19511v4</id>
+    <title>Suppressing Beam Squint Effect For Near-Field Wideband Communication Through Movable Antennas</title>
+    <updated>2026-07-22T11:00:39Z</updated>
+    <link href="https://arxiv.org/abs/2407.19511v4" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2407.19511v4" rel="related" type="application/pdf" title="pdf"/>
+    <summary>In this correspondence, we study deploying movable antenna (MA) array in a wideband multiple-input-single-output (MISO) communication system, where near-field (NF) channel model is considered. To alleviate beam squint effect, we propose to maximize the minimum analog beamforming gain across the entire wideband spectrum by appropriately adjusting MAs' positions, which is a highly challenging task. By introducing a slack variable and adopting the cutting-the-edge smoothed-gradient-descent-ascent (SGDA) method, we develop algorithms to resolve the aforementioned challenge. Numerical results verify the effectiveness of our proposed algorithms and demonstrate the benefit of utilizing MA array to mitigate beam squint effect in NF wideband system.</summary>
+    <category term="cs.IT" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="eess.SP" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2024-07-28T15:15:41Z</published>
+    <arxiv:comment>6 pages, 4 figures, accepted by IEEE Transactions on Vehicular Technology</arxiv:comment>
+    <arxiv:primary_category term="cs.IT"/>
+    <author>
+      <name>Yanze Zhu</name>
+    </author>
+    <author>
+      <name>Qingqing Wu</name>
+    </author>
+    <author>
+      <name>Yang Liu</name>
+    </author>
+    <author>
+      <name>Qingjiang Shi</name>
+    </author>
+    <author>
+      <name>Wen Chen</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2510.25088v1</id>
+    <title>Six-Dimensional Movable Antenna Enabled Wideband THz Communications</title>
+    <updated>2025-10-29T01:52:24Z</updated>
+    <link href="https://arxiv.org/abs/2510.25088v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2510.25088v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>In this paper, we investigate a six-dimensional movable antenna (6DMA)-enabled wideband terahertz (THz) communication system with sub-connected hybrid beamforming architecture at the base station (BS). In particular, the three-dimensional (3D) position and 3D rotation of each 6DMA surface can be flexibly reconfigured to mitigate the beam squint effects instead of introducing costly true-time-delay devices. We first analyze the normalized array gain in the 6DMA-enabled wideband THz systems based on the beam squint effects. Then, we formulate a sum-rate maximization problem via jointly optimizing 3D positions, 3D rotations, and hybrid analog/digital beamforming. To solve the non-convex problem, an alternating optimization algorithm is developed that decomposes the original problem into three subproblems, which are solved alternately. Specifically, given the positions and rotations of 6DMA surfaces, we first reformulate the objective function and design a semidefinite relaxation-based alternating minimization scheme to obtain the hybrid analog/digital beamforming. Then, the positions and rotations of the 6DMA surfaces are further optimized through a feasible gradient descent procedure. The final solutions are obtained by repeating the above procedure until convergence. Numerical results demonstrate the superior performance of the proposed scheme compared with conventional fixed-position antenna architectures.</summary>
+    <category term="physics.comp-ph" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2025-10-29T01:52:24Z</published>
+    <arxiv:primary_category term="physics.comp-ph"/>
+    <author>
+      <name>Wencai Yan</name>
+    </author>
+    <author>
+      <name>Wanming Hao</name>
+    </author>
+    <author>
+      <name>Yajun Fan</name>
+    </author>
+    <author>
+      <name>Yabo Guo</name>
+    </author>
+    <author>
+      <name>Qingqing Wu</name>
+    </author>
+    <author>
+      <name>Xingwang Li</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2603.22506v1</id>
+    <title>Performance Evaluation of Movable Antenna Arrays in Wideband Multi-User MIMO Systems</title>
+    <updated>2026-03-23T19:13:42Z</updated>
+    <link href="https://arxiv.org/abs/2603.22506v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2603.22506v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Future wireless networks are expected to support increasingly high data rates and user densities, motivating advanced multi-antenna architectures capable of adapting to dynamic propagation environments. Movable antenna (MA) arrays have recently emerged as an extension of massive MIMO, enabling physical repositioning of antenna elements to better exploit spatial diversity and mitigate inter-user interference. While prior studies report promising gains under idealized assumptions, their performance under realistic wideband multi-user operation remains insufficiently understood. This paper presents a comprehensive evaluation of MA-enabled systems in practical uplink and downlink scenarios. A wideband OFDM system model is developed, and novel closed-form sum-rate expressions are derived for both uplink and downlink under linear and nonlinear processing. Hardware impairments are incorporated via an EVM-based model, from which a distortion-aware UL/DL duality is established and the resulting high-SNR sum rate ceiling is analytically characterized. In addition, the interactions between antenna position optimization, receiver processing, and user loading are examined, and performance is evaluated under both time-division duplexing (TDD) and frequency-division duplexing (FDD). The results show that movable antennas can provide noticeable gains in low-impairment regimes with strong multi-user interference, but these benefits are highly scenario-dependent and diminish under hardware-impairment-limited conditions or in rich-scattering environments. These findings highlight the importance of carefully assessing deployment conditions when considering antenna mobility as an alternative to conventional fixed array configurations.</summary>
+    <category term="eess.SP" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-03-23T19:13:42Z</published>
+    <arxiv:primary_category term="eess.SP"/>
+    <author>
+      <name>Amna Irshad</name>
+    </author>
+    <author>
+      <name>Emil Björnson</name>
+    </author>
+    <author>
+      <name>Alva Kosasih</name>
+    </author>
+    <author>
+      <name>Vitaly Petrov</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2409.19346v1</id>
+    <title>Channel Estimation for Movable Antenna Aided Wideband Communication Systems</title>
+    <updated>2024-09-28T13:28:01Z</updated>
+    <link href="https://arxiv.org/abs/2409.19346v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2409.19346v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Movable antenna (MA) is an emerging technology that can significantly improve communication performance via the continuous adjustment of the antenna positions. To unleash the potential of MAs in wideband communication systems, acquiring accurate channel state information (CSI), i.e., the channel frequency responses (CFRs) between any position pair within the transmit (Tx) region and the receive (Rx) region across all subcarriers, is a crucial issue. In this paper, we study the channel estimation problem for wideband MA systems. To start with, we express the CFRs as a combination of the field-response vectors (FRVs), delay-response vector (DRV), and path-response tensor (PRT), which exhibit sparse characteristics and can be recovered by using a limited number of channel measurements at selected position pairs of Tx and Rx MAs over a few subcarriers. Specifically, we first formulate the recovery of the FRVs and DRV as a problem with multiple measurement vectors in compressed sensing (MMV-CS), which can be solved via a simultaneous orthogonal matching pursuit (SOMP) algorithm. Next, we estimate the PRT using the least-square (LS) method. Moreover, we also devise an alternating refinement approach to further improve the accuracy of the estimated FRVs, DRV, and PRT. This is achieved by minimizing the discrepancy between the received pilots and those constructed by the estimated CSI, which can be efficiently carried out by using the gradient descent algorithm. Finally, simulation results demonstrate that both the SOMP-based channel estimation method and alternating refinement method can reconstruct the complete wideband CSI with high accuracy, where the alternating refinement method performs better despite a higher complexity.</summary>
+    <category term="eess.SP" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2024-09-28T13:28:01Z</published>
+    <arxiv:primary_category term="eess.SP"/>
+    <author>
+      <name>Zhenyu Xiao</name>
+    </author>
+    <author>
+      <name>Songqi Cao</name>
+    </author>
+    <author>
+      <name>Lipeng Zhu</name>
+    </author>
+    <author>
+      <name>Boyu Ning</name>
+    </author>
+    <author>
+      <name>Xiang-Gen Xia</name>
+    </author>
+    <author>
+      <name>Rui Zhang</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2401.08974v1</id>
+    <title>Performance Analysis and Optimization for Movable Antenna Aided Wideband Communications</title>
+    <updated>2024-01-17T04:54:47Z</updated>
+    <link href="https://arxiv.org/abs/2401.08974v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2401.08974v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Movable antenna (MA) has emerged as a promising technology to enhance wireless communication performance by enabling the local movement of antennas at the transmitter (Tx) and/or receiver (Rx) for achieving more favorable channel conditions. As the existing studies on MA-aided wireless communications have mainly considered narrow-band transmission in flat fading channels, we investigate in this paper the MA-aided wideband communications employing orthogonal frequency division multiplexing (OFDM) in frequency-selective fading channels. Under the general multi-tap field-response channel model, the wireless channel variations in both space and frequency are characterized with different positions of the MAs. Unlike the narrow-band transmission where the optimal MA position at the Tx/Rx simply maximizes the single-tap channel amplitude, the MA position in the wideband case needs to balance the amplitudes and phases over multiple channel taps in order to maximize the OFDM transmission rate over multiple frequency subcarriers. First, we derive an upper bound on the OFDM achievable rate in closed form when the size of the Tx/Rx region for antenna movement is arbitrarily large. Next, we develop a parallel greedy ascent (PGA) algorithm to obtain locally optimal solutions to the MAs' positions for OFDM rate maximization subject to finite-size Tx/Rx regions. To reduce computational complexity, a simplified PGA algorithm is also provided to optimize the MAs' positions more efficiently. Simulation results demonstrate that the proposed PGA algorithms can approach the OFDM rate upper bound closely with the increase of Tx/Rx region sizes and outperform conventional systems with fixed-position antennas (FPAs) under the wideband channel setup.</summary>
+    <category term="cs.IT" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="eess.SP" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2024-01-17T04:54:47Z</published>
+    <arxiv:primary_category term="cs.IT"/>
+    <author>
+      <name>Lipeng Zhu</name>
+    </author>
+    <author>
+      <name>Wenyan Ma</name>
+    </author>
+    <author>
+      <name>Zhenyu Xiao</name>
+    </author>
+    <author>
+      <name>Rui Zhang</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2503.02004v2</id>
+    <title>Frequency-Space Channel Estimation and Spatial Equalization in Wideband Fluid Antenna System</title>
+    <updated>2025-08-04T14:24:53Z</updated>
+    <link href="https://arxiv.org/abs/2503.02004v2" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2503.02004v2" rel="related" type="application/pdf" title="pdf"/>
+    <summary>The Fluid Antenna System (FAS) overcomes the spatial degree-of-freedom limitations of conventional static antenna arrays in wireless communications.This capability critically depends on acquiring full Channel State Information across all accessible ports. Existing studies focus exclusively on narrowband FAS, performing channel estimation solely in the spatial domain. This work proposes a channel estimation and spatial equalization framework for wideband FAS, revealing for the first time an inherent group-sparse structure in aperture-limited FAS channels. First, we establish a group-sparse recovery framework for space-frequency characteristics in FAS, formally characterizing leakage-induced sparsity degradation from limited aperture and bandwidth as a structured group-sparsity problem. By deriving dictionary-adapted group restricted isometry property, we prove tight recovery bounds for a convex $\ell_1/\ell_2$-mixed norm optimization formulation that preserves leakage-aware sparsity patterns. Second, we develop a descending correlation group orthogonal matching pursuit algorithm that systematically relaxes leakage constraints to reduce subcoherence. This approach enables FSC recovery with accelerated convergence and superior performance compared to conventional compressive sensing methods like OMP or GOMP. Third, we formulate spatial equalization as a mixed-integer linear programming problem, complement this with a greedy algorithm maintaining near-optimal performance. Simulation results demonstrate the proposed channel estimation algorithm effectively resolves energy misallocation and enables recovery of weak details, achieving superior recovery accuracy and convergence rate. The SE framework suppresses deep fading phenomena and largely reduces time consumption overhead while maintaining equivalent link reliability.</summary>
+    <category term="eess.SP" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.IT" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="eess.SY" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2025-03-03T19:26:15Z</published>
+    <arxiv:primary_category term="eess.SP"/>
+    <author>
+      <name>Xuehui Dong</name>
+    </author>
+    <author>
+      <name>Kai Wan</name>
+    </author>
+    <author>
+      <name>Shuangyang Li</name>
+    </author>
+    <author>
+      <name>Robert Caiming Qiu</name>
+    </author>
+    <author>
+      <name>Giuseppe Caire</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2602.07870v2</id>
+    <title>Deep learning based Channel Estimation and Beamforming in Movable Antenna Systems</title>
+    <updated>2026-02-10T08:28:46Z</updated>
+    <link href="https://arxiv.org/abs/2602.07870v2" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2602.07870v2" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Movable antenna (MA) has emerged as a promising technology for future wireless systems. Compared with traditional fixed-position antennas, MA improves system performance by antenna movement to optimize channel conditions. For multiuser wideband MA systems, this paper proposes deep learning-based framework integrating channel estimation (CE), antenna position optimization, and beamforming, with a clear workflow and enhanced efficiency. Specifically, to obtain accurate channel state information (CSI), we design a two-stage CE mechanism: first reconstructing the channel matrix from limited measurements via compressive sensing, then introducing a Swin-Transformer-based denoising network to refine CE accuracy for subsequent optimization. Building on this, we address the joint optimization challenge by proposing a Transformer-based network that intelligently maps CSI sequences of candidate positions to optimal MA positions while combining a model-driven weighted minimum mean square error (WMMSE) beamforming approach to achieve better performance. Simulation results demonstrate that the proposed methods achieve superior performance compared with existing counterparts under various conditions. The codes about this work are available at https://github.com/ZiweiWan/Code-4-DL-MA-CE-BF.</summary>
+    <category term="cs.IT" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-02-08T08:49:40Z</published>
+    <arxiv:comment>6 pages, 6 figures, The codes about this work are available at https://github.com/ZiweiWan/Code_4_DL_MA_CE_BF/</arxiv:comment>
+    <arxiv:primary_category term="cs.IT"/>
+    <author>
+      <name>Kaijun Feng</name>
+    </author>
+    <author>
+      <name>Ziwei Wan</name>
+    </author>
+    <author>
+      <name>Anwen Liao</name>
+    </author>
+    <author>
+      <name>Wenyan Ma</name>
+    </author>
+    <author>
+      <name>Lipeng Zhu</name>
+    </author>
+    <author>
+      <name>Zhenyu Xiao</name>
+    </author>
+    <author>
+      <name>Zhen Gao</name>
+    </author>
+    <author>
+      <name>Rui Zhang</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2503.05384v1</id>
+    <title>Fluid Antenna System Empowering 5G NR</title>
+    <updated>2025-03-07T12:54:30Z</updated>
+    <link href="https://arxiv.org/abs/2503.05384v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2503.05384v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Fluid antenna system (FAS) is an emerging technology that uses the new form of shape- and position-reconfigurable antennas to empower the physical layer for wireless communications. Prior studies on FAS were however limited to narrowband channels. Motivated by this, this paper addresses the integration of FAS in the fifth generation (5G) orthogonal frequency division multiplexing (OFDM) framework to address the challenges posed by wideband communications. We propose the framework of the wideband FAS OFDM system that includes a novel port selection matrix. Then we derive the achievable rate expression and design the adaptive modulation and coding (AMC) scheme based on the rate. Extensive link-level simulation results demonstrate striking improvements of FAS in the wideband channels, underscoring the potential of FAS in future wireless communications.</summary>
+    <category term="eess.SP" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2025-03-07T12:54:30Z</published>
+    <arxiv:comment>Submitted, under review</arxiv:comment>
+    <arxiv:primary_category term="eess.SP"/>
+    <author>
+      <name>Hanjiang Hong</name>
+    </author>
+    <author>
+      <name>Kai-Kit Wong</name>
+    </author>
+    <author>
+      <name>Haoyang Li</name>
+    </author>
+    <author>
+      <name>Hao Xu</name>
+    </author>
+    <author>
+      <name>Han Xiao</name>
+    </author>
+    <author>
+      <name>Hyundong Shin</name>
+    </author>
+    <author>
+      <name>Kin-Fai Tong</name>
+    </author>
+    <author>
+      <name>Yangyang Zhang</name>
+    </author>
+    <arxiv:doi>10.1109/TCOMM.2025.3591751</arxiv:doi>
+    <link rel="related" href="https://doi.org/10.1109/TCOMM.2025.3591751" title="doi"/>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2604.26282v1</id>
+    <title>Rethinking Mutual Coupling in Movable Antenna MIMO Systems: Modeling and Optimization</title>
+    <updated>2026-04-29T04:23:11Z</updated>
+    <link href="https://arxiv.org/abs/2604.26282v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2604.26282v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Movable antennas (MAs) have attracted growing interest for their ability to improve channel conditions via adaptive antenna movement. Nevertheless, such movement inevitably introduces mutual coupling (MC), whose impact has been largely overlooked in existing MA literature. In this paper, we show that MC is not merely an unavoidable electromagnetic effect, but also a new source of capacity gains in MA-enabled multiple-input multiple-output (MIMO) systems. To leverage MC effects, we develop an optimization framework for both narrowband and wideband systems based on a rigorous circuit-theoretic model. For narrowband systems, capacity maximization is formulated as a non-convex optimization problem, which is solved via a block coordinate ascent (BCA) framework. Because optimizing MA positions is challenging due to analytically intractable MC matrices, we develop a trust region method (TRM)-based algorithm that utilizes Sylvester equations to compute the derivatives of the inverse square roots of the MC matrices. We further consider wideband systems and formulate a sum-rate maximization problem. To find a unified set of MA positions that balances varying subcarrier conditions, the BCA framework and the TRM-based MA position optimization algorithm are extended to wideband systems. Simulation results demonstrate that exploiting MC effects in MA-MIMO systems yields significant performance gains in both narrowband and wideband systems under various channel conditions. These gains highlight the benefits of MC-induced superdirectivity and designable MC matrices.</summary>
+    <category term="cs.IT" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="eess.SP" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-04-29T04:23:11Z</published>
+    <arxiv:comment>13 pages, 12 figures, submitted to an IEEE Journal for possible publication</arxiv:comment>
+    <arxiv:primary_category term="cs.IT"/>
+    <author>
+      <name>Tianyi Liao</name>
+    </author>
+    <author>
+      <name>Wei Guo</name>
+    </author>
+    <author>
+      <name>Jun Qian</name>
+    </author>
+    <author>
+      <name>Zixin Wang</name>
+    </author>
+    <author>
+      <name>Shenghui Song</name>
+    </author>
+    <author>
+      <name>Jun Zhang</name>
+    </author>
+    <author>
+      <name>Khaled B. Letaief</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2604.23891v1</id>
+    <title>Fluid Antenna Enabled Compact Ultra Massive Antenna Array for Satellite Communications</title>
+    <updated>2026-04-26T21:34:26Z</updated>
+    <link href="https://arxiv.org/abs/2604.23891v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2604.23891v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Satellites provide seamless coverage and are critical for emergency communications during natural disasters. However, their performance is constrained by limited spectrum and high deployment cost. To address these issues, we propose a fluid antenna system (FAS)-based solution that enables dynamic signal adaptation. Building on this concept, a compact ultra-massive antenna array (CUMA) is introduced, where multiple ports are simultaneously activated to coherently combine signal components. This design mitigates interference while reducing cost, as each fluid antenna requires only a single RF chain yet achieves significant improvement in the received signal-to-interference-plus-noise ratio (SINR). We consider a satellite CUMA network where all ground users share the same satellite for uplink transmission, and CUMA is employed to suppress inter-user interference. Closed-form expressions for the received signal power, interference power, and their distributions are derived. Based on these results, the outage probability is obtained in a unified form along with an accurate approximation, and the ergodic rate is characterized. Our analysis identifies the conditions under which CUMA outperforms maximum ratio combining in satellite systems. Notably, with sufficiently compact fluid antenna configurations, the received signal becomes deterministic, indicating that system performance is dominated by interference statistics. Moreover, increasing the number of ports yields a linear beamforming gain. Numerical results further compare orthogonal and non-orthogonal multiple access CUMA, showing that the latter achieves superior performance under wideband conditions.</summary>
+    <category term="eess.SP" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-04-26T21:34:26Z</published>
+    <arxiv:comment>15 pages, 11 figures</arxiv:comment>
+    <arxiv:primary_category term="eess.SP"/>
+    <arxiv:journal_ref>10.1109/JSAC.2025.3616279</arxiv:journal_ref>
+    <author>
+      <name>Tianyu Han</name>
+    </author>
+    <author>
+      <name>Yongxu Zhu</name>
+    </author>
+    <author>
+      <name>Gan Zheng</name>
+    </author>
+    <author>
+      <name>Pantelis-Daniel Arapoglou</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2603.23859v1</id>
+    <title>Terahertz Beam Squint Mitigation via Six-Dimensional Movable Antennas</title>
+    <updated>2026-03-25T02:35:10Z</updated>
+    <link href="https://arxiv.org/abs/2603.23859v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2603.23859v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Analog beamforming holds great potential for future terahertz (THz) communications due to its ability to generate high-gain directional beams with low-cost phase shifters. However, conventional analog beamforming may suffer substantial performance degradation in wideband systems due to the beam squint effect. Instead of relying on high-cost true-time delayers, we propose an efficient six-dimensional movable antenna (6DMA) architecture to mitigate the beam-squint effect. In particular, we study a wideband wide-beam coverage problem in this paper, aiming to maximize the minimum beamforming gain over a given range of azimuth/elevation angles and frequencies by jointly optimizing the analog beamforming vector, the MA positions within a two-dimensional (2D) region, and the three-dimensional (3D) rotation angles of the antenna array. However, this problem is non-convex and intractable to solve optimally due to the coupling of the spatial and frequency domains and that of the antenna weights, positions and rotation. To tackle this problem, we first derive an optimal solution to it in a special case with azimuth or elevation angle coverage only. It is shown that rotating a uniform linear array (ULA) is sufficient to achieve global optimality and eliminate beam-squint effects. While for other general cases, an alternating optimization (AO) algorithm is proposed to obtain a high-quality suboptimal solution, where the antennas' beamforming weights, positions, and rotation angles are alternately optimized by combining successive convex approximation (SCA), sequential update with Gibbs sampling (GS), and hybrid coarse- and fine-grained search. Simulation results demonstrate that our proposed scheme can significantly outperform conventional antenna arrays without antenna movement or rotation, thus offering a cost-effective solution for wideband transmission over THz bands.</summary>
+    <category term="eess.SP" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-03-25T02:35:10Z</published>
+    <arxiv:primary_category term="eess.SP"/>
+    <author>
+      <name>Yike Xie</name>
+    </author>
+    <author>
+      <name>Weidong Mei</name>
+    </author>
+    <author>
+      <name>Dong Wang</name>
+    </author>
+    <author>
+      <name>Yingqi Wen</name>
+    </author>
+    <author>
+      <name>Zhi Chen</name>
+    </author>
+    <author>
+      <name>Jun Fang</name>
+    </author>
+    <author>
+      <name>Wei Guo</name>
+    </author>
+    <author>
+      <name>Boyu Ning</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2502.17905v1</id>
+    <title>A Tutorial on Movable Antennas for Wireless Networks</title>
+    <updated>2025-02-25T07:05:29Z</updated>
+    <link href="https://arxiv.org/abs/2502.17905v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2502.17905v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Movable antenna (MA) has been recognized as a promising technology to enhance the performance of wireless communication and sensing by enabling antenna movement. Such a significant paradigm shift from conventional fixed antennas (FAs) to MAs offers tremendous new opportunities towards realizing more versatile, adaptive and efficient next-generation wireless networks such as 6G. In this paper, we provide a comprehensive tutorial on the fundamentals and advancements in the area of MA-empowered wireless networks. First, we overview the historical development and contemporary applications of MA technologies. Next, to characterize the continuous variation in wireless channels with respect to antenna position and/or orientation, we present new field-response channel models tailored for MAs, which are applicable to narrowband and wideband systems as well as far-field and near-field propagation conditions. Subsequently, we review the state-of-the-art architectures for implementing MAs and discuss their practical constraints. A general optimization framework is then formulated to fully exploit the spatial degrees of freedom (DoFs) in antenna movement for performance enhancement in wireless systems. In particular, we delve into two major design issues for MA systems. First, we address the intricate antenna movement optimization problem for various communication and/or sensing systems to maximize the performance gains achievable by MAs. Second, we deal with the challenging channel acquisition issue in MA systems for reconstructing the channel mapping between arbitrary antenna positions inside the transmitter and receiver regions. Moreover, we show existing prototypes developed for MA-aided communication/sensing and the experimental results based on them. Finally, the extension of MA design to other wireless systems and its synergy with other emerging wireless technologies are discussed.</summary>
+    <category term="cs.IT" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="eess.SP" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2025-02-25T07:05:29Z</published>
+    <arxiv:comment>Accepted for publiation in the IEEE Communications Surveys &amp; Tutorials</arxiv:comment>
+    <arxiv:primary_category term="cs.IT"/>
+    <author>
+      <name>Lipeng Zhu</name>
+    </author>
+    <author>
+      <name>Wenyan Ma</name>
+    </author>
+    <author>
+      <name>Weidong Mei</name>
+    </author>
+    <author>
+      <name>Yong Zeng</name>
+    </author>
+    <author>
+      <name>Qingqing Wu</name>
+    </author>
+    <author>
+      <name>Boyu Ning</name>
+    </author>
+    <author>
+      <name>Zhenyu Xiao</name>
+    </author>
+    <author>
+      <name>Xiaodan Shao</name>
+    </author>
+    <author>
+      <name>Jun Zhang</name>
+    </author>
+    <author>
+      <name>Rui Zhang</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2608.08599v1</id>
+    <title>Low-Complexity Channel Estimation for Reconfigurable Fluid Antenna System</title>
+    <updated>2026-08-09T09:24:02Z</updated>
+    <link href="https://arxiv.org/abs/2608.08599v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2608.08599v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Electromagnetically reconfigurable fluid antenna system (ER-FAS) provides additional electromagnetic (EM)-domain degrees of freedom by enabling dynamic control of per-element radiation patterns, thereby improving power efficiency in wireless communications. The effective exploitation of these capabilities, however, critically depends on accurate channel estimation, which has received limited attention in prior studies. This paper presents a low-complexity channel parameter estimation framework for downlink wideband systems that leverages available channel sparsity. A synthesis-based reconfigurability model is considered, where each antenna generates desired beampatterns using a finite set of EM basis functions. Based on this model, a joint optimization of digital and EM precoders is formulated with the objective of minimizing the Cramér-Rao lower bound of the channel parameters. Simulation results demonstrate that the proposed hybrid beamforming and estimation approach enables accurate recovery of channel parameters while maintaining low computational complexity.</summary>
+    <category term="eess.SP" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-08-09T09:24:02Z</published>
+    <arxiv:comment>4 pages, 3 figures, Accepted for publication in the 2026 IEEE International Symposium on Antennas and Propagation and USNC-URSI Radio Science Meeting (AP-S/URSI)</arxiv:comment>
+    <arxiv:primary_category term="eess.SP"/>
+    <arxiv:journal_ref>2026 IEEE International Symposium on Antennas and Propagation and USNC-URSI Radio Science Meeting (AP-S/URSI)</arxiv:journal_ref>
+    <author>
+      <name>Alireza Fadakar</name>
+    </author>
+    <author>
+      <name>Andreas F. Molisch</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2511.07874v1</id>
+    <title>MA-Aided Hierarchical Hybrid Beamforming for Multi-User Wideband Beam Squint Mitigation</title>
+    <updated>2025-11-11T06:20:10Z</updated>
+    <link href="https://arxiv.org/abs/2511.07874v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2511.07874v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>In wideband near-field arrays, frequency-dependent array responses cause wavefronts at different frequencies to deviate from that at the center frequency, producing beam squint and degrading multi-user performance. True-time-delay (TTD) circuits can realign the frequency dependence but require large delay ranges and intricate calibration, limiting scalability. Another line of work explores one- and two-dimensional array geometries, including linear, circular, and concentric circular, that exhibit distinct broadband behaviors such as different beam-squint sensitivities and focusing characteristics. These observations motivate adapting the array layout to enable wideband-friendly focusing and enhance multi-user performance without TTD networks. We propose a movable antenna (MA) aided architecture based on hierarchical sub-connected hybrid beamforming (HSC-HBF) in which antennas are grouped into tiles and only the tile centers are repositioned, providing slow geometric degrees of freedom that emulate TTD-like broadband focusing while keeping hardware and optimization complexity low. We show that the steering vector is inherently frequency dependent and that reconfiguring tile locations improves broadband focusing. Simulations across wideband near-field scenarios demonstrate robust squint suppression and consistent gains over fixed-layout arrays, achieving up to 5\% higher sum rate, with the maximum improvement exceeding 140\%.</summary>
+    <category term="eess.SP" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2025-11-11T06:20:10Z</published>
+    <arxiv:primary_category term="eess.SP"/>
+    <author>
+      <name>Cixiao Zhang</name>
+    </author>
+    <author>
+      <name>Yin Xu</name>
+    </author>
+    <author>
+      <name>Xinghao Guo</name>
+    </author>
+    <author>
+      <name>Xiaowu Ou</name>
+    </author>
+    <author>
+      <name>Dazhi He</name>
+    </author>
+    <author>
+      <name>Wenjun Zhang</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2506.05569v1</id>
+    <title>Fluid Antenna System-Assisted Self-Interference Cancellation for In-Band Full Duplex Communications</title>
+    <updated>2025-06-05T20:28:16Z</updated>
+    <link href="https://arxiv.org/abs/2506.05569v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2506.05569v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>In-band full-duplex (IBFD) systems are expected to double the spectral efficiency compared to half-duplex systems, provided that loopback self-interference (SI) can be effectively suppressed. The inherent interference mitigation capabilities of the emerging fluid antenna system (FAS) technology make it a promising candidate for addressing the SI challenge in IBFD systems. This paper thus proposes a FAS-assisted self-interference cancellation (SIC) framework, which leverages a receiver-side FAS to dynamically select an interference-free port. Analytical results include a lower bound and an approximation of the residual SI (RSI) power, both derived for rich-scattering channels by considering the joint spatial correlation amongst the FAS ports. Simulations of RSI power and forward link rates validate the analysis, showing that the SIC performance improves with the number of FAS ports. Additionally, simulations under practical conditions, such as finite-scattering environments and wideband integrated access and backhaul (IAB) channels, reveal that the proposed approach offers superior SIC capability and significant forward rate gains over conventional IBFD SIC schemes.</summary>
+    <category term="cs.IT" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="eess.SP" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2025-06-05T20:28:16Z</published>
+    <arxiv:primary_category term="cs.IT"/>
+    <author>
+      <name>Hanjiang Hong</name>
+    </author>
+    <author>
+      <name>Kai-Kit Wong</name>
+    </author>
+    <author>
+      <name>Hao Xu</name>
+    </author>
+    <author>
+      <name>Yiyan Wu</name>
+    </author>
+    <author>
+      <name>Sai Xu</name>
+    </author>
+    <author>
+      <name>Chan-Byoung Chae</name>
+    </author>
+    <author>
+      <name>Baiyang Liu</name>
+    </author>
+    <author>
+      <name>Kin-Fai Tong</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2608.03289v1</id>
+    <title>Frequency-Position-Fluid Antenna Array and Beamforming for Ultra-dense Connectivity in Terahertz Wireless Systems</title>
+    <updated>2026-08-04T08:02:09Z</updated>
+    <link href="https://arxiv.org/abs/2608.03289v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2608.03289v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>To support ultra-dense connectivity in terahertz (THz) communications, this paper proposes a dynamic frequency-position-fluid antenna (D-FPFA) architecture. Frequency-tunable local oscillators (LOs) are integrated into the RF chains to access different sub-bands, thereby expanding the total bandwidth of the system and providing frequency-domain diversity. To exploit spatial diversity, the base station employs movable subarrays, and each user is equipped with a movable antenna. We first develop a two-phase beam-split-aware frequency allocation strategy. In the first phase, we divide users into disjoint sub-bands according to their channel correlation coefficients to mitigate the interference. In the second phase, we investigate the wideband near-field beam-split effect for planar arrays and reveal an astigmatism phenomenon, in which the beam at a non-central subcarrier cannot be perfectly refocused at a single spatial point. Then, we establish a beam split multiplexing strategy, where we formulate the user grouping task as a minimum dominating set problem. To maximize the sum rate, we introduce a switch network along with a distance-based antenna selection strategy to account for the near-field channel gain variations, followed by a particle swarm optimization-based algorithm that jointly optimizes the antenna positions and precoders. Numerical results show that, the proposed D-FPFA achieves approximately 2.3 times the sum rate of a conventional phase-shifter (PS)-based array-of-subarrays (AoSA) architecture. It also attains 95% of the sum rate of its TTD counterpart while providing approximately 2.8 times its energy efficiency (EE). Moreover, the fully connected variant of D-FPFA, i.e., FPFA, achieves the highest EE among all considered architectures.</summary>
+    <category term="cs.IT" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-08-04T08:02:09Z</published>
+    <arxiv:primary_category term="cs.IT"/>
+    <author>
+      <name>Heyin Shen</name>
+    </author>
+    <author>
+      <name>Chong Han</name>
+    </author>
+    <author>
+      <name>Jinhong Yuan</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2507.16132v1</id>
+    <title>Meta-Reinforcement Learning Optimization for Movable Antenna-aided Full-Duplex CF-DFRC Systems with Carrier Frequency Offset</title>
+    <updated>2025-07-22T00:57:23Z</updated>
+    <link href="https://arxiv.org/abs/2507.16132v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2507.16132v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>By enabling spectrum sharing between radar and communication operations, the cell-free dual-functional radar-communication (CF-DFRC) system is a promising candidate to significantly improve spectrum efficiency in future sixth-generation (6G) wireless networks. However, in wideband scenarios, synchronization errors caused by carrier frequency offset (CFO) can severely reduce both communication capacity and sensing accuracy. To address this challenge, this paper integrates movable antennas (MAs) into the CF-DFRC framework, leveraging their spatial flexibility and adaptive beamforming to dynamically mitigate CFO-induced impairments. To fully exploit the advantages of MAs in wideband scenarios with CFO, we aim to maximize the worst-case sum-rate of communication and sensing by jointly optimizing MA positions, {beamforming}, and CFO parameters, subject to transmit power and MA positioning constraints. Due to the non-convex nature of the problem, we propose a robust meta reinforcement learning (MRL)-based two-stage alternating optimization strategy. In the first stage, we employ manifold optimization (MO) with penalty dual decomposition (PDD) to solve the CFO-robust worst-case subproblem. In the second stage, we adopt to jointly optimize {the MA positions and beamforming vectors} in a data-driven manner {for dynamic wireless environments}. Simulation results show that the proposed MRL approach significantly outperforms conventional deep reinforcement learning (DRL) schemes in both communication and sensing performance under CFO impairments. Furthermore, compared to fixed-position antennas (FPAs), the MA-aided CF-DFRC system exhibits</summary>
+    <category term="eess.SP" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2025-07-22T00:57:23Z</published>
+    <arxiv:primary_category term="eess.SP"/>
+    <author>
+      <name>Yue Xiu</name>
+    </author>
+    <author>
+      <name>Wanting Lyu</name>
+    </author>
+    <author>
+      <name>You Li</name>
+    </author>
+    <author>
+      <name>Ran Yang</name>
+    </author>
+    <author>
+      <name>Phee Lep Yeoh</name>
+    </author>
+    <author>
+      <name>Wei Zhang</name>
+    </author>
+    <author>
+      <name>Guangyi Liu</name>
+    </author>
+    <author>
+      <name>Ning Wei</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2603.25559v3</id>
+    <title>Rotatable Antenna-Empowered Wireless Networks: A Tutorial</title>
+    <updated>2026-07-11T04:42:53Z</updated>
+    <link href="https://arxiv.org/abs/2603.25559v3" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2603.25559v3" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Non-fixed flexible antenna architectures, such as fluid antenna system (FAS), movable antenna (MA), and pinching antenna, have garnered significant interest in recent years. Among them, rotatable antenna (RA) has emerged as a promising technology for enhancing wireless communication and sensing performance through flexible antenna orientation/boresight rotation. By enabling mechanical or electronic boresight adjustment without altering physical antenna positions, RA introduces additional spatial degrees of freedom (DoFs) beyond conventional beamforming. In this paper, we provide a comprehensive tutorial on the fundamentals, architectures, and applications of RA-empowered wireless networks. Specifically, we begin by reviewing the historical evolution of RA-related technologies and clarifying the distinctive role of RA among flexible antenna architectures. Then, we establish a unified mathematical framework for RA-enabled systems, including general antenna/array rotation models, as well as channel models that cover near- and far-field propagation characteristics, wideband frequency selectivity, and polarization effects. Building upon this foundation, we investigate antenna/array rotation optimization in representative communication and sensing scenarios. Furthermore, we examine RA channel estimation/acquisition strategies encompassing orientation scheduling mechanisms and signal processing methods that exploit multi-view channel observations. Beyond theoretical modeling and algorithmic design, we discuss practical RA configurations and deployment strategies. We also present recent RA prototypes and experimental results that validate the practical performance gains enabled by antenna rotation. Finally, we highlight promising extensions of RA to emerging wireless paradigms and outline open challenges to inspire future research.</summary>
+    <category term="cs.IT" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.ET" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="eess.SP" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-03-26T15:30:48Z</published>
+    <arxiv:comment>The first tutorial on rotatable antenna (RA)-empowered wireless networks, 40 pages, 24 figures</arxiv:comment>
+    <arxiv:primary_category term="cs.IT"/>
+    <author>
+      <name>Beixiong Zheng</name>
+    </author>
+    <author>
+      <name>Qingjie Wu</name>
+    </author>
+    <author>
+      <name>Xue Xiong</name>
+    </author>
+    <author>
+      <name>Yanhua Tan</name>
+    </author>
+    <author>
+      <name>Tiantian Ma</name>
+    </author>
+    <author>
+      <name>Qi Dai</name>
+    </author>
+    <author>
+      <name>Weihua Zhu</name>
+    </author>
+    <author>
+      <name>Changsheng You</name>
+    </author>
+    <author>
+      <name>Xiaodan Shao</name>
+    </author>
+    <author>
+      <name>Lipeng Zhu</name>
+    </author>
+    <author>
+      <name>Jie Tang</name>
+    </author>
+    <author>
+      <name>Robert Schober</name>
+    </author>
+    <author>
+      <name>Kai-Kit Wong</name>
+    </author>
+    <author>
+      <name>Rui Zhang</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2508.21295v2</id>
+    <title>A Flexible Design for Beam Squint Effect Suppression in IRS-Aided THz Communications</title>
+    <updated>2026-07-22T11:07:00Z</updated>
+    <link href="https://arxiv.org/abs/2508.21295v2" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2508.21295v2" rel="related" type="application/pdf" title="pdf"/>
+    <summary>In this paper, we study employing movable components on both base station (BS) and intelligent reflecting surface (IRS) in a wideband terahertz (THz) multiple-input-single-output (MISO) system, where the BS is equipped with a movable antenna (MA) array and the IRS consists of movable subarrays. To alleviate double beam squint effect caused by the coupling of beam squint at the BS and IRS, we propose to maximize the minimal received power across a wide THz spectrum by delicately configuring the positions of MAs and IRS subarrays, which is highly challenging. By adopting majorization-minimization (MM) methodology, we develop an algorithm to tackle the aforementioned optimization. Numerical results demonstrate the effectiveness of our proposed algorithm and the benefit of utilizing movable components on the BS and IRS to mitigate double beam squint effect in wideband THz communications.</summary>
+    <category term="cs.IT" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2025-08-29T01:26:28Z</published>
+    <arxiv:comment>5 pages, 3 figures, accepted by IEEE VTC2025-Fall</arxiv:comment>
+    <arxiv:primary_category term="cs.IT"/>
+    <author>
+      <name>Yanze Zhu</name>
+    </author>
+    <author>
+      <name>Qingqing Wu</name>
+    </author>
+    <author>
+      <name>Wen Chen</name>
+    </author>
+    <author>
+      <name>Yang Liu</name>
+    </author>
+    <author>
+      <name>Ruiqi Liu</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2405.02823v3</id>
+    <title>Reconfigurable Massive MIMO: Precoding Design and Channel Estimation in the Electromagnetic Domain</title>
+    <updated>2024-11-06T08:01:30Z</updated>
+    <link href="https://arxiv.org/abs/2405.02823v3" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2405.02823v3" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Reconfigurable massive multiple-input multiple-output (RmMIMO), as an electronically-controlled fluid antenna system, offers increased flexibility for future communication systems by exploiting previously untapped degrees of freedom in the electromagnetic (EM) domain. The representation of the traditional spatial domain channel state information (sCSI) limits the insights into the potential of EM domain channel properties, constraining the base station's (BS) utmost capability for precoding design. This paper leverages the EM domain channel state information (eCSI) for antenna radiation pattern design at the BS. We develop an orthogonal decomposition method based on spherical harmonic functions to decompose the radiation pattern into a linear combination of orthogonal bases. By formulating the radiation pattern design as an optimization problem for the projection coefficients over these bases, we develop a manifold optimization-based method for iterative radiation pattern and digital precoder design. To address the eCSI estimation problem, we capitalize on the inherent structure of the channel. Specifically, we propose a subspace-based scheme to reduce the pilot overhead for wideband sCSI estimation. Given the estimated full-band sCSI, we further employ parameterized methods for angle of arrival estimation. Subsequently, the complete eCSI can be reconstructed after estimating the equivalent channel gain via the least squares method. Simulation results demonstrate that, in comparison to traditional mMIMO systems with fixed antenna radiation patterns, the proposed RmMIMO architecture offers significant throughput gains for multi-user transmission at a low channel estimation overhead.</summary>
+    <category term="cs.IT" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="eess.SP" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2024-05-05T06:09:58Z</published>
+    <arxiv:comment>This work has been accepted by IEEE Transactions on Communications</arxiv:comment>
+    <arxiv:primary_category term="cs.IT"/>
+    <author>
+      <name>Keke Ying</name>
+    </author>
+    <author>
+      <name>Zhen Gao</name>
+    </author>
+    <author>
+      <name>Yu Su</name>
+    </author>
+    <author>
+      <name>Tong Qin</name>
+    </author>
+    <author>
+      <name>Michail Matthaiou</name>
+    </author>
+    <author>
+      <name>Robert Schober</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2607.28965v1</id>
+    <title>When 5G MIMO Scaling Breaks: Toward 6G Upper-Mid-Band Extreme MIMO</title>
+    <updated>2026-07-31T02:36:49Z</updated>
+    <link href="https://arxiv.org/abs/2607.28965v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2607.28965v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>The upper-mid band, particularly the 7-8 GHz range within frequency range 3 (FR3), has emerged as a leading spectrum candidate for wide-area sixth-generation (6G) cellular networks. Its shorter wavelength enables hundreds of antenna elements to be integrated within the physical aperture of an existing 5G base-station panel. In principle, the resulting aperture gain can compensate for the increased path loss and enable extreme MIMO (E-MIMO) with 256 or more antenna ports while reusing current cell sites. In practice, however, simply scaling the 5G New Radio (NR) architecture from tens to hundreds of ports encounters fundamental system-level limitations. This paper identifies where 5G-style MIMO scaling breaks and develops a research roadmap for practical upper-mid-band E-MIMO. We first review the evolution of FR3 spectrum, its propagation and channel characteristics, and the emerging 6G system requirements. We then organize the principal challenges into four coupled areas: maintaining effective coverage across all physical channels and protocol states; implementing wideband, energy-efficient RF devices and radio units; developing new low-power array and beamforming architectures; and acquiring sufficiently refined channel state information with manageable sounding and feedback overhead. Representative system studies illustrate the coverage asymmetry between user-specific data transmission and common or channel-acquisition signals, as well as the spectral- and energy-efficiency tradeoffs among fully digital, hybrid, tri-hybrid, dynamic-metasurface, and fluid-antenna architectures. Finally, we discuss how distributed apertures, integrated sensing, AI-assisted channel acquisition, and environment-aware operation can transform fixed-aperture scaling into a deployable 6G E-MIMO architecture.</summary>
+    <category term="eess.SP" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.IT" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-07-31T02:36:49Z</published>
+    <arxiv:comment>23 pages, 9 figures</arxiv:comment>
+    <arxiv:primary_category term="eess.SP"/>
+    <author>
+      <name>Kwang Soon Kim</name>
+    </author>
+    <author>
+      <name>Jeonghun Park</name>
+    </author>
+    <author>
+      <name>Byung-Wook Min</name>
+    </author>
+    <author>
+      <name>Kwanghoon Lee</name>
+    </author>
+    <author>
+      <name>Eui Whan Jin</name>
+    </author>
+    <author>
+      <name>Juntaek Han</name>
+    </author>
+    <author>
+      <name>Geonwoo Park</name>
+    </author>
+    <author>
+      <name>Jun-Seok Ko</name>
+    </author>
+    <author>
+      <name>Jungho Myung</name>
+    </author>
+    <author>
+      <name>Wooram Shin</name>
+    </author>
+    <author>
+      <name>Young-Jo Ko</name>
+    </author>
+    <author>
+      <name>Chan-Byoung Chae</name>
+    </author>
+  </entry>
+</feed>

@@ -1,0 +1,171 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<feed xmlns:opensearch="http://a9.com/-/spec/opensearch/1.1/" xmlns:arxiv="http://arxiv.org/schemas/atom" xmlns="http://www.w3.org/2005/Atom">
+  <id>https://arxiv.org/api/xl9xGgLKbc1I7yWLfPFyS3tEhJc</id>
+  <title>arXiv Query: search_query=all:"unrolling" AND (all:"RIS" OR all:"ISAC")&amp;id_list=&amp;start=0&amp;max_results=25</title>
+  <updated>2026-10-15T13:54:07Z</updated>
+  <link href="https://arxiv.org/api/query?search_query=all:%22unrolling%22+AND+(all:%22RIS%22+OR+all:%22ISAC%22)&amp;start=0&amp;max_results=25&amp;id_list=" type="application/atom+xml"/>
+  <opensearch:itemsPerPage>25</opensearch:itemsPerPage>
+  <opensearch:totalResults>6</opensearch:totalResults>
+  <opensearch:startIndex>0</opensearch:startIndex>
+  <entry>
+    <id>http://arxiv.org/abs/2301.02360v1</id>
+    <title>Algorithm Unrolling-Based Distributed Optimization for RIS-Assisted Cell-Free Networks</title>
+    <updated>2023-01-06T02:07:39Z</updated>
+    <link href="https://arxiv.org/abs/2301.02360v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2301.02360v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>The user-centric cell-free network has emerged as an appealing technology to improve the next-generation wireless network's capacity thanks to its ability to eliminate inter-cell interference effectively. However, the cell-free network inevitably brings in higher hardware cost and backhaul overhead as a larger number of base stations (BSs) are deployed. Additionally, severe channel fading in high-frequency bands constitutes another crucial issue that limits the practical application of the cell-free network. In order to address the above challenges, we amalgamate the cell-free system with another emerging technology, namely reconfigurable intelligent surface (RIS), which can provide high spectrum and energy efficiency with low hardware cost by reshaping the wireless propagation environment intelligently. To this end, we formulate a weighted sum-rate (WSR) maximization problem for RIS-assisted cell-free systems by jointly optimizing the BS precoding matrix and the RIS reflection coefficient vector. Subsequently, we transform the complicated WSR problem to a tractable optimization problem and propose a distributed cooperative alternating direction method of multipliers (ADMM) to fully utilize parallel computing resources. Inspired by the model-based algorithm unrolling concept, we unroll our solver to a learning-based deep distributed ADMM (D-ADMM) network framework. To improve the efficiency of the D-ADMM in distributed BSs, we develop a monodirectional information exchange strategy with a small signaling overhead. In addition to benefiting from domain knowledge, D-ADMM adaptively learns hyper-parameters and non-convex solvers of the intractable RIS design problem through data-driven end-to-end training.</summary>
+    <category term="eess.SP" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2023-01-06T02:07:39Z</published>
+    <arxiv:primary_category term="eess.SP"/>
+    <author>
+      <name>Wangyang Xu</name>
+    </author>
+    <author>
+      <name>Jiancheng An</name>
+    </author>
+    <author>
+      <name>Hongbin Li</name>
+    </author>
+    <author>
+      <name>Lu Gan</name>
+    </author>
+    <author>
+      <name>Chau Yuen</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2510.05438v5</id>
+    <title>Model-based Deep Learning for Joint RIS Phase Shift Compression and WMMSE Beamforming</title>
+    <updated>2026-04-09T04:46:00Z</updated>
+    <link href="https://arxiv.org/abs/2510.05438v5" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2510.05438v5" rel="related" type="application/pdf" title="pdf"/>
+    <summary>A model-based deep learning (DL) architecture is proposed for reconfigurable intelligent surface (RIS)-assisted multi-user communications to reduce the number of bits required for transmitting phase shift information from the access point (AP) to the RIS controller. The AP computes the phase shifts and compresses them into a binary control message that is sent to the RIS controller for element configuration. To help reduce beamformer mismatches caused by phase shift compression errors, the beamformer is updated with the actual (decompressed) RIS phase shifts. By unrolling the iterative weighted minimum mean square error (WMMSE) algorithm within the wireless communication-informed DL architecture, joint phase shift compression and WMMSE beamforming can be trained end-to-end. Simulation results demonstrate that incorporating compression-aware beamforming significantly improves sum-rate performance, even when the number of control bits is lower than the number of RIS elements.</summary>
+    <category term="eess.SP" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2025-10-06T23:04:47Z</published>
+    <arxiv:comment>5 pages, 4 figures, finalized version accepted to IEEE Wireless Communications Letters: DOI: 10.1109/LWC.2026.3683016</arxiv:comment>
+    <arxiv:primary_category term="eess.SP"/>
+    <author>
+      <name>Alexander James Fernandes</name>
+    </author>
+    <author>
+      <name>Ioannis Psaromiligkos</name>
+    </author>
+    <arxiv:doi>10.1109/LWC.2026.3683016</arxiv:doi>
+    <link rel="related" href="https://doi.org/10.1109/LWC.2026.3683016" title="doi"/>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2609.33408v1</id>
+    <title>StarBOA: Real-Time Mamba State-Space Unrolling for Sparse Radar Micro-Doppler in ISAC Networks</title>
+    <updated>2026-09-27T09:37:01Z</updated>
+    <link href="https://arxiv.org/abs/2609.33408v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2609.33408v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>In Integrated Sensing and Communications (ISAC), radar sensing must operate under chirp subsampling with up to 90\% missing data. An attention-based baseline, limited to a 52~ms buffer, collapses toward maximum uniform entropy ($H=2.584$ bits) as sparsity increases, failing to capture long-range gait-cycle context. We propose StarBOA, which replaces attention with a causal Mamba state-space model that updates incrementally on a per-window basis without re-scanning past reconstructions. By maintaining a persistent state, StarBOA integrates over $100\times$ more temporal history at no additional per-step computational cost. StarBOA outperforms the baseline's published results across all sparsity levels, with SSIM gains increasing from $+0.0379$ at 50\% missing data to $+0.2472$ at 90\%. Each window is processed in 1.53~ms with zero lookahead, demonstrating efficient causal reconstruction under extreme chirp subsampling.</summary>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.IT" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.NI" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-09-27T09:37:01Z</published>
+    <arxiv:comment>5 pages, 2 figures</arxiv:comment>
+    <arxiv:primary_category term="cs.LG"/>
+    <author>
+      <name>Mustafa Bora Çelik</name>
+    </author>
+    <author>
+      <name>Ceren Çelik</name>
+    </author>
+    <author>
+      <name>Orhan Gazi</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2409.16664v1</id>
+    <title>Convolutional Dictionary Learning Based Hybrid-Field Channel Estimation for XL-RIS-Aided Massive MIMO Systems</title>
+    <updated>2024-09-25T06:50:03Z</updated>
+    <link href="https://arxiv.org/abs/2409.16664v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2409.16664v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Extremely large reconfigurable intelligent surface (XL-RIS) is emerging as a promising key technology for 6G systems. To exploit XL-RIS's full potential, accurate channel estimation is essential. This paper investigates channel estimation in XL-RIS-aided massive MIMO systems under hybrid-field scenarios where far-field and near-field channels coexist. We formulate this problem using dictionary learning, which allows for joint optimization of the dictionary and estimated channel. To handle the high-dimensional nature of XL-RIS channels, we specifically adopt a convolutional dictionary learning (CDL) formulation. The CDL formulation is cast as a bilevel optimization problem, which we solve using a gradient-based approach. To address the challenge of computing the gradient of the upper-level objective, we introduce an unrolled optimization method based on proximal gradient descent (PGD) and its special case, the iterative soft-thresholding algorithm (ISTA). We propose two neural network architectures, Convolutional ISTA-Net and its enhanced version Convolutional ISTA-Net+, for end-to-end optimization of the CDL. To overcome the limitations of linear convolutional filters in capturing complex hybrid-field channel structures, we propose the CNN-CDL approach, which enhances PGD by replacing linear convolution filters with CNN blocks in its gradient descent step, employing a learnable proximal mapping module in its proximal mapping step, and incorporating cross-layer feature integration. Simulation results demonstrate the effectiveness of the proposed methods for channel estimation in hybrid-field XL-RIS systems.</summary>
+    <category term="eess.SP" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2024-09-25T06:50:03Z</published>
+    <arxiv:primary_category term="eess.SP"/>
+    <author>
+      <name>Peicong Zheng</name>
+    </author>
+    <author>
+      <name>Xuantao Lyu</name>
+    </author>
+    <author>
+      <name>Ye Wang</name>
+    </author>
+    <author>
+      <name>Yi Gong</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2506.12965v3</id>
+    <title>Distributional Training Data Attribution: What do Influence Functions Sample?</title>
+    <updated>2025-10-25T12:43:41Z</updated>
+    <link href="https://arxiv.org/abs/2506.12965v3" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2506.12965v3" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Randomness is an unavoidable part of training deep learning models, yet something that traditional training data attribution algorithms fail to rigorously account for. They ignore the fact that, due to stochasticity in the initialisation and batching, training on the same dataset can yield different models. In this paper, we address this shortcoming through introducing distributional training data attribution (d-TDA), the goal of which is to predict how the distribution of model outputs (over training runs) depends upon the dataset. Intriguingly, we find that influence functions (IFs), a popular data attribution tool, are 'secretly distributional': they emerge from our framework as the limit to unrolled differentiation, without requiring restrictive convexity assumptions. This provides a new perspective on the effectiveness of IFs in deep learning. We demonstrate the practical utility of d-TDA in experiments, including improving data pruning for vision transformers and identifying influential examples with diffusion models.</summary>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="stat.ML" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2025-06-15T21:02:36Z</published>
+    <arxiv:primary_category term="cs.LG"/>
+    <author>
+      <name>Bruno Mlodozeniec</name>
+    </author>
+    <author>
+      <name>Isaac Reid</name>
+    </author>
+    <author>
+      <name>Sam Power</name>
+    </author>
+    <author>
+      <name>David Krueger</name>
+    </author>
+    <author>
+      <name>Murat Erdogdu</name>
+    </author>
+    <author>
+      <name>Richard E. Turner</name>
+    </author>
+    <author>
+      <name>Roger Grosse</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/1906.02852v1</id>
+    <title>Learning Clustered Representation for Complex Free Energy Landscapes</title>
+    <updated>2019-06-07T00:59:21Z</updated>
+    <link href="https://arxiv.org/abs/1906.02852v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/1906.02852v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>In this paper we first analyzed the inductive bias underlying the data scattered across complex free energy landscapes (FEL), and exploited it to train deep neural networks which yield reduced and clustered representation for the FEL. Our parametric method, called Information Distilling of Metastability (IDM), is end-to-end differentiable thus scalable to ultra-large dataset. IDM is also a clustering algorithm and is able to cluster the samples in the meantime of reducing the dimensions. Besides, as an unsupervised learning method, IDM differs from many existing dimensionality reduction and clustering methods in that it neither requires a cherry-picked distance metric nor the ground-true number of clusters, and that it can be used to unroll and zoom-in the hierarchical FEL with respect to different timescales. Through multiple experiments, we show that IDM can achieve physically meaningful representations which partition the FEL into well-defined metastable states hence are amenable for downstream tasks such as mechanism analysis and kinetic modeling.</summary>
+    <category term="cond-mat.stat-mech" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="physics.bio-ph" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="stat.ML" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2019-06-07T00:59:21Z</published>
+    <arxiv:comment>6 figures, 1 table in the main text</arxiv:comment>
+    <arxiv:primary_category term="cond-mat.stat-mech"/>
+    <arxiv:journal_ref>J. Phys. Chem. Lett. 2019,10,5571-5576</arxiv:journal_ref>
+    <author>
+      <name>Jun Zhang</name>
+    </author>
+    <author>
+      <name>Yao-Kun Lei</name>
+    </author>
+    <author>
+      <name>Xing Che</name>
+    </author>
+    <author>
+      <name>Zhen Zhang</name>
+    </author>
+    <author>
+      <name>Yi Isaac Yang</name>
+    </author>
+    <author>
+      <name>Yi Qin Gao</name>
+    </author>
+    <arxiv:doi>10.1021/acs.jpclett.9b02012</arxiv:doi>
+    <link rel="related" href="https://doi.org/10.1021/acs.jpclett.9b02012" title="doi"/>
+  </entry>
+</feed>

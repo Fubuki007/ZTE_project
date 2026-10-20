@@ -1,0 +1,624 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<feed xmlns:opensearch="http://a9.com/-/spec/opensearch/1.1/" xmlns:arxiv="http://arxiv.org/schemas/atom" xmlns="http://www.w3.org/2005/Atom">
+  <id>https://arxiv.org/api/vXn4XTxFOPSWhcaUnZp82ZkHHK0</id>
+  <title>arXiv Query: search_query=all:"unfolding" AND all:"sensing"&amp;id_list=&amp;start=0&amp;max_results=25</title>
+  <updated>2026-10-15T13:54:02Z</updated>
+  <link href="https://arxiv.org/api/query?search_query=all:%22unfolding%22+AND+all:%22sensing%22&amp;start=0&amp;max_results=25&amp;id_list=" type="application/atom+xml"/>
+  <opensearch:itemsPerPage>25</opensearch:itemsPerPage>
+  <opensearch:totalResults>239</opensearch:totalResults>
+  <opensearch:startIndex>0</opensearch:startIndex>
+  <entry>
+    <id>http://arxiv.org/abs/2412.07195v2</id>
+    <title>A Progressive Image Restoration Network for High-order Degradation Imaging in Remote Sensing</title>
+    <updated>2025-07-17T10:01:55Z</updated>
+    <link href="https://arxiv.org/abs/2412.07195v2" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2412.07195v2" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Recently, deep learning methods have gained remarkable achievements in the field of image restoration for remote sensing (RS). However, most existing RS image restoration methods focus mainly on conventional first-order degradation models, which may not effectively capture the imaging mechanisms of remote sensing images. Furthermore, many RS image restoration approaches that use deep learning are often criticized for their lacks of architecture transparency and model interpretability. To address these problems, we propose a novel progressive restoration network for high-order degradation imaging (HDI-PRNet), to progressively restore different image degradation. HDI-PRNet is developed based on the theoretical framework of degradation imaging, also Markov properties of the high-order degradation process and Maximum a posteriori (MAP) estimation, offering the benefit of mathematical interpretability within the unfolding network. The framework is composed of three main components: a module for image denoising that relies on proximal mapping prior learning, a module for image deblurring that integrates Neumann series expansion with dual-domain degradation learning, and a module for super-resolution. Extensive experiments demonstrate that our method achieves superior performance on both synthetic and real remote sensing images.</summary>
+    <category term="cs.CV" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="eess.IV" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2024-12-10T05:08:39Z</published>
+    <arxiv:comment>17 pages, Accepted to Transactions on Geoscience and Remote Sensing (TGRS), July 16, 2025</arxiv:comment>
+    <arxiv:primary_category term="cs.CV"/>
+    <arxiv:journal_ref>Transactions on Geoscience and Remote Sensing,2025</arxiv:journal_ref>
+    <author>
+      <name>Yujie Feng</name>
+    </author>
+    <author>
+      <name>Yin Yang</name>
+    </author>
+    <author>
+      <name>Xiaohong Fan</name>
+    </author>
+    <author>
+      <name>Zhengpeng Zhang</name>
+    </author>
+    <author>
+      <name>Lijing Bu</name>
+    </author>
+    <author>
+      <name>Jianping Zhang</name>
+    </author>
+    <arxiv:doi>10.1109/TGRS.2025.3590753</arxiv:doi>
+    <link rel="related" href="https://doi.org/10.1109/TGRS.2025.3590753" title="doi"/>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2605.11475v1</id>
+    <title>Deep Probabilistic Unfolding for Quantized Compressive Sensing</title>
+    <updated>2026-05-12T03:44:03Z</updated>
+    <link href="https://arxiv.org/abs/2605.11475v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2605.11475v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>We propose a deep probabilistic unfolding model to address the classical quantized compressive sensing problem that leverages an unfolding framework to enhance the reconstruction accuracy and efficiency. Unlike previous unfolding methods that apply L2 projection to measurements, we derive a closed-form, numerically stable likelihood gradient projection, which allows the model to respect the true quantization physics, turning the hard quantization constraint into a soft probabilistic guidance. Furthermore, an efficient, dual-domain Mamba module is specifically designed to dynamically capture and fuse the multi-scale local and global features, ensuring the interactions between the distant but correlated regions. Extensive experiments demonstrate the state-of-the-art performance of the proposed method over previous works, which is capable of promoting the application of quantized compressive sensing in real life.</summary>
+    <category term="cs.CV" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-05-12T03:44:03Z</published>
+    <arxiv:primary_category term="cs.CV"/>
+    <author>
+      <name>Gang Qu</name>
+    </author>
+    <author>
+      <name>Ping Wang</name>
+    </author>
+    <author>
+      <name>Siming Zheng</name>
+    </author>
+    <author>
+      <name>Xin Yuan</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2609.14391v1</id>
+    <title>Newton Deep Unfolding for Compressed Sensing</title>
+    <updated>2026-09-13T08:56:59Z</updated>
+    <link href="https://arxiv.org/abs/2609.14391v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2609.14391v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Compressed sensing (CS) reconstructs images from highly limited measurements, but existing deep unfolding methods are typically driven by first-order optimization and weakly exploit the optimization states generated during reconstruction. To address these limitations, we propose a Newton deep unfolding network (NDU-Net), which, to the best of our knowledge, is the first deep unfolding framework that leverages second-order optimization for CS reconstruction. Specifically, NDU-Net introduces a Newton update (NU) module to estimate Newton-type update directions and generate optimization states that characterize the current reconstruction process. Furthermore, a Newton-guided multi-scale prior (MP) module is designed to incorporate these optimization states into multi-scale feature restoration, thereby enabling the learned prior to adapt to the current reconstruction stage. Experimental results under different CS ratios confirm that our proposed NDU-Net achieves promising reconstruction performance and exhibits enhanced robustness. Our code is available at https://github.com/xianchaoxiu/DNU-Net.</summary>
+    <category term="cs.CV" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-09-13T08:56:59Z</published>
+    <arxiv:primary_category term="cs.CV"/>
+    <author>
+      <name>Changhua He</name>
+    </author>
+    <author>
+      <name>Xianchao Xiu</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2508.09528v1</id>
+    <title>Physics-guided Deep Unfolding Network for Enhanced Kronecker Compressive sensing</title>
+    <updated>2025-08-13T06:21:58Z</updated>
+    <link href="https://arxiv.org/abs/2508.09528v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2508.09528v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Deep networks have achieved remarkable success in image compressed sensing (CS) task, namely reconstructing a high-fidelity image from its compressed measurement. However, existing works are deficient inincoherent compressed measurement at sensing phase and implicit measurement representations at reconstruction phase, limiting the overall performance. In this work, we answer two questions: 1) how to improve the measurement incoherence for decreasing the ill-posedness; 2) how to learn informative representations from measurements. To this end, we propose a novel asymmetric Kronecker CS (AKCS) model and theoretically present its better incoherence than previous Kronecker CS with minimal complexity increase. Moreover, we reveal that the unfolding networks' superiority over non-unfolding ones result from sufficient gradient descents, called explicit measurement representations. We propose a measurement-aware cross attention (MACA) mechanism to learn implicit measurement representations. We integrate AKCS and MACA into widely-used unfolding architecture to get a measurement-enhanced unfolding network (MEUNet). Extensive experiences demonstrate that our MEUNet achieves state-of-the-art performance in reconstruction accuracy and inference speed.</summary>
+    <category term="cs.CV" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2025-08-13T06:21:58Z</published>
+    <arxiv:comment>9 pages, 4 figures</arxiv:comment>
+    <arxiv:primary_category term="cs.CV"/>
+    <author>
+      <name>Gang Qu</name>
+    </author>
+    <author>
+      <name>Ping Wang</name>
+    </author>
+    <author>
+      <name>Siming Zheng</name>
+    </author>
+    <author>
+      <name>Xin Yuan</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2208.01827v1</id>
+    <title>Fast Hierarchical Deep Unfolding Network for Image Compressed Sensing</title>
+    <updated>2022-08-03T03:27:32Z</updated>
+    <link href="https://arxiv.org/abs/2208.01827v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2208.01827v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>By integrating certain optimization solvers with deep neural network, deep unfolding network (DUN) has attracted much attention in recent years for image compressed sensing (CS). However, there still exist several issues in existing DUNs: 1) For each iteration, a simple stacked convolutional network is usually adopted, which apparently limits the expressiveness of these models. 2) Once the training is completed, most hyperparameters of existing DUNs are fixed for any input content, which significantly weakens their adaptability. In this paper, by unfolding the Fast Iterative Shrinkage-Thresholding Algorithm (FISTA), a novel fast hierarchical DUN, dubbed FHDUN, is proposed for image compressed sensing, in which a well-designed hierarchical unfolding architecture is developed to cooperatively explore richer contextual prior information in multi-scale spaces. To further enhance the adaptability, series of hyperparametric generation networks are developed in our framework to dynamically produce the corresponding optimal hyperparameters according to the input content. Furthermore, due to the accelerated policy in FISTA, the newly embedded acceleration module makes the proposed FHDUN save more than 50% of the iterative loops against recent DUNs. Extensive CS experiments manifest that the proposed FHDUN outperforms existing state-of-the-art CS methods, while maintaining fewer iterations.</summary>
+    <category term="cs.CV" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="eess.IV" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2022-08-03T03:27:32Z</published>
+    <arxiv:comment>Accepted by ACM MM 2022</arxiv:comment>
+    <arxiv:primary_category term="cs.CV"/>
+    <author>
+      <name>Wenxue Cui</name>
+    </author>
+    <author>
+      <name>Shaohui Liu</name>
+    </author>
+    <author>
+      <name>Debin Zhao</name>
+    </author>
+    <arxiv:doi>10.1145/3503161.3548389</arxiv:doi>
+    <link rel="related" href="https://doi.org/10.1145/3503161.3548389" title="doi"/>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2004.10078v2</id>
+    <title>AMP-Net: Denoising based Deep Unfolding for Compressive Image Sensing</title>
+    <updated>2021-01-22T02:59:40Z</updated>
+    <link href="https://arxiv.org/abs/2004.10078v2" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2004.10078v2" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Most compressive sensing (CS) reconstruction methods can be divided into two categories, i.e. model-based methods and classical deep network methods. By unfolding the iterative optimization algorithm for model-based methods onto networks, deep unfolding methods have the good interpretation of model-based methods and the high speed of classical deep network methods. In this paper, to solve the visual image CS problem, we propose a deep unfolding model dubbed AMP-Net. Rather than learning regularization terms, it is established by unfolding the iterative denoising process of the well-known approximate message passing algorithm. Furthermore, AMP-Net integrates deblocking modules in order to eliminate the blocking artifacts that usually appear in CS of visual images. In addition, the sampling matrix is jointly trained with other network parameters to enhance the reconstruction performance. Experimental results show that the proposed AMP-Net has better reconstruction accuracy than other state-of-the-art methods with high reconstruction speed and a small number of network parameters.</summary>
+    <category term="eess.IV" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.CV" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2020-04-21T15:04:17Z</published>
+    <arxiv:primary_category term="eess.IV"/>
+    <arxiv:journal_ref>IEEE Transactions on Image Processing 2021</arxiv:journal_ref>
+    <author>
+      <name>Zhonghao Zhang</name>
+    </author>
+    <author>
+      <name>Yipeng Liu</name>
+    </author>
+    <author>
+      <name>Jiani Liu</name>
+    </author>
+    <author>
+      <name>Fei Wen</name>
+    </author>
+    <author>
+      <name>Ce Zhu</name>
+    </author>
+    <arxiv:doi>10.1109/TIP.2020.3044472</arxiv:doi>
+    <link rel="related" href="https://doi.org/10.1109/TIP.2020.3044472" title="doi"/>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2411.17747v1</id>
+    <title>Deep Unfolding-Empowered MmWave Massive MIMO Joint Communications and Sensing</title>
+    <updated>2024-11-25T11:36:30Z</updated>
+    <link href="https://arxiv.org/abs/2411.17747v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2411.17747v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>In this paper, we propose a low-complexity and fast hybrid beamforming design for joint communications and sensing (JCAS) based on deep unfolding. We first derive closed-form expressions for the gradients of the communications sum rate and sensing beampattern error with respect to the analog and digital precoders. Building on this, we develop a deep neural network as an unfolded version of the projected gradient ascent algorithm, which we refer to as UPGANet. This approach efficiently optimizes the communication-sensing performance tradeoff with fast convergence, enabled by the learned step sizes. UPGANet preserves the interpretability and flexibility of the conventional PGA optimizer while enhancing performance through data training. Our simulations show that UPGANet achieves up to a 33.5% higher communications sum rate and 2.5 dB lower beampattern error compared to conventional designs based on successive convex approximation and Riemannian manifold optimization. Additionally, it reduces runtime and computational complexity by up to 65% compared to PGA without unfolding.</summary>
+    <category term="eess.SP" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2024-11-25T11:36:30Z</published>
+    <arxiv:comment>arXiv admin note: substantial text overlap with arXiv:2307.04376</arxiv:comment>
+    <arxiv:primary_category term="eess.SP"/>
+    <author>
+      <name>Nhan Thanh Nguyen</name>
+    </author>
+    <author>
+      <name>Ly V. Nguyen</name>
+    </author>
+    <author>
+      <name>Nir Shlezinger</name>
+    </author>
+    <author>
+      <name>Yonina C. Eldar</name>
+    </author>
+    <author>
+      <name>A. Lee Swindlehurst</name>
+    </author>
+    <author>
+      <name>Markku Juntti</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2306.14702v1</id>
+    <title>Deep Unfolding Enabled Constant Modulus Waveform Design for Joint Communications and Sensing</title>
+    <updated>2023-06-26T13:49:30Z</updated>
+    <link href="https://arxiv.org/abs/2306.14702v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2306.14702v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Joint communications and sensing (JCAS) systems have recently emerged as a promising technology to utilize the scarce spectrum in wireless networks and to reuse the same hardware to save infrastructure costs. In practical JCAS systems, dual functional constant-modulus waveforms can be employed to avoid signal distortion in nonlinear power amplifiers. However, the designs of such waveforms are very challenging due to the nonconvex constant-modulus constraint. The conventional branch-and-bound (BnB) method can achieve optimal solution but at the cost of exponential complexity and long run time. In this paper, we propose an efficient deep unfolding method for the constant-modulus waveform design in a multiuser multiple-input multiple-output (MIMO) JCAS system. The deep unfolding model has a sparsely-connected structure and is trained in an unsupervised fashion. It achieves good communications-sensing performance tradeoff while maintaining low computational complexity and low run time. Specifically, our numerical results show that the proposed deep unfolding scheme achieves a similar achievable rate compared to the conventional BnB method with 30 times faster execution time.</summary>
+    <category term="eess.SP" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2023-06-26T13:49:30Z</published>
+    <arxiv:comment>6 pages</arxiv:comment>
+    <arxiv:primary_category term="eess.SP"/>
+    <author>
+      <name>Prashanth Krishnananthalingam</name>
+    </author>
+    <author>
+      <name>Nhan Thanh Nguyen</name>
+    </author>
+    <author>
+      <name>Markku Juntti</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2307.04376v1</id>
+    <title>Joint Communications and Sensing Hybrid Beamforming Design via Deep Unfolding</title>
+    <updated>2023-07-10T07:21:23Z</updated>
+    <link href="https://arxiv.org/abs/2307.04376v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2307.04376v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Joint communications and sensing (JCAS) is envisioned as a key feature in future wireless communications networks. In massive MIMO-JCAS systems, hybrid beamforming (HBF) is typically employed to achieve satisfactory beamforming gains with reasonable hardware cost and power consumption. Due to the coupling of the analog and digital precoders in HBF and the dual objective in JCAS, JCAS-HBF design problems are very challenging and usually require highly complex algorithms. In this paper, we propose a fast HBF design for JCAS based on deep unfolding to optimize a tradeoff between the communications rate and sensing accuracy. We first derive closed-form expressions for the gradients of the communications and sensing objectives with respect to the precoders and demonstrate that the magnitudes of the gradients pertaining to the analog precoder are typically smaller than those associated with the digital precoder. Based on this observation, we propose a modified projected gradient ascent (PGA) method with significantly improved convergence. We then develop a deep unfolded PGA scheme that efficiently optimizes the communications-sensing performance tradeoff with fast convergence thanks to the well-trained hyperparameters. In doing so, we preserve the interpretability and flexibility of the optimizer while leveraging data to improve performance. Finally, our simulations demonstrate the potential of the proposed deep unfolded method, which achieves up to 33.5% higher communications sum rate and 2.5 dB lower beampattern error compared with the conventional design based on successive convex approximation and Riemannian manifold optimization. Furthermore, it attains up to a 65% reduction in run time and computational complexity with respect to the PGA procedure without unfolding.</summary>
+    <category term="cs.IT" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="eess.SP" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2023-07-10T07:21:23Z</published>
+    <arxiv:comment>This paper has been submitted to Journal of Selected Topics in Signal Processing</arxiv:comment>
+    <arxiv:primary_category term="cs.IT"/>
+    <author>
+      <name>Nhan Thanh Nguyen</name>
+    </author>
+    <author>
+      <name>Ly V. Nguyen</name>
+    </author>
+    <author>
+      <name>Nir Shlezinger</name>
+    </author>
+    <author>
+      <name>Yonina C. Eldar</name>
+    </author>
+    <author>
+      <name>A. Lee Swindlehurst</name>
+    </author>
+    <author>
+      <name>Markku Juntti</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2110.06986v5</id>
+    <title>ADMM-DAD net: a deep unfolding network for analysis compressed sensing</title>
+    <updated>2022-05-02T15:03:51Z</updated>
+    <link href="https://arxiv.org/abs/2110.06986v5" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2110.06986v5" rel="related" type="application/pdf" title="pdf"/>
+    <summary>In this paper, we propose a new deep unfolding neural network based on the ADMM algorithm for analysis Compressed Sensing. The proposed network jointly learns a redundant analysis operator for sparsification and reconstructs the signal of interest. We compare our proposed network with a state-of-the-art unfolded ISTA decoder, that also learns an orthogonal sparsifier. Moreover, we consider not only image, but also speech datasets as test examples. Computational experiments demonstrate that our proposed network outperforms the state-of-the-art deep unfolding network, consistently for both real-world image and speech datasets.</summary>
+    <category term="cs.IT" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.CV" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.IR" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2021-10-13T18:56:59Z</published>
+    <arxiv:primary_category term="cs.IT"/>
+    <arxiv:journal_ref>ICASSP 2022 - 2022 IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP), 2022, pp. 1506-1510</arxiv:journal_ref>
+    <author>
+      <name>Vasiliki Kouni</name>
+    </author>
+    <author>
+      <name>Georgios Paraskevopoulos</name>
+    </author>
+    <author>
+      <name>Holger Rauhut</name>
+    </author>
+    <author>
+      <name>George C. Alexandropoulos</name>
+    </author>
+    <arxiv:doi>10.1109/ICASSP43922.2022.9747096</arxiv:doi>
+    <link rel="related" href="https://doi.org/10.1109/ICASSP43922.2022.9747096" title="doi"/>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2303.05582v3</id>
+    <title>Generalization analysis of an unfolding network for analysis-based Compressed Sensing</title>
+    <updated>2025-06-10T15:26:36Z</updated>
+    <link href="https://arxiv.org/abs/2303.05582v3" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2303.05582v3" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Unfolding networks have shown promising results in the Compressed Sensing (CS) field. Yet, the investigation of their generalization ability is still in its infancy. In this paper, we perform a generalization analysis of a state-of-the-art ADMM-based unfolding network, which jointly learns a decoder for CS and a sparsifying redundant analysis operator. To this end, we first impose a structural constraint on the learnable sparsifier, which parametrizes the network's hypothesis class. For the latter, we estimate its Rademacher complexity. With this estimate in hand, we deliver generalization error bounds -- which scale like the square root of the number of layers -- for the examined network. Finally, the validity of our theory is assessed and numerical comparisons to a state-of-the-art unfolding network are made, on synthetic and real-world datasets. Our experimental results demonstrate that our proposed framework complies with our theoretical findings and outperforms the baseline, consistently for all datasets.</summary>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.IR" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.IT" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="eess.SP" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2023-03-09T21:13:32Z</published>
+    <arxiv:primary_category term="cs.LG"/>
+    <author>
+      <name>Vicky Kouni</name>
+    </author>
+    <author>
+      <name>Yannis Panagakis</name>
+    </author>
+    <arxiv:doi>10.1016/j.acha.2025.101787</arxiv:doi>
+    <link rel="related" href="https://doi.org/10.1016/j.acha.2025.101787" title="doi"/>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2306.16060v2</id>
+    <title>Dynamic Path-Controllable Deep Unfolding Network for Compressive Sensing</title>
+    <updated>2024-02-19T11:52:19Z</updated>
+    <link href="https://arxiv.org/abs/2306.16060v2" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2306.16060v2" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Deep unfolding network (DUN) that unfolds the optimization algorithm into a deep neural network has achieved great success in compressive sensing (CS) due to its good interpretability and high performance. Each stage in DUN corresponds to one iteration in optimization. At the test time, all the sampling images generally need to be processed by all stages, which comes at a price of computation burden and is also unnecessary for the images whose contents are easier to restore. In this paper, we focus on CS reconstruction and propose a novel Dynamic Path-Controllable Deep Unfolding Network (DPC-DUN). DPC-DUN with our designed path-controllable selector can dynamically select a rapid and appropriate route for each image and is slimmable by regulating different performance-complexity tradeoffs. Extensive experiments show that our DPC-DUN is highly flexible and can provide excellent performance and dynamic adjustment to get a suitable tradeoff, thus addressing the main requirements to become appealing in practice. Codes are available at https://github.com/songjiechong/DPC-DUN.</summary>
+    <category term="cs.CV" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="eess.IV" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2023-06-28T09:49:15Z</published>
+    <arxiv:comment>TIP, 2023</arxiv:comment>
+    <arxiv:primary_category term="cs.CV"/>
+    <author>
+      <name>Jiechong Song</name>
+    </author>
+    <author>
+      <name>Bin Chen</name>
+    </author>
+    <author>
+      <name>Jian Zhang</name>
+    </author>
+    <arxiv:doi>10.1109/TIP.2023.3263100</arxiv:doi>
+    <link rel="related" href="https://doi.org/10.1109/TIP.2023.3263100" title="doi"/>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2205.07050v6</id>
+    <title>DECONET: an Unfolding Network for Analysis-based Compressed Sensing with Generalization Error Bounds</title>
+    <updated>2023-04-26T10:22:07Z</updated>
+    <link href="https://arxiv.org/abs/2205.07050v6" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2205.07050v6" rel="related" type="application/pdf" title="pdf"/>
+    <summary>We present a new deep unfolding network for analysis-sparsity-based Compressed Sensing. The proposed network coined Decoding Network (DECONET) jointly learns a decoder that reconstructs vectors from their incomplete, noisy measurements and a redundant sparsifying analysis operator, which is shared across the layers of DECONET. Moreover, we formulate the hypothesis class of DECONET and estimate its associated Rademacher complexity. Then, we use this estimate to deliver meaningful upper bounds for the generalization error of DECONET. Finally, the validity of our theoretical results is assessed and comparisons to state-of-the-art unfolding networks are made, on both synthetic and real-world datasets. Experimental results indicate that our proposed network outperforms the baselines, consistently for all datasets, and its behaviour complies with our theoretical findings.</summary>
+    <category term="cs.IT" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.IR" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2022-05-14T12:50:48Z</published>
+    <arxiv:comment>Accepted in IEEE Transactions on Signal Processing</arxiv:comment>
+    <arxiv:primary_category term="cs.IT"/>
+    <author>
+      <name>Vicky Kouni</name>
+    </author>
+    <author>
+      <name>Yannis Panagakis</name>
+    </author>
+    <arxiv:doi>10.1109/TSP.2023.3272286</arxiv:doi>
+    <link rel="related" href="https://doi.org/10.1109/TSP.2023.3272286" title="doi"/>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2605.09566v1</id>
+    <title>Dual-Path Hyperprior Informed Deep Unfolding Network for Image Compressive Sensing</title>
+    <updated>2026-05-10T14:28:37Z</updated>
+    <link href="https://arxiv.org/abs/2605.09566v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2605.09566v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Recent Deep Unfolding Networks (DUNs) have significantly advanced Compressive Sensing (CS) by integrating iterative optimization with deep networks. However, existing DUNs still suffer from two challenges: 1) Reliance on a single measurement stream, which limits effective information interaction across distinct measurement subsets. 2) Uniform processing of all image regions, which overlooks varying reconstruction difficulties induced by diverse textures. To address these limitations, a novel Dual-Path Hyperprior Informed Deep Unfolding Network (DPH-DUN) is proposed, which partitions measurements into double subsets to enable hyperprior-guided reconstruction via a dual-path architecture. In the Deep Hyperprior Learning branch, a series of lightweight neural modules are designed to efficiently generate hyperprior knowledge of different domains, enabling collaborative guidance for the CS reconstruction. In the Hyperprior Informed Reconstruction branch, a deep unfolding framework with hyperprior guidance is constructed to iteratively refine reconstruction. Specifically, i) in the gradient descent step, a Hyperprior Informed Step Size Generation network is designed to dynamically generate spatially varying step maps, enabling adaptive fine-grained gradient updates. ii) In the proximal mapping step, two well-designed hyperprior informed attention mechanisms are introduced to dynamically focus on challenging regions via gradient-based hard and soft attentions, facilitating CS reconstruction accuracy. Extensive experiments demonstrate that the proposed DPH-DUN outperforms existing CS methods.</summary>
+    <category term="cs.CV" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-05-10T14:28:37Z</published>
+    <arxiv:primary_category term="cs.CV"/>
+    <author>
+      <name>Tianyi Lu</name>
+    </author>
+    <author>
+      <name>Wenxue Cui</name>
+    </author>
+    <author>
+      <name>Shaohui Liu</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2103.11554v1</id>
+    <title>ISTA-Net++: Flexible Deep Unfolding Network for Compressive Sensing</title>
+    <updated>2021-03-22T03:09:05Z</updated>
+    <link href="https://arxiv.org/abs/2103.11554v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2103.11554v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>While deep neural networks have achieved impressive success in image compressive sensing (CS), most of them lack flexibility when dealing with multi-ratio tasks and multi-scene images in practical applications. To tackle these challenges, we propose a novel end-to-end flexible ISTA-unfolding deep network, dubbed ISTA-Net++, with superior performance and strong flexibility. Specifically, by developing a dynamic unfolding strategy, our model enjoys the adaptability of handling CS problems with different ratios, i.e., multi-ratio tasks, through a single model. A cross-block strategy is further utilized to reduce blocking artifacts and enhance the CS recovery quality. Furthermore, we adopt a balanced dataset for training, which brings more robustness when reconstructing images of multiple scenes. Extensive experiments on four datasets show that ISTA-Net++ achieves state-of-the-art results in terms of both quantitative metrics and visual quality. Considering its flexibility, effectiveness and practicability, our model is expected to serve as a suitable baseline in future CS research. The source code is available on https://github.com/jianzhangcs/ISTA-Netpp.</summary>
+    <category term="cs.CV" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="eess.IV" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2021-03-22T03:09:05Z</published>
+    <arxiv:comment>ICME 2021 ORAL accepted</arxiv:comment>
+    <arxiv:primary_category term="cs.CV"/>
+    <author>
+      <name>Di You</name>
+    </author>
+    <author>
+      <name>Jingfen Xie</name>
+    </author>
+    <author>
+      <name>Jian Zhang</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2602.21513v1</id>
+    <title>Deep Unfolding Real-Time Super-Resolution Using Subpixel-Shift Twin Image and Convex Self-Similarity Prior</title>
+    <updated>2026-02-25T02:58:20Z</updated>
+    <link href="https://arxiv.org/abs/2602.21513v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2602.21513v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Multi-image super-resolution (MISR) is a critical technique for satellite remote sensing. In the perspective of information, twin-image super-resolution (TISR) is regarded as the most challenging MISR scenario, having crucial applications like the SPOT-5 supermode imaging. In TISR, an image is super-resolved by its subpixel-shift counterpart (i.e., twin image), where the two images are typically offset by half a pixel both horizontally and vertically. We formulate the less investigated TISR using a convex criterion, which is implemented using a novel deep unfolding network. In the unfolding, an embedded simple shift operator trickily addresses the coupled TISR data-fitting terms, and a transformer trained with a convex self-similarity loss function elegantly implements the proximal mapping induced by the TISR regularizer. The proposed convex self-similarity unfolding supermode super-resolution (COSUP) algorithm is interpretable and achieves state-of-the-art performance with very fast millisecond-level computational time. COSUP is also tested on real-world data, for which the subpixel shifts would not be spatially uniform, with results showing great superiority over the official CNES supermode imaging product in terms of credible metrics (e.g., natural image quality evaluator, NIQE). Source codes: https://github.com/IHCLab/COSUP.</summary>
+    <category term="eess.IV" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-02-25T02:58:20Z</published>
+    <arxiv:comment>15 pages, 9 figures, IEEE Transactions on Geoscience and Remote Sensing</arxiv:comment>
+    <arxiv:primary_category term="eess.IV"/>
+    <author>
+      <name>Chia-Hsiang Lin</name>
+    </author>
+    <author>
+      <name>Wei-Chih Liu</name>
+    </author>
+    <author>
+      <name>Yu-En Chiu</name>
+    </author>
+    <author>
+      <name>Jhao-Ting Lin</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2110.09766v2</id>
+    <title>Memory-Augmented Deep Unfolding Network for Compressive Sensing</title>
+    <updated>2021-10-25T01:33:55Z</updated>
+    <link href="https://arxiv.org/abs/2110.09766v2" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2110.09766v2" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Mapping a truncated optimization method into a deep neural network, deep unfolding network (DUN) has attracted growing attention in compressive sensing (CS) due to its good interpretability and high performance. Each stage in DUNs corresponds to one iteration in optimization. By understanding DUNs from the perspective of the human brain's memory processing, we find there exists two issues in existing DUNs. One is the information between every two adjacent stages, which can be regarded as short-term memory, is usually lost seriously. The other is no explicit mechanism to ensure that the previous stages affect the current stage, which means memory is easily forgotten. To solve these issues, in this paper, a novel DUN with persistent memory for CS is proposed, dubbed Memory-Augmented Deep Unfolding Network (MADUN). We design a memory-augmented proximal mapping module (MAPMM) by combining two types of memory augmentation mechanisms, namely High-throughput Short-term Memory (HSM) and Cross-stage Long-term Memory (CLM). HSM is exploited to allow DUNs to transmit multi-channel short-term memory, which greatly reduces information loss between adjacent stages. CLM is utilized to develop the dependency of deep information across cascading stages, which greatly enhances network representation capability. Extensive CS experiments on natural and MR images show that with the strong ability to maintain and balance information our MADUN outperforms existing state-of-the-art methods by a large margin. The source code is available at https://github.com/jianzhangcs/MADUN/.</summary>
+    <category term="cs.CV" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="eess.IV" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2021-10-19T07:03:12Z</published>
+    <arxiv:comment>10 pages, 7 figures, ACM MM 2021</arxiv:comment>
+    <arxiv:primary_category term="cs.CV"/>
+    <author>
+      <name>Jiechong Song</name>
+    </author>
+    <author>
+      <name>Bin Chen</name>
+    </author>
+    <author>
+      <name>Jian Zhang</name>
+    </author>
+    <arxiv:doi>10.1145/3474085.3475562</arxiv:doi>
+    <link rel="related" href="https://doi.org/10.1145/3474085.3475562" title="doi"/>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2307.07291v1</id>
+    <title>Sampling-Priors-Augmented Deep Unfolding Network for Robust Video Compressive Sensing</title>
+    <updated>2023-07-14T12:05:14Z</updated>
+    <link href="https://arxiv.org/abs/2307.07291v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2307.07291v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Video Compressed Sensing (VCS) aims to reconstruct multiple frames from one single captured measurement, thus achieving high-speed scene recording with a low-frame-rate sensor. Although there have been impressive advances in VCS recently, those state-of-the-art (SOTA) methods also significantly increase model complexity and suffer from poor generality and robustness, which means that those networks need to be retrained to accommodate the new system. Such limitations hinder the real-time imaging and practical deployment of models. In this work, we propose a Sampling-Priors-Augmented Deep Unfolding Network (SPA-DUN) for efficient and robust VCS reconstruction. Under the optimization-inspired deep unfolding framework, a lightweight and efficient U-net is exploited to downsize the model while improving overall performance. Moreover, the prior knowledge from the sampling model is utilized to dynamically modulate the network features to enable single SPA-DUN to handle arbitrary sampling settings, augmenting interpretability and generality. Extensive experiments on both simulation and real datasets demonstrate that SPA-DUN is not only applicable for various sampling settings with one single model but also achieves SOTA performance with incredible efficiency.</summary>
+    <category term="cs.CV" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="eess.IV" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2023-07-14T12:05:14Z</published>
+    <arxiv:primary_category term="cs.CV"/>
+    <author>
+      <name>Yuhao Huang</name>
+    </author>
+    <author>
+      <name>Gangrong Qu</name>
+    </author>
+    <author>
+      <name>Youran Ge</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2201.05810v2</id>
+    <title>Two-Stage is Enough: A Concise Deep Unfolding Reconstruction Network for Flexible Video Compressive Sensing</title>
+    <updated>2022-01-21T04:30:37Z</updated>
+    <link href="https://arxiv.org/abs/2201.05810v2" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2201.05810v2" rel="related" type="application/pdf" title="pdf"/>
+    <summary>We consider the reconstruction problem of video compressive sensing (VCS) under the deep unfolding/rolling structure. Yet, we aim to build a flexible and concise model using minimum stages. Different from existing deep unfolding networks used for inverse problems, where more stages are used for higher performance but without flexibility to different masks and scales, hereby we show that a 2-stage deep unfolding network can lead to the state-of-the-art (SOTA) results (with a 1.7dB gain in PSNR over the single stage model, RevSCI) in VCS. The proposed method possesses the properties of adaptation to new masks and ready to scale to large data without any additional training thanks to the advantages of deep unfolding. Furthermore, we extend the proposed model for color VCS to perform joint reconstruction and demosaicing. Experimental results demonstrate that our 2-stage model has also achieved SOTA on color VCS reconstruction, leading to a &gt;2.3dB gain in PSNR over the previous SOTA algorithm based on plug-and-play framework, meanwhile speeds up the reconstruction by &gt;17 times. In addition, we have found that our network is also flexible to the mask modulation and scale size for color VCS reconstruction so that a single trained network can be applied to different hardware systems. The code and models will be released to the public.</summary>
+    <category term="eess.IV" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.CV" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2022-01-15T09:40:22Z</published>
+    <arxiv:primary_category term="eess.IV"/>
+    <author>
+      <name>Siming Zheng</name>
+    </author>
+    <author>
+      <name>Xiaoyu Yang</name>
+    </author>
+    <author>
+      <name>Xin Yuan</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2606.03666v1</id>
+    <title>Beyond Single Solution: Multi-Hypothesis Collaborative Deep Unfolding Network for Image Compressive Sensing</title>
+    <updated>2026-06-02T13:50:56Z</updated>
+    <link href="https://arxiv.org/abs/2606.03666v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2606.03666v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Recent deep unfolding networks (DUNs) have advanced Compressive Sensing (CS) by effectively integrating iterative optimization with deep learning architectures. However, most CS approaches predominantly confine their inference to a single solution space, neglecting the inherent ill-posedness of CS problems that intrinsically permits multiple plausible candidate hypotheses. In this paper, a novel Multi-Hypothesis Collaborative Deep Unfolding CS Network (MHC-DUN) is proposed, which explicitly models and leverages multiple hypotheses by jointly optimizing across diverse solution spaces. Specifically, following the Proximal Gradient Descent algorithm, MHC-DUN jointly performs gradient descent and proximal mapping within this multi-hypothesis paradigm. i) For gradient descent, a well-designed AlphaNet is introduced to dynamically predict spatially varying step sizes for all hypotheses, enabling collaborative gradient updates across multiple solutions. ii) For proximal operator, a sophisticated multi-hypothesis collaborative proximal mapping module is designed, which leverages both intra-hypothesis and inter-hypothesis correlation priors to jointly refine multiple solutions. To enable end-to-end training, a novel composite loss function is designed, which balances measurement fidelity, hypothesis diversity, and reconstruction accuracy, encouraging exploration of complementary solutions while maintaining reconstruction fidelity. Experimental results reveal that the proposed CS method outperforms existing CS networks.</summary>
+    <category term="cs.CV" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-06-02T13:50:56Z</published>
+    <arxiv:comment>Accepted by CVPR 2026</arxiv:comment>
+    <arxiv:primary_category term="cs.CV"/>
+    <author>
+      <name>Wenxue Cui</name>
+    </author>
+    <author>
+      <name>Hualin Li</name>
+    </author>
+    <author>
+      <name>Yuhang Qin</name>
+    </author>
+    <author>
+      <name>Yifu Xu</name>
+    </author>
+    <author>
+      <name>Xiaopeng Fan</name>
+    </author>
+    <author>
+      <name>Debin Zhao</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2411.16336v1</id>
+    <title>WTDUN: Wavelet Tree-Structured Sampling and Deep Unfolding Network for Image Compressed Sensing</title>
+    <updated>2024-11-25T12:31:03Z</updated>
+    <link href="https://arxiv.org/abs/2411.16336v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2411.16336v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Deep unfolding networks have gained increasing attention in the field of compressed sensing (CS) owing to their theoretical interpretability and superior reconstruction performance. However, most existing deep unfolding methods often face the following issues: 1) they learn directly from single-channel images, leading to a simple feature representation that does not fully capture complex features; and 2) they treat various image components uniformly, ignoring the characteristics of different components. To address these issues, we propose a novel wavelet-domain deep unfolding framework named WTDUN, which operates directly on the multi-scale wavelet subbands. Our method utilizes the intrinsic sparsity and multi-scale structure of wavelet coefficients to achieve a tree-structured sampling and reconstruction, effectively capturing and highlighting the most important features within images. Specifically, the design of tree-structured reconstruction aims to capture the inter-dependencies among the multi-scale subbands, enabling the identification of both fine and coarse features, which can lead to a marked improvement in reconstruction quality. Furthermore, a wavelet domain adaptive sampling method is proposed to greatly improve the sampling capability, which is realized by assigning measurements to each wavelet subband based on its importance. Unlike pure deep learning methods that treat all components uniformly, our method introduces a targeted focus on important subbands, considering their energy and sparsity. This targeted strategy lets us capture key information more efficiently while discarding less important information, resulting in a more effective and detailed reconstruction. Extensive experimental results on various datasets validate the superior performance of our proposed method.</summary>
+    <category term="eess.IV" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.CV" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2024-11-25T12:31:03Z</published>
+    <arxiv:comment>20pages,Accepted by ACM Transactions on Multimedia Computing Communications and Applications (TOMM)</arxiv:comment>
+    <arxiv:primary_category term="eess.IV"/>
+    <arxiv:journal_ref>ACM Transactions on Multimedia Computing Communications and Applications, 21(1): 33.1-33.22, 2024</arxiv:journal_ref>
+    <author>
+      <name>Kai Han</name>
+    </author>
+    <author>
+      <name>Jin Wang</name>
+    </author>
+    <author>
+      <name>Yunhui Shi</name>
+    </author>
+    <author>
+      <name>Hanqin Cai</name>
+    </author>
+    <author>
+      <name>Nam Ling</name>
+    </author>
+    <author>
+      <name>Baocai Yin</name>
+    </author>
+    <arxiv:doi>10.1145/3701731</arxiv:doi>
+    <link rel="related" href="https://doi.org/10.1145/3701731" title="doi"/>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2503.08429v1</id>
+    <title>Using Powerful Prior Knowledge of Diffusion Model in Deep Unfolding Networks for Image Compressive Sensing</title>
+    <updated>2025-03-11T13:40:46Z</updated>
+    <link href="https://arxiv.org/abs/2503.08429v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2503.08429v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Recently, Deep Unfolding Networks (DUNs) have achieved impressive reconstruction quality in the field of image Compressive Sensing (CS) by unfolding iterative optimization algorithms into neural networks. The reconstruction quality of DUNs depends on the learned prior knowledge, so introducing stronger prior knowledge can further improve reconstruction quality. On the other hand, pre-trained diffusion models contain powerful prior knowledge and have a solid theoretical foundation and strong scalability, but it requires a large number of iterative steps to achieve reconstruction. In this paper, we propose to use the powerful prior knowledge of pre-trained diffusion model in DUNs to achieve high-quality reconstruction with less steps for image CS. Specifically, we first design an iterative optimization algorithm named Diffusion Message Passing (DMP), which embeds a pre-trained diffusion model into each iteration process of DMP. Then, we deeply unfold the DMP algorithm into a neural network named DMP-DUN. The proposed DMP-DUN can use lightweight neural networks to achieve mapping from measurement data to the intermediate steps of the reverse diffusion process and directly approximate the divergence of the diffusion model, thereby further improving reconstruction efficiency. Extensive experiments show that our proposed DMP-DUN achieves state-of-the-art performance and requires at least only 2 steps to reconstruct the image. Codes are available at https://github.com/FengodChen/DMP-DUN-CVPR2025.</summary>
+    <category term="cs.CV" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2025-03-11T13:40:46Z</published>
+    <arxiv:comment>CVPR2025 accepted</arxiv:comment>
+    <arxiv:primary_category term="cs.CV"/>
+    <author>
+      <name>Chen Liao</name>
+    </author>
+    <author>
+      <name>Yan Shen</name>
+    </author>
+    <author>
+      <name>Dan Li</name>
+    </author>
+    <author>
+      <name>Zhongli Wang</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2212.09088v1</id>
+    <title>LR-CSNet: Low-Rank Deep Unfolding Network for Image Compressive Sensing</title>
+    <updated>2022-12-18T13:54:11Z</updated>
+    <link href="https://arxiv.org/abs/2212.09088v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2212.09088v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Deep unfolding networks (DUNs) have proven to be a viable approach to compressive sensing (CS). In this work, we propose a DUN called low-rank CS network (LR-CSNet) for natural image CS. Real-world image patches are often well-represented by low-rank approximations. LR-CSNet exploits this property by adding a low-rank prior to the CS optimization task. We derive a corresponding iterative optimization procedure using variable splitting, which is then translated to a new DUN architecture. The architecture uses low-rank generation modules (LRGMs), which learn low-rank matrix factorizations, as well as gradient descent and proximal mappings (GDPMs), which are proposed to extract high-frequency features to refine image details. In addition, the deep features generated at each reconstruction stage in the DUN are transferred between stages to boost the performance. Our extensive experiments on three widely considered datasets demonstrate the promising performance of LR-CSNet compared to state-of-the-art methods in natural image CS.</summary>
+    <category term="cs.CV" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="eess.IV" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2022-12-18T13:54:11Z</published>
+    <arxiv:primary_category term="cs.CV"/>
+    <author>
+      <name>Tianfang Zhang</name>
+    </author>
+    <author>
+      <name>Lei Li</name>
+    </author>
+    <author>
+      <name>Christian Igel</name>
+    </author>
+    <author>
+      <name>Stefan Oehmcke</name>
+    </author>
+    <author>
+      <name>Fabian Gieseke</name>
+    </author>
+    <author>
+      <name>Zhenming Peng</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2509.15370v4</id>
+    <title>Adversarial generalization of unfolding (model-based) networks</title>
+    <updated>2026-02-06T13:50:06Z</updated>
+    <link href="https://arxiv.org/abs/2509.15370v4" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2509.15370v4" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Unfolding networks are interpretable networks emerging from iterative algorithms, incorporate prior knowledge of data structure, and are designed to solve inverse problems like compressed sensing, which deals with recovering data from noisy, missing observations. Compressed sensing finds applications in critical domains, from medical imaging to cryptography, where adversarial robustness is crucial to prevent catastrophic failures. However, a solid theoretical understanding of the performance of unfolding networks in the presence of adversarial attacks is still in its infancy. In this paper, we study the adversarial generalization of unfolding networks when perturbed with $l_2$-norm constrained attacks, generated by the fast gradient sign method. Particularly, we choose a family of state-of-the-art overaparameterized unfolding networks and deploy a new framework to estimate their adversarial Rademacher complexity. Given this estimate, we provide adversarial generalization error bounds for the networks under study, which are tight with respect to the attack level. To our knowledge, this is the first theoretical analysis on the adversarial generalization of unfolding networks. We further present a series of experiments on real-world data, with results corroborating our derived theory, consistently for all data. Finally, we observe that the family's overparameterization can be exploited to promote adversarial robustness, shedding light on how to efficiently robustify neural networks.</summary>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2025-09-18T19:17:07Z</published>
+    <arxiv:comment>Accepted at NeurIPS2025</arxiv:comment>
+    <arxiv:primary_category term="cs.LG"/>
+    <author>
+      <name>Vicky Kouni</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2603.09813v3</id>
+    <title>Prismatoid Band-Unfolding Revisited</title>
+    <updated>2026-09-18T20:51:51Z</updated>
+    <link href="https://arxiv.org/abs/2603.09813v3" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2603.09813v3" rel="related" type="application/pdf" title="pdf"/>
+    <summary>It remains unknown if every prismatoid has a nonoverlapping edge-unfolding, a special case of the long-unsolved "Dürer's problem." Recently nested prismatoids have been settled [Rad24] by mixing (in some sense) the two natural unfoldings, petal-unfolding and band-unfolding. Band-unfolding fails due to a specific counterexample [O'R13b].
+  The main contribution of this paper is a characterization when a band-unfolding of a nested prismatoid does in fact result in a nonoverlapping unfolding. In particular, we show that the mentioned counterexample is in a sense the only possible counterexample. Although this result does not expand the class of shapes known to have an edge-unfolding, its proof expands our understanding in several ways, developing tools that may help resolve the non-nested case.</summary>
+    <category term="cs.CG" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="math.MG" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-03-10T15:40:34Z</published>
+    <arxiv:comment>19 pages, 16 figures, 9 references. v2: Fixed two figures; v3: OprnProb (1) is resolved</arxiv:comment>
+    <arxiv:primary_category term="cs.CG"/>
+    <author>
+      <name>Joseph O'Rourke</name>
+    </author>
+  </entry>
+</feed>

@@ -1,0 +1,542 @@
+\documentclass[onecolumn,10pt]{IEEEtran}
+% \documentclass{article}
+\usepackage{amsmath,amsfonts}
+\usepackage{algorithmic}
+\usepackage{algorithm}
+\usepackage{array}
+\usepackage{textcomp}
+\usepackage{stfloats}
+\usepackage{url}
+\usepackage{verbatim}
+\usepackage{graphicx,subfigure}
+\usepackage{amssymb}
+\usepackage{cite}
+\usepackage{amsthm}  
+\usepackage{color}
+\usepackage{diagbox,multirow,makecell}
+\usepackage{ctex}
+\usepackage{booktabs}
+
+\usepackage{fontspec}
+% \usepackage{CJKfntef}
+
+\linespread{1.1}
+\usepackage{geometry}
+\geometry{a4paper,scale=0.8}
+
+\usepackage{float}  % 提供 [H] 参数强制图片位置
+
+\title{毫米波通感实时感知与预警算法方案}
+% \author{JJ}
+
+\begin{document}
+
+\maketitle
+
+\section{介绍}
+随着毫米波通信、低空经济和智能感知业务的快速发展，基于现有通信基础设施实现环境实时感知与风险预警，已成为通感一体化技术的重要应用方向。本项目围绕“毫米波通感实时感知与预警算法方案”展开，目标是在尽可能低的实现代价下，利用设备已有射频能力和5G通信标准基础，构建面向目标探测、距离估计、空间覆盖和实时预警的算法方案。
+
+具体而言，系统工作频段需适配设备射频支持范围，例如24.25--29.5 GHz，并兼容5G通信体制；在感知能力方面，要求实现水平 500 m 以内的目标感知，并覆盖垂直方向约600 m 空域；在性能指标方面，需达到分米级感知精度、0.1 m 距离分辨率以及小于1 s 的刷新率。围绕上述需求，本方案重点从低复杂度信号处理、实时目标检测、参数估计与预警判决等方面开展算法设计，以满足工程部署中对实时性、精度和实现成本的综合要求。
+
+\section{系统模型}\label{sec:system model}
+
+
+本节建立毫米波 MIMO-OFDM 通感一体化系统模型，包括发射信号、通信接收信号和感知回波信号。考虑发射端配置 $N_{\rm tx}$ 根发射天线，感知接收端配置 $N_{\rm rx}$ 根接收天线，系统复用同一 OFDM 波形同时支持下行通信与环境感知，为 $K$ 个通信用户提供数据传输并探测 $Q$ 个低空目标。发射端在各子载波和 OFDM 符号上发送经预编码处理的通信信号；通信用户完成下行信息接收；感知接收端则根据目标反射回波联合估计距离、径向速度、俯仰角和方位角。
+
+为保证离散 MIMO-OFDM 感知模型成立，单个 CPI 内采用准静态目标假设，即目标的距离、速度和角度变化相对于一个 CPI 的分辨单元可忽略；收发阵列完成时间、频率与相位同步；目标位于阵列辐射近似平面波区域。
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.5\linewidth]{model2.pdf}
+    \caption{系统模型示意图}
+    \label{fig:sys_model}
+\end{figure}
+
+\subsection{发射模型}
+
+设系统载波频率为 $f_c$，对应波长为 $\lambda_c=c/f_c$，其中 $c$ 为光速。系统包含 $N_{\rm s}$ 个等效处理子载波，子载波间隔为 $\Delta f$。在一个相干处理间隔（coherent processing interval, CPI）内，系统连续发送 $L$ 个 OFDM 符号，实现通信数据承载与感知相干积累。
+
+记第 $l$ 个 OFDM 符号在第 $i$ 个子载波上的发射信号为
+$\mathbf{x}_i[l]\in\mathbb{C}^{N_{\rm tx}\times 1}$，其中
+$i=0,\ldots,N_{\rm s}-1$，$l=0,\ldots,L-1$。则连续时间基带发射信号可表示为
+\begin{align} \label{transmitted signal} 
+		\widetilde{\mathbf{x}}(t)\triangleq 
+        \sum_{i=0}^{N_\mathrm{s}-1} 
+        \sum_{l=0}^{L-1} 
+        \mathbf{x}_i[l] e^{\jmath 2\pi i \Delta f t} 
+        \mathrm{rect} \left(\frac{t-l T}{T} \right),
+\end{align}
+其中，$T=T_d+T_{\rm cp}$ 表示相邻 OFDM 符号的时间间隔，$T_d=1/\Delta f$ 为有效符号时长，$T_{\rm cp}$ 为循环前缀时长；$\mathrm{rect}(\cdot)$ 为矩形窗函数，用于限定单个 OFDM 符号的持续时间。
+
+
+第 $i$ 个子载波上的发射信号由通信符号经过预编码得到，即
+\begin{align}
+    \mathbf{x}_i[l] = \mathbf{W}_i \mathbf{s}_i[l]\in \mathbb{C}^{ N_{\rm tx}\times 1 },
+\end{align}
+其中，$\mathbf{s}_i[l]\in \mathbb{C}^{K\times 1}$ 为第 $i$ 个子载波、第 $l$ 个 OFDM 符号上的通信符号向量，$\mathbf{W}_i\in \mathbb{C}^{N_{\rm tx}\times K}$ 为对应子载波的预编码矩阵。该信号既承载通信信息，又作为已知照射波形用于感知回波处理。
+
+
+\subsection{感知模型}
+
+对于感知链路，发射端的 OFDM 信号照射低空目标后形成反射回波，并由二维接收阵列采集。考虑场景中存在 $Q$ 个目标，第 $q$ 个目标的径向距离、径向速度、俯仰角和方位角分别记为 $R_q$、$v_q$、$\theta_q$ 和 $\phi_q$。在单个 CPI 内目标参数近似不变、阵列响应满足窄带假设时，连续时间回波可表示为
+\begin{align}
+\widetilde{\mathbf{y}}(t) = \sum_{q=1}^{Q} \beta_q \mathbf{b}(\theta_q,\phi_q) \mathbf{a}^{\rm H}(\theta_q,\phi_q) \widetilde{\mathbf{x}}\left(t-\frac{2R_q}{c}\right) e^{j2\pi f_{D,q}t} + \widetilde{\mathbf{z}}(t),
+\end{align}
+其中，$\beta_q$ 为第 $q$ 个目标的等效复反射系数，$2R_q/c$ 为往返传播时延，$f_{D,q}=2v_qf_c/c$ 为径向运动引起的多普勒频移，$\widetilde{\mathbf{z}}(t)$ 为接收噪声。$\mathbf{a}(\theta_q,\phi_q)$ 和 $\mathbf{b}(\theta_q,\phi_q)$ 分别为发射阵列与接收阵列在目标方向 $(\theta_q,\phi_q)$ 上的导向矢量。
+
+对于平面阵列结构，接收和发射阵列响应可写为
+\begin{align}
+\mathbf{b}(\theta_q,\phi_q) &= \left[ 1,
+\ldots,
+e^{-j\frac{2\pi}{\lambda_c}
+\left(
+(N_{{\rm rx},x}-1)d_{{\rm rx},x}\sin\theta_q\cos\phi_q
++
+(N_{{\rm rx},y}-1)d_{{\rm rx},y}\sin\theta_q\sin\phi_q
+\right)} \right]^{\rm T},\\
+\mathbf{a}(\theta_q,\phi_q) &= \left[ 1, 
+\ldots,
+e^{j\frac{2\pi}{\lambda_c}
+\left(
+(N_{{\rm tx},x}-1)d_{{\rm tx},x}\sin\theta_q\cos\phi_q
++
+(N_{{\rm tx},y}-1)d_{{\rm tx},y}\sin\theta_q\sin\phi_q
+\right)} \right]^{\rm T},
+\end{align} 
+其中，$N_{{\rm tx},x}$、$N_{{\rm tx},y}$ 和 $N_{{\rm rx},x}$、$N_{{\rm rx},y}$ 分别为发射、接收均匀平面阵列在两个坐标方向上的阵元数；$d_{{\rm tx},x}$、$d_{{\rm tx},y}$、$d_{{\rm rx},x}$ 和 $d_{{\rm rx},y}$ 为对应阵元间距。
+
+经过循环前缀去除、采样和 DFT 处理后，第 $i$ 个子载波、第 $l$ 个 OFDM 符号上的离散感知回波可写为
+\begin{align}
+ {\mathbf{y}}_i[l]  
+ &= \sum_{q=1}^{Q} \beta_q \mathbf{b}(\theta_q,\phi_q) \mathbf{a}^{\rm H}(\theta_q,\phi_q)  \mathbf{x}_i[l]  
+ e^{-j4\pi i \Delta f  R_q /c} e^{j4\pi lTv_qf_c /c} + {\mathbf{z}}_i[l] \\
+ &= \sum_{q=1}^{Q} \beta_q \mathbf{b}(\theta_q,\phi_q) \mathbf{a}^{\rm H}(\theta_q,\phi_q)  \mathbf{x}_i[l]   
+e^{\jmath i\omega_\mathrm{r}(R_q)}
+e^{\jmath l\omega_\mathrm{v}(v_q)} + {\mathbf{z}} _i[l],
+\end{align}
+其中
+\begin{align}
+    \omega_\mathrm{r}(R_q)&= -4\pi \Delta f  R_q /c,\\
+    \omega_\mathrm{v}(v_q) &= 4\pi T  v_q f_c /c.
+\end{align}
+由上述离散模型可知，目标距离、径向速度和二维角度分别映射为子载波维、慢时间维以及接收阵列空间维的线性相位变化。
+
+
+\subsection{通信模型}
+对于通信链路，第 $k$ 个用户的接收信号经循环前缀去除和 DFT 处理后，第 $i$ 个子载波、第 $l$ 个 OFDM 符号上的基带信号可写为
+\begin{align}
+    y_{i,k}[l]
+    =
+    \mathbf{h}_{i,k}^{\rm H}\mathbf{x}_i[l]
+    +
+    z_{i,k}[l],
+\end{align}
+其中，$\mathbf{h}_{i,k}\in\mathbb{C}^{N_{\rm tx}\times 1}$ 为第 $i$ 个子载波上发射端到第 $k$ 个用户的信道向量，$z_{i,k}[l]$ 为用户端的接收噪声。
+
+毫米波信道具有明显的稀疏多径特性，可由有限条有效传播路径叠加表示为
+\begin{align}
+    \mathbf{h}_{i,k}^{\rm H}
+    =
+    \sum_{d=1}^{D_k}
+    \sqrt{\rho_k}\alpha_{k,d}e^{-\jmath2\pi i\Delta f\tau_{k,d}}
+    \mathbf{a}^{\rm H}_{\rm tx}(\theta_{k,d},\phi_{k,d}),
+\end{align}
+其中，$D_k$ 为有效传播路径数，$\rho_k$ 为链路大尺度衰落系数，$\alpha_{k,d}$、$\tau_{k,d}$、$(\theta_{k,d},\phi_{k,d})$ 分别为第 $d$ 条路径的复增益、传播时延、俯仰角和方位角。
+
+
+\section{算法设计原理}
+
+\subsection{发射波束成形设计}
+
+为保证下行通信链路的空间复用性能，本方案首先设计子载波级发射预编码矩阵。将第 $k$ 个用户的接收信号展开可得
+\begin{align}
+    y_{i,k}[l]
+    =
+    \mathbf{h}_{i,k}^{\rm H}\mathbf{w}_{i,k}s_{i,k}[l]
+    +
+    \sum_{j\neq k}
+    \mathbf{h}_{i,k}^{\rm H}\mathbf{w}_{i,j}s_{i,j}[l]
+    +
+    z_{i,k}[l].
+\end{align}
+其中，第一项为期望通信信号，第二项为其他用户信号对用户 $k$ 造成的多用户干扰。
+
+本方案采用迫零（zero-forcing, ZF）预编码抑制多用户干扰。ZF 通过构造通信信道的右逆，使各用户的等效信道彼此正交，从而将多用户 MIMO 下行链路分解为若干近似无干扰的并行数据流。第 $i$ 个子载波上的未归一化 ZF 预编码矩阵为
+\begin{align}
+    \widetilde{\mathbf{W}}_i
+    =
+    \mathbf{H}_i
+    \left(
+    \mathbf{H}_i^{\rm H}\mathbf{H}_i
+    \right)^{-1}.
+\end{align}
+其中第 $i$ 个子载波上的通信信道矩阵为
+\begin{align}
+    \mathbf{H}_i
+    =
+    \left[
+    \mathbf{h}_{i,1},
+    \mathbf{h}_{i,2},
+    \ldots,
+    \mathbf{h}_{i,K}
+    \right]
+    \in \mathbb{C}^{N_{\rm tx}\times K}.
+\end{align}
+ 通过如上的波束成形设计，可以使得
+\begin{align}
+    \mathbf{H}_i^{\rm H}\widetilde{\mathbf{W}}_i
+    =
+    \mathbf{I}_K,
+\end{align}
+即不同用户之间的干扰项被强制置零。
+
+
+考虑发射功率约束，对迫零预编码矩阵进行归一化处理：
+\begin{align}
+    \mathbf{W}_i
+    =
+    \sqrt{\frac{P_i}{\|\widetilde{\mathbf{W}}_i\|_{\rm F}^2}}
+    \widetilde{\mathbf{W}}_i,
+\end{align}
+其中，$P_i$ 为第 $i$ 个子载波的发射功率。上述设计要求 $N_{\rm tx}\geq K$ 且 $\mathbf{H}_i$ 列满秩。归一化前有 $\mathbf{H}_i^{\rm H}\widetilde{\mathbf{W}}_i=\mathbf{I}_K$；归一化后等效信道变为 $\mathbf{H}_i^{\rm H}\mathbf{W}_i=\alpha_i\mathbf{I}_K$，其中 $\alpha_i=\sqrt{P_i/\|\widetilde{\mathbf{W}}_i\|_{\rm F}^{2}}$。因此，功率归一化仅统一缩放各用户的期望信号增益，不会重新引入用户间干扰。
+
+
+
+\subsection{目标估计算法}
+根据离散回波模型，距离、速度和角度分别对应频率维、慢时间维和空间维的相位斜率。若直接在角度--距离--速度四维空间执行联合搜索，计算量和存储量均难以满足实时处理要求。因此，本方案采用“距离--多普勒候选检测 + 局部角度精估计”的两级快速处理结构。
+
+首先，由于接收回波中包含发射通信符号带来的调制相位，直接进行距离--多普勒处理会影响相干累加效果。因此，我们对每个距离--多普勒数据块作发射信号的共轭补偿，即
+\begin{align}
+    \bar{\mathbf{y}}_i[l]
+    =
+    \mathbf{y}_i[l]x_{\rm ref}^{*}[i,l].
+\end{align}
+其中， $x_{\rm ref}[i,l]=\mathbf{a}^{\rm H}(\phi_q,\psi_q)\mathbf{x}_i[l]$ 
+
+随后，将补偿后的接收数据按二维接收阵列重排为
+$\bar{y}(m_x,m_y,i,l)$，并在空间维进行低复杂度相干合并，得到距离--速度数据
+\begin{align}
+    s(i,l)
+    =
+    \sum_{m_x=0}^{N_{{\rm rx},x}-1}
+    \sum_{m_y=0}^{N_{{\rm rx},y}-1}
+    \bar{y}(m_x,m_y,i,l).
+\end{align}
+该步骤将原始四维数据压缩为关于子载波索引 $i$ 和 OFDM 符号索引 $l$ 的二维数据。随后执行距离维 FFT 和多普勒维补零 FFT，得到距离--多普勒功率谱
+\begin{align}
+    D(n_r,n_v)
+    =
+    \sum_{i=0}^{N_{\rm s}-1}
+    \sum_{l=0}^{L-1}
+    s(i,l)
+    e^{-\jmath 2\pi n_r i/N_{\rm s}}
+    e^{-\jmath 2\pi n_v l/L},
+\end{align}
+\begin{align}
+    P(n_r,n_v)=|D(n_r,n_v)|^2.
+\end{align}
+其中，$n_r$ 和 $n_v$ 分别为距离维与多普勒维频率索引。快速估计器从功率谱中选取若干高能候选点，由此得到候选目标集合
+\begin{align}
+    \left\{
+    (\hat n_{r,q},\hat n_{v,q})
+    \right\}_{q=1}^{\hat Q}.
+\end{align}
+
+对于每一个候选目标 $(\hat n_{r,q},\hat n_{v,q})$，根据对应距离 bin 和速度 bin 构造相位补偿因子。由于多普勒维采用补零 FFT，候选索引需换算至原始 $L$ 点慢时间采样尺度。记
+\begin{align}
+    \hat{\omega}_{r,q}=\frac{2\pi \hat n_{r,q}}{N_{\rm s}},
+    \qquad
+    \hat{\omega}_{v,q}=\frac{2\pi \hat n_{v,q}}{L},
+\end{align}
+则可构造该目标对应的空间快拍
+\begin{align}
+    \mathbf{Y}_{{\rm snap},q}
+    =
+    \sum_{i\in\Omega_r}
+    \sum_{l\in\Omega_v}
+    \bar{\mathbf{Y}}_i[l]
+    e^{-\jmath i\hat{\omega}_{r,q}}
+    e^{-\jmath l\hat{\omega}_{v,q}},
+\end{align}
+其中，$\bar{\mathbf{Y}}_i[l]$ 为补偿后回波在二维接收阵列上的数据矩阵，$\Omega_r$ 和 $\Omega_v$ 分别为用于局部聚焦的子载波及 OFDM 符号采样集合。通过距离和多普勒相位反旋，可将当前候选目标在频率维和慢时间维相干聚焦，从而形成高信噪比空间快拍。
+
+在得到空间快拍 $\mathbf{Y}_{{\rm snap},q}$ 后，记相邻接收阵元在 $x$ 方向和 $y$ 方向上的相位差
+\begin{align}
+    \omega_{a,x,q}
+    =
+    -\frac{2\pi d_{{\rm rx},x}}{\lambda_c}
+    \sin\theta_q\cos\phi_q,
+\end{align}
+\begin{align}
+    \omega_{a,y,q}
+    =
+    -\frac{2\pi d_{{\rm rx},y}}{\lambda_c}
+    \sin\theta_q\sin\phi_q.
+\end{align}
+接着采用二维旋转不变相位估计方法：分别计算接收平面阵列 $x$、$y$ 两个方向相邻子阵的共轭互相关相位，获得
+$\hat{\omega}_{a,x,q}$ 和 $\hat{\omega}_{a,y,q}$，并换算为两个方向余弦
+\begin{align}
+    \hat u_q
+    =
+    -\frac{\lambda_c}{2\pi d_{{\rm rx},x}}
+    \hat{\omega}_{a,x,q},
+    \qquad
+    \hat v_q
+    =
+    -\frac{\lambda_c}{2\pi d_{{\rm rx},y}}
+    \hat{\omega}_{a,y,q}.
+\end{align}
+由此可恢复目标角度为
+\begin{align}
+    \hat{\psi}_q
+    =
+    \arcsin
+    \left(
+    \sqrt{\hat u_q^2+\hat v_q^2}
+    \right),
+    \qquad
+    \hat{\phi}_q
+    =
+    \operatorname{atan2}(\hat v_q,\hat u_q).
+\end{align}
+    
+综上，快速估计器首先通过一次距离--多普勒二维 FFT 完成全场景候选检测，再针对少量候选点执行局部相位聚焦和二维角度估计，并进行参数精化。与全维联合搜索相比，该结构将主要计算量集中于一次二维 FFT 和 $Q$ 次局部处理，在保持测距能力的同时显著降低运算量。
+
+\section{自发自收干扰抑制}
+
+在前述感知模型中，默认发射端与感知接收端之间不存在直接泄漏干扰。然而，在实际共址自发自收系统中，发射阵列与接收阵列距离较近，发射信号会泄漏至接收端，从而形成远强于目标回波的自干扰信号，进而影响后续目标检测与参数估计性能。因此，在共址收发架构下，需要在感知回波模型中进一步考虑自干扰项。
+
+在考虑自干扰的情况下，第 $i$ 个子载波、第 $l$ 个 OFDM 符号上的感知接收信号可表示为
+\begin{align}
+    \mathbf{y}_i[l]
+    =
+    \sum_{q=1}^{Q}
+    \beta_q
+    \mathbf{b}(\theta_q,\phi_q)
+    \mathbf{a}^{\rm H}(\theta_q,\phi_q)
+    \mathbf{x}_i[l]
+    e^{\jmath \omega_{\rm r}(R_q)}
+    e^{\jmath \omega_{\rm v}(v_q)}
+    +
+    \sqrt{\rho_{\rm SI}}
+    \mathbf{H}_{\rm SI}[i]
+    \mathbf{x}_i[l]
+    +
+    \mathbf{z}_i[l],
+\end{align}
+其中，第一项为目标反射回波，第二项为发射端泄漏至接收端的自干扰信号，$\rho_{\rm SI}$ 表示残余自干扰链路的大尺度增益，$\mathbf{H}_{\rm SI}[i]$ 表示第 $i$ 个子载波上的自干扰信道矩阵。
+
+考虑直达泄漏路径与散射泄漏路径同时存在，本文将自干扰信道建模为莱斯（Rician）信道，即
+\begin{align}
+    \mathbf{H}_{\rm SI}[i]
+    =
+    \sqrt{\frac{\kappa_{\rm SI}}{\kappa_{\rm SI}+1}}
+    \mathbf{H}_{\rm SI}^{\rm LoS}[i]
+    +
+    \sqrt{\frac{1}{\kappa_{\rm SI}+1}}
+    \mathbf{H}_{\rm SI}^{\rm NLoS}[i],
+\end{align}
+其中，$\kappa_{\rm SI}$ 为自干扰信道的莱斯因子，$\mathbf{H}_{\rm SI}^{\rm LoS}[i]$ 表示由收发阵列间直达耦合产生的确定性分量，$\mathbf{H}_{\rm SI}^{\rm NLoS}[i]$ 表示由环境散射引起的非视距分量。
+
+\subsection{发射波束成形设计}
+
+为了在保证通信性能的同时抑制自干扰，本文在发射端设计满足通信迫零约束的波束成形矩阵。为简化符号，省略子载波索引，记通信信道矩阵为 $\mathbf{H}_{\rm c}$，自干扰信道矩阵为 $\mathbf{H}_{\rm SI}$。波束成形设计问题可表示为
+\begin{align}
+    \mathrm{(P1):}\quad
+    \min_{\mathbf{W}}
+    \;
+    \left\lVert \mathbf{H}_{\rm SI}\mathbf{W} \right\rVert_{\rm F}^2
+    \qquad
+    \mathrm{s.t.}\;
+    \mathbf{H}_{\rm c}\mathbf{W} = \mathbf{I}.
+\end{align}
+其中，目标函数用于最小化发射信号经自干扰信道泄漏至接收端的能量，约束 $\mathbf{H}_{\rm c}\mathbf{W}=\mathbf{I}$ 用于保证通信链路满足迫零条件，从而消除多用户干扰。
+
+令 $\mathbf{R}=\mathbf{H}_{\rm SI}^{\rm H}\mathbf{H}_{\rm SI}$，则目标函数可写为
+\begin{align}
+    \left\lVert \mathbf{H}_{\rm SI}\mathbf{W} \right\rVert_{\rm F}^2
+    =
+    \mathrm{tr}\left( \mathbf{W}^{\rm H}\mathbf{R}\mathbf{W} \right).
+\end{align}
+针对优化问题 (P1)，构造拉格朗日函数
+\begin{align}
+    \mathcal{L}
+    =
+    \mathrm{tr}\left( \mathbf{W}^{\rm H}\mathbf{R}\mathbf{W} \right)
+    +
+    2\Re\left\{
+    \mathrm{tr}\left[
+    \mathbf{\Lambda}^{\rm H}\left( \mathbf{H}_{\rm c}\mathbf{W}-\mathbf{I} \right)
+    \right]
+    \right\},
+\end{align}
+其中，$\mathbf{\Lambda}$ 为拉格朗日乘子矩阵。对 $\mathbf{W}$ 求导并令其为零，可得
+\begin{align}
+    \mathbf{R}\mathbf{W}+\mathbf{H}_{\rm c}^{\rm H}\mathbf{\Lambda}=\mathbf{0}
+    \;\Longleftrightarrow\;
+    \mathbf{W}=-\mathbf{R}^{-1}\mathbf{H}_{\rm c}^{\rm H}\mathbf{\Lambda}.
+\end{align}
+将其代入约束 $\mathbf{H}_{\rm c}\mathbf{W}=\mathbf{I}$，可得
+\begin{align}
+    \mathbf{\Lambda}
+    =
+    -\left( \mathbf{H}_{\rm c}\mathbf{R}^{-1}\mathbf{H}_{\rm c}^{\rm H} \right)^{-1}.
+\end{align}
+因此，(P1) 的闭式解为
+\begin{align}
+    \mathbf{W}
+    =
+    \mathbf{R}^{-1}\mathbf{H}_{\rm c}^{\rm H}
+    \left( \mathbf{H}_{\rm c}\mathbf{R}^{-1}\mathbf{H}_{\rm c}^{\rm H} \right)^{-1}.
+\end{align}
+该解可理解为一种加权迫零波束成形方法：在满足通信迫零约束的同时，根据自干扰信道方向对发射波束进行调整，从而降低接收端的自干扰泄漏。
+
+另一种求解方案是零空间投影方法，其核心思想是：先构造满足通信迫零约束的初始波束成形矩阵，再利用通信信道零空间中的自由度抑制自干扰分量。
+
+首先，构造常规迫零波束成形矩阵
+\begin{align}
+    \mathbf{W}_0
+    =
+    \mathbf{H}_{\rm c}^{\rm H}
+    \left( \mathbf{H}_{\rm c}\mathbf{H}_{\rm c}^{\rm H} \right)^{-1}.
+\end{align}
+在 $\mathbf{H}_{\rm c}$ 行满秩的情况下，有
+\begin{align}
+    \mathbf{H}_{\rm c}\mathbf{W}_0 = \mathbf{I},
+\end{align}
+因此 $\mathbf{W}_0$ 可以保证通信链路满足迫零条件。
+
+由于用户数通常小于发射天线数，即 $K<N_{\rm tx}$，通信信道矩阵 $\mathbf{H}_{\rm c}$ 存在非空零空间。记 $\mathbf{N}_{\rm c}$ 为 $\mathbf{H}_{\rm c}$ 的零空间基矩阵，满足
+\begin{align}
+    \mathbf{H}_{\rm c}\mathbf{N}_{\rm c} = \mathbf{0}.
+\end{align}
+则所有满足通信迫零约束的波束成形矩阵均可表示为
+\begin{align}
+    \mathbf{W}
+    =
+    \mathbf{W}_0
+    +
+    \mathbf{N}_{\rm c}\mathbf{Z},
+\end{align}
+其中，$\mathbf{Z}$ 为待优化的零空间系数矩阵。将 $\mathbf{W}=\mathbf{W}_0+\mathbf{N}_{\rm c}\mathbf{Z}$ 代入自干扰抑制目标，可得
+\begin{align}
+    \min_{\mathbf{Z}}\;
+    \left\lVert
+    \mathbf{H}_{\rm SI}\left( \mathbf{W}_0+\mathbf{N}_{\rm c}\mathbf{Z} \right)
+    \right\rVert_{\rm F}^2.
+\end{align}
+令
+\begin{align}
+    \mathbf{A} = \mathbf{H}_{\rm SI}\mathbf{N}_{\rm c},
+    \qquad
+    \mathbf{B} = \mathbf{H}_{\rm SI}\mathbf{W}_0,
+\end{align}
+则上述问题可改写为标准最小二乘问题
+\begin{align}
+    \min_{\mathbf{Z}}\;
+    \left\lVert \mathbf{A}\mathbf{Z}+\mathbf{B} \right\rVert_{\rm F}^2.
+\end{align}
+其最小范数解为
+\begin{align}
+    \mathbf{Z}
+    =
+    -\mathbf{A}^{\dagger}\mathbf{B}
+    =
+    -\left( \mathbf{H}_{\rm SI}\mathbf{N}_{\rm c} \right)^{\dagger}
+    \mathbf{H}_{\rm SI}\mathbf{W}_0,
+\end{align}
+因此，基于零空间投影的波束成形矩阵可写为
+\begin{align}
+    \mathbf{W}
+    =
+    \mathbf{W}_0
+    -
+    \mathbf{N}_{\rm c}
+    \left( \mathbf{H}_{\rm SI}\mathbf{N}_{\rm c} \right)^{\dagger}
+    \mathbf{H}_{\rm SI}\mathbf{W}_0.
+\end{align}
+该方法首先通过 $\mathbf{W}_0$ 保证通信迫零性能，然后利用 $\mathbf{H}_{\rm c}$ 的零空间自由度对发射波束进行修正，使发射信号在自干扰信道方向上的泄漏尽可能减小。因此，该方法能够在不影响多用户通信迫零约束的前提下进一步抑制自发自收干扰。
+
+\subsection{自干扰数字消除}
+
+经过发射波束成形抑制后，接收端仍可能存在一定的残余自干扰。由于发射信号 $\mathbf{x}_i[l]$ 对系统自身是已知的，因此可以进一步在数字域对残余自干扰进行估计与重构，并从接收信号中消除。该过程主要包括自干扰信道估计和数字相消两个步骤。
+
+为简化表示，定义第 $i$ 个子载波上的等效自干扰信道为
+\begin{align}
+    \mathbf{G}_{\rm SI}[i]
+    =
+    \sqrt{\rho_{\rm SI}}\mathbf{H}_{\rm SI}[i].
+\end{align}
+在自干扰信道估计阶段，发射端发送已知导频信号矩阵 $\mathbf{X}_{\rm p}[i]\in\mathbb{C}^{N_{\rm tx}\times L_{\rm p}}$，接收端采集对应的导频接收信号
+\begin{align}
+    \mathbf{Y}_{\rm p}[i]
+    =
+    \mathbf{G}_{\rm SI}[i]\mathbf{X}_{\rm p}[i]
+    +
+    \mathbf{Z}_{\rm p}[i],
+\end{align}
+其中，$L_{\rm p}$ 为导频长度，$\mathbf{Z}_{\rm p}[i]$ 为导频接收噪声。此时等效自干扰信道可通过最小二乘方法估计为
+\begin{align}
+    \hat{\mathbf{G}}_{\rm SI}[i]
+    =
+    \mathbf{Y}_{\rm p}[i]\mathbf{X}_{\rm p}^{\rm H}[i]
+    \left( \mathbf{X}_{\rm p}[i]\mathbf{X}_{\rm p}^{\rm H}[i] \right)^{-1}.
+\end{align}
+该估计结果用于获取当前发射阵列到接收阵列之间的残余泄漏通道。
+
+在数据传输与感知接收阶段，第 $i$ 个子载波、第 $l$ 个 OFDM 符号上的接收信号可写为
+\begin{align}
+    \mathbf{y}_i[l]
+    =
+    \mathbf{y}_{{\rm tar},i}[l]
+    +
+    \mathbf{G}_{\rm SI}[i]\mathbf{x}_i[l]
+    +
+    \mathbf{z}_i[l],
+\end{align}
+其中，$\mathbf{y}_{{\rm tar},i}[l]$ 表示目标反射回波分量，即
+\begin{align}
+    \mathbf{y}_{{\rm tar},i}[l]
+    =
+    \sum_{q=1}^{Q}
+    \beta_q
+    \mathbf{b}(\theta_q,\phi_q)
+    \mathbf{a}^{\rm H}(\theta_q,\phi_q)
+    \mathbf{x}_i[l]
+    e^{\jmath \omega_{\rm r}(R_q)}
+    e^{\jmath \omega_{\rm v}(v_q)}.
+\end{align}
+由于 $\mathbf{x}_i[l]$ 与 $\hat{\mathbf{G}}_{\rm SI}[i]$ 均已知，因此接收端可以重构自干扰信号 $\hat{\mathbf{G}}_{\rm SI}[i]\mathbf{x}_i[l]$，并从原始接收信号中扣除，得到数字相消后的信号
+\begin{align}
+    \mathbf{y}_i^{\rm SCI}[l]
+    =
+    \mathbf{y}_i[l]
+    -
+    \hat{\mathbf{G}}_{\rm SI}[i]\mathbf{x}_i[l].
+\end{align}
+将接收信号代入上式，可得
+\begin{align}
+    \mathbf{y}_i^{\rm SCI}[l]
+    =
+    \mathbf{y}_{{\rm tar},i}[l]
+    +
+    \epsilon_i[l]
+    +
+    \mathbf{z}_i[l],
+\end{align}
+其中
+\begin{align}
+    \epsilon_i[l]
+    =
+    \left( \mathbf{G}_{\rm SI}[i]-\hat{\mathbf{G}}_{\rm SI}[i] \right)
+    \mathbf{W}_i\mathbf{s}_i[l]
+\end{align}
+为数字相消后的残余自干扰。由此可见，残余自干扰主要由自干扰信道估计误差决定：当估计精度较高时，$\mathbf{G}_{\rm SI}[i]-\hat{\mathbf{G}}_{\rm SI}[i]$ 较小，接收端的自干扰功率可被进一步降低。相比未经数字相消时的自干扰功率
+\begin{align}
+    P_{\rm SI}^{\rm ori}[i,l]
+    =
+    \left\lVert \mathbf{G}_{\rm SI}[i]\mathbf{W}_i\mathbf{s}_i[l] \right\rVert_2^2,
+\end{align}
+数字相消能够利用已知发射信号和估计得到的自干扰信道进一步压低残余泄漏。
+
+\end{document}

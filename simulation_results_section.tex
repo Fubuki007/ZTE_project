@@ -1,0 +1,102 @@
+\section{仿真结果}
+
+\subsection{仿真参数设置}
+
+本节通过蒙特卡洛仿真评估快速感知算法的参数估计性能。主要参数列于表~\ref{tab:sim_params}。
+体制参数满足性由载频、子载波间隔和调制方式验证；覆盖范围由最大无模糊距离与目标斜距对比验证；距离分辨能力由等效带宽和双目标间隔验证；估计精度由蒙特卡洛 RMSE 验证；实时性由算法内核运行时间验证。
+
+\begin{table}[H]
+\centering
+\caption{系统仿真主要参数}
+\label{tab:sim_params}
+\begin{tabular}{lll}
+\toprule
+\textbf{参数} & \textbf{符号/取值} & \textbf{说明} \\
+\midrule
+载频          & $f_c = 28$ GHz & FR2频段 \\
+子载波间隔    & $\Delta f = 120$ kHz & 3GPP FR2, $\mu=3$ \\
+单CC资源块数  & $N_{\rm RB}=264$ & 单CC子载波数3168 \\
+载波聚合数    & $n_{cc}=4$ & 总带宽 $B\approx1.52$ GHz \\
+总子载波数    & $N_s = 12672$ & \\
+OFDM符号周期 & $T = 8.93\ \mu$s & $T=T_d+T_{cp}$ \\
+CPI长度       & $L = 256$（默认） &  \\
+距离分辨率    & $\Delta R \approx 0.099$ m & $c/(2B)$ \\
+最大不模糊距离& $R_{\max}=1250$ m & $c/(2\Delta f)$ \\
+速度分辨率    & $\Delta v \approx 2.34$ m/s ($L=256$) & $\lambda/(2LT)$ \\
+最大不模糊速度& $v_{\max}\approx \pm 300$ m/s & $\lambda_c/(4T)$ \\
+发射天线      & $N_{tx}=16$ (4$\times$4 URA) & \\
+接收天线      & $M_{rx}=64$ (8$\times$8 URA) & \\
+通信用户数    & $K=1$ & \\
+调制方式      & 16QAM & \\
+目标数        & $Q=2$ & \\
+目标距离      & $R_q = 600.8,\ 600.2$ m & \\
+目标速度      & $v_q = 15.1,\ -5.4$ m/s & \\
+目标角度      & $(\theta_q,\phi_q) = (25.83^\circ,28.51^\circ),\ (15.94^\circ,13.58^\circ)$ & 俯仰角/方位角 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+仿真载频设置为 28 GHz，采用 120 kHz 子载波间隔、16QAM 调制和 OFDM 波形，参数体系与 5G NR FR2 保持一致。4 个等效载波共形成 $B=1.52$ GHz 相干处理带宽，对应理论距离分辨率 $\Delta R=c/(2B)=0.0986$ m。由 $\Delta f=120$ kHz 得到最大不模糊距离 $R_{\max}=c/(2\Delta f)=1250$ m；即使按水平 500 m、垂直 600 m 同时达到边界计算，最大斜距 $\sqrt{500^2+600^2}\approx781$ m，仍处于无模糊测距范围内。参数估计精度采用均方根误差（RMSE）衡量，定义为
+\begin{align}
+\text{RMSE}_\theta &= \sqrt{\frac{1}{N_{\rm MC}Q}\sum_{m=1}^{N_{\rm MC}}\sum_{q=1}^{Q}\bigl(\hat{\theta}_{q}^{(m)}-\theta_q\bigr)^2},\\
+\text{RMSE}_R &= \sqrt{\frac{1}{N_{\rm MC}Q}\sum_{m=1}^{N_{\rm MC}}\sum_{q=1}^{Q}\bigl(\hat{R}_{q}^{(m)}-R_q\bigr)^2},\\
+\text{RMSE}_v &= \sqrt{\frac{1}{N_{\rm MC}Q}\sum_{m=1}^{N_{\rm MC}}\sum_{q=1}^{Q}\bigl(\hat{v}_{q}^{(m)}-v_q\bigr)^2},
+\end{align}
+其中 $N_{\rm MC}$ 为蒙特卡洛次数，$Q$ 为目标数，$\hat{\theta}_{q}^{(m)},\hat{R}_{q}^{(m)},\hat{v}_{q}^{(m)}$ 分别为第 $m$ 次试验中对第 $q$ 个目标的角度、距离和速度估计值，$\theta_q,R_q,v_q$ 为对应真值。
+
+\subsection{自干扰抑制对感知精度的影响}
+
+首先考察自干扰抑制方案对感知精度的影响。对比传统 ZF 预编码（不抑制自干扰）与零空间预编码（抑制自干扰）两种方案下角度、距离和速度 RMSE 随输入 SNR 的变化，结果如图~\ref{fig:si_angle} 至图~\ref{fig:si_velocity} 所示。
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.75\linewidth]{fig_si_suppression_angle_zf_null.eps}
+    \caption{角度估计 RMSE 随输入 SNR 的变化（SI 抑制方案对比，MC=200）}
+    \label{fig:si_angle}
+\end{figure}
+
+由图~\ref{fig:si_angle} 可见，两种方案的测角性能呈现截然不同的趋势。传统 ZF 方案的角度 RMSE 随 SNR 增大仅缓慢下降，在 SNR 达到 20 dB 时仍维持在约 5.1° 的较高水平；而零空间方案在 SNR 超过约 $-30$ dB 后角度 RMSE 急剧下降，并收敛至约 0.04°，测角精度提升两个数量级以上。该结果说明，零空间预编码将发射信号投影至自干扰信道的零空间，在信号源头消除了 SI 分量，目标回波的有效信噪比得以恢复，相邻阵元间相位差估计对噪声不再敏感；而 SI 未获抑制时，接收信号被干扰直达分量主导，估计器持续锁定在干扰产生的伪峰上，目标真实角度无法被稳定分辨。
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.75\linewidth]{fig_si_suppression_range_zf_null.eps}
+    \caption{距离估计 RMSE 随输入 SNR 的变化（SI 抑制方案对比，MC=200）}
+    \label{fig:si_range}
+\end{figure}
+
+图~\ref{fig:si_range} 展示了距离估计的典型门限特性。低 SNR 条件下（低于约 $-30$ dB），噪声峰与旁瓣峰引起候选 bin 误判，RMSE 由粗大错误主导，此时零空间方案的距离误差高达数百米量级；当输入 SNR 达到约 $-30$ dB 以上时，正确峰值被稳定选中，距离 RMSE 快速下降并稳定在约 0.01 m，达到厘米级测距精度，优于分米级验收要求。而传统 ZF 方案的距离 RMSE 始终维持在约 141.85 m，不随 SNR 改善而下降，进一步印证了 SI 未抑制时估计器锁定伪峰的失效状态。
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.75\linewidth]{fig_si_suppression_velocity_zf_null.eps}
+    \caption{速度估计 RMSE 随输入 SNR 的变化（SI 抑制方案对比，MC=200）}
+    \label{fig:si_velocity}
+\end{figure}
+
+由图~\ref{fig:si_velocity} 可见，速度估计同样存在检测门限。当 SNR 高于约 $-30$ dB 后，零空间方案的速度 RMSE 稳定在约 0.22 m/s，该误差远小于目标速度绝对值 5.4 m/s 和 15.1 m/s，可稳定判断目标处于接近或远离状态；而传统 ZF 方案的速度 RMSE 恒定在约 10.68 m/s，与目标速度同量级，无法可靠判别目标运动方向。
+
+综上，若不进行自干扰抑制，强 SI 将使感知估计器整体失效；零空间预编码在 $-30$ dB 以上 SNR 区间将测距、测角、测速精度分别提升至 0.01 m、0.04° 与 0.22 m/s，满足系统的分米级精度与目标运动状态判别需求。
+
+\subsection{计算复杂度分析}
+
+进一步考察算法参数规模对执行时间的影响。保持其他条件不变，分别改变 CPI 长度与子载波数量，统计单次目标估计的平均执行时间，结果如图~\ref{fig:time_cpi} 与图~\ref{fig:time_subcarriers} 所示。
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.75\linewidth]{execution_time_vs_cpi_length_sion.eps}
+    \caption{单次估计执行时间随 CPI 长度的变化}
+    \label{fig:time_cpi}
+\end{figure}
+
+图~\ref{fig:time_cpi} 给出了执行时间随 CPI 长度变化的曲线，纵轴采用对数坐标。当 CPI 长度从 16 增至 32、64、128、256 时，执行时间依次约为 0.005 s、0.01 s、0.02 s、0.04 s 与 0.08 s。可以看到，CPI 长度每翻一倍，执行时间精确地翻一倍，数据点在双对数坐标下构成一条斜率恒为 1 的直线，说明执行时间与 CPI 长度之间呈严格的线性正比关系。其原因在于，CPI 长度决定了对慢时域样本进行 FFT 及后续多普勒处理的规模，该部分对每个符号的处理开销恒定，故总时间随 $L$ 线性增长。这意味着在实际系统设计中，CPI 长度的选取本质上是精度与刷新率之间的直接权衡：每增加一倍 CPI，多普勒分辨率和速度估计精度提高，但单次估计时间同步翻倍。
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.75\linewidth]{execution_time_vs_subcarriers_sion.eps}
+    \caption{单次估计执行时间随子载波数量的变化}
+    \label{fig:time_subcarriers}
+\end{figure}
+
+图~\ref{fig:time_subcarriers} 展示了执行时间随子载波数量变化的曲线，纵轴为线性坐标。当子载波数为 512 时，单次估计约需 0.0095 s；增至 1024 时约 0.010 s，仅增长约 5\%；但继续增至 2048、3168、6336 时，执行时间分别上升至约 0.0145 s、0.019 s 与 0.030 s。可见执行时间的上升速率随子载波数增大而加快，曲线呈明显的加速上扬趋势，而非线性增长。这一现象源于子载波维度同时影响距离维 FFT、各子载波上的空域波束形成以及匹配滤波等环节的运算规模，其中部分环节的计算量随子载波数呈超线性增长，因此在大规模子载波配置下计算开销快速累积。
+
+综合来看，该算法对 CPI 长度的计算复杂度为严格线性，便于按精度需求灵活配置；在子载波维度上，小规模配置下时间效率良好，而极大规模配置（如多载波聚合场景）下开销增长较快。在本系统采用的 3168 子载波配置下，单次估计约 0.019 s，远低于 1 s 刷新率要求，为后续在时间维上进一步叠加多次估计或扩展多目标处理保留了充分余量。

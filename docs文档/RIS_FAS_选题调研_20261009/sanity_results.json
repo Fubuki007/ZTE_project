@@ -1,0 +1,49 @@
+{
+  "geometry": {
+    "wavelength_m": 0.010714285714285714,
+    "ris_bs_separation_m": 0.01607142857142857,
+    "target_range_m": 200.6,
+    "separation_over_range_rad": 8.011679247970374e-05,
+    "separation_over_range_deg": 0.004590354077212477,
+    "range_resolution_m": 0.09864267676767677,
+    "fractional_bandwidth": 0.05430857142857143,
+    "tx_4x4": {
+      "diagonal_aperture_m": 0.02272843225242474,
+      "fraunhofer_distance_m": 0.0964285714285714
+    },
+    "rx_8x8": {
+      "diagonal_aperture_m": 0.053033008588991064,
+      "fraunhofer_distance_m": 0.525
+    },
+    "ris_8x8": {
+      "diagonal_aperture_m": 0.021213203435596427,
+      "fraunhofer_distance_m": 0.084
+    },
+    "rx_cube_complex64_gib": 1.546875,
+    "rx_cube_complex128_gib": 3.09375
+  },
+  "ls_invariance": {
+    "original_si_power_ratio_g1_over_g2": 116.17410983996092,
+    "max_absolute_residual_difference": 1.925373903766417e-15,
+    "note": "Same pilot, pilot noise and transmitted data; algebra check, not a physical FAS simulation."
+  },
+  "directional_si_toy": [
+    {
+      "case": "A_sensitivity_overlap",
+      "total_si_power": 9.0,
+      "peb_normalized_units": 2.449489742783178
+    },
+    {
+      "case": "B_nuisance_overlap",
+      "total_si_power": 100.0,
+      "peb_normalized_units": 1.224744871391589
+    }
+  ],
+  "conditional_bound_check": {
+    "completions_checked": 16,
+    "peb_squared_lower_bound": 0.00618600659970212,
+    "minimum_completed_peb_squared": 0.03953393666688658,
+    "maximum_eigenvalue_of_efim_minus_bound": -357.01549468326516,
+    "note": "Valid but loose synthetic bound; no runtime or localization performance claim."
+  }
+}

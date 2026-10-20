@@ -1,0 +1,1638 @@
+{
+  "retrieved_at_utc": "2026-10-15T13:55:26.648913+00:00",
+  "source_url": "https://export.arxiv.org/api/query?id_list=2407.03228%2C2501.15880%2C2407.11875%2C2301.11134%2C2403.17324%2C2502.14325%2C2503.19046%2C2604.02181%2C2503.06080%2C2409.20472%2C2407.05297%2C2411.17747%2C2506.07610%2C2604.27352%2C2501.01281&max_results=15",
+  "papers": [
+    {
+      "id": "http://arxiv.org/abs/2407.03228v2",
+      "title": "Movable Antenna-enabled RIS-aided Integrated Sensing and Communication",
+      "abstract": "In this paper, we investigate a movable antenna (MA)-aided integrated sensing and communication (ISAC) system, where a reconfigurable intelligent surface (RIS) is employed to enhance wireless communication and sensing performance in dead zones. Specifically, this paper aims to maximize the minimum beampattern gain at the RIS by jointly optimizing beamforming matrix at the base station (BS), the reflecting coefficients at the RIS and the positions of the MAs, subject to signal-to-interference-plus-noise ratio (SINR) constraint for the users and maximum transmit power at the BS. To tackle this non-convex optimization problem, we propose an alternating optimization (AO) algorithm and employ semidefinite relaxation (SDR), sequential rank-one constraint relaxation (SRCR) and successive convex approximation (SCA) techniques. Numerical results indicate that the MA and RIS-aided ISAC system outperforms conventional fixed position antenna (FPA) and RIS-aided systems. In addition, the application of MAs can reduce the similarity of user channels and enhance channel gain in the ISAC system.",
+      "published": "2024-07-03T15:55:27Z",
+      "updated": "2024-09-11T16:18:43Z",
+      "doi": null,
+      "journal_ref": null,
+      "comment": "14 pages, 11 figures",
+      "authors": [
+        "Haisu Wu",
+        "Hong Ren",
+        "Cunhua Pan",
+        "Yang Zhang"
+      ],
+      "crossref_match": {
+        "title": [
+          "Movable Antenna-Enabled RIS-Aided Integrated Sensing and Communication"
+        ],
+        "DOI": "10.1109/tccn.2025.3559578",
+        "author": [
+          {
+            "ORCID": "https://orcid.org/0009-0008-3742-2115",
+            "authenticated-orcid": false,
+            "given": "Haisu",
+            "family": "Wu",
+            "sequence": "first",
+            "affiliation": [
+              {
+                "name": "National Mobile Communications Research Laboratory, Southeast University, Nanjing, China"
+              }
+            ],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "ORCID": "https://orcid.org/0000-0002-3477-1087",
+            "authenticated-orcid": false,
+            "given": "Hong",
+            "family": "Ren",
+            "sequence": "additional",
+            "affiliation": [
+              {
+                "name": "National Mobile Communications Research Laboratory, Southeast University, Nanjing, China"
+              }
+            ],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "ORCID": "https://orcid.org/0000-0001-5286-7958",
+            "authenticated-orcid": false,
+            "given": "Cunhua",
+            "family": "Pan",
+            "sequence": "additional",
+            "affiliation": [
+              {
+                "name": "National Mobile Communications Research Laboratory, Southeast University, Nanjing, China"
+              }
+            ],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "ORCID": "https://orcid.org/0009-0000-1659-1536",
+            "authenticated-orcid": false,
+            "given": "Yang",
+            "family": "Zhang",
+            "sequence": "additional",
+            "affiliation": [
+              {
+                "name": "National Mobile Communications Research Laboratory, Southeast University, Nanjing, China"
+              }
+            ],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          }
+        ],
+        "container-title": [
+          "IEEE Transactions on Cognitive Communications and Networking"
+        ],
+        "published": {
+          "date-parts": [
+            [
+              2025,
+              10
+            ]
+          ]
+        },
+        "type": "journal-article",
+        "URL": "https://doi.org/10.1109/tccn.2025.3559578",
+        "score": 53.511726
+      },
+      "publication_verification": "Exact/near-exact title and leading authors matched in Crossref publisher-deposited metadata",
+      "review_level": "selected full-text sections",
+      "fulltext_file": "fulltext\\2407.03228v2.txt",
+      "report_reference": "R4",
+      "applicability_note": "Direct prior art for joint MA/RIS/BS beamforming ISAC, beampattern-gain objective."
+    },
+    {
+      "id": "http://arxiv.org/abs/2411.17747v1",
+      "title": "Deep Unfolding-Empowered MmWave Massive MIMO Joint Communications and Sensing",
+      "abstract": "In this paper, we propose a low-complexity and fast hybrid beamforming design for joint communications and sensing (JCAS) based on deep unfolding. We first derive closed-form expressions for the gradients of the communications sum rate and sensing beampattern error with respect to the analog and digital precoders. Building on this, we develop a deep neural network as an unfolded version of the projected gradient ascent algorithm, which we refer to as UPGANet. This approach efficiently optimizes the communication-sensing performance tradeoff with fast convergence, enabled by the learned step sizes. UPGANet preserves the interpretability and flexibility of the conventional PGA optimizer while enhancing performance through data training. Our simulations show that UPGANet achieves up to a 33.5% higher communications sum rate and 2.5 dB lower beampattern error compared to conventional designs based on successive convex approximation and Riemannian manifold optimization. Additionally, it reduces runtime and computational complexity by up to 65% compared to PGA without unfolding.",
+      "published": "2024-11-25T11:36:30Z",
+      "updated": "2024-11-25T11:36:30Z",
+      "doi": null,
+      "journal_ref": null,
+      "comment": "arXiv admin note: substantial text overlap with arXiv:2307.04376",
+      "authors": [
+        "Nhan Thanh Nguyen",
+        "Ly V. Nguyen",
+        "Nir Shlezinger",
+        "Yonina C. Eldar",
+        "A. Lee Swindlehurst",
+        "Markku Juntti"
+      ],
+      "review_level": "abstract and metadata only",
+      "fulltext_file": null
+    },
+    {
+      "id": "http://arxiv.org/abs/2407.11875v1",
+      "title": "Cramer-Rao Bound Minimization for Movable Antenna-Assisted Multiuser Integrated Sensing and Communications",
+      "abstract": "This paper investigates a movable antenna (MA)-assisted multiuser integrated sensing and communication (ISAC) system, where the base station (BS) and communication users are all equipped with MA for improving both the sensing and communication performance. We employ the Cramer-Rao bound (CRB) as the performance metric of sensing, thus a joint beamforming design and MAs' position optimizing problem is formulated to minimize the CRB. However the resulting optimization problem is NP-hard and the variables are highly coupled. To tackle this problem, we propose an alternating optimization (AO) framework by adopting semidefinite relaxation (SDR) and successive convex approximation (SCA) technique. Numerical results reveal that the proposed MA-assisted ISAC system achieves lower estimation CRB compared to the fixed-position antenna (FPA) counterpart.",
+      "published": "2024-07-16T16:00:13Z",
+      "updated": "2024-07-16T16:00:13Z",
+      "doi": null,
+      "journal_ref": null,
+      "comment": null,
+      "authors": [
+        "Haoran Qin",
+        "Wen Chen",
+        "Qingqing Wu",
+        "Ziheng Zhang",
+        "Zhendong Li",
+        "Nan Cheng"
+      ],
+      "crossref_match": {
+        "title": [
+          "Cramér-Rao Bound Minimization for Movable Antenna-Assisted Multiuser Integrated Sensing and Communications"
+        ],
+        "DOI": "10.1109/lwc.2024.3468709",
+        "author": [
+          {
+            "ORCID": "https://orcid.org/0009-0007-4789-5488",
+            "authenticated-orcid": false,
+            "given": "Haoran",
+            "family": "Qin",
+            "sequence": "first",
+            "affiliation": [
+              {
+                "name": "Department of Electronic Engineering, Shanghai Jiao Tong University, Shanghai, China"
+              }
+            ],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "ORCID": "https://orcid.org/0000-0003-2133-8679",
+            "authenticated-orcid": false,
+            "given": "Wen",
+            "family": "Chen",
+            "sequence": "additional",
+            "affiliation": [
+              {
+                "name": "Department of Electronic Engineering, Shanghai Jiao Tong University, Shanghai, China"
+              }
+            ],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "ORCID": "https://orcid.org/0000-0002-0043-3266",
+            "authenticated-orcid": false,
+            "given": "Qingqing",
+            "family": "Wu",
+            "sequence": "additional",
+            "affiliation": [
+              {
+                "name": "Department of Electronic Engineering, Shanghai Jiao Tong University, Shanghai, China"
+              }
+            ],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "ORCID": "https://orcid.org/0000-0002-5263-1619",
+            "authenticated-orcid": false,
+            "given": "Ziheng",
+            "family": "Zhang",
+            "sequence": "additional",
+            "affiliation": [
+              {
+                "name": "Department of Electronic Engineering, Shanghai Jiao Tong University, Shanghai, China"
+              }
+            ],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "ORCID": "https://orcid.org/0000-0002-2928-193X",
+            "authenticated-orcid": false,
+            "given": "Zhendong",
+            "family": "Li",
+            "sequence": "additional",
+            "affiliation": [
+              {
+                "name": "School of Information and Communication Engineering, Xi&#x2019;an Jiaotong University, Xi&#x2019;an, China"
+              }
+            ],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "ORCID": "https://orcid.org/0000-0001-7907-2071",
+            "authenticated-orcid": false,
+            "given": "Nan",
+            "family": "Cheng",
+            "sequence": "additional",
+            "affiliation": [
+              {
+                "name": "State Key Laboratory of ISN, and the School of Telecommunications Engineering, Xidian University, Xi&#x2019;an, China"
+              }
+            ],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          }
+        ],
+        "container-title": [
+          "IEEE Wireless Communications Letters"
+        ],
+        "published": {
+          "date-parts": [
+            [
+              2024,
+              12
+            ]
+          ]
+        },
+        "type": "journal-article",
+        "URL": "https://doi.org/10.1109/lwc.2024.3468709",
+        "score": 65.59297
+      },
+      "publication_verification": "Exact/near-exact title and leading authors matched in Crossref publisher-deposited metadata",
+      "review_level": "selected full-text sections",
+      "fulltext_file": "fulltext\\2407.11875v1.txt",
+      "report_reference": "R5",
+      "applicability_note": "MA position/beamforming DoA-CRB design; distinguish receive/user position variables from proposed Tx-only extension."
+    },
+    {
+      "id": "http://arxiv.org/abs/2501.01281v1",
+      "title": "Towards Intelligent Antenna Positioning: Leveraging DRL for FAS-Aided ISAC Systems",
+      "abstract": "Fluid antenna systems (FAS) enable dynamic antenna positioning, offering new opportunities to enhance integrated sensing and communication (ISAC) performance. However, existing studies primarily focus on communication enhancement or single-target sensing, leaving multi-target scenarios underexplored. Additionally, the joint optimization of beamforming and antenna positions poses a highly non-convex problem, with traditional methods becoming impractical as the number of fluid antennas increases. To address these challenges, this letter proposes a block coordinate descent (BCD) framework integrated with a deep reinforcement learning (DRL)-based approach for intelligent antenna positioning. By leveraging the deep deterministic policy gradient (DDPG) algorithm, the proposed framework efficiently balances sensing and communication performance. Simulation results demonstrate the scalability and effectiveness of the proposed approach.",
+      "published": "2025-01-02T14:40:12Z",
+      "updated": "2025-01-02T14:40:12Z",
+      "doi": null,
+      "journal_ref": null,
+      "comment": null,
+      "authors": [
+        "Shunxing Yang",
+        "Junteng Yao",
+        "Jie Tang",
+        "Tuo Wu",
+        "Maged Elkashlan",
+        "Chau Yuen",
+        "Merouane Debbah",
+        "Hyundong Shin",
+        "Matthew Valenti"
+      ],
+      "crossref_match": {
+        "title": [
+          "Toward Intelligent Antenna Positioning: Leveraging DRL for FAS-Aided ISAC Systems"
+        ],
+        "DOI": "10.1109/jiot.2025.3576235",
+        "author": [
+          {
+            "given": "Shunxing",
+            "family": "Yang",
+            "sequence": "first",
+            "affiliation": [
+              {
+                "name": "China Telecom Research Institute, Guangzhou, China"
+              }
+            ],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "ORCID": "https://orcid.org/0009-0005-2390-0487",
+            "authenticated-orcid": false,
+            "given": "Junteng",
+            "family": "Yao",
+            "sequence": "additional",
+            "affiliation": [
+              {
+                "name": "Faculty of Electrical Engineering and Computer Science, Ningbo University, Ningbo, China"
+              }
+            ],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "ORCID": "https://orcid.org/0000-0003-0619-0338",
+            "authenticated-orcid": false,
+            "given": "Jie",
+            "family": "Tang",
+            "sequence": "additional",
+            "affiliation": [
+              {
+                "name": "School of Electronic and Information Engineering, South China University of Technology, Guangzhou, China"
+              }
+            ],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "ORCID": "https://orcid.org/0009-0003-7898-4441",
+            "authenticated-orcid": false,
+            "given": "Tuo",
+            "family": "Wu",
+            "sequence": "additional",
+            "affiliation": [
+              {
+                "name": "School of Electrical and Electronic Engineering, Nanyang Technological University, Jurong West, Singapore"
+              }
+            ],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "ORCID": "https://orcid.org/0000-0002-5168-0160",
+            "authenticated-orcid": false,
+            "given": "Maged",
+            "family": "Elkashlan",
+            "sequence": "additional",
+            "affiliation": [
+              {
+                "name": "School of Electronic Engineering and Computer Science, Queen Mary University of London, London, U.K."
+              }
+            ],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "ORCID": "https://orcid.org/0000-0002-9307-2120",
+            "authenticated-orcid": false,
+            "given": "Chau",
+            "family": "Yuen",
+            "sequence": "additional",
+            "affiliation": [
+              {
+                "name": "School of Electrical and Electronic Engineering, Nanyang Technological University, Jurong West, Singapore"
+              }
+            ],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "ORCID": "https://orcid.org/0000-0001-8941-8080",
+            "authenticated-orcid": false,
+            "given": "Mérouane",
+            "family": "Debbah",
+            "sequence": "additional",
+            "affiliation": [
+              {
+                "name": "Department of Computer and Information Engineering, KU 6G Research Center, Khalifa University, Abu Dhabi, UAE"
+              }
+            ],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "ORCID": "https://orcid.org/0000-0003-3364-8084",
+            "authenticated-orcid": false,
+            "given": "Hyundong",
+            "family": "Shin",
+            "sequence": "additional",
+            "affiliation": [
+              {
+                "name": "Department of Electronic Engineering, Kyung Hee University, Yongin, Gyeonggi, South Korea"
+              }
+            ],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "ORCID": "https://orcid.org/0000-0001-6089-0509",
+            "authenticated-orcid": false,
+            "given": "Matthew",
+            "family": "Valenti",
+            "sequence": "additional",
+            "affiliation": [
+              {
+                "name": "Lane Department of Computer Science and Electrical Engineering, West Virginia University, Morgantown, WV, USA"
+              }
+            ],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          }
+        ],
+        "container-title": [
+          "IEEE Internet of Things Journal"
+        ],
+        "published": {
+          "date-parts": [
+            [
+              2025,
+              8,
+              15
+            ]
+          ]
+        },
+        "type": "journal-article",
+        "URL": "https://doi.org/10.1109/jiot.2025.3576235",
+        "score": 59.999332
+      },
+      "publication_verification": "Exact/near-exact title and leading authors matched in Crossref publisher-deposited metadata",
+      "review_level": "selected full-text sections",
+      "fulltext_file": "fulltext\\2501.01281v1.txt",
+      "report_reference": "R10",
+      "applicability_note": "Existing DRL/DDPG FAS multi-target ISAC prior art; no current RIS four-path OFDM estimator."
+    },
+    {
+      "id": "http://arxiv.org/abs/2506.07610v2",
+      "title": "Robust Transceiver Design for RIS Enhanced Dual-Functional Radar-Communication with Movable Antenna",
+      "abstract": "Movable antennas (MAs) have demonstrated significant potential in enhancing the performance of dual-functional radar-communication (DFRC) systems. In this paper, we explore an MA-aided DFRC system that utilizes a reconfigurable intelligent surface (RIS) to enhance signal coverage for communications in dead zones. To enhance the radar sensing performance in practical DFRC environments, we propose a unified robust transceiver design framework aimed at maximizing the minimum radar signal-to-interference-plus-noise ratio (SINR) in a cluttered environment. Our approach jointly optimizes transmit beamforming, receive filtering, antenna placement, and RIS reflecting coefficients under imperfect channel state information (CSI) for both sensing and communication channels. To deal with the channel uncertainty-constrained issue, we leverage the convex hull method to transform the primal problem into a more tractable form. We then introduce a two-layer block coordinate descent (BCD) algorithm, incorporating fractional programming (FP), successive convex approximation (SCA), S-Lemma, and penalty techniques to reformulate it into a series of semidefinite program (SDP) subproblems that can be efficiently solved. We provide a comprehensive analysis of the convergence and computational complexity for the proposed design framework. Simulation results demonstrate the robustness of the proposed method, and show that the MA-based design framework can significantly enhance the radar SINR performance while achieving an effective balance between the radar and communication performance.",
+      "published": "2025-06-09T10:23:12Z",
+      "updated": "2026-01-30T08:44:59Z",
+      "doi": null,
+      "journal_ref": null,
+      "comment": null,
+      "authors": [
+        "Ran Yang",
+        "Zheng Dong",
+        "Yue Xiu",
+        "Guangyi Liu",
+        "Wanting Lyu",
+        "Xiangxin Meng",
+        "Yan Li",
+        "Ning Wei"
+      ],
+      "crossref_match": {
+        "title": [
+          "Robust Transceiver Design for RIS Enhanced Dual-Functional Radar-Communication With Movable Antenna"
+        ],
+        "DOI": "10.1109/tvt.2026.3662466",
+        "author": [
+          {
+            "ORCID": "https://orcid.org/0000-0002-0435-7926",
+            "authenticated-orcid": false,
+            "given": "Ran",
+            "family": "Yang",
+            "sequence": "first",
+            "affiliation": [
+              {
+                "name": "National Key Laboratory of Wireless Communications, University of Electronic Science and Technology of China, Chengdu, China"
+              }
+            ],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "ORCID": "https://orcid.org/0000-0002-9224-324X",
+            "authenticated-orcid": false,
+            "given": "Zheng",
+            "family": "Dong",
+            "sequence": "additional",
+            "affiliation": [
+              {
+                "name": "School of Information Science and Engineering, Shandong University, Qingdao, China"
+              }
+            ],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "ORCID": "https://orcid.org/0000-0002-8204-5389",
+            "authenticated-orcid": false,
+            "given": "Yue",
+            "family": "Xiu",
+            "sequence": "additional",
+            "affiliation": [
+              {
+                "name": "National Key Laboratory of Wireless Communications, University of Electronic Science and Technology of China, Chengdu, China"
+              }
+            ],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "ORCID": "https://orcid.org/0000-0002-8656-1946",
+            "authenticated-orcid": false,
+            "given": "Guangyi",
+            "family": "Liu",
+            "sequence": "additional",
+            "affiliation": [
+              {
+                "name": "China Mobile Research Institute, Beijing, China"
+              }
+            ],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "ORCID": "https://orcid.org/0000-0003-0510-2666",
+            "authenticated-orcid": false,
+            "given": "Wanting",
+            "family": "Lyu",
+            "sequence": "additional",
+            "affiliation": [
+              {
+                "name": "National Key Laboratory of Wireless Communications, University of Electronic Science and Technology of China, Chengdu, China"
+              }
+            ],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "given": "Xiangxin",
+            "family": "Meng",
+            "sequence": "additional",
+            "affiliation": [
+              {
+                "name": "National Key Laboratory of Wireless Communications, University of Electronic Science and Technology of China, Chengdu, China"
+              }
+            ],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "given": "Yan",
+            "family": "Li",
+            "sequence": "additional",
+            "affiliation": [
+              {
+                "name": "National Key Laboratory of Wireless Communications, University of Electronic Science and Technology of China, Chengdu, China"
+              }
+            ],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "ORCID": "https://orcid.org/0000-0002-3936-7526",
+            "authenticated-orcid": false,
+            "given": "Ning",
+            "family": "Wei",
+            "sequence": "additional",
+            "affiliation": [
+              {
+                "name": "National Key Laboratory of Wireless Communications, University of Electronic Science and Technology of China, Chengdu, China"
+              }
+            ],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          }
+        ],
+        "container-title": [
+          "IEEE Transactions on Vehicular Technology"
+        ],
+        "published": {
+          "date-parts": [
+            [
+              2026,
+              7
+            ]
+          ]
+        },
+        "type": "journal-article",
+        "URL": "https://doi.org/10.1109/tvt.2026.3662466",
+        "score": 65.31507
+      },
+      "publication_verification": "Exact/near-exact title and leading authors matched in Crossref publisher-deposited metadata",
+      "review_level": "abstract and metadata only",
+      "fulltext_file": null,
+      "report_reference": "R13",
+      "applicability_note": "Robust RIS/MA transceiver prior art; abstract and publication metadata only."
+    },
+    {
+      "id": "http://arxiv.org/abs/2501.15880v2",
+      "title": "Movable Antennas Meet Intelligent Reflecting Surface: Friends or Foes?",
+      "abstract": "Movable antenna (MA) and intelligent reflecting surface (IRS) are considered promising technologies for the next-generation wireless communication systems due to their shared channel reconfiguration capabilities. This, however, raises a fundamental question: Does the performance gain of MAs over conventional fixed-position antennas (FPAs) still exist in the presence of the IRS? To answer this question, we investigate in this paper an IRS-assisted multi-user multiple-input single-output (MISO) MA system, where a multi-MA base station (BS) transmits to multiple single-FPA users. We formulate a sum-rate maximization problem by jointly optimizing the active/passive beamforming of the BS/IRS and the MA positions within a one-dimensional transmit region, which is challenging to be optimally solved. To drive essential insights, we first study a simplified case with a single user. Then, we analyze the performance gain of MAs over FPAs in the light-of-sight (LoS) BS-IRS channel and derive the conditions under which this gain becomes more or less significant. In addition, we propose an alternating optimization (AO) algorithm to solve the signal-to-noise ratio (SNR) maximization problem in the single-user case by combining the block coordinate descent (BCD) method and the graph-based method. For the general multi-user case, our performance analysis unveils that the performance gain of MAs over FPAs diminishes with typical transmit precoding strategies at the BS under certain conditions. We also propose a high-quality suboptimal solution to the sum-rate maximization problem by applying the AO algorithm that combines the weighted minimum mean square error (WMMSE) algorithm, manifold optimization method and discrete sampling method. Numerical results validate our theoretical analyses and demonstrate that the performance gain of MAs over FPAs may be reduced if the IRS passive beamforming is optimized.",
+      "published": "2025-01-27T09:05:46Z",
+      "updated": "2025-07-03T13:52:40Z",
+      "doi": null,
+      "journal_ref": null,
+      "comment": null,
+      "authors": [
+        "Xin Wei",
+        "Weidong Mei",
+        "Qingqing Wu",
+        "Qiaoran Jia",
+        "Boyu Ning",
+        "Zhi Chen",
+        "Jun Fang"
+      ],
+      "crossref_match": {
+        "title": [
+          "Movable Antennas Meet Intelligent Reflecting Surface: Friends or Foes?"
+        ],
+        "DOI": "10.1109/tcomm.2025.3588579",
+        "author": [
+          {
+            "ORCID": "https://orcid.org/0009-0002-8458-4260",
+            "authenticated-orcid": false,
+            "given": "Xin",
+            "family": "Wei",
+            "sequence": "first",
+            "affiliation": [
+              {
+                "name": "National Key Laboratory of Wireless Communications, University of Electronic Science and Technology of China, Chengdu, China"
+              }
+            ],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "ORCID": "https://orcid.org/0000-0002-8113-4283",
+            "authenticated-orcid": false,
+            "given": "Weidong",
+            "family": "Mei",
+            "sequence": "additional",
+            "affiliation": [
+              {
+                "name": "National Key Laboratory of Wireless Communications, University of Electronic Science and Technology of China, Chengdu, China"
+              }
+            ],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "ORCID": "https://orcid.org/0000-0002-0043-3266",
+            "authenticated-orcid": false,
+            "given": "Qingqing",
+            "family": "Wu",
+            "sequence": "additional",
+            "affiliation": [
+              {
+                "name": "Department of Electronic Engineering, Shanghai Jiao Tong University, Shanghai, China"
+              }
+            ],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "given": "Qiaoran",
+            "family": "Jia",
+            "sequence": "additional",
+            "affiliation": [
+              {
+                "name": "Glasgow College, University of Electronic Science and Technology of China, Chengdu, China"
+              }
+            ],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "ORCID": "https://orcid.org/0000-0003-2864-373X",
+            "authenticated-orcid": false,
+            "given": "Boyu",
+            "family": "Ning",
+            "sequence": "additional",
+            "affiliation": [
+              {
+                "name": "National Key Laboratory of Wireless Communications, University of Electronic Science and Technology of China, Chengdu, China"
+              }
+            ],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "ORCID": "https://orcid.org/0000-0003-2943-9861",
+            "authenticated-orcid": false,
+            "given": "Zhi",
+            "family": "Chen",
+            "sequence": "additional",
+            "affiliation": [
+              {
+                "name": "National Key Laboratory of Wireless Communications, University of Electronic Science and Technology of China, Chengdu, China"
+              }
+            ],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "ORCID": "https://orcid.org/0000-0001-7427-4723",
+            "authenticated-orcid": false,
+            "given": "Jun",
+            "family": "Fang",
+            "sequence": "additional",
+            "affiliation": [
+              {
+                "name": "National Key Laboratory of Wireless Communications, University of Electronic Science and Technology of China, Chengdu, China"
+              }
+            ],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          }
+        ],
+        "container-title": [
+          "IEEE Transactions on Communications"
+        ],
+        "published": {
+          "date-parts": [
+            [
+              2025,
+              11
+            ]
+          ]
+        },
+        "type": "journal-article",
+        "URL": "https://doi.org/10.1109/tcomm.2025.3588579",
+        "score": 58.955925
+      },
+      "publication_verification": "Exact/near-exact title and leading authors matched in Crossref publisher-deposited metadata",
+      "review_level": "selected full-text sections",
+      "fulltext_file": "fulltext\\2501.15880v2.txt",
+      "report_reference": "R7",
+      "applicability_note": "MA gains can disappear in specific optimized IRS-only far-field LoS communication models; do not overgeneralize to direct-path two-target sensing."
+    },
+    {
+      "id": "http://arxiv.org/abs/2503.06080v3",
+      "title": "Fluid Antenna Meets RIS: Random Matrix Analysis and Two-Timescale Design for Multi-User Communications",
+      "abstract": "The reconfigurability of fluid antenna systems (FASs) and reconfigurable intelligent surfaces (RISs) provides significant flexibility in optimizing channel conditions by jointly adjusting the positions of fluid antennas and the phase shifts of RISs. However, it is challenging to acquire the instantaneous channel state information (CSI) for both fluid antennas and RISs, while frequent adjustment of antenna positions and phase shifts will significantly increase the system complexity. To tackle this issue, this paper investigates the two-timescale design for FAS-RIS multi-user systems with linear precoding, where only the linear precoder design requires instantaneous CSI of the end-to-end channel, while the FAS and RIS optimization relies on statistical CSI. The main challenge comes from the complex structure of channel and inverse operations in linear precoding, such as regularized zero-forcing (RZF) and zero-forcing (ZF). Leveraging on random matrix theory (RMT), we first investigate the fundamental limits of FAS-RIS systems with RZF/ZF precoding by deriving the ergodic sum rate (ESR). This result is utilized to determine the minimum number of selected antennas to achieve a given ESR. Based on the evaluation result, we propose an algorithm to jointly optimize the antenna selection, regularization factor of RZF, and phase shifts at the RIS. Numerical results validate the accuracy of performance evaluation and demonstrate that the performance gain brought by joint FAS and RIS design is more pronounced with a larger number of users.",
+      "published": "2025-03-08T06:06:48Z",
+      "updated": "2025-09-26T03:22:18Z",
+      "doi": null,
+      "journal_ref": null,
+      "comment": null,
+      "authors": [
+        "Xin Zhang",
+        "Dongfang Xu",
+        "Jingjing Wang",
+        "Shenghui Song",
+        "Derrick Wing Kwan Ng",
+        "Mérouane Debbah"
+      ],
+      "crossref_match": {
+        "title": [
+          "Fluid Antenna Meets RIS: Random Matrix Analysis and Two-Timescale Design for Multi-User Communications"
+        ],
+        "DOI": "10.1109/jsac.2025.3615911",
+        "author": [
+          {
+            "ORCID": "https://orcid.org/0000-0002-8414-3556",
+            "authenticated-orcid": false,
+            "given": "Xin",
+            "family": "Zhang",
+            "sequence": "first",
+            "affiliation": [
+              {
+                "name": "School of Cyber Science and Technology, Beihang University, Beijing, China"
+              }
+            ],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "ORCID": "https://orcid.org/0000-0001-6562-8470",
+            "authenticated-orcid": false,
+            "given": "Dongfang",
+            "family": "Xu",
+            "sequence": "additional",
+            "affiliation": [
+              {
+                "name": "Division of Integrative Systems and Design, The Hong Kong University of Science and Technology, Kowloon, Hong Kong"
+              }
+            ],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "ORCID": "https://orcid.org/0000-0003-3170-8952",
+            "authenticated-orcid": false,
+            "given": "Jingjing",
+            "family": "Wang",
+            "sequence": "additional",
+            "affiliation": [
+              {
+                "name": "School of Cyber Science and Technology, Beihang University, Beijing, China"
+              }
+            ],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "ORCID": "https://orcid.org/0000-0001-6316-8415",
+            "authenticated-orcid": false,
+            "given": "Shenghui",
+            "family": "Song",
+            "sequence": "additional",
+            "affiliation": [
+              {
+                "name": "Division of Integrative Systems and Design and the Department of Electronic and Computer Engineering, The Hong Kong University of Science and Technology, Kowloon, Hong Kong"
+              }
+            ],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "ORCID": "https://orcid.org/0000-0001-6400-712X",
+            "authenticated-orcid": false,
+            "given": "Derrick",
+            "family": "Wing Kwan Ng",
+            "sequence": "additional",
+            "affiliation": [
+              {
+                "name": "School of Electrical Engineering and Telecommunications, University of New South Wales, Sydney, NSW, Australia"
+              }
+            ],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "ORCID": "https://orcid.org/0000-0001-8941-8080",
+            "authenticated-orcid": false,
+            "given": "Mérouane",
+            "family": "Debbah",
+            "sequence": "additional",
+            "affiliation": [
+              {
+                "name": "Department of Computer and Information Engineering, KU 6G Research Center, Khalifa University, Abu Dhabi, United Arab Emirates"
+              }
+            ],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          }
+        ],
+        "container-title": [
+          "IEEE Journal on Selected Areas in Communications"
+        ],
+        "published": {
+          "date-parts": [
+            [
+              2026
+            ]
+          ]
+        },
+        "type": "journal-article",
+        "URL": "https://doi.org/10.1109/jsac.2025.3615911",
+        "score": 70.96489
+      },
+      "publication_verification": "Exact/near-exact title and leading authors matched in Crossref publisher-deposited metadata",
+      "review_level": "selected full-text sections",
+      "fulltext_file": "fulltext\\2503.06080v3.txt",
+      "report_reference": "R8",
+      "applicability_note": "Two-timescale FAS/RIS statistical-CSI communication design; sensing objective needs a new derivation."
+    },
+    {
+      "id": "http://arxiv.org/abs/2604.27352v2",
+      "title": "Array Zooming Optimization for Near-Field Localization With Movable Antennas",
+      "abstract": "The emergence of movable antenna (MA) technology provides a promising way to enhance wireless sensing and communication by introducing spatial degrees of freedom through dynamic array reconfiguration. In near-field localization, achieving high resolution at low cost necessitates the adoption of sparse arrays. However, such sparsity tends to introduce spatial ambiguity due to aliasing effects. To resolve this resolution-ambiguity dilemma, this paper proposes an MA-enabled array zooming (AZ) system. First, we design a multi-measurement array zooming system that dynamically adjusts antenna spacings. By fusing the observational information from different measurements, the proposed AZ system effectively mitigates spatial aliasing while maintaining spatial resolution. Second, to quantify the performance limits under the severe multi-modal distributions inherent in sparse near-field sensing, we theoretically analyze the false peak distribution and derive a tighter performance lower bound, which incorporates the false detection probability. Third, considering that multiple false peaks may exist in practical multi-modal distributions, we propose an optimization algorithm for the AZ system to suppress false peaks and minimize the localization error. Extensive numerical results demonstrate that the proposed AZ strategy adaptively optimizes array configurations under varying signal-to-noise ratios (SNRs), substantially outperforming both conventional fixed-spacing arrays and Cramer-Rao bound (CRB)-based AZ benchmarks in localization accuracy.",
+      "published": "2026-04-30T03:06:24Z",
+      "updated": "2026-05-29T05:10:18Z",
+      "doi": null,
+      "journal_ref": null,
+      "comment": null,
+      "authors": [
+        "Yuxin Duan",
+        "Boyu Teng",
+        "Xiaojun Yuan",
+        "Rui Wang"
+      ],
+      "review_level": "selected full-text sections",
+      "fulltext_file": "fulltext\\2604.27352v2.txt",
+      "report_reference": "R12",
+      "applicability_note": "Near-field array zooming addresses ambiguity and false peaks; applicable lesson, not a drop-in model."
+    },
+    {
+      "id": "http://arxiv.org/abs/2604.02181v2",
+      "title": "Grey-Box Bayesian Optimization for ISAC in Fluid-Antenna Assisted Air-Ground Network",
+      "abstract": "Fluid antenna systems (FAS) provide additional spatial diversity for integrated sensing and communication (ISAC) through joint port selection and precoding. \\rev{However, existing designs commonly assume readily available channel state information, neglect residual self-interference, and combine communication and sensing into a single weighted objective. The resulting channel acquisition overhead, unmodeled residual self-interference, and limited characterization of the Pareto trade-off are critical obstacles to implementing ISAC in fluid-antenna-assisted air-ground networks.} \\rev{To address these issues, we first formulate the joint design as a grey-box multi-objective optimization problem. This formulation retains the available analytical system mapping while treating the configuration-dependent channel and interference constituents as unknown, and directly represents the communication-sensing Pareto trade-off without predefined scalarization.} We then propose a tailored grey-box multi-objective Bayesian optimization (G-MOBO) method to solve the resulting high-dimensional problem. Specifically, G-MOBO learns the unknown constituents from performance feedback, propagates their predictive distributions through the known mapping, employs expected hypervolume improvement (EHI) to explore the Pareto frontier, and uses an adaptive trust region (TR) to localize the search. A temporal adaptation strategy is further incorporated to track the drifting Pareto frontier in time-varying environments. \\rev{The theoretical analysis characterizes the sample efficiency of grey-box modeling and localized TR design via cumulative hypervolume regret.} Simulations demonstrate faster convergence, improved Pareto-frontier quality, and robust dynamic tracking compared with the considered baselines.",
+      "published": "2026-04-02T15:44:14Z",
+      "updated": "2026-09-28T05:57:14Z",
+      "doi": null,
+      "journal_ref": null,
+      "comment": "15 pages, 5 figures, Journal",
+      "authors": [
+        "Gangyong Zhu",
+        "Jia Yan",
+        "Miaowen Wen",
+        "Shijian Gao"
+      ],
+      "crossref_match": {
+        "title": [
+          "Grey-Box Bayesian Optimization for ISAC in Fluid-Antenna Assisted Air-Ground Network"
+        ],
+        "DOI": "10.1109/twc.2026.3743126",
+        "author": [
+          {
+            "ORCID": "https://orcid.org/0009-0002-6657-7200",
+            "authenticated-orcid": false,
+            "given": "Gangyong",
+            "family": "Zhu",
+            "sequence": "first",
+            "affiliation": [],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "ORCID": "https://orcid.org/0000-0002-1233-1507",
+            "authenticated-orcid": false,
+            "given": "Jia",
+            "family": "Yan",
+            "sequence": "additional",
+            "affiliation": [],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "ORCID": "https://orcid.org/0000-0002-9638-7048",
+            "authenticated-orcid": false,
+            "given": "Miaowen",
+            "family": "Wen",
+            "sequence": "additional",
+            "affiliation": [],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "ORCID": "https://orcid.org/0000-0002-8105-7927",
+            "authenticated-orcid": false,
+            "given": "Shijian",
+            "family": "Gao",
+            "sequence": "additional",
+            "affiliation": [],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          }
+        ],
+        "container-title": [
+          "IEEE Transactions on Wireless Communications"
+        ],
+        "published": {
+          "date-parts": [
+            [
+              2026
+            ]
+          ]
+        },
+        "type": "journal-article",
+        "URL": "https://doi.org/10.1109/twc.2026.3743126",
+        "score": 70.240524
+      },
+      "publication_verification": "Exact/near-exact title and leading authors matched in Crossref publisher-deposited metadata",
+      "review_level": "selected full-text sections",
+      "fulltext_file": "fulltext\\2604.02181v2.txt",
+      "report_reference": "R9",
+      "applicability_note": "Grey-box multi-objective BO learns uncertain physical constituents; residual SI and sensing mutual information differ from current no-SI RMSE setting."
+    },
+    {
+      "id": "http://arxiv.org/abs/2403.17324v2",
+      "title": "Unsupervised Learning for Joint Beamforming Design in RIS-aided ISAC Systems",
+      "abstract": "It is critical to design efficient beamforming in reconfigurable intelligent surface (RIS)-aided integrated sensing and communication (ISAC) systems for enhancing spectrum utilization. However, conventional methods often have limitations, either incurring high computational complexity due to iterative algorithms or sacrificing performance when using heuristic methods. To achieve both low complexity and high spectrum efficiency, an unsupervised learning-based beamforming design is proposed in this work. We tailor image-shaped channel samples and develop an ISAC beamforming neural network (IBF-Net) model for beamforming. By leveraging unsupervised learning, the loss function incorporates key performance metrics like sensing and communication channel correlation and sensing channel gain, eliminating the need of labeling. Simulations show that the proposed method achieves competitive performance compared to benchmarks while significantly reduces computational complexity.",
+      "published": "2024-03-26T02:09:07Z",
+      "updated": "2024-05-15T06:51:54Z",
+      "doi": null,
+      "journal_ref": null,
+      "comment": "Accpeted by IEEE Wireless Communications Letters",
+      "authors": [
+        "Junjie Ye",
+        "Lei Huang",
+        "Zhen Chen",
+        "Peichang Zhang",
+        "Mohamed Rihan"
+      ],
+      "crossref_match": {
+        "title": [
+          "Unsupervised Learning for Joint Beamforming Design in RIS-Aided ISAC Systems"
+        ],
+        "DOI": "10.1109/lwc.2024.3402235",
+        "author": [
+          {
+            "ORCID": "https://orcid.org/0000-0003-1953-2691",
+            "authenticated-orcid": false,
+            "given": "Junjie",
+            "family": "Ye",
+            "sequence": "first",
+            "affiliation": [
+              {
+                "name": "State Key Laboratory of Radio Frequency Heterogeneous Integration, Shenzhen University, Shenzhen, China"
+              }
+            ],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "ORCID": "https://orcid.org/0000-0003-4534-7625",
+            "authenticated-orcid": false,
+            "given": "Lei",
+            "family": "Huang",
+            "sequence": "additional",
+            "affiliation": [
+              {
+                "name": "State Key Laboratory of Radio Frequency Heterogeneous Integration, Shenzhen University, Shenzhen, China"
+              }
+            ],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "ORCID": "https://orcid.org/0000-0001-8018-9103",
+            "authenticated-orcid": false,
+            "given": "Zhen",
+            "family": "Chen",
+            "sequence": "additional",
+            "affiliation": [
+              {
+                "name": "State Key Laboratory of Radio Frequency Heterogeneous Integration, Shenzhen University, Shenzhen, China"
+              }
+            ],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "ORCID": "https://orcid.org/0000-0002-5772-8428",
+            "authenticated-orcid": false,
+            "given": "Peichang",
+            "family": "Zhang",
+            "sequence": "additional",
+            "affiliation": [
+              {
+                "name": "State Key Laboratory of Radio Frequency Heterogeneous Integration, Shenzhen University, Shenzhen, China"
+              }
+            ],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "ORCID": "https://orcid.org/0000-0003-4030-2559",
+            "authenticated-orcid": false,
+            "given": "Mohamed",
+            "family": "Rihan",
+            "sequence": "additional",
+            "affiliation": [
+              {
+                "name": "Department of Communications Engineering, University of Bremen, Bremen, Germany"
+              }
+            ],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          }
+        ],
+        "container-title": [
+          "IEEE Wireless Communications Letters"
+        ],
+        "published": {
+          "date-parts": [
+            [
+              2024,
+              8
+            ]
+          ]
+        },
+        "type": "journal-article",
+        "URL": "https://doi.org/10.1109/lwc.2024.3402235",
+        "score": 57.986134
+      },
+      "publication_verification": "Exact/near-exact title and leading authors matched in Crossref publisher-deposited metadata",
+      "review_level": "selected full-text sections",
+      "fulltext_file": "fulltext\\2403.17324v2.txt",
+      "report_reference": "R2",
+      "applicability_note": "Unsupervised lightweight RIS beamforming; official public code repository verified, not executed."
+    },
+    {
+      "id": "http://arxiv.org/abs/2407.05297v1",
+      "title": "Fluid-Antenna Enhanced Integrated Sensing and Communication: Joint Antenna Positioning and Beamforming Design",
+      "abstract": "This paper investigates a fluid antenna (FA) enhanced integrated sensing and communication (ISAC) system consisting of a base station (BS), multiple single-antenna communication users, and one point target, where the BS is equipped with FAs to enhance both the communication and sensing performance. First, we formulate a problem that maximizes the radar signal-to-noise ratio (SNR) by jointly optimizing the FAs' positions and transmit beamforming matrix. Then, to tackle this highly non-convex problem, we present efficient algorithms by using alternating optimization (AO), successive convex approximation (SCA), and semi-definite relaxation (SDR). Numerical results demonstrate the convergence behavior and effectiveness of the proposed algorithm.",
+      "published": "2024-07-07T07:47:12Z",
+      "updated": "2024-07-07T07:47:12Z",
+      "doi": null,
+      "journal_ref": null,
+      "comment": "This work has been accepted by 2024 IEEE/CIC International Conference on Communications in China (ICCC)",
+      "authors": [
+        "Tian Hao",
+        "Changxin Shi",
+        "Yinghong Guo",
+        "Bin Xia",
+        "Feng Yang"
+      ],
+      "review_level": "abstract and metadata only",
+      "fulltext_file": null,
+      "report_reference": "R14",
+      "applicability_note": "Foundational FA/beamforming radar-SNR design; abstract and arXiv author acceptance note only."
+    },
+    {
+      "id": "http://arxiv.org/abs/2301.11134v2",
+      "title": "SNR/CRB-Constrained Joint Beamforming and Reflection Designs for RIS-ISAC Systems",
+      "abstract": "In this paper, we investigate the integration of integrated sensing and communication (ISAC) and reconfigurable intelligent surfaces (RIS) for providing wide-coverage and ultra-reliable communication and high-accuracy sensing functions. In particular, we consider an RIS-assisted ISAC system in which a multi-antenna base station (BS) simultaneously performs multi-user multi-input single-output (MU-MISO) communications and radar sensing with the assistance of an RIS. We focus on both target detection and parameter estimation performance in terms of the signal-to-noise ratio (SNR) and Cramer-Rao bound (CRB), respectively. Two optimization problems are formulated for maximizing the achievable sum-rate of the multi-user communications under an SNR constraint for target detection or a CRB constraint for parameter estimation, the transmit power budget, and the unit-modulus constraint of the RIS reflection coefficients. Efficient algorithms are developed to solve these two complicated non-convex problems. Extensive simulation results demonstrate the advantages of the proposed joint beamforming and reflection designs compared with other schemes. In addition, it is shown that more RIS reflection elements bring larger performance gains for direct-of-arrival (DoA) estimation than for target detection.",
+      "published": "2023-01-26T14:39:24Z",
+      "updated": "2025-02-13T23:10:55Z",
+      "doi": "10.1109/TWC.2023.3341429",
+      "journal_ref": "IEEE Trans. Wireless Commun., vol. 23, no. 7, pp. 7456-7470, Jul. 2024",
+      "comment": "accepted by IEEE TWC",
+      "authors": [
+        "Rang Liu",
+        "Ming Li",
+        "Qian Liu",
+        "A. Lee Swindlehurst"
+      ],
+      "crossref_match": {
+        "title": [
+          "SNR/CRB-Constrained Joint Beamforming and Reflection Designs for RIS-ISAC Systems"
+        ],
+        "DOI": "10.1109/twc.2023.3341429",
+        "author": [
+          {
+            "ORCID": "https://orcid.org/0000-0001-7151-7224",
+            "authenticated-orcid": false,
+            "given": "Rang",
+            "family": "Liu",
+            "sequence": "first",
+            "affiliation": [
+              {
+                "name": "School of Information and Communication Engineering, Dalian University of Technology, Dalian, China"
+              }
+            ],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "ORCID": "https://orcid.org/0000-0003-1849-8241",
+            "authenticated-orcid": false,
+            "given": "Ming",
+            "family": "Li",
+            "sequence": "additional",
+            "affiliation": [
+              {
+                "name": "School of Information and Communication Engineering, Dalian University of Technology, Dalian, China"
+              }
+            ],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "ORCID": "https://orcid.org/0000-0003-2282-4572",
+            "authenticated-orcid": false,
+            "given": "Qian",
+            "family": "Liu",
+            "sequence": "additional",
+            "affiliation": [
+              {
+                "name": "School of Computer Science and Technology, Dalian University of Technology, Dalian, China"
+              }
+            ],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "ORCID": "https://orcid.org/0000-0002-0521-3107",
+            "authenticated-orcid": false,
+            "given": "A.",
+            "family": "Lee Swindlehurst",
+            "sequence": "additional",
+            "affiliation": [
+              {
+                "name": "Center for Pervasive Communications and Computing, University of California at Irvine, Irvine, CA, USA"
+              }
+            ],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          }
+        ],
+        "container-title": [
+          "IEEE Transactions on Wireless Communications"
+        ],
+        "published": {
+          "date-parts": [
+            [
+              2024,
+              7
+            ]
+          ]
+        },
+        "type": "journal-article",
+        "URL": "https://doi.org/10.1109/twc.2023.3341429",
+        "score": 76.73305
+      },
+      "publication_verification": "Exact/near-exact title and leading authors matched in Crossref publisher-deposited metadata",
+      "review_level": "selected full-text sections",
+      "fulltext_file": "fulltext\\2301.11134v2.txt",
+      "report_reference": "R6",
+      "applicability_note": "RIS SNR versus CRB objectives; existing prior art means adding CRB alone is not a novelty claim."
+    },
+    {
+      "id": "http://arxiv.org/abs/2409.20472v1",
+      "title": "Fluid Antenna-Assisted Near-Field System",
+      "abstract": "This paper proposes a fluid antenna (FA)-assisted near-field integrated sensing and communications (ISAC) system enabled by the extremely large-scale simultaneously transmitting and reflecting surface (XL-STARS). By optimizing the communication beamformer, the sensing signal covariance matrix, the XL-STARS phase shift, and the FA position vector, the Cramér-Rao bound (CRB), as a metric for sensing performance, is minimized while ensuring the standard communication performance. A double-loop iterative algorithm based on the penalty dual decomposition (PDD) and block coordinate descent (BCD) methods is proposed to solve the non-convex minimization problem by decomposing it into three subproblems and optimizing the coupling variables for each subproblem iteratively. Simulation results validate the superior performance of the proposed algorithm.",
+      "published": "2024-09-30T16:31:41Z",
+      "updated": "2024-09-30T16:31:41Z",
+      "doi": null,
+      "journal_ref": null,
+      "comment": null,
+      "authors": [
+        "Jingxuan Zhou",
+        "Yinchao Yang",
+        "Zhaohui Yang",
+        "Mohammad Shikh-Bahaei"
+      ],
+      "publication_verification": "Formal publication not verified; related title found but not merged",
+      "review_level": "selected full-text sections",
+      "fulltext_file": "fulltext\\2409.20472v1.txt",
+      "report_reference": "R11",
+      "applicability_note": "XL-STARS near-field CRB, different FA variable definition, range-Doppler bin assumed; nearby-title conference version not merged."
+    },
+    {
+      "id": "http://arxiv.org/abs/2502.14325v1",
+      "title": "Joint Waveform and Beamforming Design in RIS-ISAC Systems: A Model-Driven Learning Approach",
+      "abstract": "Integrated Sensing and Communication (ISAC) has emerged as a key enabler for future wireless systems. The recently developed symbol-level precoding (SLP) technique holds significant potential for ISAC waveform design, as it leverages both temporal and spatial degrees of freedom (DoFs) to enhance multi-user communication and radar sensing capabilities. Concurrently, reconfigurable intelligent surfaces (RIS) offer additional controllable propagation paths, further amplifying interest in their application. However, previous studies have encountered substantial computational challenges due to the complexity of jointly designing SLP-based waveforms and RIS passive beamforming. In this paper, we propose a novel model-driven learning approach that jointly optimizes waveform and beamforming by unfolding the iterative alternative direction method of multipliers (ADMM) algorithm. Two joint design algorithms are developed for radar target detection and direction-of-arrival (DoA) estimation tasks in a cluttered RIS-ISAC system. While ensuring the communication quality-of-service (QoS) requirements, our objectives are: 1) to maximize the radar output signal-to-interference-plus-noise ratio (SINR) for target detection, and 2) to minimize the Cramér-Rao bound (CRB) for DoA estimation. Simulation results verify that our proposed model-driven learning algorithms achieve satisfactory communication and sensing performance, while also offering a substantial reduction in computational complexity, as reflected by the average execution time.",
+      "published": "2025-02-20T07:23:21Z",
+      "updated": "2025-02-20T07:23:21Z",
+      "doi": null,
+      "journal_ref": null,
+      "comment": "Accepted by IEEE Transactions on Communications",
+      "authors": [
+        "Peng Jiang",
+        "Ming Li",
+        "Rang Liu",
+        "Wei Wang",
+        "Qian Liu"
+      ],
+      "crossref_match": {
+        "title": [
+          "Joint Waveform and Beamforming Design in RIS-ISAC Systems: A Model-Driven Learning Approach"
+        ],
+        "DOI": "10.1109/tcomm.2025.3535869",
+        "author": [
+          {
+            "ORCID": "https://orcid.org/0009-0003-4545-1550",
+            "authenticated-orcid": false,
+            "given": "Peng",
+            "family": "Jiang",
+            "sequence": "first",
+            "affiliation": [
+              {
+                "name": "School of Information and Communication Engineering, Dalian University of Technology, Dalian, China"
+              }
+            ],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "ORCID": "https://orcid.org/0000-0003-1849-8241",
+            "authenticated-orcid": false,
+            "given": "Ming",
+            "family": "Li",
+            "sequence": "additional",
+            "affiliation": [
+              {
+                "name": "School of Information and Communication Engineering, Dalian University of Technology, Dalian, China"
+              }
+            ],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "ORCID": "https://orcid.org/0000-0001-7151-7224",
+            "authenticated-orcid": false,
+            "given": "Rang",
+            "family": "Liu",
+            "sequence": "additional",
+            "affiliation": [
+              {
+                "name": "School of Information and Communication Engineering, Dalian University of Technology, Dalian, China"
+              }
+            ],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "given": "Wei",
+            "family": "Wang",
+            "sequence": "additional",
+            "affiliation": [
+              {
+                "name": "School of Information and Communication Engineering, Dalian University of Technology, Dalian, China"
+              }
+            ],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "ORCID": "https://orcid.org/0000-0003-2282-4572",
+            "authenticated-orcid": false,
+            "given": "Qian",
+            "family": "Liu",
+            "sequence": "additional",
+            "affiliation": [
+              {
+                "name": "School of Computer Science and Technology, Dalian University of Technology, Dalian, China"
+              }
+            ],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          }
+        ],
+        "container-title": [
+          "IEEE Transactions on Communications"
+        ],
+        "published": {
+          "date-parts": [
+            [
+              2025,
+              8
+            ]
+          ]
+        },
+        "type": "journal-article",
+        "URL": "https://doi.org/10.1109/tcomm.2025.3535869",
+        "score": 63.792885
+      },
+      "publication_verification": "Exact/near-exact title and leading authors matched in Crossref publisher-deposited metadata",
+      "review_level": "selected full-text sections",
+      "fulltext_file": "fulltext\\2502.14325v1.txt",
+      "report_reference": "R1",
+      "applicability_note": "Model-driven unfolded RIS-ISAC solver; pulse/SLP and DoA-CRB model differs from current wideband OFDM multi-parameter estimator."
+    },
+    {
+      "id": "http://arxiv.org/abs/2503.19046v2",
+      "title": "Learning Beamforming Codebooks for Active Sensing with Reconfigurable Intelligent Surface",
+      "abstract": "This paper explores the design of beamforming codebooks for the base station (BS) and for the reconfigurable intelligent surfaces (RISs) in an active sensing scheme for uplink localization, in which the mobile user transmits a sequence of pilots to the BS through reflection at the RISs, and the BS and the RISs are adaptively configured by carefully choosing BS beamforming codeword and RIS codewords from their respective codebooks in a sequential manner to progressively focus onto the user. Most existing codebook designs for RIS are not tailored for active sensing, by which we mean the choice of the next codeword should depend on the measurements made so far, and the sequence of codewords should dynamically focus reflection toward the user. Moreover, most existing codeword selection methods rely on exhaustive search in beam training to identify the codeword with the highest signal-to-noise ratio (SNR), thus incurring substantial pilot overhead as the size of the codebook scales. This paper proposes a learning-based approach for codebook construction and for codeword selection for active sensing. The proposed learning approach aims to locate a target in the service area by recursively selecting a sequence of BS beamforming codewords and RIS codewords from the respective codebooks as more measurements become available without exhaustive beam training. The codebook design and the codeword selection fuse key ideas from the vector quantized variational autoencoder (VQ-VAE) and the long short-term memory (LSTM) network to learn respectively the discrete function space of the codebook and the temporal dependencies between measurements.",
+      "published": "2025-03-24T18:15:58Z",
+      "updated": "2025-03-31T13:10:57Z",
+      "doi": null,
+      "journal_ref": null,
+      "comment": "Accepted in IEEE Transactions on Wireless Communications",
+      "authors": [
+        "Zhongze Zhang",
+        "Wei Yu"
+      ],
+      "crossref_match": {
+        "title": [
+          "Learning Beamforming Codebooks for Active Sensing With Reconfigurable Intelligent Surface"
+        ],
+        "DOI": "10.1109/twc.2025.3553886",
+        "author": [
+          {
+            "ORCID": "https://orcid.org/0000-0002-5066-103X",
+            "authenticated-orcid": false,
+            "given": "Zhongze",
+            "family": "Zhang",
+            "sequence": "first",
+            "affiliation": [
+              {
+                "name": "The Edward S. Rogers Sr. Department of Electrical and Computer Engineering, University of Toronto, Toronto, ON, Canada"
+              }
+            ],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "ORCID": "https://orcid.org/0000-0002-7453-422X",
+            "authenticated-orcid": false,
+            "given": "Wei",
+            "family": "Yu",
+            "sequence": "additional",
+            "affiliation": [
+              {
+                "name": "The Edward S. Rogers Sr. Department of Electrical and Computer Engineering, University of Toronto, Toronto, ON, Canada"
+              }
+            ],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          }
+        ],
+        "container-title": [
+          "IEEE Transactions on Wireless Communications"
+        ],
+        "published": {
+          "date-parts": [
+            [
+              2025,
+              8
+            ]
+          ]
+        },
+        "type": "journal-article",
+        "URL": "https://doi.org/10.1109/twc.2025.3553886",
+        "score": 56.22763
+      },
+      "publication_verification": "Exact/near-exact title and leading authors matched in Crossref publisher-deposited metadata",
+      "review_level": "selected full-text sections",
+      "fulltext_file": "fulltext\\2503.19046v2.txt",
+      "report_reference": "R3",
+      "applicability_note": "Learning BS/RIS codebooks and adaptive selection for uplink localization; does not validate passive-target Doppler estimation."
+    }
+  ],
+  "scope": "Targeted review; 10 arXiv queries, selected abstracts and full-text sections, and Crossref title/author checks. No claim of exhaustive novelty coverage.",
+  "search_counts": {
+    "queries": 10,
+    "returned_entries": 199,
+    "unique_records": 193,
+    "excluded_post_cutoff": 0
+  },
+  "report_references": 14
+}

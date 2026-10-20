@@ -1,0 +1,416 @@
+\documentclass[conference]{IEEEtran}
+\IEEEoverridecommandlockouts
+
+\usepackage{cite}
+\usepackage{amsmath,amssymb,amsfonts,bm}
+\usepackage{algorithm}
+\usepackage{algorithmic}
+\usepackage{graphicx}
+\usepackage[caption=false,font=footnotesize]{subfig}
+\usepackage{textcomp}
+\usepackage{xcolor}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{url}
+\usepackage{epstopdf}
+\usepackage{placeins}
+
+\renewcommand{\algorithmicrequire}{\textbf{Input:}}
+\renewcommand{\algorithmicensure}{\textbf{Output:}}
+\raggedbottom
+
+\DeclareMathOperator*{\argmax}{arg\,max}
+\DeclareMathOperator*{\argmin}{arg\,min}
+
+\newcommand{\figplaceholder}[1]{%
+\fbox{\begin{minipage}[c][1.0in][c]{0.92\linewidth}
+\centering\footnotesize Missing figure: {\ttfamily\detokenize{#1}}
+\end{minipage}}}
+\newcommand{\safeincludegraphics}[2][]{%
+\IfFileExists{#2}{\includegraphics[#1]{#2}}{\figplaceholder{#2}}}
+
+\def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
+    T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
+
+\begin{document}
+
+\title{Self-Interference Cancellation-Aided Parameter Estimation for Full-Duplex Millimeter-Wave MIMO-OFDM ISAC Systems
+\thanks{This work was supported by GPNU-SANECHIPS Research Grant HC-CN-ZXIC20250917012}
+}
+
+\author{
+\IEEEauthorblockN{First~Author, Second~Author, and Third~Author}
+\IEEEauthorblockA{\textit{School or Department, University or Company}\\
+City, Country\\
+email@example.com}
+}
+
+\maketitle
+
+\begin{abstract}
+A full-duplex millimeter-wave multiple-input multiple-output orthogonal frequency-division multiplexing (MIMO-OFDM) integrated sensing and communication (ISAC) system is investigated, where self-interference (SI) from the co-located transmitter can overwhelm the target echoes and degrade parameter estimation. First, a unified signal model is established to characterize the communication link, target echoes, and Rician SI channel. An SI leakage minimization problem is then formulated under a zero-forcing communication constraint, and weighted zero-forcing and null-space projection precoders are derived to suppress the leakage in the transmit domain. A pilot-based digital SI cancellation stage is further developed to reconstruct and subtract the residual leakage, forming a two-stage cancellation chain together with the transmit-domain suppression. To avoid a computationally demanding four-dimensional search, a two-stage estimator is proposed, where range--Doppler candidates are detected before candidate-wise spatial focusing and angle recovery. Simulation results show that the combination of transmit-domain suppression and digital SI cancellation prevents SI-induced false-peak locking, restores millimeter-level ranging, and substantially improves range, velocity, and angle estimation over conventional zero-forcing precoding and precoding-only schemes. The results also demonstrate the coherent processing gain obtained from larger numbers of subcarriers.
+\end{abstract}
+
+\begin{IEEEkeywords}
+Full-duplex ISAC, self-interference cancellation, MIMO-OFDM, target parameter estimation.
+\end{IEEEkeywords}
+
+\section{Introduction}\label{sec:introduction}
+Integrated sensing and communication (ISAC) has emerged as a key candidate technology for future wireless networks because it enables communication infrastructure to simultaneously deliver data and acquire environmental information. By reusing spectrum, waveforms, and radio-frequency hardware, ISAC can provide sensing capability without deploying an independent radar network. Recent studies have established the fundamental signal-processing framework, system architectures, and open challenges of joint sensing and communication \cite{liu2020joint,zhang2021overview,zhang2022survey,liu2022isac}. At millimeter-wave (mmWave) frequencies, the large available bandwidth and compact antenna arrays further offer fine delay resolution and high spatial resolution, making MIMO-OFDM particularly attractive for multidimensional target estimation.
+
+Existing OFDM sensing studies mainly exploit the phase structure induced by propagation delay and Doppler shift. Sturm and Wiesbeck showed how communication waveforms can be reused for radar processing \cite{sturm2011waveform}, while maximum-likelihood methods were developed to jointly estimate target distance and velocity from OFDM measurements \cite{braun2010ml}. More recent full-duplex OFDM radar prototypes based on Long-Term Evolution (LTE) and 5G New Radio (NR) waveforms have demonstrated the feasibility of simultaneous transmission and sensing with practical cellular numerologies \cite{barneto2019fdofdm}. These methods provide effective range--Doppler estimation after SI has been sufficiently attenuated, but direct extension to a co-located MIMO-OFDM ISAC base station remains difficult when strong leakage distorts both the detected peaks and the spatial phase differences used for angle estimation.
+
+A parallel line of research considers joint transmit design for radar and communications. Communication--radar coexistence and joint-transmission schemes have been developed to control multi-user interference and sensing beampatterns through MIMO precoding \cite{liu2018mimo}. However, such designs generally focus on the tradeoff between communication quality and sensing illumination rather than on leakage from the transmitter into its own sensing receiver. In a full-duplex architecture, SI cancellation is itself a fundamental problem. Prior work has characterized the propagation, hardware, and dynamic-range limitations of in-band full-duplex radios and has investigated passive, analog, and digital cancellation techniques \cite{sabharwal2014ibfd,zhang2016fd}. For OFDM sensing, measurement-based studies have also confirmed that residual SI directly limits target detectability \cite{barneto2019fdofdm}.
+
+Despite these advances, two issues remain coupled in a co-located MIMO-OFDM ISAC system. First, transmit-domain SI suppression must preserve the spatial constraints required by the downlink communication users. Second, after suppression, the receiver must recover range, velocity, elevation, and azimuth without an exhaustive four-dimensional search. Existing full-duplex studies mainly address the cancellation chain, whereas conventional OFDM estimators commonly assume that the residual leakage is already below the useful echo level. Consequently, a communication-preserving SI suppression design connected explicitly to low-complexity multidimensional parameter estimation is still required.
+
+Motivated by these limitations, this paper investigates SI-aware parameter estimation for a full-duplex mmWave MIMO-OFDM ISAC system. A unified model is first developed to relate the communication signal, target-dependent phase progressions, and Rician SI channel. An SI leakage minimization problem is then formulated under a communication zero-forcing (ZF) constraint, and both weighted ZF and null-space projection solutions are derived. A pilot-based digital SI cancellation stage is further introduced to remove the residual leakage. Based on the suppressed and canceled receive signal, a two-stage estimator is proposed to detect range--Doppler candidates and recover their angles from locally focused spatial snapshots. Simulations compare the proposed null-space precoder with conventional communication ZF and show how the estimation accuracy changes with the input signal-to-noise ratio (SNR), SI strength, and coherent processing dimensions.
+
+\section{System Model and Problem Formulation}\label{sec:system_model}
+\subsection{System Model}
+We consider the full-duplex mmWave MIMO-OFDM ISAC system illustrated in Fig.~\ref{fig:sys_model}. A base station equipped with $N_{\rm tx}$ transmit antennas and an $N_{\rm rx}$-element sensing receive array serves $K$ downlink users while observing the echoes from $Q$ targets. The transmitter and sensing receiver operate simultaneously in the same frequency band. Consequently, the sensing array receives not only the target echoes but also direct and scattered leakage from the transmit array. The carrier frequency is $f_c$, the corresponding wavelength is $\lambda_c=c/f_c$, and $c$ denotes the speed of light. During one coherent processing interval (CPI), the transmitter sends $L$ OFDM symbols over $N_s$ processed subcarriers with spacing $\Delta f$.
+
+\begin{figure}[t]
+    \centering
+    \safeincludegraphics[width=.8\linewidth]{model2.pdf}
+    \caption{Full-duplex MIMO-OFDM ISAC system with downlink communication, target echoes, and co-located SI.}
+    \label{fig:sys_model}
+\end{figure}
+
+Let $\bm{x}_i[l]\in\mathbb{C}^{N_{\rm tx}\times 1}$ denote the precoded transmit vector on subcarrier $i$ and OFDM symbol $l$, where $i=0,\ldots,N_s-1$ and $l=0,\ldots,L-1$. The continuous-time baseband signal can be written as
+\begin{align}
+    \widetilde{\bm{x}}(t)=
+    \sum_{i=0}^{N_s-1}\sum_{l=0}^{L-1}
+    \bm{x}_i[l]e^{\jmath 2\pi i\Delta f t}
+    \operatorname{rect}\left(\frac{t-lT}{T}\right),
+    \label{eq:tx_signal}
+\end{align}
+where $\operatorname{rect}(\cdot)$ is the unit rectangular pulse, $T=T_d+T_{\rm cp}$ is the OFDM symbol duration, $T_d=1/\Delta f$ is the useful symbol duration, and $T_{\rm cp}$ is the cyclic prefix duration. The vector $\bm{x}_i[l]$ is generated by precoding the communication symbols $\bm{s}_i[l]\in\mathbb{C}^{K\times 1}$ as
+\begin{align}
+    \bm{x}_i[l]=\bm{W}_i\bm{s}_i[l],
+    \label{eq:precoded_signal}
+\end{align}
+where $\bm{W}_i\in\mathbb{C}^{N_{\rm tx}\times K}$ is the subcarrier-level precoding matrix.
+
+The transmitted waveform illuminates the targets and is reflected back to the sensing array. The $q$-th target is characterized by range $R_q$, radial velocity $v_q$, elevation $\theta_q$, azimuth $\phi_q$, and complex reflection coefficient $\beta_q$, where elevation is measured from the array broadside. For notational brevity, define the transmit and receive steering vectors as $\bm{a}_q=\bm{a}(\theta_q,\phi_q)$ and $\bm{b}_q=\bm{b}(\theta_q,\phi_q)$, respectively. Under the standard assumption that the target parameters remain approximately constant within one CPI, the continuous-time echo is
+\begin{align}
+\widetilde{\bm{y}}(t)=\sum_{q=1}^{Q}&\beta_q\bm{b}_q\bm{a}_q^{\rm H}
+\widetilde{\bm{x}}\left(t-\frac{2R_q}{c}\right)
+ e^{\jmath 2\pi f_{D,q}t}+\widetilde{\bm{z}}(t),
+\label{eq:continuous_echo}
+\end{align}
+where $f_{D,q}=2v_qf_c/c$ is the Doppler frequency and $\widetilde{\bm{z}}(t)$ denotes additive receiver noise.
+
+For a uniform rectangular array (URA), define $u_q=\sin\theta_q\cos\phi_q$ and $v_q^{\rm dir}=\sin\theta_q\sin\phi_q$. The receive steering vector element indexed by $(m_x,m_y)$ is
+\begin{align}
+    [\bm{b}_q]_{m_x,m_y}
+    =\exp\left[-\jmath\frac{2\pi}{\lambda_c}
+    (m_xd_{{\rm rx},x}u_q+m_yd_{{\rm rx},y}v_q^{\rm dir})\right],
+    \label{eq:rx_steering}
+\end{align}
+where $d_{{\rm rx},x}$ and $d_{{\rm rx},y}$ denote the receive-array element spacings along the two URA axes, $m_x=0,\ldots,N_{{\rm rx},x}-1$ and $m_y=0,\ldots,N_{{\rm rx},y}-1$, with $N_{\rm rx}=N_{{\rm rx},x}N_{{\rm rx},y}$. The transmit steering vector is defined similarly with transmit-array spacings and a conjugate phase convention.
+
+After cyclic-prefix removal, sampling, and discrete Fourier transform (DFT) processing, the propagation delay produces a phase progression over the subcarriers, whereas the Doppler shift produces a phase progression over the OFDM symbols. The resulting discrete echo on subcarrier $i$ and symbol $l$ is
+\begin{align}
+ \bm{y}_i[l]
+ =\sum_{q=1}^{Q}&\beta_q\bm{b}_q\bm{a}_q^{\rm H}\bm{x}_i[l]
+ e^{\jmath i\omega_r(R_q)}e^{\jmath l\omega_v(v_q)}
+ +\bm{z}_i[l],
+ \label{eq:discrete_echo}
+\end{align}
+where
+\begin{align}
+    \omega_r(R_q)=-\frac{4\pi\Delta f R_q}{c},\qquad
+    \omega_v(v_q)=\frac{4\pi T v_q f_c}{c},
+    \label{eq:phase_mapping}
+\end{align}
+and $\bm{z}_i[l]$ is the post-DFT receiver noise. Equation \eqref{eq:discrete_echo} shows that range, radial velocity, and angle are embedded in the subcarrier, slow-time, and spatial phase variations, respectively. This separable phase structure motivates the staged estimator developed in Section~\ref{sec:framework}.
+
+The same transmitted vector also carries downlink data. The signal received by user $k$ on subcarrier $i$ is
+\begin{align}
+    y_{i,k}[l]=\bm{h}_{i,k}^{\rm H}\bm{x}_i[l]+z_{i,k}[l],
+    \label{eq:comm_model}
+\end{align}
+where $\bm{h}_{i,k}\in\mathbb{C}^{N_{\rm tx}\times1}$ and $z_{i,k}[l]$ denote the downlink channel and receiver noise, respectively. Following the sparse mmWave channel structure in the 3rd Generation Partnership Project (3GPP) channel model \cite{3gpp38901}, $\bm{h}_{i,k}$ is represented by a finite sum of dominant paths,
+\begin{align}
+    \bm{h}_{i,k}^{\rm H}=
+    \sum_{d=1}^{D_k}\sqrt{\rho_k}\alpha_{k,d}e^{-\jmath 2\pi i\Delta f\tau_{k,d}}
+    \bm{a}_{\rm tx}^{\rm H}(\theta_{k,d},\phi_{k,d}),
+    \label{eq:comm_channel}
+\end{align}
+where $D_k$, $\rho_k$, $\alpha_{k,d}$, $\tau_{k,d}$, and $(\theta_{k,d},\phi_{k,d})$ denote the number of effective paths, large-scale gain, complex path gain, delay, and angle pair, respectively.
+
+Because transmission and sensing occur simultaneously, the echo model in \eqref{eq:discrete_echo} must be augmented by SI. The complete sensing signal becomes
+\begin{align}
+\bm{y}_i[l]=&\sum_{q=1}^{Q}\beta_q\bm{b}_q\bm{a}_q^{\rm H}\bm{x}_i[l]
+e^{\jmath i\omega_r(R_q)}e^{\jmath l\omega_v(v_q)} \\
+&+\beta_{\rm SI}\bm{H}_{\rm SI}[i]\bm{x}_i[l]+\bm{z}_i[l],
+\label{eq:si_model}
+\end{align}
+where $\beta_{\rm SI}$ is the SI-to-echo amplitude ratio and $\bm{H}_{\rm SI}[i]\in\mathbb{C}^{N_{\rm rx}\times N_{\rm tx}}$ is the SI channel, whose direct-coupling and close-in scattering components introduce negligible range and Doppler phases relative to the target echoes. To represent the deterministic direct coupling together with scattered leakage, $\bm{H}_{\rm SI}[i]$ is modeled as
+\begin{align}
+    \bm{H}_{\rm SI}[i]=
+    \sqrt{\frac{\kappa_{\rm SI}}{\kappa_{\rm SI}+1}}\bm{H}_{\rm SI}^{\rm LoS}[i]
+    +\sqrt{\frac{1}{\kappa_{\rm SI}+1}}\bm{H}_{\rm SI}^{\rm NLoS}[i],
+    \label{eq:rician_si}
+\end{align}
+where $\kappa_{\rm SI}$ is the Rician factor, and $\bm{H}_{\rm SI}^{\rm LoS}[i]$ and $\bm{H}_{\rm SI}^{\rm NLoS}[i]$ denote the direct-coupling and scattered components, respectively.
+
+\subsection{Digital SI Cancellation}\label{sec:sic}
+Because transmit-domain suppression alone cannot fully remove the leakage, a pilot-based digital cancellation stage is applied to the residual SI. In a dedicated pilot slot, $L_p$ known 16QAM pilot vectors $\bm{X}_0\in\mathbb{C}^{N_{\rm tx}\times L_p}$ are transmitted in the absence of radar echoes, so that the sensing receiver observes SI only,
+\begin{align}
+    \bm{Y}_0=\beta_{\rm SI}\bm{H}_{\rm SI}\bm{X}_0+\bm{Z}_0,
+    \label{eq:sic_pilot}
+\end{align}
+where $\bm{Z}_0$ denotes the receiver noise at the same level as that of the sensing data. The effective SI channel $\bm{G}=\beta_{\rm SI}\bm{H}_{\rm SI}$ is then estimated in the least-squares sense as
+\begin{align}
+    \hat{\bm{G}}=\bm{Y}_0\bm{X}_0^{\rm H}(\bm{X}_0\bm{X}_0^{\rm H})^{-1},
+    \label{eq:sic_ls}
+\end{align}
+where $L_p\ge N_{\rm tx}$ ensures that the pilot Gram matrix is well conditioned. During sensing, the reconstructed SI component is subtracted from the received signal as
+\begin{align}
+    \tilde{\bm{y}}_i[l]=\bm{y}_i[l]-\hat{\bm{G}}\bm{x}_i[l],
+    \label{eq:sic_subtraction}
+\end{align}
+and the residual signal $\tilde{\bm{y}}_i[l]$ is used for parameter estimation.
+
+\subsection{Problem Formulation}
+The estimation objective is to recover $\{R_q,v_q,\theta_q,\phi_q\}_{q=1}^{Q}$ from the residual signal in \eqref{eq:sic_subtraction}. Two coupled difficulties follow directly from this model. The beamformer should reduce $\|\bm{H}_{\rm SI}[i]\bm{W}_i\|_{\rm F}^{2}$ without destroying the multi-user communication constraint, while the receiver should exploit the separable phase structure without performing an exhaustive search over four target dimensions. The next section addresses these two problems through communication-constrained SI-aware precoding and staged parameter estimation.
+
+\section{Proposed SI-Aware Parameter Estimation Method}\label{sec:framework}
+\subsection{Communication-Preserving SI-Aware Precoding}
+To suppress SI without sacrificing multi-user transmission, let $\bm{H}_{\rm c}=[\bm{h}_{i,1},\ldots,\bm{h}_{i,K}]^{\rm H}$ denote the effective communication channel on a given subcarrier, where the subcarrier index is omitted for readability. The conventional ZF precoder is
+\begin{align}
+    \bm{W}_{\rm ZF}=\bm{H}_{\rm c}^{\rm H}(\bm{H}_{\rm c}\bm{H}_{\rm c}^{\rm H})^{-1},
+    \label{eq:zf}
+\end{align}
+which satisfies $\bm{H}_{\rm c}\bm{W}_{\rm ZF}=\bm{I}$ when $\bm{H}_{\rm c}$ has full row rank. However, \eqref{eq:zf} does not account for transmit leakage to the sensing receiver.
+
+To suppress SI while preserving the ZF communication constraint, we solve
+\begin{align}
+    \mathrm{(P1)}:\quad
+    \min_{\bm{W}}\;\|\bm{H}_{\rm SI}\bm{W}\|_{\rm F}^2,
+    \qquad
+    \mathrm{s.t.}\;\bm{H}_{\rm c}\bm{W}=\bm{I}.
+    \label{eq:p1}
+\end{align}
+Let $\bm{R}=\bm{H}_{\rm SI}^{\rm H}\bm{H}_{\rm SI}$. When $\bm{R}$ is nonsingular, the Lagrangian of \eqref{eq:p1} can be written as
+\begin{align}
+\mathcal{L}(\bm{W},\bm{\Lambda})={}&\operatorname{tr}(\bm{W}^{\rm H}\bm{R}\bm{W})
++2\operatorname{Re}\!\left\{\operatorname{tr}\!\left[\bm{\Lambda}^{\rm H}
+(\bm{H}_{\rm c}\bm{W}-\bm{I})\right]\right\},
+\label{eq:lagrangian}
+\end{align}
+where $\bm{\Lambda}$ is the multiplier associated with the communication constraint. Setting the derivative with respect to $\bm{W}^{*}$ to zero yields
+\begin{align}
+    \bm{R}\bm{W}+\bm{H}_{\rm c}^{\rm H}\bm{\Lambda}=\bm{0}.
+    \label{eq:stationarity}
+\end{align}
+Substituting the resulting $\bm{W}$ into $\bm{H}_{\rm c}\bm{W}=\bm{I}$ gives the weighted ZF solution
+\begin{align}
+    \bm{W}_{\rm WZF}=\bm{R}^{-1}\bm{H}_{\rm c}^{\rm H}
+    (\bm{H}_{\rm c}\bm{R}^{-1}\bm{H}_{\rm c}^{\rm H})^{-1}.
+    \label{eq:wzf}
+\end{align}
+The beamformer in \eqref{eq:wzf} minimizes leakage energy in the SI channel directions while maintaining the communication ZF constraint. If $\bm{R}$ is ill-conditioned, it can be replaced by $\bm{R}+\epsilon\bm{I}$ with a small $\epsilon>0$.
+
+For a lower-complexity implementation aligned with the simulations, the same communication constraint is enforced through null-space projection. Let $\bm{N}_{\rm c}$ be a basis for the null space of $\bm{H}_{\rm c}$, i.e., $\bm{H}_{\rm c}\bm{N}_{\rm c}=\bm{0}$. Any communication-feasible beamformer can be expressed as
+\begin{align}
+    \bm{W}=\bm{W}_{0}+\bm{N}_{\rm c}\bm{Z},
+    \label{eq:null_space_w}
+\end{align}
+where $\bm{W}_{0}=\bm{H}_{\rm c}^{\rm H}(\bm{H}_{\rm c}\bm{H}_{\rm c}^{\rm H})^{-1}$ and $\bm{Z}$ is optimized to suppress SI. Substituting \eqref{eq:null_space_w} into \eqref{eq:p1} yields
+\begin{align}
+    \min_{\bm{Z}}\;\|\bm{H}_{\rm SI}\bm{N}_{\rm c}\bm{Z}+\bm{H}_{\rm SI}\bm{W}_0\|_{\rm F}^2,
+    \label{eq:null_ls}
+\end{align}
+with the minimum-norm solution
+\begin{align}
+    \bm{Z}^{\star}=-(\bm{H}_{\rm SI}\bm{N}_{\rm c})^{\dagger}\bm{H}_{\rm SI}\bm{W}_0.
+    \label{eq:z_solution}
+\end{align}
+Thus, the null-space SI-suppressed precoder is
+\begin{align}
+    \bm{W}_{\rm NSP}=\bm{W}_{0}-\bm{N}_{\rm c}(\bm{H}_{\rm SI}\bm{N}_{\rm c})^{\dagger}\bm{H}_{\rm SI}\bm{W}_0.
+    \label{eq:nsp}
+\end{align}
+Finally, $\bm{W}_{\rm NSP}$ is normalized to satisfy the transmit power constraint. Since the correction term lies in the null space of $\bm{H}_{\rm c}$, normalization changes the effective channel only to $\bm{H}_{\rm c}\bm{W}_{\rm NSP}=\alpha\bm{I}$ for some scalar $\alpha$ and therefore does not reintroduce inter-user interference.
+
+\subsection{Two-Stage Low-Complexity Target Estimation}
+Direct four-dimensional joint searching over range, velocity, elevation, and azimuth entails prohibitive computational and storage costs. To address this issue, a two-stage receiver is developed by first locating range--Doppler candidates and then estimating their angles from focused spatial snapshots. Since the sensing receiver knows the transmitted waveform, the communication modulation and the transmit-beam phase are first removed by correlating the received data with a normalized transmit reference. With $x_{\rm ref}[i,l]=\sum_{n=1}^{N_{\rm tx}}[\bm{x}_i[l]]_n$ denoting the broadside-combined transmit reference, which approximates the transmit-array response to the targets, the compensated data are
+\begin{align}
+    \bar{\bm{y}}_i[l]=
+    \bm{y}_{i}[l]\frac{x_{\rm ref}^{*}[i,l]}{\max_{i,l}|x_{\rm ref}[i,l]|},
+    \label{eq:symbol_comp}
+\end{align}
+which removes the data-modulation phase while retaining the deterministic range and Doppler phase progressions. For $K>1$, the same step requires orthogonal sensing pilots or stream-wise separation and is outside the single-user simulations considered here.
+
+The compensated data are reshaped into $\bar{y}(m_x,m_y,i,l)$. A fixed low-complexity combining vector is used for the initial candidate search. With equal-gain combining, the frequency--slow-time sample is
+\begin{align}
+    s(i,l)=
+    \sum_{m_x=0}^{N_{{\rm rx},x}-1}\sum_{m_y=0}^{N_{{\rm rx},y}-1}
+    \bar{y}(m_x,m_y,i,l).
+    \label{eq:spatial_sum}
+\end{align}
+Then, a range--Doppler periodogram consistent with the negative range phase in \eqref{eq:phase_mapping} is computed via a two-dimensional fast Fourier transform (FFT) as
+\begin{align}
+    D(n_r,\tilde n_v)=\sum_{i=0}^{N_s-1}\sum_{l=0}^{L-1}s(i,l)
+    e^{\jmath2\pi n_ri/N_s}e^{-\jmath2\pi \tilde n_vl/L_{\rm FFT}},
+    \label{eq:rd_fft}
+\end{align}
+\begin{align}
+    P(n_r,\tilde n_v)=|D(n_r,\tilde n_v)|^2,
+    \label{eq:rd_power}
+\end{align}
+where $n_r$ and $\tilde n_v$ denote the range-bin and Doppler-bin indices, respectively, with $\tilde n_v$ signed after FFT shifting, and $L_{\rm FFT}$ may be larger than $L$ when zero-padding is used in the Doppler dimension. A two-dimensional Hann window is applied prior to the FFT to suppress spectral leakage. The strongest periodogram peaks are retained as candidates after non-maximum suppression and range gating, which exclude residual SI-induced peaks outside the sensing region, and the resulting candidate set is
+\begin{align}
+    \mathcal{C}=\{(\hat n_{r,q},\hat{\tilde n}_{v,q})\}_{q=1}^{\hat Q},
+\end{align}
+where $\hat Q$ denotes the number of detected candidates.
+
+For each candidate, local phase focusing is applied to recover the spatial snapshot,
+\begin{align}
+    \bm{Y}_{{\rm snap},q}=\sum_{i\in\Omega_r}\sum_{l\in\Omega_v}
+    \bar{\bm{Y}}_i[l]
+    e^{-\jmath i\hat\omega_{r,q}}e^{-\jmath l\hat\omega_{v,q}},
+    \label{eq:snapshot}
+\end{align}
+where $\bar{\bm{Y}}_i[l]$ denotes the $N_{{\rm rx},x}\times N_{{\rm rx},y}$ matrix form of $\bar{\bm{y}}_i[l]$, and $\Omega_r$ and $\Omega_v$ are local focusing windows,
+\begin{align}
+    \hat\omega_{r,q}=-\frac{2\pi\hat n_{r,q}}{N_s},\qquad
+    \hat\omega_{v,q}=\frac{2\pi\hat{\tilde n}_{v,q}}{L_{\rm FFT}}.
+    \label{eq:focused_phases}
+\end{align}
+
+Let $Y_q(m_x,m_y)$ denote the $(m_x,m_y)$-th entry of $\bm{Y}_{{\rm snap},q}$. The adjacent-subarray phase differences along the two URA axes are estimated as
+\begin{align}
+\hat\omega_{a,x,q}&=\angle\!\sum_{m_x=0}^{N_{{\rm rx},x}-2}\sum_{m_y=0}^{N_{{\rm rx},y}-1}
+Y_q^*(m_x,m_y)Y_q(m_x+1,m_y),\\
+\hat\omega_{a,y,q}&=\angle\!\sum_{m_x=0}^{N_{{\rm rx},x}-1}\sum_{m_y=0}^{N_{{\rm rx},y}-2}
+Y_q^*(m_x,m_y)Y_q(m_x,m_y+1).
+\label{eq:phase_difference}
+\end{align}
+The corresponding direction cosines are
+\begin{align}
+    \hat u_q=-\frac{\lambda_c}{2\pi d_{{\rm rx},x}}\hat\omega_{a,x,q},\qquad
+    \hat v_q^{\rm ang}=-\frac{\lambda_c}{2\pi d_{{\rm rx},y}}\hat\omega_{a,y,q},
+    \label{eq:direction_cosines}
+\end{align}
+and the target angles are recovered by
+\begin{align}
+    \hat\theta_q=\arcsin\left(\sqrt{\hat u_q^2+(\hat v_q^{\rm ang})^2}\right),\qquad
+    \hat\phi_q=\operatorname{atan2}(\hat v_q^{\rm ang},\hat u_q).
+    \label{eq:angle_est}
+\end{align}
+The range and velocity estimates are obtained from the detected bins as
+\begin{align}
+    \hat R_q=\frac{c\hat n_{r,q}}{2N_s\Delta f},\qquad
+    \hat v_q=\frac{\lambda_c}{2T}\frac{\hat{\tilde n}_{v,q}}{L_{\rm FFT}},
+    \label{eq:range_velocity_est}
+\end{align}
+which preserves the sign of radial velocity through $\hat{\tilde n}_{v,q}$. The coarse bin estimates are refined by parabolic interpolation over the three-point periodogram neighborhoods around the detected peaks.
+
+\begin{algorithm}[t]
+\caption{Two-stage target parameter estimation}
+\label{alg:parameter_estimation}
+\begin{algorithmic}[1]
+\REQUIRE Received data $\{\bm{y}_i[l]\}$ and known transmit reference $x_{\rm ref}[i,l]$
+\ENSURE Target estimates $\{\hat R_q,\hat v_q,\hat\theta_q,\hat\phi_q\}$
+\STATE (Optional) Subtract the reconstructed SI component using the pilot-based least-squares estimate in \eqref{eq:sic_ls}--\eqref{eq:sic_subtraction}
+\FORALL{subcarriers $i$ and OFDM symbols $l$}
+    \STATE Compensate communication modulation using \eqref{eq:symbol_comp}
+\ENDFOR
+\STATE Apply fixed spatial combining using \eqref{eq:spatial_sum}
+\STATE Compute $P(n_r,\tilde n_v)$ using \eqref{eq:rd_fft}--\eqref{eq:rd_power}
+\STATE Retain the strongest local peaks as candidates using non-maximum suppression and range gating
+\FORALL{candidate peaks $(\hat n_{r,q},\hat{\tilde n}_{v,q})$}
+    \STATE Focus local subcarrier and slow-time samples using \eqref{eq:snapshot}
+    \STATE Estimate angles using \eqref{eq:phase_difference}--\eqref{eq:angle_est}
+    \STATE Convert peak indices to $\hat R_q$ and $\hat v_q$ using \eqref{eq:range_velocity_est}
+\ENDFOR
+\end{algorithmic}
+\end{algorithm}
+
+\section{Simulation Results}\label{sec:simulation}
+The proposed method is evaluated through Monte Carlo simulations. Unless otherwise specified, the carrier frequency is $28$ GHz, the subcarrier spacing is $120$ kHz, the modulation is 16-ary quadrature amplitude modulation (16QAM), and the OFDM symbol duration including the cyclic prefix is $T=8.93\,\mu\mathrm{s}$, following an NR frequency range 2 (FR2)-aligned numerology \cite{3gpp38104}. The digital SI cancellation stage uses $L_p=128$ 16QAM pilot symbols. The transmitter and receiver employ $4\times4$ and $8\times8$ URAs, respectively. The default CPI contains $L=256$ symbols, and $N_s=12672$ processed subcarriers are modeled as four contiguous phase-coherent component carriers. A single downlink user and two targets are considered. The target ranges are $600.8$ m and $600.2$ m, their radial velocities are $15.1$ m/s and $-5.4$ m/s, and their elevation--azimuth pairs are $(25.83^\circ,28.51^\circ)$ and $(15.94^\circ,13.58^\circ)$.
+
+Conventional communication ZF is used as the benchmark. It satisfies the same downlink ZF constraint as the proposed null-space precoder but does not use the SI channel when selecting the transmit spatial degrees of freedom. The weighted ZF solution obtained from the Lagrangian formulation is also evaluated as an alternative leakage-suppressing precoder. All precoders are normalized to the same transmit power. In addition, the null-space and weighted-ZF precoders are combined with the pilot-based digital SI cancellation (SIC) stage described in Section~\ref{sec:sic} to examine the complementary gain of the two-stage suppression. The input SNR or the SI-to-echo amplitude ratio $\beta_{\rm SI}$ is varied according to the experiment. For clarity, the range root-mean-square error (RMSE), which jointly reflects the detection reliability and the resolution accuracy of the estimator, is reported as the representative performance metric; the angle and velocity RMSEs exhibit consistent trends.
+
+The RMSEs of angle, range, and velocity are defined as
+\begin{align}
+\mathrm{RMSE}_{\theta}&=\sqrt{\frac{1}{N_{\rm MC}Q}\sum_{m=1}^{N_{\rm MC}}\sum_{q=1}^{Q}(\hat\theta_q^{(m)}-\theta_q)^2},\\
+\mathrm{RMSE}_{R}&=\sqrt{\frac{1}{N_{\rm MC}Q}\sum_{m=1}^{N_{\rm MC}}\sum_{q=1}^{Q}(\hat R_q^{(m)}-R_q)^2},\\
+\mathrm{RMSE}_{v}&=\sqrt{\frac{1}{N_{\rm MC}Q}\sum_{m=1}^{N_{\rm MC}}\sum_{q=1}^{Q}(\hat v_q^{(m)}-v_q)^2},
+\end{align}
+where $N_{\rm MC}$ is the number of Monte-Carlo trials.
+
+\begin{figure}[t]
+    \centering
+    \safeincludegraphics[width=0.95\linewidth]{fig_snr_zf_null_lagrange_sic_range.eps}
+    \caption{Range RMSE versus input SNR for conventional ZF, the null-space and weighted-ZF precoders, and their digital-SIC-aided counterparts ($\beta_{\rm SI}=100$).}
+    \label{fig:snr_rmse}
+\end{figure}
+
+Fig.~\ref{fig:snr_rmse} presents the range RMSE as a function of the input SNR with $\beta_{\rm SI}=100$. The range error of conventional ZF decreases only marginally as the SNR increases and remains on the order of $2.8\times10^{2}$ m even at high SNR, since the leakage-induced false peaks dominate the range profile irrespective of the noise level. The null-space and weighted-ZF precoders reduce the range error by up to a factor of two, but their range RMSE saturates at error floors of approximately $1.5\times10^{2}$ m, which indicates that transmit-domain suppression alone attenuates, but cannot fully remove, the residual SI-induced candidate peaks. By contrast, the two SIC-aided schemes exhibit a clear threshold at approximately $-15$ dB. Below this threshold, the pilot-based estimate of the SI channel is noise-limited and the cancellation stage offers no improvement, such that their accuracy is comparable to, or even slightly worse than, that of the precoder-only schemes. Above the threshold, however, the reconstructed SI component is subtracted reliably and the range RMSE decreases to the millimeter level (approximately $8$ mm), i.e., more than four orders of magnitude below the precoder-only floor. These observations confirm that transmit-domain nulling must be combined with digital SI cancellation to restore precise ranging.
+
+\begin{figure}[t]
+    \centering
+    \safeincludegraphics[width=0.95\linewidth]{fig_si_strength_zf_null_lagrange_sic_range_mc10_smooth.eps}
+    \caption{Range RMSE versus the SI-to-echo amplitude ratio $\beta_{\rm SI}$ at an input SNR of $0$ dB.}
+    \label{fig:si_strength}
+\end{figure}
+
+Fig.~\ref{fig:si_strength} shows the range RMSE as a function of the SI-to-echo amplitude ratio $\beta_{\rm SI}$ at an input SNR of $0$ dB. At $\beta_{\rm SI}=1$, all five schemes achieve centimeter-level range accuracy. As $\beta_{\rm SI}$ increases, conventional ZF experiences an abrupt estimation failure once $\beta_{\rm SI}$ exceeds approximately $10$, because the candidate detector is overwhelmed by SI-induced peaks, and the corresponding range error increases to several hundred meters. The null-space and weighted-ZF precoders postpone this failure and extend the tolerable SI strength by roughly one order of magnitude, although they eventually fail as $\beta_{\rm SI}$ approaches $10^{3}$. In contrast, the two SIC-aided schemes maintain a stable centimeter-level range error over the entire four-decade range of $\beta_{\rm SI}$, since the strong SI component is reconstructed and subtracted prior to candidate detection. These results demonstrate that transmit-domain spatial suppression substantially improves the robustness to SI, and that combining it with digital cancellation is essential for reliable sensing under strong co-located SI.
+
+\begin{figure}[t]
+    \centering
+    \safeincludegraphics[width=0.95\linewidth]{range_RMSEvssubcarrier.eps}
+    \caption{Range RMSE versus the number of processed subcarriers $N_s$.}
+    \label{fig:ns_scaling}
+\end{figure}
+
+Fig.~\ref{fig:ns_scaling} depicts the range RMSE as a function of the number of processed subcarriers $N_s$. For the SIC-aided schemes, the additional bandwidth is converted directly into ranging accuracy: as $N_s$ increases from $1024$ to $12672$, the range RMSE decreases from approximately $0.15$ m to approximately $8$ mm, in agreement with the improved range resolution and the coherent integration gain accumulated over the subcarrier dimension. By contrast, the precoder-only schemes remain dominated by the SI-induced false peak, whose location and strength are essentially insensitive to $N_s$; their range error therefore remains at a $10^{2}$-m error floor regardless of the bandwidth, and conventional ZF improves only marginally before saturating. This behavior indicates that digital cancellation is required to fully exploit the ranging accuracy offered by bandwidth scaling.
+
+\FloatBarrier
+\section{Conclusion}\label{sec:conclusion}
+A full-duplex mmWave MIMO-OFDM ISAC system with co-located SI was studied. A leakage minimization problem was formulated under a communication ZF constraint, and weighted ZF and null-space projection solutions were derived. A two-stage estimator was further developed to recover range, velocity, elevation, and azimuth without exhaustive four-dimensional searching. Simulation results show that the proposed null-space precoder prevents SI-induced false-peak locking and provides substantially more robust parameter estimation than conventional communication ZF, and that combining it with digital SI cancellation restores millimeter-level ranging under strong co-located SI. The results also confirm the coherent processing gain obtained from larger numbers of subcarriers. Measured-channel validation, multi-user sensing experiments, and hardware-in-the-loop evaluation remain subjects for future work.
+
+\begin{thebibliography}{00}
+\bibitem{liu2020joint}
+F. Liu, C. Masouros, A. P. Petropulu, H. Griffiths, and L. Hanzo, ``Joint radar and communication design: Applications, state-of-the-art, and the road ahead,`` \emph{IEEE Transactions on Communications}, vol. 68, no. 6, pp. 3834--3862, Jun. 2020.
+
+\bibitem{zhang2021overview}
+J. A. Zhang, F. Liu, C. Masouros, R. W. Heath, Z. Feng, L. Zheng, and A. Petropulu, ``An overview of signal processing techniques for joint communication and radar sensing,`` \emph{IEEE Journal of Selected Topics in Signal Processing}, vol. 15, no. 6, pp. 1295--1315, Nov. 2021.
+
+\bibitem{zhang2022survey}
+J. A. Zhang, M. L. Rahman, K. Wu, X. Huang, Y. J. Guo, S. Chen, and J. Yuan, ``Enabling joint communication and radar sensing in mobile networks---A survey,`` \emph{IEEE Communications Surveys \& Tutorials}, vol. 24, no. 1, pp. 306--345, 1st Quart. 2022.
+
+\bibitem{liu2022isac}
+F. Liu, Y. Cui, C. Masouros, J. Xu, T. X. Han, Y. C. Eldar, and S. Buzzi, ``Integrated sensing and communications: Toward dual-functional wireless networks for 6G and beyond,`` \emph{IEEE Journal on Selected Areas in Communications}, vol. 40, no. 6, pp. 1728--1767, Jun. 2022.
+
+\bibitem{sturm2011waveform}
+C. Sturm and W. Wiesbeck, ``Waveform design and signal processing aspects for fusion of wireless communications and radar sensing,`` \emph{Proceedings of the IEEE}, vol. 99, no. 7, pp. 1236--1259, Jul. 2011.
+
+\bibitem{braun2010ml}
+M. Braun, C. Sturm, and F. K. Jondral, ``Maximum likelihood speed and distance estimation for OFDM radar,`` in \emph{Proc. IEEE Radar Conf.}, Washington, DC, USA, May 2010, pp. 256--261.
+
+\bibitem{barneto2019fdofdm}
+C. Baquero Barneto, T. Riihonen, M. Turunen, L. Anttila, M. Fleischer, K. Stadius, J. Ryyn\"anen, and M. Valkama, ``Full-duplex OFDM radar with LTE and 5G NR waveforms: Challenges, solutions, and measurements,`` \emph{IEEE Transactions on Microwave Theory and Techniques}, vol. 67, no. 10, pp. 4042--4054, Oct. 2019.
+
+\bibitem{liu2018mimo}
+F. Liu, C. Masouros, A. Li, H. Sun, and L. Hanzo, ``MU-MIMO communications with MIMO radar: From co-existence to joint transmission,`` \emph{IEEE Transactions on Wireless Communications}, vol. 17, no. 4, pp. 2755--2770, Apr. 2018.
+
+\bibitem{sabharwal2014ibfd}
+A. Sabharwal, P. Schniter, D. Guo, D. W. Bliss, S. Rangarajan, and R. Wichman, ``In-band full-duplex wireless: Challenges and opportunities,`` \emph{IEEE Journal on Selected Areas in Communications}, vol. 32, no. 9, pp. 1637--1652, Sep. 2014.
+
+\bibitem{zhang2016fd}
+Z. Zhang, K. Long, A. V. Vasilakos, and L. Hanzo, ``Full-duplex wireless communications: Challenges, solutions, and future research directions,`` \emph{Proceedings of the IEEE}, vol. 104, no. 7, pp. 1369--1409, Jul. 2016.
+
+\bibitem{3gpp38104}
+3GPP, ``NR; Base Station (BS) radio transmission and reception,`` TS 38.104.
+
+\bibitem{3gpp38901}
+3GPP, ``Study on channel model for frequencies from 0.5 to 100 GHz,`` TR 38.901.
+\end{thebibliography}
+
+\end{document}

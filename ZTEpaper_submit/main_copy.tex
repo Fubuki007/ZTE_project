@@ -1,0 +1,390 @@
+\documentclass[conference]{IEEEtran}
+\IEEEoverridecommandlockouts
+
+\usepackage{cite}
+\usepackage{amsmath,amssymb,amsfonts,bm}
+\usepackage{graphicx}
+% \usepackage[caption=false,font=footnotesize]{subfig}
+\usepackage{algorithm}
+\usepackage{algorithmic}
+\usepackage{xcolor}
+\usepackage{booktabs}
+\usepackage{textcomp}
+\usepackage{url}
+\usepackage{epstopdf}
+\usepackage{graphicx,subfigure}
+
+\renewcommand{\algorithmicrequire}{\textbf{Input:}}
+\renewcommand{\algorithmicensure}{\textbf{Output:}}
+\DeclareMathOperator*{\argmaxop}{arg\,max}
+
+\newcommand{\figplaceholder}[1]{%
+\fbox{\begin{minipage}[c][2.00in][c]{0.92\linewidth}
+\centering\footnotesize Missing figure
+\end{minipage}}}
+\newcommand{\safeincludegraphics}[2][]{%
+\IfFileExists{#2}{\includegraphics[#1]{#2}}{\figplaceholder{#2}}}
+
+\begin{document}
+
+\title{Parameter Estimation for Full-Duplex MIMO-OFDM ISAC Systems \\ with Self-Interference Cancellation%
+\thanks{This work was supported in part by Shenzhen University-SANECHIPS Research Grant HC-CN-ZXIC20250917012. This work was also supported in part by the Key Project of International Cooperation and Exchanges of the National Natural Science Foundation of China under Grant 62220106009, the project of Shenzhen Peacock Plan Teams under Grant KQTD20210811090051046, the Shenzhen University 2035 Program for Excellent Research under Grant 2022B009, and Research Team Cultivation Program of Shenzhen University under Grant 2023DFT003. This work was also supported in part by the Guangdong Natural Science Foundation under Grant 2026A1515011107.}}
+
+\author{\IEEEauthorblockN{Jiawei He$^1$, Zhengming Jiang$^1$, Junjie Ye$^1$,  Lei Huang$^1$,  Jinle Zhu$^2$, Zhiwei Mo$^2$, and Tao Liu$^2$}
+\IEEEauthorblockA{{$^1$ The State Key Laboratory of Radio Frequency Heterogeneous Integration, Shenzhen University, Shenzhen, China} \\
+{$^2$ Sanechips Technology Co., Ltd., Shenzhen, China}\\
+\{hejiawei1021, jiangzhengming\}@stu.gpnu.edu.cn, 2152432003@email.szu.edu.cn, lhuang@szu.edu.cn, \\ 
+\{zhu.jinle, mo.zhiwei, liu.tiao\}@sanechips.com.cn}}
+
+\maketitle
+
+\begin{abstract}
+This paper investigates target parameter estimation for a full-duplex multiple-input multiple-output orthogonal frequency-division multiplexing (MIMO-OFDM) integrated sensing and communication (ISAC) system impaired by strong self-interference (SI). To suppress the leakage without disrupting downlink transmission, an SI-aware precoder is designed under a zero-forcing (ZF) communication constraint, for which a closed-form null-space projection solution is obtained. The residual leakage is further removed through pilot-based digital SI cancellation. Based on the post-cancellation signal, a two-stage estimator first detects range--Doppler candidates by two-dimensional fast Fourier transform processing and then recovers elevation and azimuth from coherently focused spatial snapshots. Simulations show that the proposed transmit- and receive-domain SI mitigation substantially improves estimation robustness under strong SI.
+\end{abstract}
+
+\begin{IEEEkeywords}
+Full-duplex ISAC, self-interference cancellation, MIMO-OFDM, parameter estimation, null-space precoding.
+\end{IEEEkeywords}
+
+\section{Introduction}\label{sec:introduction}
+Integrated sensing and communication (ISAC) is regarded as a key technology for future wireless networks, where communication and sensing can share spectrum, hardware, and transmitted waveforms \cite{liu2022isac,wei2023signals,zhang2022survey}. Orthogonal frequency-division multiplexing (OFDM) is particularly attractive for ISAC due to its compatibility with cellular systems and its structured phase responses to propagation delay and Doppler shift. When combined with multiple-input multiple-output (MIMO) arrays, the spatial phase differences across receive antennas further enable angular estimation, making MIMO-OFDM suitable for multi-dimensional target parameter estimation. Recently, joint angle--range--velocity estimation has been investigated by exploiting the separable phase structure across the frequency, slow-time, and spatial dimensions \cite{xiao2024joint}.
+
+However, a major challenge arises when a full-duplex architecture is deployed for ISAC. The transmitted signal can leak directly to the colocated sensing array and generate self-interference (SI) that is much stronger than the desired target echoes. Residual SI may create dominant range--Doppler components and corrupt the spatial phases required for angle estimation. Recent studies have investigated in-band full-duplex OFDM ISAC architectures \cite{duan2025ibfd}, SI-aware transmit beam control \cite{zhou2025multibeam}, and receiver-side or front-end SI cancellation \cite{yu2024photonics,du2025survey}. Nevertheless, these studies mainly focus on full-duplex operation, sensing--communication tradeoffs, or SI cancellation itself. For MIMO-OFDM ISAC, transmit-domain SI suppression must preserve the spatial constraints of downlink users, while the residual leakage should be further removed before target parameter estimation. Therefore, communication-preserving transmit suppression and receiver-side SI cancellation should be jointly considered.
+
+After SI mitigation, multi-dimensional parameter extraction must also be performed efficiently. Existing methods can recover angle, range, and velocity by exploiting the multi-dimensional signal structure \cite{xiao2024joint}. However, direct searching over range, velocity, elevation, and azimuth incurs high computational complexity, whereas independent estimation may lose the association among parameters of the same target. This motivates a low-complexity joint estimation method that preserves the association among multi-dimensional target parameters.
+
+Against the above background, this paper develops an SI-aware parameter-estimation framework for a full-duplex MIMO-OFDM ISAC system. First, a closed-form null-space projection (NSP) precoder satisfying the communication ZF constraint is derived to suppress SI while preserving multi-user transmission, followed by pilot-based digital SI cancellation for residual leakage removal. Then, a two-stage estimator detects range and Doppler via a two-dimensional FFT and subsequently estimates elevation and azimuth from coherently focused receive-array snapshots.
+
+% Integrated sensing and communication (ISAC) is regarded as a key technology for future wireless networks, where communication and environmental sensing can share spectrum, hardware, and transmitted waveforms \cite{liu2022isac,wei2023signals,zhang2022survey}. Orthogonal frequency-division multiplexing (OFDM) is particularly attractive for ISAC due to its compatibility with cellular systems and its structured phase responses to propagation delay and Doppler shift for sensing. When combined with multiple-input multiple-output (MIMO) arrays, the spatial phase differences across receive antennas further enable angular estimation, making MIMO-OFDM suitable for multi-dimensional target parameter estimation. Recently, joint angle--range--velocity estimation has been investigated for MIMO-OFDM ISAC by exploiting the separable phase structure across the frequency, slow-time, and spatial dimensions \cite{xiao2024joint}.
+
+% However, a major challenge arises when a full-duplex architecture is deployed for ISAC. Specifically, the transmitted signal can leak directly to the colocated sensing array and generate self-interference (SI) that is much stronger than the desired target echoes. Residual SI may therefore create dominant range--Doppler components and corrupt the spatial phases required for subsequent angle estimation. Recent studies have investigated in-band full-duplex OFDM ISAC architectures \cite{duan2025ibfd}, SI-aware transmit beam control \cite{zhou2025multibeam}, and receiver-side or front-end SI cancellation techniques \cite{yu2024photonics,du2025survey}. Nevertheless, these methods mainly focus on full-duplex operation, transmit sensing--communication tradeoffs, or SI cancellation itself. For MIMO-OFDM ISAC, transmit-domain SI suppression must additionally preserve the spatial constraints required by the downlink communication users, while the residual leakage should be further removed before target parameter estimation. Therefore, a joint consideration of communication-preserving transmit suppression and receiver-side SI cancellation is still required.
+
+% After SI mitigation, multi-dimensional parameter extraction must also be performed efficiently. Existing joint estimation methods can recover angle, range, and velocity by exploiting the multi-dimensional signal structure \cite{xiao2024joint}. However, a direct search over range, velocity, elevation, and azimuth generally incurs high computational complexity, whereas estimating these parameters independently may lose the association among the parameters belonging to the same target. This motivates the development of a low-complexity joint estimation method that preserves the association among multi-dimensional target parameters.
+
+% Against the above background, this paper develops an SI-aware parameter-estimation framework for a full-duplex MIMO-OFDM ISAC system. First, to suppress the strong SI while preserving multi-user communication, a closed-form null-space projection (NSP) precoder satisfying the communication ZF constraint is derived, followed by pilot-based digital SI cancellation to remove the residual leakage at the sensing receiver. Then, a two-stage parameter estimator is proposed, where the range and Doppler parameters are detected via a two-dimensional FFT, and the elevation and azimuth angles are subsequently estimated from coherently focused receive-array snapshots.
+
+
+
+\section{System Model}\label{sec:system_model}
+\subsection{MIMO-OFDM ISAC Signal Model}
+% \begin{figure}[t]
+%     \centering
+%     \safeincludegraphics[scale=0.3]
+%     {model2_english.pdf}
+%     \caption{Full-duplex MIMO-OFDM ISAC system with downlink transmission,
+%     target echoes, and co-located SI.}
+%     \label{fig:system}
+% \end{figure}
+% shown in Fig.~\ref{fig:system}
+We consider the full-duplex MIMO-OFDM ISAC system. A base station (BS) is equipped with $N_{\rm tx}$ antennas for signal transmission and an $N_{\rm rx}$-element sensing receive array. It simultaneously serves $K$ downlink users and detect the echoes from $Q$ targets. During one coherent processing interval (CPI), the BS leverages $N_s$ subcarriers with frequency spacing $\Delta f$ and $L$ OFDM symbols of duration $T$. The transmit vector on subcarrier $i$ and OFDM symbol $l$ can be given by
+\begin{equation}
+\mathbf{x}_i[l]=\mathbf{W}_i\mathbf{s}_i[l],
+\label{eq:tx}
+\end{equation}
+where $\mathbf{s}_i[l]\in\mathbb{C}^{K\times1}$ is the communication symbol, and $\mathbf{W}_i\in\mathbb{C}^{N_{\rm tx}\times K}$ denotes the subcarrier-domain precoder.  For the communication link, let $\mathbf{h}_{i,k}\in\mathbb{C}^{N_{\rm tx}\times1}$ denote the downlink channel from the BS to the $k$-th user on subcarrier $i$. The received signal at user $k$ is expressed as
+\begin{equation}
+y_{i,k}[l]=\mathbf{h}_{i,k}^{\rm H}\mathbf{W}_i\mathbf{s}_i[l]
++z_{i,k}[l],
+\label{eq:comm_signal}
+\end{equation}
+where $z_{i,k}[l]$ denotes the additive white Gaussian noise. By stacking the user channels as $\mathbf{H}_{{\rm c},i}=[\mathbf{h}_{i,1},\ldots,\mathbf{h}_{i,K}]^{\rm H}$, the received signal of all the users can be compactly given by
+\begin{align}
+    \mathbf{y}_{i}[l]=\mathbf{H}_{{\rm c},i}^{\rm H}\mathbf{W}_i\mathbf{s}_i[l]+\mathbf{z}_{i}[l].
+\end{align}
+To eliminate the multi-user interference, zero-forcing (ZF) transmission is expected, expressed as
+\begin{equation}
+\mathbf{H}_{{\rm c},i}\mathbf{W}_i=\mathbf{I}_K.
+\label{eq:zf_constraint}
+\end{equation}
+
+Meanwhile, the transmitted OFDM waveform is also employed for target sensing. We denote the range, radial velocity, azimuth and elevation angle of the $q$-th target as $R_q$, $v_q$, $\theta_q$ and $\phi_q$. Accordingly, the target echo after cyclic-prefix removal can be expressed as
+\begin{align}
+\mathbf{y}_{i}^{\rm tar}[l]=\sum_{q=1}^{Q}
+&\beta_q
+\mathbf{b}(\theta_q,\phi_q)
+\mathbf{a}^{\rm H}(\theta_q,\phi_q)
+\mathbf{x}_i[l] 
+e^{-\jmath2\pi i\Delta f\tau_q}
+e^{\jmath2\pi lTf_{D,q}}.
+\label{eq:target_echo}
+\end{align}
+where $\tau_q$ and $f_{D,q}$ represents round-trip delay and Doppler frequency, respectively. They can be given by
+\begin{equation}
+\tau_q=\frac{2R_q}{c},
+\qquad
+f_{D,q}=\frac{2v_q}{\lambda_c},
+\label{eq:delay_doppler}
+\end{equation}
+where $c$ and $\lambda_c$ denote  the speed of light and the carrier wavelength, respectively. In addition, $\beta_q$ is the complex reflection coefficient of the $q$-th target. Moreover,  $\mathbf{a}(\theta_q,\phi_q)\in\mathbb{C}^{N_{\rm tx}\times1}$ and $\mathbf{b}(\theta_q,\phi_q)\in\mathbb{C}^{N_{\rm rx}\times1}$ denote the transmit and receive steering vectors towards the $q$-th target, respectively.  For an $N_{\rm rx}=N_x\times N_y$ receive uniform rectangular array (URA), the $(m_x,m_y)$-th element of the receive steering vector is given by
+\begin{align}
+[\mathbf{b}(\theta_q,\phi_q)]_{n_x,n_y}=\exp \left[
+-\jmath\frac{2\pi}{\lambda_c}
+\left( n_xd_xu_q+n_yd_yw_q \right) \right],
+\label{eq:rx_steering}
+\end{align}
+where
+$u_q=\sin\theta_q\cos\phi_q$ and $w_q=\sin\theta_q\sin\phi_q$, while $d_x$ and $d_y$ are the inter-element spacings along the two array axes, respectively. The transmit steering vector has the same form as \eqref{eq:rx_steering}.
+
+\subsection{Self-Interference Model}
+Since the transmit and sensing arrays operate simultaneously, the receive array also observes the leakage of the transmitted signal. The received signal in the receiving array is given by
+\begin{equation}
+\mathbf{y}_i[l]=\mathbf{y}_{i}^{\rm tar}[l]+\mathbf{G}_i\mathbf{x}_i[l]+\mathbf{z}_i[l],
+\label{eq:rx}
+\end{equation}
+where $\mathbf{z}_i[l]$ denotes receiver noise. Besides, $\mathbf{G}_i\in\mathbb{C}^{N_{\rm rx}\times N_{\rm tx}}$ denote the SI channel on subcarrier $i$. To account for a strong deterministic coupling path together with nearby scattering, the SI channel is modeled as Rician, which is
+\begin{align}
+\mathbf{G}_i=\beta_{\rm SI}\!\left(
+\sqrt{\frac{\kappa_{\rm SI}}{\kappa_{\rm SI}+1}}\mathbf{G}_{i}^{\rm LoS}
++\sqrt{\frac{1}{\kappa_{\rm SI}+1}}\mathbf{G}_{i}^{\rm NLoS}
+\right).
+\label{eq:rician}
+\end{align}
+Here, $\kappa_{\rm SI}$ is the Rician factor and $\beta_{\rm SI}$ controls the SI-to-echo amplitude ratio. Compared with the desired echo, the SI term in \eqref{eq:rx} can dominate the received signal strength. Therefore, the first task is to reduce the impact of $\mathbf{G}_i\mathbf{x}_i[l]$ before the parameter estimation.
+
+\section{SI Suppression and Cancellation}\label{sec:si_mitigation}
+The SI mitigation is performed in two complementary stages. The transmit precoder first uses the spatial redundancy of the BS array to reduce the power coupled into the sensing receiver while preserving ZF downlink transmission. Since perfect spatial nulling is generally impossible in the presence of limited degrees of freedom and SI-channel uncertainty, the remaining leakage is then reconstructed and removed digitally before sensing processing.
+
+\subsection{Communication-Preserving SI-Aware Precoder Design}\label{sec:precoder}
+For notational simplicity, the subcarrier index is omitted in this subsection.  To suppress the SI received by the sensing array while preserving the downlink communication performance, the transmit precoder is designed by minimizing the SI leakage power subject to an interference-free multi-user transmission constraint. Specifically, it can be formulated as
+\begin{subequations}
+\begin{align}\
+\min_{\mathbf{W}} \quad
+& \left\| \mathbf{G}\mathbf{W} \right\|_{\mathrm{F}}^{2}
+\label{eq:p1_obj}\\
+\mathrm{s.t.}\quad
+& \mathbf{H}_{\rm c}\mathbf{W}
+= \mathbf{I}_{K},
+\label{eq:p1_cons}
+\end{align}    
+\end{subequations}
+Considering interference-free multi-user transmission constraint, the particular solution satisfying the constraint  is given by
+\begin{align}
+\mathbf{W}_{0} = \mathbf{H}_{\rm c}^{\rm H}
+\left( \mathbf{H}_{\rm c}\mathbf{H}_{\rm c}^{\rm H} \right)^{-1},
+\label{eq:zf}
+\end{align}
+which corresponds to the conventional zero-forcing (ZF) precoder. However, this solution cannot suppress the SI leakage. Considering the case of $N_{\rm tx}>K$, $\mathbf{H}_{\rm c}$ has full row rank, implying that the solution satisfying \eqref{eq:p1_cons} is not unique. Therefore, the remaining spatial degrees of freedom can be exploited to further suppress SI. Let
+$\mathbf{N}_{\rm c}\in
+\mathbb{C}^{N_{\rm tx}\times(N_{\rm tx}-K)}$
+denote an orthonormal basis for the null space of $\mathbf{H}_{\rm c}$, satisfying
+$\mathbf{H}_{\rm c}\mathbf{N}_{\rm c}
+=\mathbf{0}$.
+Accordingly, any feasible precoder satisfying \eqref{eq:p1_cons} can be expressed as
+\begin{align}
+\mathbf{W} = \mathbf{W}_{0} + \mathbf{N}_{\rm c}\mathbf{Z},
+\label{eq:null_parameterization}
+\end{align}
+where $\mathbf{Z}$ is an optimization variable controlling the component lying in the communication null space. Substituting \eqref{eq:null_parameterization} into the objective function of \eqref{eq:p1_obj} yields
+\begin{align}
+\min_{\mathbf{Z}}
+\quad
+\left\|
+\mathbf{G}\mathbf{N}_{\rm c}\mathbf{Z}
++
+\mathbf{G}\mathbf{W}_{0}
+\right\|_{\mathrm{F}}^{2}.
+\label{eq:null_ls}
+\end{align}
+The above problem is a standard least-squares problem, whose minimum-norm solution is
+\begin{align}
+\mathbf{Z}^{\star}
+=
+-
+\left(
+\mathbf{G}\mathbf{N}_{\rm c}
+\right)^{\dagger}
+\mathbf{G}\mathbf{W}_{0}.
+\label{eq:zstar}
+\end{align}
+By substituting \eqref{eq:zstar} into \eqref{eq:null_parameterization}, a null-space projection (NSP) precoder can be obtained as
+\begin{align}
+\mathbf{W}_{\rm NSP}
+=
+\mathbf{W}_{0}
+-
+\mathbf{N}_{\rm c}
+\left(
+\mathbf{G}\mathbf{N}_{\rm c}
+\right)^{\dagger}
+\mathbf{G}\mathbf{W}_{0}.
+\label{eq:nsp}
+\end{align}
+
+Since the correction term in \eqref{eq:nsp} lies entirely in the null space of $\mathbf{H}_{\rm c}$, it does not introduce additional inter-user interference. Finally, a common scalar normalization is applied to $\mathbf{W}_{\rm NSP}$ to satisfy the transmit-power constraint, i.e.,
+\begin{align}
+    \mathbf{W}  = \sqrt{\frac{P_t}{\|\mathbf{W}_{\rm NSP}\|_\mathrm{F}}} \mathbf{W}_{\rm NSP}.
+\end{align}
+
+% For notational simplicity, the subcarrier index is omitted in this subsection. The conventional communication ZF precoder is
+% \begin{equation}
+% \mathbf{W}_{0}=\mathbf{H}_{\rm c}^{\rm H}
+% (\mathbf{H}_{\rm c}\mathbf{H}_{\rm c}^{\rm H})^{-1},
+% \label{eq:zf}
+% \end{equation}
+% which satisfies $\mathbf{H}_{\rm c}\mathbf{W}_{0}=\mathbf{I}_K$ when $\mathbf{H}_{\rm c}$ has full row rank. Although \eqref{eq:zf} eliminates inter-user interference, it does not control the leakage $\mathbf{G}\mathbf{W}_{0}$ received by the sensing array. We therefore consider
+% \begin{equation}
+% \begin{aligned}
+% \mathrm{(P1)}:\quad
+% \min_{\mathbf{W}}\;&\|\mathbf{G}\mathbf{W}\|_{\rm F}^{2}\\
+% \mathrm{s.t.}\;&\mathbf{H}_{\rm c}\mathbf{W}=\mathbf{I}_K.
+% \end{aligned}
+% \label{eq:p1}
+% \end{equation}
+% The key point is that the communication equality constraint should remain unchanged; hence, SI suppression can only use spatial directions invisible to the communication users.
+
+% Let $\mathbf{N}_{\rm c}\in\mathbb{C}^{N_{\rm tx}\times(N_{\rm tx}-K)}$ be an orthonormal basis for the null space of $\mathbf{H}_{\rm c}$, such that $\mathbf{H}_{\rm c}\mathbf{N}_{\rm c}=\mathbf{0}$. Every feasible solution of \eqref{eq:p1} can be written as
+% \begin{equation}
+% \mathbf{W}=\mathbf{W}_0+\mathbf{N}_{\rm c}\mathbf{Z},
+% \label{eq:null_parameterization}
+% \end{equation}
+% where the free matrix $\mathbf{Z}$ changes only the component lying in the communication null space. Substituting \eqref{eq:null_parameterization} into the objective gives
+% \begin{equation}
+% \min_{\mathbf{Z}}\;\|\mathbf{G}\mathbf{N}_{\rm c}\mathbf{Z}+\mathbf{G}\mathbf{W}_{0}\|_{\rm F}^{2}.
+% \label{eq:null_ls}
+% \end{equation}
+% This is a standard least-squares problem. Its minimum-norm solution is
+% \begin{equation}
+% \mathbf{Z}^{\star}=-(\mathbf{G}\mathbf{N}_{\rm c})^{\dagger}\mathbf{G}\mathbf{W}_{0},
+% \label{eq:zstar}
+% \end{equation}
+% which leads to the NSP precoder
+% \begin{equation}
+% \mathbf{W}_{\rm NSP}=\mathbf{W}_{0}-\mathbf{N}_{\rm c}
+% (\mathbf{G}\mathbf{N}_{\rm c})^{\dagger}\mathbf{G}\mathbf{W}_{0}.
+% \label{eq:nsp}
+% \end{equation}
+% Because the correction term is multiplied by $\mathbf{N}_{\rm c}$, it does not alter the interference-free structure seen by the communication users. After obtaining \eqref{eq:nsp}, a common scalar normalization is applied to satisfy the transmit-power budget; this changes only the desired-user gain $\alpha_i$ in \eqref{eq:zf_constraint} and does not reintroduce inter-user interference.
+
+
+\subsection{Pilot-Based Digital SI Cancellation}\label{sec:sic}
+Since the colocated architecture, the BS has the prior information of its own transmitted signal. As a result, the transmit signal is available to the receiver, and  the residual SI can be reconstructed once the effective SI channel is estimated. We assume that $L_p$ pilots are periodically transmitted on each processed subcarrier and collected in $\mathbf{X}_{i}^{\rm p}\in\mathbb{C}^{N_{\rm tx}\times L_p}$. During the SI channel estimation period, the SI component is dominant and the desired echoes are treated as part of the estimation disturbance. Accordingly, the received pilot matrix is modeled as
+\begin{equation}
+\mathbf{Y}_{i}^{\rm p}=\mathbf{G}_{i}\mathbf{X}_{i}^{\rm p}+\mathbf{Z}_{i}^{\rm p}.
+\label{eq:sic_pilot}
+\end{equation}
+For $L_p\geq N_{\rm tx}$ and full-row-rank $\mathbf{X}_{i}^{\rm p}$, the LS estimate of the SI channel is
+\begin{equation}
+\widehat{\mathbf{G}}_{i}=\mathbf{Y}_{i}^{\rm p}(\mathbf{X}_{i}^{\rm p})^{\rm H}
+\left[\mathbf{X}_{i}^{\rm p}(\mathbf{X}_{i}^{\rm p})^{\rm H}\right]^{-1}.
+\label{eq:ls}
+\end{equation}
+After obtaining the estimated SI component,   in the phase of sensing, the SI can then be regenerated and subtracted from \eqref{eq:rx}, yielding
+\begin{equation}
+\widetilde{\mathbf{y}}_i[l]=\mathbf{y}_i[l]-\widehat{\mathbf{G}}_i\mathbf{x}_i[l].
+\label{eq:sic}
+\end{equation}
+Substituting \eqref{eq:rx} into \eqref{eq:sic} gives
+\begin{equation}
+\widetilde{\mathbf{y}}_i[l]=\mathbf{y}_{i}^{\rm tar}[l]
++(\mathbf{G}_i-\widehat{\mathbf{G}}_i)\mathbf{x}_i[l]+\mathbf{z}_i[l].
+\label{eq:post_sic}
+\end{equation}
+This operation removes the residual component that cannot be eliminated via precoding, contributing to a more thorough SI suppression and facilitating the parameter estimation of the targets developed in the next section.
+
+
+
+\section{Two-Stage Target Parameter Estimation}\label{sec:estimation}
+After SI suppression and cancellation, the remaining task is to recover the target parameters from \eqref{eq:post_sic}. While a direct four-dimensional search jointly over range, velocity, elevation, and azimuth is computationally expensive, we exploit the separable phase structure in \eqref{eq:target_echo} to locate each target in the range--Doppler plane, and then the samples associated with each detected peak are then coherently focused to form a spatial snapshot for angle estimation. This preserves the association among the four parameters while avoiding a four-dimensional grid search.
+
+\subsection{Range--Doppler Candidate Detection} The received echoes contain the modulation phase introduced by the transmitted communication symbols, which prevents direct coherent accumulation over the subcarrier and slow-time dimensions. Therefore, the transmitted signal is first compensated for each subcarrier--symbol pair as 
+\begin{align} 
+\bar{\mathbf{y}}_i[l] = \mathbf{y}_i[l]x^{*}[i,l], \label{eq:tx_compensation} 
+\end{align} 
+where $x[i,l] = \mathbf{a}^{\rm H}(\theta_q,\phi_q)\mathbf{x}_i[l]$denotes the transmit signal associated with the sensing direction. This operation removes the communication-induced modulation phase while retaining the target-dependent phase progressions used for parameter estimation. The compensated receive data are then reshaped according to the two-dimensional receive array as $\bar{y}(m_x,m_y,i,l)$. To reduce the spatial dimension before range--Doppler processing, low-complexity coherent combining is performed over the receive antennas, i.e., 
+\begin{align} 
+s(i,l) = \sum_{m_x=0}^{N_{{\rm rx},x}-1} \sum_{m_y=0}^{N_{{\rm rx},y}-1} \bar{y}(m_x,m_y,i,l). \label{eq:spatial_combining} 
+\end{align} 
+Hence, the original multi-dimensional receive data are compressed into a two-dimensional sequence indexed by the subcarrier index $i$ and the OFDM symbol index $l$. A two-dimensional FFT is subsequently applied over the frequency and slow-time dimensions to obtain the range--Doppler spectrum. Specifically, 
+\begin{align} 
+D(n_r,n_v) = \sum_{i=0}^{N_{\rm s}-1} \sum_{l=0}^{L-1} s(i,l) e^{-\jmath 2\pi n_r i/N_{\rm s}} e^{-\jmath 2\pi n_v l/L_{\nu}}. \label{eq:rd_fft} 
+\end{align} 
+The corresponding power spectrum is 
+\begin{align} 
+P(n_r,n_v) = \left|D(n_r,n_v)\right|^2, \label{eq:rd_power} 
+\end{align} 
+where $n_r$ and $n_v$ denote the range- and Doppler-bin indices, respectively, and $L_{\nu}$ denotes the Doppler FFT size. The dominant local peaks of $P(n_r,n_v)$ are retained as target candidates, resulting in 
+\begin{align} 
+\mathcal{C} = \left\{ (\hat n_{r,q},\hat n_{v,q}) \right\}_{q=1}^{\hat Q}, \label{eq:candidate_set} 
+\end{align} 
+where $\hat Q$ denotes the number of detected candidates. The corresponding coarse range and velocity estimates can be obtained from 
+\begin{align} \hat R_q &= \frac{c\hat n_{r,q}} {2N_{\rm s}\Delta f},  \hat v_q = \frac{\lambda_c}{2T} \frac{\hat n_{v,q}}{L_{\nu}}. \label{eq:velocity_est} 
+\end{align} 
+
+\subsection{Spatial Focusing and Angle Estimation} After range--Doppler candidate detection, angle estimation is performed only for the detected candidates rather than over the entire four-dimensional parameter space. For the $q$-th candidate $(\hat n_{r,q},\hat n_{v,q})$, define the estimated range- and Doppler-domain phase as 
+\begin{align} 
+\hat{\omega}_{r,q} &= \frac{2\pi\hat n_{r,q}}{N_{\rm s}}, ~~
+\hat{\omega}_{v,q} = \frac{2\pi\hat n_{v,q}}{L_{\nu}}. \label{eq:doppler_phase} 
+\end{align} 
+For each candidate, the corresponding range and Doppler phases are removed from the compensated measurements to coherently focus its spatial response. Let $\bar{\mathbf{Y}}_i[l]\in \mathbb{C}^{N_{{\rm rx},x}\times N_{{\rm rx},y}}$ denote the matrix form of $\bar{\mathbf{y}}_i[l]$. The focused spatial snapshot is constructed as 
+\begin{align} 
+\mathbf{Y}_{{\rm snap},q} = \sum_{i\in\Omega_r} \sum_{l\in\Omega_v} \bar{\mathbf{Y}}_i[l] e^{-\jmath i\hat{\omega}_{r,q}} e^{-\jmath l\hat{\omega}_{v,q}}, \label{eq:spatial_snapshot} 
+\end{align} 
+where $\Omega_r$ and $\Omega_v$ denote the subcarrier and OFDM-symbol sample sets used for local coherent focusing, respectively. Through the range and Doppler phase compensation, the contribution associated with the $q$-th candidate is coherently accumulated, yielding a high-SNR spatial snapshot for subsequent angle estimation. For the receive URA, the phase increments between adjacent elements along the $x$- and $y$-axes are respectively given by 
+\begin{align} 
+\omega_{a,x,q} &= -\frac{2\pi d_{{\rm rx},x}}{\lambda_c} \sin\theta_q\cos\phi_q, \label{eq:angle_phase_x}\\ \omega_{a,y,q} &= -\frac{2\pi d_{{\rm rx},y}}{\lambda_c} \sin\theta_q\sin\phi_q. \label{eq:angle_phase_y} 
+\end{align} 
+Let $Y_q(m_x,m_y)$ denote the $(m_x,m_y)$-th element of $\mathbf{Y}_{{\rm snap},q}$. By exploiting the rotational invariance between two adjacent subarrays, the spatial phase increments can be estimated as 
+\begin{align} 
+\hat{\omega}_{a,x,q} = \angle \left\{ \sum_{m_x=0}^{N_{{\rm rx},x}-2} \sum_{m_y=0}^{N_{{\rm rx},y}-1} Y_q^{*}(m_x,m_y) Y_q(m_x+1,m_y) \right\}, \notag \\
+\hat{\omega}_{a,y,q} = \angle \left\{ \sum_{m_x=0}^{N_{{\rm rx},x}-1} \sum_{m_y=0}^{N_{{\rm rx},y}-2} Y_q^{*}(m_x,m_y) Y_q(m_x,m_y+1) \right\}. \label{eq:phase_y_est} 
+\end{align} 
+Accordingly, the direction cosines along the two array axes are estimated as \begin{align} 
+\hat u_q &= -\frac{\lambda_c} {2\pi d_{{\rm rx},x}} \hat{\omega}_{a,x,q}, ~
+\hat w_q = -\frac{\lambda_c} {2\pi d_{{\rm rx},y}} \hat{\omega}_{a,y,q}. \label{eq:w_est} \end{align} 
+Finally, the elevation and azimuth angles are recovered as 
+\begin{align} 
+\hat{\theta}_q &= \arcsin \left( \sqrt{\hat u_q^2+\hat w_q^2} \right), 
+\hat{\phi}_q = \operatorname{atan2} \left( \hat w_q,\hat u_q \right). \label{eq:azimuth_est} 
+\end{align}
+Therefore, the proposed estimator performs only one global range--Doppler search, followed by spatial focusing and angle estimation for a small number of detected candidates. Compared with exhaustive joint searching over range, velocity, elevation, and azimuth, the proposed two-stage structure substantially reduces the computational burden while preserving the association among the estimated parameters of each target. 
+
+
+\section{Simulation Results}
+\label{sec:simulation}
+In this section, Monte Carlo simulations are conducted to evaluate the proposed SI suppression and target estimation scheme. Unless otherwise specified, $f_c=28$ GHz, $\Delta f=120$ kHz, and $T=8.93~\mu$s, following an FR2-type numerology \cite{3gpp38104}. The BS employs a $4\times4$ transmit URA and an $8\times8$ sensing receive URA with half-wavelength spacing. The default settings are $L=256$, $N_s=12672$, and $L_p=128$, with 16QAM modulation. Two downlink users and two targets are considered. The target ranges are $600.8$ m and $600.2$ m, the radial velocities are $15.1$ m/s and $-5.4$ m/s, and the elevation--azimuth pairs are $(25.83^\circ,28.51^\circ)$ and $(15.94^\circ,13.58^\circ)$, respectively.
+
+Four schemes are compared: \emph{ZF-DFT} uses conventional ZF without SI mitigation; \emph{Tx-NS-DFT} applies the proposed null-space precoder only; \emph{Rx-SIC-DFT} combines conventional ZF with receiver-side digital SIC; and \emph{Dual-Domain-DFT} jointly employs transmit null-space suppression and digital SIC. All schemes use the same two-stage DFT-based estimator, and the range root-mean-square error (RMSE) is adopted as the sensing metric.
+
+\begin{figure*}
+	\centering
+	\subfigure[]{
+		\includegraphics[height=4.6cm, width=5.2cm]{fig_rmse_vs_snr_4methods_edited.eps}}
+	\subfigure[]{
+		\includegraphics[height=4.6cm,width=5.2cm]{fig_velocity_rmse_vs_snr_4methods_beta100_server_edited.eps}}	
+	\centering
+	\subfigure[]{
+		\includegraphics[height=4.6cm,width=5.2cm]{fig_angle_rmse_vs_snr_4methods_beta100_server_edited.eps}}
+	\caption{RMSE versus SNR for $\beta_{\rm SI}=100$: (a) range, (b) velocity, and (c) angle.}
+	\label{fig:snr_rmse}		
+\end{figure*}
+
+\begin{figure}[t]
+    \centering
+    \safeincludegraphics[scale=0.45]{fig_range_rmse_vs_si_strength_4methods_server_edited.eps}
+    \caption{Range RMSE versus the SI-to-echo amplitude ratio $\beta_{\rm SI}$ at SNR $=0$ dB.}
+    \label{fig:si_strength}
+\end{figure}
+
+Fig.~\ref{fig:snr_rmse} compares the range, velocity, and angle RMSEs versus SNR for $\beta_{\rm SI}=100$. ZF-DFT suffers from clear error floors due to strong uncanceled SI, while Tx-NS-DFT significantly improves the range and velocity estimation by suppressing the transmit leakage. However, residual SI still limits the angle estimation accuracy. By contrast, the schemes with digital SIC achieve consistently lower RMSEs, demonstrating the importance of receiver-side SI cancellation for accurate multi-dimensional parameter estimation.
+
+\begin{figure}[t]
+    \centering
+    \safeincludegraphics[scale=0.45]{fig_rmse_vs_subcarrier_4methods_edited.eps}
+    \caption{Range RMSE versus the number of processed subcarriers $N_s$ for $\beta_{\rm SI}=100$ and SNR $=0$ dB.}
+    \label{fig:subcarrier_rmse}
+\end{figure}
+
+Fig.~\ref{fig:si_strength} evaluates the robustness against SI strength at SNR $=0$ dB. When $\beta_{\rm SI}$ is small, all schemes achieve similar accuracy. As SI increases, ZF-DFT rapidly degrades, while Tx-NS-DFT remains reliable over a wider SI range owing to the exploitation of communication null-space degrees of freedom. However, its performance eventually deteriorates under strong residual SI. In comparison, Rx-SIC-DFT and Dual-Domain-DFT maintain nearly unchanged ranging accuracy over the considered SI range, demonstrating the importance of digital SIC for strong full-duplex leakage.
+
+
+
+Fig.~\ref{fig:subcarrier_rmse} shows the range RMSE versus the number of processed subcarriers. For ZF-DFT, increasing $N_s$ provides little improvement because the estimation remains SI-limited. In contrast, the SI-aware schemes benefit from the increased processing bandwidth once the residual leakage is sufficiently suppressed, leading to progressively improved ranging accuracy. When $N_s$ is large, these schemes achieve centimeter-level accuracy, whereas ZF-DFT remains at a high error floor. This verifies that effective SI mitigation is necessary to fully exploit the ranging gain provided by wideband MIMO-OFDM processing.
+
+
+\section{Conclusion}\label{sec:conclusion}
+This paper studied multi-dimensional parameter estimation for a full-duplex MIMO-OFDM ISAC system with strong colocated SI. A communication-preserving null-space precoder and pilot-based digital cancellation were combined to suppress SI before sensing processing. A two-stage estimator then recovered range and velocity through 2-D FFT processing and estimated elevation and azimuth from focused spatial snapshots. Simulations verify that transmit suppression improves SI tolerance, while digital cancellation is required to remove the estimation floor and exploit the ranging gain of large OFDM bandwidth.
+
+\bibliographystyle{IEEEtran}
+\bibliography{ref}
+
+\end{document}

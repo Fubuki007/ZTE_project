@@ -1,0 +1,303 @@
+{
+  "retrieved_on": "2026-10-09",
+  "scope": "Targeted public arXiv search and selected full-text review; not an exhaustive systematic review. Formal publication status was not independently confirmed for each arXiv paper.",
+  "original_paper": {
+    "title": "Intelligent Reflecting Surface Aided Dual-function Radar and Communication System",
+    "doi": "10.1109/JSYST.2021.3057400",
+    "verified_local_path": "C:\\Users\\Fubuki\\xwechat_files\\wxid_w7136pml97ie22_efce\\msg\\file\\2026-10\\Intelligent Reflecting Surface Aided Dual-function Radar and Communication System.pdf",
+    "sha256": "d91a1d0a81ca1e5ff71785ecaeeab553696b98eb2446016bb8a5114b11db39c7"
+  },
+  "related_papers": [
+    {
+      "id": "http://arxiv.org/abs/2407.03228v2",
+      "title": "Movable Antenna-enabled RIS-aided Integrated Sensing and Communication",
+      "summary": "In this paper, we investigate a movable antenna (MA)-aided integrated sensing and communication (ISAC) system, where a reconfigurable intelligent surface (RIS) is employed to enhance wireless communication and sensing performance in dead zones. Specifically, this paper aims to maximize the minimum beampattern gain at the RIS by jointly optimizing beamforming matrix at the base station (BS), the reflecting coefficients at the RIS and the positions of the MAs, subject to signal-to-interference-plus-noise ratio (SINR) constraint for the users and maximum transmit power at the BS. To tackle this non-convex optimization problem, we propose an alternating optimization (AO) algorithm and employ semidefinite relaxation (SDR), sequential rank-one constraint relaxation (SRCR) and successive convex approximation (SCA) techniques. Numerical results indicate that the MA and RIS-aided ISAC system outperforms conventional fixed position antenna (FPA) and RIS-aided systems. In addition, the application of MAs can reduce the similarity of user channels and enhance channel gain in the ISAC system.",
+      "published": "2024-07-03T15:55:27Z",
+      "updated": "2024-09-11T16:18:43Z",
+      "doi": null,
+      "journal_ref": null,
+      "authors": [
+        "Haisu Wu",
+        "Hong Ren",
+        "Cunhua Pan",
+        "Yang Zhang"
+      ],
+      "reference_label": "R1",
+      "canonical_url": "https://arxiv.org/abs/2407.03228",
+      "review_level": "selected full-text sections",
+      "reviewed_sections": "II–III"
+    },
+    {
+      "id": "http://arxiv.org/abs/2409.20472v1",
+      "title": "Fluid Antenna-Assisted Near-Field System",
+      "summary": "This paper proposes a fluid antenna (FA)-assisted near-field integrated sensing and communications (ISAC) system enabled by the extremely large-scale simultaneously transmitting and reflecting surface (XL-STARS). By optimizing the communication beamformer, the sensing signal covariance matrix, the XL-STARS phase shift, and the FA position vector, the Cramér-Rao bound (CRB), as a metric for sensing performance, is minimized while ensuring the standard communication performance. A double-loop iterative algorithm based on the penalty dual decomposition (PDD) and block coordinate descent (BCD) methods is proposed to solve the non-convex minimization problem by decomposing it into three subproblems and optimizing the coupling variables for each subproblem iteratively. Simulation results validate the superior performance of the proposed algorithm.",
+      "published": "2024-09-30T16:31:41Z",
+      "updated": "2024-09-30T16:31:41Z",
+      "doi": null,
+      "journal_ref": null,
+      "authors": [
+        "Jingxuan Zhou",
+        "Yinchao Yang",
+        "Zhaohui Yang",
+        "Mohammad Shikh-Bahaei"
+      ],
+      "reference_label": "R2",
+      "canonical_url": "https://arxiv.org/abs/2409.20472",
+      "review_level": "selected full-text sections",
+      "reviewed_sections": "II–III"
+    },
+    {
+      "id": "http://arxiv.org/abs/2502.09023v1",
+      "title": "Joint Transceiver Design for RIS Enhanced Dual-Functional Radar-Communication with Movable Antenna",
+      "summary": "Movable antennas (MAs) have shown significant potential in enhancing the performance of dual-functional radar-communication (DFRC) systems. In this paper, we investigate the MA-based transceiver design for DFRC systems, where a reconfigurable intelligent surface (RIS) is employed to enhance the communication quality in dead zones. To enhance the radar sensing performance, we formulate an optimization problem to maximize the radar signal-to-interference-plus-noise ratio (SINR) by jointly optimizing the beamforming vectors, receiving filter, antenna positions, and RIS reflecting coefficients. To tackle this challenging problem, we develop a fractional programming-based optimization framework, incorporating block coordinate descent (BCD), successive convex approximation (SCA), and penalty techniques. Simulation results demonstrate that the proposed method can significantly improve the radar SINR and achieve a satisfactory balance between the radar and communication performance compared with existing benchmark schemes.",
+      "published": "2025-02-13T07:20:40Z",
+      "updated": "2025-02-13T07:20:40Z",
+      "doi": null,
+      "journal_ref": null,
+      "authors": [
+        "Ran Yang",
+        "Zheng Dong",
+        "Peng Cheng",
+        "Yue Xiu",
+        "Yan Li",
+        "Ning Wei"
+      ],
+      "reference_label": "R3",
+      "canonical_url": "https://arxiv.org/abs/2502.09023",
+      "review_level": "abstract and metadata",
+      "reviewed_sections": null
+    },
+    {
+      "id": "http://arxiv.org/abs/2506.07610v2",
+      "title": "Robust Transceiver Design for RIS Enhanced Dual-Functional Radar-Communication with Movable Antenna",
+      "summary": "Movable antennas (MAs) have demonstrated significant potential in enhancing the performance of dual-functional radar-communication (DFRC) systems. In this paper, we explore an MA-aided DFRC system that utilizes a reconfigurable intelligent surface (RIS) to enhance signal coverage for communications in dead zones. To enhance the radar sensing performance in practical DFRC environments, we propose a unified robust transceiver design framework aimed at maximizing the minimum radar signal-to-interference-plus-noise ratio (SINR) in a cluttered environment. Our approach jointly optimizes transmit beamforming, receive filtering, antenna placement, and RIS reflecting coefficients under imperfect channel state information (CSI) for both sensing and communication channels. To deal with the channel uncertainty-constrained issue, we leverage the convex hull method to transform the primal problem into a more tractable form. We then introduce a two-layer block coordinate descent (BCD) algorithm, incorporating fractional programming (FP), successive convex approximation (SCA), S-Lemma, and penalty techniques to reformulate it into a series of semidefinite program (SDP) subproblems that can be efficiently solved. We provide a comprehensive analysis of the convergence and computational complexity for the proposed design framework. Simulation results demonstrate the robustness of the proposed method, and show that the MA-based design framework can significantly enhance the radar SINR performance while achieving an effective balance between the radar and communication performance.",
+      "published": "2025-06-09T10:23:12Z",
+      "updated": "2026-01-30T08:44:59Z",
+      "doi": null,
+      "journal_ref": null,
+      "authors": [
+        "Ran Yang",
+        "Zheng Dong",
+        "Yue Xiu",
+        "Guangyi Liu",
+        "Wanting Lyu",
+        "Xiangxin Meng",
+        "Yan Li",
+        "Ning Wei"
+      ],
+      "reference_label": "R4",
+      "canonical_url": "https://arxiv.org/abs/2506.07610",
+      "review_level": "selected full-text sections",
+      "reviewed_sections": "II and algorithm sections"
+    },
+    {
+      "id": "http://arxiv.org/abs/2408.00413v3",
+      "title": "Joint Antenna Position and Beamforming Optimization with Self-Interference Mitigation in MA-ISAC System",
+      "summary": "Movable antennas (MAs) have demonstrated significant potential in enhancing the performance of integrated sensing and communication (ISAC) systems. However, the application in the integrated and cost-effective full-duplex (FD) monostatic systems remains underexplored. To address this research gap, we develop an MA-ISAC model within a monostatic framework, where the self-interference channel is modeled in the near field and characterized by antenna position vectors. This model allows us to investigate the use of MAs with the goal of maximizing the weighted sum of communication capacity and sensing mutual information. The resulting optimization problem is non-convex making it challenging to solve optimally. To overcome this, we employ fractional programming (FP) to propose an alternating optimization (AO) algorithm that jointly optimizes the beamforming and antenna positions for both transceivers. Specifically, closed-form solutions for the transmit and receive beamforming matrices are derived using the Karush-Kuhn-Tucker (KKT) conditions, and a novel coarse-to-fine grained search (CFGS) approach is employed to determine the high-quality sub-optimal antenna positions. Numerical results demonstrate that with strong self-interference cancellation (SIC) capabilities, MAs significantly enhance the overall performance and reliability of the ISAC system when utilizing our proposed algorithm, compared to conventional fixed-position antenna designs.",
+      "published": "2024-08-01T09:29:51Z",
+      "updated": "2025-05-14T16:44:00Z",
+      "doi": null,
+      "journal_ref": null,
+      "authors": [
+        "Size Peng",
+        "Cixiao Zhang",
+        "Yin Xu",
+        "Qingqing Wu",
+        "Lipeng Zhu",
+        "Xiaowu Ou",
+        "Dazhi He"
+      ],
+      "reference_label": "R5",
+      "canonical_url": "https://arxiv.org/abs/2408.00413",
+      "review_level": "selected full-text sections",
+      "reviewed_sections": "II–III"
+    },
+    {
+      "id": "http://arxiv.org/abs/2506.05569v1",
+      "title": "Fluid Antenna System-Assisted Self-Interference Cancellation for In-Band Full Duplex Communications",
+      "summary": "In-band full-duplex (IBFD) systems are expected to double the spectral efficiency compared to half-duplex systems, provided that loopback self-interference (SI) can be effectively suppressed. The inherent interference mitigation capabilities of the emerging fluid antenna system (FAS) technology make it a promising candidate for addressing the SI challenge in IBFD systems. This paper thus proposes a FAS-assisted self-interference cancellation (SIC) framework, which leverages a receiver-side FAS to dynamically select an interference-free port. Analytical results include a lower bound and an approximation of the residual SI (RSI) power, both derived for rich-scattering channels by considering the joint spatial correlation amongst the FAS ports. Simulations of RSI power and forward link rates validate the analysis, showing that the SIC performance improves with the number of FAS ports. Additionally, simulations under practical conditions, such as finite-scattering environments and wideband integrated access and backhaul (IAB) channels, reveal that the proposed approach offers superior SIC capability and significant forward rate gains over conventional IBFD SIC schemes.",
+      "published": "2025-06-05T20:28:16Z",
+      "updated": "2025-06-05T20:28:16Z",
+      "doi": null,
+      "journal_ref": null,
+      "authors": [
+        "Hanjiang Hong",
+        "Kai-Kit Wong",
+        "Hao Xu",
+        "Yiyan Wu",
+        "Sai Xu",
+        "Chan-Byoung Chae",
+        "Baiyang Liu",
+        "Kin-Fai Tong"
+      ],
+      "reference_label": "R6",
+      "canonical_url": "https://arxiv.org/abs/2506.05569",
+      "review_level": "abstract and metadata",
+      "reviewed_sections": null
+    },
+    {
+      "id": "http://arxiv.org/abs/2501.15880v2",
+      "title": "Movable Antennas Meet Intelligent Reflecting Surface: Friends or Foes?",
+      "summary": "Movable antenna (MA) and intelligent reflecting surface (IRS) are considered promising technologies for the next-generation wireless communication systems due to their shared channel reconfiguration capabilities. This, however, raises a fundamental question: Does the performance gain of MAs over conventional fixed-position antennas (FPAs) still exist in the presence of the IRS? To answer this question, we investigate in this paper an IRS-assisted multi-user multiple-input single-output (MISO) MA system, where a multi-MA base station (BS) transmits to multiple single-FPA users. We formulate a sum-rate maximization problem by jointly optimizing the active/passive beamforming of the BS/IRS and the MA positions within a one-dimensional transmit region, which is challenging to be optimally solved. To drive essential insights, we first study a simplified case with a single user. Then, we analyze the performance gain of MAs over FPAs in the light-of-sight (LoS) BS-IRS channel and derive the conditions under which this gain becomes more or less significant. In addition, we propose an alternating optimization (AO) algorithm to solve the signal-to-noise ratio (SNR) maximization problem in the single-user case by combining the block coordinate descent (BCD) method and the graph-based method. For the general multi-user case, our performance analysis unveils that the performance gain of MAs over FPAs diminishes with typical transmit precoding strategies at the BS under certain conditions. We also propose a high-quality suboptimal solution to the sum-rate maximization problem by applying the AO algorithm that combines the weighted minimum mean square error (WMMSE) algorithm, manifold optimization method and discrete sampling method. Numerical results validate our theoretical analyses and demonstrate that the performance gain of MAs over FPAs may be reduced if the IRS passive beamforming is optimized.",
+      "published": "2025-01-27T09:05:46Z",
+      "updated": "2025-07-03T13:52:40Z",
+      "doi": null,
+      "journal_ref": null,
+      "authors": [
+        "Xin Wei",
+        "Weidong Mei",
+        "Qingqing Wu",
+        "Qiaoran Jia",
+        "Boyu Ning",
+        "Zhi Chen",
+        "Jun Fang"
+      ],
+      "reference_label": "R7",
+      "canonical_url": "https://arxiv.org/abs/2501.15880",
+      "review_level": "abstract and metadata",
+      "reviewed_sections": null
+    },
+    {
+      "id": "http://arxiv.org/abs/2510.01789v1",
+      "title": "Performance Optimization for Movable Antenna Enhanced MISO-OFDM Systems",
+      "summary": "Movable antenna (MA) technology offers a flexible approach to enhancing wireless channel conditions by adjusting antenna positions within a designated region. While most existing works focus on narrowband MA systems, this paper investigates MA position optimization for an MA-enhanced multiple-input single-output (MISO) orthogonal frequency-division multiplexing (OFDM) system. This problem appears to be particularly challenging due to the frequency-flat nature of MA positioning, which should accommodate the channel conditions across different subcarriers. To overcome this challenge, we discretize the movement region into a multitude of sampling points, thereby converting the continuous position optimization problem into a discrete point selection problem. Although this problem is combinatorial, we develop an efficient partial enumeration algorithm to find the optimal solution using a branch-and-bound framework, where a graph-theoretic method is incorporated to effectively prune suboptimal solutions. In the low signal-to-noise ratio (SNR) regime, a simplified graph-based algorithm is also proposed to obtain the optimal MA positions without the need for enumeration. Simulation results reveal that the proposed algorithm outperforms conventional fixed-position antennas (FPAs), while narrowband-based antenna position optimization can achieve near-optimal performance.",
+      "published": "2025-10-02T08:27:38Z",
+      "updated": "2025-10-02T08:27:38Z",
+      "doi": null,
+      "journal_ref": null,
+      "authors": [
+        "Ruixi Feng",
+        "Weidong Mei",
+        "Lele Lu",
+        "Xin Wei",
+        "Zhi Chen",
+        "Zhen Gao",
+        "Boyu Ning"
+      ],
+      "reference_label": "R8",
+      "canonical_url": "https://arxiv.org/abs/2510.01789",
+      "review_level": "selected full-text sections",
+      "reviewed_sections": "III"
+    },
+    {
+      "id": "http://arxiv.org/abs/2408.15435v2",
+      "title": "Globally Optimal Movable Antenna-Enhanced multiuser Communication: Discrete Antenna Positioning, Motion Power Consumption, and Imperfect CSI",
+      "summary": "Movable antennas (MAs) represent a promising paradigm to enhance the spatial degrees of freedom of conventional multi-antenna systems by dynamically adapting the positions of antenna elements within a designated transmit area. In particular, by employing electro-mechanical MA drivers, the positions of the MA elements can be adjusted to shape a favorable spatial correlation for improving system performance. Although preliminary research has explored beamforming designs for MA systems, the intricacies of the power consumption and the precise positioning of MA elements are not well understood. Moreover, the assumption of perfect CSI adopted in the literature is impractical due to the significant pilot overhead and the extensive time to acquire perfect CSI. To address these challenges, we model the motion of MA elements through discrete steps and quantify the associated power consumption as a function of these movements. Furthermore, by leveraging the properties of the MA channel model, we introduce a novel CSI error model tailored for MA systems that facilitates robust resource allocation design. In particular, we optimize the beamforming and the MA positions at the BS to minimize the total BS power consumption, encompassing both radiated and MA motion power while guaranteeing a minimum required SINR for each user. To this end, novel algorithms exploiting the branch and bound (BnB) method are developed to obtain the optimal solution for perfect and imperfect CSI. Moreover, to support practical implementation, we propose low-complexity algorithms with guaranteed convergence by leveraging successive convex approximation (SCA). Our numerical results validate the optimality of the proposed BnB-based algorithms. Furthermore, we unveil that both proposed SCA-based algorithms approach the optimal performance within a few iterations, thus highlighting their practical advantages.",
+      "published": "2024-08-27T22:36:20Z",
+      "updated": "2025-07-17T14:28:53Z",
+      "doi": null,
+      "journal_ref": null,
+      "authors": [
+        "Yifei Wu",
+        "Dongfang Xu",
+        "Derrick Wing Kwan Ng",
+        "Wolfgang Gerstacker",
+        "Robert Schober"
+      ],
+      "reference_label": "R9",
+      "canonical_url": "https://arxiv.org/abs/2408.15435",
+      "review_level": "abstract and metadata",
+      "reviewed_sections": null
+    },
+    {
+      "id": "http://arxiv.org/abs/2604.27352v2",
+      "title": "Array Zooming Optimization for Near-Field Localization With Movable Antennas",
+      "summary": "The emergence of movable antenna (MA) technology provides a promising way to enhance wireless sensing and communication by introducing spatial degrees of freedom through dynamic array reconfiguration. In near-field localization, achieving high resolution at low cost necessitates the adoption of sparse arrays. However, such sparsity tends to introduce spatial ambiguity due to aliasing effects. To resolve this resolution-ambiguity dilemma, this paper proposes an MA-enabled array zooming (AZ) system. First, we design a multi-measurement array zooming system that dynamically adjusts antenna spacings. By fusing the observational information from different measurements, the proposed AZ system effectively mitigates spatial aliasing while maintaining spatial resolution. Second, to quantify the performance limits under the severe multi-modal distributions inherent in sparse near-field sensing, we theoretically analyze the false peak distribution and derive a tighter performance lower bound, which incorporates the false detection probability. Third, considering that multiple false peaks may exist in practical multi-modal distributions, we propose an optimization algorithm for the AZ system to suppress false peaks and minimize the localization error. Extensive numerical results demonstrate that the proposed AZ strategy adaptively optimizes array configurations under varying signal-to-noise ratios (SNRs), substantially outperforming both conventional fixed-spacing arrays and Cramer-Rao bound (CRB)-based AZ benchmarks in localization accuracy.",
+      "published": "2026-04-30T03:06:24Z",
+      "updated": "2026-05-29T05:10:18Z",
+      "doi": null,
+      "journal_ref": null,
+      "authors": [
+        "Yuxin Duan",
+        "Boyu Teng",
+        "Xiaojun Yuan",
+        "Rui Wang"
+      ],
+      "reference_label": "R10",
+      "canonical_url": "https://arxiv.org/abs/2604.27352",
+      "review_level": "selected full-text sections",
+      "reviewed_sections": "III–IV"
+    },
+    {
+      "id": "http://arxiv.org/abs/2404.05149v1",
+      "title": "Intelligent Reflecting Surface Aided Target Localization With Unknown Transceiver-IRS Channel State Information",
+      "summary": "Integrating wireless sensing capabilities into base stations (BSs) has become a widespread trend in the future beyond fifth-generation (B5G)/sixth-generation (6G) wireless networks. In this paper, we investigate intelligent reflecting surface (IRS) enabled wireless localization, in which an IRS is deployed to assist a BS in locating a target in its non-line-of-sight (NLoS) region. In particular, we consider the case where the BS-IRS channel state information (CSI) is unknown. Specifically, we first propose a separate BS-IRS channel estimation scheme in which the BS operates in full-duplex mode (FDM), i.e., a portion of the BS antennas send downlink pilot signals to the IRS, while the remaining BS antennas receive the uplink pilot signals reflected by the IRS. However, we can only obtain an incomplete BS-IRS channel matrix based on our developed iterative coordinate descent-based channel estimation algorithm due to the \"sign ambiguity issue\". Then, we employ the multiple hypotheses testing framework to perform target localization based on the incomplete estimated channel, in which the probability of each hypothesis is updated using Bayesian inference at each cycle. Moreover, we formulate a joint BS transmit waveform and IRS phase shifts optimization problem to improve the target localization performance by maximizing the weighted sum distance between each two hypotheses. However, the objective function is essentially a quartic function of the IRS phase shift vector, thus motivating us to resort to the penalty-based method to tackle this challenge. Simulation results validate the effectiveness of our proposed target localization scheme and show that the scheme's performance can be further improved by finely designing the BS transmit waveform and IRS phase shifts intending to maximize the weighted sum distance between different hypotheses.",
+      "published": "2024-04-08T02:21:15Z",
+      "updated": "2024-04-08T02:21:15Z",
+      "doi": null,
+      "journal_ref": null,
+      "authors": [
+        "Taotao Ji",
+        "Meng Hua",
+        "Xuanhong Yan",
+        "Chunguo Li",
+        "Yongming Huang",
+        "Luxi Yang"
+      ],
+      "reference_label": "R11",
+      "canonical_url": "https://arxiv.org/abs/2404.05149",
+      "review_level": "selected full-text sections",
+      "reviewed_sections": "II–V"
+    },
+    {
+      "id": "http://arxiv.org/abs/2208.06670v1",
+      "title": "Joint Localization and Information Transfer for Reconfigurable Intelligent Surface Aided Full-Duplex Systems",
+      "summary": "In this work, we investigate a reconfigurable intelligent surface (RIS) aided integrated sensing and communication scenario, where a base station (BS) communicates with multiple devices in a full-duplex mode, and senses the positions of these devices simultaneously. An RIS is assumed to be mounted on each device to enhance the reflected echoes. Meanwhile, the information of each device is passively transferred to the BS via reflection modulation. We aim to tackle the problem of joint localization and information retrieval at the BS. A grid based parametric model is constructed and the joint estimation problem is formulated as a compressive sensing problem. We propose a novel message-passing algorithm to solve the considered problem, and a progressive approximation method to reduce the computational complexity involved in the message passing. Moreover, an expectation-maximization (EM) algorithm is applied for tuning the grid parameters to mitigate the model mismatch problem. Finally, we analyze the efficacy of the proposed algorithm through the Bayesian Cramér-Rao bound. Numerical results demonstrate the feasibility of the proposed scheme and the superior performance of the proposed EM-based message-passing algorithm.",
+      "published": "2022-08-13T15:01:37Z",
+      "updated": "2022-08-13T15:01:37Z",
+      "doi": null,
+      "journal_ref": null,
+      "authors": [
+        "Zhichao Shao",
+        "Xiaojun Yuan",
+        "Wei Zhang",
+        "Marco Di Renzo"
+      ],
+      "reference_label": "R12",
+      "canonical_url": "https://arxiv.org/abs/2208.06670",
+      "review_level": "selected full-text sections",
+      "reviewed_sections": "II"
+    },
+    {
+      "id": "http://arxiv.org/abs/2604.02181v2",
+      "title": "Grey-Box Bayesian Optimization for ISAC in Fluid-Antenna Assisted Air-Ground Network",
+      "summary": "Fluid antenna systems (FAS) provide additional spatial diversity for integrated sensing and communication (ISAC) through joint port selection and precoding. \\rev{However, existing designs commonly assume readily available channel state information, neglect residual self-interference, and combine communication and sensing into a single weighted objective. The resulting channel acquisition overhead, unmodeled residual self-interference, and limited characterization of the Pareto trade-off are critical obstacles to implementing ISAC in fluid-antenna-assisted air-ground networks.} \\rev{To address these issues, we first formulate the joint design as a grey-box multi-objective optimization problem. This formulation retains the available analytical system mapping while treating the configuration-dependent channel and interference constituents as unknown, and directly represents the communication-sensing Pareto trade-off without predefined scalarization.} We then propose a tailored grey-box multi-objective Bayesian optimization (G-MOBO) method to solve the resulting high-dimensional problem. Specifically, G-MOBO learns the unknown constituents from performance feedback, propagates their predictive distributions through the known mapping, employs expected hypervolume improvement (EHI) to explore the Pareto frontier, and uses an adaptive trust region (TR) to localize the search. A temporal adaptation strategy is further incorporated to track the drifting Pareto frontier in time-varying environments. \\rev{The theoretical analysis characterizes the sample efficiency of grey-box modeling and localized TR design via cumulative hypervolume regret.} Simulations demonstrate faster convergence, improved Pareto-frontier quality, and robust dynamic tracking compared with the considered baselines.",
+      "published": "2026-04-02T15:44:14Z",
+      "updated": "2026-09-28T05:57:14Z",
+      "doi": null,
+      "journal_ref": null,
+      "authors": [
+        "Gangyong Zhu",
+        "Jia Yan",
+        "Miaowen Wen",
+        "Shijian Gao"
+      ],
+      "reference_label": "R13",
+      "canonical_url": "https://arxiv.org/abs/2604.02181",
+      "review_level": "selected full-text sections",
+      "reviewed_sections": "II and objective function"
+    },
+    {
+      "id": "http://arxiv.org/abs/2601.08922v1",
+      "title": "Joint Beamforming and Position Optimization for Movable-Antenna and Movable-Element RIS-Aided Full-Duplex 6G MISO Systems",
+      "summary": "Full-duplex communication substantially enhances spectral efficiency by enabling simultaneous transmission and reception on the same time-frequency resources. However, its practical deployment remains hindered by strong residual self-interference and inter-user interference, which severely degrade system performance. This work investigates a full-duplex MISO network that leverages movable-antenna base stations (MA-BS) and movable-element reconfigurable intelligent surfaces (ME-RIS) to overcome these limitations in next-generation 6G systems. Unlike conventional fixed-geometry architectures, the proposed framework jointly optimizes antenna and RIS element positions, together with RIS phase shifts, to strengthen desired links while suppressing interference. Our design objective is to maximize the system sum rate through the joint optimization of transmit and receive beamforming vectors, uplink transmit powers, RIS phase shifts, and the spatial locations of both the BS antennas and RIS elements. To solve this challenging nonconvex problem, an alternating optimization algorithm is developed, employing semidefinite relaxation for beamforming design and successive convex approximation for position optimization. Simulation results demonstrate that the proposed ME-RIS-assisted architecture with movable BS antennas offers substantial gains over conventional fixed-position full-duplex networks. These findings highlight the potential of integrating movable antennas with movable RIS elements as a key enabler for high-performance full-duplex operation in future 6G wireless systems.",
+      "published": "2026-01-13T19:01:55Z",
+      "updated": "2026-01-13T19:01:55Z",
+      "reference_label": "R14",
+      "canonical_url": "https://arxiv.org/abs/2601.08922",
+      "review_level": "abstract and metadata",
+      "reviewed_sections": null
+    },
+    {
+      "id": "http://arxiv.org/abs/2503.06080v3",
+      "title": "Fluid Antenna Meets RIS: Random Matrix Analysis and Two-Timescale Design for Multi-User Communications",
+      "summary": "The reconfigurability of fluid antenna systems (FASs) and reconfigurable intelligent surfaces (RISs) provides significant flexibility in optimizing channel conditions by jointly adjusting the positions of fluid antennas and the phase shifts of RISs. However, it is challenging to acquire the instantaneous channel state information (CSI) for both fluid antennas and RISs, while frequent adjustment of antenna positions and phase shifts will significantly increase the system complexity. To tackle this issue, this paper investigates the two-timescale design for FAS-RIS multi-user systems with linear precoding, where only the linear precoder design requires instantaneous CSI of the end-to-end channel, while the FAS and RIS optimization relies on statistical CSI. The main challenge comes from the complex structure of channel and inverse operations in linear precoding, such as regularized zero-forcing (RZF) and zero-forcing (ZF). Leveraging on random matrix theory (RMT), we first investigate the fundamental limits of FAS-RIS systems with RZF/ZF precoding by deriving the ergodic sum rate (ESR). This result is utilized to determine the minimum number of selected antennas to achieve a given ESR. Based on the evaluation result, we propose an algorithm to jointly optimize the antenna selection, regularization factor of RZF, and phase shifts at the RIS. Numerical results validate the accuracy of performance evaluation and demonstrate that the performance gain brought by joint FAS and RIS design is more pronounced with a larger number of users.",
+      "published": "2025-03-08T06:06:48Z",
+      "updated": "2025-09-26T03:22:18Z",
+      "reference_label": "R15",
+      "canonical_url": "https://arxiv.org/abs/2503.06080",
+      "review_level": "abstract and metadata",
+      "reviewed_sections": null
+    }
+  ]
+}

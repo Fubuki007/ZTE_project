@@ -1,0 +1,741 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<feed xmlns:opensearch="http://a9.com/-/spec/opensearch/1.1/" xmlns:arxiv="http://arxiv.org/schemas/atom" xmlns="http://www.w3.org/2005/Atom">
+  <id>https://arxiv.org/api/2+qQcjJJLzP6JEzXDKnJRLjvQiM</id>
+  <title>arXiv Query: search_query=all:"reconfigurable intelligent surface" AND all:"sensing" AND (all:"Cramer" OR all:"CRB")&amp;id_list=&amp;start=0&amp;max_results=30</title>
+  <updated>2026-10-15T13:53:14Z</updated>
+  <link href="https://arxiv.org/api/query?search_query=all:%22reconfigurable+intelligent+surface%22+AND+(all:%22sensing%22+AND+(all:%22Cramer%22+OR+all:%22CRB%22))&amp;start=0&amp;max_results=30&amp;id_list=" type="application/atom+xml"/>
+  <opensearch:itemsPerPage>30</opensearch:itemsPerPage>
+  <opensearch:totalResults>38</opensearch:totalResults>
+  <opensearch:startIndex>0</opensearch:startIndex>
+  <entry>
+    <id>http://arxiv.org/abs/2508.11292v1</id>
+    <title>Beyond Diagonal Reconfigurable Intelligent Surface Enabled Sensing: Cramer-Rao Bound Optimization</title>
+    <updated>2025-08-15T07:55:23Z</updated>
+    <link href="https://arxiv.org/abs/2508.11292v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2508.11292v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Recently, beyond diagonal reconfigurable intelligent surface (BD-RIS) has emerged as a more flexible solution to engineer the wireless propagation channels, thanks to its non-diagonal reflecting matrix. Although the gain of the BD-RIS over the conventional RIS in communication has been revealed in many works, its gain in 6G sensing is still unknown. This motivates us to study the BD-RIS assisted sensing in this letter. Specifically, we derive the Cramer-Rao bound (CRB) for estimating the angle-of-arrival (AOA) from the target to the BD-RIS under the constraint that the BD-RIS scattering matrix is unitary. To minimize the CRB, we develop an optimization scheme based on an adaptive Riemannian steepest ascent algorithm that can satisfy the non-convex unitary constraint. Numerical results demonstrate that the proposed BD-RIS-assisted target localization method achieves superior sensing performance.</summary>
+    <category term="eess.SP" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.IT" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2025-08-15T07:55:23Z</published>
+    <arxiv:comment>to appear in IEEE Wireless Communications Letters</arxiv:comment>
+    <arxiv:primary_category term="eess.SP"/>
+    <author>
+      <name>Xiaoqi Zhang</name>
+    </author>
+    <author>
+      <name>Liang Liu</name>
+    </author>
+    <author>
+      <name>Shuowen Zhang</name>
+    </author>
+    <author>
+      <name>Haijun Zhang</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2508.11295v1</id>
+    <title>Optimizing Rate-CRB Performance for Beyond Diagonal Reconfigurable Intelligent Surface Enabled ISAC</title>
+    <updated>2025-08-15T08:03:31Z</updated>
+    <link href="https://arxiv.org/abs/2508.11295v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2508.11295v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>This letter considers a beyond diagonal reconfigurable intelligent surface (BD-RIS) aided integrated sensing and communication (ISAC) system, where the BD-RIS can help a multi-antenna base station (BS) serve multiple user equipments (UEs) and localize a target simultaneously. We formulate an optimization problem that designs the BS beamforming matrix and the BD-RIS scattering matrix to maximize UEs' sum rate subject to a localization Cramer-Rao bound (CRB) constraint and an additional unitary matrix constraint for the scattering matrix. Because unitary matrices form a manifold, our problem belongs to constrained manifold optimization. This letter proposes a log-barrier based Riemannian steepest ascent method to solve this problem effectively. Numerical results verify the effectiveness of our algorithm and the performance gain of the BD-RIS aided ISAC systems over the conventional RIS aided ISAC systems.</summary>
+    <category term="eess.SP" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.IT" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2025-08-15T08:03:31Z</published>
+    <arxiv:comment>to appear in IEEE Communications Letters</arxiv:comment>
+    <arxiv:primary_category term="eess.SP"/>
+    <author>
+      <name>Xiaoqi Zhang</name>
+    </author>
+    <author>
+      <name>Liang Liu</name>
+    </author>
+    <author>
+      <name>Shuowen Zhang</name>
+    </author>
+    <author>
+      <name>Weifeng Zhu</name>
+    </author>
+    <author>
+      <name>Haijun Zhang</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2401.01113v1</id>
+    <title>CRB Minimization for RIS-aided mmWave Integrated Sensing and Communications</title>
+    <updated>2024-01-02T09:09:45Z</updated>
+    <link href="https://arxiv.org/abs/2401.01113v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2401.01113v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>In this paper, reconfigurable intelligent surface (RIS) is employed in a millimeter wave (mmWave) integrated sensing and communications (ISAC) system. To alleviate the multi-hop attenuation, the semi-self sensing RIS approach is adopted, wherein sensors are configured at the RIS to receive the radar echo signal. Focusing on the estimation accuracy, the Cramer-Rao bound (CRB) for estimating the direction-of-the-angles is derived as the metric for sensing performance. A joint optimization problem on hybrid beamforming and RIS phaseshifts is proposed to minimize the CRB, while maintaining satisfactory communication performance evaluated by the achievable data rate. The CRB minimization problem is first transformed as a more tractable form based on Fisher information matrix (FIM). To solve the complex non-convex problem, a double layer loop algorithm is proposed based on penalty concave-convex procedure (penalty-CCCP) and block coordinate descent (BCD) method with two sub-problems. Successive convex approximation (SCA) algorithm and second order cone (SOC) constraints are employed to tackle the non-convexity in the hybrid beamforming optimization. To optimize the unit modulus constrained analog beamforming and phase shifts, manifold optimization (MO) is adopted. Finally, the numerical results verify the effectiveness of the proposed CRB minimization algorithm, and show the performance improvement compared with other baselines. Additionally, the proposed hybrid beamforming algorithm can achieve approximately 96% of the sensing performance exhibited by the full digital approach within only a limited number of radio frequency (RF) chains.</summary>
+    <category term="eess.SP" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2024-01-02T09:09:45Z</published>
+    <arxiv:primary_category term="eess.SP"/>
+    <author>
+      <name>Wanting Lyu</name>
+    </author>
+    <author>
+      <name>Songjie Yang</name>
+    </author>
+    <author>
+      <name>Yue Xiu</name>
+    </author>
+    <author>
+      <name>Ya Li</name>
+    </author>
+    <author>
+      <name>Hongjun He</name>
+    </author>
+    <author>
+      <name>Chau Yuen</name>
+    </author>
+    <author>
+      <name>Zhongpei Zhang</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2306.10865v1</id>
+    <title>Full-Duplex-Enabled Joint Communications and Sensing with Reconfigurable Intelligent Surfaces</title>
+    <updated>2023-06-19T11:32:14Z</updated>
+    <link href="https://arxiv.org/abs/2306.10865v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2306.10865v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>The full-duplex (FD) technology has the potential to radically evolve wireless systems, facilitating the integration of both communications and radar functionalities into a single device, thus, enabling joint communication and sensing (JCAS). In this paper, we present a novel approach for JCAS that incorporates a reconfigurable intelligent surface (RIS) in the near-field of an FD multiple-input multiple-output (MIMO) node, which is jointly optimized with the digital beamformers to enable JSAC and efficiently handle self-interference (SI). We propose a novel problem formulation for FD MIMO JCAS systems to jointly minimize the total received power at the FD node's radar receiver while maximizing the sum rate of downlink communications subject to a Cramér-Rao bound (CRB) constraint. In contrast to the typically used CRB in the relevant literature, we derive a novel, more accurate, target estimation bound that fully takes into account the RIS deployment. The considered problem is solved using alternating optimization, which is guaranteed to converge to a local optimum. The simulation results demonstrate that the proposed scheme achieves significant performance improvement both for communications and sensing. It is showcased that, jointly designing the FD MIMO beamformers and the RIS phase configuration to be SI aware can significantly loosen the requirement for additional SI cancellation.</summary>
+    <category term="cs.IT" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="eess.SP" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2023-06-19T11:32:14Z</published>
+    <arxiv:primary_category term="cs.IT"/>
+    <author>
+      <name>Chandan Kumar Sheemar</name>
+    </author>
+    <author>
+      <name>George C. Alexandropoulos</name>
+    </author>
+    <author>
+      <name>Dirk Slock</name>
+    </author>
+    <author>
+      <name>Jorge Querol</name>
+    </author>
+    <author>
+      <name>Symeon Chatzinotas</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2601.09484v1</id>
+    <title>Echo-Side Integrated Sensing and Communication via Space-Time Reconfigurable Intelligent Surfaces</title>
+    <updated>2026-01-14T13:45:27Z</updated>
+    <link href="https://arxiv.org/abs/2601.09484v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2601.09484v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>This paper presents an echo-side modulation framework for integrated sensing and communication (ISAC) systems. A space-time reconfigurable intelligent surface (ST-RIS) impresses a continuous-phase modulation onto the radar echo, enabling uplink data transmission with a phase modulation of the transmitted radar-like waveform. The received signal is a multiplicative composition of the sensing waveform and the phase for communication. Both functionalities share the same physical signal and perceive each other as impairments.
+  The achievable communication rate is expressed as a function of a coupling parameter that links sensing accuracy to phase error accumulation. Under a fixed bandwidth constraint, the sensing and communication figures of merit define a convex Pareto frontier. The optimal bandwidth allocation satisfying a minimum sensing requirement is derived in closed form. The modified Cramer-Rao bound (MCRB) for range estimation is derived in closed form; this parameter must be estimated to compensate for the frequency offset before data demodulation. Frame synchronization is formulated as a generalized likelihood ratio test (GLRT), and the detection probability is obtained through characteristic function inversion, accounting for residual frequency errors from imperfect range estimation. Numerical results validate the theoretical bounds and characterize the trade-off across the operating range.</summary>
+    <category term="eess.SP" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="eess.SY" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-01-14T13:45:27Z</published>
+    <arxiv:primary_category term="eess.SP"/>
+    <author>
+      <name>Marouan Mizmizi</name>
+    </author>
+    <author>
+      <name>Stefano Tebaldini</name>
+    </author>
+    <author>
+      <name>Umberto Spagnolini</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2401.03852v1</id>
+    <title>Joint 3D User and 6D Hybrid Reconfigurable Intelligent Surface Localization</title>
+    <updated>2024-01-08T12:31:01Z</updated>
+    <link href="https://arxiv.org/abs/2401.03852v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2401.03852v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>The latest assessments of the emerging technologies for reconfigurable intelligent surfaces (RISs) have indicated the concept's significant potential for localization and sensing, either as individual or simultaneously realized tasks. However, in the vast majority of those studies, the RIS state (i.e., its position and rotation angles) is required to be known a priori. In this paper, we address the problem of the joint three-dimensional (3D) localization of a hybrid RIS (HRIS) and a user. The most cost- and power-efficient hybrid version of an RIS is equipped with a single reception radio-frequency chain and meta-atoms capable of simultaneous reconfigurable reflection and sensing. This dual functionality is controlled by adjustable power splitters embedded at each hybrid meta-atom. Focusing on a downlink scenario where a multi-antenna base station transmits multicarrier signals to a user via an HRIS, we propose a multistage approach to jointly estimate the metasurface's 3D position and 3D rotation matrix (i.e., 6D parameter estimation) as well as the user's 3D position. Our simulation results verify the validity of the proposed estimator via extensive comparisons of the root-mean-square error of the state estimations with the Cramér-Rao lower bound (CRB), which is analytically derived. Furthermore, it is showcased that there exists an optimal hybrid reconfigurable intelligent surface (HRIS) power splitting ratio for the desired multi-parameter estimation problem. We also study the robustness of the proposed method in the presence of scattering points in the wireless propagation environment.</summary>
+    <category term="cs.IT" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.ET" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2024-01-08T12:31:01Z</published>
+    <arxiv:comment>14 pages, 6 figures, IEEE Transactions Journal</arxiv:comment>
+    <arxiv:primary_category term="cs.IT"/>
+    <author>
+      <name>Reza Ghazalian</name>
+    </author>
+    <author>
+      <name>George C. Alexandropoulos</name>
+    </author>
+    <author>
+      <name>Gonzalo Seco-Granados</name>
+    </author>
+    <author>
+      <name>Henk Wymeersch</name>
+    </author>
+    <author>
+      <name>Riku Jäntti</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2604.10120v2</id>
+    <title>Bistatic Integrated Sensing and Communication in the Presence of a Disco Reconfigurable Intelligent Surface: Disruption, Enhancement, or Both?</title>
+    <updated>2026-07-05T06:40:43Z</updated>
+    <link href="https://arxiv.org/abs/2604.10120v2" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2604.10120v2" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Integrated sensing and communication (ISAC) is widely regarded as one of the key enabling technologies for future sixth-generation (6G) wireless communication systems. In this work, we investigate a bistatic ISAC system in the presence of a disco reconfigurable intelligent surface (DRIS), whose random and time-varying reflection coefficients emulate a "disco ball." The introduction of the DRIS breaks the underlying assumption in existing ISAC systems that the sensing and communication channels remain static or quasi-static within the channel coherence time. We first develop a bistatic system model incorporating the DRIS and characterize all involved wireless channels. Then, an ISAC waveform design that balances sensing and communication performance is proposed by formulating a Pareto optimization problem, where the trade-off is controlled through a tunable factor. Communication and sensing performance in the bistatic ISAC system are quantified by the signal-to-interference-plus-noise ratio (SINR) and the Cramer-Rao lower bound (CRLB), respectively. To quantify the impact of the DRIS on the bistatic ISAC system, we derive the statistical characteristics of DRIS-induced active channel aging (ACA) channels for communications and the cascaded DRIS-based sensing channel. Then, we establish a theoretical lower bound on the SINR and closed-form CRLB expressions in the presence of a DRIS. The analysis reveals several distinctive properties of the DRIS in bistatic ISAC systems. In particular, the DRIS degrades communication performance significantly due to the introduction of ACA interference. In contrast, with respect to sensing performance, the DRIS decreases the estimation accuracy of the angle of departure (AoD) while concurrently enhancing that of the angle of arrival (AoA). Numerical results validate the derived theoretical analysis and confirm these DRIS-induced behaviors.</summary>
+    <category term="eess.SP" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-04-11T09:30:04Z</published>
+    <arxiv:comment>This manuscript has been submitted for possible publication</arxiv:comment>
+    <arxiv:primary_category term="eess.SP"/>
+    <author>
+      <name>Huan Huang</name>
+    </author>
+    <author>
+      <name>Hongliang Zhang</name>
+    </author>
+    <author>
+      <name>Weidong Mei</name>
+    </author>
+    <author>
+      <name>Minghui Min</name>
+    </author>
+    <author>
+      <name>Zhu Han</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2304.11884v1</id>
+    <title>Variational Bayesian Multiuser Tracking for Reconfigurable Intelligent Surface Aided MIMO-OFDM Systems</title>
+    <updated>2023-04-24T07:51:59Z</updated>
+    <link href="https://arxiv.org/abs/2304.11884v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2304.11884v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Reconfigurable intelligent surface (RIS) has attracted enormous interest for its potential advantages in assisting both wireless communication and environmental sensing. In this paper, we study a challenging multiuser tracking problem in the multiple-input multiple-output (MIMO) orthogonal frequency division multiplexing (OFDM) system aided by multiple RISs. In particular, we assume that a multi-antenna base station (BS) receives the OFDM symbols from single-antenna users reflected by multiple RISs and tracks the positions of these users. Considering the users' mobility and the blockage of light-of-sight (LoS) paths, we establish a probability transition model to characterize the tracking process, where the geometric constraints between channel parameters and multiuser positions are utilized. We further develop an online message passing algorithm, termed the Bayesian multiuser tracking (BMT) algorithm, to estimate the multiuser positions, the angles-of-arrivals (AoAs) at multiple RISs, and the time delay and the blockage of the LoS path. The Bayesian Cramer Rao bound (BCRB) is derived as the fundamental performance limit of the considered tracking problem. Based on the BCRB, we optimize the passive beamforming (PBF) of the multiple RISs to improve the tracking performance. Simulation results show that the proposed PBF design significantly outperforms the counterpart schemes, and our BMT algorithm can achieve up to centimeter-level tracking accuracy.</summary>
+    <category term="eess.SP" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2023-04-24T07:51:59Z</published>
+    <arxiv:primary_category term="eess.SP"/>
+    <author>
+      <name>Boyu Teng</name>
+    </author>
+    <author>
+      <name>Xiaojun Yuan</name>
+    </author>
+    <author>
+      <name>Rui Wang</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2301.11134v2</id>
+    <title>SNR/CRB-Constrained Joint Beamforming and Reflection Designs for RIS-ISAC Systems</title>
+    <updated>2025-02-13T23:10:55Z</updated>
+    <link href="https://arxiv.org/abs/2301.11134v2" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2301.11134v2" rel="related" type="application/pdf" title="pdf"/>
+    <summary>In this paper, we investigate the integration of integrated sensing and communication (ISAC) and reconfigurable intelligent surfaces (RIS) for providing wide-coverage and ultra-reliable communication and high-accuracy sensing functions. In particular, we consider an RIS-assisted ISAC system in which a multi-antenna base station (BS) simultaneously performs multi-user multi-input single-output (MU-MISO) communications and radar sensing with the assistance of an RIS. We focus on both target detection and parameter estimation performance in terms of the signal-to-noise ratio (SNR) and Cramer-Rao bound (CRB), respectively. Two optimization problems are formulated for maximizing the achievable sum-rate of the multi-user communications under an SNR constraint for target detection or a CRB constraint for parameter estimation, the transmit power budget, and the unit-modulus constraint of the RIS reflection coefficients. Efficient algorithms are developed to solve these two complicated non-convex problems. Extensive simulation results demonstrate the advantages of the proposed joint beamforming and reflection designs compared with other schemes. In addition, it is shown that more RIS reflection elements bring larger performance gains for direct-of-arrival (DoA) estimation than for target detection.</summary>
+    <category term="eess.SP" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2023-01-26T14:39:24Z</published>
+    <arxiv:comment>accepted by IEEE TWC</arxiv:comment>
+    <arxiv:primary_category term="eess.SP"/>
+    <arxiv:journal_ref>IEEE Trans. Wireless Commun., vol. 23, no. 7, pp. 7456-7470, Jul. 2024</arxiv:journal_ref>
+    <author>
+      <name>Rang Liu</name>
+    </author>
+    <author>
+      <name>Ming Li</name>
+    </author>
+    <author>
+      <name>Qian Liu</name>
+    </author>
+    <author>
+      <name>A. Lee Swindlehurst</name>
+    </author>
+    <arxiv:doi>10.1109/TWC.2023.3341429</arxiv:doi>
+    <link rel="related" href="https://doi.org/10.1109/TWC.2023.3341429" title="doi"/>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2504.18846v1</id>
+    <title>Tracking-Aided Multi-User MIMO Communications with Hybrid Reconfigurable Intelligent Surfaces</title>
+    <updated>2025-04-26T08:18:37Z</updated>
+    <link href="https://arxiv.org/abs/2504.18846v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2504.18846v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Hybrid Reconfigurable Intelligent Surfaces (HRISs) constitute a new paradigm that redefines smart metasurfaces, not only offering tunable reflections of incoming signals, but also incorporating signal reception and processing capabilities. In this paper, leveraging the simultaneous dual-functionality of HRISs, we propose a novel framework for tracking-aided multi-user Multiple-Input Multiple-Output (MIMO) communications. In particular, a joint design of the transmit multi-user precoding matrix together with the HRIS reflection and analog combining configurations is presented, with the objective to maximize the accuracy of position estimation of multiple mobile users while meeting their individual quality-of-service constraints for sensing-aided communications. The Cramer-Rao bound for the users' positioning parameters is derived together with a prediction approach based on the extended Kalman filter. Our simulation results showcase the efficacy of the proposed Integrated Sensing And Communications (ISAC) framework over various system configuration parameters.</summary>
+    <category term="eess.SP" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2025-04-26T08:18:37Z</published>
+    <arxiv:comment>6 pages, 2 figures</arxiv:comment>
+    <arxiv:primary_category term="eess.SP"/>
+    <author>
+      <name>Ioannis Gavras</name>
+    </author>
+    <author>
+      <name>George C. Alexandropoulos</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2309.09207v2</id>
+    <title>Cramer-Rao Bound Optimization for Active RIS-Empowered ISAC Systems</title>
+    <updated>2024-04-01T06:24:21Z</updated>
+    <link href="https://arxiv.org/abs/2309.09207v2" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2309.09207v2" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Integrated sensing and communication (ISAC), which simultaneously performs sensing and communication functions within a shared frequency band and hardware platform, has emerged as a promising technology for future wireless systems. Nevertheless, the weak echo signal received by the low-sensitivity ISAC receiver significantly constrains sensing performance in scenarios involving obstructed targets. Active reconfigurable intelligent surface (RIS) has become a prospective solution by situationally manipulating the wireless propagations and amplifying the signals. In this paper, we investigate active RIS-empowered ISAC systems to enhance radar echo signal quality as well as communication performance. In particular, we focus on the joint design of the base station (BS) transmit precoding and the active RIS reflection beamforming to optimize the parameter estimation performance in terms of Cramer-Rao bound (CRB) subject to the communication users' signal-to-interference-plus-noise ratio (SINR) requirements. An efficient algorithm based on alternating optimization, semidefinite relaxation (SDR), and majorization-minimization (MM) is proposed to solve the formulated challenging non-convex problem. Finally, simulation results validate the effectiveness of the developed algorithm and the potential of employing active RIS in ISAC systems to enhance direct-of-arrival (DoA) estimation performance.</summary>
+    <category term="eess.SP" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2023-09-17T08:24:25Z</published>
+    <arxiv:comment>13 pages, 10 figures, accepted by IEEE TWC</arxiv:comment>
+    <arxiv:primary_category term="eess.SP"/>
+    <author>
+      <name>Qi Zhu</name>
+    </author>
+    <author>
+      <name>Ming Li</name>
+    </author>
+    <author>
+      <name>Rang Liu</name>
+    </author>
+    <author>
+      <name>Qian Liu</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2407.15570v3</id>
+    <title>Hybrid STAR-RIS Enabled Integrated Sensing and Communication</title>
+    <updated>2025-03-01T10:43:43Z</updated>
+    <link href="https://arxiv.org/abs/2407.15570v3" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2407.15570v3" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Integrated sensing and communication (ISAC) is recognized as one of the key enabling technologies for sixth-generation (6G) wireless communication networks, facilitating diverse emerging applications and services in an energy and cost-efficient manner. This paper proposes a multi-user multi-target ISAC system to enable full-space coverage for communication and sensing tasks. The proposed system employs a hybrid simultaneous transmission and reflection reconfigurable intelligent surface (STAR-RIS) comprising active transmissive and passive reflective elements. In the proposed scheme, the passive reflective elements support communication and sensing links for local communication users and sensing targets situated within the same physical region as the base station (BS), while low-power active transmissive elements are deployed to improve sensing performance and overcome high path attenuation due to multi-hop transmission for distant communication users and sensing targets situated far from of the coverage area of the BS. Moreover, to optimize the transmissive/reflective coefficients of the hybrid STAR-RIS, a semi-definite relaxation (SDR)-based algorithm is proposed. Furthermore, to evaluate communication and sensing performance, signal-to-interference-noise ratio (SINR) and Cramer-Rao bound (CRB) metrics have been derived and investigated via conducting extensive computer simulations.</summary>
+    <category term="cs.IT" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="eess.SP" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2024-07-22T11:55:39Z</published>
+    <arxiv:comment>accepted by IEEE Transactions on Communications</arxiv:comment>
+    <arxiv:primary_category term="cs.IT"/>
+    <author>
+      <name>Zehra Yigit</name>
+    </author>
+    <author>
+      <name>Ertugrul Basar</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2404.12604v2</id>
+    <title>Transmitter Side Beyond-Diagonal RIS for mmWave Integrated Sensing and Communications</title>
+    <updated>2024-04-26T02:44:05Z</updated>
+    <link href="https://arxiv.org/abs/2404.12604v2" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2404.12604v2" rel="related" type="application/pdf" title="pdf"/>
+    <summary>This work initiates the study of a beyond-diagonal reconfigurable intelligent surface (BD-RIS)-aided transmitter architecture for integrated sensing and communication (ISAC) in the millimeter-wave (mmWave) frequency band. Deploying BD-RIS at the transmitter side not only alleviates the need for extensive fully digital radio frequency (RF) chains but also enhances both communication and sensing performance. These benefits are facilitated by the additional design flexibility introduced by the fully-connected scattering matrix of BD-RIS. To achieve the aforementioned benefits, in this work, we propose an efficient two-stage algorithm to design the digital beamforming of the transmitter and the scattering matrix of the BD-RIS with the aim of jointly maximizing the sum rate for multiple communication users and minimizing the largest eigenvalue of the Cramer-Rao bound (CRB) matrix for multiple sensing targets. Numerical results show that the transmitter-side BD-RIS-aided mmWave ISAC outperforms the conventional diagonal-RIS-aided ones in both communication and sensing performance.</summary>
+    <category term="cs.IT" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="eess.SP" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2024-04-19T03:15:31Z</published>
+    <arxiv:primary_category term="cs.IT"/>
+    <author>
+      <name>Kexin Chen</name>
+    </author>
+    <author>
+      <name>Yijie Mao</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2602.18018v1</id>
+    <title>Joint Multi-User Tracking and Signal Detection in Reconfigurable Intelligent Surface-Assisted Cell-Free ISAC Systems</title>
+    <updated>2026-02-20T06:17:46Z</updated>
+    <link href="https://arxiv.org/abs/2602.18018v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2602.18018v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>This paper investigates the cell-free multi-user integrated sensing and communication (ISAC) system, where multiple base stations collaboratively track the users and detect their signals. Moreover, reconfigurable intelligent surfaces (RISs) are deployed to serve as additional reference nodes to overcome the line-of-sight blockage issue of mobile users for accomplishing seamless sensing. Due to the high-speed user mobility, the multi-user tracking and signal detection performance can be significantly deteriorated without elaborated online user kinematic state updating principles. To tackle this challenge, we first manage to establish a probabilistic signal model to comprehensively characterize the interdependencies among user states, transmit signals, and received signals during the tracking procedure. Based on the Bayesian problem formulation, we further propose a novel hybrid variational message passing (HVMP) algorithm to realize computationally efficient joint estimation of user states and transmit signals in an online manner, which integrates VMP and standard MP to derive the posterior probabilities of estimated variables. Furthermore, the Bayesian Cramer-Rao bound is provided to characterize the performance limit of the multi-user tracking problem, which is also utilized to optimize RIS phase profiles for tracking performance enhancement. Numerical results demonstrate that the proposed algorithm can significantly improve both tracking and signal detection performance over the representative Bayesian estimation counterparts.</summary>
+    <category term="eess.SP" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.IT" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-02-20T06:17:46Z</published>
+    <arxiv:primary_category term="eess.SP"/>
+    <author>
+      <name>Weifeng Zhu</name>
+    </author>
+    <author>
+      <name>Junyuan Gao</name>
+    </author>
+    <author>
+      <name>Shuowen Zhang</name>
+    </author>
+    <author>
+      <name>Meixia Tao</name>
+    </author>
+    <author>
+      <name>Liang Liu</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2501.12353v1</id>
+    <title>Sum Rate Enhancement using Machine Learning for Semi-Self Sensing Hybrid RIS-Enabled ISAC in THz Bands</title>
+    <updated>2025-01-21T18:32:40Z</updated>
+    <link href="https://arxiv.org/abs/2501.12353v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2501.12353v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>This paper proposes a novel semi-self sensing hybrid reconfigurable intelligent surface (SS-HRIS) in terahertz (THz) bands, where the RIS is equipped with reflecting elements divided between passive and active elements in addition to sensing elements. SS-HRIS along with integrated sensing and communications (ISAC) can help to mitigate the multipath attenuation that is abundant in THz bands. In our proposed scheme, sensors are configured at the SS-HRIS to receive the radar echo signal from a target. A joint base station (BS) beamforming and HRIS precoding matrix optimization problem is proposed to maximize the sum rate of communication users while maintaining satisfactory sensing performance measured by the Cramer-Rao bound (CRB) for estimating the direction of angles of arrival (AoA) of the echo signal and thermal noise at the target. The CRB expression is first derived and the sum rate maximization problem is formulated subject to communication and sensing performance constraints. To solve the complex non-convex optimization problem, deep deterministic policy gradient (DDPG)-based deep reinforcement learning (DRL) algorithm is proposed, where the reward function, the action space and the state space are modeled. Simulation results show that the proposed DDPG-based DRL algorithm converges well and achieves better performance than several baselines, such as the soft actor-critic (SAC), proximal policy optimization (PPO), greedy algorithm and random BS beamforming and HRIS precoding matrix schemes. Moreover, it demonstrates that adopting HRIS significantly enhances the achievable sum rate compared to passive RIS and random BS beamforming and HRIS precoding matrix schemes.</summary>
+    <category term="eess.SP" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2025-01-21T18:32:40Z</published>
+    <arxiv:primary_category term="eess.SP"/>
+    <author>
+      <name>Sara Farrag Mobarak</name>
+    </author>
+    <author>
+      <name>Tingnan Bao</name>
+    </author>
+    <author>
+      <name>Melike Erol-Kantarci</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2603.26101v1</id>
+    <title>Joint Sensing and Covert Communications in RIS-NOMA Systems</title>
+    <updated>2026-03-27T06:17:07Z</updated>
+    <link href="https://arxiv.org/abs/2603.26101v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2603.26101v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>A reconfigurable intelligent surface (RIS)-assisted non-orthogonal multiple access (NOMA) system is investigated, where the transmitter (Alice) is a dual functional radar communication (DFRC) base station (BS) that aims to sense the location of a potential warden (Willie), while simultaneously transmitting public and covert signals to the legitimate users, Carol and Bob, respectively. Both cases of known and unknown Willie locations are considered. For the known-location case, assuming perfect channel state information (CSI) at Willie, a covert rate maximization is formulated with the joint optimization of active and passive beamforming, which is solved using successive convex approximation (SCA), penalty method, and semidefinite relaxation (SDR). For the unknown-location case, we propose to estimate Willie's location via radar sensing and develop a sensing-based imperfect CSI model. In particular, the CSI error uncertainty is bounded by the sensing accuracy, which is characterized by the Cramer-Rao bound (CRB). Subsequently, a robust communication rate maximization problem is formulated under the constraints on quality-of-service (QoS) of Carol, sensing accuracy, and covertness level. The Schur complement and S-procedure are employed to handle the non-convex constraints. Numerical results compare the system performance under the two cases, and demonstrate the significant covert performance superiority of the sensing-based imperfect CSI model and NOMA over the general norm-bounded imperfect CSI model and the orthogonal multiple access scheme. Furthermore, the dual yet contradictory effects of sensing on covert communications are revealed. It is also found that Alice primarily utilizes Carol's signal for sensing, while allocating almost all of Bob's signal for communication.</summary>
+    <category term="eess.SP" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-03-27T06:17:07Z</published>
+    <arxiv:primary_category term="eess.SP"/>
+    <author>
+      <name>Jiayi Lei</name>
+    </author>
+    <author>
+      <name>Xidong Mu</name>
+    </author>
+    <author>
+      <name>Tiankui Zhang</name>
+    </author>
+    <author>
+      <name>Wenjun Xu</name>
+    </author>
+    <author>
+      <name>Ping Zhang</name>
+    </author>
+    <arxiv:doi>10.1109/JSAC.2025.3638292</arxiv:doi>
+    <link rel="related" href="https://doi.org/10.1109/JSAC.2025.3638292" title="doi"/>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2206.13915v2</id>
+    <title>Bi-Static Sensing for Near-Field RIS Localization</title>
+    <updated>2022-07-08T09:47:55Z</updated>
+    <link href="https://arxiv.org/abs/2206.13915v2" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2206.13915v2" rel="related" type="application/pdf" title="pdf"/>
+    <summary>We address the localization of a reconfigurable intelligent surface (RIS) for a single-input single-output multi-carrier system using bi-static sensing between a fixed transmitter and a fixed receiver. Due to the deployment of RISs with a large dimension, near-field (NF) scenarios are likely to occur, especially for indoor applications, and are the focus of this work. We first derive the Cramer-Rao bounds (CRBs) on the estimation error of the RIS position and orientation and the time of arrival (TOA) for the path transmitter-RIS-receiver. We propose a multi-stage low-complexity estimator for RIS localization purposes. In this proposed estimator, we first perform a line search to estimate the TOA. Then, we use the far-field approximation of the NF signal model to implicitly estimate the angle of arrival and the angle of departure at the RIS center. Finally, the RIS position and orientation estimate are refined via a quasi-Newton method. Simulation results reveal that the proposed estimator can attain the CRBs. We also investigate the effects of several influential factors on the accuracy of the proposed estimator like the RIS size, transmitted power, system bandwidth, and RIS position and orientation.</summary>
+    <category term="eess.SP" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2022-06-28T11:48:36Z</published>
+    <arxiv:primary_category term="eess.SP"/>
+    <author>
+      <name>Reza Ghazalian</name>
+    </author>
+    <author>
+      <name>Kamran Keykhosravi</name>
+    </author>
+    <author>
+      <name>Hui Chen</name>
+    </author>
+    <author>
+      <name>Henk Wymeersch</name>
+    </author>
+    <author>
+      <name>Riku Jäntti</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2607.28081v1</id>
+    <title>Beamforming and Phase Shift Design for STAR-RIS Assisted Secure Sensing and Communication in ISAC Systems</title>
+    <updated>2026-07-30T11:52:08Z</updated>
+    <link href="https://arxiv.org/abs/2607.28081v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2607.28081v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Integrated sensing and communication(ISAC), as a rapidly advancing technique, introduces a fresh approach for achieving secure communication and intelligent sensing for future wireless networks. An ISAC framework empowered by simultaneously transmitting and reflecting reconfigurable intelligent surfaces(STAR-RIS) is explored in this paper, where a base station equipped with multiple antennas establishes wireless links to users each with a single antenna during the detection of a point target. The point target, regarded as an eavesdropper, trying to intercept users' information. Cramer-Rao bound(CRB) serves as evaluation criterion to assess sensing accuracy of point eavesdropper, whereas the secrecy rate is employed to quantify the security level of the communication link. To optimize sensing-communication tradeoff, a joint optimization problem is constructed. To approach the formulated problem, a hybrid Block Coordinate Descent(BCD)-based algorithm is developed, which alternately updates the transmission beamforming and STAR-RIS phase shifts, using successive convex approximation(SCA) technique, penalty dual decomposition (PDD) framework and projected gradient method(PGM).</summary>
+    <category term="eess.SP" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-07-30T11:52:08Z</published>
+    <arxiv:primary_category term="eess.SP"/>
+    <arxiv:journal_ref>H. Zhang, S. Wu, X. Zhang, Z. Wu, X. Ma and Y. Ren, IEEE Journal on Selected Areas in Communications, 2026, 44: 4037-4050</arxiv:journal_ref>
+    <author>
+      <name>Haijun Zhang</name>
+    </author>
+    <author>
+      <name>Shuqing Wu</name>
+    </author>
+    <author>
+      <name>Xiaoqi Zhang</name>
+    </author>
+    <author>
+      <name>Zijun Wu</name>
+    </author>
+    <author>
+      <name>Xu Ma</name>
+    </author>
+    <author>
+      <name>Yuzheng Ren</name>
+    </author>
+    <arxiv:doi>10.1109/JSAC.2026.3669467</arxiv:doi>
+    <link rel="related" href="https://doi.org/10.1109/JSAC.2026.3669467" title="doi"/>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2305.00135v1</id>
+    <title>Joint Sensing, Communication, and AI: A Trifecta for Resilient THz User Experiences</title>
+    <updated>2023-04-29T00:39:50Z</updated>
+    <link href="https://arxiv.org/abs/2305.00135v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2305.00135v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>In this paper a novel joint sensing, communication, and artificial intelligence (AI) framework is proposed so as to optimize extended reality (XR) experiences over terahertz (THz) wireless systems. The proposed framework consists of three main components. First, a tensor decomposition framework is proposed to extract unique sensing parameters for XR users and their environment by exploiting then THz channel sparsity. Essentially, THz band's quasi-opticality is exploited and the sensing parameters are extracted from the uplink communication signal, thereby allowing for the use of the same waveform, spectrum, and hardware for both communication and sensing functionalities. Then, the Cramer-Rao lower bound is derived to assess the accuracy of the estimated sensing parameters. Second, a non-autoregressive multi-resolution generative artificial intelligence (AI) framework integrated with an adversarial transformer is proposed to predict missing and future sensing information. The proposed framework offers robust and comprehensive historical sensing information and anticipatory forecasts of future environmental changes, which are generalizable to fluctuations in both known and unforeseen user behaviors and environmental conditions. Third, a multi-agent deep recurrent hysteretic Q-neural network is developed to control the handover policy of reconfigurable intelligent surface (RIS) subarrays, leveraging the informative nature of sensing information to minimize handover cost, maximize the individual quality of personal experiences (QoPEs), and improve the robustness and resilience of THz links. Simulation results show a high generalizability of the proposed unsupervised generative AI framework to fluctuations in user behavior and velocity, leading to a 61 % improvement in instantaneous reliability compared to schemes with known channel state information.</summary>
+    <category term="cs.NI" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.IT" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2023-04-29T00:39:50Z</published>
+    <arxiv:primary_category term="cs.NI"/>
+    <author>
+      <name>Christina Chaccour</name>
+    </author>
+    <author>
+      <name>Walid Saad</name>
+    </author>
+    <author>
+      <name>Merouane Debbah</name>
+    </author>
+    <author>
+      <name>H. Vincent Poor</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2601.17320v3</id>
+    <title>RIS-Enabled Spoofing Against Adversary Sensing: CRB-Maximizing Design and Decoying Analysis</title>
+    <updated>2026-01-29T08:27:16Z</updated>
+    <link href="https://arxiv.org/abs/2601.17320v3" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2601.17320v3" rel="related" type="application/pdf" title="pdf"/>
+    <summary>This paper studies the capability of a Reconfigurable Intelligent Surface (RIS), when transparently covering a User Equipment (UE), to deceive an adversary monostatic radar system. A compact RIS kernel model that explicitly links the radar's angular response to the RIS phase profile is introduced, enabling an analytical investigation of the Angle of Arrival (AoA) estimation accuracy with respect to the kernel's power. This model is also leveraged to formulate an RIS-based spoofing design with the dual objective to enforce strict nulls around the UE's true reflection AoA and maximize the channel gain towards a decoy direction. The RIS's deception capability is quantified using point-wise and angle-range robust criteria, and a configuration-independent placement score guiding decoy selection is proposed. Selected numerical results confirm deep nulls at the true reflection AoA together with a pronounced decoy peak, rendering maximum-likelihood sensing at the adversary radar unreliable.</summary>
+    <category term="eess.SP" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-01-24T05:59:00Z</published>
+    <arxiv:comment>6 pages, 4 figures</arxiv:comment>
+    <arxiv:primary_category term="eess.SP"/>
+    <author>
+      <name>Ioannis Gavras</name>
+    </author>
+    <author>
+      <name>Giuseppe Thadeu Freitas de Abreu</name>
+    </author>
+    <author>
+      <name>George C. Alexandropoulos</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2509.26333v1</id>
+    <title>Transmitter-Side Beyond-Diagonal RIS-Enabled Integrated Sensing and Communications</title>
+    <updated>2025-09-30T14:43:27Z</updated>
+    <link href="https://arxiv.org/abs/2509.26333v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2509.26333v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Beyond diagonal reconfigurable intelligent surfaces (BD-RIS) have emerged as a promising technology for 6G wireless networks, offering more advanced control over electromagnetic wave propagation than conventional diagonal RIS. This paper proposes a novel integrated sensing and communication (ISAC) framework that incorporates BD-RIS at the transmitter. This not only opens the door to enhanced sensing and communication performance, but also alleviates the need for large-scale fully digital radio frequency (RF) chains at the transmitter. Based on the proposed system model, we formulate a normalized weighted optimization problem to jointly design the active beamforming and the BD-RIS scattering matrix with the aim of jointly minimizing the trace of the Cramér-Rao bound (CRB) for sensing targets and maximizing the sum rate (SR) for communication users. To address this highly coupled optimization problem, we propose a novel and low-complexity iterative algorithm that efficiently solves the active beamforming and scattering matrix subproblems by transforming each into a series of tractable projection problems with closed-form solutions. Numerical results show the appealing capability of the transmitter-side BD-RIS-aided ISAC over conventional diagonal RIS-aided ISAC in enhancing both sensing and communication performance. Moreover, compared to the classic iterative algorithm, the proposed algorithm offers enhanced dual-functional performance while significantly reducing the computational complexity.</summary>
+    <category term="eess.SP" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2025-09-30T14:43:27Z</published>
+    <arxiv:primary_category term="eess.SP"/>
+    <author>
+      <name>Kexin Chen</name>
+    </author>
+    <author>
+      <name>Yijie Mao</name>
+    </author>
+    <author>
+      <name>Wonjae Shin</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2401.13882v2</id>
+    <title>Robust Transmission Design for RIS-Assisted Integrated Sensing and Communication Systems</title>
+    <updated>2024-07-26T02:01:43Z</updated>
+    <link href="https://arxiv.org/abs/2401.13882v2" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2401.13882v2" rel="related" type="application/pdf" title="pdf"/>
+    <summary>As a critical technology for next-generation communication networks, integrated sensing and communication (ISAC) aims to achieve the harmonious coexistence of communication and sensing. The degrees-of-freedom (DoF) of ISAC is limited due to multiple performance metrics used for communication and sensing. Reconfigurable Intelligent Surfaces (RIS) composed of metamaterials can enhance the DoF in the spatial domain of ISAC systems. However, the availability of perfect Channel State Information (CSI) is a prerequisite for the gain brought by RIS, which is not realistic in practical environments. Therefore, under the imperfect CSI condition, we propose a decomposition-based large deviation inequality approach to eliminate the impact of CSI error on communication rate and sensing Cramér-Rao bound (CRB). Then, an alternating optimization (AO) algorithm based on semi-definite relaxation (SDR) and gradient extrapolated majorization-maximization (GEMM) is proposed to solve the transmit beamforming and discrete RIS beamforming problems. We also analyze the complexity and convergence of the proposed algorithm. Simulation results show that the proposed algorithms can effectively eliminate the influence of CSI error and have good convergence performance. Notably, when CSI error exists, the gain brought by RIS will decrease with the increase of the number of RIS elements. Finally, we summarize and outline future research directions.</summary>
+    <category term="cs.IT" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="eess.SP" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2024-01-25T01:45:58Z</published>
+    <arxiv:comment>This paper has been accepted by IEEE Transactions on Vehicular Technology</arxiv:comment>
+    <arxiv:primary_category term="cs.IT"/>
+    <author>
+      <name>Yongqing Xu</name>
+    </author>
+    <author>
+      <name>Yong Li</name>
+    </author>
+    <author>
+      <name>Tony Q. S. Quek</name>
+    </author>
+    <arxiv:doi>10.1109/TVT.2024.3426042</arxiv:doi>
+    <link rel="related" href="https://doi.org/10.1109/TVT.2024.3426042" title="doi"/>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2601.06809v1</id>
+    <title>RIS-aided ISAC with $K$-Rydberg Atomic Receivers</title>
+    <updated>2026-01-11T08:45:36Z</updated>
+    <link href="https://arxiv.org/abs/2601.06809v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2601.06809v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>In this paper, we investigate a reconfigurable intelligent surface (RIS)-assisted integrated sensing and communications (ISAC) framework equipped with multiple Rydberg atomic receiver (RAR)-aided users. By leveraging the reference-assisted reception mechanism of RARs, we develop a unified signal model that jointly captures downlink multi-user communication with RARs and monostatic radar sensing. To explicitly balance communication performance and sensing accuracy, we formulate a Cramer-Rao bound (CRB)-constrained utility maximization problem. To address these challenges, we propose a joint optimization framework that combines fractional programming (FP), majorization-minimization (MM), and the alternating direction method of multipliers (ADMM). Simulation results demonstrate that the proposed framework consistently outperforms the conventional approach over a wide range of system environments, thereby highlighting the importance of the proposed framework in unlocking the potential of RARs for 6G.</summary>
+    <category term="eess.SP" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-01-11T08:45:36Z</published>
+    <arxiv:comment>13 pages, 5 figures</arxiv:comment>
+    <arxiv:primary_category term="eess.SP"/>
+    <author>
+      <name>Hong-Bae Jeon</name>
+    </author>
+    <author>
+      <name>Chan-Byoung Chae</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2408.08096v1</id>
+    <title>RIS-Aided Bistatic Radar for Rapid NLOS Sensing in the Teraharetz Band</title>
+    <updated>2024-08-15T11:41:47Z</updated>
+    <link href="https://arxiv.org/abs/2408.08096v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2408.08096v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>In this paper, we investigate a non-lineof-sight (NLOS) sensing problem at terahertz frequencies. To be able to observe the targets shadowed by a blockage, we propose a method using reconfigurable intelligent surfaces (RIS). We employ a bistatic radar system and scan the obstructed area with RIS using hierarchical codebooks (HCB). Moreover, we propose an iterative maximum likelihood estimation (MLE) scheme to yield the optimum sensing accuracy, converging to Cramer-Rao lower bound (CRLB). We take band-specific effects such as diffraction and beam squint into account and show that these effects are relevant factors affecting localization performance in RIS-employed radar setups. The results show that under NLOS conditions, the system can still localize all the targets with very good accuracy using the RIS. The initial estimates obtained by the HCBs can provide centimeter-level accuracy, and when the optimal performance is needed, at the cost of a few extra transmissions, the proposed iterative MLE method improves the accuracy to sub-millimeter accuracy, yielding the position error bound.</summary>
+    <category term="eess.SP" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2024-08-15T11:41:47Z</published>
+    <arxiv:comment>14 pages, 14 figures, submitted to IEEE Access</arxiv:comment>
+    <arxiv:primary_category term="eess.SP"/>
+    <author>
+      <name>Furkan H. Ilgac</name>
+    </author>
+    <author>
+      <name>Emrah Cisija</name>
+    </author>
+    <author>
+      <name>Aya Mostafa Ahmed</name>
+    </author>
+    <author>
+      <name>Musa Furkan Keskin</name>
+    </author>
+    <author>
+      <name>Aydin Sezgin</name>
+    </author>
+    <author>
+      <name>Henk Wymeersch</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2609.22314v2</id>
+    <title>Integrated Sensing and Communications: A Tutorial on Mathematical Foundations, Signal Processing and System Design for 6G</title>
+    <updated>2026-09-27T17:28:15Z</updated>
+    <link href="https://arxiv.org/abs/2609.22314v2" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2609.22314v2" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Integrated sensing and communications (ISAC) is a cornerstone of sixth-generation (6G) wireless networks: a single waveform, aperture, and hardware platform simultaneously conveys information and senses the physical environment. Its literature, however, is spread across radar signal processing, estimation and information theory, and wireless communications, which makes it difficult for a newcomer to assemble the full mathematical picture. This tutorial fills that gap. Starting from complex-baseband signal models, we build the required foundations step by step, with self-contained derivations. We develop the sensing toolkit (matched filter, ambiguity function, maximum-likelihood estimation, Fisher information, the Cramér-Rao bound (CRB), and Neyman-Pearson detection) and the communication toolkit (Shannon and MIMO capacity, water-filling, and multiuser precoding), and then unify them into the fundamental limits of ISAC: the CRB-rate region, the capacity-distortion function, and the deterministic-random tradeoff. On these foundations we treat waveform design (OFDM radar with two-dimensional FFT processing, OTFS, and jointly optimized waveforms), transmit beamforming as explicit optimization, including semidefinite relaxation, and receiver-side estimation and detection. We then survey the architectures that scale ISAC to the network level (millimeter-wave and terahertz operation, reconfigurable intelligent surfaces, and cell-free networks), together with applications, standardization, and security. A worked MIMO-OFDM design example with concrete numerology ties the mathematics together. Throughout, notation is unified and tabulated, key results are derived rather than merely cited, and seminal contributions are placed in context, so that the reader finishes with both the mathematical fluency and the literature map required to begin research in ISAC.</summary>
+    <category term="eess.SP" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.NI" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-09-15T13:42:53Z</published>
+    <arxiv:primary_category term="eess.SP"/>
+    <author>
+      <name>Sabit Ekin</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2601.16033v1</id>
+    <title>RIS-Aided Cooperative ISAC Network for Imaging-Based Low-Altitude Surveillance</title>
+    <updated>2026-01-22T15:07:36Z</updated>
+    <link href="https://arxiv.org/abs/2601.16033v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2601.16033v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>The low-altitude economy is integral to the advancement of numerous sectors, necessitating the development of advanced low-altitude surveillance techniques. Nevertheless, conventional methods encounter limitations of high deployment costs and low signal strength. This study proposes a reconfigurable intelligent surface (RIS)-aided cooperative integrated sensing and communication (ISAC) network for low-altitude surveillance. This network employs RISs to reflect ISAC signals into low-altitude space for sensing. To enhance signal strength, we employ active RIS (ARIS) to amplify the signals. Moreover, in order to avoid error propagation and data association in traditional sensing methods, we model low-altitude surveillance as an imaging problem based on compressed sensing theory, which can be solved through the subspace pursuit algorithm. We derive the Cramer-Rao lower bound (CRLB) of the proposed RIS-aided low-altitude imaging system and analyze the impacts of various system parameters on sensing performance, providing guidance for ISAC system configuration. Numerical results show that ARIS outperforms passive RIS under identical power constraints, achieving effective imaging and target detection at altitudes up to 300 meters.</summary>
+    <category term="cs.IT" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-01-22T15:07:36Z</published>
+    <arxiv:comment>Accepted by China Communications</arxiv:comment>
+    <arxiv:primary_category term="cs.IT"/>
+    <author>
+      <name>Zhixin Chen</name>
+    </author>
+    <author>
+      <name>Yixuan Huang</name>
+    </author>
+    <author>
+      <name>Zhengze Ji</name>
+    </author>
+    <author>
+      <name>Jie Yang</name>
+    </author>
+    <author>
+      <name>Shi Jin</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2507.07643v2</id>
+    <title>Exploring the Near and Far-Field Coexistence for RIS-Assisted ISAC Systems: An Adaptive Bandwidth Splitting Approach</title>
+    <updated>2025-11-24T02:19:06Z</updated>
+    <link href="https://arxiv.org/abs/2507.07643v2" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2507.07643v2" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Integrated sensing and communication (ISAC) enables the joint use of spectrum and hardware resources for radar sensing and data transmission, serving as a key enabler of next-generation wireless networks. However, most existing ISAC studies have been limited to operation within a single frequency band and have not been designed to adapt to diverse wireless propagation environments or user configurations. To address these limitations, this paper investigates a reconfigurable intelligent surface (RIS)-assisted ISAC system employing an adaptive bandwidth-splitting strategy under near-field (NF) and far-field (FF) coexistence. The system comprises a full-duplex access point (AP), an RIS and multiple users, where an ISAC user (IU) is both a sensing target and a communication user in the NF region, while communication-only users (CUs) rely on the RIS and experience either NF or FF propagation depending on their placement. The proposed system jointly exploits traditional sensing-only (SO) and ISAC bands and adopts uplink non-orthogonal multiple access (NOMA) for simultaneous transmission. We formulate a joint optimization problem for the receive beamforming vector, bandwidth-splitting ratio, and RIS phase shifts to minimize the Cramer-Rao bound (CRB) under rate and resource constraints. An efficient algorithm is developed based on an alternating optimization (AO) framework combined with semi-definite relaxation (SDR). Numerical results demonstrate that the proposed approach significantly outperforms conventional schemes that operate solely in either the ISAC or SO band, achieving superior performance across various RIS and user configurations under hybrid NF and FF coexistence scenarios.</summary>
+    <category term="eess.SP" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2025-07-10T11:14:25Z</published>
+    <arxiv:primary_category term="eess.SP"/>
+    <author>
+      <name>Seonghoon Yoo</name>
+    </author>
+    <author>
+      <name>Jaemin Jung</name>
+    </author>
+    <author>
+      <name>Seongah Jeong</name>
+    </author>
+    <author>
+      <name>Jinkyu Kang</name>
+    </author>
+    <author>
+      <name>Markku Juntti</name>
+    </author>
+    <author>
+      <name>Joonhyuk Kang</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2304.08131v1</id>
+    <title>Wideband Effects on Near-Field Pose Estimation of Target-Lodged RIS</title>
+    <updated>2023-04-17T10:16:46Z</updated>
+    <link href="https://arxiv.org/abs/2304.08131v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2304.08131v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Reconfigurable intelligent surfaces (RISs) have been recently considered in sensing context to either improve localization performance or to extend the coverage in non-line-of-sight scenarios. While most of the literature considers RISs as statically placed in the environment, the usage of target-lodged RISs is relatively new and could be of interest where the target's reflectivity can/must be increased to improve its detection or parameters' estimation. This letter derives the Cramér-Rao bound (CRB) on the estimation of position and orientation (\textit{pose}) of a target-mounted RIS, in generic conditions: near-field, bistatic and wideband operation (i.e., when the wavefront across the RIS is curved and the employed sensing bandwidth is large enough to obtain a frequency-dependent RIS behavior). In particular, we focus on the wideband effect, that implies a \textit{pose-dependent filtering} on the impinging signal decreasing or increasing the CRB depending on the RIS size and the employed signal bandwidth.</summary>
+    <category term="eess.SP" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2023-04-17T10:16:46Z</published>
+    <arxiv:comment>5 pages</arxiv:comment>
+    <arxiv:primary_category term="eess.SP"/>
+    <author>
+      <name>Dario Tagliaferri</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2210.01337v1</id>
+    <title>Compressed CPD-Based Channel Estimation and Joint Beamforming for RIS-Assisted Millimeter Wave Communications</title>
+    <updated>2022-10-04T03:07:49Z</updated>
+    <link href="https://arxiv.org/abs/2210.01337v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2210.01337v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>We consider the problem of channel estimation and joint active and passive beamforming for reconfigurable intelligent surface (RIS) assisted millimeter wave (mmWave) multiple-input multiple-output (MIMO) orthogonal frequency division multiplexing (OFDM) systems. We show that, with a well-designed frame-based training protocol, the received pilot signal can be organized into a low-rank third-order tensor that admits a canonical polyadic decomposition (CPD). Based on this observation, we propose two CPD-based methods for estimating the cascade channels associated with different subcarriers. The proposed methods exploit the intrinsic low-rankness of the CPD formulation, which is a result of the sparse scattering characteristics of mmWave channels, and thus have the potential to achieve a significant training overhead reduction. Specifically, our analysis shows that the proposed methods have a sample complexity that scales quadratically with the sparsity of the cascade channel. Also, by utilizing the singular value decomposition-like structure of the effective channel, this paper develops a joint active and passive beamforming method based on the estimated cascade channels. Simulation results show that the proposed CPD-based channel estimation methods attain mean square errors that are close to the Cramer-Rao bound (CRB) and present a clear advantage over the compressed sensing-based method. In addition, the proposed joint beamforming method can effectively utilize the estimated channel parameters to achieve superior beamforming performance.</summary>
+    <category term="eess.SP" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2022-10-04T03:07:49Z</published>
+    <arxiv:comment>arXiv admin note: text overlap with arXiv:2203.16164</arxiv:comment>
+    <arxiv:primary_category term="eess.SP"/>
+    <author>
+      <name>Xi Zheng</name>
+    </author>
+    <author>
+      <name>Jun Fang</name>
+    </author>
+    <author>
+      <name>Hongwei Wang</name>
+    </author>
+    <author>
+      <name>Peilan Wang</name>
+    </author>
+    <author>
+      <name>Hongbin Li</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2504.04098v1</id>
+    <title>RIS-Empowered Integrated Location Sensing and Communication with Superimposed Pilots</title>
+    <updated>2025-04-05T07:55:17Z</updated>
+    <link href="https://arxiv.org/abs/2504.04098v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2504.04098v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>In addition to enhancing wireless communication coverage quality, reconfigurable intelligent surface (RIS) technique can also assist in positioning. In this work, we consider RIS-assisted superimposed pilot and data transmission without the assumption availability of prior channel state information and position information of mobile user equipments (UEs). To tackle this challenge, we design a frame structure of transmission protocol composed of several location coherence intervals, each with pure-pilot and data-pilot transmission durations. The former is used to estimate UE locations, while the latter is time-slotted, duration of which does not exceed the channel coherence time, where the data and pilot signals are transmitted simultaneously. We conduct the Fisher Information matrix (FIM) analysis and derive \text {Cramér-Rao bound} (CRB) for the position estimation error. The inverse fast Fourier transform (IFFT) is adopted to obtain the estimation results of UE positions, which are then exploited for channel estimation. Furthermore, we derive the closed-form lower bound of the ergodic achievable rate of superimposed pilot (SP) transmission, which is used to optimize the phase profile of the RIS to maximize the achievable sum rate using the genetic algorithm. Finally, numerical results validate the accuracy of the UE position estimation using the IFFT algorithm and the superiority of the proposed SP scheme by comparison with the regular pilot scheme.</summary>
+    <category term="cs.IR" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2025-04-05T07:55:17Z</published>
+    <arxiv:primary_category term="cs.IR"/>
+    <author>
+      <name>Wenchao Xia</name>
+    </author>
+    <author>
+      <name>Ben Zhao</name>
+    </author>
+    <author>
+      <name>Wankai Tang</name>
+    </author>
+    <author>
+      <name>Yongxu Zhu</name>
+    </author>
+    <author>
+      <name>Kai-Kit Wong</name>
+    </author>
+    <author>
+      <name>Sangarapillai Lambotharan</name>
+    </author>
+    <author>
+      <name>Hyundong Shin</name>
+    </author>
+  </entry>
+</feed>

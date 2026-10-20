@@ -41,6 +41,10 @@ SNR 定义为 **无 RIS、ZF、完整 CPI 的 DD 回波平均功率 / 接收噪�
 
 主图纵轴：`sqrt(mean(error_theta^2 + error_phi^2)/2)`，平均覆盖全部 MC 与两个目标，单位为度。方位角误差绕回 [-180,180)，按三维方向的最小总角误差完成目标匹配。CSV 另存 theta、phi、三维夹角 RMSE、>5°离群率。95% 区间按 MC 样本重采样，不把两个目标视为独立样本。不删掉失检/大误差样本，不平滑曲线。
 
+距离、速度曲线由 `collect_rmse.py` 读取上述全量联合估计检查点生成：距离为 BS–目标距离 `R`（m），速度为相对 BS 的有符号径向速度 `v_B`（m/s）。分别计算 `sqrt(mean((R_est-R_true)^2))` 与 `sqrt(mean((v_B_est-v_B_true)^2))`，均平均覆盖 MC 和两个目标。三项指标共用原角度曲线的三维方向匹配，不为距离或速度另选有利匹配，不对误差取模、截断或丢弃样本。95% 区间采用 2,000 次 MC bootstrap（种子 20261015），同次重采样保留目标与方法配对；另存逐目标偏差、RMSE，以及超过一个完整 CPI 原生 FFT 栅格宽度的离群率。
+
+这些统计复用原正式实验保存的全部 `R,v_B,theta,phi` 估计，不会重新生成噪声或运行一次新的蒙特卡洛。源实验参数、种子、检查点与代码身份保持可追溯；新增统计器单独记录 SHA256。
+
 DD FFT 为新模型下的参考算法实现，沿用旧项目的 RD FFT + 空间相位差思路，但不是直接调用旧 `joint_estimator_fast.m`。为避免宽带阵列与 broadside 空间求和的零点问题，RD 检测采用逐阵元功率求和，角度初始化按中心频率修正。精估计保留逐子载波导向矢量。这里比较的是新 RIS 方案与同模型下的无 RIS 参考，**不是旧 SI/SIC 曲线的直接延续**。
 
 ## PDF 未给定的参数与限制
@@ -67,7 +71,9 @@ DD FFT 为新模型下的参考算法实现，沿用旧项目的 RD FFT + 空间
 | `stage3_model.py` | 几何、四路径、公共 RIS 相位、发射预编码 SCA、相位坐标搜索 |
 | `streaming.py` | 完整数据生成、FFT 粗估计、分块充分统计量与变投影精估计 |
 | `run_stage3.py` | 100 MC、11 SNR、逐样本原子检查点、聚合与出图 |
+| `collect_rmse.py` | 全量检查点验证、统一目标匹配、距离/径向速度 RMSE、置信区间与逐样本审计 |
 | `test_stage3.py` | 独立数学一致性检查 |
+| `test_collect_rmse.py` | 目标匹配、有符号速度、RMSE 定义、数据完整性检查 |
 | `run_server.sh` | 锁、后台 worker、日志、完成状态与自动汇总 |
 | `../tools/ris-stage3-server.ps1` | 上传、启动、查看状态、取回曲线 |
 
@@ -92,7 +98,18 @@ tools/ris-stage3-server.ps1 upload
 tools/ris-stage3-server.ps1 run -RunName results_full_mc100 -Mc 100 -Workers 2
 tools/ris-stage3-server.ps1 status -RunName results_full_mc100
 tools/ris-stage3-server.ps1 fetch -RunName results_full_mc100
+tools/ris-stage3-server.ps1 fetch-metrics -RunName results_full_mc100
 ```
+
+新启动的 `run_server.sh` 在全部样本完成后自动生成角度、距离和速度曲线。对已有正式检查点补算距离与速度，只需在服务器运行统计器，无需重跑仿真：
+
+```powershell
+tools/ris-stage3-server.ps1 metrics -RunName results_full_mc100
+tools/ris-stage3-server.ps1 metrics-status -RunName results_full_mc100
+tools/ris-stage3-server.ps1 fetch-metrics -RunName results_full_mc100
+```
+
+Linux 统计命令为 `.venv311/bin/python collect_rmse.py --source results_full_mc100`。默认要求全部样本完整；只有显式指定 `--partial` 才输出不完整统计，并标记为 `PARTIAL` / `INCOMPLETE`。本地统计冒烟可使用 `--source RIS_stage3/results_smoke_v2`；本地校验使用 `.venv-stage3/Scripts/python.exe -m unittest discover -s RIS_stage3 -p test_collect_rmse.py -v`。
 
 Linux 直接运行：
 
@@ -106,3 +123,7 @@ STAGE3_MC=100 STAGE3_WORKERS=2 bash run_server.sh
 重复启动同一命令从已完成样本续跑；参数或算法文件 SHA256 变化则拒绝混用旧样本，需使用新结果目录。`state=COMPLETE` 且 `progress.json` 的 `complete=true` 才表示全实验完成。运行中取回的图明确标记 INCOMPLETE，不代表最终曲线。
 
 每个样本 `.json` 保存所有方法的误差和诊断，`.npz` 保存优化波束与 RIS 相位。最终输出 PNG、SVG、CSV、manifest 和进度 JSON。正式结果目录与本地 smoke 目录始终分开。
+
+距离/速度结果位于实验目录的 `range_velocity_metrics/`：`range_rmse_vs_snr.*`、`velocity_rmse_vs_snr.*`（PNG/SVG/CSV）、`per_sample_range_velocity_errors.csv`、`metrics_progress.json` 与 `state`。统计日志保存在实验目录的 `range_velocity_metrics.log`（补算）或 `logs/range_velocity_metrics.log`（完整启动器）。只有 `state=COMPLETE` 且 `metrics_progress.json` 中 `complete=true`、样本数与源 manifest 相符，才表示全量统计完成。
+
+2026-10-15 已在服务器对正式 1,100 个样本完成补算；相对 DD joint refinement，距离 RMSE 在 11 个 SNR 点降低 15.7%–20.0%，速度 RMSE 降低 13.6%–17.7%。具体数值与曲线解释见 `RUN_STATUS.md`。随机 RIS 的距离/速度曲线与无 RIS 联合精估计几乎重合；角度指标的收益不能直接套用到距离和速度。优化方案同时改变发射预编码与 RIS 相位，收益属于这套联合方案。

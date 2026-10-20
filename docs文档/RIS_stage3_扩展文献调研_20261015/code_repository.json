@@ -1,0 +1,14 @@
+{
+  "html_url": "https://github.com/Yejacky456/DL-Beamforming-RIS-ISAC",
+  "description": "This repository contains the source codes in ``Unsupervised Learning for Joint Beamforming Design in RIS-aided ISAC Systems'' to be published, which proposes an unsupervised learning-based beamforming design in a RIS-aided ISAC system.",
+  "default_branch": "main",
+  "archived": false,
+  "license": {
+    "key": "apache-2.0",
+    "name": "Apache License 2.0",
+    "spdx_id": "Apache-2.0",
+    "url": "https://api.github.com/licenses/apache-2.0",
+    "node_id": "MDc6TGljZW5zZTI="
+  },
+  "pushed_at": "2024-09-12T07:00:07Z"
+}

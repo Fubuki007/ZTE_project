@@ -1,0 +1,1094 @@
+[
+  {
+    "label": "unfold_sensing",
+    "url": "https://export.arxiv.org/api/query?search_query=all%3A%22unfolding%22+AND+all%3A%22sensing%22&start=0&max_results=25&sortBy=relevance",
+    "query": "all:\"unfolding\" AND all:\"sensing\"",
+    "papers": [
+      {
+        "id": "http://arxiv.org/abs/2412.07195v2",
+        "title": "A Progressive Image Restoration Network for High-order Degradation Imaging in Remote Sensing",
+        "abstract": "Recently, deep learning methods have gained remarkable achievements in the field of image restoration for remote sensing (RS). However, most existing RS image restoration methods focus mainly on conventional first-order degradation models, which may not effectively capture the imaging mechanisms of remote sensing images. Furthermore, many RS image restoration approaches that use deep learning are often criticized for their lacks of architecture transparency and model interpretability. To address these problems, we propose a novel progressive restoration network for high-order degradation imaging (HDI-PRNet), to progressively restore different image degradation. HDI-PRNet is developed based on the theoretical framework of degradation imaging, also Markov properties of the high-order degradation process and Maximum a posteriori (MAP) estimation, offering the benefit of mathematical interpretability within the unfolding network. The framework is composed of three main components: a module for image denoising that relies on proximal mapping prior learning, a module for image deblurring that integrates Neumann series expansion with dual-domain degradation learning, and a module for super-resolution. Extensive experiments demonstrate that our method achieves superior performance on both synthetic and real remote sensing images.",
+        "published": "2024-12-10T05:08:39Z",
+        "updated": "2025-07-17T10:01:55Z",
+        "doi": "10.1109/TGRS.2025.3590753",
+        "journal_ref": "Transactions on Geoscience and Remote Sensing,2025",
+        "comment": "17 pages, Accepted to Transactions on Geoscience and Remote Sensing (TGRS), July 16, 2025",
+        "authors": [
+          "Yujie Feng",
+          "Yin Yang",
+          "Xiaohong Fan",
+          "Zhengpeng Zhang",
+          "Lijing Bu",
+          "Jianping Zhang"
+        ]
+      },
+      {
+        "id": "http://arxiv.org/abs/2605.11475v1",
+        "title": "Deep Probabilistic Unfolding for Quantized Compressive Sensing",
+        "abstract": "We propose a deep probabilistic unfolding model to address the classical quantized compressive sensing problem that leverages an unfolding framework to enhance the reconstruction accuracy and efficiency. Unlike previous unfolding methods that apply L2 projection to measurements, we derive a closed-form, numerically stable likelihood gradient projection, which allows the model to respect the true quantization physics, turning the hard quantization constraint into a soft probabilistic guidance. Furthermore, an efficient, dual-domain Mamba module is specifically designed to dynamically capture and fuse the multi-scale local and global features, ensuring the interactions between the distant but correlated regions. Extensive experiments demonstrate the state-of-the-art performance of the proposed method over previous works, which is capable of promoting the application of quantized compressive sensing in real life.",
+        "published": "2026-05-12T03:44:03Z",
+        "updated": "2026-05-12T03:44:03Z",
+        "doi": null,
+        "journal_ref": null,
+        "comment": null,
+        "authors": [
+          "Gang Qu",
+          "Ping Wang",
+          "Siming Zheng",
+          "Xin Yuan"
+        ]
+      },
+      {
+        "id": "http://arxiv.org/abs/2609.14391v1",
+        "title": "Newton Deep Unfolding for Compressed Sensing",
+        "abstract": "Compressed sensing (CS) reconstructs images from highly limited measurements, but existing deep unfolding methods are typically driven by first-order optimization and weakly exploit the optimization states generated during reconstruction. To address these limitations, we propose a Newton deep unfolding network (NDU-Net), which, to the best of our knowledge, is the first deep unfolding framework that leverages second-order optimization for CS reconstruction. Specifically, NDU-Net introduces a Newton update (NU) module to estimate Newton-type update directions and generate optimization states that characterize the current reconstruction process. Furthermore, a Newton-guided multi-scale prior (MP) module is designed to incorporate these optimization states into multi-scale feature restoration, thereby enabling the learned prior to adapt to the current reconstruction stage. Experimental results under different CS ratios confirm that our proposed NDU-Net achieves promising reconstruction performance and exhibits enhanced robustness. Our code is available at https://github.com/xianchaoxiu/DNU-Net.",
+        "published": "2026-09-13T08:56:59Z",
+        "updated": "2026-09-13T08:56:59Z",
+        "doi": null,
+        "journal_ref": null,
+        "comment": null,
+        "authors": [
+          "Changhua He",
+          "Xianchao Xiu"
+        ]
+      },
+      {
+        "id": "http://arxiv.org/abs/2508.09528v1",
+        "title": "Physics-guided Deep Unfolding Network for Enhanced Kronecker Compressive sensing",
+        "abstract": "Deep networks have achieved remarkable success in image compressed sensing (CS) task, namely reconstructing a high-fidelity image from its compressed measurement. However, existing works are deficient inincoherent compressed measurement at sensing phase and implicit measurement representations at reconstruction phase, limiting the overall performance. In this work, we answer two questions: 1) how to improve the measurement incoherence for decreasing the ill-posedness; 2) how to learn informative representations from measurements. To this end, we propose a novel asymmetric Kronecker CS (AKCS) model and theoretically present its better incoherence than previous Kronecker CS with minimal complexity increase. Moreover, we reveal that the unfolding networks' superiority over non-unfolding ones result from sufficient gradient descents, called explicit measurement representations. We propose a measurement-aware cross attention (MACA) mechanism to learn implicit measurement representations. We integrate AKCS and MACA into widely-used unfolding architecture to get a measurement-enhanced unfolding network (MEUNet). Extensive experiences demonstrate that our MEUNet achieves state-of-the-art performance in reconstruction accuracy and inference speed.",
+        "published": "2025-08-13T06:21:58Z",
+        "updated": "2025-08-13T06:21:58Z",
+        "doi": null,
+        "journal_ref": null,
+        "comment": "9 pages, 4 figures",
+        "authors": [
+          "Gang Qu",
+          "Ping Wang",
+          "Siming Zheng",
+          "Xin Yuan"
+        ]
+      },
+      {
+        "id": "http://arxiv.org/abs/2208.01827v1",
+        "title": "Fast Hierarchical Deep Unfolding Network for Image Compressed Sensing",
+        "abstract": "By integrating certain optimization solvers with deep neural network, deep unfolding network (DUN) has attracted much attention in recent years for image compressed sensing (CS). However, there still exist several issues in existing DUNs: 1) For each iteration, a simple stacked convolutional network is usually adopted, which apparently limits the expressiveness of these models. 2) Once the training is completed, most hyperparameters of existing DUNs are fixed for any input content, which significantly weakens their adaptability. In this paper, by unfolding the Fast Iterative Shrinkage-Thresholding Algorithm (FISTA), a novel fast hierarchical DUN, dubbed FHDUN, is proposed for image compressed sensing, in which a well-designed hierarchical unfolding architecture is developed to cooperatively explore richer contextual prior information in multi-scale spaces. To further enhance the adaptability, series of hyperparametric generation networks are developed in our framework to dynamically produce the corresponding optimal hyperparameters according to the input content. Furthermore, due to the accelerated policy in FISTA, the newly embedded acceleration module makes the proposed FHDUN save more than 50% of the iterative loops against recent DUNs. Extensive CS experiments manifest that the proposed FHDUN outperforms existing state-of-the-art CS methods, while maintaining fewer iterations.",
+        "published": "2022-08-03T03:27:32Z",
+        "updated": "2022-08-03T03:27:32Z",
+        "doi": "10.1145/3503161.3548389",
+        "journal_ref": null,
+        "comment": "Accepted by ACM MM 2022",
+        "authors": [
+          "Wenxue Cui",
+          "Shaohui Liu",
+          "Debin Zhao"
+        ]
+      },
+      {
+        "id": "http://arxiv.org/abs/2004.10078v2",
+        "title": "AMP-Net: Denoising based Deep Unfolding for Compressive Image Sensing",
+        "abstract": "Most compressive sensing (CS) reconstruction methods can be divided into two categories, i.e. model-based methods and classical deep network methods. By unfolding the iterative optimization algorithm for model-based methods onto networks, deep unfolding methods have the good interpretation of model-based methods and the high speed of classical deep network methods. In this paper, to solve the visual image CS problem, we propose a deep unfolding model dubbed AMP-Net. Rather than learning regularization terms, it is established by unfolding the iterative denoising process of the well-known approximate message passing algorithm. Furthermore, AMP-Net integrates deblocking modules in order to eliminate the blocking artifacts that usually appear in CS of visual images. In addition, the sampling matrix is jointly trained with other network parameters to enhance the reconstruction performance. Experimental results show that the proposed AMP-Net has better reconstruction accuracy than other state-of-the-art methods with high reconstruction speed and a small number of network parameters.",
+        "published": "2020-04-21T15:04:17Z",
+        "updated": "2021-01-22T02:59:40Z",
+        "doi": "10.1109/TIP.2020.3044472",
+        "journal_ref": "IEEE Transactions on Image Processing 2021",
+        "comment": null,
+        "authors": [
+          "Zhonghao Zhang",
+          "Yipeng Liu",
+          "Jiani Liu",
+          "Fei Wen",
+          "Ce Zhu"
+        ]
+      },
+      {
+        "id": "http://arxiv.org/abs/2411.17747v1",
+        "title": "Deep Unfolding-Empowered MmWave Massive MIMO Joint Communications and Sensing",
+        "abstract": "In this paper, we propose a low-complexity and fast hybrid beamforming design for joint communications and sensing (JCAS) based on deep unfolding. We first derive closed-form expressions for the gradients of the communications sum rate and sensing beampattern error with respect to the analog and digital precoders. Building on this, we develop a deep neural network as an unfolded version of the projected gradient ascent algorithm, which we refer to as UPGANet. This approach efficiently optimizes the communication-sensing performance tradeoff with fast convergence, enabled by the learned step sizes. UPGANet preserves the interpretability and flexibility of the conventional PGA optimizer while enhancing performance through data training. Our simulations show that UPGANet achieves up to a 33.5% higher communications sum rate and 2.5 dB lower beampattern error compared to conventional designs based on successive convex approximation and Riemannian manifold optimization. Additionally, it reduces runtime and computational complexity by up to 65% compared to PGA without unfolding.",
+        "published": "2024-11-25T11:36:30Z",
+        "updated": "2024-11-25T11:36:30Z",
+        "doi": null,
+        "journal_ref": null,
+        "comment": "arXiv admin note: substantial text overlap with arXiv:2307.04376",
+        "authors": [
+          "Nhan Thanh Nguyen",
+          "Ly V. Nguyen",
+          "Nir Shlezinger",
+          "Yonina C. Eldar",
+          "A. Lee Swindlehurst",
+          "Markku Juntti"
+        ]
+      },
+      {
+        "id": "http://arxiv.org/abs/2306.14702v1",
+        "title": "Deep Unfolding Enabled Constant Modulus Waveform Design for Joint Communications and Sensing",
+        "abstract": "Joint communications and sensing (JCAS) systems have recently emerged as a promising technology to utilize the scarce spectrum in wireless networks and to reuse the same hardware to save infrastructure costs. In practical JCAS systems, dual functional constant-modulus waveforms can be employed to avoid signal distortion in nonlinear power amplifiers. However, the designs of such waveforms are very challenging due to the nonconvex constant-modulus constraint. The conventional branch-and-bound (BnB) method can achieve optimal solution but at the cost of exponential complexity and long run time. In this paper, we propose an efficient deep unfolding method for the constant-modulus waveform design in a multiuser multiple-input multiple-output (MIMO) JCAS system. The deep unfolding model has a sparsely-connected structure and is trained in an unsupervised fashion. It achieves good communications-sensing performance tradeoff while maintaining low computational complexity and low run time. Specifically, our numerical results show that the proposed deep unfolding scheme achieves a similar achievable rate compared to the conventional BnB method with 30 times faster execution time.",
+        "published": "2023-06-26T13:49:30Z",
+        "updated": "2023-06-26T13:49:30Z",
+        "doi": null,
+        "journal_ref": null,
+        "comment": "6 pages",
+        "authors": [
+          "Prashanth Krishnananthalingam",
+          "Nhan Thanh Nguyen",
+          "Markku Juntti"
+        ]
+      },
+      {
+        "id": "http://arxiv.org/abs/2307.04376v1",
+        "title": "Joint Communications and Sensing Hybrid Beamforming Design via Deep Unfolding",
+        "abstract": "Joint communications and sensing (JCAS) is envisioned as a key feature in future wireless communications networks. In massive MIMO-JCAS systems, hybrid beamforming (HBF) is typically employed to achieve satisfactory beamforming gains with reasonable hardware cost and power consumption. Due to the coupling of the analog and digital precoders in HBF and the dual objective in JCAS, JCAS-HBF design problems are very challenging and usually require highly complex algorithms. In this paper, we propose a fast HBF design for JCAS based on deep unfolding to optimize a tradeoff between the communications rate and sensing accuracy. We first derive closed-form expressions for the gradients of the communications and sensing objectives with respect to the precoders and demonstrate that the magnitudes of the gradients pertaining to the analog precoder are typically smaller than those associated with the digital precoder. Based on this observation, we propose a modified projected gradient ascent (PGA) method with significantly improved convergence. We then develop a deep unfolded PGA scheme that efficiently optimizes the communications-sensing performance tradeoff with fast convergence thanks to the well-trained hyperparameters. In doing so, we preserve the interpretability and flexibility of the optimizer while leveraging data to improve performance. Finally, our simulations demonstrate the potential of the proposed deep unfolded method, which achieves up to 33.5% higher communications sum rate and 2.5 dB lower beampattern error compared with the conventional design based on successive convex approximation and Riemannian manifold optimization. Furthermore, it attains up to a 65% reduction in run time and computational complexity with respect to the PGA procedure without unfolding.",
+        "published": "2023-07-10T07:21:23Z",
+        "updated": "2023-07-10T07:21:23Z",
+        "doi": null,
+        "journal_ref": null,
+        "comment": "This paper has been submitted to Journal of Selected Topics in Signal Processing",
+        "authors": [
+          "Nhan Thanh Nguyen",
+          "Ly V. Nguyen",
+          "Nir Shlezinger",
+          "Yonina C. Eldar",
+          "A. Lee Swindlehurst",
+          "Markku Juntti"
+        ]
+      },
+      {
+        "id": "http://arxiv.org/abs/2110.06986v5",
+        "title": "ADMM-DAD net: a deep unfolding network for analysis compressed sensing",
+        "abstract": "In this paper, we propose a new deep unfolding neural network based on the ADMM algorithm for analysis Compressed Sensing. The proposed network jointly learns a redundant analysis operator for sparsification and reconstructs the signal of interest. We compare our proposed network with a state-of-the-art unfolded ISTA decoder, that also learns an orthogonal sparsifier. Moreover, we consider not only image, but also speech datasets as test examples. Computational experiments demonstrate that our proposed network outperforms the state-of-the-art deep unfolding network, consistently for both real-world image and speech datasets.",
+        "published": "2021-10-13T18:56:59Z",
+        "updated": "2022-05-02T15:03:51Z",
+        "doi": "10.1109/ICASSP43922.2022.9747096",
+        "journal_ref": "ICASSP 2022 - 2022 IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP), 2022, pp. 1506-1510",
+        "comment": null,
+        "authors": [
+          "Vasiliki Kouni",
+          "Georgios Paraskevopoulos",
+          "Holger Rauhut",
+          "George C. Alexandropoulos"
+        ]
+      },
+      {
+        "id": "http://arxiv.org/abs/2303.05582v3",
+        "title": "Generalization analysis of an unfolding network for analysis-based Compressed Sensing",
+        "abstract": "Unfolding networks have shown promising results in the Compressed Sensing (CS) field. Yet, the investigation of their generalization ability is still in its infancy. In this paper, we perform a generalization analysis of a state-of-the-art ADMM-based unfolding network, which jointly learns a decoder for CS and a sparsifying redundant analysis operator. To this end, we first impose a structural constraint on the learnable sparsifier, which parametrizes the network's hypothesis class. For the latter, we estimate its Rademacher complexity. With this estimate in hand, we deliver generalization error bounds -- which scale like the square root of the number of layers -- for the examined network. Finally, the validity of our theory is assessed and numerical comparisons to a state-of-the-art unfolding network are made, on synthetic and real-world datasets. Our experimental results demonstrate that our proposed framework complies with our theoretical findings and outperforms the baseline, consistently for all datasets.",
+        "published": "2023-03-09T21:13:32Z",
+        "updated": "2025-06-10T15:26:36Z",
+        "doi": "10.1016/j.acha.2025.101787",
+        "journal_ref": null,
+        "comment": null,
+        "authors": [
+          "Vicky Kouni",
+          "Yannis Panagakis"
+        ]
+      },
+      {
+        "id": "http://arxiv.org/abs/2306.16060v2",
+        "title": "Dynamic Path-Controllable Deep Unfolding Network for Compressive Sensing",
+        "abstract": "Deep unfolding network (DUN) that unfolds the optimization algorithm into a deep neural network has achieved great success in compressive sensing (CS) due to its good interpretability and high performance. Each stage in DUN corresponds to one iteration in optimization. At the test time, all the sampling images generally need to be processed by all stages, which comes at a price of computation burden and is also unnecessary for the images whose contents are easier to restore. In this paper, we focus on CS reconstruction and propose a novel Dynamic Path-Controllable Deep Unfolding Network (DPC-DUN). DPC-DUN with our designed path-controllable selector can dynamically select a rapid and appropriate route for each image and is slimmable by regulating different performance-complexity tradeoffs. Extensive experiments show that our DPC-DUN is highly flexible and can provide excellent performance and dynamic adjustment to get a suitable tradeoff, thus addressing the main requirements to become appealing in practice. Codes are available at https://github.com/songjiechong/DPC-DUN.",
+        "published": "2023-06-28T09:49:15Z",
+        "updated": "2024-02-19T11:52:19Z",
+        "doi": "10.1109/TIP.2023.3263100",
+        "journal_ref": null,
+        "comment": "TIP, 2023",
+        "authors": [
+          "Jiechong Song",
+          "Bin Chen",
+          "Jian Zhang"
+        ]
+      },
+      {
+        "id": "http://arxiv.org/abs/2205.07050v6",
+        "title": "DECONET: an Unfolding Network for Analysis-based Compressed Sensing with Generalization Error Bounds",
+        "abstract": "We present a new deep unfolding network for analysis-sparsity-based Compressed Sensing. The proposed network coined Decoding Network (DECONET) jointly learns a decoder that reconstructs vectors from their incomplete, noisy measurements and a redundant sparsifying analysis operator, which is shared across the layers of DECONET. Moreover, we formulate the hypothesis class of DECONET and estimate its associated Rademacher complexity. Then, we use this estimate to deliver meaningful upper bounds for the generalization error of DECONET. Finally, the validity of our theoretical results is assessed and comparisons to state-of-the-art unfolding networks are made, on both synthetic and real-world datasets. Experimental results indicate that our proposed network outperforms the baselines, consistently for all datasets, and its behaviour complies with our theoretical findings.",
+        "published": "2022-05-14T12:50:48Z",
+        "updated": "2023-04-26T10:22:07Z",
+        "doi": "10.1109/TSP.2023.3272286",
+        "journal_ref": null,
+        "comment": "Accepted in IEEE Transactions on Signal Processing",
+        "authors": [
+          "Vicky Kouni",
+          "Yannis Panagakis"
+        ]
+      },
+      {
+        "id": "http://arxiv.org/abs/2605.09566v1",
+        "title": "Dual-Path Hyperprior Informed Deep Unfolding Network for Image Compressive Sensing",
+        "abstract": "Recent Deep Unfolding Networks (DUNs) have significantly advanced Compressive Sensing (CS) by integrating iterative optimization with deep networks. However, existing DUNs still suffer from two challenges: 1) Reliance on a single measurement stream, which limits effective information interaction across distinct measurement subsets. 2) Uniform processing of all image regions, which overlooks varying reconstruction difficulties induced by diverse textures. To address these limitations, a novel Dual-Path Hyperprior Informed Deep Unfolding Network (DPH-DUN) is proposed, which partitions measurements into double subsets to enable hyperprior-guided reconstruction via a dual-path architecture. In the Deep Hyperprior Learning branch, a series of lightweight neural modules are designed to efficiently generate hyperprior knowledge of different domains, enabling collaborative guidance for the CS reconstruction. In the Hyperprior Informed Reconstruction branch, a deep unfolding framework with hyperprior guidance is constructed to iteratively refine reconstruction. Specifically, i) in the gradient descent step, a Hyperprior Informed Step Size Generation network is designed to dynamically generate spatially varying step maps, enabling adaptive fine-grained gradient updates. ii) In the proximal mapping step, two well-designed hyperprior informed attention mechanisms are introduced to dynamically focus on challenging regions via gradient-based hard and soft attentions, facilitating CS reconstruction accuracy. Extensive experiments demonstrate that the proposed DPH-DUN outperforms existing CS methods.",
+        "published": "2026-05-10T14:28:37Z",
+        "updated": "2026-05-10T14:28:37Z",
+        "doi": null,
+        "journal_ref": null,
+        "comment": null,
+        "authors": [
+          "Tianyi Lu",
+          "Wenxue Cui",
+          "Shaohui Liu"
+        ]
+      },
+      {
+        "id": "http://arxiv.org/abs/2103.11554v1",
+        "title": "ISTA-Net++: Flexible Deep Unfolding Network for Compressive Sensing",
+        "abstract": "While deep neural networks have achieved impressive success in image compressive sensing (CS), most of them lack flexibility when dealing with multi-ratio tasks and multi-scene images in practical applications. To tackle these challenges, we propose a novel end-to-end flexible ISTA-unfolding deep network, dubbed ISTA-Net++, with superior performance and strong flexibility. Specifically, by developing a dynamic unfolding strategy, our model enjoys the adaptability of handling CS problems with different ratios, i.e., multi-ratio tasks, through a single model. A cross-block strategy is further utilized to reduce blocking artifacts and enhance the CS recovery quality. Furthermore, we adopt a balanced dataset for training, which brings more robustness when reconstructing images of multiple scenes. Extensive experiments on four datasets show that ISTA-Net++ achieves state-of-the-art results in terms of both quantitative metrics and visual quality. Considering its flexibility, effectiveness and practicability, our model is expected to serve as a suitable baseline in future CS research. The source code is available on https://github.com/jianzhangcs/ISTA-Netpp.",
+        "published": "2021-03-22T03:09:05Z",
+        "updated": "2021-03-22T03:09:05Z",
+        "doi": null,
+        "journal_ref": null,
+        "comment": "ICME 2021 ORAL accepted",
+        "authors": [
+          "Di You",
+          "Jingfen Xie",
+          "Jian Zhang"
+        ]
+      },
+      {
+        "id": "http://arxiv.org/abs/2602.21513v1",
+        "title": "Deep Unfolding Real-Time Super-Resolution Using Subpixel-Shift Twin Image and Convex Self-Similarity Prior",
+        "abstract": "Multi-image super-resolution (MISR) is a critical technique for satellite remote sensing. In the perspective of information, twin-image super-resolution (TISR) is regarded as the most challenging MISR scenario, having crucial applications like the SPOT-5 supermode imaging. In TISR, an image is super-resolved by its subpixel-shift counterpart (i.e., twin image), where the two images are typically offset by half a pixel both horizontally and vertically. We formulate the less investigated TISR using a convex criterion, which is implemented using a novel deep unfolding network. In the unfolding, an embedded simple shift operator trickily addresses the coupled TISR data-fitting terms, and a transformer trained with a convex self-similarity loss function elegantly implements the proximal mapping induced by the TISR regularizer. The proposed convex self-similarity unfolding supermode super-resolution (COSUP) algorithm is interpretable and achieves state-of-the-art performance with very fast millisecond-level computational time. COSUP is also tested on real-world data, for which the subpixel shifts would not be spatially uniform, with results showing great superiority over the official CNES supermode imaging product in terms of credible metrics (e.g., natural image quality evaluator, NIQE). Source codes: https://github.com/IHCLab/COSUP.",
+        "published": "2026-02-25T02:58:20Z",
+        "updated": "2026-02-25T02:58:20Z",
+        "doi": null,
+        "journal_ref": null,
+        "comment": "15 pages, 9 figures, IEEE Transactions on Geoscience and Remote Sensing",
+        "authors": [
+          "Chia-Hsiang Lin",
+          "Wei-Chih Liu",
+          "Yu-En Chiu",
+          "Jhao-Ting Lin"
+        ]
+      },
+      {
+        "id": "http://arxiv.org/abs/2110.09766v2",
+        "title": "Memory-Augmented Deep Unfolding Network for Compressive Sensing",
+        "abstract": "Mapping a truncated optimization method into a deep neural network, deep unfolding network (DUN) has attracted growing attention in compressive sensing (CS) due to its good interpretability and high performance. Each stage in DUNs corresponds to one iteration in optimization. By understanding DUNs from the perspective of the human brain's memory processing, we find there exists two issues in existing DUNs. One is the information between every two adjacent stages, which can be regarded as short-term memory, is usually lost seriously. The other is no explicit mechanism to ensure that the previous stages affect the current stage, which means memory is easily forgotten. To solve these issues, in this paper, a novel DUN with persistent memory for CS is proposed, dubbed Memory-Augmented Deep Unfolding Network (MADUN). We design a memory-augmented proximal mapping module (MAPMM) by combining two types of memory augmentation mechanisms, namely High-throughput Short-term Memory (HSM) and Cross-stage Long-term Memory (CLM). HSM is exploited to allow DUNs to transmit multi-channel short-term memory, which greatly reduces information loss between adjacent stages. CLM is utilized to develop the dependency of deep information across cascading stages, which greatly enhances network representation capability. Extensive CS experiments on natural and MR images show that with the strong ability to maintain and balance information our MADUN outperforms existing state-of-the-art methods by a large margin. The source code is available at https://github.com/jianzhangcs/MADUN/.",
+        "published": "2021-10-19T07:03:12Z",
+        "updated": "2021-10-25T01:33:55Z",
+        "doi": "10.1145/3474085.3475562",
+        "journal_ref": null,
+        "comment": "10 pages, 7 figures, ACM MM 2021",
+        "authors": [
+          "Jiechong Song",
+          "Bin Chen",
+          "Jian Zhang"
+        ]
+      },
+      {
+        "id": "http://arxiv.org/abs/2307.07291v1",
+        "title": "Sampling-Priors-Augmented Deep Unfolding Network for Robust Video Compressive Sensing",
+        "abstract": "Video Compressed Sensing (VCS) aims to reconstruct multiple frames from one single captured measurement, thus achieving high-speed scene recording with a low-frame-rate sensor. Although there have been impressive advances in VCS recently, those state-of-the-art (SOTA) methods also significantly increase model complexity and suffer from poor generality and robustness, which means that those networks need to be retrained to accommodate the new system. Such limitations hinder the real-time imaging and practical deployment of models. In this work, we propose a Sampling-Priors-Augmented Deep Unfolding Network (SPA-DUN) for efficient and robust VCS reconstruction. Under the optimization-inspired deep unfolding framework, a lightweight and efficient U-net is exploited to downsize the model while improving overall performance. Moreover, the prior knowledge from the sampling model is utilized to dynamically modulate the network features to enable single SPA-DUN to handle arbitrary sampling settings, augmenting interpretability and generality. Extensive experiments on both simulation and real datasets demonstrate that SPA-DUN is not only applicable for various sampling settings with one single model but also achieves SOTA performance with incredible efficiency.",
+        "published": "2023-07-14T12:05:14Z",
+        "updated": "2023-07-14T12:05:14Z",
+        "doi": null,
+        "journal_ref": null,
+        "comment": null,
+        "authors": [
+          "Yuhao Huang",
+          "Gangrong Qu",
+          "Youran Ge"
+        ]
+      },
+      {
+        "id": "http://arxiv.org/abs/2201.05810v2",
+        "title": "Two-Stage is Enough: A Concise Deep Unfolding Reconstruction Network for Flexible Video Compressive Sensing",
+        "abstract": "We consider the reconstruction problem of video compressive sensing (VCS) under the deep unfolding/rolling structure. Yet, we aim to build a flexible and concise model using minimum stages. Different from existing deep unfolding networks used for inverse problems, where more stages are used for higher performance but without flexibility to different masks and scales, hereby we show that a 2-stage deep unfolding network can lead to the state-of-the-art (SOTA) results (with a 1.7dB gain in PSNR over the single stage model, RevSCI) in VCS. The proposed method possesses the properties of adaptation to new masks and ready to scale to large data without any additional training thanks to the advantages of deep unfolding. Furthermore, we extend the proposed model for color VCS to perform joint reconstruction and demosaicing. Experimental results demonstrate that our 2-stage model has also achieved SOTA on color VCS reconstruction, leading to a >2.3dB gain in PSNR over the previous SOTA algorithm based on plug-and-play framework, meanwhile speeds up the reconstruction by >17 times. In addition, we have found that our network is also flexible to the mask modulation and scale size for color VCS reconstruction so that a single trained network can be applied to different hardware systems. The code and models will be released to the public.",
+        "published": "2022-01-15T09:40:22Z",
+        "updated": "2022-01-21T04:30:37Z",
+        "doi": null,
+        "journal_ref": null,
+        "comment": null,
+        "authors": [
+          "Siming Zheng",
+          "Xiaoyu Yang",
+          "Xin Yuan"
+        ]
+      },
+      {
+        "id": "http://arxiv.org/abs/2606.03666v1",
+        "title": "Beyond Single Solution: Multi-Hypothesis Collaborative Deep Unfolding Network for Image Compressive Sensing",
+        "abstract": "Recent deep unfolding networks (DUNs) have advanced Compressive Sensing (CS) by effectively integrating iterative optimization with deep learning architectures. However, most CS approaches predominantly confine their inference to a single solution space, neglecting the inherent ill-posedness of CS problems that intrinsically permits multiple plausible candidate hypotheses. In this paper, a novel Multi-Hypothesis Collaborative Deep Unfolding CS Network (MHC-DUN) is proposed, which explicitly models and leverages multiple hypotheses by jointly optimizing across diverse solution spaces. Specifically, following the Proximal Gradient Descent algorithm, MHC-DUN jointly performs gradient descent and proximal mapping within this multi-hypothesis paradigm. i) For gradient descent, a well-designed AlphaNet is introduced to dynamically predict spatially varying step sizes for all hypotheses, enabling collaborative gradient updates across multiple solutions. ii) For proximal operator, a sophisticated multi-hypothesis collaborative proximal mapping module is designed, which leverages both intra-hypothesis and inter-hypothesis correlation priors to jointly refine multiple solutions. To enable end-to-end training, a novel composite loss function is designed, which balances measurement fidelity, hypothesis diversity, and reconstruction accuracy, encouraging exploration of complementary solutions while maintaining reconstruction fidelity. Experimental results reveal that the proposed CS method outperforms existing CS networks.",
+        "published": "2026-06-02T13:50:56Z",
+        "updated": "2026-06-02T13:50:56Z",
+        "doi": null,
+        "journal_ref": null,
+        "comment": "Accepted by CVPR 2026",
+        "authors": [
+          "Wenxue Cui",
+          "Hualin Li",
+          "Yuhang Qin",
+          "Yifu Xu",
+          "Xiaopeng Fan",
+          "Debin Zhao"
+        ]
+      },
+      {
+        "id": "http://arxiv.org/abs/2411.16336v1",
+        "title": "WTDUN: Wavelet Tree-Structured Sampling and Deep Unfolding Network for Image Compressed Sensing",
+        "abstract": "Deep unfolding networks have gained increasing attention in the field of compressed sensing (CS) owing to their theoretical interpretability and superior reconstruction performance. However, most existing deep unfolding methods often face the following issues: 1) they learn directly from single-channel images, leading to a simple feature representation that does not fully capture complex features; and 2) they treat various image components uniformly, ignoring the characteristics of different components. To address these issues, we propose a novel wavelet-domain deep unfolding framework named WTDUN, which operates directly on the multi-scale wavelet subbands. Our method utilizes the intrinsic sparsity and multi-scale structure of wavelet coefficients to achieve a tree-structured sampling and reconstruction, effectively capturing and highlighting the most important features within images. Specifically, the design of tree-structured reconstruction aims to capture the inter-dependencies among the multi-scale subbands, enabling the identification of both fine and coarse features, which can lead to a marked improvement in reconstruction quality. Furthermore, a wavelet domain adaptive sampling method is proposed to greatly improve the sampling capability, which is realized by assigning measurements to each wavelet subband based on its importance. Unlike pure deep learning methods that treat all components uniformly, our method introduces a targeted focus on important subbands, considering their energy and sparsity. This targeted strategy lets us capture key information more efficiently while discarding less important information, resulting in a more effective and detailed reconstruction. Extensive experimental results on various datasets validate the superior performance of our proposed method.",
+        "published": "2024-11-25T12:31:03Z",
+        "updated": "2024-11-25T12:31:03Z",
+        "doi": "10.1145/3701731",
+        "journal_ref": "ACM Transactions on Multimedia Computing Communications and Applications, 21(1): 33.1-33.22, 2024",
+        "comment": "20pages,Accepted by ACM Transactions on Multimedia Computing Communications and Applications (TOMM)",
+        "authors": [
+          "Kai Han",
+          "Jin Wang",
+          "Yunhui Shi",
+          "Hanqin Cai",
+          "Nam Ling",
+          "Baocai Yin"
+        ]
+      },
+      {
+        "id": "http://arxiv.org/abs/2503.08429v1",
+        "title": "Using Powerful Prior Knowledge of Diffusion Model in Deep Unfolding Networks for Image Compressive Sensing",
+        "abstract": "Recently, Deep Unfolding Networks (DUNs) have achieved impressive reconstruction quality in the field of image Compressive Sensing (CS) by unfolding iterative optimization algorithms into neural networks. The reconstruction quality of DUNs depends on the learned prior knowledge, so introducing stronger prior knowledge can further improve reconstruction quality. On the other hand, pre-trained diffusion models contain powerful prior knowledge and have a solid theoretical foundation and strong scalability, but it requires a large number of iterative steps to achieve reconstruction. In this paper, we propose to use the powerful prior knowledge of pre-trained diffusion model in DUNs to achieve high-quality reconstruction with less steps for image CS. Specifically, we first design an iterative optimization algorithm named Diffusion Message Passing (DMP), which embeds a pre-trained diffusion model into each iteration process of DMP. Then, we deeply unfold the DMP algorithm into a neural network named DMP-DUN. The proposed DMP-DUN can use lightweight neural networks to achieve mapping from measurement data to the intermediate steps of the reverse diffusion process and directly approximate the divergence of the diffusion model, thereby further improving reconstruction efficiency. Extensive experiments show that our proposed DMP-DUN achieves state-of-the-art performance and requires at least only 2 steps to reconstruct the image. Codes are available at https://github.com/FengodChen/DMP-DUN-CVPR2025.",
+        "published": "2025-03-11T13:40:46Z",
+        "updated": "2025-03-11T13:40:46Z",
+        "doi": null,
+        "journal_ref": null,
+        "comment": "CVPR2025 accepted",
+        "authors": [
+          "Chen Liao",
+          "Yan Shen",
+          "Dan Li",
+          "Zhongli Wang"
+        ]
+      },
+      {
+        "id": "http://arxiv.org/abs/2212.09088v1",
+        "title": "LR-CSNet: Low-Rank Deep Unfolding Network for Image Compressive Sensing",
+        "abstract": "Deep unfolding networks (DUNs) have proven to be a viable approach to compressive sensing (CS). In this work, we propose a DUN called low-rank CS network (LR-CSNet) for natural image CS. Real-world image patches are often well-represented by low-rank approximations. LR-CSNet exploits this property by adding a low-rank prior to the CS optimization task. We derive a corresponding iterative optimization procedure using variable splitting, which is then translated to a new DUN architecture. The architecture uses low-rank generation modules (LRGMs), which learn low-rank matrix factorizations, as well as gradient descent and proximal mappings (GDPMs), which are proposed to extract high-frequency features to refine image details. In addition, the deep features generated at each reconstruction stage in the DUN are transferred between stages to boost the performance. Our extensive experiments on three widely considered datasets demonstrate the promising performance of LR-CSNet compared to state-of-the-art methods in natural image CS.",
+        "published": "2022-12-18T13:54:11Z",
+        "updated": "2022-12-18T13:54:11Z",
+        "doi": null,
+        "journal_ref": null,
+        "comment": null,
+        "authors": [
+          "Tianfang Zhang",
+          "Lei Li",
+          "Christian Igel",
+          "Stefan Oehmcke",
+          "Fabian Gieseke",
+          "Zhenming Peng"
+        ]
+      },
+      {
+        "id": "http://arxiv.org/abs/2509.15370v4",
+        "title": "Adversarial generalization of unfolding (model-based) networks",
+        "abstract": "Unfolding networks are interpretable networks emerging from iterative algorithms, incorporate prior knowledge of data structure, and are designed to solve inverse problems like compressed sensing, which deals with recovering data from noisy, missing observations. Compressed sensing finds applications in critical domains, from medical imaging to cryptography, where adversarial robustness is crucial to prevent catastrophic failures. However, a solid theoretical understanding of the performance of unfolding networks in the presence of adversarial attacks is still in its infancy. In this paper, we study the adversarial generalization of unfolding networks when perturbed with $l_2$-norm constrained attacks, generated by the fast gradient sign method. Particularly, we choose a family of state-of-the-art overaparameterized unfolding networks and deploy a new framework to estimate their adversarial Rademacher complexity. Given this estimate, we provide adversarial generalization error bounds for the networks under study, which are tight with respect to the attack level. To our knowledge, this is the first theoretical analysis on the adversarial generalization of unfolding networks. We further present a series of experiments on real-world data, with results corroborating our derived theory, consistently for all data. Finally, we observe that the family's overparameterization can be exploited to promote adversarial robustness, shedding light on how to efficiently robustify neural networks.",
+        "published": "2025-09-18T19:17:07Z",
+        "updated": "2026-02-06T13:50:06Z",
+        "doi": null,
+        "journal_ref": null,
+        "comment": "Accepted at NeurIPS2025",
+        "authors": [
+          "Vicky Kouni"
+        ]
+      },
+      {
+        "id": "http://arxiv.org/abs/2603.09813v3",
+        "title": "Prismatoid Band-Unfolding Revisited",
+        "abstract": "It remains unknown if every prismatoid has a nonoverlapping edge-unfolding, a special case of the long-unsolved \"Dürer's problem.\" Recently nested prismatoids have been settled [Rad24] by mixing (in some sense) the two natural unfoldings, petal-unfolding and band-unfolding. Band-unfolding fails due to a specific counterexample [O'R13b]. The main contribution of this paper is a characterization when a band-unfolding of a nested prismatoid does in fact result in a nonoverlapping unfolding. In particular, we show that the mentioned counterexample is in a sense the only possible counterexample. Although this result does not expand the class of shapes known to have an edge-unfolding, its proof expands our understanding in several ways, developing tools that may help resolve the non-nested case.",
+        "published": "2026-03-10T15:40:34Z",
+        "updated": "2026-09-18T20:51:51Z",
+        "doi": null,
+        "journal_ref": null,
+        "comment": "19 pages, 16 figures, 9 references. v2: Fixed two figures; v3: OprnProb (1) is resolved",
+        "authors": [
+          "Joseph O'Rourke"
+        ]
+      }
+    ]
+  },
+  {
+    "label": "unroll_ris",
+    "url": "https://export.arxiv.org/api/query?search_query=all%3A%22unrolling%22+AND+%28all%3A%22RIS%22+OR+all%3A%22ISAC%22%29&start=0&max_results=25&sortBy=relevance",
+    "query": "all:\"unrolling\" AND (all:\"RIS\" OR all:\"ISAC\")",
+    "papers": [
+      {
+        "id": "http://arxiv.org/abs/2301.02360v1",
+        "title": "Algorithm Unrolling-Based Distributed Optimization for RIS-Assisted Cell-Free Networks",
+        "abstract": "The user-centric cell-free network has emerged as an appealing technology to improve the next-generation wireless network's capacity thanks to its ability to eliminate inter-cell interference effectively. However, the cell-free network inevitably brings in higher hardware cost and backhaul overhead as a larger number of base stations (BSs) are deployed. Additionally, severe channel fading in high-frequency bands constitutes another crucial issue that limits the practical application of the cell-free network. In order to address the above challenges, we amalgamate the cell-free system with another emerging technology, namely reconfigurable intelligent surface (RIS), which can provide high spectrum and energy efficiency with low hardware cost by reshaping the wireless propagation environment intelligently. To this end, we formulate a weighted sum-rate (WSR) maximization problem for RIS-assisted cell-free systems by jointly optimizing the BS precoding matrix and the RIS reflection coefficient vector. Subsequently, we transform the complicated WSR problem to a tractable optimization problem and propose a distributed cooperative alternating direction method of multipliers (ADMM) to fully utilize parallel computing resources. Inspired by the model-based algorithm unrolling concept, we unroll our solver to a learning-based deep distributed ADMM (D-ADMM) network framework. To improve the efficiency of the D-ADMM in distributed BSs, we develop a monodirectional information exchange strategy with a small signaling overhead. In addition to benefiting from domain knowledge, D-ADMM adaptively learns hyper-parameters and non-convex solvers of the intractable RIS design problem through data-driven end-to-end training.",
+        "published": "2023-01-06T02:07:39Z",
+        "updated": "2023-01-06T02:07:39Z",
+        "doi": null,
+        "journal_ref": null,
+        "comment": null,
+        "authors": [
+          "Wangyang Xu",
+          "Jiancheng An",
+          "Hongbin Li",
+          "Lu Gan",
+          "Chau Yuen"
+        ]
+      },
+      {
+        "id": "http://arxiv.org/abs/2510.05438v5",
+        "title": "Model-based Deep Learning for Joint RIS Phase Shift Compression and WMMSE Beamforming",
+        "abstract": "A model-based deep learning (DL) architecture is proposed for reconfigurable intelligent surface (RIS)-assisted multi-user communications to reduce the number of bits required for transmitting phase shift information from the access point (AP) to the RIS controller. The AP computes the phase shifts and compresses them into a binary control message that is sent to the RIS controller for element configuration. To help reduce beamformer mismatches caused by phase shift compression errors, the beamformer is updated with the actual (decompressed) RIS phase shifts. By unrolling the iterative weighted minimum mean square error (WMMSE) algorithm within the wireless communication-informed DL architecture, joint phase shift compression and WMMSE beamforming can be trained end-to-end. Simulation results demonstrate that incorporating compression-aware beamforming significantly improves sum-rate performance, even when the number of control bits is lower than the number of RIS elements.",
+        "published": "2025-10-06T23:04:47Z",
+        "updated": "2026-04-09T04:46:00Z",
+        "doi": "10.1109/LWC.2026.3683016",
+        "journal_ref": null,
+        "comment": "5 pages, 4 figures, finalized version accepted to IEEE Wireless Communications Letters: DOI: 10.1109/LWC.2026.3683016",
+        "authors": [
+          "Alexander James Fernandes",
+          "Ioannis Psaromiligkos"
+        ]
+      },
+      {
+        "id": "http://arxiv.org/abs/2609.33408v1",
+        "title": "StarBOA: Real-Time Mamba State-Space Unrolling for Sparse Radar Micro-Doppler in ISAC Networks",
+        "abstract": "In Integrated Sensing and Communications (ISAC), radar sensing must operate under chirp subsampling with up to 90\\% missing data. An attention-based baseline, limited to a 52~ms buffer, collapses toward maximum uniform entropy ($H=2.584$ bits) as sparsity increases, failing to capture long-range gait-cycle context. We propose StarBOA, which replaces attention with a causal Mamba state-space model that updates incrementally on a per-window basis without re-scanning past reconstructions. By maintaining a persistent state, StarBOA integrates over $100\\times$ more temporal history at no additional per-step computational cost. StarBOA outperforms the baseline's published results across all sparsity levels, with SSIM gains increasing from $+0.0379$ at 50\\% missing data to $+0.2472$ at 90\\%. Each window is processed in 1.53~ms with zero lookahead, demonstrating efficient causal reconstruction under extreme chirp subsampling.",
+        "published": "2026-09-27T09:37:01Z",
+        "updated": "2026-09-27T09:37:01Z",
+        "doi": null,
+        "journal_ref": null,
+        "comment": "5 pages, 2 figures",
+        "authors": [
+          "Mustafa Bora Çelik",
+          "Ceren Çelik",
+          "Orhan Gazi"
+        ]
+      },
+      {
+        "id": "http://arxiv.org/abs/2409.16664v1",
+        "title": "Convolutional Dictionary Learning Based Hybrid-Field Channel Estimation for XL-RIS-Aided Massive MIMO Systems",
+        "abstract": "Extremely large reconfigurable intelligent surface (XL-RIS) is emerging as a promising key technology for 6G systems. To exploit XL-RIS's full potential, accurate channel estimation is essential. This paper investigates channel estimation in XL-RIS-aided massive MIMO systems under hybrid-field scenarios where far-field and near-field channels coexist. We formulate this problem using dictionary learning, which allows for joint optimization of the dictionary and estimated channel. To handle the high-dimensional nature of XL-RIS channels, we specifically adopt a convolutional dictionary learning (CDL) formulation. The CDL formulation is cast as a bilevel optimization problem, which we solve using a gradient-based approach. To address the challenge of computing the gradient of the upper-level objective, we introduce an unrolled optimization method based on proximal gradient descent (PGD) and its special case, the iterative soft-thresholding algorithm (ISTA). We propose two neural network architectures, Convolutional ISTA-Net and its enhanced version Convolutional ISTA-Net+, for end-to-end optimization of the CDL. To overcome the limitations of linear convolutional filters in capturing complex hybrid-field channel structures, we propose the CNN-CDL approach, which enhances PGD by replacing linear convolution filters with CNN blocks in its gradient descent step, employing a learnable proximal mapping module in its proximal mapping step, and incorporating cross-layer feature integration. Simulation results demonstrate the effectiveness of the proposed methods for channel estimation in hybrid-field XL-RIS systems.",
+        "published": "2024-09-25T06:50:03Z",
+        "updated": "2024-09-25T06:50:03Z",
+        "doi": null,
+        "journal_ref": null,
+        "comment": null,
+        "authors": [
+          "Peicong Zheng",
+          "Xuantao Lyu",
+          "Ye Wang",
+          "Yi Gong"
+        ]
+      },
+      {
+        "id": "http://arxiv.org/abs/2506.12965v3",
+        "title": "Distributional Training Data Attribution: What do Influence Functions Sample?",
+        "abstract": "Randomness is an unavoidable part of training deep learning models, yet something that traditional training data attribution algorithms fail to rigorously account for. They ignore the fact that, due to stochasticity in the initialisation and batching, training on the same dataset can yield different models. In this paper, we address this shortcoming through introducing distributional training data attribution (d-TDA), the goal of which is to predict how the distribution of model outputs (over training runs) depends upon the dataset. Intriguingly, we find that influence functions (IFs), a popular data attribution tool, are 'secretly distributional': they emerge from our framework as the limit to unrolled differentiation, without requiring restrictive convexity assumptions. This provides a new perspective on the effectiveness of IFs in deep learning. We demonstrate the practical utility of d-TDA in experiments, including improving data pruning for vision transformers and identifying influential examples with diffusion models.",
+        "published": "2025-06-15T21:02:36Z",
+        "updated": "2025-10-25T12:43:41Z",
+        "doi": null,
+        "journal_ref": null,
+        "comment": null,
+        "authors": [
+          "Bruno Mlodozeniec",
+          "Isaac Reid",
+          "Sam Power",
+          "David Krueger",
+          "Murat Erdogdu",
+          "Richard E. Turner",
+          "Roger Grosse"
+        ]
+      },
+      {
+        "id": "http://arxiv.org/abs/1906.02852v1",
+        "title": "Learning Clustered Representation for Complex Free Energy Landscapes",
+        "abstract": "In this paper we first analyzed the inductive bias underlying the data scattered across complex free energy landscapes (FEL), and exploited it to train deep neural networks which yield reduced and clustered representation for the FEL. Our parametric method, called Information Distilling of Metastability (IDM), is end-to-end differentiable thus scalable to ultra-large dataset. IDM is also a clustering algorithm and is able to cluster the samples in the meantime of reducing the dimensions. Besides, as an unsupervised learning method, IDM differs from many existing dimensionality reduction and clustering methods in that it neither requires a cherry-picked distance metric nor the ground-true number of clusters, and that it can be used to unroll and zoom-in the hierarchical FEL with respect to different timescales. Through multiple experiments, we show that IDM can achieve physically meaningful representations which partition the FEL into well-defined metastable states hence are amenable for downstream tasks such as mechanism analysis and kinetic modeling.",
+        "published": "2019-06-07T00:59:21Z",
+        "updated": "2019-06-07T00:59:21Z",
+        "doi": "10.1021/acs.jpclett.9b02012",
+        "journal_ref": "J. Phys. Chem. Lett. 2019,10,5571-5576",
+        "comment": "6 figures, 1 table in the main text",
+        "authors": [
+          "Jun Zhang",
+          "Yao-Kun Lei",
+          "Xing Che",
+          "Zhen Zhang",
+          "Yi Isaac Yang",
+          "Yi Qin Gao"
+        ]
+      }
+    ]
+  },
+  {
+    "label": "ris_ai_beam",
+    "url": "https://export.arxiv.org/api/query?search_query=all%3A%22RIS%22+AND+all%3A%22beamforming%22+AND+%28all%3A%22learning%22+OR+all%3A%22neural%22%29+AND+%28all%3A%22ISAC%22+OR+all%3A%22radar%22%29&start=0&max_results=25&sortBy=relevance",
+    "query": "all:\"RIS\" AND all:\"beamforming\" AND (all:\"learning\" OR all:\"neural\") AND (all:\"ISAC\" OR all:\"radar\")",
+    "papers": [
+      {
+        "id": "http://arxiv.org/abs/2403.17324v2",
+        "title": "Unsupervised Learning for Joint Beamforming Design in RIS-aided ISAC Systems",
+        "abstract": "It is critical to design efficient beamforming in reconfigurable intelligent surface (RIS)-aided integrated sensing and communication (ISAC) systems for enhancing spectrum utilization. However, conventional methods often have limitations, either incurring high computational complexity due to iterative algorithms or sacrificing performance when using heuristic methods. To achieve both low complexity and high spectrum efficiency, an unsupervised learning-based beamforming design is proposed in this work. We tailor image-shaped channel samples and develop an ISAC beamforming neural network (IBF-Net) model for beamforming. By leveraging unsupervised learning, the loss function incorporates key performance metrics like sensing and communication channel correlation and sensing channel gain, eliminating the need of labeling. Simulations show that the proposed method achieves competitive performance compared to benchmarks while significantly reduces computational complexity.",
+        "published": "2024-03-26T02:09:07Z",
+        "updated": "2024-05-15T06:51:54Z",
+        "doi": null,
+        "journal_ref": null,
+        "comment": "Accpeted by IEEE Wireless Communications Letters",
+        "authors": [
+          "Junjie Ye",
+          "Lei Huang",
+          "Zhen Chen",
+          "Peichang Zhang",
+          "Mohamed Rihan"
+        ]
+      },
+      {
+        "id": "http://arxiv.org/abs/2502.14325v1",
+        "title": "Joint Waveform and Beamforming Design in RIS-ISAC Systems: A Model-Driven Learning Approach",
+        "abstract": "Integrated Sensing and Communication (ISAC) has emerged as a key enabler for future wireless systems. The recently developed symbol-level precoding (SLP) technique holds significant potential for ISAC waveform design, as it leverages both temporal and spatial degrees of freedom (DoFs) to enhance multi-user communication and radar sensing capabilities. Concurrently, reconfigurable intelligent surfaces (RIS) offer additional controllable propagation paths, further amplifying interest in their application. However, previous studies have encountered substantial computational challenges due to the complexity of jointly designing SLP-based waveforms and RIS passive beamforming. In this paper, we propose a novel model-driven learning approach that jointly optimizes waveform and beamforming by unfolding the iterative alternative direction method of multipliers (ADMM) algorithm. Two joint design algorithms are developed for radar target detection and direction-of-arrival (DoA) estimation tasks in a cluttered RIS-ISAC system. While ensuring the communication quality-of-service (QoS) requirements, our objectives are: 1) to maximize the radar output signal-to-interference-plus-noise ratio (SINR) for target detection, and 2) to minimize the Cramér-Rao bound (CRB) for DoA estimation. Simulation results verify that our proposed model-driven learning algorithms achieve satisfactory communication and sensing performance, while also offering a substantial reduction in computational complexity, as reflected by the average execution time.",
+        "published": "2025-02-20T07:23:21Z",
+        "updated": "2025-02-20T07:23:21Z",
+        "doi": null,
+        "journal_ref": null,
+        "comment": "Accepted by IEEE Transactions on Communications",
+        "authors": [
+          "Peng Jiang",
+          "Ming Li",
+          "Rang Liu",
+          "Wei Wang",
+          "Qian Liu"
+        ]
+      },
+      {
+        "id": "http://arxiv.org/abs/2603.01379v1",
+        "title": "GNN Based Joint Beamforming Design for Extremely Large-Scale RIS Assisted Near-Field ISAC Systems",
+        "abstract": "This paper investigates an extremely large-scale reconfigurable intelligent surface (XL-RIS) assisted near-field integrated sensing and communication (ISAC) system, where a multi-antenna base station (BS) simultaneously sends unicast data to multiple single-antenna communication users (CUs) and senses multiple targets (TGTs). The BS, CUs and TGTs are \\emph{all} assumed to be located in the near-field region of the XL-RIS. We aim to maximize the weighted sum rate (WSR) of all CUs, subject to the sensing beampattern gain constraint for each TGT, the transmit power constraint for the BS, and the unit modulus constraints on the XL-RIS phase shift. First, we develop a fractional programming (FP) based block coordinate descent (BCD) algorithm to obtain a locally optimal solution for such a non-convex joint design problem. Secondly, to address the high-dimensional spatial correlations and scalability of the XL-RIS near-field channels, we propose a customized graph neural network (GNN) scheme to generate the BS transmit beamforming variables and the XL-RIS reflecting coefficient vector for ISAC, where the near-field ISAC system is modeled as a heterogeneous graph comprising XL-RIS/CU/TGT nodes. The proposed GNN scheme can effectively learn the near-field channel state information (CSI) features, in which the message passing mechanism is employed to exchange CSI among these directly connected nodes in the graph. Furthermore, each XL-RIS/CU/TGT node maintains a feature vector for mapping to the BS transmit beamforming variables or the XL-RIS reflecting coefficient vector. Numerical results show that the proposed GNN-based beamforming design scheme achieves a better performance than the existing baselines, in terms of computational efficiency, feasibility, robustness, and the ability of generalization.",
+        "published": "2026-03-02T02:20:10Z",
+        "updated": "2026-03-02T02:20:10Z",
+        "doi": null,
+        "journal_ref": null,
+        "comment": "13 pages, 10 figures, and full paper submitted for possible publication",
+        "authors": [
+          "Jiahao Chen",
+          "Feng Wang",
+          "Guojun Han",
+          "Xin Wang",
+          "Vincent K. N. Lau"
+        ]
+      },
+      {
+        "id": "http://arxiv.org/abs/2405.20168v1",
+        "title": "Enhancing Battlefield Awareness: An Aerial RIS-assisted ISAC System with Deep Reinforcement Learning",
+        "abstract": "This paper considers a joint communication and sensing technique for enhancing situational awareness in practical battlefield scenarios. In particular, we propose an aerial reconfigurable intelligent surface (ARIS)-assisted integrated sensing and communication (ISAC) system consisting of a single access point (AP), an ARIS, multiple users, and a sensing target. With deep reinforcement learning (DRL), we jointly optimize the transmit beamforming of the AP, the RIS phase shifts, and the trajectory of the ARIS under signal-to-interference-noise ratio (SINR) constraints. Numerical results demonstrate that the proposed technique outperforms the conventional benchmark schemes by suppressing the self-interference and clutter echo signals or optimizing the RIS phase shifts.",
+        "published": "2024-05-30T15:41:39Z",
+        "updated": "2024-05-30T15:41:39Z",
+        "doi": "10.1109/MILCOM61039.2024.10774028",
+        "journal_ref": null,
+        "comment": null,
+        "authors": [
+          "Hyunsang Cho",
+          "Seonghoon Yoo",
+          "Bang Chul Jung",
+          "Joonhyuk Kang"
+        ]
+      },
+      {
+        "id": "http://arxiv.org/abs/2501.12353v1",
+        "title": "Sum Rate Enhancement using Machine Learning for Semi-Self Sensing Hybrid RIS-Enabled ISAC in THz Bands",
+        "abstract": "This paper proposes a novel semi-self sensing hybrid reconfigurable intelligent surface (SS-HRIS) in terahertz (THz) bands, where the RIS is equipped with reflecting elements divided between passive and active elements in addition to sensing elements. SS-HRIS along with integrated sensing and communications (ISAC) can help to mitigate the multipath attenuation that is abundant in THz bands. In our proposed scheme, sensors are configured at the SS-HRIS to receive the radar echo signal from a target. A joint base station (BS) beamforming and HRIS precoding matrix optimization problem is proposed to maximize the sum rate of communication users while maintaining satisfactory sensing performance measured by the Cramer-Rao bound (CRB) for estimating the direction of angles of arrival (AoA) of the echo signal and thermal noise at the target. The CRB expression is first derived and the sum rate maximization problem is formulated subject to communication and sensing performance constraints. To solve the complex non-convex optimization problem, deep deterministic policy gradient (DDPG)-based deep reinforcement learning (DRL) algorithm is proposed, where the reward function, the action space and the state space are modeled. Simulation results show that the proposed DDPG-based DRL algorithm converges well and achieves better performance than several baselines, such as the soft actor-critic (SAC), proximal policy optimization (PPO), greedy algorithm and random BS beamforming and HRIS precoding matrix schemes. Moreover, it demonstrates that adopting HRIS significantly enhances the achievable sum rate compared to passive RIS and random BS beamforming and HRIS precoding matrix schemes.",
+        "published": "2025-01-21T18:32:40Z",
+        "updated": "2025-01-21T18:32:40Z",
+        "doi": null,
+        "journal_ref": null,
+        "comment": null,
+        "authors": [
+          "Sara Farrag Mobarak",
+          "Tingnan Bao",
+          "Melike Erol-Kantarci"
+        ]
+      },
+      {
+        "id": "http://arxiv.org/abs/2402.16413v2",
+        "title": "AI-enabled STAR-RIS aided MISO ISAC Secure Communications",
+        "abstract": "A simultaneous transmitting and reflecting reconfigurable intelligent surface (STAR-RIS) aided integrated sensing and communication (ISAC) dual-secure communication system is studied in this paper. The sensed target and legitimate users (LUs) are situated on the opposite sides of the STAR-RIS, and the energy splitting and time switching protocols are applied in the STAR-RIS, respectively. The long-term average security rate for LUs is maximized by the joint design of the base station (BS) transmit beamforming and receive filter, along with the STAR-RIS transmitting and reflecting coefficients, under guarantying the echo signal-to-noise ratio thresholds and rate constraints for the LUs. Since the channel information changes over time, conventional convex optimization techniques cannot provide the optimal performance for the system, and result in excessively high computational complexity in the exploration of the long-term gains for the system. Taking continuity control decisions into account, the deep deterministic policy gradient and soft actor-critic algorithms based on off-policy are applied to address the complex non-convex problem. Simulation results comprehensively evaluate the performance of the proposed two reinforcement learning algorithms and demonstrate that STAR-RIS is remarkably better than the two benchmarks in the ISAC system.",
+        "published": "2024-02-26T09:11:16Z",
+        "updated": "2024-02-27T12:18:25Z",
+        "doi": null,
+        "journal_ref": null,
+        "comment": null,
+        "authors": [
+          "Zhengyu Zhu",
+          "Mengfei Gong",
+          "Gangcan Sun",
+          "Peijia Liu",
+          "De Mi"
+        ]
+      },
+      {
+        "id": "http://arxiv.org/abs/2211.01296v1",
+        "title": "Machine Learning for Metasurfaces Design and Their Applications",
+        "abstract": "Metasurfaces (MTSs) are increasingly emerging as enabling technologies to meet the demands for multi-functional, small form-factor, efficient, reconfigurable, tunable, and low-cost radio-frequency (RF) components because of their ability to manipulate waves in a sub-wavelength thickness through modified boundary conditions. They enable the design of reconfigurable intelligent surfaces (RISs) for adaptable wireless channels and smart radio environments, wherein the inherently stochastic nature of the wireless environment is transformed into a programmable propagation channel. In particular, space-limited RF applications, such as communications and radar, that have strict radiation requirements are currently being investigated for potential RIS deployment. The RIS comprises sub-wavelength units or meta-atoms, which are independently controlled and whose geometry and material determine the spectral response of the RIS. Conventionally, designing RIS to yield the desired EM response requires trial and error by iteratively investigating a large possibility of various geometries and materials through thousands of full-wave EM simulations. In this context, machine/deep learning (ML/DL) techniques are proving critical in reducing the computational cost and time of RIS inverse design. Instead of explicitly solving Maxwell's equations, DL models learn physics-based relationships through supervised training data. The ML/DL techniques also aid in RIS deployment for numerous wireless applications, which requires dealing with multiple channel links between the base station (BS) and the users. As a result, the BS and RIS beamformers require a joint design, wherein the RIS elements must be rapidly reconfigured. This chapter provides a synopsis of DL techniques for both inverse RIS design and RIS-assisted wireless systems.",
+        "published": "2022-11-02T17:19:37Z",
+        "updated": "2022-11-02T17:19:37Z",
+        "doi": null,
+        "journal_ref": "Advances in Electromagnetics Empowered by Machine Learning, D. H. Werner and S. D. Campbell (Eds.), Wiley-IEEE Press, 2022",
+        "comment": "Book chapter, 70 pages, 12 figures, 2 tables. arXiv admin note: substantial text overlap with arXiv:2101.09131, arXiv:2009.02540",
+        "authors": [
+          "Kumar Vijay Mishra",
+          "Ahmet M. Elbir",
+          "Amir I. Zaghloul"
+        ]
+      },
+      {
+        "id": "http://arxiv.org/abs/2509.14160v1",
+        "title": "Hardware-Efficient Cognitive Radar: Multi-Target Detection with RL-Driven Transmissive RIS",
+        "abstract": "Cognitive radar has emerged as a key paradigm for next-generation sensing, enabling adaptive, intelligent operation in dynamic and complex environments. Yet, conventional cognitive multiple-input multiple-output (MIMO) radars offer strong detection performance but suffer from high hardware complexity and power demands. To overcome these limitations, we develop a reinforcement learning (RL)-based framework that leverages a transmissive reconfigurable intelligent surface (TRIS) for adaptive beamforming. A state-action-reward-state-action (SARSA) agent tunes TRIS phase shifts to improve multi-target detection in low signal-to-noise ratio (SNR) conditions while operating with far fewer radio frequency (RF) chains. Simulations confirm that the proposed TRIS-RL radar matches or, for large number of elements, even surpasses MIMO performance with reduced cost and energy requirements.",
+        "published": "2025-09-17T16:43:26Z",
+        "updated": "2025-09-17T16:43:26Z",
+        "doi": null,
+        "journal_ref": null,
+        "comment": "5 pages, 3 figures, submitted to ICASSP 2026",
+        "authors": [
+          "Adam Umra",
+          "Aya Mostafa Ahmed",
+          "Stefan Roth",
+          "Aydin Sezgin"
+        ]
+      },
+      {
+        "id": "http://arxiv.org/abs/2610.00145v1",
+        "title": "Movable-Element STAR-RIS for Integrated Sensing and Communication: Architectures, Opportunities, and Practical Challenges",
+        "abstract": "Simultaneously transmitting and reflecting reconfigurable intelligent surfaces (STAR-RISs) extend conventional reflecting-only surfaces by enabling controllable full-space propagation. Yet, once deployed, the physical locations of their elements remain fixed, leaving the surface geometry unable to adapt to users, sensing targets, blockage, or near-field focusing conditions. This article develops a system-level perspective on movable-element STAR-RIS (ME--STAR--RIS) for integrated sensing and communication (ISAC), where the surface jointly reconfigures its electromagnetic response and the physical positions of its elements. We explain how geometric reconfiguration can reshape the effective aperture, spatial correlation, interference nulls, and sensing illumination while preserving STAR-RIS full-space operation. A two-timescale control architecture separates relatively slow element motion from fast beamforming and transmission/reflection control. A 100-realization illustrative case study compares ME--STAR--RIS with an otherwise identical fixed STAR-RIS under a passive coupled transmission/reflection response. The results show a substantially improved sampled communication--sensing tradeoff and, importantly, a rapid saturation of the rate gain with modest element travel. We conclude with representative use cases, implementation constraints, and a research roadmap covering mobility overhead, channel acquisition, mutual coupling, near-field operation, hardware impairments, and learning-assisted predictive control.",
+        "published": "2026-09-10T11:32:14Z",
+        "updated": "2026-09-10T11:32:14Z",
+        "doi": null,
+        "journal_ref": null,
+        "comment": "9, 4",
+        "authors": [
+          "Wali Ullah Khan",
+          "Muhammad Adil"
+        ]
+      },
+      {
+        "id": "http://arxiv.org/abs/2402.19416v2",
+        "title": "Vision-Radio Experimental Infrastructure Architecture Towards 6G",
+        "abstract": "Telecommunications and computer vision have evolved separately so far. Yet, with the shift to sub-terahertz (sub-THz) and terahertz (THz) radio communications, there is an opportunity to explore computer vision technologies together with radio communications, considering the dependency of both technologies on Line of Sight. The combination of radio sensing and computer vision can address challenges such as obstructions and poor lighting. Also, machine learning algorithms, capable of processing multimodal data, play a crucial role in deriving insights from raw and low-level sensing data, offering a new level of abstraction that can enhance various applications and use cases such as beamforming and terminal handovers. This paper introduces CONVERGE, a pioneering vision-radio paradigm that bridges this gap by leveraging Integrated Sensing and Communication (ISAC) to facilitate a dual \"View-to-Communicate, Communicate-to-View\" approach. CONVERGE offers tools that merge wireless communications and computer vision, establishing a novel Research Infrastructure (RI) that will be open to the scientific community and capable of providing open datasets. This new infrastructure will support future research in 6G and beyond concerning multiple verticals, such as telecommunications, automotive, manufacturing, media, and health.",
+        "published": "2024-02-29T18:14:11Z",
+        "updated": "2024-04-12T13:45:21Z",
+        "doi": null,
+        "journal_ref": null,
+        "comment": "6 pages, 5 figures",
+        "authors": [
+          "Filipe B. Teixeira",
+          "Manuel Ricardo",
+          "André Coelho",
+          "Hélder P. Oliveira",
+          "Paula Viana",
+          "Nuno Paulino",
+          "Helder Fontes",
+          "Paulo Marques",
+          "Rui Campos",
+          "Luis M. Pessoa"
+        ]
+      }
+    ]
+  },
+  {
+    "label": "fas_ris",
+    "url": "https://export.arxiv.org/api/query?search_query=all%3A%22RIS%22+AND+%28all%3A%22fluid+antenna%22+OR+all%3A%22movable+antenna%22%29&start=0&max_results=25&sortBy=relevance",
+    "query": "all:\"RIS\" AND (all:\"fluid antenna\" OR all:\"movable antenna\")",
+    "papers": [
+      {
+        "id": "http://arxiv.org/abs/2311.06501v1",
+        "title": "Sum-Rate Optimization for RIS-Aided Multiuser Communications with Movable Antenna",
+        "abstract": "Reconfigurable intelligent surface (RIS) is known as a promising technology to improve the performance of wireless communication networks, which has been extensively studied. Movable antenna (MA) is a novel technology that fully exploits the antenna position for enhancing the channel capacity. In this paper, we propose a new RIS-aided multiuser communication system with MAs. The sum-rate is maximized by jointly optimizing the beamforming, the reflection coefficient (RC) values of RIS and the positions of MAs. A fractional programming-based iterative algorithm is proposed to solve the formulated non-convex problem, considering three assumptions for the RIS. Numerical results are presented to verify the effectiveness of the proposed algorithm and the superiority of the proposed MA-based system in terms of sum-rate.",
+        "published": "2023-11-11T07:44:41Z",
+        "updated": "2023-11-11T07:44:41Z",
+        "doi": null,
+        "journal_ref": null,
+        "comment": "5 pages",
+        "authors": [
+          "Yunan Sun",
+          "Hao Xu",
+          "Chongjun Ouyang",
+          "Hongwen Yang"
+        ]
+      },
+      {
+        "id": "http://arxiv.org/abs/2606.11519v1",
+        "title": "Joint Movable Antenna Positioning and RIS Partitioning for Sum-Rate Maximization",
+        "abstract": "This paper investigates the utility of the movable antenna (MA) and reconfigurable intelligent surface (RIS) framework for downlink wireless communications. In the considered scenario, a base station (BS) is equipped with two sub-arrays of MAs transmits signals to the users via the RIS. By jointly exploiting the antenna-positioning flexibility of MAs and the RIS element selection capability, the proposed joint MA-RIS framework introduces additional design degrees of freedom to enhance desired signals and mitigate inter-user interference, thereby maximizing the network sum-rate. To this end, we formulate a joint optimization problem involving MA positioning, sub-array beamforming, and RIS element selection, subject to the minimum antenna separation and transmit power constraints. The resulting problem is highly non-convex and challenging to solve directly. To address this issue, an alternating optimization framework is developed that decomposes the problem into three tractable subproblems. Specifically, zero-forcing beamforming is employed for transmit beamformer design, a low-complexity one-dimensional search is derived for RIS element selection, and the MA positioning problem is solved using block coordinate descent (BCD) and convex optimization techniques implemented via CVX. Simulation results demonstrate that the proposed joint MA-RIS framework significantly improves the achievable sum-rate compared with conventional fixed MAs and benchmark schemes with random configurations.",
+        "published": "2026-06-09T23:40:05Z",
+        "updated": "2026-06-09T23:40:05Z",
+        "doi": null,
+        "journal_ref": null,
+        "comment": "6 pages, 4 figures, conference",
+        "authors": [
+          "Mohammed Saif"
+        ]
+      },
+      {
+        "id": "http://arxiv.org/abs/2407.03228v2",
+        "title": "Movable Antenna-enabled RIS-aided Integrated Sensing and Communication",
+        "abstract": "In this paper, we investigate a movable antenna (MA)-aided integrated sensing and communication (ISAC) system, where a reconfigurable intelligent surface (RIS) is employed to enhance wireless communication and sensing performance in dead zones. Specifically, this paper aims to maximize the minimum beampattern gain at the RIS by jointly optimizing beamforming matrix at the base station (BS), the reflecting coefficients at the RIS and the positions of the MAs, subject to signal-to-interference-plus-noise ratio (SINR) constraint for the users and maximum transmit power at the BS. To tackle this non-convex optimization problem, we propose an alternating optimization (AO) algorithm and employ semidefinite relaxation (SDR), sequential rank-one constraint relaxation (SRCR) and successive convex approximation (SCA) techniques. Numerical results indicate that the MA and RIS-aided ISAC system outperforms conventional fixed position antenna (FPA) and RIS-aided systems. In addition, the application of MAs can reduce the similarity of user channels and enhance channel gain in the ISAC system.",
+        "published": "2024-07-03T15:55:27Z",
+        "updated": "2024-09-11T16:18:43Z",
+        "doi": null,
+        "journal_ref": null,
+        "comment": "14 pages, 11 figures",
+        "authors": [
+          "Haisu Wu",
+          "Hong Ren",
+          "Cunhua Pan",
+          "Yang Zhang"
+        ]
+      },
+      {
+        "id": "http://arxiv.org/abs/2512.23242v2",
+        "title": "Sum Rate optimization for RIS-Aided RSMA system with Movable Antenna",
+        "abstract": "Rate-Splitting Multiple Access (RSMA) is a key enabling technique for sixth-generation (6G) wireless systems due to its powerful interference management, and Reconfigurable Intelligent Surface (RIS) improves communication performance by shaping wireless propagation. However, conventional RSMA--RIS architectures employ fixed antennas, limiting spatial degrees of freedom and system performance. To address this, we propose a movable-antenna (MA) assisted RSMA--RIS framework and formulate a sum-rate maximization problem that jointly optimizes the transmit beamforming matrix, RIS reflection matrix, common-rate partition, and MA positions. After yielding a closed-form solution for common rate splitting, the problem is transformed via fractional programming (FP). Using Karush--Kuhn--Tucker (KKT) conditions, we give iterative updates for Lagrange multipliers and beamforming matrix, obtain the RIS reflection matrix via the dual problem, and determine optimal antenna positions via gradient ascent. Numerical results show that with the existence of RIS, integrating MA yields additional gains of approximately 33.3\\% for SDMA and 35.6\\% for RSMA.",
+        "published": "2025-12-29T06:50:08Z",
+        "updated": "2026-03-10T07:24:57Z",
+        "doi": null,
+        "journal_ref": null,
+        "comment": null,
+        "authors": [
+          "Mingyu Hu",
+          "Nan Liu",
+          "Wei Kang"
+        ]
+      },
+      {
+        "id": "http://arxiv.org/abs/2511.01575v1",
+        "title": "Optimizing Movable Antenna Position and Transmissive RIS Phase for Efficient Base Station Design",
+        "abstract": "Movable antennas (MA) and transmissive reconfigurable intelligent surfaces (TRIS) represent two innovative technologies that significantly enhance the flexibility of wireless communication systems. In this paper, we propose a novel and compact base station architecture that synergistically integrates a movable antenna with a transmissive RIS in the near field, enabling joint optimization of antenna positioning and TRIS phase adjustments. The proposed model compensates for phase quantization loss and significantly enhances signal strength, even with low-resolution (1-2 bit) phase shifters. Leveraging this framework, we systematically evaluate system performance as a function of TRIS size and antenna placement. Our results indicate that antenna mobility provides an additional degree of freedom to enhance the desired signal and achieve a higher SNR, particularly when combined with TRIS capabilities. These findings demonstrate that MA-TRIS integration offers a cost-effective and energy-efficient pathway toward compact 6G base stations, combining hardware simplicity with strong performance gains.",
+        "published": "2025-11-03T13:45:04Z",
+        "updated": "2025-11-03T13:45:04Z",
+        "doi": null,
+        "journal_ref": null,
+        "comment": null,
+        "authors": [
+          "Marjan Boloori",
+          "Chu Li",
+          "Aydin Sezgin"
+        ]
+      },
+      {
+        "id": "http://arxiv.org/abs/2402.16116v1",
+        "title": "On Performance of RIS-Aided Fluid Antenna Systems",
+        "abstract": "This letter studies the performance of reconfigurable intelligent surface (RIS)-aided communications for a fluid antenna system (FAS) enabled receiver. Specifically, a fixed singleantenna base station (BS) transmits information through a RIS to a mobile user (MU) which is equipped with a planar fluid antenna in the absence of a direct link.We first analyze the spatial correlation structures among the positions (or ports) in the planar FAS, and then derive the joint distribution of the equivalent channel gain at the user by exploiting the central limit theorem. Furthermore, we obtain compact analytical expressions for the outage probability (OP) and delay outage rate (DOR). Numerical results illustrate that using FAS with only one activated port into the RIS-aided communication network can greatly enhance the performance, when compared to traditional antenna systems (TAS).",
+        "published": "2024-02-25T15:29:28Z",
+        "updated": "2024-02-25T15:29:28Z",
+        "doi": null,
+        "journal_ref": null,
+        "comment": null,
+        "authors": [
+          "Farshad Rostami Ghadi",
+          "Kai-Kit Wong",
+          "Wee Kiat New",
+          "Hao Xu",
+          "Ross Murch",
+          "Yangyang Zhang"
+        ]
+      },
+      {
+        "id": "http://arxiv.org/abs/2504.07417v1",
+        "title": "Secure Directional Modulation with Movable Antenna Array Aided by RIS",
+        "abstract": "In this paper, to fully exploit the performance gains from moveable antennas (MAs) and reconfigurable intelligent surface (RIS), a RIS-aided directional modulation \\textcolor{blue}{(DM)} network with movable antenna at base station (BS) is established Based on the principle of DM, a BS equipped with MAs transmits legitimate information to a single-antenna user (Bob) while exploiting artificial noise (AN) to degrade signal reception at the eavesdropper (Eve). The combination of AN and transmission beamforming vectors is modeled as joint beamforming vector (JBV) to achieve optimal power allocation. The objective is to maximize the achievable secrecy rate (SR) by optimizing MAs antenna position, phase shift matrix (PSM) of RIS, and JBV. The limited movable range (MR) and discrete candidate positions of the MAs at the BS are considered, which renders the optimization problem non-convex. To address these challenges, an optimization method under perfect channel state information (CSI) is firstly designed, in which the MAs antenna positions are obtained using compressive sensing (CS) technology, and JBV and PSM are iteratively optimized. Then, the design method and SR performance under imperfect CSI is investigated. The proposed algorithms have fewer iterations and lower complexity. Simulation results demonstrate that MAs outperform fixed-position antennas in SR performance when there is an adequately large MR available.",
+        "published": "2025-04-10T03:14:30Z",
+        "updated": "2025-04-10T03:14:30Z",
+        "doi": null,
+        "journal_ref": null,
+        "comment": null,
+        "authors": [
+          "Maolin Li",
+          "Jingdie Xin",
+          "Feng Shu",
+          "Xuehui Wang",
+          "Yongpeng Wu",
+          "Cunhua Pan"
+        ]
+      },
+      {
+        "id": "http://arxiv.org/abs/2605.08610v1",
+        "title": "Fluid Antennas Assisted RIS-NOMA Communication Networks",
+        "abstract": "This paper introduces a fluid antenna system (FAS) into reconfigurable intelligent surface (RIS) assisted non-orthogonal multiple access (NOMA) communication networks, where the non-orthogonal users are equipped with planar fluid antennas. Specifically, we formulate a sum rate maximization problem for FAS-RIS-NOMA networks, which jointly optimizes the fluid ports, the RIS deployment, and the phase shift matrix. To solve the resulting non-convex optimization problem involving highly coupled variables, an iterative algorithm based on alternating optimization is employed to decompose the original problem into three subproblems. Exhaustive search is employed for optimizing the fluid ports, particle swarm optimization is used for the RIS deployment, and semidefinite relaxation with successive convex approximation is adopted for optimizing the phase shift matrix. Finally, the simulation results show that: 1) compared with traditional antenna systems and orthogonal multiple access, the FAS-RIS-NOMA networks achieve higher system throughput under high signal-to-noise ratio conditions; and 2) by increasing the number of RIS elements and enlarging the FAS size, the sum rate of FAS-RIS-NOMA networks can be significantly enhanced.",
+        "published": "2026-05-09T02:11:08Z",
+        "updated": "2026-05-09T02:11:08Z",
+        "doi": null,
+        "journal_ref": null,
+        "comment": null,
+        "authors": [
+          "Xinwei Yue",
+          "He Geng",
+          "Jingjing Zhao",
+          "Xianli Gong",
+          "Aryan Kaushik",
+          "Arumugam Nallanathan"
+        ]
+      },
+      {
+        "id": "http://arxiv.org/abs/2607.25924v1",
+        "title": "Secure Energy-Efficient Uplink Transmission in Movable-Element RIS-aided Systems with Movable Antennas and Artificial Noise",
+        "abstract": "Secure energy efficiency (SEE) has emerged as a key performance metric for next-generation wireless networks, where energy sustainability and information security must be jointly guaranteed. This paper investigates secure uplink transmission in a full-duplex (FD) base station (BS) system equipped with movable antennas (MAs) and assisted by a movable-element reconfigurable intelligent surface (ME-RIS) in the presence of multiple cooperative passive eavesdroppers. The objective is to maximize SEE by jointly optimizing the users' transmit powers, BS receive postcoders, artificial noise (AN) transmit power and beamforming, RIS phase shifts, and the two-dimensional positions of both the BS antennas and RIS elements. The resulting optimization problem is highly nonconvex due to the fractional SEE objective, coupled secrecy-rate expressions, residual self-interference (SI), unit-modulus RIS phase-shift constraints, movable-position constraints, inter-element spacing requirements, and the nonlinear dependence of the channels on the movable antenna and RIS-element positions. To address these challenges, we propose a hybrid gradient-based meta-learning (H-GML) framework. In the proposed method, the BS receive postcoders and AN direction are updated using closed-form solutions derived from generalized Rayleigh quotient formulations, while the remaining coupled variables are updated by neural meta-optimizers that learn gradient-based update directions directly from the SEE optimization objective without requiring offline labeled training data. Simulation results show that the proposed H-GML design achieves better performance than the AO benchmark and significantly outperforms fixed-geometry, random RIS, no-AN, and no-Eve-knowledge baselines.",
+        "published": "2026-07-28T16:15:03Z",
+        "updated": "2026-07-28T16:15:03Z",
+        "doi": null,
+        "journal_ref": null,
+        "comment": null,
+        "authors": [
+          "Ayda Nodel Hokmabadi",
+          "Mohamed Elhattab",
+          "Chadi Assi"
+        ]
+      },
+      {
+        "id": "http://arxiv.org/abs/2604.18138v1",
+        "title": "Semi-Blind Receivers for RIS-Aided Fluid Antenna Systems",
+        "abstract": "Reconfigurable intelligent surfaces (RISs) and fluid antennas (FAs) are key technologies for enhancing spatial degrees of freedom in future wireless networks. However, channel acquisition in RIS-aided FA systems is challenging as cascaded links depend on time-varying antenna-port selections and RIS configurations, leading to high training overhead in conventional pilot-based methods. We propose a semi-blind estimation framework for this joint architecture to estimate channels and symbols concurrently. Two hierarchical transmission protocols are introduced, resulting in distinct tensor models. Protocol 1 uses a two-time-scale structure yielding a PARAFAC (PF) model, while Protocol 2 employs a single-time-scale structure with blockwise spatial variations, leading to a Nested PARAFAC2 (NPF) model. For both, we develop semi-blind receivers based on trilinear alternating least squares to jointly estimate user-to-RIS channels, RIS-to-BS channels, and transmitted symbols by exploiting spatio-temporal diversity from FA and RIS reconfiguration. We derive identifiability conditions and computational complexity, revealing a fundamental trade-off: the PF receiver (Protocol 1) more aggressively exploits joint RIS/FA reconfiguration for stronger robustness, whereas the NPF receiver (Protocol 2) offers a flexible, lower-complexity alternative. Simulations show the proposed receivers achieve accurate recovery with significantly reduced training overhead, demonstrating the effectiveness of tensor-based semi-blind processing for RIS-aided fluid antenna communications.",
+        "published": "2026-04-20T12:05:17Z",
+        "updated": "2026-04-20T12:05:17Z",
+        "doi": null,
+        "journal_ref": null,
+        "comment": null,
+        "authors": [
+          "Josué V. de Araújo",
+          "Gilderlan T. de Araújo",
+          "André L. F. de Almeida"
+        ]
+      },
+      {
+        "id": "http://arxiv.org/abs/2502.09023v1",
+        "title": "Joint Transceiver Design for RIS Enhanced Dual-Functional Radar-Communication with Movable Antenna",
+        "abstract": "Movable antennas (MAs) have shown significant potential in enhancing the performance of dual-functional radar-communication (DFRC) systems. In this paper, we investigate the MA-based transceiver design for DFRC systems, where a reconfigurable intelligent surface (RIS) is employed to enhance the communication quality in dead zones. To enhance the radar sensing performance, we formulate an optimization problem to maximize the radar signal-to-interference-plus-noise ratio (SINR) by jointly optimizing the beamforming vectors, receiving filter, antenna positions, and RIS reflecting coefficients. To tackle this challenging problem, we develop a fractional programming-based optimization framework, incorporating block coordinate descent (BCD), successive convex approximation (SCA), and penalty techniques. Simulation results demonstrate that the proposed method can significantly improve the radar SINR and achieve a satisfactory balance between the radar and communication performance compared with existing benchmark schemes.",
+        "published": "2025-02-13T07:20:40Z",
+        "updated": "2025-02-13T07:20:40Z",
+        "doi": null,
+        "journal_ref": null,
+        "comment": null,
+        "authors": [
+          "Ran Yang",
+          "Zheng Dong",
+          "Peng Cheng",
+          "Yue Xiu",
+          "Yan Li",
+          "Ning Wei"
+        ]
+      },
+      {
+        "id": "http://arxiv.org/abs/2511.11193v2",
+        "title": "Blockage-aware Hierarchical Codebook Design for RIS-Assisted Movable Antenna Systems",
+        "abstract": "In this paper, we propose a novel blockage-aware hierarchical beamforming framework for movable antenna (MA) systems operating at millimeter-wave (mm-Wave) frequencies. While existing works on MA systems have demonstrated performance gains over conventional systems, they often neglect the design of specialized codebooks to leverage MA's unique capabilities and address the challenges of increased energy consumption and latency inherent to MA systems. To address these aspects, we first integrate blockage detection into the codebook design process based on the Gerchberg-Saxton (GS) algorithm, significantly reducing inefficiencies due to beam evaluations done in blocked directions. Then, we use a two-stage approach to reduce the complexity of the joint beamforming and Reconfigurable Intelligent Surfaces (RIS) optimization problem. The simulations demonstrate that the proposed adaptive codebook successfully improves the Energy Efficiency (EE) and reduces the beam training overhead, substantially boosting the practical deployment potential of RIS-assisted MA systems in future wireless networks.",
+        "published": "2025-11-14T11:46:25Z",
+        "updated": "2026-03-19T12:31:55Z",
+        "doi": null,
+        "journal_ref": null,
+        "comment": "17 pages",
+        "authors": [
+          "Yan Zhang",
+          "Indrakshi Dey",
+          "Nicola Marchetti"
+        ]
+      },
+      {
+        "id": "http://arxiv.org/abs/2408.14969v1",
+        "title": "Secrecy Performance Analysis of RIS-Aided Fluid Antenna Systems",
+        "abstract": "This paper examines the impact of emerging fluid antenna systems (FAS) on reconfigurable intelligent surface (RIS)-aided secure communications. Specifically, we consider a classic wiretap channel, where a fixed-antenna transmitter sends confidential information to an FAS-equipped legitimate user with the help of an RIS, while an FAS-equipped eavesdropper attempts to decode the message. To evaluate the proposed wireless scenario, we first introduce the cumulative distribution function (CDF) and probability density function (PDF) of the signal-to-noise ratio (SNR) at each node, using the central limit theorem and the Gaussian copula function. We then derive a compact analytical expression for the secrecy outage probability (SOP). Our numerical results reveal how the incorporation of FAS and RIS can significantly enhance the performance of secure communications.",
+        "published": "2024-08-27T11:22:14Z",
+        "updated": "2024-08-27T11:22:14Z",
+        "doi": null,
+        "journal_ref": null,
+        "comment": null,
+        "authors": [
+          "Farshad Rostami Ghadi",
+          "Kai-Kit Wong",
+          "Masoud Kaveh",
+          "F. Javier Lopez-Martinez",
+          "Wee Kiat New",
+          "Hao Xu"
+        ]
+      },
+      {
+        "id": "http://arxiv.org/abs/2504.19511v1",
+        "title": "Novel Selection Schemes for Multi-RIS-Assisted Fluid Antenna Systems",
+        "abstract": "This paper investigates the performance of a multi-reconfigurable intelligent surface (RIS)-assisted fluid antenna system (FAS). In this system, a single-antenna transmitter communicates with a receiver equipped with a planar FAS through multiple RISs in the absence of a direct link. To enhance the system performance, we propose two novel selection schemes: \\textit{Max-Max} and \\textit{Max-Sum}. In particular, the \\textit{Max-Max} scheme selects the best combination of a single RIS and a single fluid antenna (FA) port that offers the maximum signal-to-noise ratio (SNR) at the receiver. On the other hand, the \\textit{Max-Sum} scheme selects one RIS while activating all FA ports providing the highest overall SNR. We conduct a detailed performance analysis of the proposed system under Nakagami-$m$ fading channels. First, we derive the cumulative distribution function (CDF) of the SNR for both selection schemes. The derived CDF is then used to obtain approximate theoretical expressions for the outage probability (OP) and the delay outage rate (DOR). Next, a high-SNR asymptotic analysis is carried out to provide further insights into the system performance in terms of diversity and coding gains. Finally, the analytical results are validated through extensive Monte Carlo simulations, demonstrating their accuracy and providing a comprehensive understanding of the system's performance.",
+        "published": "2025-04-28T06:19:39Z",
+        "updated": "2025-04-28T06:19:39Z",
+        "doi": null,
+        "journal_ref": null,
+        "comment": "10 pages",
+        "authors": [
+          "Mahmoud Aldababsa",
+          "Taissir Y. Elganimi",
+          "Mahmoud A. Albreem",
+          "Saeed Abdallah"
+        ]
+      },
+      {
+        "id": "http://arxiv.org/abs/2601.22109v1",
+        "title": "Towards Joint Optimization for UAV-Integrated RIS-Assisted Fluid Antenna Systems",
+        "abstract": "Unmanned aerial vehicles (UAVs) integrated into cellular networks face significant challenges from air-to-ground interference. To address this, we propose a downlink UAV communication system that leverages a fluid antenna system (FAS)- assisted reconfigurable intelligent surface (RIS) to enhance signal quality. By jointly optimizing the FAS port positions and RIS phase shifts, we maximize the achievable rate. The resulting nonconvex optimization problem is solved using successive convex approximation (SCA) based on second-order cone programming (SOCP), which reformulates the constraints into a tractable form. Simulation results show that the proposed algorithm significantly improves both outage probability and achievable rate over conventional fixed-position antenna (FPA) schemes, with particularly large gains in large-scale RIS configurations. Moreover, the algorithm converges rapidly, making it suitable for real-time applications",
+        "published": "2026-01-29T18:38:38Z",
+        "updated": "2026-01-29T18:38:38Z",
+        "doi": "10.1109/TVT.2026.3658088",
+        "journal_ref": "IEEE Transactions on Vehicular Technology, 2026",
+        "comment": "11 pages, 8 figures",
+        "authors": [
+          "Ali Reda",
+          "Tamer Mekkawy",
+          "Theodoros A. Tsiftsis",
+          "Chan-Byoung Chae",
+          "Kai-Kit Wong"
+        ]
+      },
+      {
+        "id": "http://arxiv.org/abs/2503.06080v3",
+        "title": "Fluid Antenna Meets RIS: Random Matrix Analysis and Two-Timescale Design for Multi-User Communications",
+        "abstract": "The reconfigurability of fluid antenna systems (FASs) and reconfigurable intelligent surfaces (RISs) provides significant flexibility in optimizing channel conditions by jointly adjusting the positions of fluid antennas and the phase shifts of RISs. However, it is challenging to acquire the instantaneous channel state information (CSI) for both fluid antennas and RISs, while frequent adjustment of antenna positions and phase shifts will significantly increase the system complexity. To tackle this issue, this paper investigates the two-timescale design for FAS-RIS multi-user systems with linear precoding, where only the linear precoder design requires instantaneous CSI of the end-to-end channel, while the FAS and RIS optimization relies on statistical CSI. The main challenge comes from the complex structure of channel and inverse operations in linear precoding, such as regularized zero-forcing (RZF) and zero-forcing (ZF). Leveraging on random matrix theory (RMT), we first investigate the fundamental limits of FAS-RIS systems with RZF/ZF precoding by deriving the ergodic sum rate (ESR). This result is utilized to determine the minimum number of selected antennas to achieve a given ESR. Based on the evaluation result, we propose an algorithm to jointly optimize the antenna selection, regularization factor of RZF, and phase shifts at the RIS. Numerical results validate the accuracy of performance evaluation and demonstrate that the performance gain brought by joint FAS and RIS design is more pronounced with a larger number of users.",
+        "published": "2025-03-08T06:06:48Z",
+        "updated": "2025-09-26T03:22:18Z",
+        "doi": null,
+        "journal_ref": null,
+        "comment": null,
+        "authors": [
+          "Xin Zhang",
+          "Dongfang Xu",
+          "Jingjing Wang",
+          "Shenghui Song",
+          "Derrick Wing Kwan Ng",
+          "Mérouane Debbah"
+        ]
+      },
+      {
+        "id": "http://arxiv.org/abs/2501.09351v1",
+        "title": "RIS-Aided Fluid Antenna Array-Mounted UAV Networks",
+        "abstract": "This paper investigates reconfigurable intelligent surface (RIS)-assisted unmanned aerial vehicle (UAV) downlink networks with fluid antennas (FA), where RIS enables non-line-of-sight (NLoS) transmissions. Moreover, the FA is equipped on the UAV offering dynamic antenna position adjustment, enhancing spatial diversity besides UAV deployment. We aim at total downlink rate maximization while ensuring minimum user rate requirement. We consider joint optimization of active UAV beamforming, passive RIS beamforming, UAV deployment and FA position adjustment. To address the complex problem, we propose beamfomring for RIS/UAV and FA-UAV deployment (BRAUD) scheme by employing alternative optimization, successive convex approximation (SCA) and sequential rank-one constraint relaxation (SROCR) method for the decomposed subproblems. Simulation results demonstrate the effectiveness of RIS-FA-UAV, achieving the highest rate among existing architectures without FA/UAV/RIS deployment and without proper beamforming. Moreover, BRAUD achieves the highest rate among benchmarks of drop-rank method, heuristic optimizations and conventional zero-forcing beamforming as well as random method.",
+        "published": "2025-01-16T08:04:02Z",
+        "updated": "2025-01-16T08:04:02Z",
+        "doi": null,
+        "journal_ref": null,
+        "comment": "accepted by IEEE WCL",
+        "authors": [
+          "Li-Hsiang Shen",
+          "Yi-Hsuan Chiu"
+        ]
+      },
+      {
+        "id": "http://arxiv.org/abs/2601.08922v1",
+        "title": "Joint Beamforming and Position Optimization for Movable-Antenna and Movable-Element RIS-Aided Full-Duplex 6G MISO Systems",
+        "abstract": "Full-duplex communication substantially enhances spectral efficiency by enabling simultaneous transmission and reception on the same time-frequency resources. However, its practical deployment remains hindered by strong residual self-interference and inter-user interference, which severely degrade system performance. This work investigates a full-duplex MISO network that leverages movable-antenna base stations (MA-BS) and movable-element reconfigurable intelligent surfaces (ME-RIS) to overcome these limitations in next-generation 6G systems. Unlike conventional fixed-geometry architectures, the proposed framework jointly optimizes antenna and RIS element positions, together with RIS phase shifts, to strengthen desired links while suppressing interference. Our design objective is to maximize the system sum rate through the joint optimization of transmit and receive beamforming vectors, uplink transmit powers, RIS phase shifts, and the spatial locations of both the BS antennas and RIS elements. To solve this challenging nonconvex problem, an alternating optimization algorithm is developed, employing semidefinite relaxation for beamforming design and successive convex approximation for position optimization. Simulation results demonstrate that the proposed ME-RIS-assisted architecture with movable BS antennas offers substantial gains over conventional fixed-position full-duplex networks. These findings highlight the potential of integrating movable antennas with movable RIS elements as a key enabler for high-performance full-duplex operation in future 6G wireless systems.",
+        "published": "2026-01-13T19:01:55Z",
+        "updated": "2026-01-13T19:01:55Z",
+        "doi": null,
+        "journal_ref": null,
+        "comment": null,
+        "authors": [
+          "Ayda Nodel Hokmabadi",
+          "Chadi Assi"
+        ]
+      },
+      {
+        "id": "http://arxiv.org/abs/2603.28559v1",
+        "title": "Joint Energy Efficiency Optimization for Uplink Multiuser Movable Antenna-Based Wireless Systems Assisted by Movable-Element RIS",
+        "abstract": "This paper investigates energy efficiency (EE) optimization for an uplink multiuser system assisted by a movable-element reconfigurable intelligent surface (ME-RIS) and a base station equipped with movable antennas (MA-BS). We jointly optimize the uplink postcoder vectors, user transmit powers, RIS phase shift, and the positions of both the BS antennas and RIS elements to maximize the system EE. The resulting non-convex fractional problem is solved using an alternating optimization (AO) framework, where subproblems are handled via Dinkelbach's method combined with successive convex approximation (SCA). Simulation results show that the proposed scheme achieves significant EE gains over fixed-antenna BS and fixed-element RIS benchmarks.",
+        "published": "2026-03-30T15:19:50Z",
+        "updated": "2026-03-30T15:19:50Z",
+        "doi": null,
+        "journal_ref": null,
+        "comment": null,
+        "authors": [
+          "Ayda Nodel Hokmabadi",
+          "Mohamed Elhattab",
+          "Chadi Assi"
+        ]
+      },
+      {
+        "id": "http://arxiv.org/abs/2506.07610v2",
+        "title": "Robust Transceiver Design for RIS Enhanced Dual-Functional Radar-Communication with Movable Antenna",
+        "abstract": "Movable antennas (MAs) have demonstrated significant potential in enhancing the performance of dual-functional radar-communication (DFRC) systems. In this paper, we explore an MA-aided DFRC system that utilizes a reconfigurable intelligent surface (RIS) to enhance signal coverage for communications in dead zones. To enhance the radar sensing performance in practical DFRC environments, we propose a unified robust transceiver design framework aimed at maximizing the minimum radar signal-to-interference-plus-noise ratio (SINR) in a cluttered environment. Our approach jointly optimizes transmit beamforming, receive filtering, antenna placement, and RIS reflecting coefficients under imperfect channel state information (CSI) for both sensing and communication channels. To deal with the channel uncertainty-constrained issue, we leverage the convex hull method to transform the primal problem into a more tractable form. We then introduce a two-layer block coordinate descent (BCD) algorithm, incorporating fractional programming (FP), successive convex approximation (SCA), S-Lemma, and penalty techniques to reformulate it into a series of semidefinite program (SDP) subproblems that can be efficiently solved. We provide a comprehensive analysis of the convergence and computational complexity for the proposed design framework. Simulation results demonstrate the robustness of the proposed method, and show that the MA-based design framework can significantly enhance the radar SINR performance while achieving an effective balance between the radar and communication performance.",
+        "published": "2025-06-09T10:23:12Z",
+        "updated": "2026-01-30T08:44:59Z",
+        "doi": null,
+        "journal_ref": null,
+        "comment": null,
+        "authors": [
+          "Ran Yang",
+          "Zheng Dong",
+          "Yue Xiu",
+          "Guangyi Liu",
+          "Wanting Lyu",
+          "Xiangxin Meng",
+          "Yan Li",
+          "Ning Wei"
+        ]
+      },
+      {
+        "id": "http://arxiv.org/abs/2410.03426v1",
+        "title": "Movable-Antenna Aided Secure Transmission for RIS-ISAC Systems",
+        "abstract": "Integrated sensing and communication (ISAC) systems have the issue of secrecy leakage when using the ISAC waveforms for sensing, thus posing a potential risk for eavesdropping. To address this problem, we propose to employ movable antennas (MAs) and reconfigurable intelligent surface (RIS) to enhance the physical layer security (PLS) performance of ISAC systems, where an eavesdropping target potentially wiretaps the signals transmitted by the base station (BS). To evaluate the synergistic performance gain provided by MAs and RIS, we formulate an optimization problem for maximizing the sum-rate of the users by jointly optimizing the transmit/receive beamformers of the BS, the reflection coefficients of the RIS, and the positions of MAs at communication users, subject to a minimum communication rate requirement for each user, a minimum radar sensing requirement, and a maximum secrecy leakage to the eavesdropping target. To solve this non-convex problem with highly coupled variables, a two-layer penalty-based algorithm is developed by updating the penalty parameter in the outer-layer iterations to achieve a trade-off between the optimality and feasibility of the solution. In the inner-layer iterations, the auxiliary variables are first obtained with semi-closed-form solutions using Lagrange duality. Then, the receive beamformer filter at the BS is optimized by solving a Rayleigh-quotient subproblem. Subsequently, the transmit beamformer matrix is obtained by solving a convex subproblem. Finally, the majorization-minimization (MM) algorithm is employed to optimize the RIS reflection coefficients and the positions of MAs. Extensive simulation results validate the considerable benefits of the proposed MAs-aided RIS-ISAC systems in enhancing security performance compared to traditional fixed position antenna (FPA)-based systems.",
+        "published": "2024-10-04T13:36:01Z",
+        "updated": "2024-10-04T13:36:01Z",
+        "doi": null,
+        "journal_ref": null,
+        "comment": "13 pages",
+        "authors": [
+          "Yaodong Ma",
+          "Kai Liu",
+          "Yanming Liu",
+          "Lipeng Zhu",
+          "Zhenyu Xiao"
+        ]
+      },
+      {
+        "id": "http://arxiv.org/abs/2504.09178v1",
+        "title": "Hybrid Beamforming for RIS-Assisted Multiuser Fluid Antenna Systems",
+        "abstract": "Recent advances in reconfigurable antennas have led to the new concept of the fluid antenna system (FAS) for shape and position flexibility, as another degree of freedom for wireless communication enhancement. This paper explores the integration of a transmit FAS array for hybrid beamforming (HBF) into a reconfigurable intelligent surface (RIS)-assisted communication architecture for multiuser communications in the downlink, corresponding to the downlink RIS-assisted multiuser multiple-input single-output (MISO) FAS model (Tx RIS-assisted-MISO-FAS). By considering Rician channel fading, we formulate a sum-rate maximization optimization problem to alternately optimize the HBF matrix, the RIS phase-shift matrix, and the FAS position. Due to the strong coupling of multiple optimization variables, the multi-fractional summation in the sum-rate expression, the modulus-1 limitation of analog phase shifters and RIS, and the antenna position variables appearing in the exponent, this problem is highly non-convex, which is addressed through the block coordinate descent (BCD) framework in conjunction with semidefinite relaxation (SDR) and majorization-minimization (MM) methods. To reduce the computational complexity, we then propose a low-complexity grating-lobe (GL)-based telescopic-FAS (TFA) with multiple delicately deployed RISs under the sub-connected HBF architecture and the line-of-sight (LoS)-dominant channel condition, to allow closed-form solutions for the HBF and TFA position. Our simulation results illustrate that the former optimization scheme significantly enhances the achievable rate of the proposed system, while the GL-based TFA scheme also provides a considerable gain over conventional fixed-position antenna (FPA) systems, requiring statistical channel state information (CSI) only and with low computational complexity.",
+        "published": "2025-04-12T10:55:53Z",
+        "updated": "2025-04-12T10:55:53Z",
+        "doi": null,
+        "journal_ref": null,
+        "comment": null,
+        "authors": [
+          "Jiangong Chen",
+          "Yue Xiao",
+          "Zhendong Peng",
+          "Jing Zhu",
+          "Xia Lei",
+          "Christos Masouros",
+          "Kai-Kit Wong"
+        ]
+      },
+      {
+        "id": "http://arxiv.org/abs/2606.00423v1",
+        "title": "Joint Channel and Symbol Estimation for RIS-Assisted Fluid Antenna Systems",
+        "abstract": "This paper addresses joint channel and symbol estimation in reconfigurable intelligent surface (RIS)-aided multiuser uplink systems with fluid antennas (FAs) at the base station. We propose the Nested Tucker for Fluid Antenna Systems (NTFAS) protocol, in which FA port selection and user-dependent coding vary across blocks while the transmitted symbol matrix is shared across observations. This structure yields coupled Tucker models with common channel and data factors. A two-stage semi-blind bilinear alternating least squares (BALS) receiver is then developed to estimate the cascaded channel and symbols, and to separate the user-to-RIS and RIS-to-BS channels through the embedded PARAFAC structure. Simulations show that NTFAS improves cascaded-channel NMSE and spectral efficiency (SE) with respect to a competing semi-blind benchmark, while maintaining comparable BER performance.",
+        "published": "2026-05-29T23:19:19Z",
+        "updated": "2026-05-29T23:19:19Z",
+        "doi": null,
+        "journal_ref": null,
+        "comment": null,
+        "authors": [
+          "Josué V. de Araújo",
+          "Daniel C. Alcantara",
+          "Gilderlan T. de Araújo",
+          "André L. F. de Almeida"
+        ]
+      },
+      {
+        "id": "http://arxiv.org/abs/2606.10190v1",
+        "title": "Optimal Illumination via Joint Movement and Phase Optimization for Movable Antenna-RIS Configuration",
+        "abstract": "Reconfigurable intelligent surfaces (RIS) enable programmable control of wireless propagation but remain vulnerable to persistent deep fades in static deployments. This paper introduces a Movable Antenna-enhanced RIS (MA-RIS) architecture where antenna elements physically reposition to sample independent spatial channels, enabling mobility-induced diversity. We model antenna motion using a Stochastic Differential Equation (SDE) framework capturing controlled drift and environmental diffusion. It^o calculus-based analysis characterizes steady-state antenna distributions, spatial decorrelation, and outage probability, revealing fundamental trade-offs between control strength and mobility randomness. To maximize long-term SNR while accounting for control overhead, we propose an overhead-aware Two-timescale framework separating slow antenna trajectory control from fast phase adaptation. The stochastic optimal control problem is solved via predictive approximation of the Hamilton-Jacobi-Bellman (HJB) formulation, enabling real-time implementation. Simulations validate theoretical predictions: the Two-timescale strategy achieves up to 36 dB steady-state SNR with remarkable stability, outperforming position-only control by up to 15 dB and uncontrolled baselines by over 30 dB. Despite experiencing a lower SNR than Active RIS, the proposed approach delivers up to 16 times higher energy efficiency (EE) across varying system scales, establishing a new paradigm of mobility-enabled channel adaptation for resilient wireless systems.",
+        "published": "2026-06-08T21:28:29Z",
+        "updated": "2026-06-08T21:28:29Z",
+        "doi": null,
+        "journal_ref": null,
+        "comment": null,
+        "authors": [
+          "Yan Zhang",
+          "Nicola Marchetti",
+          "Indrakshi Dey"
+        ]
+      },
+      {
+        "id": "http://arxiv.org/abs/2603.04788v1",
+        "title": "Adaptive Personalized Federated Reinforcement Learning for RIS-Assisted Aerial Relays in SAGINs with Fluid Antennas",
+        "abstract": "Space-air-ground integrated networks (SAGINs) interconnect satellites, uncrewed aerial vehicles (UAVs), and ground devices to enable flexible and ubiquitous wireless services. The integration of reconfigurable intelligent surfaces (RISs) and fluid antenna systems (FASs) further enhances radio environment controllability. However, the tight integration of cross-layer facilities and radio enhancement technologies leads to pronounced environmental dynamics and heterogeneity, posing fundamental challenges for system modeling and optimization in large-scale SAGINs. This paper investigates a SAGIN in which low Earth orbit (LEO) satellite constellations communicate with multiple ground hotspots via RIS-assisted UAV relays, serving both FAS-equipped and conventional users. A system model is developed that explicitly captures satellite mobility, UAV trajectories, RIS phase control, and heterogeneous user reception capabilities. Accordingly, a multi-hotspot downlink rate maximization problem is studied, whose solvability is analyzed through a hierarchical Stackelberg game. To address heterogeneous and time-varying multi-hotspot environments, an adaptive personalized federated reinforcement learning (FRL) algorithm is proposed for adaptive optimization of UAV trajectories and RIS phase controls. Simulation results demonstrate superior performance and validate the effectiveness of personalization in dynamic heterogeneous SAGIN scenarios.",
+        "published": "2026-03-05T04:08:41Z",
+        "updated": "2026-03-05T04:08:41Z",
+        "doi": null,
+        "journal_ref": null,
+        "comment": "under review at IEEE Transactions on Mobile Computing",
+        "authors": [
+          "Yuxuan Yang",
+          "Bin Lyu",
+          "Abbas Jamalipour"
+        ]
+      }
+    ]
+  }
+]

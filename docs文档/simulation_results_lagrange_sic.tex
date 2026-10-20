@@ -1,0 +1,95 @@
+% =========================================================================
+% Simulation Results — Lagrange / 数字SIC 两张新图的英文描述 + 占位排版
+% 作者风格: 会议论文 (IEEE)
+% 用法:
+%   1) 把「1. 设置句」替换原文中 "The reported simulations isolate ..." 那句所在的整段;
+%   2) 用「2. SNR 图」的 figure 环境 + 段落，替换原文中
+%      "Fig.~\ref{fig:si_combined} illustrates the estimation RMSE versus ..."
+%      整段（原 fig:si_combined 的 figure 环境如存在请删除，正文引用改为 fig:snr_rmse）;
+%   3) 用「3. SI 强度图」的 figure 环境 + 段落，替换原文中
+%      "Fig.~\ref{fig:si_strength} illustrates the effect of ..." 整段
+%      （label 沿用 fig:si_strength，不用改引用）;
+%   4) 结论句可选微调见「4」。
+%   EPS 文件导出后，删除占位 \fbox{\rule{...}} 行并取消 \includegraphics 注释。
+% =========================================================================
+
+% ---------- 1. 设置句（替换原文该段） ----------
+Conventional communication ZF is used as the benchmark. It satisfies the same
+downlink ZF constraint as the proposed null-space precoder but does not use
+the SI channel when selecting the transmit spatial degrees of freedom. The
+weighted ZF (Lagrangian) solution is also evaluated as an alternative
+leakage-suppressing precoder. All precoders are normalized to the same
+transmit power. In addition, the null-space and weighted-ZF precoders are
+combined with a pilot-based digital SI cancellation stage to examine the
+complementary gain of the two-stage suppression. The input SNR or the
+SI-to-echo amplitude ratio $\beta_{\rm SI}$ is varied according to the
+experiment.
+
+% ---------- 2. SNR 图（Range RMSE vs SNR）----------
+\begin{figure}[t]
+    \centering
+    % ===== 空白占位：TODO 替换为你导出的 EPS =====
+    \fbox{\rule{0.92\linewidth}{0.36\linewidth}}
+    % \includegraphics[width=0.95\linewidth]{figures/fig_snr_zf_null_lagrange_sic_range.eps}
+    \caption{Range RMSE versus input SNR for conventional ZF, the null-space
+    and weighted-ZF precoders, and their digital-SIC-aided counterparts
+    ($\beta_{\rm SI}=100$, $N_{\rm MC}=10$).}
+    \label{fig:snr_rmse}
+\end{figure}
+
+Fig.~\ref{fig:snr_rmse} illustrates the range RMSE versus the input SNR with
+$\beta_{\rm SI}=100$. Conventional ZF benefits little from the SNR increase:
+its range error remains on the order of $2.8\times10^{2}$~m even at high SNR,
+because leakage-induced false peaks dominate the range profile irrespective
+of the noise level. The null-space and weighted-ZF precoders reduce the range
+error by up to a factor of two and settle at error floors of about
+$1.5\times10^{2}$~m, which indicates that transmit-domain suppression alone
+mitigates but cannot fully eliminate the residual SI-induced candidate peaks.
+By contrast, the two SIC-aided schemes exhibit a clear threshold near
+$-15$~dB. Below the threshold, the pilot-based SI channel estimate is
+noise-limited and the SIC subtraction provides no gain, so their accuracy is
+even slightly worse than that of the precoder-only schemes; above the
+threshold, the reconstructed SI component is removed reliably and the range
+RMSE collapses to the millimeter level (about $8$~mm), i.e., more than four
+orders of magnitude below the precoder-only floor. This confirms that
+transmit-domain nulling together with digital SI cancellation restores
+precise ranging.
+
+% ---------- 3. SI 强度图（Range RMSE vs beta_SI）----------
+\begin{figure}[t]
+    \centering
+    % ===== 空白占位：TODO 替换为你导出的 EPS =====
+    \fbox{\rule{0.92\linewidth}{0.36\linewidth}}
+    % \includegraphics[width=0.95\linewidth]{figures/fig_si_strength_zf_null_lagrange_sic_range_mc10_smooth.eps}
+    \caption{Range RMSE versus the SI-to-echo amplitude ratio
+    $\beta_{\rm SI}$ at an input SNR of $0$~dB ($N_{\rm MC}=10$).}
+    \label{fig:si_strength}
+\end{figure}
+
+Fig.~\ref{fig:si_strength} illustrates the effect of the SI-to-echo amplitude
+ratio $\beta_{\rm SI}$ on the range RMSE at an input SNR of $0$~dB. When
+$\beta_{\rm SI}=1$, all five schemes achieve centimeter-level ranging. As
+$\beta_{\rm SI}$ increases, conventional ZF undergoes an abrupt estimation
+failure once $\beta_{\rm SI}$ exceeds about $10$, because the candidate
+detector becomes dominated by SI-induced peaks, and its range error grows to
+hundreds of meters. The null-space and weighted-ZF precoders delay this
+failure and extend the tolerable SI strength by roughly one order of
+magnitude, but they eventually fail as $\beta_{\rm SI}$ approaches
+$10^{3}$. In contrast, the two SIC-aided schemes maintain a stable
+centimeter-level range error over the entire four-decade range of
+$\beta_{\rm SI}$, since the strong SI component is reconstructed and
+subtracted before candidate detection. These results verify that
+transmit-domain spatial suppression considerably improves the robustness to
+SI, and that combining it with digital cancellation is essential for reliable
+sensing under strong co-located SI.
+
+% ---------- 4. 结论句（可选微调）----------
+% 原句:
+%   Simulation results show that the proposed null-space precoder prevents
+%   SI-induced false-peak locking and provides substantially more robust
+%   parameter estimation than conventional communication ZF.
+% 建议改为:
+%   Simulation results show that the proposed null-space precoder prevents
+%   SI-induced false-peak locking, provides substantially more robust
+%   parameter estimation than conventional communication ZF, and restores
+%   millimeter-level ranging when combined with digital SI cancellation.

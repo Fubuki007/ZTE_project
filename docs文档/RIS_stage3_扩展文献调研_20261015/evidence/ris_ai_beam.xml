@@ -1,0 +1,273 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<feed xmlns:opensearch="http://a9.com/-/spec/opensearch/1.1/" xmlns:arxiv="http://arxiv.org/schemas/atom" xmlns="http://www.w3.org/2005/Atom">
+  <id>https://arxiv.org/api/SpZVj53IwEIteJNlS2Vl/dldU6U</id>
+  <title>arXiv Query: search_query=all:"RIS" AND all:"beamforming" AND (all:"learning" OR all:"neural") AND (all:"ISAC" OR all:"radar")&amp;id_list=&amp;start=0&amp;max_results=25</title>
+  <updated>2026-10-15T13:54:11Z</updated>
+  <link href="https://arxiv.org/api/query?search_query=all:%22RIS%22+AND+(all:%22beamforming%22+AND+((all:%22learning%22+OR+all:%22neural%22)+AND+(all:%22ISAC%22+OR+all:%22radar%22)))&amp;start=0&amp;max_results=25&amp;id_list=" type="application/atom+xml"/>
+  <opensearch:itemsPerPage>25</opensearch:itemsPerPage>
+  <opensearch:totalResults>10</opensearch:totalResults>
+  <opensearch:startIndex>0</opensearch:startIndex>
+  <entry>
+    <id>http://arxiv.org/abs/2403.17324v2</id>
+    <title>Unsupervised Learning for Joint Beamforming Design in RIS-aided ISAC Systems</title>
+    <updated>2024-05-15T06:51:54Z</updated>
+    <link href="https://arxiv.org/abs/2403.17324v2" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2403.17324v2" rel="related" type="application/pdf" title="pdf"/>
+    <summary>It is critical to design efficient beamforming in reconfigurable intelligent surface (RIS)-aided integrated sensing and communication (ISAC) systems for enhancing spectrum utilization. However, conventional methods often have limitations, either incurring high computational complexity due to iterative algorithms or sacrificing performance when using heuristic methods. To achieve both low complexity and high spectrum efficiency, an unsupervised learning-based beamforming design is proposed in this work. We tailor image-shaped channel samples and develop an ISAC beamforming neural network (IBF-Net) model for beamforming. By leveraging unsupervised learning, the loss function incorporates key performance metrics like sensing and communication channel correlation and sensing channel gain, eliminating the need of labeling. Simulations show that the proposed method achieves competitive performance compared to benchmarks while significantly reduces computational complexity.</summary>
+    <category term="eess.SP" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2024-03-26T02:09:07Z</published>
+    <arxiv:comment>Accpeted by IEEE Wireless Communications Letters</arxiv:comment>
+    <arxiv:primary_category term="eess.SP"/>
+    <author>
+      <name>Junjie Ye</name>
+    </author>
+    <author>
+      <name>Lei Huang</name>
+    </author>
+    <author>
+      <name>Zhen Chen</name>
+    </author>
+    <author>
+      <name>Peichang Zhang</name>
+    </author>
+    <author>
+      <name>Mohamed Rihan</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2502.14325v1</id>
+    <title>Joint Waveform and Beamforming Design in RIS-ISAC Systems: A Model-Driven Learning Approach</title>
+    <updated>2025-02-20T07:23:21Z</updated>
+    <link href="https://arxiv.org/abs/2502.14325v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2502.14325v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Integrated Sensing and Communication (ISAC) has emerged as a key enabler for future wireless systems. The recently developed symbol-level precoding (SLP) technique holds significant potential for ISAC waveform design, as it leverages both temporal and spatial degrees of freedom (DoFs) to enhance multi-user communication and radar sensing capabilities. Concurrently, reconfigurable intelligent surfaces (RIS) offer additional controllable propagation paths, further amplifying interest in their application. However, previous studies have encountered substantial computational challenges due to the complexity of jointly designing SLP-based waveforms and RIS passive beamforming. In this paper, we propose a novel model-driven learning approach that jointly optimizes waveform and beamforming by unfolding the iterative alternative direction method of multipliers (ADMM) algorithm. Two joint design algorithms are developed for radar target detection and direction-of-arrival (DoA) estimation tasks in a cluttered RIS-ISAC system. While ensuring the communication quality-of-service (QoS) requirements, our objectives are: 1) to maximize the radar output signal-to-interference-plus-noise ratio (SINR) for target detection, and 2) to minimize the Cramér-Rao bound (CRB) for DoA estimation. Simulation results verify that our proposed model-driven learning algorithms achieve satisfactory communication and sensing performance, while also offering a substantial reduction in computational complexity, as reflected by the average execution time.</summary>
+    <category term="eess.SP" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2025-02-20T07:23:21Z</published>
+    <arxiv:comment>Accepted by IEEE Transactions on Communications</arxiv:comment>
+    <arxiv:primary_category term="eess.SP"/>
+    <author>
+      <name>Peng Jiang</name>
+    </author>
+    <author>
+      <name>Ming Li</name>
+    </author>
+    <author>
+      <name>Rang Liu</name>
+    </author>
+    <author>
+      <name>Wei Wang</name>
+    </author>
+    <author>
+      <name>Qian Liu</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2603.01379v1</id>
+    <title>GNN Based Joint Beamforming Design for Extremely Large-Scale RIS Assisted Near-Field ISAC Systems</title>
+    <updated>2026-03-02T02:20:10Z</updated>
+    <link href="https://arxiv.org/abs/2603.01379v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2603.01379v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>This paper investigates an extremely large-scale reconfigurable intelligent surface (XL-RIS) assisted near-field integrated sensing and communication (ISAC) system, where a multi-antenna base station (BS) simultaneously sends unicast data to multiple single-antenna communication users (CUs) and senses multiple targets (TGTs). The BS, CUs and TGTs are \emph{all} assumed to be located in the near-field region of the XL-RIS. We aim to maximize the weighted sum rate (WSR) of all CUs, subject to the sensing beampattern gain constraint for each TGT, the transmit power constraint for the BS, and the unit modulus constraints on the XL-RIS phase shift. First, we develop a fractional programming (FP) based block coordinate descent (BCD) algorithm to obtain a locally optimal solution for such a non-convex joint design problem. Secondly, to address the high-dimensional spatial correlations and scalability of the XL-RIS near-field channels, we propose a customized graph neural network (GNN) scheme to generate the BS transmit beamforming variables and the XL-RIS reflecting coefficient vector for ISAC, where the near-field ISAC system is modeled as a heterogeneous graph comprising XL-RIS/CU/TGT nodes. The proposed GNN scheme can effectively learn the near-field channel state information (CSI) features, in which the message passing mechanism is employed to exchange CSI among these directly connected nodes in the graph. Furthermore, each XL-RIS/CU/TGT node maintains a feature vector for mapping to the BS transmit beamforming variables or the XL-RIS reflecting coefficient vector. Numerical results show that the proposed GNN-based beamforming design scheme achieves a better performance than the existing baselines, in terms of computational efficiency, feasibility, robustness, and the ability of generalization.</summary>
+    <category term="cs.IT" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="eess.SP" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-03-02T02:20:10Z</published>
+    <arxiv:comment>13 pages, 10 figures, and full paper submitted for possible publication</arxiv:comment>
+    <arxiv:primary_category term="cs.IT"/>
+    <author>
+      <name>Jiahao Chen</name>
+    </author>
+    <author>
+      <name>Feng Wang</name>
+    </author>
+    <author>
+      <name>Guojun Han</name>
+    </author>
+    <author>
+      <name>Xin Wang</name>
+    </author>
+    <author>
+      <name>Vincent K. N. Lau</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2405.20168v1</id>
+    <title>Enhancing Battlefield Awareness: An Aerial RIS-assisted ISAC System with Deep Reinforcement Learning</title>
+    <updated>2024-05-30T15:41:39Z</updated>
+    <link href="https://arxiv.org/abs/2405.20168v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2405.20168v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>This paper considers a joint communication and sensing technique for enhancing situational awareness in practical battlefield scenarios. In particular, we propose an aerial reconfigurable intelligent surface (ARIS)-assisted integrated sensing and communication (ISAC) system consisting of a single access point (AP), an ARIS, multiple users, and a sensing target. With deep reinforcement learning (DRL), we jointly optimize the transmit beamforming of the AP, the RIS phase shifts, and the trajectory of the ARIS under signal-to-interference-noise ratio (SINR) constraints. Numerical results demonstrate that the proposed technique outperforms the conventional benchmark schemes by suppressing the self-interference and clutter echo signals or optimizing the RIS phase shifts.</summary>
+    <category term="eess.SY" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2024-05-30T15:41:39Z</published>
+    <arxiv:primary_category term="eess.SY"/>
+    <author>
+      <name>Hyunsang Cho</name>
+    </author>
+    <author>
+      <name>Seonghoon Yoo</name>
+    </author>
+    <author>
+      <name>Bang Chul Jung</name>
+    </author>
+    <author>
+      <name>Joonhyuk Kang</name>
+    </author>
+    <arxiv:doi>10.1109/MILCOM61039.2024.10774028</arxiv:doi>
+    <link rel="related" href="https://doi.org/10.1109/MILCOM61039.2024.10774028" title="doi"/>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2501.12353v1</id>
+    <title>Sum Rate Enhancement using Machine Learning for Semi-Self Sensing Hybrid RIS-Enabled ISAC in THz Bands</title>
+    <updated>2025-01-21T18:32:40Z</updated>
+    <link href="https://arxiv.org/abs/2501.12353v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2501.12353v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>This paper proposes a novel semi-self sensing hybrid reconfigurable intelligent surface (SS-HRIS) in terahertz (THz) bands, where the RIS is equipped with reflecting elements divided between passive and active elements in addition to sensing elements. SS-HRIS along with integrated sensing and communications (ISAC) can help to mitigate the multipath attenuation that is abundant in THz bands. In our proposed scheme, sensors are configured at the SS-HRIS to receive the radar echo signal from a target. A joint base station (BS) beamforming and HRIS precoding matrix optimization problem is proposed to maximize the sum rate of communication users while maintaining satisfactory sensing performance measured by the Cramer-Rao bound (CRB) for estimating the direction of angles of arrival (AoA) of the echo signal and thermal noise at the target. The CRB expression is first derived and the sum rate maximization problem is formulated subject to communication and sensing performance constraints. To solve the complex non-convex optimization problem, deep deterministic policy gradient (DDPG)-based deep reinforcement learning (DRL) algorithm is proposed, where the reward function, the action space and the state space are modeled. Simulation results show that the proposed DDPG-based DRL algorithm converges well and achieves better performance than several baselines, such as the soft actor-critic (SAC), proximal policy optimization (PPO), greedy algorithm and random BS beamforming and HRIS precoding matrix schemes. Moreover, it demonstrates that adopting HRIS significantly enhances the achievable sum rate compared to passive RIS and random BS beamforming and HRIS precoding matrix schemes.</summary>
+    <category term="eess.SP" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2025-01-21T18:32:40Z</published>
+    <arxiv:primary_category term="eess.SP"/>
+    <author>
+      <name>Sara Farrag Mobarak</name>
+    </author>
+    <author>
+      <name>Tingnan Bao</name>
+    </author>
+    <author>
+      <name>Melike Erol-Kantarci</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2402.16413v2</id>
+    <title>AI-enabled STAR-RIS aided MISO ISAC Secure Communications</title>
+    <updated>2024-02-27T12:18:25Z</updated>
+    <link href="https://arxiv.org/abs/2402.16413v2" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2402.16413v2" rel="related" type="application/pdf" title="pdf"/>
+    <summary>A simultaneous transmitting and reflecting reconfigurable intelligent surface (STAR-RIS) aided integrated sensing and communication (ISAC) dual-secure communication system is studied in this paper. The sensed target and legitimate users (LUs) are situated on the opposite sides of the STAR-RIS, and the energy splitting and time switching protocols are applied in the STAR-RIS, respectively. The long-term average security rate for LUs is maximized by the joint design of the base station (BS) transmit beamforming and receive filter, along with the STAR-RIS transmitting and reflecting coefficients, under guarantying the echo signal-to-noise ratio thresholds and rate constraints for the LUs. Since the channel information changes over time, conventional convex optimization techniques cannot provide the optimal performance for the system, and result in excessively high computational complexity in the exploration of the long-term gains for the system. Taking continuity control decisions into account, the deep deterministic policy gradient and soft actor-critic algorithms based on off-policy are applied to address the complex non-convex problem. Simulation results comprehensively evaluate the performance of the proposed two reinforcement learning algorithms and demonstrate that STAR-RIS is remarkably better than the two benchmarks in the ISAC system.</summary>
+    <category term="eess.SP" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2024-02-26T09:11:16Z</published>
+    <arxiv:primary_category term="eess.SP"/>
+    <author>
+      <name>Zhengyu Zhu</name>
+    </author>
+    <author>
+      <name>Mengfei Gong</name>
+    </author>
+    <author>
+      <name>Gangcan Sun</name>
+    </author>
+    <author>
+      <name>Peijia Liu</name>
+    </author>
+    <author>
+      <name>De Mi</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2211.01296v1</id>
+    <title>Machine Learning for Metasurfaces Design and Their Applications</title>
+    <updated>2022-11-02T17:19:37Z</updated>
+    <link href="https://arxiv.org/abs/2211.01296v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2211.01296v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Metasurfaces (MTSs) are increasingly emerging as enabling technologies to meet the demands for multi-functional, small form-factor, efficient, reconfigurable, tunable, and low-cost radio-frequency (RF) components because of their ability to manipulate waves in a sub-wavelength thickness through modified boundary conditions. They enable the design of reconfigurable intelligent surfaces (RISs) for adaptable wireless channels and smart radio environments, wherein the inherently stochastic nature of the wireless environment is transformed into a programmable propagation channel. In particular, space-limited RF applications, such as communications and radar, that have strict radiation requirements are currently being investigated for potential RIS deployment. The RIS comprises sub-wavelength units or meta-atoms, which are independently controlled and whose geometry and material determine the spectral response of the RIS. Conventionally, designing RIS to yield the desired EM response requires trial and error by iteratively investigating a large possibility of various geometries and materials through thousands of full-wave EM simulations. In this context, machine/deep learning (ML/DL) techniques are proving critical in reducing the computational cost and time of RIS inverse design. Instead of explicitly solving Maxwell's equations, DL models learn physics-based relationships through supervised training data. The ML/DL techniques also aid in RIS deployment for numerous wireless applications, which requires dealing with multiple channel links between the base station (BS) and the users. As a result, the BS and RIS beamformers require a joint design, wherein the RIS elements must be rapidly reconfigured. This chapter provides a synopsis of DL techniques for both inverse RIS design and RIS-assisted wireless systems.</summary>
+    <category term="physics.app-ph" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="eess.SP" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="stat.ML" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2022-11-02T17:19:37Z</published>
+    <arxiv:comment>Book chapter, 70 pages, 12 figures, 2 tables. arXiv admin note: substantial text overlap with arXiv:2101.09131, arXiv:2009.02540</arxiv:comment>
+    <arxiv:primary_category term="physics.app-ph"/>
+    <arxiv:journal_ref>Advances in Electromagnetics Empowered by Machine Learning, D. H. Werner and S. D. Campbell (Eds.), Wiley-IEEE Press, 2022</arxiv:journal_ref>
+    <author>
+      <name>Kumar Vijay Mishra</name>
+    </author>
+    <author>
+      <name>Ahmet M. Elbir</name>
+    </author>
+    <author>
+      <name>Amir I. Zaghloul</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2509.14160v1</id>
+    <title>Hardware-Efficient Cognitive Radar: Multi-Target Detection with RL-Driven Transmissive RIS</title>
+    <updated>2025-09-17T16:43:26Z</updated>
+    <link href="https://arxiv.org/abs/2509.14160v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2509.14160v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Cognitive radar has emerged as a key paradigm for next-generation sensing, enabling adaptive, intelligent operation in dynamic and complex environments. Yet, conventional cognitive multiple-input multiple-output (MIMO) radars offer strong detection performance but suffer from high hardware complexity and power demands. To overcome these limitations, we develop a reinforcement learning (RL)-based framework that leverages a transmissive reconfigurable intelligent surface (TRIS) for adaptive beamforming. A state-action-reward-state-action (SARSA) agent tunes TRIS phase shifts to improve multi-target detection in low signal-to-noise ratio (SNR) conditions while operating with far fewer radio frequency (RF) chains. Simulations confirm that the proposed TRIS-RL radar matches or, for large number of elements, even surpasses MIMO performance with reduced cost and energy requirements.</summary>
+    <category term="eess.SP" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2025-09-17T16:43:26Z</published>
+    <arxiv:comment>5 pages, 3 figures, submitted to ICASSP 2026</arxiv:comment>
+    <arxiv:primary_category term="eess.SP"/>
+    <author>
+      <name>Adam Umra</name>
+    </author>
+    <author>
+      <name>Aya Mostafa Ahmed</name>
+    </author>
+    <author>
+      <name>Stefan Roth</name>
+    </author>
+    <author>
+      <name>Aydin Sezgin</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2610.00145v1</id>
+    <title>Movable-Element STAR-RIS for Integrated Sensing and Communication: Architectures, Opportunities, and Practical Challenges</title>
+    <updated>2026-09-10T11:32:14Z</updated>
+    <link href="https://arxiv.org/abs/2610.00145v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2610.00145v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Simultaneously transmitting and reflecting reconfigurable intelligent surfaces (STAR-RISs) extend conventional reflecting-only surfaces by enabling controllable full-space propagation. Yet, once deployed, the physical locations of their elements remain fixed, leaving the surface geometry unable to adapt to users, sensing targets, blockage, or near-field focusing conditions. This article develops a system-level perspective on movable-element STAR-RIS (ME--STAR--RIS) for integrated sensing and communication (ISAC), where the surface jointly reconfigures its electromagnetic response and the physical positions of its elements. We explain how geometric reconfiguration can reshape the effective aperture, spatial correlation, interference nulls, and sensing illumination while preserving STAR-RIS full-space operation. A two-timescale control architecture separates relatively slow element motion from fast beamforming and transmission/reflection control. A 100-realization illustrative case study compares ME--STAR--RIS with an otherwise identical fixed STAR-RIS under a passive coupled transmission/reflection response. The results show a substantially improved sampled communication--sensing tradeoff and, importantly, a rapid saturation of the rate gain with modest element travel. We conclude with representative use cases, implementation constraints, and a research roadmap covering mobility overhead, channel acquisition, mutual coupling, near-field operation, hardware impairments, and learning-assisted predictive control.</summary>
+    <category term="cs.ET" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-09-10T11:32:14Z</published>
+    <arxiv:comment>9, 4</arxiv:comment>
+    <arxiv:primary_category term="cs.ET"/>
+    <author>
+      <name>Wali Ullah Khan</name>
+    </author>
+    <author>
+      <name>Muhammad Adil</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2402.19416v2</id>
+    <title>Vision-Radio Experimental Infrastructure Architecture Towards 6G</title>
+    <updated>2024-04-12T13:45:21Z</updated>
+    <link href="https://arxiv.org/abs/2402.19416v2" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2402.19416v2" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Telecommunications and computer vision have evolved separately so far. Yet, with the shift to sub-terahertz (sub-THz) and terahertz (THz) radio communications, there is an opportunity to explore computer vision technologies together with radio communications, considering the dependency of both technologies on Line of Sight. The combination of radio sensing and computer vision can address challenges such as obstructions and poor lighting. Also, machine learning algorithms, capable of processing multimodal data, play a crucial role in deriving insights from raw and low-level sensing data, offering a new level of abstraction that can enhance various applications and use cases such as beamforming and terminal handovers.
+  This paper introduces CONVERGE, a pioneering vision-radio paradigm that bridges this gap by leveraging Integrated Sensing and Communication (ISAC) to facilitate a dual "View-to-Communicate, Communicate-to-View" approach. CONVERGE offers tools that merge wireless communications and computer vision, establishing a novel Research Infrastructure (RI) that will be open to the scientific community and capable of providing open datasets. This new infrastructure will support future research in 6G and beyond concerning multiple verticals, such as telecommunications, automotive, manufacturing, media, and health.</summary>
+    <category term="cs.NI" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="eess.SP" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2024-02-29T18:14:11Z</published>
+    <arxiv:comment>6 pages, 5 figures</arxiv:comment>
+    <arxiv:primary_category term="cs.NI"/>
+    <author>
+      <name>Filipe B. Teixeira</name>
+    </author>
+    <author>
+      <name>Manuel Ricardo</name>
+    </author>
+    <author>
+      <name>André Coelho</name>
+    </author>
+    <author>
+      <name>Hélder P. Oliveira</name>
+    </author>
+    <author>
+      <name>Paula Viana</name>
+    </author>
+    <author>
+      <name>Nuno Paulino</name>
+    </author>
+    <author>
+      <name>Helder Fontes</name>
+    </author>
+    <author>
+      <name>Paulo Marques</name>
+    </author>
+    <author>
+      <name>Rui Campos</name>
+    </author>
+    <author>
+      <name>Luis M. Pessoa</name>
+    </author>
+  </entry>
+</feed>

@@ -494,6 +494,32 @@ Four tiny idle controls (base MATLAB, one Hann call, one QAM call, and Hann with
 ## [ERR-20261012-STAGE3] resolved
 
 - Windows PDF text output failed under GBK; explicitly used UTF-8 and visually rendered the PDF because embedded Chinese font mappings were not extractable.
+- Follow-up (2026-10-20): English PDF extraction also triggered GBK stdout encoding failure on a copyright symbol, after the UTF-8 text file had already been saved. Read the saved file using UTF-8; use Python `-X utf8` before printing extracted text instead of repeating extraction.
 - Bundled Python pip stalled and direct PyPI wheel TLS downloads failed; installed pinned binary wheels using uv and a verified PyPI mirror. Server system Python lacked ensurepip; used an isolated Python 3.11 venv and existing conda pip --python, without changing system packages.
 - Test-only phase quantization assertions needed integer rounding instead of remainder near floating-point phase boundaries.
 - An overly small 128-tone smoke configuration could not resolve the two targets during the short coarse CPI. Increased the smoke bandwidth to 512 tones; full production dimensions remain 12672 tones / 256 symbols. Failed smoke results retained separately and never used as production evidence.
+
+## [ERR-20261015-CRF] Crossref parallel metadata queries rate-limited
+
+**Logged**: 2026-10-15T13:55:24.615972+00:00
+**Priority**: low
+**Status**: resolved
+**Area**: docs
+
+### Summary
+Concurrent Crossref title searches returned HTTP 429, and the batch discarded successful sibling results.
+
+### Error
+`HTTP Error 429: Too Many Requests`
+
+### Context
+Public literature metadata search, three concurrent requests; no protected data involved.
+
+### Resolution
+Use bounded sequential requests with per-request error capture; retain arXiv primary-source metadata and full text. Do not infer publication status from a failed query. Also explicitly set arXiv max_results for id_list batches longer than its default 10.
+
+### Metadata
+- Related Files: docs文档/RIS_stage3_扩展文献调研_20261015/retrieve_literature.py
+- Reproducible: unknown
+
+---

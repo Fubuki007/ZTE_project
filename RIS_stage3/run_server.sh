@@ -36,4 +36,5 @@ failed=0
 for pid in "${pids[@]}"; do wait "$pid" || failed=1; done
 ((failed==0)) || exit 1
 "$PYTHON_BIN" run_stage3.py --aggregate-only --output "$RUN_NAME" > "$RUN_NAME/logs/aggregate.log" 2>&1
+"$PYTHON_BIN" collect_rmse.py --source "$RUN_NAME" > "$RUN_NAME/logs/range_velocity_metrics.log" 2>&1
 echo COMPLETE > "$RUN_NAME/state"

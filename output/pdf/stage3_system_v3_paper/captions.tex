@@ -1,0 +1,33 @@
+% Optional figure snippets for a two-column paper using graphicx.
+% Place the three PDFs beside the main .tex file, or adjust the paths below.
+
+\begin{figure*}[t]
+    \centering
+    \includegraphics[width=\textwidth]{A_system_model_paper.pdf}
+    \caption{RIS-assisted MIMO--OFDM ISAC system with representative target
+    $q$ and user $k$. The BS employs $N_{\mathrm{tx}}$ transmit antennas
+    and an $M_{\mathrm{rx}}$-element uniform planar receive array.
+    The known transmit signal is supplied to the sensing processor.
+    The BS--RIS transmit link is shared by communication and sensing.}
+    \label{fig:ris-system}
+\end{figure*}
+
+\begin{figure}[t]
+    \centering
+    \includegraphics[width=\columnwidth]{B_target_geometry_paper.pdf}
+    \caption{Target geometry. The polar angle $\theta_q$ is measured from
+    the $z$-axis, $\phi_q$ is the azimuth angle, and $R_q$ is the
+    BS--target distance.}
+    \label{fig:target-geometry}
+\end{figure}
+
+\begin{figure*}[t]
+    \centering
+    \includegraphics[width=\textwidth]{C_sensing_paths_paper.pdf}
+    \caption{Four sensing paths for one target. Solid and dashed arrows
+    denote outbound and return propagation, respectively. The two letters
+    specify the outbound and return paths: D denotes direct propagation,
+    and R denotes propagation via the RIS. The RR path uses the same
+    physical RIS twice.}
+    \label{fig:ris-paths}
+\end{figure*}

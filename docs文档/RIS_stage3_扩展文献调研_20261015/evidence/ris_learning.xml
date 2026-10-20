@@ -1,0 +1,822 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<feed xmlns:opensearch="http://a9.com/-/spec/opensearch/1.1/" xmlns:arxiv="http://arxiv.org/schemas/atom" xmlns="http://www.w3.org/2005/Atom">
+  <id>https://arxiv.org/api/3BUa6hslvPVyY3Vy8cdunA7Y0MA</id>
+  <title>arXiv Query: search_query=(all:"RIS" OR all:"intelligent reflecting surface") AND all:"sensing" AND (all:"learning" OR all:"neural")&amp;id_list=&amp;start=0&amp;max_results=30</title>
+  <updated>2026-10-15T13:53:20Z</updated>
+  <link href="https://arxiv.org/api/query?search_query=(all:%22RIS%22+OR+all:%22intelligent+reflecting+surface%22)+AND+(all:%22sensing%22+AND+(all:%22learning%22+OR+all:%22neural%22))&amp;start=0&amp;max_results=30&amp;id_list=" type="application/atom+xml"/>
+  <opensearch:itemsPerPage>30</opensearch:itemsPerPage>
+  <opensearch:totalResults>99</opensearch:totalResults>
+  <opensearch:startIndex>0</opensearch:startIndex>
+  <entry>
+    <id>http://arxiv.org/abs/2604.17485v1</id>
+    <title>Adaptive RIS Configuration Design with Environmental Sensing for User Localization in Dynamic Rich Scattering Environment</title>
+    <updated>2026-04-19T15:17:34Z</updated>
+    <link href="https://arxiv.org/abs/2604.17485v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2604.17485v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>This paper addresses the problem of adaptive reconfigurable intelligent surfaces (RIS) configuration design for user localization in rich-scattering environment (RSE), where electromagnetic waves undergo multiple interactions with dynamic scatterers and RIS elements. We propose an adaptive learning-based localization approach for a distributed RIS-assisted network in a RSE using a bidirectional long-short term memory (biLSTM) model that captures temporal correlations between observations. The proposed approach actively senses the environment using sequential pilot transmissions from the base station (BS), accounting for scattering effects, and adaptively updates the RIS configuration based on prior measurements to eventually accurately estimate and minimize the user localization error. The proposed model comprises two neural sub-networks: Scattering Estimation Network (Bi-SEN), for estimation of scattering in the environment, and Adaptive RIS-Assisted User Localization Network (Bi-ARULN), for RIS configuration and localization. Bayesian optimization is used for hyperparameter tuning of the model. The simulation results demonstrate the effectiveness of the proposed approach, achieving significantly lower localization root mean squared error (RMSE compared to random configuration, prestored codebook look-ups, and adaptive baselines in both single-input-single-output (SISO) and multiple-input-multiple output(MIMO) RIS-assisted networks in RSE. The design is generalized across configurations and scales with RIS size and network dimensions. The results highlight the strong potential of RIS deployment and of the proposed approach to enable reliable location services in RSE.</summary>
+    <category term="eess.SP" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-04-19T15:17:34Z</published>
+    <arxiv:comment>A. Umer, I. Müürsepp and M. M. Alam, "Adaptive RIS Configuration Design with Environmental Sensing for User Localization in Dynamic Rich Scattering Environment," in IEEE Transactions on Mobile Computing, doi: 10.1109/TMC.2026.3656736</arxiv:comment>
+    <arxiv:primary_category term="eess.SP"/>
+    <author>
+      <name>Anum Umer</name>
+    </author>
+    <author>
+      <name>Ivo Müürsepp</name>
+    </author>
+    <author>
+      <name>Muhammad Mahtab Alam</name>
+    </author>
+    <arxiv:doi>10.1109/TMC.2026.3656736</arxiv:doi>
+    <link rel="related" href="https://doi.org/10.1109/TMC.2026.3656736" title="doi"/>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2509.05565v2</id>
+    <title>Time-Modulated Intelligent Reflecting Surfaces for Integrated Sensing, Communication and Security: A Generative AI Design Framework</title>
+    <updated>2025-12-30T04:43:38Z</updated>
+    <link href="https://arxiv.org/abs/2509.05565v2" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2509.05565v2" rel="related" type="application/pdf" title="pdf"/>
+    <summary>We propose a novel approach to achieve physical layer security for integrated sensing and communication (ISAC) systems operating in the presence of targets that may be eavesdroppers. The system is aided by a time-modulated intelligent reflecting surface (TM-IRS), which is configured to preserve the integrity of the transmitted data at one or more legitimate communication users (CUs) while making them appear scrambled in all other directions. The TM-IRS design leverages a generative flow network (GFlowNet) framework to learn a stochastic policy that samples high-performing TM-IRS configurations from a vast discrete parameter space. Specifically, we begin by formulating the achievable sum rate for the legitimate CUs and the beampattern gain toward the target direction, based on which we construct reward functions for GFlowNets that jointly capture both communication and sensing performance. The TM-IRS design is modeled as a deterministic Markov decision process (MDP), where each terminal state corresponds to a complete configuration of TM-IRS parameters. GFlowNets, parametrized by deep neural networks are employed to learn a stochastic policy that samples TM-IRS parameter sets with probability proportional to their associated reward. Experimental results demonstrate the effectiveness of the proposed GFlowNet-based method in integrating sensing, communication and security simultaneously, and also exhibit significant sampling efficiency as compared to the exhaustive combinatorial search and enhanced robustness against the existing benchmarks of physical layer security.</summary>
+    <category term="eess.SP" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2025-09-06T02:34:44Z</published>
+    <arxiv:comment>Nature Portfolio Journal, npj Wireless Technology, the special issue on ISAC</arxiv:comment>
+    <arxiv:primary_category term="eess.SP"/>
+    <author>
+      <name>Zhihao Tao</name>
+    </author>
+    <author>
+      <name>Athina Petropulu</name>
+    </author>
+    <author>
+      <name>H. Vincent Poor</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2602.02148v1</id>
+    <title>RIS-Aided Wireless Amodal Sensing for Single-View 3D Reconstruction</title>
+    <updated>2026-02-02T14:24:27Z</updated>
+    <link href="https://arxiv.org/abs/2602.02148v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2602.02148v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Amodal sensing is critical for various real-world sensing applications because it can recover the complete shapes of partially occluded objects in complex environments. Among various amodal sensing paradigms, wireless amodal sensing is a potential solution due to its advantages of environmental robustness, privacy preservation, and low cost. However, the sensing data obtained by wireless system is sparse for shape reconstruction because of the low spatial resolution, and this issue is further intensified in complex environments with occlusion. To address this issue, we propose a Reconfigurable Intelligent Surface (RIS)-aided wireless amodal sensing scheme that leverages a large-scale RIS to enhance the spatial resolution and create reflection paths that can bypass the obstacles. A generative learning model is also employed to reconstruct the complete shape based on the sensing data captured from the viewpoint of the RIS. In such a system, it is challenging to optimize the RIS phase shifts because the relationship between RIS phase shifts and amodal sensing accuracy is complex and the closed-form expression is unknown. To tackle this challenge, we develop an error prediction model that learns the mapping from RIS phase shifts to amodal sensing accuracy, and optimizes RIS phase shifts based on this mapping. Experimental results on the benchmark dataset show that our method achieves at least a 56.73% reduction in reconstruction error compared to conventional schemes under the same number of RIS configurations.</summary>
+    <category term="eess.SP" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-02-02T14:24:27Z</published>
+    <arxiv:primary_category term="eess.SP"/>
+    <author>
+      <name>Yuhan Wang</name>
+    </author>
+    <author>
+      <name>Haobo Zhang</name>
+    </author>
+    <author>
+      <name>Qingyu Liu</name>
+    </author>
+    <author>
+      <name>Hongliang Zhang</name>
+    </author>
+    <author>
+      <name>Lingyang Song</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2503.02244v2</id>
+    <title>Integrated Communication and Learned Recognizer with Customized RIS Phases and Sensing Durations</title>
+    <updated>2025-03-12T05:10:49Z</updated>
+    <link href="https://arxiv.org/abs/2503.02244v2" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2503.02244v2" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Future wireless communication networks are expected to be smarter and more aware of their surroundings, enabling a wide range of context-aware applications. Reconfigurable intelligent surfaces (RISs) are set to play a critical role in supporting various sensing tasks, such as target recognition. However, current methods typically use RIS configurations optimized once and applied over fixed sensing durations, limiting their ability to adapt to different targets and reducing sensing accuracy. To overcome these limitations, this study proposes an advanced wireless communication system that multiplexes downlink signals for environmental sensing and introduces an intelligent recognizer powered by deep learning techniques. Specifically, we design a novel neural network based on the long short-term memory architecture and the physical channel model. This network iteratively captures and fuses information from previous measurements, adaptively customizing RIS phases to gather the most relevant information for the recognition task at subsequent moments. These configurations are dynamically adjusted according to scene, task, target, and quantization priors. Furthermore, the recognizer includes a decision-making module that dynamically allocates different sensing durations, determining whether to continue or terminate the sensing process based on the collected measurements. This approach maximizes resource utilization efficiency. Simulation results demonstrate that the proposed method significantly outperforms state-of-the-art techniques while minimizing the impact on communication performance, even when sensing and communication occur simultaneously. Part of the source code for this paper can be accessed at https://github.com/kiwi1944/CRISense.</summary>
+    <category term="cs.IT" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="eess.SP" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2025-03-04T03:43:01Z</published>
+    <arxiv:comment>17 pages, 16 figures, 8 tables, accepted by IEEE Transactions on Communications</arxiv:comment>
+    <arxiv:primary_category term="cs.IT"/>
+    <author>
+      <name>Yixuan Huang</name>
+    </author>
+    <author>
+      <name>Jie Yang</name>
+    </author>
+    <author>
+      <name>Chao-Kai Wen</name>
+    </author>
+    <author>
+      <name>Shi Jin</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2307.14985v2</id>
+    <title>Practical Implementation of RIS-Aided Spectrum Sensing: A Deep Learning-Based Solution</title>
+    <updated>2024-03-11T07:49:43Z</updated>
+    <link href="https://arxiv.org/abs/2307.14985v2" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2307.14985v2" rel="related" type="application/pdf" title="pdf"/>
+    <summary>This paper presents reconfigurable intelligent surface (RIS)-aided deep learning (DL)-based spectrum sensing for next-generation cognitive radios. To that end, the secondary user (SU) monitors the primary transmitter (PT) signal, where the RIS plays a pivotal role in increasing the strength of the PT signal at the SU. The spectrograms of the synthesized dataset, including the 4G LTE and 5G NR signals, are mapped to images utilized for training the state-of-art object detection approaches, namely Detectron2 and YOLOv7. By conducting extensive experiments using a real RIS prototype, we demonstrate that the RIS can consistently and significantly improve the performance of the DL detectors to identify the PT signal type along with its time and frequency utilization. This study also paves the way for optimizing spectrum utilization through RIS-assisted CR application in next-generation wireless communication systems.</summary>
+    <category term="eess.SP" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.IT" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2023-07-27T16:26:35Z</published>
+    <arxiv:comment>Accepted in IEEE Systems Journal, Copyright IEEE</arxiv:comment>
+    <arxiv:primary_category term="eess.SP"/>
+    <arxiv:journal_ref>IEEE Systems Journal, vol. 18, no. 2, pp. 1481-1488, June 2024</arxiv:journal_ref>
+    <author>
+      <name>Sefa Kayraklik</name>
+    </author>
+    <author>
+      <name>Ibrahim Yildirim</name>
+    </author>
+    <author>
+      <name>Ertugrul Basar</name>
+    </author>
+    <author>
+      <name>Ibrahim Hokelek</name>
+    </author>
+    <author>
+      <name>Ali Gorcin</name>
+    </author>
+    <arxiv:doi>10.1109/JSYST.2024.3376986</arxiv:doi>
+    <link rel="related" href="https://doi.org/10.1109/JSYST.2024.3376986" title="doi"/>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2512.00205v2</id>
+    <title>RIS-Aided Localization and Sensing</title>
+    <updated>2025-12-03T10:59:43Z</updated>
+    <link href="https://arxiv.org/abs/2512.00205v2" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2512.00205v2" rel="related" type="application/pdf" title="pdf"/>
+    <summary>High-precision localization and environmental sensing are essential for a new wave of applications, ranging from industrial automation and autonomous systems to augmented reality and remote healthcare. Conventional wireless methods, however, often face limitations in accuracy, reliability, and coverage, especially in complex non-line-of-sight (NLoS) environments. Reconfigurable Intelligent Surfaces (RISs) have emerged as a key enabling technology, offering dynamic control over the radio propagation environment to overcome these challenges. This chapter provides a comprehensive overview of RIS-aided localization and sensing, bridging fundamental theory with practical implementation. The core principles of the RIS technology are first described detailing how programmable metasurfaces can intelligently combat blockages, enhance signal diversity, and create virtual line-of-sight (LoS) links. The chapter then reviews a range of application scenarios where RISs can offer significant improvements. A significant portion of the chapter is dedicated to algorithmic methodologies, covering beam sweeping protocols, codebook-based techniques, and advanced optimization and machine learning strategies for both localization and sensing. To validate the theoretical concepts in real-world conditions, recent experimental results using an RIS prototype are detailed, showcasing the technology's efficacy and illustrating key performance trade-offs.</summary>
+    <category term="eess.SP" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2025-11-28T21:10:41Z</published>
+    <arxiv:comment>Book chapter to appear</arxiv:comment>
+    <arxiv:primary_category term="eess.SP"/>
+    <author>
+      <name>Dimitris Kompostiotis</name>
+    </author>
+    <author>
+      <name>Dimitris Vordonis</name>
+    </author>
+    <author>
+      <name>Konstantinos D. Katsanos</name>
+    </author>
+    <author>
+      <name>Florin-Catalin Grec</name>
+    </author>
+    <author>
+      <name>Vassilis Paliouras</name>
+    </author>
+    <author>
+      <name>George C. Alexandropoulos</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2309.13856v1</id>
+    <title>DNN-DANM: A High-Accuracy Two-Dimensional DOA Estimation Method Using Practical RIS</title>
+    <updated>2023-09-25T03:47:41Z</updated>
+    <link href="https://arxiv.org/abs/2309.13856v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2309.13856v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Reconfigurable intelligent surface (RIS) or intelligent reflecting surface (IRS) has been an attractive technology for future wireless communication and sensing systems. However, in the practical RIS, the mutual coupling effect among RIS elements, the reflection phase shift, and amplitude errors will degrade the RIS performance significantly. This paper investigates the two-dimensional direction-of-arrival (DOA) estimation problem in the scenario using a practical RIS. After formulating the system model with the mutual coupling effect and the reflection phase/amplitude errors of the RIS, a novel DNNDANM method is proposed for the DOA estimation by combining the deep neural network (DNN) and the decoupling atomic norm minimization (DANM). The DNN step reconstructs the received signal from the one with RIS impairments, and the DANM step exploits the signal sparsity in the two-dimensional spatial domain. Additionally, a semi-definite programming (SDP) method with low computational complexity is proposed to solve the atomic minimization problem. Finally, both simulation and prototype are carried out to show estimation performance, and the proposed method outperforms the existing methods in the two-dimensional DOA estimation with low complexity in the scenario with practical RIS.</summary>
+    <category term="eess.SP" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2023-09-25T03:47:41Z</published>
+    <arxiv:comment>11 pages, 12 figures</arxiv:comment>
+    <arxiv:primary_category term="eess.SP"/>
+    <arxiv:journal_ref>IEEE TRANSACTIONS ON VEHICULAR TECHNOLOGY, 2023</arxiv:journal_ref>
+    <author>
+      <name>Zhimin Chen</name>
+    </author>
+    <author>
+      <name>Peng Chen</name>
+    </author>
+    <author>
+      <name>Le Zheng</name>
+    </author>
+    <author>
+      <name>Yudong Zhang</name>
+    </author>
+    <arxiv:doi>10.1109/TVT.2023.3319538</arxiv:doi>
+    <link rel="related" href="https://doi.org/10.1109/TVT.2023.3319538" title="doi"/>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2607.00056v2</id>
+    <title>Active Sensing for RIS-Aided Tracking and Power Control: A Hybrid Neuroevolution and Supervised Learning Approach</title>
+    <updated>2026-07-02T07:49:45Z</updated>
+    <link href="https://arxiv.org/abs/2607.00056v2" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2607.00056v2" rel="related" type="application/pdf" title="pdf"/>
+    <summary>This paper studies energy efficient tracking of power-limited mobile users with the assistance of a Reconfigurable Intelligent Surface (RIS). Since localization pilot transmissions dominate the energy budget of power-constrained devices, we introduce a low-overhead feedback link from the Base Station (BS) to the user to enable dynamic uplink power control. To navigate the discrete and decentralized nature of this active sensing problem, we propose a novel Dual-Agent (DA) deep learning framework that jointly optimizes the discrete RIS phase profiles and the UE's transmit power in real time. Specifically, our approach employs a hybrid training methodology integrating the neuroevolution paradigm with supervised learning, effectively overcoming the non-differentiability of discrete phase responses from the RIS unit elements and the strict information bottleneck of single-bit feedback messages for pilot power control. The proposed DA active sensing framework can be applied with both single- and multi-antenna BSs, the latter with only minor modifications in the structure of one NN: an additional output branch with appropriate structure is included for the latter case to select a valid digital combiner from a finite set. Extensive numerical simulations demonstrate that the proposed scheme achieves highly accurate and robust tracking across diverse target motion models, outperforming extended Kalman and particle filters, as well as, machine learning-based trackers. Furthermore, in static localization, it is shown to significantly outperform traditional fingerprinting schemes, deep reinforcement learning baselines, and standard backpropagation-based estimators.</summary>
+    <category term="cs.IT" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.MA" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.NI" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-06-30T07:43:28Z</published>
+    <arxiv:comment>Submitted to an IEEE journal, 15 pages</arxiv:comment>
+    <arxiv:primary_category term="cs.IT"/>
+    <author>
+      <name>George Stamatelis</name>
+    </author>
+    <author>
+      <name>Hui Chen</name>
+    </author>
+    <author>
+      <name>Henk Henk Wymeersch</name>
+    </author>
+    <author>
+      <name>George C. Alexandropoulos</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2211.12727v2</id>
+    <title>Semantic Communications for Wireless Sensing: RIS-aided Encoding and Self-supervised Decoding</title>
+    <updated>2023-03-27T02:35:35Z</updated>
+    <link href="https://arxiv.org/abs/2211.12727v2" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2211.12727v2" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Semantic communications can reduce the resource consumption by transmitting task-related semantic information extracted from source messages. However, when the source messages are utilized for various tasks, e.g., wireless sensing data for localization and activities detection, semantic communication technique is difficult to be implemented because of the increased processing complexity. In this paper, we propose the inverse semantic communications as a new paradigm. Instead of extracting semantic information from messages, we aim to encode the task-related source messages into a hyper-source message for data transmission or storage. Following this paradigm, we design an inverse semantic-aware wireless sensing framework with three algorithms for data sampling, reconfigurable intelligent surface (RIS)-aided encoding, and self-supervised decoding, respectively. Specifically, on the one hand, we propose a novel RIS hardware design for encoding several signal spectrums into one MetaSpectrum. To select the task-related signal spectrums for achieving efficient encoding, a semantic hash sampling method is introduced. On the other hand, we propose a self-supervised learning method for decoding the MetaSpectrums to obtain the original signal spectrums. Using the sensing data collected from real-world, we show that our framework can reduce the data volume by 95% compared to that before encoding, without affecting the accomplishment of sensing tasks. Moreover, compared with the typically used uniform sampling scheme, the proposed semantic hash sampling scheme can achieve 67% lower mean squared error in recovering the sensing parameters. In addition, experiment results demonstrate that the amplitude response matrix of the RIS enables the encryption of the sensing data.</summary>
+    <category term="eess.SP" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2022-11-23T06:36:43Z</published>
+    <arxiv:primary_category term="eess.SP"/>
+    <author>
+      <name>Hongyang Du</name>
+      <arxiv:affiliation>Sherman</arxiv:affiliation>
+    </author>
+    <author>
+      <name>Jiacheng Wang</name>
+      <arxiv:affiliation>Sherman</arxiv:affiliation>
+    </author>
+    <author>
+      <name>Dusit Niyato</name>
+      <arxiv:affiliation>Sherman</arxiv:affiliation>
+    </author>
+    <author>
+      <name>Jiawen Kang</name>
+      <arxiv:affiliation>Sherman</arxiv:affiliation>
+    </author>
+    <author>
+      <name>Zehui Xiong</name>
+      <arxiv:affiliation>Sherman</arxiv:affiliation>
+    </author>
+    <author>
+      <name>Junshan Zhang</name>
+      <arxiv:affiliation>Sherman</arxiv:affiliation>
+    </author>
+    <author>
+      <name> Xuemin</name>
+      <arxiv:affiliation>Sherman</arxiv:affiliation>
+    </author>
+    <author>
+      <name> Shen</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2501.12353v1</id>
+    <title>Sum Rate Enhancement using Machine Learning for Semi-Self Sensing Hybrid RIS-Enabled ISAC in THz Bands</title>
+    <updated>2025-01-21T18:32:40Z</updated>
+    <link href="https://arxiv.org/abs/2501.12353v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2501.12353v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>This paper proposes a novel semi-self sensing hybrid reconfigurable intelligent surface (SS-HRIS) in terahertz (THz) bands, where the RIS is equipped with reflecting elements divided between passive and active elements in addition to sensing elements. SS-HRIS along with integrated sensing and communications (ISAC) can help to mitigate the multipath attenuation that is abundant in THz bands. In our proposed scheme, sensors are configured at the SS-HRIS to receive the radar echo signal from a target. A joint base station (BS) beamforming and HRIS precoding matrix optimization problem is proposed to maximize the sum rate of communication users while maintaining satisfactory sensing performance measured by the Cramer-Rao bound (CRB) for estimating the direction of angles of arrival (AoA) of the echo signal and thermal noise at the target. The CRB expression is first derived and the sum rate maximization problem is formulated subject to communication and sensing performance constraints. To solve the complex non-convex optimization problem, deep deterministic policy gradient (DDPG)-based deep reinforcement learning (DRL) algorithm is proposed, where the reward function, the action space and the state space are modeled. Simulation results show that the proposed DDPG-based DRL algorithm converges well and achieves better performance than several baselines, such as the soft actor-critic (SAC), proximal policy optimization (PPO), greedy algorithm and random BS beamforming and HRIS precoding matrix schemes. Moreover, it demonstrates that adopting HRIS significantly enhances the achievable sum rate compared to passive RIS and random BS beamforming and HRIS precoding matrix schemes.</summary>
+    <category term="eess.SP" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2025-01-21T18:32:40Z</published>
+    <arxiv:primary_category term="eess.SP"/>
+    <author>
+      <name>Sara Farrag Mobarak</name>
+    </author>
+    <author>
+      <name>Tingnan Bao</name>
+    </author>
+    <author>
+      <name>Melike Erol-Kantarci</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2211.13487v1</id>
+    <title>Sensing Aided Reconfigurable Intelligent Surfaces for 3GPP 5G Transparent Operation</title>
+    <updated>2022-11-24T09:27:25Z</updated>
+    <link href="https://arxiv.org/abs/2211.13487v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2211.13487v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Can reconfigurable intelligent surfaces (RISs) operate in a standalone mode that is completely transparent to the 3GPP 5G initial access process? Realizing that may greatly simplify the deployment and operation of these surfaces and reduce the infrastructure control overhead. This paper investigates the feasibility of building standalone/transparent RIS systems and shows that one key challenge lies in determining the user equipment (UE)-side RIS beam reflection direction. To address this challenge, we propose to equip the RISs with multi-modal sensing capabilities (e.g., using wireless and visual sensors) that enable them to develop some perception of the surrounding environment and the mobile users. Based on that, we develop a machine learning framework that leverages the wireless and visual sensors at the RIS to select the optimal beams between the base station (BS) and users and enable 5G standalone/transparent RIS operation. Using a high-fidelity synthetic dataset with co-existing wireless and visual data, we extensively evaluate the performance of the proposed framework. Experimental results demonstrate that the proposed approach can accurately predict the BS and UE-side candidate beams, and that the standalone RIS beam selection solution is capable of realizing near-optimal achievable rates with significantly reduced beam training overhead.</summary>
+    <category term="eess.SP" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.IT" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2022-11-24T09:27:25Z</published>
+    <arxiv:comment>The RIS dataset and script files will be available soon. arXiv admin note: text overlap with arXiv:2211.07563</arxiv:comment>
+    <arxiv:primary_category term="eess.SP"/>
+    <author>
+      <name>Shuaifeng Jiang</name>
+    </author>
+    <author>
+      <name>Ahmed Hindy</name>
+    </author>
+    <author>
+      <name>Ahmed Alkhateeb</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2608.13985v1</id>
+    <title>Standard-Compliant Neuromorphic Integrated Sensing and Communications Aided by an Intelligent Reflecting Surface</title>
+    <updated>2026-08-14T06:02:29Z</updated>
+    <link href="https://arxiv.org/abs/2608.13985v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2608.13985v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Neuromorphic computing enables event-driven, low-power inference and is therefore an attractive technology for jointly carrying out communication, sensing, and processing at resource-constrained wireless devices. Impulse radio ultra-wideband (IR-UWB) signaling, which is standardized in the IEEE 802.15.4 family and widely deployed for ranging and short-range communication, is naturally matched to neuromorphic processing, since both operate through sparse temporal events, or spikes. In this context, this paper studies a standard-compliant neuromorphic integrated sensing and communications (N-ISAC) system in which a single spiking neural network (SNN) receiver jointly demodulates digital data and detects a passive radar target directly from a common IEEE 802.15.4z high-rate-pulse-repetition-frequency (HRP) UWB waveform. Unlike prior N-ISAC work, which assumed a basic pulse-position-modulation interface and a simplified multipath channel, we consider the full standardized physical layer together with a realistic ray-traced channel aided by a reconfigurable intelligent surface (RIS). The model accounts for the frequency-selective response of a metamaterial-based RIS, which disperses the wideband IR-UWB pulses and can degrade both communication and sensing. Numerical experiments quantify the impact of RIS frequency selectivity on UWB ISAC and characterize the trade-off between ISAC performance and receiver computation energy.</summary>
+    <category term="eess.SP" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-08-14T06:02:29Z</published>
+    <arxiv:primary_category term="eess.SP"/>
+    <author>
+      <name>Jiho Park</name>
+    </author>
+    <author>
+      <name>Jiechen Chen</name>
+    </author>
+    <author>
+      <name>Joonhyuk Kang</name>
+    </author>
+    <author>
+      <name>Osvaldo Simeone</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2304.06475v3</id>
+    <title>WiRiS: Transformer for RIS-Assisted Device-Free Sensing for Joint People Counting and Localization using Wi-Fi CSI</title>
+    <updated>2023-11-09T22:34:41Z</updated>
+    <link href="https://arxiv.org/abs/2304.06475v3" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2304.06475v3" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Channel State Information (CSI) is widely adopted as a feature for indoor localization. Taking advantage of the abundant information from the CSI, people can be accurately sensed even without equipped devices. However, the positioning error increases severely in non-line-of-sight (NLoS) regions. Reconfigurable intelligent surface (RIS) has been introduced to improve signal coverage in NLoS areas, which can re-direct and enhance reflective signals with massive meta-material elements. In this paper, we have proposed a Transformer-based RIS-assisted device-free sensing for joint people counting and localization (WiRiS) system to precisely predict the number of people and their corresponding locations through configuring RIS. A series of predefined RIS beams is employed to create inputs of fingerprinting CSI features as sequence-to-sequence learning database for Transformer. We have evaluated the performance of proposed WiRiS system in both ray-tracing simulators and experiments. Both simulation and real-world experiments demonstrate that people counting accuracy exceeds 90\%, and the localization error can achieve the centimeter-level, which outperforms the existing benchmarks without employment of RIS.</summary>
+    <category term="eess.SP" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2023-03-25T04:06:32Z</published>
+    <arxiv:primary_category term="eess.SP"/>
+    <author>
+      <name>Wei-Yu Chung</name>
+    </author>
+    <author>
+      <name>Li-Hsiang Shen</name>
+    </author>
+    <author>
+      <name>Kai-Ten Feng</name>
+    </author>
+    <author>
+      <name>Yuan-Chun Lin</name>
+    </author>
+    <author>
+      <name>Shih-Cheng Lin</name>
+    </author>
+    <author>
+      <name>Sheng-Fuh Chang</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2505.15989v1</id>
+    <title>AI-Assisted NLOS Sensing for RIS-Based Indoor Localization in Smart Factories</title>
+    <updated>2025-05-21T20:12:30Z</updated>
+    <link href="https://arxiv.org/abs/2505.15989v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2505.15989v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>In the era of Industry 4.0, precise indoor localization is vital for automation and efficiency in smart factories. Reconfigurable Intelligent Surfaces (RIS) are emerging as key enablers in 6G networks for joint sensing and communication. However, RIS faces significant challenges in Non-Line-of-Sight (NLOS) and multipath propagation, particularly in localization scenarios, where detecting NLOS conditions is crucial for ensuring not only reliable results and increased connectivity but also the safety of smart factory personnel. This study introduces an AI-assisted framework employing a Convolutional Neural Network (CNN) customized for accurate Line-of-Sight (LOS) and Non-Line-of-Sight (NLOS) classification to enhance RIS-based localization using measured, synthetic, mixed-measured, and mixed-synthetic experimental data, that is, original, augmented, slightly noisy, and highly noisy data, respectively. Validated through such data from three different environments, the proposed customized-CNN (cCNN) model achieves {95.0\%-99.0\%} accuracy, outperforming standard pre-trained models like Visual Geometry Group 16 (VGG-16) with an accuracy of {85.5\%-88.0\%}. By addressing RIS limitations in NLOS scenarios, this framework offers scalable and high-precision localization solutions for 6G-enabled smart factories.</summary>
+    <category term="eess.SP" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2025-05-21T20:12:30Z</published>
+    <arxiv:comment>Accepted 7 pages Paper for VTCSpring2025 Conference</arxiv:comment>
+    <arxiv:primary_category term="eess.SP"/>
+    <author>
+      <name>Taofeek A. O. Yusuf</name>
+    </author>
+    <author>
+      <name>Sigurd S. Petersen</name>
+    </author>
+    <author>
+      <name>Puchu Li</name>
+    </author>
+    <author>
+      <name>Jian Ren</name>
+    </author>
+    <author>
+      <name>Placido Mursia</name>
+    </author>
+    <author>
+      <name>Vincenzo Sciancalepore</name>
+    </author>
+    <author>
+      <name>Xavier Costa Pérez</name>
+    </author>
+    <author>
+      <name>Gilberto Berardinelli</name>
+    </author>
+    <author>
+      <name>Ming Shen</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2508.18100v1</id>
+    <title>Analysis and Detection of RIS-based Spoofing in Integrated Sensing and Communication (ISAC)</title>
+    <updated>2025-08-25T15:04:15Z</updated>
+    <link href="https://arxiv.org/abs/2508.18100v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2508.18100v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Integrated sensing and communication (ISAC) is a key feature of next-generation 6G wireless systems, allowing them to achieve high data rates and sensing accuracy. While prior research has primarily focused on addressing communication safety in ISAC systems, the equally critical issue of sensing safety remains largely under-explored. In this paper, the possibility of spoofing the sensing function of ISAC in vehicle networks is examined, whereby a malicious reconfigurable intelligent surface (RIS) is deployed to compromise the sensing functionality of a roadside unit (RSU). For this scenario, the requirements on the malicious RIS' phase shifts design and number of reflecting elements are analyzed. Under such spoofing, the practical estimation bias of the vehicular user (VU)'s Doppler shift and angle-of-departure (AoD) for an arbitrary time slot is analytically derived. Moreover, from the attacker's view, a Markov decision process (MDP) is formulated to optimize the RIS' phase shifts design. The goal of this MDP is to generate complete and plausible fake trajectories by incorporating the concept of spatial-temporal consistency. To defend against this sensing spoofing attack, a signal temporal logic (STL)-based neuro-symbolic attack detection framework is proposed and shown to learn interoperable formulas for identifying spoofed trajectories.</summary>
+    <category term="cs.IT" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2025-08-25T15:04:15Z</published>
+    <arxiv:primary_category term="cs.IT"/>
+    <author>
+      <name>Tingyu Shui</name>
+    </author>
+    <author>
+      <name>Po-Heng Chou</name>
+    </author>
+    <author>
+      <name>Walid Saad</name>
+    </author>
+    <author>
+      <name>Mingzhe Chen</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2602.16637v1</id>
+    <title>Active RIS-Assisted MIMO System for Vital Signs Extraction: ISAC Modeling, Deep Learning, and Prototype Measurements</title>
+    <updated>2026-02-18T17:27:48Z</updated>
+    <link href="https://arxiv.org/abs/2602.16637v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2602.16637v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>We present the RIS-VSign system, an active reconfigurable intelligent surface (RIS)-assisted multiple-input multiple-output orthogonal frequency division multiplexing (MIMO-OFDM) framework for vital signs extraction under an integrated sensing and communication (ISAC) model. The system consists of two stages: the phase selector of RIS and the extraction of respiration rate. To mitigate synchronization-induced common phase drifts, the difference of Möbius transformation (DMT) is integrated into the deep learning framework, named DMTNet, to jointly configure multiple active RIS elements. Notably, the training data are generated in simulation without collecting real-world measurements, and the resulting phase selector is validated experimentally. For sensing, multi-antenna measurements are fused by the DC-offset calibration and the DeepMining-MMV processing with CA-CFAR detection and Newton's refinements. Prototype experiments indicate that active RIS deployment improves respiration detectability while simultaneously enabling higher-order modulation; without RIS, respiration detection is unreliable and only lower-order modulation is supported.</summary>
+    <category term="eess.SP" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-02-18T17:27:48Z</published>
+    <arxiv:primary_category term="eess.SP"/>
+    <author>
+      <name>De-Ming Chian</name>
+    </author>
+    <author>
+      <name>Chao-Kai Wen</name>
+    </author>
+    <author>
+      <name>Feng-Ji Chen</name>
+    </author>
+    <author>
+      <name>Yi-Jie Sun</name>
+    </author>
+    <author>
+      <name>Fu-Kang Wang</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2006.02201v2</id>
+    <title>Deep Denoising Neural Network Assisted Compressive Channel Estimation for mmWave Intelligent Reflecting Surfaces</title>
+    <updated>2020-08-30T03:29:21Z</updated>
+    <link href="https://arxiv.org/abs/2006.02201v2" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2006.02201v2" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Integrating large intelligent reflecting surfaces (IRS) into millimeter-wave (mmWave) massive multi-input-multi-ouput (MIMO) has been a promising approach for improved coverage and throughput. Most existing work assumes the ideal channel estimation, which can be challenging due to the high-dimensional cascaded MIMO channels and passive reflecting elements. Therefore, this paper proposes a deep denoising neural network assisted compressive channel estimation for mmWave IRS systems to reduce the training overhead. Specifically, we first introduce a hybrid passive/active IRS architecture, where very few receive chains are employed to estimate the uplink user-to-IRS channels. At the channel training stage, only a small proportion of elements will be successively activated to sound the partial channels. Moreover, the complete channel matrix can be reconstructed from the limited measurements based on compressive sensing, whereby the common sparsity of angular domain mmWave MIMO channels among different subcarriers is leveraged for improved accuracy. Besides, a complex-valued denoising convolution neural network (CV-DnCNN) is further proposed for enhanced performance. Simulation results demonstrate the superiority of the proposed solution over state-of-the-art solutions.</summary>
+    <category term="cs.IT" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="eess.SP" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2020-06-03T12:18:57Z</published>
+    <arxiv:comment>6 pages; 5 figures; to be published in IEEE Transactions on Vehicular Technology</arxiv:comment>
+    <arxiv:primary_category term="cs.IT"/>
+    <author>
+      <name>Shicong Liu</name>
+    </author>
+    <author>
+      <name>Zhen Gao</name>
+    </author>
+    <author>
+      <name>Jun Zhang</name>
+    </author>
+    <author>
+      <name>Marco Di Renzo</name>
+    </author>
+    <author>
+      <name>Mohamed-Slim Alouini</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2402.09441v2</id>
+    <title>Deep-Learning Channel Estimation for IRS-Assisted Integrated Sensing and Communication System</title>
+    <updated>2024-04-08T02:03:43Z</updated>
+    <link href="https://arxiv.org/abs/2402.09441v2" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2402.09441v2" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Integrated sensing and communication (ISAC), and intelligent reflecting surface (IRS) are envisioned as revolutionary technologies to enhance spectral and energy efficiencies for next wireless system generations. For the first time, this paper focuses on the channel estimation problem in an IRS-assisted ISAC system. This problem is challenging due to the lack of signal processing capacity in passive IRS, as well as the presence of mutual interference between sensing and communication (SAC) signals in ISAC systems. A three-stage approach is proposed to decouple the estimation problem into sub-ones, including the estimation of the direct SAC channels in the first stage, reflected communication channel in the second stage, and reflected sensing channel in the third stage. The proposed three-stage approach is based on a deep-learning framework, which involves two different convolutional neural network (CNN) architectures to estimate the channels at the full-duplex ISAC base station. Furthermore, two types of input-output pairs to train the CNNs are carefully designed, which affect the estimation performance under various signal-to-noise ratio conditions and system parameters. Simulation results validate the superiority of the proposed estimation approach compared to the least-squares baseline scheme, and its computational complexity is also analyzed.</summary>
+    <category term="eess.SP" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2024-01-29T14:15:48Z</published>
+    <arxiv:primary_category term="eess.SP"/>
+    <arxiv:journal_ref>Published in IEEE Transactions on Vehicular Technology, vol. 72, no. 5, pp. 6181-6193, May 2023</arxiv:journal_ref>
+    <author>
+      <name>Yu Liu</name>
+    </author>
+    <author>
+      <name>Ibrahim Al-Nahhal</name>
+    </author>
+    <author>
+      <name>Octavia A. Dobre</name>
+    </author>
+    <author>
+      <name>Fanggang Wang</name>
+    </author>
+    <arxiv:doi>10.1109/TVT.2022.3231727</arxiv:doi>
+    <link rel="related" href="https://doi.org/10.1109/TVT.2022.3231727" title="doi"/>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2405.20168v1</id>
+    <title>Enhancing Battlefield Awareness: An Aerial RIS-assisted ISAC System with Deep Reinforcement Learning</title>
+    <updated>2024-05-30T15:41:39Z</updated>
+    <link href="https://arxiv.org/abs/2405.20168v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2405.20168v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>This paper considers a joint communication and sensing technique for enhancing situational awareness in practical battlefield scenarios. In particular, we propose an aerial reconfigurable intelligent surface (ARIS)-assisted integrated sensing and communication (ISAC) system consisting of a single access point (AP), an ARIS, multiple users, and a sensing target. With deep reinforcement learning (DRL), we jointly optimize the transmit beamforming of the AP, the RIS phase shifts, and the trajectory of the ARIS under signal-to-interference-noise ratio (SINR) constraints. Numerical results demonstrate that the proposed technique outperforms the conventional benchmark schemes by suppressing the self-interference and clutter echo signals or optimizing the RIS phase shifts.</summary>
+    <category term="eess.SY" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2024-05-30T15:41:39Z</published>
+    <arxiv:primary_category term="eess.SY"/>
+    <author>
+      <name>Hyunsang Cho</name>
+    </author>
+    <author>
+      <name>Seonghoon Yoo</name>
+    </author>
+    <author>
+      <name>Bang Chul Jung</name>
+    </author>
+    <author>
+      <name>Joonhyuk Kang</name>
+    </author>
+    <arxiv:doi>10.1109/MILCOM61039.2024.10774028</arxiv:doi>
+    <link rel="related" href="https://doi.org/10.1109/MILCOM61039.2024.10774028" title="doi"/>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2505.02446v1</id>
+    <title>Learned Intelligent Recognizer with Adaptively Customized RIS Phases in Communication Systems</title>
+    <updated>2025-05-05T08:14:13Z</updated>
+    <link href="https://arxiv.org/abs/2505.02446v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2505.02446v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>This study presents an advanced wireless system that embeds target recognition within reconfigurable intelligent surface (RIS)-aided communication systems, powered by cuttingedge deep learning innovations. Such a system faces the challenge of fine-tuning both the RIS phase shifts and neural network (NN) parameters, since they intricately interdepend on each other to accomplish the recognition task. To address these challenges, we propose an intelligent recognizer that strategically harnesses every piece of prior action responses, thereby ingeniously multiplexing downlink signals to facilitate environment sensing. Specifically, we design a novel NN based on the long short-term memory (LSTM) architecture and the physical channel model. The NN iteratively captures and fuses information from previous measurements and adaptively customizes RIS configurations to acquire the most relevant information for the recognition task in subsequent moments. Tailored dynamically, these configurations adapt to the scene, task, and target specifics. Simulation results reveal that our proposed method significantly outperforms the state-of-the-art method, while resulting in minimal impacts on communication performance, even as sensing is performed simultaneously.</summary>
+    <category term="cs.IT" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="eess.SP" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2025-05-05T08:14:13Z</published>
+    <arxiv:comment>accepted by FCN 2024. arXiv admin note: substantial text overlap with arXiv:2503.02244</arxiv:comment>
+    <arxiv:primary_category term="cs.IT"/>
+    <author>
+      <name>Yixuan Huang</name>
+    </author>
+    <author>
+      <name>Jie Yang</name>
+    </author>
+    <author>
+      <name>Chao-Kai Wen</name>
+    </author>
+    <author>
+      <name>Shuqiang Xia</name>
+    </author>
+    <author>
+      <name>Xiao Li</name>
+    </author>
+    <author>
+      <name>Shi Jin</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2610.00145v1</id>
+    <title>Movable-Element STAR-RIS for Integrated Sensing and Communication: Architectures, Opportunities, and Practical Challenges</title>
+    <updated>2026-09-10T11:32:14Z</updated>
+    <link href="https://arxiv.org/abs/2610.00145v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2610.00145v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Simultaneously transmitting and reflecting reconfigurable intelligent surfaces (STAR-RISs) extend conventional reflecting-only surfaces by enabling controllable full-space propagation. Yet, once deployed, the physical locations of their elements remain fixed, leaving the surface geometry unable to adapt to users, sensing targets, blockage, or near-field focusing conditions. This article develops a system-level perspective on movable-element STAR-RIS (ME--STAR--RIS) for integrated sensing and communication (ISAC), where the surface jointly reconfigures its electromagnetic response and the physical positions of its elements. We explain how geometric reconfiguration can reshape the effective aperture, spatial correlation, interference nulls, and sensing illumination while preserving STAR-RIS full-space operation. A two-timescale control architecture separates relatively slow element motion from fast beamforming and transmission/reflection control. A 100-realization illustrative case study compares ME--STAR--RIS with an otherwise identical fixed STAR-RIS under a passive coupled transmission/reflection response. The results show a substantially improved sampled communication--sensing tradeoff and, importantly, a rapid saturation of the rate gain with modest element travel. We conclude with representative use cases, implementation constraints, and a research roadmap covering mobility overhead, channel acquisition, mutual coupling, near-field operation, hardware impairments, and learning-assisted predictive control.</summary>
+    <category term="cs.ET" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-09-10T11:32:14Z</published>
+    <arxiv:comment>9, 4</arxiv:comment>
+    <arxiv:primary_category term="cs.ET"/>
+    <author>
+      <name>Wali Ullah Khan</name>
+    </author>
+    <author>
+      <name>Muhammad Adil</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2504.01344v1</id>
+    <title>IRS Assisted Decentralized Learning for Wideband Spectrum Sensing</title>
+    <updated>2025-04-02T04:18:41Z</updated>
+    <link href="https://arxiv.org/abs/2504.01344v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2504.01344v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>The increasing demand for reliable connectivity in industrial environments necessitates effective spectrum utilization strategies, especially in the context of shared spectrum bands.
+  However, the dynamic spectrum-sharing mechanisms often lead to significant interference and critical failures, creating a trade-off between spectrum scarcity and under-utilization.
+  This paper addresses these challenges by proposing a novel Intelligent Reflecting Surface (IRS)-assisted spectrum sensing framework integrated with decentralized deep learning.
+  The proposed model overcomes partial observation constraints and minimizes communication overhead while leveraging IRS technology to enhance spectrum sensing accuracy.
+  Through comprehensive simulations, the framework demonstrates its ability to monitor wideband spectrum occupancy effectively, even under challenging signal-to-noise ratio (SNR) conditions.
+  This approach offers a scalable and robust solution for spectrum management in next-generation wireless networks.</summary>
+    <category term="eess.SY" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2025-04-02T04:18:41Z</published>
+    <arxiv:primary_category term="eess.SY"/>
+    <author>
+      <name>Sicheng Liu</name>
+    </author>
+    <author>
+      <name>Qun Wang</name>
+    </author>
+    <author>
+      <name>Zhuwei Qin</name>
+    </author>
+    <author>
+      <name>Weishan Zhang</name>
+    </author>
+    <author>
+      <name>Jingyi Wang</name>
+    </author>
+    <author>
+      <name>Xiang Ma</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2610.17566v1</id>
+    <title>Learning or Modeling? Virtual XL-RIS Observation Reconstruction for Near-Field Sensing</title>
+    <updated>2026-10-13T01:36:45Z</updated>
+    <link href="https://arxiv.org/abs/2610.17566v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2610.17566v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>A passive extremely large-scale reconfigurable intelligent surface (XL-RIS) offers a position-sensitive aperture for near-field sensing, but its element-wise signals are not directly observed. Recovering this virtual RIS observation (VOR) from fewer base-station measurements requires prior information. This paper investigates when calibrated propagation geometry or paired training data provides the more effective reconstruction prior. For a common sensing operator and target signal, we develop off-grid near-field sparse parametric reconstruction (OG-NF-SPR) and compare it with compact and DenseNet-based deep reconstructors. OG-NF-SPR uses reflected-path projection for position initialization, followed by Bayesian estimation of all path gains and continuous position refinement. A causal extension incorporates temporal correlation without trajectory labels. Controlled simulations use near-field UAV tracking as an illustration and separately examine noise, position-distribution shift, calibration error, and propagation mismatch. Under matched propagation at 20 dB, OG-NF-SPR achieves approximately 67% lower reconstruction NMSE than the two nominal deep networks. At low SNR, statistical averaging is more effective than selecting a single geometric explanation. Under sufficiently strong repeatable mismatch, a same-size network trained on the mismatch family outperforms the nominal physical estimator, whereas nominal training does not provide this benefit. Temporal regularization also reduces position RMSE from 0.653 m to 0.225 m on a shared trajectory. The results relate reconstruction performance to measurement quality, calibration accuracy, and training coverage, providing guidance on when geometry can replace supervised labels and when additional data are useful.</summary>
+    <category term="eess.SP" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-10-13T01:36:45Z</published>
+    <arxiv:comment>13 pages, 6 figures</arxiv:comment>
+    <arxiv:primary_category term="eess.SP"/>
+    <author>
+      <name>Tuo Wu</name>
+    </author>
+    <author>
+      <name>Jie Tang</name>
+    </author>
+    <author>
+      <name>Jiacheng Wang</name>
+    </author>
+    <author>
+      <name>Kangda Zhi</name>
+    </author>
+    <author>
+      <name>Maged Elkashlan</name>
+    </author>
+    <author>
+      <name>Matthew C. Valenti</name>
+    </author>
+    <author>
+      <name>Mérouane Debbah</name>
+    </author>
+    <author>
+      <name>Kenneth Tong</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2602.09589v1</id>
+    <title>A Survey on STAR-RIS Enabled Joint Communications and Sensing: Fundamentals, Recent Advances and Research Challenges</title>
+    <updated>2026-02-10T09:42:41Z</updated>
+    <link href="https://arxiv.org/abs/2602.09589v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2602.09589v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>The joint communications and sensing (JCAS) paradigm is envisioned as a core capability of sixth-generation (6G) wireless networks, enabling the integration of data communication and environmental sensing within a unified system. By reusing spectrum, waveforms, and hardware resources, JCAS improves spectral efficiency, reduces system complexity, and hardware cost, while enabling new use cases. Nevertheless, the realization of JCAS is hindered by inherent trade-offs between communication and sensing objectives, limited controllability of wireless propagation, and stringent hardware and design constraints. Simultaneously transmitting and reflecting reconfigurable intelligent surfaces (STAR-RIS) have recently emerged as a promising technology to address these challenges by enabling full-space programmable manipulation of electromagnetic waves. This survey provides a systematic and in-depth review of STAR-RIS-enabled JCAS systems. Specifically, we first introduce the fundamental principles of JCAS and STAR-RIS. We then classify and review the state-of-the-art research on STAR-RIS-assisted JCAS from multiple perspectives, encompassing system architectures, waveform and beamforming design, resource allocation, optimization frameworks, and learning-based control. Finally, we identify key open challenges that remain unsolved and outline promising future research directions toward intelligent, flexible, and perceptive 6G wireless networks.</summary>
+    <category term="eess.SP" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-02-10T09:42:41Z</published>
+    <arxiv:primary_category term="eess.SP"/>
+    <author>
+      <name>Wali Ullah Khan</name>
+    </author>
+    <author>
+      <name>Chandan Kumar Sheemar</name>
+    </author>
+    <author>
+      <name>Syed Tariq Shah</name>
+    </author>
+    <author>
+      <name>Manzoor Ahmed</name>
+    </author>
+    <author>
+      <name>Symeon Chatzinotas</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2509.06763v2</id>
+    <title>VariSAC: V2X Assured Connectivity in RIS-Aided ISAC via GNN-Augmented Reinforcement Learning</title>
+    <updated>2025-09-09T12:58:34Z</updated>
+    <link href="https://arxiv.org/abs/2509.06763v2" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2509.06763v2" rel="related" type="application/pdf" title="pdf"/>
+    <summary>The integration of Reconfigurable Intelligent Surfaces (RIS) and Integrated Sensing and Communication (ISAC) in vehicular networks enables dynamic spatial resource management and real-time adaptation to environmental changes. However, the coexistence of distinct vehicle-to-infrastructure (V2I) and vehicle-to-vehicle (V2V) connectivity requirements, together with highly dynamic and heterogeneous network topologies, presents significant challenges for unified reliability modeling and resource optimization. To address these issues, we propose VariSAC, a graph neural network (GNN)-augmented deep reinforcement learning framework for assured, time-continuous connectivity in RIS-assisted, ISAC-enabled vehicle-to-everything (V2X) systems. Specifically, we introduce the Continuous Connectivity Ratio (CCR), a unified metric that characterizes the sustained temporal reliability of V2I connections and the probabilistic delivery guarantees of V2V links, thus unifying their continuous reliability semantics. Next, we employ a GNN with residual adapters to encode complex, high-dimensional system states, capturing spatial dependencies among vehicles, base stations (BS), and RIS nodes. These representations are then processed by a Soft Actor-Critic (SAC) agent, which jointly optimizes channel allocation, power control, and RIS configurations to maximize CCR-driven long-term rewards. Extensive experiments on real-world urban datasets demonstrate that VariSAC consistently outperforms existing baselines in terms of continuous V2I ISAC connectivity and V2V delivery reliability, enabling persistent connectivity in highly dynamic vehicular environments.</summary>
+    <category term="cs.NI" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2025-09-08T14:51:30Z</published>
+    <arxiv:primary_category term="cs.NI"/>
+    <author>
+      <name>Huijun Tang</name>
+    </author>
+    <author>
+      <name>Wang Zeng</name>
+    </author>
+    <author>
+      <name>Ming Du</name>
+    </author>
+    <author>
+      <name>Pinlong Zhao</name>
+    </author>
+    <author>
+      <name>Pengfei Jiao</name>
+    </author>
+    <author>
+      <name>Huaming Wu</name>
+    </author>
+    <author>
+      <name>Hongjian Sun</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2601.15113v2</id>
+    <title>Physics-Informed Implicit Neural Representation for Wireless Imaging in RIS-Aided ISAC System</title>
+    <updated>2026-02-12T01:37:08Z</updated>
+    <link href="https://arxiv.org/abs/2601.15113v2" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2601.15113v2" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Wireless imaging has become a vital function in future integrated sensing and communication (ISAC) systems. However, traditional model-based and data-driven deep learning imaging methods face challenges related to multipath extraction, dataset acquisition, and multi-scenario adaptation. To overcome these limitations, this study innovatively combines implicit neural representation (INR) with explicit physical models to realize wireless imaging in reconfigurable intelligent surface (RIS)-aided ISAC systems. INR employs neural networks (NNs) to project physical locations to voxel values, which is indirectly supervised by measurements of channel state information with physics-informed loss functions. The continuous shape and scattering characteristics of targets are embedded into NN parameters through training, enabling arbitrary image resolutions and off-grid voxel value prediction. Additionally, three issues related to INR-based imager are further addressed. First, INR is generalized to enable efficient imaging under multipath interference by jointly learning image and multipath information. Second, the imaging speed and accuracy for dynamic targets are enhanced by embedding prior image information. Third, imaging results are employed to assist in RIS phase design for improved communication performance. Extensive simulations demonstrate that the proposed INR-based imager significantly outperforms traditional model-based methods with super-resolution abilities, and the focal length characteristics of the imaging system is revealed. Moreover, communication performance can benefit from the imaging results. Part of the source code for this paper can be accessed at https://github.com/kiwi1944/INRImager</summary>
+    <category term="cs.IT" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-01-21T15:51:55Z</published>
+    <arxiv:comment>accepted by IEEE TWC</arxiv:comment>
+    <arxiv:primary_category term="cs.IT"/>
+    <author>
+      <name>Yixuan Huang</name>
+    </author>
+    <author>
+      <name>Jie Yang</name>
+    </author>
+    <author>
+      <name>Chao-Kai Wen</name>
+    </author>
+    <author>
+      <name>Shi Jin</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2503.19046v2</id>
+    <title>Learning Beamforming Codebooks for Active Sensing with Reconfigurable Intelligent Surface</title>
+    <updated>2025-03-31T13:10:57Z</updated>
+    <link href="https://arxiv.org/abs/2503.19046v2" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2503.19046v2" rel="related" type="application/pdf" title="pdf"/>
+    <summary>This paper explores the design of beamforming codebooks for the base station (BS) and for the reconfigurable intelligent surfaces (RISs) in an active sensing scheme for uplink localization, in which the mobile user transmits a sequence of pilots to the BS through reflection at the RISs, and the BS and the RISs are adaptively configured by carefully choosing BS beamforming codeword and RIS codewords from their respective codebooks in a sequential manner to progressively focus onto the user. Most existing codebook designs for RIS are not tailored for active sensing, by which we mean the choice of the next codeword should depend on the measurements made so far, and the sequence of codewords should dynamically focus reflection toward the user. Moreover, most existing codeword selection methods rely on exhaustive search in beam training to identify the codeword with the highest signal-to-noise ratio (SNR), thus incurring substantial pilot overhead as the size of the codebook scales. This paper proposes a learning-based approach for codebook construction and for codeword selection for active sensing. The proposed learning approach aims to locate a target in the service area by recursively selecting a sequence of BS beamforming codewords and RIS codewords from the respective codebooks as more measurements become available without exhaustive beam training. The codebook design and the codeword selection fuse key ideas from the vector quantized variational autoencoder (VQ-VAE) and the long short-term memory (LSTM) network to learn respectively the discrete function space of the codebook and the temporal dependencies between measurements.</summary>
+    <category term="eess.SP" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.IT" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2025-03-24T18:15:58Z</published>
+    <arxiv:comment>Accepted in IEEE Transactions on Wireless Communications</arxiv:comment>
+    <arxiv:primary_category term="eess.SP"/>
+    <author>
+      <name>Zhongze Zhang</name>
+    </author>
+    <author>
+      <name>Wei Yu</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2211.07563v1</id>
+    <title>Camera Aided Reconfigurable Intelligent Surfaces: Computer Vision Based Fast Beam Selection</title>
+    <updated>2022-11-14T17:33:30Z</updated>
+    <link href="https://arxiv.org/abs/2211.07563v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2211.07563v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Reconfigurable intelligent surfaces (RISs) have attracted increasing interest due to their ability to improve the coverage, reliability, and energy efficiency of millimeter wave (mmWave) communication systems. However, designing the RIS beamforming typically requires large channel estimation or beam training overhead, which degrades the efficiency of these systems. In this paper, we propose to equip the RIS surfaces with visual sensors (cameras) that obtain sensing information about the surroundings and user/basestation locations, guide the RIS beam selection, and reduce the beam training overhead. We develop a machine learning (ML) framework that leverages this visual sensing information to efficiently select the optimal RIS reflection beams that reflect the signals between the basestation and mobile users. To evaluate the developed approach, we build a high-fidelity synthetic dataset that comprises co-existing wireless and visual data. Based on this dataset, the results show that the proposed vision-aided machine learning solution can accurately predict the RIS beams and achieve near-optimal achievable rate while significantly reducing the beam training overhead.</summary>
+    <category term="eess.SP" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.IT" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2022-11-14T17:33:30Z</published>
+    <arxiv:comment>6 pages, 6 figures. The RIS dataset and code files will be available soon!</arxiv:comment>
+    <arxiv:primary_category term="eess.SP"/>
+    <author>
+      <name>Shuaifeng Jiang</name>
+    </author>
+    <author>
+      <name>Ahmed Hindy</name>
+    </author>
+    <author>
+      <name>Ahmed Alkhateeb</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2206.06605v2</id>
+    <title>Bayesian Channel Estimation for Intelligent Reflecting Surface-Aided mmWave Massive MIMO Systems With Semi-Passive Elements</title>
+    <updated>2023-05-03T07:33:34Z</updated>
+    <link href="https://arxiv.org/abs/2206.06605v2" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2206.06605v2" rel="related" type="application/pdf" title="pdf"/>
+    <summary>In this paper, we propose a Bayesian channel estimator for intelligent reflecting surface-aided (IRS-aided) millimeter wave (mmWave) massive multiple-input multiple-output (MIMO) systems with semi-passive elements that can receive the signal in the active sensing mode. Ultimately, our goal is to minimize the channel estimation error using the received signal at the base station and additional information acquired from a small number of active sensors at the IRS. Unlike recent works on channel estimation with semi-passive elements that require both uplink and downlink training signals to estimate the UE-IRS and IRS-BS links, we only use uplink training signals to estimate all the links. To compute the minimum mean squared error (MMSE) estimates of all the links, we propose a novel variational inference-sparse Bayesian learning (VI-SBL) channel estimator that performs approximate posterior inference on the channel using VI with the mean-field approximation under the SBL framework. The simulation results show that VI-SBL outperforms the state-of-the-art baselines for IRS with passive reflecting elements in terms of the channel estimation accuracy and training overhead. Furthermore, VI-SBL with semi-passive elements is shown to be more spectral- and energy-efficient than the baselines with passive reflecting elements.</summary>
+    <category term="cs.IT" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="eess.SP" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2022-06-14T05:54:56Z</published>
+    <arxiv:comment>to appear in IEEE Transactions on Wireless Communications</arxiv:comment>
+    <arxiv:primary_category term="cs.IT"/>
+    <arxiv:journal_ref>IEEE Transactions on Wireless Communications, vol. 22, no. 12, pp. 9732-9745, Dec. 2023</arxiv:journal_ref>
+    <author>
+      <name>In-soo Kim</name>
+    </author>
+    <author>
+      <name>Mehdi Bennis</name>
+    </author>
+    <author>
+      <name>Jaeky Oh</name>
+    </author>
+    <author>
+      <name>Jaehoon Chung</name>
+    </author>
+    <author>
+      <name>Junil Choi</name>
+    </author>
+    <arxiv:doi>10.1109/TWC.2023.3273284</arxiv:doi>
+    <link rel="related" href="https://doi.org/10.1109/TWC.2023.3273284" title="doi"/>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2202.10248v1</id>
+    <title>A self-adaptive RIS that estimates and shapes fading rich-scattering wireless channels</title>
+    <updated>2022-02-21T13:55:34Z</updated>
+    <link href="https://arxiv.org/abs/2202.10248v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2202.10248v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>We present a framework for operating a self-adaptive RIS inside a fading rich-scattering wireless environment. We model the rich-scattering wireless channel as being double-parametrized by (i) the RIS, and (ii) dynamic perturbers (moving objects, etc.). Within each coherence time, first, the self-adaptive RIS estimates the status of the dynamic perturbers (e.g., the perturbers' orientations and locations) based on measurements with an auxiliary wireless channel. Then, second, using a learned surrogate forward model of the mapping from RIS configuration and perturber status to wireless channel, an optimized RIS configuration to achieve a desired functionality is obtained. We demonstrate our technique using a physics-based end-to-end model of RIS-parametrized communication with adjustable fading (PhysFad) for the example objective of maximizing the received signal strength indicator. Our results present a route toward convergence of RIS-empowered localization and sensing with RIS-empowered channel shaping beyond the simple case of operation in free space without fading.</summary>
+    <category term="cs.IT" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="eess.SP" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="physics.app-ph" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2022-02-21T13:55:34Z</published>
+    <arxiv:comment>5 pages, 3 figures, submitted to an IEEE Conference</arxiv:comment>
+    <arxiv:primary_category term="cs.IT"/>
+    <arxiv:journal_ref>IEEE VTC2022-Spring 22013816</arxiv:journal_ref>
+    <author>
+      <name>Chloé Saigre-Tardif</name>
+    </author>
+    <author>
+      <name>Philipp del Hougne</name>
+    </author>
+    <arxiv:doi>10.1109/VTC2022-Spring54318.2022.9860667</arxiv:doi>
+    <link rel="related" href="https://doi.org/10.1109/VTC2022-Spring54318.2022.9860667" title="doi"/>
+  </entry>
+</feed>

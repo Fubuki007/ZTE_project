@@ -1,0 +1,685 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<feed xmlns:opensearch="http://a9.com/-/spec/opensearch/1.1/" xmlns:arxiv="http://arxiv.org/schemas/atom" xmlns="http://www.w3.org/2005/Atom">
+  <id>https://arxiv.org/api/kPXuvD4bYKU9UcGs5dwUMQoaqtM</id>
+  <title>arXiv Query: search_query=(all:"sensing" OR all:"ISAC") AND (all:"fluid antenna" OR all:"movable antenna") AND (all:"learning" OR all:"Bayesian")&amp;id_list=&amp;start=0&amp;max_results=30</title>
+  <updated>2026-10-15T13:53:10Z</updated>
+  <link href="https://arxiv.org/api/query?search_query=(all:%22sensing%22+OR+all:%22ISAC%22)+AND+((all:%22fluid+antenna%22+OR+all:%22movable+antenna%22)+AND+(all:%22learning%22+OR+all:%22Bayesian%22))&amp;start=0&amp;max_results=30&amp;id_list=" type="application/atom+xml"/>
+  <opensearch:itemsPerPage>30</opensearch:itemsPerPage>
+  <opensearch:totalResults>21</opensearch:totalResults>
+  <opensearch:startIndex>0</opensearch:startIndex>
+  <entry>
+    <id>http://arxiv.org/abs/2604.02181v2</id>
+    <title>Grey-Box Bayesian Optimization for ISAC in Fluid-Antenna Assisted Air-Ground Network</title>
+    <updated>2026-09-28T05:57:14Z</updated>
+    <link href="https://arxiv.org/abs/2604.02181v2" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2604.02181v2" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Fluid antenna systems (FAS) provide additional spatial diversity for integrated sensing and communication (ISAC) through joint port selection and precoding. \rev{However, existing designs commonly assume readily available channel state information, neglect residual self-interference, and combine communication and sensing into a single weighted objective. The resulting channel acquisition overhead, unmodeled residual self-interference, and limited characterization of the Pareto trade-off are critical obstacles to implementing ISAC in fluid-antenna-assisted air-ground networks.} \rev{To address these issues, we first formulate the joint design as a grey-box multi-objective optimization problem. This formulation retains the available analytical system mapping while treating the configuration-dependent channel and interference constituents as unknown, and directly represents the communication-sensing Pareto trade-off without predefined scalarization.} We then propose a tailored grey-box multi-objective Bayesian optimization (G-MOBO) method to solve the resulting high-dimensional problem. Specifically, G-MOBO learns the unknown constituents from performance feedback, propagates their predictive distributions through the known mapping, employs expected hypervolume improvement (EHI) to explore the Pareto frontier, and uses an adaptive trust region (TR) to localize the search. A temporal adaptation strategy is further incorporated to track the drifting Pareto frontier in time-varying environments. \rev{The theoretical analysis characterizes the sample efficiency of grey-box modeling and localized TR design via cumulative hypervolume regret.} Simulations demonstrate faster convergence, improved Pareto-frontier quality, and robust dynamic tracking compared with the considered baselines.</summary>
+    <category term="eess.SP" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-04-02T15:44:14Z</published>
+    <arxiv:comment>15 pages, 5 figures, Journal</arxiv:comment>
+    <arxiv:primary_category term="eess.SP"/>
+    <author>
+      <name>Gangyong Zhu</name>
+    </author>
+    <author>
+      <name>Jia Yan</name>
+    </author>
+    <author>
+      <name>Miaowen Wen</name>
+    </author>
+    <author>
+      <name>Shijian Gao</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2509.03273v1</id>
+    <title>Crosstalk-Resilient Beamforming for Movable Antenna Enabled Integrated Sensing and Communication</title>
+    <updated>2025-09-03T12:50:53Z</updated>
+    <link href="https://arxiv.org/abs/2509.03273v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2509.03273v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>This paper investigates a movable antenna (MA) enabled integrated sensing and communication (ISAC) system under the influence of antenna crosstalk. First, it generalizes the antenna crosstalk model from the conventional fixed-position antenna (FPA) system to the MA scenario. Then, a Cramer-Rao bound (CRB) minimization problem driven by joint beamforming and antenna position design is presented. Specifically, to address this highly non-convex flexible beamforming problem, we deploy a deep reinforcement learning (DRL) approach to train a flexible beamforming agent. To ensure stability during training, a Twin Delayed Deep Deterministic Policy Gradient (TD3) algorithm is adopted to balance exploration with reward maximization for efficient and reliable learning. Numerical results demonstrate that the proposed crosstalk-resilient (CR) algorithm enhances the overall ISAC performance compared to other benchmark schemes.</summary>
+    <category term="eess.SP" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2025-09-03T12:50:53Z</published>
+    <arxiv:primary_category term="eess.SP"/>
+    <author>
+      <name>Zeyuan Zhang</name>
+    </author>
+    <author>
+      <name>Yue Xiu</name>
+    </author>
+    <author>
+      <name>Zheng Dong</name>
+    </author>
+    <author>
+      <name>Jiacheng Yin</name>
+    </author>
+    <author>
+      <name>Maurice J. Khabbaz</name>
+    </author>
+    <author>
+      <name>Chadi Assi</name>
+    </author>
+    <author>
+      <name>Ning Wei</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2605.17629v2</id>
+    <title>DL-Driven Optimization for ISAC System Equipped With Pinching and Movable Antennas</title>
+    <updated>2026-08-07T05:19:51Z</updated>
+    <link href="https://arxiv.org/abs/2605.17629v2" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2605.17629v2" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Integrated sensing and communication (ISAC) is considered one of the key technologies for future wireless networks, due to its ability to provide accurate environment awareness and improve energy, spectral and hardware efficiency. Moreover, the introduction of recently developed pinching antennas (PAs) and movable antennas (MAs) has the potential to further improve the performance gains of ISAC. Therefore, our goal is to study the optimization of the sum-rate for an ISAC system equipped with PAs and MAs, capable of satisfying minimal sensing requirements. To achieve it, we derive a closed-form solution for the optimal sensing receive combiner, and show that it is determined by other optimization variables. For these other variables (i.e., the positions of the transmit PAs, the positions of the users' MAs, the communication precoding matrices, and the sensing transmit beamformer), we propose a deep learning (DL) network that finds their optimal values. To train the network in an unsupervised manner, we formulate a loss function consisting of the objective function, as well as the penalty terms related to the constraints for the PAs and MAs positions. Simulation results show that using PAs and MAs in ISAC systems provides a larger sum-rate compared to ISAC systems with only fixed antennas, and that this performance advantage is increased with the maximum transmit power. Furthermore, we demonstrate that the communication performance of the considered system is a bit more affected by the sensing signal-to-interference-plus-noise ratio (SINR) threshold compared to the sensing performance.</summary>
+    <category term="cs.IT" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-05-17T19:50:46Z</published>
+    <arxiv:comment>5 pages, 5 figures</arxiv:comment>
+    <arxiv:primary_category term="cs.IT"/>
+    <author>
+      <name>Nemanja Stefan Perović</name>
+    </author>
+    <author>
+      <name>Keshav Singh</name>
+    </author>
+    <author>
+      <name>Chih-Peng Li</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2510.01437v1</id>
+    <title>Meta-Learning-Driven Resource Optimization in Full-Duplex ISAC with Movable Antennas</title>
+    <updated>2025-10-01T20:20:21Z</updated>
+    <link href="https://arxiv.org/abs/2510.01437v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2510.01437v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>This paper investigates a full-duplex (FD) scenario where a base station (BS) equipped with movable antennas (MAs) simultaneously provides communication services to a set of downlink (DL) and uplink (UL) users while also enabling sensing functionalities for target detection, thereby supporting integrated sensing and communication (ISAC) technology. Additionally, a receiving BS, also equipped with MAs (denoted as BS R), is responsible for capturing the reflected echo. To optimize this setup, we formulate an optimization problem aimed at maximizing the signal-to-noise and interference ratio (SINR) of the captured echo. This is achieved by jointly optimizing the transmit beamforming vectors at the FD BS, the receiving beamforming vectors at both the FD BS and BS R, the UL users' transmit power, and the MAs' positions at both BSs, all while satisfying the quality-of-service (QoS) requirements for both sensing and communication. Given the non-convex nature of the problem and the high coupling between the variables, we employ a gradient-based meta-learning (GML) approach tailored for large-scale optimization. Numerical results demonstrate the effectiveness of the proposed meta-learning approach, achieving results within 99% of the optimal solution. Furthermore, the MA-based scheme outperforms several benchmark approaches, highlighting its advantages in practical ISAC applications.</summary>
+    <category term="eess.SP" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2025-10-01T20:20:21Z</published>
+    <arxiv:primary_category term="eess.SP"/>
+    <author>
+      <name>Ali Amhaz</name>
+    </author>
+    <author>
+      <name>Shreya Khisa</name>
+    </author>
+    <author>
+      <name>Mohamed Elhattab</name>
+    </author>
+    <author>
+      <name>Chadi Assi</name>
+    </author>
+    <author>
+      <name>Sanaa Sharafeddine</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2607.26547v1</id>
+    <title>Stay or Switch: Online Conformal Bayesian Optimization Guided Fluid Antenna Configuration</title>
+    <updated>2026-07-29T07:19:37Z</updated>
+    <link href="https://arxiv.org/abs/2607.26547v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2607.26547v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Fluid antenna systems (FAS) introduce additional spatial degrees of freedom to enable integrated sensing and communication (ISAC) in air-ground networks. However, conventional studies often overlook or simplify the physical overheads and switching costs of FAS. In practice, port switching incurs non-negligible time, during which communication and sensing may continue but with potentially degraded slot-level performance. This leads to two key challenges: (1) the characterization of a slot-level, cost-aware ISAC metric is difficult, and (2) the large port space and accompanying abrupt environmental variations demand more reliable online decision-making. To address these challenges, a cost-aware multi-objective FAS switching problem is formulated, jointly considering slot-level ISAC performance and switching energy. The online conformal Bayesian optimization (OCBO) algorithm is then proposed to learn the unknown gray-box ISAC objectives and calibrate surrogate uncertainty for robust stay-or-switch decisions. Simulation results demonstrate that the proposed cost-aware optimization framework achieves substantially improved long-term ISAC performance compared to existing baselines.</summary>
+    <category term="eess.SP" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-07-29T07:19:37Z</published>
+    <arxiv:comment>6 pages, 5 figures, conference</arxiv:comment>
+    <arxiv:primary_category term="eess.SP"/>
+    <author>
+      <name>Gangyong Zhu</name>
+    </author>
+    <author>
+      <name>Jia Yan</name>
+    </author>
+    <author>
+      <name>Shijian Gao</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2501.15410v1</id>
+    <title>Movable Antenna-Aided Cooperative ISAC Network with Time Synchronization error and Imperfect CSI</title>
+    <updated>2025-01-26T05:39:18Z</updated>
+    <link href="https://arxiv.org/abs/2501.15410v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2501.15410v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Cooperative-integrated sensing and communication (C-ISAC) networks have emerged as promising solutions for communication and target sensing. However, imperfect channel state information (CSI) estimation and time synchronization (TS) errors degrade performance, affecting communication and sensing accuracy. This paper addresses these challenges {by employing} {movable antennas} (MAs) to enhance C-ISAC robustness. We analyze the impact of CSI errors on achievable rates and introduce a hybrid Cramer-Rao lower bound (HCRLB) to evaluate the effect of TS errors on target localization accuracy. Based on these models, we derive the worst-case achievable rate and sensing precision under such errors. We optimize cooperative beamforming, {base station (BS)} selection factor and MA position to minimize power consumption while ensuring accuracy. {We then propose a} constrained deep reinforcement learning (C-DRL) approach to solve this non-convex optimization problem, using a modified deep deterministic policy gradient (DDPG) algorithm with a Wolpertinger architecture for efficient training under complex constraints. {Simulation results show that the proposed method significantly improves system robustness against CSI and TS errors, where robustness mean reliable data transmission under poor channel conditions.} These findings demonstrate the potential of MA technology to reduce power consumption in imperfect CSI and TS environments.</summary>
+    <category term="eess.SP" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2025-01-26T05:39:18Z</published>
+    <arxiv:primary_category term="eess.SP"/>
+    <author>
+      <name>Yue Xiu</name>
+    </author>
+    <author>
+      <name>Yang Zhao</name>
+    </author>
+    <author>
+      <name>Ran Yang</name>
+    </author>
+    <author>
+      <name>Dusit Niyato</name>
+    </author>
+    <author>
+      <name>Jing Jin</name>
+    </author>
+    <author>
+      <name>Qixing Wang</name>
+    </author>
+    <author>
+      <name>Guangyi Liu</name>
+    </author>
+    <author>
+      <name>Ning Wei</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2508.13818v3</id>
+    <title>Robust Optimization for Movable Antenna-aided Cell-Free ISAC with Time Synchronization Errors</title>
+    <updated>2025-08-27T02:28:16Z</updated>
+    <link href="https://arxiv.org/abs/2508.13818v3" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2508.13818v3" rel="related" type="application/pdf" title="pdf"/>
+    <summary>The cell-free integrated sensing and communication (CF-ISAC) system, which effectively mitigates intra-cell interference and provides precise sensing accuracy, is a promising technology for future 6G networks. However, to fully capitalize on the potential of CF-ISAC, accurate time synchronization (TS) between access points (APs) is critical. Due to the limitations of current synchronization technologies, TS errors have become a significant challenge in the development of the CF-ISAC system. In this paper, we propose a novel CF-ISAC architecture based on movable antennas (MAs), which exploits spatial diversity to enhance communication rates, maintain sensing accuracy, and reduce the impact of TS errors. We formulate a worst-case sensing accuracy optimization problem for TS errors to address this challenge, deriving the worst-case Cramér-Rao lower bound (CRLB). Subsequently, we develop a joint optimization framework for AP beamforming and MA positions to satisfy communication rate constraints while improving sensing accuracy. A robust optimization framework is designed for the highly complex and non-convex problem. Specifically, we employ manifold optimization (MO) to solve the worst-case sensing accuracy optimization problem. Then, we propose an MA-enabled meta-reinforcement learning (MA-MetaRL) to design optimization variables while satisfying constraints on MA positions, communication rate, and transmit power, thereby improving sensing accuracy. The simulation results demonstrate that the proposed robust optimization algorithm significantly improves the accuracy of the detection and is strong against TS errors. Moreover, compared to conventional fixed position antenna (FPA) technologies, the proposed MA-aided CF-ISAC architecture achieves higher system capacity, thus validating its effectiveness.</summary>
+    <category term="eess.SP" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2025-08-19T13:24:29Z</published>
+    <arxiv:primary_category term="eess.SP"/>
+    <author>
+      <name>Yue Xiu</name>
+    </author>
+    <author>
+      <name>Yang Zhao</name>
+    </author>
+    <author>
+      <name>Ran Yang</name>
+    </author>
+    <author>
+      <name>Wanting Lyu</name>
+    </author>
+    <author>
+      <name>Dusit Niyato</name>
+    </author>
+    <author>
+      <name>Dong In Kim</name>
+    </author>
+    <author>
+      <name>Guangyi Liu</name>
+    </author>
+    <author>
+      <name>Ning Wei</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2602.07870v2</id>
+    <title>Deep learning based Channel Estimation and Beamforming in Movable Antenna Systems</title>
+    <updated>2026-02-10T08:28:46Z</updated>
+    <link href="https://arxiv.org/abs/2602.07870v2" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2602.07870v2" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Movable antenna (MA) has emerged as a promising technology for future wireless systems. Compared with traditional fixed-position antennas, MA improves system performance by antenna movement to optimize channel conditions. For multiuser wideband MA systems, this paper proposes deep learning-based framework integrating channel estimation (CE), antenna position optimization, and beamforming, with a clear workflow and enhanced efficiency. Specifically, to obtain accurate channel state information (CSI), we design a two-stage CE mechanism: first reconstructing the channel matrix from limited measurements via compressive sensing, then introducing a Swin-Transformer-based denoising network to refine CE accuracy for subsequent optimization. Building on this, we address the joint optimization challenge by proposing a Transformer-based network that intelligently maps CSI sequences of candidate positions to optimal MA positions while combining a model-driven weighted minimum mean square error (WMMSE) beamforming approach to achieve better performance. Simulation results demonstrate that the proposed methods achieve superior performance compared with existing counterparts under various conditions. The codes about this work are available at https://github.com/ZiweiWan/Code-4-DL-MA-CE-BF.</summary>
+    <category term="cs.IT" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-02-08T08:49:40Z</published>
+    <arxiv:comment>6 pages, 6 figures, The codes about this work are available at https://github.com/ZiweiWan/Code_4_DL_MA_CE_BF/</arxiv:comment>
+    <arxiv:primary_category term="cs.IT"/>
+    <author>
+      <name>Kaijun Feng</name>
+    </author>
+    <author>
+      <name>Ziwei Wan</name>
+    </author>
+    <author>
+      <name>Anwen Liao</name>
+    </author>
+    <author>
+      <name>Wenyan Ma</name>
+    </author>
+    <author>
+      <name>Lipeng Zhu</name>
+    </author>
+    <author>
+      <name>Zhenyu Xiao</name>
+    </author>
+    <author>
+      <name>Zhen Gao</name>
+    </author>
+    <author>
+      <name>Rui Zhang</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2605.27839v1</id>
+    <title>Movable Antenna Enhanced Dual-Functional Radar-Communication: A Symbol-Level Precoding Approach</title>
+    <updated>2026-05-27T01:55:38Z</updated>
+    <link href="https://arxiv.org/abs/2605.27839v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2605.27839v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>This letter investigates a symbol-level precoder design for movable antenna (MA)-enhanced dual-functional radar-communication (DFRC) systems. To enhance radar sensing capabilities, we formulate an optimization problem aimed at maximizing the minimum radar signal-to-interference-plus-noise ratio (SINR) across multiple targets in a cluttered environment. Our approach jointly designs the space-time transmitted waveforms, receiving filters, and antenna placement. However, the resulting problem is intractable to solve due to practical waveform constraints and the non-linear mapping from antenna positions to the corresponding channel coefficients. To address these challenges, we develop a bi-level optimization framework by leveraging deep reinforcement learning (DRL). Specifically, the twin delayed deep deterministic policy gradient (TD3) algorithm is employed in the outer layer to optimize antenna placement, while penalty convex-concave procedure (CCP) and majorization-minimization (MM) techniques are incorporated in the inner layer for regularizing waveform design. Simulation results demonstrate that the proposed method significantly improves radar SINR and achieves a superior sensing-communication trade-off compared to benchmark schemes.</summary>
+    <category term="eess.SP" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-05-27T01:55:38Z</published>
+    <arxiv:primary_category term="eess.SP"/>
+    <author>
+      <name>Ran Yang</name>
+    </author>
+    <author>
+      <name>Ning Wei</name>
+    </author>
+    <author>
+      <name>Zheng Dong</name>
+    </author>
+    <author>
+      <name>Chadi Assi</name>
+    </author>
+    <author>
+      <name>You Li</name>
+    </author>
+    <author>
+      <name>Fei Xu</name>
+    </author>
+    <author>
+      <name>Yue Xiu</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2608.27909v1</id>
+    <title>Low-Altitude Fluid Antenna Network with Multi-Agent Reinforcement Learning</title>
+    <updated>2026-08-28T04:27:44Z</updated>
+    <link href="https://arxiv.org/abs/2608.27909v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2608.27909v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Low-altitude wireless networks (LAWNs) integrate terrestrial and aerial platforms to provide ubiquitous communication, sensing, and localization services for unmanned aerial vehicles (UAVs) and electric vertical takeoff and landing (eVTOL) aircraft. However, dynamic air-ground and air-air channels, abrupt blockages, and heterogeneous interference hinder the realization of this goal. Nevertheless, fluid antenna (FA), a cutting-edge multiple-input multiple-output (MIMO) technique, overcomes these challenges by reconfiguring antenna positions to unlock additional spatial degrees-of-freedom. In this paper, towards bringing low-altitude FA networks into reality, we study the fast and high-performance FA reconfiguration for low-altitude FA networks with multi-agent reinforcement learning (MARL). Specifically, we present an electromagnetic digital twin (EM-DT)-assisted MARL framework. To fill the sim-to-real gap, we introduce a two-stage transfer learning framework. Our case study shows that joint FA positions and beamforming optimization can enhance the system sum-rate by 118.5%, compared to the fixed position baseline. This gain comes from the dynamic millisecond timescale reconfiguration of FA arrays and the adaptive steering of beams toward aerial users with mobility.</summary>
+    <category term="cs.IT" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-08-28T04:27:44Z</published>
+    <arxiv:comment>Accepted by IEEE Communications Magazine</arxiv:comment>
+    <arxiv:primary_category term="cs.IT"/>
+    <author>
+      <name>Tong Zhang</name>
+    </author>
+    <author>
+      <name>Yanfei Su</name>
+    </author>
+    <author>
+      <name>Shuai Wang</name>
+    </author>
+    <author>
+      <name>Wanli Ni</name>
+    </author>
+    <author>
+      <name>Chengzhong Xu</name>
+    </author>
+    <author>
+      <name>Huseyin Arslan</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2608.12870v2</id>
+    <title>Antenna Positioning and Beamforming Optimization in MA Enabled Secure ISAC Systems: A Gradient-Based Meta Learning Approach</title>
+    <updated>2026-10-14T06:32:52Z</updated>
+    <link href="https://arxiv.org/abs/2608.12870v2" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2608.12870v2" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Integrated sensing and communications (ISAC) significantly improves spectral efficiency but introduces security risks regarding the interception of embedded communication signals. This paper proposes an movable antenna (MA)-enabled secure ISAC system that utilizes the spatial degrees of freedom of MA to mitigate these risks. Then, a problem is formulated to maximize the system secrecy rate by jointly optimizing antenna positioning, transmit beamforming, and artificial noise. However, the principal challenge arises from the non-convexity of the optimization problem and the strong coupling of the optimization variables. Generally, traditional optimization methods for this problem suffer from complex mathematical derivations, while existing deep learning approaches rely heavily on the training data distribution. To address these issues, we introduce a gradient-based meta learning (GML) algorithm, which works without pre-training and demonstrates favorable performance. Specifically, the algorithm establishes a neural network for each optimization variable, where the gradient of the objective function with respect to the variable serves as the input, and the output of the network determines the variable's update step. By handling the constraints and constructing penalty terms, the global loss function is used to guide the optimization process. Extensive numerical simulations confirm that the proposed algorithm achieves satisfactory performance in terms of both communication security and sensing capabilities.</summary>
+    <category term="eess.SP" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-08-13T06:35:11Z</published>
+    <arxiv:primary_category term="eess.SP"/>
+    <author>
+      <name>Zhendong Li</name>
+    </author>
+    <author>
+      <name>Yujie Zhao</name>
+    </author>
+    <author>
+      <name>Zhou Su</name>
+    </author>
+    <author>
+      <name>Xiao Tang</name>
+    </author>
+    <author>
+      <name>Zhiqing Wei</name>
+    </author>
+    <author>
+      <name>Ying Wang</name>
+    </author>
+    <author>
+      <name>Wen Chen</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2605.03088v1</id>
+    <title>6DMA-Enabled ISAC for Low-Altitude Economy</title>
+    <updated>2026-05-04T19:07:17Z</updated>
+    <link href="https://arxiv.org/abs/2605.03088v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2605.03088v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>In this paper, we investigate a six dimensional movable antenna (6DMA) enable integrated sensing and communications (ISAC) network in low-altitude economy. The studied 6DMA can move in a three-dimensional space and rotate around its surface center, making full use of spatial freedom to adapt to the different location distributions of uncrewed aerial vehicles (UAVs) adjust channel conditions in time. However, since the rotation and location change of 6DMA requires the assistance of a physical device, it is unreasonable for 6DMA to change locations too frequently. Therefore, we propose a hierarchical deep reinforcement learning algorithm based on twin delayed deep deterministic policy gradient. The first layer optimizes the rotation and location of 6DMA with infrequent updates, and the second layer optimizes the UAV flight direction and base station transmit beamforming matrix in each time slot. Under the condition of satisfying the sensing intensity of the sensing target, the total data transmission rate to the UAVs is maximized. The numerical results show that the proposed 6DMA-enable ISAC algorithm through joint optimization of multiple variables performs significantly better than the partially movable scheme and the fixed antenna position scheme.</summary>
+    <category term="eess.SP" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-05-04T19:07:17Z</published>
+    <arxiv:comment>This manuscript was accepted by IEEE</arxiv:comment>
+    <arxiv:primary_category term="eess.SP"/>
+    <author>
+      <name>Yingchao Jiao</name>
+    </author>
+    <author>
+      <name>Xuhui Zhang</name>
+    </author>
+    <author>
+      <name>Chunjie Wang</name>
+    </author>
+    <author>
+      <name>Shuqiang Wang</name>
+    </author>
+    <author>
+      <name>Yanyan Shen</name>
+    </author>
+    <author>
+      <name>Kejiang Ye</name>
+    </author>
+    <author>
+      <name>Chengzhong Xu</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2501.01281v1</id>
+    <title>Towards Intelligent Antenna Positioning: Leveraging DRL for FAS-Aided ISAC Systems</title>
+    <updated>2025-01-02T14:40:12Z</updated>
+    <link href="https://arxiv.org/abs/2501.01281v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2501.01281v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Fluid antenna systems (FAS) enable dynamic antenna positioning, offering new opportunities to enhance integrated sensing and communication (ISAC) performance. However, existing studies primarily focus on communication enhancement or single-target sensing, leaving multi-target scenarios underexplored. Additionally, the joint optimization of beamforming and antenna positions poses a highly non-convex problem, with traditional methods becoming impractical as the number of fluid antennas increases. To address these challenges, this letter proposes a block coordinate descent (BCD) framework integrated with a deep reinforcement learning (DRL)-based approach for intelligent antenna positioning. By leveraging the deep deterministic policy gradient (DDPG) algorithm, the proposed framework efficiently balances sensing and communication performance. Simulation results demonstrate the scalability and effectiveness of the proposed approach.</summary>
+    <category term="eess.SP" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2025-01-02T14:40:12Z</published>
+    <arxiv:primary_category term="eess.SP"/>
+    <author>
+      <name>Shunxing Yang</name>
+    </author>
+    <author>
+      <name>Junteng Yao</name>
+    </author>
+    <author>
+      <name>Jie Tang</name>
+    </author>
+    <author>
+      <name>Tuo Wu</name>
+    </author>
+    <author>
+      <name>Maged Elkashlan</name>
+    </author>
+    <author>
+      <name>Chau Yuen</name>
+    </author>
+    <author>
+      <name>Merouane Debbah</name>
+    </author>
+    <author>
+      <name>Hyundong Shin</name>
+    </author>
+    <author>
+      <name>Matthew Valenti</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2507.16132v1</id>
+    <title>Meta-Reinforcement Learning Optimization for Movable Antenna-aided Full-Duplex CF-DFRC Systems with Carrier Frequency Offset</title>
+    <updated>2025-07-22T00:57:23Z</updated>
+    <link href="https://arxiv.org/abs/2507.16132v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2507.16132v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>By enabling spectrum sharing between radar and communication operations, the cell-free dual-functional radar-communication (CF-DFRC) system is a promising candidate to significantly improve spectrum efficiency in future sixth-generation (6G) wireless networks. However, in wideband scenarios, synchronization errors caused by carrier frequency offset (CFO) can severely reduce both communication capacity and sensing accuracy. To address this challenge, this paper integrates movable antennas (MAs) into the CF-DFRC framework, leveraging their spatial flexibility and adaptive beamforming to dynamically mitigate CFO-induced impairments. To fully exploit the advantages of MAs in wideband scenarios with CFO, we aim to maximize the worst-case sum-rate of communication and sensing by jointly optimizing MA positions, {beamforming}, and CFO parameters, subject to transmit power and MA positioning constraints. Due to the non-convex nature of the problem, we propose a robust meta reinforcement learning (MRL)-based two-stage alternating optimization strategy. In the first stage, we employ manifold optimization (MO) with penalty dual decomposition (PDD) to solve the CFO-robust worst-case subproblem. In the second stage, we adopt to jointly optimize {the MA positions and beamforming vectors} in a data-driven manner {for dynamic wireless environments}. Simulation results show that the proposed MRL approach significantly outperforms conventional deep reinforcement learning (DRL) schemes in both communication and sensing performance under CFO impairments. Furthermore, compared to fixed-position antennas (FPAs), the MA-aided CF-DFRC system exhibits</summary>
+    <category term="eess.SP" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2025-07-22T00:57:23Z</published>
+    <arxiv:primary_category term="eess.SP"/>
+    <author>
+      <name>Yue Xiu</name>
+    </author>
+    <author>
+      <name>Wanting Lyu</name>
+    </author>
+    <author>
+      <name>You Li</name>
+    </author>
+    <author>
+      <name>Ran Yang</name>
+    </author>
+    <author>
+      <name>Phee Lep Yeoh</name>
+    </author>
+    <author>
+      <name>Wei Zhang</name>
+    </author>
+    <author>
+      <name>Guangyi Liu</name>
+    </author>
+    <author>
+      <name>Ning Wei</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2509.17797v1</id>
+    <title>SSNet: Flexible and robust channel extrapolation for fluid antenna systems enabled by an self-supervised learning framework</title>
+    <updated>2025-09-22T13:52:49Z</updated>
+    <link href="https://arxiv.org/abs/2509.17797v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2509.17797v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Fluid antenna systems (FAS) signify a pivotal advancement in 6G communication by enhancing spectral efficiency and robustness. However, obtaining accurate channel state information (CSI) in FAS poses challenges due to its complex physical structure. Traditional methods, such as pilot-based interpolation and compressive sensing, are not only computationally intensive but also lack adaptability. Current extrapolation techniques relying on rigid parametric models do not accommodate the dynamic environment of FAS, while data-driven deep learning approaches demand extensive training and are vulnerable to noise and hardware imperfections. To address these challenges, this paper introduces a novel self-supervised learning network (SSNet) designed for efficient and adaptive channel extrapolation in FAS. We formulate the problem of channel extrapolation in FAS as an image reconstruction task. Here, a limited number of unmasked pixels (representing the known CSI of the selected ports) are used to extrapolate the masked pixels (the CSI of unselected ports). SSNet capitalizes on the intrinsic structure of FAS channels, learning generalized representations from raw CSI data, thus reducing dependency on large labelled datasets. For enhanced feature extraction and noise resilience, we propose a mix-of-expert (MoE) module. In this setup, multiple feedforward neural networks (FFNs) operate in parallel. The outputs of the MoE module are combined using a weighted sum, determined by a gating function that computes the weights of each FFN using a softmax function. Extensive simulations validate the superiority of the proposed model. Results indicate that SSNet significantly outperforms benchmark models, such as AGMAE and long short-term memory (LSTM) networks by using a much smaller labelled dataset.</summary>
+    <category term="eess.SP" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2025-09-22T13:52:49Z</published>
+    <arxiv:primary_category term="eess.SP"/>
+    <author>
+      <name>Yuan Gao</name>
+    </author>
+    <author>
+      <name>Yiming Liu</name>
+    </author>
+    <author>
+      <name>Runze Yu</name>
+    </author>
+    <author>
+      <name>Shengli Liu</name>
+    </author>
+    <author>
+      <name>Yanliang Jin</name>
+    </author>
+    <author>
+      <name>Shunqing Zhang</name>
+    </author>
+    <author>
+      <name>Shugong Xu</name>
+    </author>
+    <author>
+      <name>Xiaoli Chu</name>
+    </author>
+    <arxiv:doi>10.1109/JSAC.2025.3619472</arxiv:doi>
+    <link rel="related" href="https://doi.org/10.1109/JSAC.2025.3619472" title="doi"/>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2505.04930v1</id>
+    <title>Accurate and Fast Channel Estimation for Fluid Antenna Systems with Diffusion Models</title>
+    <updated>2025-05-08T04:09:31Z</updated>
+    <link href="https://arxiv.org/abs/2505.04930v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2505.04930v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Fluid antenna systems (FAS) offer enhanced spatial diversity for next-generation wireless systems. However, acquiring accurate channel state information (CSI) remains challenging due to the large number of reconfigurable ports and the limited availability of radio-frequency (RF) chains -- particularly in high-dimensional FAS scenarios. To address this challenge, we propose an efficient posterior sampling-based channel estimator that leverages a diffusion model (DM) with a simplified U-Net architecture to capture the spatial correlation structure of two-dimensional FAS channels. The DM is initially trained offline in an unsupervised way and then applied online as a learned implicit prior to reconstruct CSI from partial observations via posterior sampling through a denoising diffusion restoration model (DDRM). To accelerate the online inference, we introduce a skipped sampling strategy that updates only a subset of latent variables during the sampling process, thereby reducing the computational cost with minimal accuracy degradation. Simulation results demonstrate that the proposed approach achieves significantly higher estimation accuracy and over 20x speedup compared to state-of-the-art compressed sensing-based methods, highlighting its potential for practical deployment in high-dimensional FAS.</summary>
+    <category term="cs.IT" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="eess.SP" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2025-05-08T04:09:31Z</published>
+    <arxiv:comment>6 pages, 5 figures, submitted to an IEEE conference</arxiv:comment>
+    <arxiv:primary_category term="cs.IT"/>
+    <author>
+      <name>Erqiang Tang</name>
+    </author>
+    <author>
+      <name>Wei Guo</name>
+    </author>
+    <author>
+      <name>Hengtao He</name>
+    </author>
+    <author>
+      <name>Shenghui Song</name>
+    </author>
+    <author>
+      <name>Jun Zhang</name>
+    </author>
+    <author>
+      <name>Khaled B. Letaief</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2509.19340v1</id>
+    <title>Joint Channel Estimation and Computation Offloading in Fluid Antenna-assisted MEC Networks</title>
+    <updated>2025-09-16T08:48:44Z</updated>
+    <link href="https://arxiv.org/abs/2509.19340v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2509.19340v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>With the emergence of fluid antenna (FA) in wireless communications, the capability to dynamically adjust port positions offers substantial benefits in spatial diversity and spectrum efficiency, which are particularly valuable for mobile edge computing (MEC) systems. Therefore, we propose an FA-assisted MEC offloading framework to minimize system delay. This framework faces two severe challenges, which are the complexity of channel estimation due to dynamic port configuration and the inherent non-convexity of the joint optimization problem. Firstly, we propose Information Bottleneck Metric-enhanced Channel Compressed Sensing (IBM-CCS), which advances FA channel estimation by integrating information relevance into the sensing process and capturing key features of FA channels effectively. Secondly, to address the non-convex and high-dimensional optimization problem in FA-assisted MEC systems, which includes FA port selection, beamforming, power control, and resource allocation, we propose a game theory-assisted Hierarchical Twin-Dueling Multi-agent Algorithm (HiTDMA) based offloading scheme, where the hierarchical structure effectively decouples and coordinates the optimization tasks between the user side and the base station side. Crucially, the game theory effectively reduces the dimensionality of power control variables, allowing deep reinforcement learning (DRL) agents to achieve improved optimization efficiency. Numerical results confirm that the proposed scheme significantly reduces system delay and enhances offloading performance, outperforming benchmarks. Additionally, the IBM-CCS channel estimation demonstrates superior accuracy and robustness under varying port densities, contributing to efficient communication under imperfect CSI.</summary>
+    <category term="eess.SP" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.IT" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.NI" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2025-09-16T08:48:44Z</published>
+    <arxiv:primary_category term="eess.SP"/>
+    <author>
+      <name>Ying Ju</name>
+    </author>
+    <author>
+      <name>Mingdong Li</name>
+    </author>
+    <author>
+      <name>Haoyu Wang</name>
+    </author>
+    <author>
+      <name>Lei Liu</name>
+    </author>
+    <author>
+      <name>Youyang Qu</name>
+    </author>
+    <author>
+      <name>Mianxiong Dong</name>
+    </author>
+    <author>
+      <name>Victor C. M. Leung</name>
+    </author>
+    <author>
+      <name>Chau Yuen</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2606.02077v1</id>
+    <title>Integrated Sensing and Covert Communication In Low-Altitude Networks: A Smart Radio Environment Perspective</title>
+    <updated>2026-06-01T11:05:48Z</updated>
+    <link href="https://arxiv.org/abs/2606.02077v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2606.02077v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>The rise of low-altitude economies and 6G is driving the evolution of low-altitude networks (LANs), making communication security a pressing concern. Unlike traditional security approaches, covert communication offers enhanced protection by hiding the transmission behavior itself. Integrated sensing and communication (ISAC), a key technology of 6G, efficiently supports both sensing and communication tasks through hardware integration, thereby promising significant gains for covert communication. Nevertheless, the complexity and dynamics of urban environments pose critical challenges. Drawing on the latest advances in smart radio environment (SRE) technologies, this paper introduces them into integrated sensing and covert communication (ISACC) to suppress covert channel fading and counteract sensing precision loss in LANs. We first survey the applications and state-of-the-art findings of ISACC in LANs, highlighting key practical challenges. Subsequently, we introduce the core concept of SRE and elaborate on its enabling techniques across four dimensions. To deliver more insights, we explore potential pathways for integrating SRE into ISACC. To maximize covert throughput, a reinforcement learning-based case study is conducted by jointly optimizing flight trajectory, jamming power, movable antenna position, bandwidth allocation, and beamforming vectors. Simulation results show that the proposed scheme achieves superior performance compared to the benchmark. Finally, some open challenges and potential directions are discussed.</summary>
+    <category term="eess.SP" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="eess.SY" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-06-01T11:05:48Z</published>
+    <arxiv:primary_category term="eess.SP"/>
+    <author>
+      <name>Jianyu Wei</name>
+    </author>
+    <author>
+      <name>Haichao Wang</name>
+    </author>
+    <author>
+      <name>Laixian Peng</name>
+    </author>
+    <author>
+      <name>Jiangchun Gu</name>
+    </author>
+    <author>
+      <name>Ziqi Liu</name>
+    </author>
+    <author>
+      <name>Lifeng Chen</name>
+    </author>
+    <author>
+      <name>Guoru Ding</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2608.00255v1</id>
+    <title>Artificial Intelligence for Spatially Reconfigurable Antennas: Movable, Fluid, and Pinching Antenna Systems</title>
+    <updated>2026-07-31T19:52:21Z</updated>
+    <link href="https://arxiv.org/abs/2608.00255v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2608.00255v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Recently, sixth-generation (6G) wireless networks have moved beyond fixed-array designs toward antenna architectures that can adapt their spatial configuration to specific environmental conditions. Movable antenna, fluid antenna, and pinching antenna systems represent this principle in different ways, but they share a common vision: exploiting spatial flexibility as an additional degree of freedom (DoF) to improve communication, sensing, security, and resource efficiency. These new techniques, however, also bring challenging problems, as antenna configuration must be jointly considered with channel acquisition, beamforming, mobility, and network resource management. Therefore, artificial intelligence (AI) has become an important tool for learning fast and adaptive control policies for these highly coupled systems. In this survey, we provide a unified review of AI for spatially reconfigurable antenna systems. We first introduce the basic principles of movable, fluid, and pinching antennas, which is followed by a summary of the latest AI-enabled designs according to their primary optimization objectives. Furthermore, we compare the roles of deep learning (DL), deep reinforcement learning (DRL), multi-agent reinforcement learning (MARL), graph learning, Transformers, large language models (LLMs), and structure-guided learning across different antenna architectures. Finally, we discuss open challenges and future directions toward scalable, robust, and hardware-aware intelligent reconfigurable antenna networks.</summary>
+    <category term="eess.SP" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-07-31T19:52:21Z</published>
+    <arxiv:comment>30 pages, 7 figures, submitted to IEEE COMST</arxiv:comment>
+    <arxiv:primary_category term="eess.SP"/>
+    <author>
+      <name>Nguyen Cong Luong</name>
+    </author>
+    <author>
+      <name>Zeping Sui</name>
+    </author>
+    <author>
+      <name>Thai-Hoc Vu</name>
+    </author>
+    <author>
+      <name>Jie Cao</name>
+    </author>
+    <author>
+      <name>Bo Ma</name>
+    </author>
+    <author>
+      <name>Thuan Van Le</name>
+    </author>
+    <author>
+      <name>Xunyang Zhan</name>
+    </author>
+    <author>
+      <name>Nguyen Duc Hai</name>
+    </author>
+    <author>
+      <name>Min Xu</name>
+    </author>
+    <author>
+      <name>Qiushi Zhao</name>
+    </author>
+    <author>
+      <name>Dong In Kim</name>
+    </author>
+    <author>
+      <name>Yonghong Zeng</name>
+    </author>
+    <author>
+      <name>Shaohan Feng</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2511.15206v1</id>
+    <title>Trustworthy GenAI over 6G: Integrated Applications and Security Frameworks</title>
+    <updated>2025-11-19T07:58:06Z</updated>
+    <link href="https://arxiv.org/abs/2511.15206v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2511.15206v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>The integration of generative artificial intelligence (GenAI) into 6G networks promises substantial performance gains while simultaneously exposing novel security vulnerabilities rooted in multimodal data processing and autonomous reasoning. This article presents a unified perspective on cross-domain vulnerabilities that arise across integrated sensing and communication (ISAC), federated learning (FL), digital twins (DTs), diffusion models (DMs), and large telecommunication models (LTMs). We highlight emerging adversarial agents such as compromised DTs and LTMs that can manipulate both the physical and cognitive layers of 6G systems. To address these risks, we propose an adaptive evolutionary defense (AED) concept that continuously co-evolves with attacks through GenAI-driven simulation and feedback, combining physical-layer protection, secure learning pipelines, and cognitive-layer resilience. A case study using an LLM-based port prediction model for fluid-antenna systems demonstrates the susceptibility of GenAI modules to adversarial perturbations and the effectiveness of the proposed defense concept. Finally, we summarize open challenges and future research directions toward building trustworthy, quantum-resilient, and adaptive GenAI-enabled 6G networks.</summary>
+    <category term="cs.CR" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.IT" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2025-11-19T07:58:06Z</published>
+    <arxiv:comment>8 pages, 5 figures. Submitted for publication</arxiv:comment>
+    <arxiv:primary_category term="cs.CR"/>
+    <author>
+      <name>Bui Duc Son</name>
+    </author>
+    <author>
+      <name>Trinh Van Chien</name>
+    </author>
+    <author>
+      <name>Dong In Kim</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2608.29725v1</id>
+    <title>A New Paradigm of 6G Networks: Proactive Channel Cognition and Reconfiguration</title>
+    <updated>2026-08-30T11:17:27Z</updated>
+    <link href="https://arxiv.org/abs/2608.29725v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2608.29725v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>The sixth-generation (6G) wireless networks are expected to enable the deep integration of communication, sensing, computing, control, and intelligence in highly dynamic environments. This evolution drives a fundamental transition from conventional passive channel adaptation to proactive channel cognition and reconfiguration, wherein wireless channels are no longer regarded as uncontrollable propagation media but as network resources that can be learned, predicted, and actively reconfigured. This paper presents a comprehensive overview of this emerging paradigm. We first review channel cognition through the channel knowledge map (CKM) as a systematic framework for learning and exploiting channel characteristics across space, time, and frequency domain. The definitions, construction methods, and applications in wireless networks of CKMs are comprehensively reviewed. Building upon channel cognition, we then review channel reconfiguration technologies from two complementary perspectives: transceiver-side reconfiguration enabled by movable antennas (MAs) and environment-side reconfiguration enabled by intelligent reflecting surfaces (IRSs). For both MA- and IRS-enabled wireless systems, we review their architectures, performance advantages, and key design challenges. Finally, we discuss several promising research directions to inspire further innovations in this burgeoning field.</summary>
+    <category term="eess.SP" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-08-30T11:17:27Z</published>
+    <arxiv:primary_category term="eess.SP"/>
+    <author>
+      <name>Wenyan Ma</name>
+    </author>
+    <author>
+      <name>Zixiang Ren</name>
+    </author>
+    <author>
+      <name>Weitong Zhai</name>
+    </author>
+    <author>
+      <name>Ge Yan</name>
+    </author>
+    <author>
+      <name>Lipeng Zhu</name>
+    </author>
+    <author>
+      <name>Zhenyu Xiao</name>
+    </author>
+    <author>
+      <name>Rui Zhang</name>
+    </author>
+  </entry>
+</feed>

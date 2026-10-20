@@ -1,0 +1,837 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<feed xmlns:opensearch="http://a9.com/-/spec/opensearch/1.1/" xmlns:arxiv="http://arxiv.org/schemas/atom" xmlns="http://www.w3.org/2005/Atom">
+  <id>https://arxiv.org/api/H3gTnWoZHD8vvpdKDfqHa0zRLbs</id>
+  <title>arXiv Query: search_query=(ti:"fluid antenna" OR ti:"movable antenna") AND (all:"sensing" OR all:"localization")&amp;id_list=&amp;start=0&amp;max_results=30</title>
+  <updated>2026-10-15T13:53:00Z</updated>
+  <link href="https://arxiv.org/api/query?search_query=(ti:%22fluid+antenna%22+OR+ti:%22movable+antenna%22)+AND+(all:%22sensing%22+OR+all:%22localization%22)&amp;start=0&amp;max_results=30&amp;id_list=" type="application/atom+xml"/>
+  <opensearch:itemsPerPage>30</opensearch:itemsPerPage>
+  <opensearch:totalResults>181</opensearch:totalResults>
+  <opensearch:startIndex>0</opensearch:startIndex>
+  <entry>
+    <id>http://arxiv.org/abs/2405.01215v1</id>
+    <title>Movable Antenna Enhanced Wireless Sensing Via Antenna Position Optimization</title>
+    <updated>2024-05-02T11:54:41Z</updated>
+    <link href="https://arxiv.org/abs/2405.01215v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2405.01215v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>In this paper, we propose a new wireless sensing system equipped with the movable-antenna (MA) array, which can flexibly adjust the positions of antenna elements for improving the sensing performance over conventional antenna arrays with fixed-position antennas (FPAs). First, we show that the angle estimation performance in wireless sensing is fundamentally determined by the array geometry, where the Cramer-Rao bound (CRB) of the mean square error (MSE) for angle of arrival (AoA) estimation is derived as a function of the antennas' positions for both one-dimensional (1D) and two-dimensional (2D) MA arrays. Then, for the case of 1D MA array, we obtain a globally optimal solution for the MAs' positions in closed form to minimize the CRB of AoA estimation MSE. While in the case of 2D MA array, we aim to achieve the minimum of maximum (min-max) CRBs of estimation MSE for the two AoAs with respect to the horizontal and vertical axes, respectively. In particular, for the special case of circular antenna movement region, an optimal solution for the MAs' positions is derived under certain numbers of MAs and circle radii. Thereby, both the lower- and upper-bounds of the min-max CRB are obtained for the antenna movement region with arbitrary shapes. Moreover, we develop an efficient alternating optimization algorithm to obtain a locally optimal solution for MAs' positions by iteratively optimizing one between their horizontal and vertical coordinates with the other being fixed. Numerical results demonstrate that our proposed 1D/2D MA arrays can significantly decrease the CRB of AoA estimation MSE as well as the actual MSE compared to conventional uniform linear arrays (ULAs)/uniform planar arrays (UPAs) with different values of uniform inter-antenna spacing.</summary>
+    <category term="cs.IT" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="eess.SP" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2024-05-02T11:54:41Z</published>
+    <arxiv:comment>13 pages, 13 figures. We propose a new wireless sensing system equipped with the movable-antenna (MA) array, which can flexibly adjust the positions of antenna elements for improving the sensing performance over conventional antenna arrays with fixed-position antennas (FPAs)</arxiv:comment>
+    <arxiv:primary_category term="cs.IT"/>
+    <author>
+      <name>Wenyan Ma</name>
+    </author>
+    <author>
+      <name>Lipeng Zhu</name>
+    </author>
+    <author>
+      <name>Rui Zhang</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2604.27352v2</id>
+    <title>Array Zooming Optimization for Near-Field Localization With Movable Antennas</title>
+    <updated>2026-05-29T05:10:18Z</updated>
+    <link href="https://arxiv.org/abs/2604.27352v2" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2604.27352v2" rel="related" type="application/pdf" title="pdf"/>
+    <summary>The emergence of movable antenna (MA) technology provides a promising way to enhance wireless sensing and communication by introducing spatial degrees of freedom through dynamic array reconfiguration. In near-field localization, achieving high resolution at low cost necessitates the adoption of sparse arrays. However, such sparsity tends to introduce spatial ambiguity due to aliasing effects. To resolve this resolution-ambiguity dilemma, this paper proposes an MA-enabled array zooming (AZ) system. First, we design a multi-measurement array zooming system that dynamically adjusts antenna spacings. By fusing the observational information from different measurements, the proposed AZ system effectively mitigates spatial aliasing while maintaining spatial resolution. Second, to quantify the performance limits under the severe multi-modal distributions inherent in sparse near-field sensing, we theoretically analyze the false peak distribution and derive a tighter performance lower bound, which incorporates the false detection probability. Third, considering that multiple false peaks may exist in practical multi-modal distributions, we propose an optimization algorithm for the AZ system to suppress false peaks and minimize the localization error. Extensive numerical results demonstrate that the proposed AZ strategy adaptively optimizes array configurations under varying signal-to-noise ratios (SNRs), substantially outperforming both conventional fixed-spacing arrays and Cramer-Rao bound (CRB)-based AZ benchmarks in localization accuracy.</summary>
+    <category term="eess.SP" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-04-30T03:06:24Z</published>
+    <arxiv:primary_category term="eess.SP"/>
+    <author>
+      <name>Yuxin Duan</name>
+    </author>
+    <author>
+      <name>Boyu Teng</name>
+    </author>
+    <author>
+      <name>Xiaojun Yuan</name>
+    </author>
+    <author>
+      <name>Rui Wang</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2603.10426v1</id>
+    <title>3-D Trajectory Optimization for Robust Direction Sensing in Movable Antenna Systems</title>
+    <updated>2026-03-11T05:19:39Z</updated>
+    <link href="https://arxiv.org/abs/2603.10426v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2603.10426v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>This paper presents a novel wireless sensing system where a movable antenna (MA) continuously moves and receives sensing signals within a three-dimensional (3-D) region to enhance sensing performance compared with conventional fixed-position antenna (FPA)-based sensing. We show that the performance of direction vector estimation for a target is fundamentally related to the 3-D MA trajectory in terms of the mean square angular error lower-bound (MSAEB), which is adopted as a coordinate-invariant performance metric. In particular, the closed-form expression of the MSAEB is derived as a function of the trajectory covariance matrix. Theoretical analysis shows that two-dimensional (2-D) antenna movement suffers from performance divergence for target direction close to the endfire direction of the 2-D MA plane, whereas 3-D movement can achieve isotropic sensing performance over the entire angular region. To achieve robust sensing performance, we formulate a min-max optimization problem to minimize the maximum (worst-case) MSAEB over a given continuous angular region wherein the target is located. An efficient successive convex approximation (SCA) algorithm is developed to optimize the 3-D MA trajectory and obtain a locally optimal solution. Numerical results demonstrate that the proposed 3-D MA sensing scheme is able to significantly reduce the worst-case mean square angular error (MSAE) compared with conventional arrays with FPAs and MA systems with 2-D movement only, thus achieving more accurate and robust direction estimation over the entire angular region.</summary>
+    <category term="cs.IT" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="eess.SP" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-03-11T05:19:39Z</published>
+    <arxiv:primary_category term="cs.IT"/>
+    <author>
+      <name>Wenyan Ma</name>
+    </author>
+    <author>
+      <name>Lipeng Zhu</name>
+    </author>
+    <author>
+      <name>Xiaodan Shao</name>
+    </author>
+    <author>
+      <name>Rui Zhang</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2501.07318v2</id>
+    <title>Movable Antenna Enhanced Integrated Sensing and Communication Via Antenna Position Optimization</title>
+    <updated>2025-01-14T05:27:23Z</updated>
+    <link href="https://arxiv.org/abs/2501.07318v2" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2501.07318v2" rel="related" type="application/pdf" title="pdf"/>
+    <summary>In this paper, we propose an integrated sensing and communication (ISAC) system aided by the movable-antenna (MA) array, which can improve the communication and sensing performance via flexible antenna movement over conventional fixed-position antenna (FPA) array. First, we consider the downlink multiuser communication, where each user is randomly distributed within a given three-dimensional zone with local movement. To reduce the overhead of frequent antenna movement, the antenna position vector (APV) is designed based on users' statistical channel state information (CSI), so that the antennas only need to be moved in a large timescale. Then, for target sensing, the Cramer-Rao bounds (CRBs) of the estimation mean square error for different spatial angles of arrival (AoAs) are derived as functions of MAs' positions. Based on the above, we formulate an optimization problem to maximize the expected minimum achievable rate among all communication users, with given constraints on the maximum acceptable CRB thresholds for target sensing. An alternating optimization algorithm is proposed to iteratively optimize one of the horizontal and vertical APVs of the MA array with the other being fixed. Numerical results demonstrate that our proposed MA arrays can significantly enlarge the trade-off region between communication and sensing performance compared to conventional FPA arrays with different inter-antenna spacing. It is also revealed that the steering vectors of the designed MA arrays exhibit low correlation in the angular domain, thus effectively reducing channel correlation among communication users to enhance their achievable rates, while alleviating ambiguity in target angle estimation to achieve improved sensing accuracy.</summary>
+    <category term="cs.IT" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="eess.SP" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2025-01-13T13:30:35Z</published>
+    <arxiv:primary_category term="cs.IT"/>
+    <author>
+      <name>Wenyan Ma</name>
+    </author>
+    <author>
+      <name>Lipeng Zhu</name>
+    </author>
+    <author>
+      <name>Rui Zhang</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2502.03169v4</id>
+    <title>Antenna Position Optimization for Movable Antenna-Empowered Near-Field Sensing</title>
+    <updated>2025-04-05T04:00:01Z</updated>
+    <link href="https://arxiv.org/abs/2502.03169v4" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2502.03169v4" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Movable antennas (MAs) show great promise for enhancing the sensing capabilities of future sixth-generation (6G) networks. With the growing prevalence of near-field propagation at ultra-high frequencies, this paper focuses on the application of MAs for near-field sensing to jointly estimate the angle and distance information of a target. First, to gain essential insights into MA-enhanced near-field sensing, we investigate two simplified cases with only the spatial angle-of-arrival (AoA) or distance estimation, respectively, assuming that the other information is already known. We derive the worst-case Cramer-Rao bounds (CRBs) on the mean square errors (MSEs) of the AoA estimation and the distance estimation via the multiple signal classification (MUSIC) algorithm in these two cases. Then, we jointly optimize the positions of the MAs within a linear array to minimize these CRBs and derive their closed-form solutions, which yield an identical array geometry to MA-aided far-field sensing. Furthermore, we proceed to the more challenging case with the joint AoA and distance estimation and derive the worst-case CRB under the two-dimensional (2D) MUSIC algorithm. The corresponding CRB minimization problem is efficiently solved by adopting a discrete sampling-based approach. Numerical results demonstrate that the proposed MA-enhanced near-field sensing significantly outperforms conventional sensing with fixed-position antennas (FPAs). Moreover, the joint angle and distance estimation results in a different array geometry from that in the individual estimation of angle or distance.</summary>
+    <category term="eess.SP" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2025-02-05T13:45:22Z</published>
+    <arxiv:primary_category term="eess.SP"/>
+    <author>
+      <name>Yushen Wang</name>
+    </author>
+    <author>
+      <name>Weidong Mei</name>
+    </author>
+    <author>
+      <name>Xin Wei</name>
+    </author>
+    <author>
+      <name>Boyu Ning</name>
+    </author>
+    <author>
+      <name>Zhi Chen</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2509.14905v2</id>
+    <title>Movable-Antenna Trajectory Optimization for Wireless Sensing: CRB Scaling Laws over Time and Space</title>
+    <updated>2025-09-19T02:47:45Z</updated>
+    <link href="https://arxiv.org/abs/2509.14905v2" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2509.14905v2" rel="related" type="application/pdf" title="pdf"/>
+    <summary>In this paper, we present a new wireless sensing system utilizing a movable antenna (MA) that continuously moves and receives sensing signals to enhance sensing performance over the conventional fixed-position antenna (FPA) sensing. We show that the angle estimation performance is fundamentally determined by the MA trajectory, and derive the Cramer-Rao bound (CRB) of the mean square error (MSE) for angle-of-arrival (AoA) estimation as a function of the trajectory for both one-dimensional (1D) and two-dimensional (2D) antenna movement. For the 1D case, a globally optimal trajectory that minimizes the CRB is derived in closed form. Notably, the resulting CRB decreases cubically with sensing time in the time-constrained regime, whereas it decreases linearly with sensing time and quadratically with the movement line segment's length in the space-constrained regime. For the 2D case, we aim to achieve the minimum of maximum (min-max) CRBs of estimation MSE for the two AoAs with respect to the horizontal and vertical axes. To this end, we design an efficient alternating optimization algorithm that iteratively updates the MA's horizontal or vertical coordinates with the other being fixed, yielding a locally optimal trajectory. Numerical results show that the proposed 1D/2D MA-based sensing schemes significantly reduce both the CRB and actual AoA estimation MSE compared to conventional FPA-based sensing with uniform linear/planar arrays (ULAs/UPAs) as well as various benchmark MA trajectories. Moreover, it is revealed that the steering vectors of our designed 1D/2D MA trajectories have low correlation in the angular domain, thereby effectively increasing the angular resolution for achieving higher AoA estimation accuracy.</summary>
+    <category term="cs.IT" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="eess.SP" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2025-09-18T12:30:40Z</published>
+    <arxiv:primary_category term="cs.IT"/>
+    <author>
+      <name>Wenyan Ma</name>
+    </author>
+    <author>
+      <name>Lipeng Zhu</name>
+    </author>
+    <author>
+      <name>Rui Zhang</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2604.11227v1</id>
+    <title>Prior-Guided Movable Antenna Control for Agile Multi-Path Sensing (extended version)</title>
+    <updated>2026-04-13T09:27:33Z</updated>
+    <link href="https://arxiv.org/abs/2604.11227v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2604.11227v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Multi-path sensing, which aims to extract the geometric attributes of multiple propagation paths, is expected to be a key functionality of 6G. A movable antenna (MA) can enable this functionality by creating a synthetic aperture through sequential mechanical motion. However, existing MA-based sensing methods typically rely on exhaustive scanning over the entire movable plate, resulting in significant control overhead and sensing latency, which limits their practicality for agile sensing. To address this challenge, this paper develops a prior-guided agile multi-path sensing framework that leverages weak prior angle-of-arrival (AoA) statistics as side information. The proposed framework comprises two steps. First, the movable plate's three-dimensional orientation is optimized only once to maximize path visibility while preserving path discriminability, both induced from Fisher information analysis. Second, only two predetermined linear MA scans are made on the tilted plate to estimate the elevation and azimuth AoAs from the resulting sequence of received signals. By incorporating the prior AoA statistics, a maximum a posteriori (MAP)-based AoA estimation algorithm is developed. With only one orientation control and two linear scans, the proposed framework enables agile multi-path sensing with significantly reduced control overhead and latency, while achieving AoA estimation accuracy approaching that of the single-path benchmark.</summary>
+    <category term="cs.IT" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="eess.SP" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-04-13T09:27:33Z</published>
+    <arxiv:primary_category term="cs.IT"/>
+    <author>
+      <name>Jaehong Kim</name>
+    </author>
+    <author>
+      <name>Jihong Park</name>
+    </author>
+    <author>
+      <name>Changsheng You</name>
+    </author>
+    <author>
+      <name>Seung-Woo Ko</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2512.00758v2</id>
+    <title>Movable Antenna Empowered Near-Field Sensing via Antenna Position Optimization</title>
+    <updated>2025-12-28T14:37:00Z</updated>
+    <link href="https://arxiv.org/abs/2512.00758v2" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2512.00758v2" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Movable antenna (MA) technology exhibits great promise for enhancing the sensing capabilities of future sixth-generation (6G) networks due to its capability to alter antenna array geometry. With the growing prevalence of near-field propagation at ultra-high frequencies, this paper focuses on the application of one-dimensional (1D) and two-dimensional (2D) MA arrays for near-field sensing to jointly estimate the angle and distance information about a target. First, for the 1D MA array scenario, to gain insights into MA-enhanced near-field sensing, we investigate two simplified cases with only angle-of-arrival (AoA) or distance estimation, respectively, assuming that the other information is already known. The worst-case Cramer-Rao bounds (CRBs) on the mean square errors (MSEs) of the AoA estimation and the distance estimation are derived in these two cases. Then, we jointly optimize the positions of the MAs within the 1D array to minimize these CRBs and derive their closed-form solutions, which yield an identical array geometry to MA-enhanced far-field sensing. For the more challenging joint AoA and distance estimation, since the associated worst-case CRB is a highly complex and non-convex function with respect to the MA positions, a discrete sampling-based approach is proposed to sequentially update the MA positions and obtain an efficient suboptimal solution. Furthermore, we investigate the worst-case CRB minimization problems for a 2D MA array under various conditions and extend our proposed algorithms to solve them efficiently. Numerical results demonstrate that the proposed MA-enhanced near-field sensing scheme dramatically outperforms conventional fixed-position antennas (FPAs). Moreover, the joint angle and distance estimation results in a different array geometry from that in the individual estimation of angle/distance or far-field sensing.</summary>
+    <category term="cs.IT" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="eess.SP" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2025-11-30T06:58:17Z</published>
+    <arxiv:primary_category term="cs.IT"/>
+    <author>
+      <name>Yushen Wang</name>
+    </author>
+    <author>
+      <name>Weidong Mei</name>
+    </author>
+    <author>
+      <name>Xin Wei</name>
+    </author>
+    <author>
+      <name>Ya Fei Wu</name>
+    </author>
+    <author>
+      <name>Zhi Chen</name>
+    </author>
+    <author>
+      <name>Boyu Ning</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2606.23119v1</id>
+    <title>Enormous Fluid Antenna Systems (E-FAS) for Wireless Sensing: Channel Modeling and Conditional Estimation Limits</title>
+    <updated>2026-06-22T10:04:51Z</updated>
+    <link href="https://arxiv.org/abs/2606.23119v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2606.23119v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>In this paper, we develop a fundamental analytical framework for integrated sensing and communications (ISAC) enabled by the Enormous Fluid Antenna System (E-FAS), which transforms a collection of coordinated intelligent surfaces into a gigantic reconfigurable electromagnetic aperture, with particular emphasis on the limits of angular sensing.We begin by developing a bidirectional sensing channel model that explicitly captures the complete sensing process, including surface-wave (SW) routing, distributed reradiation, target scattering, and echo propagation. Based on this channel model, we formulate a parametric observation model for target sensing and derive the associated Fisher information matrix (FIM) and Cramer-Rao bound (CRB) for angular estimation. The analysis demonstrates that E-FAS gives rise to a fundamentally different sensing regime compared with conventional array-based and reconfigurable-surface-aided ISAC architectures. Our analysis uncovers that maximizing coherent routing gain does not necessarily maximize sensing performance, exposing a fundamental trade-off between SW routing gain and sensing diversity in programmable propagation environments. Numerical results validate the developed framework and demonstrate that E-FAS-enabled ISAC systems can achieve substantial angular sensing gains over conventional architectures under the same transmit-power budget. The results further underscore the importance of jointly optimizing propagation routing and sensing functionality, positioning E-FAS as a new paradigm for ISAC.</summary>
+    <category term="cs.IT" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-06-22T10:04:51Z</published>
+    <arxiv:primary_category term="cs.IT"/>
+    <author>
+      <name>Farshad Rostami Ghadi</name>
+    </author>
+    <author>
+      <name>Kai-Kit Wong</name>
+    </author>
+    <author>
+      <name>Jose D. Vega-Sanchez</name>
+    </author>
+    <author>
+      <name>Kin-Fai Tong</name>
+    </author>
+    <author>
+      <name>Hyundong Shin</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2409.11622v1</id>
+    <title>Fluid Antenna-enabled Integrated Sensing, Communication, and Computing Systems</title>
+    <updated>2024-09-18T00:57:00Z</updated>
+    <link href="https://arxiv.org/abs/2409.11622v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2409.11622v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>The current integrated sensing, communication, and computing (ISCC) systems face significant challenges in both efficiency and resource utilization. To tackle these issues, we propose a novel fluid antenna (FA)-enabled ISCC system, specifically designed for vehicular networks. We develop detailed models for the communication and sensing processes to support this architecture. An integrated latency optimization problem is formulated to jointly optimize computing resources, receive combining matrices, and antenna positions. To tackle this complex problem, we decompose it into three sub-problems and analyze each separately. A mixed optimization algorithm is then designed to address the overall problem comprehensively. Numerical results demonstrate the rapid convergence of the proposed algorithm. Compared with baseline schemes, the FA-enabled vehicle ISCC system significantly improves resource utilization and reduces latency for communication, sensing, and computation.</summary>
+    <category term="cs.IT" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2024-09-18T00:57:00Z</published>
+    <arxiv:primary_category term="cs.IT"/>
+    <author>
+      <name>Yiping Zuo</name>
+    </author>
+    <author>
+      <name>Jiajia Guo</name>
+    </author>
+    <author>
+      <name>Weicong Chen</name>
+    </author>
+    <author>
+      <name>Weibei Fan</name>
+    </author>
+    <author>
+      <name>Biyun Sheng</name>
+    </author>
+    <author>
+      <name>Fu Xiao</name>
+    </author>
+    <author>
+      <name>Shi Jin</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2608.09165v2</id>
+    <title>Optimal Movable-Antenna Control for Multi-Path Sensing Guided by Prior AoA Statistic</title>
+    <updated>2026-08-13T06:18:44Z</updated>
+    <link href="https://arxiv.org/abs/2608.09165v2" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2608.09165v2" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Multi-path sensing, which aims to extract the geometric attributes of multiple propagation paths, is expected to be a key functionality of 6G. A movable antenna (MA) can enable this functionality by synthesizing an aperture through mechanical motion. However, existing MA-based sensing methods typically rely on exhaustive scanning over the entire movable region, resulting in significant control overhead and sensing latency, which limit their practicality for agile sensing. To address this challenge, this paper develops a prior-guided agile multi-path sensing framework that leverages weak prior angle-of-arrival (AoA) statistics as side information. The proposed framework is built on two key steps. First, the movable plate's three-dimensional orientation is optimized only once to configure a mechanically feasible scan region that enhances path visibility while preserving inter-path discriminability, guided by Fisher information analysis. Second, given the optimal plate orientation, the MA performs only two linear scans, whose non-collinear spatial phase projections are fused with the prior AoA statistics through a maximum a posteriori (MAP)-based estimator to recover the elevation and azimuth AoAs of multiple paths. The estimated AoAs are subsequently used to extract the times-of-arrival (ToAs) by enhancing the target path component while suppressing interference from other paths. With only one orientation adjustment and two linear scans, the proposed framework enables agile multi-path sensing with significantly reduced control overhead and latency, while achieving AoA and ToA estimation accuracy close to the single-path benchmark.</summary>
+    <category term="cs.IT" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-08-10T06:20:13Z</published>
+    <arxiv:primary_category term="cs.IT"/>
+    <author>
+      <name>Jaehong Kim</name>
+    </author>
+    <author>
+      <name>Changsheng You</name>
+    </author>
+    <author>
+      <name>Jihong Park</name>
+    </author>
+    <author>
+      <name>Seung-Woo Ko</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2508.07799v1</id>
+    <title>QoS-Aware Integrated Sensing, Communication, and Control with Movable Antenna</title>
+    <updated>2025-08-11T09:36:23Z</updated>
+    <link href="https://arxiv.org/abs/2508.07799v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2508.07799v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Integrated sensing, communication, and control (ISCC) has emerged as a key enabler for low-altitude wireless networks with enhanced adaptability through resource allocation co-design and intelligent environment awareness. However, dynamic interference and channel attenuation constrain the potential of the ISCC system. To address this challenge, we propose a novel movable antenna-empowered ISCC system. An achievable data rate maximization problem is formulated while guaranteeing the sensing and control quality-of-service (QoS) by optimizing the positions of the antennas and the beamforming strategy for communication, sensing, and control co-design. An efficient alternating optimization (AO)-based algorithm is proposed to solve the highly coupled non-convex problem. Numerical results demonstrate that the proposed AO-based algorithm achieves substantial gains in the achievable data rate and the control QoS compared with benchmark schemes.</summary>
+    <category term="cs.IT" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="eess.SP" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2025-08-11T09:36:23Z</published>
+    <arxiv:comment>6 pages, 3 figures, this manuscript has been submitted to IEEE</arxiv:comment>
+    <arxiv:primary_category term="cs.IT"/>
+    <author>
+      <name>Yike Wang</name>
+    </author>
+    <author>
+      <name>Zhike Wu</name>
+    </author>
+    <author>
+      <name>Jiang Chen</name>
+    </author>
+    <author>
+      <name>Chunjie Wang</name>
+    </author>
+    <author>
+      <name>Xuhui Zhang</name>
+    </author>
+    <author>
+      <name>Yanyan Shen</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2504.07656v1</id>
+    <title>Integrated Sensing, Computing, and Semantic Communication with Fluid Antenna for Metaverse</title>
+    <updated>2025-04-10T11:13:08Z</updated>
+    <link href="https://arxiv.org/abs/2504.07656v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2504.07656v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>The integration of sensing and communication (ISAC) is pivotal for the Metaverse but faces challenges like high data volume and privacy concerns. This paper proposes a novel integrated sensing, computing, and semantic communication (ISCSC) framework, which uses semantic communication to transmit only contextual information, reducing data overhead and enhancing efficiency. To address the sensitivity of semantic communication to channel conditions, fluid antennas (FAs) are introduced, enabling dynamic adaptability. The FA-enabled ISCSC framework considers multiple users and extended targets composed of a series of scatterers, formulating a joint optimization problem to maximize the data rate while ensuring sensing accuracy and meeting computational and power constraints. An alternating optimization (AO) method decomposes the problem into subproblems for ISAC beamforming, FA positioning, and semantic extraction. Simulations confirm the framework's effectiveness in improving data rates and sensing performance.</summary>
+    <category term="eess.SP" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.IT" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2025-04-10T11:13:08Z</published>
+    <arxiv:comment>Accepted by Infocom workshop 2025</arxiv:comment>
+    <arxiv:primary_category term="eess.SP"/>
+    <author>
+      <name>Yinchao Yang</name>
+    </author>
+    <author>
+      <name>Jingxuan Zhou</name>
+    </author>
+    <author>
+      <name>Zhaohui Yang</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2509.22497v2</id>
+    <title>UAV-Enabled Fluid Antenna Systems for Multi-Target Wireless Sensing over LAWCNs</title>
+    <updated>2026-06-08T14:48:19Z</updated>
+    <link href="https://arxiv.org/abs/2509.22497v2" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2509.22497v2" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Fluid antenna system (FAS) is emerging as a key technology for enhancing spatial flexibility and sensing accuracy in future wireless systems. This paper investigates an unmanned aerial vehicle (UAV)-enabled FAS for multi-target wireless sensing in low-altitude wireless consumer networks (LAWCNs) for achieving the low-altitude economy (LAE) missions. We formulate an optimization problem aimed at minimizing the average Cramér-Rao bound (CRB) for multiple target estimations. To tackle this non-convex problem, an efficient alternating optimization (AO) algorithm is proposed, which jointly optimizes the UAV trajectory, the antenna position of the transmit fluid antennas (FAs) and the receive FAs, and the transmit beamforming at the UAV. Simulation results demonstrate significant performance improvements in estimation accuracy and sensing reliability compared to conventional schemes, e.g., the fixed position antenna scheme. The proposed system achieves enhanced sensing performance through adaptive trajectory design and beamforming, alongside effective interference suppression via the flexible FAS antenna repositioning, underscoring its practical potential for precision sensing in the UAV-enabled LAWCNs.</summary>
+    <category term="cs.IT" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="eess.SP" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2025-09-26T15:39:44Z</published>
+    <arxiv:primary_category term="cs.IT"/>
+    <author>
+      <name>Xuhui Zhang</name>
+    </author>
+    <author>
+      <name>Wenchao Liu</name>
+    </author>
+    <author>
+      <name>Chunjie Wang</name>
+    </author>
+    <author>
+      <name>Jinke Ren</name>
+    </author>
+    <author>
+      <name>Huijun Xing</name>
+    </author>
+    <author>
+      <name>Shuqiang Wang</name>
+    </author>
+    <author>
+      <name>Yanyan Shen</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2412.19470v2</id>
+    <title>Movable Antenna-Aided Near-Field Integrated Sensing and Communication</title>
+    <updated>2025-07-11T07:27:38Z</updated>
+    <link href="https://arxiv.org/abs/2412.19470v2" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2412.19470v2" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Integrated sensing and communication (ISAC) is emerging as a pivotal technology for next-generation wireless networks. However, existing ISAC systems are based on fixed-position antennas (FPAs), which inevitably incur a loss in performance when balancing the trade-off between sensing and communication. Movable antenna (MA) technology offers promising potential to enhance ISAC performance by enabling flexible antenna movement. Nevertheless, exploiting more spatial channel variations requires larger antenna moving regions, which may invalidate the conventional far-field assumption for channels between transceivers. Therefore, this paper utilizes the MA to enhance sensing and communication capabilities in near-field ISAC systems, where a full-duplex base station (BS) is equipped with multiple transmit and receive MAs movable in large-size regions to simultaneously sense multiple targets and serve multiple uplink (UL) and downlink (DL) users for communication. We aim to maximize the weighted sum of sensing and communication rates (WSR) by jointly designing the transmit beamformers, sensing signal covariance matrices, receive beamformers, and MA positions at the BS, as well as the UL power allocation. The resulting optimization problem is challenging to solve. Thus, we propose an efficient two-layer random position (RP) algorithm to tackle it. In addition, to reduce movement delay and cost, we design an antenna position matching (APM) algorithm based on the greedy strategy to minimize the total MA movement distance. Extensive simulation results demonstrate the substantial performance improvement achieved by deploying MAs in near-field ISAC systems. Moreover, the results show the effectiveness of the proposed APM algorithm in reducing the antenna movement distance, which is helpful for energy saving and time overhead reduction for MA-aided near-field ISAC systems with large moving regions.</summary>
+    <category term="cs.IT" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="eess.SP" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2024-12-27T05:45:35Z</published>
+    <arxiv:comment>This paper has been accepted by IEEE Transactions on Wireless Communications</arxiv:comment>
+    <arxiv:primary_category term="cs.IT"/>
+    <author>
+      <name>Jingze Ding</name>
+    </author>
+    <author>
+      <name>Zijian Zhou</name>
+    </author>
+    <author>
+      <name>Xiaodan Shao</name>
+    </author>
+    <author>
+      <name>Bingli Jiao</name>
+    </author>
+    <author>
+      <name>Rui Zhang</name>
+    </author>
+    <arxiv:doi>10.1109/TWC.2025.3584833</arxiv:doi>
+    <link rel="related" href="https://doi.org/10.1109/TWC.2025.3584833" title="doi"/>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2601.08357v1</id>
+    <title>Movable Antenna for Integrating Near-field Channel Estimation and Localization</title>
+    <updated>2026-01-13T09:14:33Z</updated>
+    <link href="https://arxiv.org/abs/2601.08357v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2601.08357v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Movable antenna (MA) introduces a new degree of freedom for future wireless communication systems by enabling the adaptive adjustment of antenna positions. Its large-range movement renders wireless channels transmission into the near-field region, which brings new performance enhancement for integrated sensing and communication (ISAC). This paper proposes a novel multi-stage design framework for broadband near-field ISAC assisted by MA. The framework first divides the MA movement area into multiple subregions, and employs the Newtonized orthogonal matching pursuit algorithm (NOMP) to achieve high-precision angle estimation in each subregion. Subsequently, a method called near-field localization via subregion ray clustering (LSRC) is proposed for identifying the positions of scatterers. This method finds the coordinates of each scatterer by jointly processing the angle estimates across all subregions. Finally, according to the estimated locations of the scatterers, the near-field channel estimation (CE) is refined for improving communication performance. Simulation results demonstrate that the proposed scheme can significantly enhance MA sensing accuracy and CE, providing an efficient solution for MA-aided near-field ISAC.</summary>
+    <category term="cs.IT" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="eess.SP" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-01-13T09:14:33Z</published>
+    <arxiv:comment>6 pages, 7 figures, The codes about this work are available at https://github.com/ZiweiWan/Code-4-MA-Integrating-Near-field-CE-and-Localization.git</arxiv:comment>
+    <arxiv:primary_category term="cs.IT"/>
+    <author>
+      <name>Chongjia Sun</name>
+    </author>
+    <author>
+      <name>Ziwei Wan</name>
+    </author>
+    <author>
+      <name>Lipeng Zhu</name>
+    </author>
+    <author>
+      <name>Zhenyu Xiao</name>
+    </author>
+    <author>
+      <name>Zhen Gao</name>
+    </author>
+    <author>
+      <name>Rui Zhang</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2610.08008v1</id>
+    <title>Movable Antenna-Enabled Multi-Target Sensing: Sidelobe Suppression via Position Optimization</title>
+    <updated>2026-10-06T09:08:39Z</updated>
+    <link href="https://arxiv.org/abs/2610.08008v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2610.08008v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Movable antenna (MA) has emerged as a promising technology to unlock spatial degrees of freedom for wireless sensing systems. However, optimizing MA positions for multi-target sensing remains challenging due to the complicated coupling between the array geometry and unknown target directions, as well as severe sidelobe interference. In this paper, we propose an MA-enabled multi-target wireless sensing scheme to achieve both high-precision and robust target parameter estimation. To characterize the sensing performance while maintaining tractability, we introduce two complementary metrics, namely a lower bound (LB) of the Cramér-Rao bound (CRB) and the steering vector correlation (SVC). Specifically, by investigating the partial order relationship of the Fisher information matrix, we derive a closed-form LB of the multi-target CRB, which decouples the unknown target directions. Meanwhile, the SVC is employed to characterize the spatial correlation and sidelobe-induced interference among sensing signals over different directions. Based on these two metrics, we formulate an MA position optimization problem that minimizes the SVC while constraining the LB below a predefined threshold. To render the resulting non-convex problem tractable, we exploit the spatial symmetry of the continuous SVC function and discretize the sidelobe region, thereby transforming the spatial minimax objective into a finite set of constraints. Meanwhile, the LB constraint is equivalently reformulated as a spatial variance constraint on the MA positions. Building on these transformations, we develop a successive convex approximation (SCA) algorithm within an alternating optimization (AO) framework to iteratively optimize the horizontal and vertical MA coordinates.</summary>
+    <category term="eess.SP" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-10-06T09:08:39Z</published>
+    <arxiv:primary_category term="eess.SP"/>
+    <author>
+      <name>Chengzhi Ye</name>
+    </author>
+    <author>
+      <name>Ruoyu Zhang</name>
+    </author>
+    <author>
+      <name>Lipeng Zhu</name>
+    </author>
+    <author>
+      <name>Qingqing Wu</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2501.04490v4</id>
+    <title>Rotatable and Movable Antenna-Enabled Near-Field Integrated Sensing and Communication</title>
+    <updated>2025-11-14T12:31:56Z</updated>
+    <link href="https://arxiv.org/abs/2501.04490v4" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2501.04490v4" rel="related" type="application/pdf" title="pdf"/>
+    <summary>The aim of this article is to investigate the performance of near-field integrated sensing and communication (ISAC) systems using rotatable movable antennas (RMAs). In the proposed RMA-enabled system, the positions and rotations of antennas at the base station (BS) are dynamically adjusted to enhance both communication and sensing capabilities. Two designs are explored: i) a sensing-centric design that minimizes the Cram$\text{é}$r-Rao bound (CRB) with signal-to-interference-plus-noise ratio (SINR) constraints, and ii) a communication-centric design that maximizes the sum-rate with a CRB constraint. To solve the formulated optimization problems, two alternating optimization (AO)-based algorithms are proposed capitalizing on the semidefinite relaxation (SDR) method and the particle swarm optimization (PSO) method. Numerical results demonstrate that: i) the proposed RMA-enabled system outperforms the conventional fixed-position antenna and non-rotatable movable antenna systems in both sensing-centric and communication-centric designs and RMAs' rotations show a higher performance gain in communication-centric design; ii) the proposed optimization methods achieve the Pareto boundary in both sensing-centric and communication-centric designs.</summary>
+    <category term="eess.SP" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2025-01-08T13:22:23Z</published>
+    <arxiv:comment>Preprint. Final version published in IEEE IoT Journal (DOI:10.1109/JIOT.2025.3598721)</arxiv:comment>
+    <arxiv:primary_category term="eess.SP"/>
+    <author>
+      <name>Yunan Sun</name>
+    </author>
+    <author>
+      <name>Hao Xu</name>
+    </author>
+    <author>
+      <name>Chongjun Ouyang</name>
+    </author>
+    <author>
+      <name>Hongwen Yang</name>
+    </author>
+    <arxiv:doi>10.1109/JIOT.2025.3598721</arxiv:doi>
+    <link rel="related" href="https://doi.org/10.1109/JIOT.2025.3598721" title="doi"/>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2512.04802v1</id>
+    <title>Movable Antenna Assisted Flexible Beamforming for Integrated Sensing and Communication in Vehicular Networks</title>
+    <updated>2025-12-04T13:54:37Z</updated>
+    <link href="https://arxiv.org/abs/2512.04802v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2512.04802v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Integrated sensing and communication (ISAC) has been recognized as a key technology in sixth-generation wireless networks, and the additional spatial degrees of freedom obtained by movable antenna (MA) technology can significantly improve the performance of ISAC systems. This paper considers an ISAC-assisted vehicle-to-infrastructure (V2I) network, where extended kalman filter-based prediction is combined with real-time optimization to jointly optimize transmit antenna positions and beamforming and power allocation vectors in dynamic environments. We propose two algorithms: a preprocessing-schur complement-projected gradient ascent algorithm for scenarios without sensing quality of service (QoS) constraints, which explores the potential range of sensing performance to provide reference and warm-starting for subsequent constrained optimization; and a heuristic reflective projected dynamic particle swarm optimization algorithm for sensing QoS-constrained scenarios, which achieves substantial performance gains under non-convex constraints with a small number of iterations. Simulation results demonstrate that these approaches enhance both the communication sum-rate and the lower of the Cramér-Rao lower bound of motion parameter estimation, validating the effectiveness of MA-assisted beamforming in dynamic V2I ISAC networks.</summary>
+    <category term="eess.SP" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2025-12-04T13:54:37Z</published>
+    <arxiv:primary_category term="eess.SP"/>
+    <author>
+      <name>Luyang Sun</name>
+    </author>
+    <author>
+      <name>Zhiqing Wei</name>
+    </author>
+    <author>
+      <name>Haotian Liu</name>
+    </author>
+    <author>
+      <name>Kan Yu</name>
+    </author>
+    <author>
+      <name>Zhendong Li</name>
+    </author>
+    <author>
+      <name>Zhiyong Feng</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2511.18907v1</id>
+    <title>Movable-Antenna Array Enhanced Multi-Target Sensing: CRB Characterization and Optimization</title>
+    <updated>2025-11-24T09:11:01Z</updated>
+    <link href="https://arxiv.org/abs/2511.18907v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2511.18907v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Movable antennas (MAs) have emerged as a promising technology to improve wireless communication and sensing performance towards sixth-generation (6G) networks through flexible antenna movement. In this paper, we propose a novel wireless sensing system based on MA arrays to enhance multi-target spatial angle estimation performance. We begin by characterizing the Cramér-Rao bound (CRB) matrix for multi-target angle of arrival (AoA) estimation as a function of the antenna's positions in MA arrays, thereby establishing a theoretical foundation for antenna position optimization. Then, aiming at improving the sensing coverage performance, we formulate an optimization problem to minimize the expectation of the trace of the CRB matrix over random target angles subject to a given distribution by optimizing the antennas' positions. To tackle the formulated challenging optimization problem, the Monte Carlo method is employed to approximate the intractable objective function, and a swarm-based gradient descent algorithm is subsequently proposed to address the approximated problem. In addition, a lower-bound on the sum of CRBs for multi-target AoA estimation is derived. Numerical results demonstrate that the proposed MA-based design achieves superior sensing performance compared to conventional systems using fixed-position antenna (FPA) arrays and single-target-oriented MA arrays, in terms of decreasing both CRB and the actual AoA estimation mean square error (MSE). Fundamentally, the designed MA array geometry exhibits low correlation and high effective power of sensitivity vectors for multi-target sensing in the angular domain, leading to significant CRB performance improvement. The resultant low correlation of steering vectors over multiple targets' directions further helps mitigate angle estimation ambiguity and thus enhances MSE performance.</summary>
+    <category term="eess.SP" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2025-11-24T09:11:01Z</published>
+    <arxiv:comment>13 pages, 12 figures, submitted to an IEEE journal for possible publication</arxiv:comment>
+    <arxiv:primary_category term="eess.SP"/>
+    <author>
+      <name>Haobin Mao</name>
+    </author>
+    <author>
+      <name>Lipeng Zhu</name>
+    </author>
+    <author>
+      <name>Wenyan Ma</name>
+    </author>
+    <author>
+      <name>Zhenyu Xiao</name>
+    </author>
+    <author>
+      <name>Xiang-Gen Xia</name>
+    </author>
+    <author>
+      <name>Rui Zhang</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2407.11875v1</id>
+    <title>Cramer-Rao Bound Minimization for Movable Antenna-Assisted Multiuser Integrated Sensing and Communications</title>
+    <updated>2024-07-16T16:00:13Z</updated>
+    <link href="https://arxiv.org/abs/2407.11875v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2407.11875v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>This paper investigates a movable antenna (MA)-assisted multiuser integrated sensing and communication (ISAC) system, where the base station (BS) and communication users are all equipped with MA for improving both the sensing and communication performance. We employ the Cramer-Rao bound (CRB) as the performance metric of sensing, thus a joint beamforming design and MAs' position optimizing problem is formulated to minimize the CRB. However the resulting optimization problem is NP-hard and the variables are highly coupled. To tackle this problem, we propose an alternating optimization (AO) framework by adopting semidefinite relaxation (SDR) and successive convex approximation (SCA) technique. Numerical results reveal that the proposed MA-assisted ISAC system achieves lower estimation CRB compared to the fixed-position antenna (FPA) counterpart.</summary>
+    <category term="eess.SP" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2024-07-16T16:00:13Z</published>
+    <arxiv:primary_category term="eess.SP"/>
+    <author>
+      <name>Haoran Qin</name>
+    </author>
+    <author>
+      <name>Wen Chen</name>
+    </author>
+    <author>
+      <name>Qingqing Wu</name>
+    </author>
+    <author>
+      <name>Ziheng Zhang</name>
+    </author>
+    <author>
+      <name>Zhendong Li</name>
+    </author>
+    <author>
+      <name>Nan Cheng</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2503.22486v1</id>
+    <title>Movable Antenna Enhanced Downlink Multi-User Integrated Sensing and Communication System</title>
+    <updated>2025-03-28T14:52:53Z</updated>
+    <link href="https://arxiv.org/abs/2503.22486v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2503.22486v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>This work investigates the potential of exploiting movable antennas (MAs) to enhance the performance of a multi-user downlink integrated sensing and communication (ISAC) system. Specifically, we formulate an optimization problem to maximize the transmit beampattern gain for sensing while simultaneously meeting each user's communication requirement by jointly optimizing antenna positions and beamforming design. The problem formulated is highly non-convex and involves multivariate-coupled constraints. To address these challenges, we introduce a series of auxiliary random variables and transform the original problem into an augmented Lagrangian problem. A double-loop algorithm based on a penalty dual decomposition framework is then developed to solve the problem. Numerical results validate the effectiveness of the proposed design, demonstrating its superiority over MA designs based on successive convex approximation optimization and other baseline approaches in ISAC systems. The results also highlight the advantages of MAs in achieving better sensing performance and improved beam control, especially for sparse arrays with large apertures.</summary>
+    <category term="cs.IT" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="eess.SP" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2025-03-28T14:52:53Z</published>
+    <arxiv:comment>accepted and to appear in IEEE VTC2025-Spring</arxiv:comment>
+    <arxiv:primary_category term="cs.IT"/>
+    <author>
+      <name>Yanze Han</name>
+    </author>
+    <author>
+      <name>Min Li</name>
+    </author>
+    <author>
+      <name>Xingyu Zhao</name>
+    </author>
+    <author>
+      <name>Ming-Min Zhao</name>
+    </author>
+    <author>
+      <name>Min-Jian Zhao</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2409.01965v2</id>
+    <title>Exploiting Six-Dimensional Movable Antenna (6DMA) for Wireless Sensing</title>
+    <updated>2024-09-08T18:09:16Z</updated>
+    <link href="https://arxiv.org/abs/2409.01965v2" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2409.01965v2" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Six-dimensional movable antenna (6DMA) is an emerging technology that is able to fully exploit the spatial variation of wireless channels by controlling the 3D positions and 3D rotations of distributed antennas/antenna surfaces at the transmitter/receiver. In this letter, we apply 6DMA at the base station (BS) to enhance its wireless sensing performance over a given set of regions. To this end, we first divide each region into a number of equal-size subregions and select one typical target location within each subregion. Then, we derive an expression for the Cramer-Rao bound (CRB) for estimating the directions of arrival (DoAs) from these typical target locations in all regions, which sheds light on the sensing performance of 6DMA enhanced systems in terms of a power gain and a geometric gain. Next, we minimize the CRB for DoA estimation via jointly optimizing the positions and rotations of all 6DMAs at the BS, subject to practical movement constraints, and propose an efficient algorithm to solve the resulting non-convex optimization problem sub-optimally. Finally, simulation results demonstrate the significant improvement in DoA estimation accuracy achieved by the proposed 6DMA sensing scheme as compared to various benchmark schemes, for both isotropic and directive antenna radiation patterns.</summary>
+    <category term="cs.IT" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="eess.SP" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2024-09-03T15:02:31Z</published>
+    <arxiv:comment>5 figures</arxiv:comment>
+    <arxiv:primary_category term="cs.IT"/>
+    <author>
+      <name>Xiaodan Shao</name>
+    </author>
+    <author>
+      <name>Rui Zhang</name>
+    </author>
+    <author>
+      <name>Robert Schober</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2407.04404v2</id>
+    <title>Fixed and Movable Antenna Technology for 6G Integrated Sensing and Communication</title>
+    <updated>2024-07-16T13:46:01Z</updated>
+    <link href="https://arxiv.org/abs/2407.04404v2" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2407.04404v2" rel="related" type="application/pdf" title="pdf"/>
+    <summary>By deploying antenna arrays at the transmitter/receiver to provide additional spatial-domain degrees of freedom (DoFs), multi-antenna technology greatly improves the reliability and efficiency of wireless communication. Meanwhile, the application of multi-antenna technology in the radar field has achieved spatial angle resolution and improved sensing DoF, thus significantly enhancing wireless sensing performance. However, wireless communication and radar sensing have undergone independent development over the past few decades. As a result, although multi-antenna technology has dramatically advanced in these two fields separately, it has not been deeply integrated by exploiting their synergy. A new opportunity to fill up this gap arises as the integration of sensing and communication has been identified as one of the typical usage scenarios of the 6G communication network. Motivated by the above, this article aims to explore the multi-antenna technology for 6G ISAC, with the focus on its future development trends such as continuous expansion of antenna array scale, more diverse array architectures, and more flexible antenna designs. First, we introduce several new and promising antenna architectures, including the centralized antenna architectures based on traditional compact arrays or emerging sparse arrays, the distributed antenna architectures exemplified by the cell-free massive MIMO, and the movable/fluid antennas with flexible positions and/or orientations in a given 3D space. Next, for each antenna architecture mentioned above, we present the corresponding far-field/near-field channel models and analyze the communication and sensing performance. Finally, we summarize the characteristics of different antenna architectures and look forward to new ideas for solving the difficulties in acquiring CSI caused by the continuous expansion of antenna array scale and flexible antenna designs.</summary>
+    <category term="cs.AR" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2024-07-05T10:39:30Z</published>
+    <arxiv:comment>in Chinese language</arxiv:comment>
+    <arxiv:primary_category term="cs.AR"/>
+    <author>
+      <name>Yong Zeng</name>
+    </author>
+    <author>
+      <name>Zhenjun Dong</name>
+    </author>
+    <author>
+      <name>Huizhi Wang</name>
+    </author>
+    <author>
+      <name>Lipeng Zhu</name>
+    </author>
+    <author>
+      <name>Ziyao Hong</name>
+    </author>
+    <author>
+      <name>Qingji Jiang</name>
+    </author>
+    <author>
+      <name>Dongming Wang</name>
+    </author>
+    <author>
+      <name>Shi Jin</name>
+    </author>
+    <author>
+      <name>Rui Zhang</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2607.17041v1</id>
+    <title>Movable Antenna for Integrated Sensing and Communication in Air Sea Ground Networks</title>
+    <updated>2026-07-19T03:00:08Z</updated>
+    <link href="https://arxiv.org/abs/2607.17041v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2607.17041v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Integrated sensing and communication (ISAC) is a new paradigm for efficiently combining sensing and communication functionalities by leveraging shared hardware and radio resources. Despite its promise, ISAC yields conflicting beamforming goals and competition over the same resources. Movable antennas enable effective exploitation of spatial degrees of freedom through dynamic position/orientation control, thereby enhancing the performance of ISAC systems. This paper proposes a movable antenna framework for ISAC in air sea ground networks. A multi-objective optimization problem is formulated with the objectives of maximizing the communication rate of a set of aerial, sea, and ground devices and the sensing rate of a set of targets. The location and orientation of the antenna sub-arrays, as well as the transmit/receive beamforming, are optimized under practical constraints on the movable antennas' location and orientation. A solution is developed based on a $K$-means clustering approach to optimize the sub-arrays' orientation and a particle swarm optimization to place the sub-arrays in optimized locations. The transmit and receive beamforming are designed using a successive convex approximation and a generalized eigenvector method, respectively. Simulation results illustrate that the developed movable antenna framework improves the ISAC objective and provides a remarkable trade-off between the communication data rate and the targets' sensing rate when compared with the conventional stationary antenna array scenario.</summary>
+    <category term="eess.SP" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-07-19T03:00:08Z</published>
+    <arxiv:primary_category term="eess.SP"/>
+    <author>
+      <name>Ahmed A. Al-habob</name>
+    </author>
+    <author>
+      <name>Octavia A. Dobre</name>
+    </author>
+    <author>
+      <name>Yindi Jing</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2410.19763v2</id>
+    <title>Movable Antenna Enabled Integrated Sensing and Communication</title>
+    <updated>2024-12-30T06:43:34Z</updated>
+    <link href="https://arxiv.org/abs/2410.19763v2" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2410.19763v2" rel="related" type="application/pdf" title="pdf"/>
+    <summary>In this paper, we investigate a novel integrated sensing and communication (ISAC) system aided by movable antennas (MAs). A bistatic radar system, in which the base station (BS) is configured with MAs, is integrated into a multi-user multiple-input-single-output (MU-MISO) system. Flexible beamforming is studied by jointly optimizing the antenna coefficients and the antenna positions. Compared to conventional fixed-position antennas (FPAs), MAs provide a new degree of freedom (DoF) in beamforming to reconfigure the field response, and further improve the received signal quality for both wireless communication and sensing. We propose a communication rate and sensing mutual information (MI) maximization problem by flexible beamforming optimization. The complex fractional objective function with logarithms are first transformed with the fractional programming (FP) framework. Then, we propose an efficient algorithm to address the non-convex problem with coupled variables by alternatively solving four sub-problems. We derive the closed-form expression to update the antenna coefficients by Karush-Kuhn-Tucker (KKT) conditions. To improve the direct gradient ascent (DGA) scheme in updating the positions of the antennas, a 3-stage search-based projected GA (SPGA) method is proposed. Simulation results show that MAs significantly enhance the overall performance of the ISAC system, achieving 59.8\% performance gain compared to conventional ISAC system enabled by FPAs. Meanwhile, the proposed SPGA-based method has remarkable performance improvement compared the DGA method in antenna position optimization.</summary>
+    <category term="eess.SP" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2024-10-12T07:41:37Z</published>
+    <arxiv:primary_category term="eess.SP"/>
+    <author>
+      <name>Wanting Lyu</name>
+    </author>
+    <author>
+      <name>Songjie Yang</name>
+    </author>
+    <author>
+      <name>Yue Xiu</name>
+    </author>
+    <author>
+      <name>Zhongpei Zhang</name>
+    </author>
+    <author>
+      <name>Chadi Assi</name>
+    </author>
+    <author>
+      <name>Chau Yuen</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2602.10958v1</id>
+    <title>Fluid-Antenna-Enabled Integrated Bistatic Sensing and Backscatter Communication Systems</title>
+    <updated>2026-02-11T15:49:11Z</updated>
+    <link href="https://arxiv.org/abs/2602.10958v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2602.10958v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>This paper studies a fluid-antenna-enabled integrated bistatic sensing and backscatter communication system for future networks where connectivity, power delivery, and environmental awareness are jointly supported by the same infrastructure. A multi-antenna base station (BS) with transmitting fluid antennas serves downlink users, energizes passive tags, and illuminates radar targets, while a spatially separated multi-antenna reader decodes tag backscatter and processes radar echoes to avoid the strong self-interference that would otherwise obscure weak returns at the BS. The coexistence of tags and targets, however, induces severe near--far disparities and multi-signal interference, which can be mitigated by fluid antennas through additional spatial degrees of freedom that reshape the multi-hop channels. We formulate a transmit-power minimization problem that jointly optimizes the BS information beamformers, sensing covariance matrix, reader receive beamformers, tag reflection coefficients, and fluid-antenna (FA) positions under heterogeneous quality of service constraints for communication, backscatter, and sensing, as well as energy-harvesting and FA geometry requirements. To tackle the resulting non-convex problem, we develop an alternating-optimization block-coordinate framework that solves four tractable subproblems using semidefinite relaxation, majorization--minimization, and successive convex approximation. Numerical results show consistent transmit-power savings over fixed-position antennas and zero-forcing baselines, achieving about 13.7% and 54.5% reductions, respectively.</summary>
+    <category term="eess.SP" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-02-11T15:49:11Z</published>
+    <arxiv:primary_category term="eess.SP"/>
+    <author>
+      <name>A. Abdelaziz Salem</name>
+    </author>
+    <author>
+      <name>Saeed Abdallah</name>
+    </author>
+    <author>
+      <name>Khawla Alnajjar</name>
+    </author>
+    <author>
+      <name>Mahmoud A. Albreem</name>
+    </author>
+    <author>
+      <name>Mohamed Saad</name>
+    </author>
+    <author>
+      <name>Hayssam Dahrouj</name>
+    </author>
+    <author>
+      <name>Hesham Elsawy</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2602.17977v1</id>
+    <title>A Survey on Reconfigurable and Movable Antennas for Wireless Communications and Sensing</title>
+    <updated>2026-02-20T04:20:51Z</updated>
+    <link href="https://arxiv.org/abs/2602.17977v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2602.17977v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Reconfigurable antennas (RAs) and movable antennas (MAs) have been recognized as promising technologies to enhance the performance of wireless communication and sensing systems by introducing additional degrees of freedom (DoFs) in tuning antenna radiation and/or placement. This paradigm shift from conventional non-reconfigurable/movable antennas offers tremendous new opportunities for realizing multi-functional, more adaptive, and efficient next-generation wireless networks. In this paper, we provide a comprehensive survey on the fundamentals, architectures, and applications of these two emerging antenna technologies. First, we provide a chronological overview of the parallel historical development of both RA and MA technologies. Next, we review and classify the state-of-the-art hardware architectures for implementing RAs and MAs, followed by a detailed comparison of their distinct mechanisms, performance metrics, and functionalities. Subsequently, we focus on various applications of RAs and MAs in wireless communication systems, analyzing their respective performance advantages and key design considerations such as mode selection, movement optimization, and channel acquisition. We also explore the significant roles of RAs and MAs in advancing wireless sensing and integrated sensing and communication (ISAC). Furthermore, we present numerical performance comparisons to illustrate the distinct characteristics and complementary advantages of RA and MA systems. Finally, we outline key challenges and identify promising future research directions to inspire further innovations in this burgeoning field.</summary>
+    <category term="eess.SP" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-02-20T04:20:51Z</published>
+    <arxiv:comment>IEEE Communications Surveys &amp; Tutorials, early access</arxiv:comment>
+    <arxiv:primary_category term="eess.SP"/>
+    <author>
+      <name>Wenyan Ma</name>
+    </author>
+    <author>
+      <name>Lipeng Zhu</name>
+    </author>
+    <author>
+      <name>Yanhua Tan</name>
+    </author>
+    <author>
+      <name>Beixiong Zheng</name>
+    </author>
+    <author>
+      <name>Yujie Zhang</name>
+    </author>
+    <author>
+      <name>Yuchen Zhang</name>
+    </author>
+    <author>
+      <name>Keke Ying</name>
+    </author>
+    <author>
+      <name>Zhen Gao</name>
+    </author>
+    <author>
+      <name>He Sun</name>
+    </author>
+    <author>
+      <name>Xiaodan Shao</name>
+    </author>
+    <author>
+      <name>Zhenyu Xiao</name>
+    </author>
+    <author>
+      <name>Dusit Niyato</name>
+    </author>
+    <author>
+      <name>Rui Zhang</name>
+    </author>
+    <arxiv:doi>10.1109/COMST.2026.3663021</arxiv:doi>
+    <link rel="related" href="https://doi.org/10.1109/COMST.2026.3663021" title="doi"/>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2603.27540v1</id>
+    <title>Energy-Efficient Velocity Profile Optimization for Movable Antenna-Enabled Sensing Systems</title>
+    <updated>2026-03-29T06:40:12Z</updated>
+    <link href="https://arxiv.org/abs/2603.27540v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2603.27540v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Movable antennas (MAs) enable the reconfiguration of array geometry within a bounded region to exploit sub-wavelength spatial degrees of freedom in wireless communication and sensing systems. However, most prior research has predominantly focused on the communication and sensing performance, overlooking the mechanical power consumption inherent in antenna movement. To bridge this gap, this paper investigates a velocity profile optimization framework for MA-assisted direction-of-arrival (DoA) estimation, explicitly balancing sensing accuracy with mechanical energy consumption of MAs. We first establish a Newtonian-based mechanical energy model, and formulate a functional optimization problem for sensing energy efficiency (EE) maximization. By applying the calculus of variations, this formulation is transformed into an infinite-dimensional problem defined by the Euler-Lagrange equation. To solve it, we propose a spectral discretization framework based on the Galerkin method, which expands the velocity profile over a sinusoidal basis. In the regime where energy consumption is dominated by linear damping, we prove that the optimal velocity profile follows a closed-form sinusoidal shape. For more general scenarios involving strong nonlinear aerodynamic drag, we leverage the Markov-Lukács theorem to transform the kinematic constraints into strictly convex sum-of-squares (SOS) conditions. Consequently, the infinite-dimensional problem is reformulated as a tractable finite-dimensional nonlinear algebraic system, which is solved by a two-layer algorithm combining Dinkelbach's method with successive convex approximation (SCA). Numerical results demonstrate that our optimized velocity profile significantly outperforms baselines in terms of EE across various system configurations. Insights into the optimized velocity profiles and practical design guidelines are also provided.</summary>
+    <category term="eess.SP" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-03-29T06:40:12Z</published>
+    <arxiv:primary_category term="eess.SP"/>
+    <author>
+      <name>Jiannan Wang</name>
+    </author>
+    <author>
+      <name>Yuyi Mao</name>
+    </author>
+    <author>
+      <name>Xianghao Yu</name>
+    </author>
+    <author>
+      <name>Ying-Jun Angela Zhang</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2507.15800v2</id>
+    <title>Fluid Antenna-enabled Near-Field Integrated Sensing, Computing and Semantic Communication for Emerging Applications</title>
+    <updated>2025-12-24T13:00:06Z</updated>
+    <link href="https://arxiv.org/abs/2507.15800v2" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2507.15800v2" rel="related" type="application/pdf" title="pdf"/>
+    <summary>The integration of sensing and communication (ISAC) is a key enabler for next-generation technologies. With high-frequency bands and large-scale antenna arrays, the Rayleigh distance extends, necessitating near-field (NF) models where waves are spherical. Although NF-ISAC improves both sensing and communication, it also poses challenges such as high data volume and potential privacy risks. To address these, we propose a novel framework: near-field integrated sensing, computing, and semantic communication (NF-ISCSC), which leverages semantic communication to transmit contextual information only, thereby reducing data overhead and improving efficiency. However, semantic communication is sensitive to channel variations, requiring adaptive mechanisms. To this end, fluid antennas (FAs) are introduced to support the NF-ISCSC system, enabling dynamic adaptability to changing channels. The proposed FA-enabled NF-ISCSC framework considers multiple communication users and extended targets comprising several scatterers. A joint optimization problem is formulated to maximize data rate while accounting for sensing quality, computational load, and power budget. Using an alternating optimization (AO) approach, the original problem is divided into three sub-problems: ISAC beamforming, FA positioning, and semantic extraction ratio. Beamforming is optimized using the successive convex approximation method. FA positioning is solved via a projected Broyden-Fletcher-Goldfarb-Shanno (BFGS) algorithm, and the semantic extraction ratio is optimized using bisection search. Simulation results demonstrate that the proposed framework achieves higher data rates and better privacy preservation.</summary>
+    <category term="eess.SP" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.IT" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2025-07-21T16:58:15Z</published>
+    <arxiv:comment>Accepted by IEEE Transactions on Cognitive Communications and Networking</arxiv:comment>
+    <arxiv:primary_category term="eess.SP"/>
+    <author>
+      <name>Yinchao Yang</name>
+    </author>
+    <author>
+      <name>Jingxuan Zhou</name>
+    </author>
+    <author>
+      <name>Zhaohui Yang</name>
+    </author>
+    <author>
+      <name>Mohammad Shikh-Bahaei</name>
+    </author>
+  </entry>
+</feed>

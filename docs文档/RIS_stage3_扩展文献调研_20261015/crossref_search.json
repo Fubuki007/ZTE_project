@@ -1,0 +1,2885 @@
+[
+  {
+    "arxiv": "2301.11134",
+    "query": "SNR/CRB-Constrained Joint Beamforming and Reflection Designs for RIS-ISAC Systems",
+    "url": "https://api.crossref.org/works?query.bibliographic=SNR%2FCRB-Constrained+Joint+Beamforming+and+Reflection+Designs+for+RIS-ISAC+Systems&rows=3&select=title%2CDOI%2Cauthor%2Ccontainer-title%2Cpublished%2Ctype%2CURL%2Cscore",
+    "items": [
+      {
+        "title": [
+          "SNR/CRB-Constrained Joint Beamforming and Reflection Designs for RIS-ISAC Systems"
+        ],
+        "DOI": "10.1109/twc.2023.3341429",
+        "author": [
+          {
+            "ORCID": "https://orcid.org/0000-0001-7151-7224",
+            "authenticated-orcid": false,
+            "given": "Rang",
+            "family": "Liu",
+            "sequence": "first",
+            "affiliation": [
+              {
+                "name": "School of Information and Communication Engineering, Dalian University of Technology, Dalian, China"
+              }
+            ],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "ORCID": "https://orcid.org/0000-0003-1849-8241",
+            "authenticated-orcid": false,
+            "given": "Ming",
+            "family": "Li",
+            "sequence": "additional",
+            "affiliation": [
+              {
+                "name": "School of Information and Communication Engineering, Dalian University of Technology, Dalian, China"
+              }
+            ],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "ORCID": "https://orcid.org/0000-0003-2282-4572",
+            "authenticated-orcid": false,
+            "given": "Qian",
+            "family": "Liu",
+            "sequence": "additional",
+            "affiliation": [
+              {
+                "name": "School of Computer Science and Technology, Dalian University of Technology, Dalian, China"
+              }
+            ],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "ORCID": "https://orcid.org/0000-0002-0521-3107",
+            "authenticated-orcid": false,
+            "given": "A.",
+            "family": "Lee Swindlehurst",
+            "sequence": "additional",
+            "affiliation": [
+              {
+                "name": "Center for Pervasive Communications and Computing, University of California at Irvine, Irvine, CA, USA"
+              }
+            ],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          }
+        ],
+        "container-title": [
+          "IEEE Transactions on Wireless Communications"
+        ],
+        "published": {
+          "date-parts": [
+            [
+              2024,
+              7
+            ]
+          ]
+        },
+        "type": "journal-article",
+        "URL": "https://doi.org/10.1109/twc.2023.3341429",
+        "score": 76.73305
+      },
+      {
+        "title": [
+          "SNR-Constrained Beamforming Joint and Reflection Designs for Near-Field RIS-ISAC Systems"
+        ],
+        "DOI": "10.1109/wcsp68525.2025.1010459",
+        "author": [
+          {
+            "given": "Jushang",
+            "family": "Wang",
+            "sequence": "first",
+            "affiliation": [
+              {
+                "name": "School of Portland, Nanjing University of Posts and Telecommunications,Nanjing,China"
+              }
+            ],
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ]
+          },
+          {
+            "given": "Hong",
+            "family": "Wang",
+            "sequence": "additional",
+            "affiliation": [
+              {
+                "name": "Jiangsu Engineering Research Center of Communication and Network Technology, Nanjing University of Posts and Telecommunications,Nanjing,China"
+              }
+            ],
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ]
+          },
+          {
+            "given": "Heyi",
+            "family": "Li",
+            "sequence": "additional",
+            "affiliation": [
+              {
+                "name": "Jiangsu Engineering Research Center of Communication and Network Technology, Nanjing University of Posts and Telecommunications,Nanjing,China"
+              }
+            ],
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ]
+          }
+        ],
+        "container-title": [
+          "2025 Seventeenth International Conference on Wireless Communications and Signal Processing (WCSP)"
+        ],
+        "published": {
+          "date-parts": [
+            [
+              2025,
+              10,
+              23
+            ]
+          ]
+        },
+        "type": "proceedings-article",
+        "URL": "https://doi.org/10.1109/wcsp68525.2025.1010459",
+        "score": 70.75928
+      },
+      {
+        "title": [
+          "BCRB-constrained joint beamforming and reflection design for RIS-assisted ISAC systems with prior information"
+        ],
+        "DOI": "10.1007/s44163-026-01670-w",
+        "author": [
+          {
+            "given": "Xinran",
+            "family": "Gu",
+            "sequence": "first",
+            "affiliation": [],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          }
+        ],
+        "container-title": [
+          "Discover Artificial Intelligence"
+        ],
+        "published": {
+          "date-parts": [
+            [
+              2026,
+              7,
+              5
+            ]
+          ]
+        },
+        "type": "journal-article",
+        "URL": "https://doi.org/10.1007/s44163-026-01670-w",
+        "score": 56.07521
+      }
+    ]
+  },
+  {
+    "arxiv": "2502.14325",
+    "query": "Joint Waveform and Beamforming Design in RIS-ISAC Systems: A Model-Driven Learning Approach",
+    "url": "https://api.crossref.org/works?query.bibliographic=Joint+Waveform+and+Beamforming+Design+in+RIS-ISAC+Systems%3A+A+Model-Driven+Learning+Approach&rows=3&select=title%2CDOI%2Cauthor%2Ccontainer-title%2Cpublished%2Ctype%2CURL%2Cscore",
+    "items": [
+      {
+        "title": [
+          "Joint Waveform and Beamforming Design in RIS-ISAC Systems: A Model-Driven Learning Approach"
+        ],
+        "DOI": "10.1109/tcomm.2025.3535869",
+        "author": [
+          {
+            "ORCID": "https://orcid.org/0009-0003-4545-1550",
+            "authenticated-orcid": false,
+            "given": "Peng",
+            "family": "Jiang",
+            "sequence": "first",
+            "affiliation": [
+              {
+                "name": "School of Information and Communication Engineering, Dalian University of Technology, Dalian, China"
+              }
+            ],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "ORCID": "https://orcid.org/0000-0003-1849-8241",
+            "authenticated-orcid": false,
+            "given": "Ming",
+            "family": "Li",
+            "sequence": "additional",
+            "affiliation": [
+              {
+                "name": "School of Information and Communication Engineering, Dalian University of Technology, Dalian, China"
+              }
+            ],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "ORCID": "https://orcid.org/0000-0001-7151-7224",
+            "authenticated-orcid": false,
+            "given": "Rang",
+            "family": "Liu",
+            "sequence": "additional",
+            "affiliation": [
+              {
+                "name": "School of Information and Communication Engineering, Dalian University of Technology, Dalian, China"
+              }
+            ],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "given": "Wei",
+            "family": "Wang",
+            "sequence": "additional",
+            "affiliation": [
+              {
+                "name": "School of Information and Communication Engineering, Dalian University of Technology, Dalian, China"
+              }
+            ],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "ORCID": "https://orcid.org/0000-0003-2282-4572",
+            "authenticated-orcid": false,
+            "given": "Qian",
+            "family": "Liu",
+            "sequence": "additional",
+            "affiliation": [
+              {
+                "name": "School of Computer Science and Technology, Dalian University of Technology, Dalian, China"
+              }
+            ],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          }
+        ],
+        "container-title": [
+          "IEEE Transactions on Communications"
+        ],
+        "published": {
+          "date-parts": [
+            [
+              2025,
+              8
+            ]
+          ]
+        },
+        "type": "journal-article",
+        "URL": "https://doi.org/10.1109/tcomm.2025.3535869",
+        "score": 63.792885
+      },
+      {
+        "title": [
+          "Model-Driven Deep Learning for Joint Waveform and Beamforming Design in RIS-ISAC Systems"
+        ],
+        "DOI": "10.1109/vtc2024-fall63153.2024.10757550",
+        "author": [
+          {
+            "given": "Peng",
+            "family": "Jiang",
+            "sequence": "first",
+            "affiliation": [
+              {
+                "name": "Dalian University of Technology,Dalian,China,116024"
+              }
+            ],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "given": "Rang",
+            "family": "Liu",
+            "sequence": "additional",
+            "affiliation": [
+              {
+                "name": "University of California,Irvine,CA,USA,92697"
+              }
+            ],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "given": "Ming",
+            "family": "Li",
+            "sequence": "additional",
+            "affiliation": [
+              {
+                "name": "Dalian University of Technology,Dalian,China,116024"
+              }
+            ],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "given": "Wei",
+            "family": "Wang",
+            "sequence": "additional",
+            "affiliation": [
+              {
+                "name": "Dalian University of Technology,Dalian,China,116024"
+              }
+            ],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "given": "Qian",
+            "family": "Liu",
+            "sequence": "additional",
+            "affiliation": [
+              {
+                "name": "Dalian University of Technology,Dalian,China,116024"
+              }
+            ],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          }
+        ],
+        "container-title": [
+          "2024 IEEE 100th Vehicular Technology Conference (VTC2024-Fall)"
+        ],
+        "published": {
+          "date-parts": [
+            [
+              2024,
+              10,
+              7
+            ]
+          ]
+        },
+        "type": "proceedings-article",
+        "URL": "https://doi.org/10.1109/vtc2024-fall63153.2024.10757550",
+        "score": 63.30374
+      },
+      {
+        "title": [
+          "Joint Design of Transmit Waveform and Passive Beamforming for Ris-Assisted Isac System"
+        ],
+        "DOI": "10.2139/ssrn.4123083",
+        "author": [
+          {
+            "given": "Dongxu",
+            "family": "An",
+            "sequence": "first",
+            "affiliation": [],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "ORCID": "https://orcid.org/0000-0002-9480-5242",
+            "authenticated-orcid": true,
+            "given": "jinfeng",
+            "family": "Hu",
+            "sequence": "additional",
+            "affiliation": [],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "given": "Chongwen",
+            "family": "Huang",
+            "sequence": "additional",
+            "affiliation": [],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          }
+        ],
+        "published": {
+          "date-parts": [
+            [
+              2022
+            ]
+          ]
+        },
+        "type": "posted-content",
+        "URL": "https://doi.org/10.2139/ssrn.4123083",
+        "score": 55.243404
+      }
+    ]
+  },
+  {
+    "arxiv": "2403.17324",
+    "query": "Unsupervised Learning for Joint Beamforming Design in RIS-aided ISAC Systems",
+    "url": "https://api.crossref.org/works?query.bibliographic=Unsupervised+Learning+for+Joint+Beamforming+Design+in+RIS-aided+ISAC+Systems&rows=3&select=title%2CDOI%2Cauthor%2Ccontainer-title%2Cpublished%2Ctype%2CURL%2Cscore",
+    "items": [
+      {
+        "title": [
+          "Unsupervised Learning for Joint Beamforming Design in RIS-Aided ISAC Systems"
+        ],
+        "DOI": "10.1109/lwc.2024.3402235",
+        "author": [
+          {
+            "ORCID": "https://orcid.org/0000-0003-1953-2691",
+            "authenticated-orcid": false,
+            "given": "Junjie",
+            "family": "Ye",
+            "sequence": "first",
+            "affiliation": [
+              {
+                "name": "State Key Laboratory of Radio Frequency Heterogeneous Integration, Shenzhen University, Shenzhen, China"
+              }
+            ],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "ORCID": "https://orcid.org/0000-0003-4534-7625",
+            "authenticated-orcid": false,
+            "given": "Lei",
+            "family": "Huang",
+            "sequence": "additional",
+            "affiliation": [
+              {
+                "name": "State Key Laboratory of Radio Frequency Heterogeneous Integration, Shenzhen University, Shenzhen, China"
+              }
+            ],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "ORCID": "https://orcid.org/0000-0001-8018-9103",
+            "authenticated-orcid": false,
+            "given": "Zhen",
+            "family": "Chen",
+            "sequence": "additional",
+            "affiliation": [
+              {
+                "name": "State Key Laboratory of Radio Frequency Heterogeneous Integration, Shenzhen University, Shenzhen, China"
+              }
+            ],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "ORCID": "https://orcid.org/0000-0002-5772-8428",
+            "authenticated-orcid": false,
+            "given": "Peichang",
+            "family": "Zhang",
+            "sequence": "additional",
+            "affiliation": [
+              {
+                "name": "State Key Laboratory of Radio Frequency Heterogeneous Integration, Shenzhen University, Shenzhen, China"
+              }
+            ],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "ORCID": "https://orcid.org/0000-0003-4030-2559",
+            "authenticated-orcid": false,
+            "given": "Mohamed",
+            "family": "Rihan",
+            "sequence": "additional",
+            "affiliation": [
+              {
+                "name": "Department of Communications Engineering, University of Bremen, Bremen, Germany"
+              }
+            ],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          }
+        ],
+        "container-title": [
+          "IEEE Wireless Communications Letters"
+        ],
+        "published": {
+          "date-parts": [
+            [
+              2024,
+              8
+            ]
+          ]
+        },
+        "type": "journal-article",
+        "URL": "https://doi.org/10.1109/lwc.2024.3402235",
+        "score": 57.986134
+      },
+      {
+        "title": [
+          "Joint beamforming and RSMA design for RIS-Aided ISAC systems"
+        ],
+        "DOI": "10.1007/s11235-025-01392-x",
+        "author": [
+          {
+            "given": "Madhuri",
+            "family": "Padwekar",
+            "sequence": "first",
+            "affiliation": [],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "given": "Sandeep Kumar",
+            "family": "Singh",
+            "sequence": "additional",
+            "affiliation": [],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "given": "Dipti",
+            "family": "Patra",
+            "sequence": "additional",
+            "affiliation": [],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          }
+        ],
+        "container-title": [
+          "Telecommunication Systems"
+        ],
+        "published": {
+          "date-parts": [
+            [
+              2025,
+              12,
+              29
+            ]
+          ]
+        },
+        "type": "journal-article",
+        "URL": "https://doi.org/10.1007/s11235-025-01392-x",
+        "score": 53.024437
+      },
+      {
+        "title": [
+          "BD-RIS Aided RSMA-ISAC Systems: Joint Rate Splitting and Beamforming Optimization"
+        ],
+        "DOI": "10.36227/techrxiv.175372823.30127824/v1",
+        "author": [
+          {
+            "ORCID": "https://orcid.org/0000-0002-2450-6028",
+            "authenticated-orcid": false,
+            "given": "Yingsong",
+            "family": "Li",
+            "sequence": "first",
+            "affiliation": [
+              {
+                "name": "School of Electronic and Information Engineering, Anhui University"
+              }
+            ],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "given": "Ying",
+            "family": "Xie",
+            "sequence": "additional",
+            "affiliation": [
+              {
+                "name": "School of Electronic and Information Engineering, Anhui University"
+              }
+            ],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "given": "Liping",
+            "family": "Li",
+            "sequence": "additional",
+            "affiliation": [
+              {
+                "name": "School of Electronic and Information Engineering, Anhui University"
+              }
+            ],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "given": "Ali",
+            "family": "Ghrayeb",
+            "sequence": "additional",
+            "affiliation": [
+              {
+                "name": "College of Science and Engineering, Hamad Bin Khalifa University"
+              }
+            ],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          }
+        ],
+        "published": {
+          "date-parts": [
+            [
+              2025,
+              7,
+              28
+            ]
+          ]
+        },
+        "type": "posted-content",
+        "URL": "https://doi.org/10.36227/techrxiv.175372823.30127824/v1",
+        "score": 52.723053
+      }
+    ]
+  },
+  {
+    "arxiv": "2503.19046",
+    "query": "Learning Beamforming Codebooks for Active Sensing with Reconfigurable Intelligent Surface",
+    "url": "https://api.crossref.org/works?query.bibliographic=Learning+Beamforming+Codebooks+for+Active+Sensing+with+Reconfigurable+Intelligent+Surface&rows=3&select=title%2CDOI%2Cauthor%2Ccontainer-title%2Cpublished%2Ctype%2CURL%2Cscore",
+    "items": [
+      {
+        "title": [
+          "Learning Beamforming Codebooks for Active Sensing With Reconfigurable Intelligent Surface"
+        ],
+        "DOI": "10.1109/twc.2025.3553886",
+        "author": [
+          {
+            "ORCID": "https://orcid.org/0000-0002-5066-103X",
+            "authenticated-orcid": false,
+            "given": "Zhongze",
+            "family": "Zhang",
+            "sequence": "first",
+            "affiliation": [
+              {
+                "name": "The Edward S. Rogers Sr. Department of Electrical and Computer Engineering, University of Toronto, Toronto, ON, Canada"
+              }
+            ],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "ORCID": "https://orcid.org/0000-0002-7453-422X",
+            "authenticated-orcid": false,
+            "given": "Wei",
+            "family": "Yu",
+            "sequence": "additional",
+            "affiliation": [
+              {
+                "name": "The Edward S. Rogers Sr. Department of Electrical and Computer Engineering, University of Toronto, Toronto, ON, Canada"
+              }
+            ],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          }
+        ],
+        "container-title": [
+          "IEEE Transactions on Wireless Communications"
+        ],
+        "published": {
+          "date-parts": [
+            [
+              2025,
+              8
+            ]
+          ]
+        },
+        "type": "journal-article",
+        "URL": "https://doi.org/10.1109/twc.2025.3553886",
+        "score": 56.22763
+      },
+      {
+        "title": [
+          "Site-Specific Design Optimization of Reconfigurable Intelligent Surface Codebooks"
+        ],
+        "DOI": "10.36227/techrxiv.174702454.42466502/v1",
+        "author": [
+          {
+            "ORCID": "https://orcid.org/0000-0002-4740-7874",
+            "authenticated-orcid": false,
+            "given": "Yuanzhi",
+            "family": "Liu",
+            "sequence": "first",
+            "affiliation": [],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "given": "Costas D.",
+            "family": "Sarris",
+            "sequence": "additional",
+            "affiliation": [],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          }
+        ],
+        "published": {
+          "date-parts": [
+            [
+              2025,
+              5,
+              12
+            ]
+          ]
+        },
+        "type": "posted-content",
+        "URL": "https://doi.org/10.36227/techrxiv.174702454.42466502/v1",
+        "score": 39.670444
+      },
+      {
+        "title": [
+          "Joint Active and Passive Beamforming Design for Reconfigurable Intelligent Surface Enabled Integrated Sensing and Communication"
+        ],
+        "DOI": "10.1109/tcomm.2023.3244246",
+        "author": [
+          {
+            "ORCID": "https://orcid.org/0000-0003-2801-9849",
+            "authenticated-orcid": false,
+            "given": "Zhe",
+            "family": "Xing",
+            "sequence": "first",
+            "affiliation": [
+              {
+                "name": "College of Electronics and Information Engineering, Tongji University, Shanghai, China"
+              }
+            ],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "ORCID": "https://orcid.org/0000-0002-2974-0972",
+            "authenticated-orcid": false,
+            "given": "Rui",
+            "family": "Wang",
+            "sequence": "additional",
+            "affiliation": [
+              {
+                "name": "College of Electronics and Information Engineering and the Shanghai Institute of Intelligent Science and Technology, Tongji University, Shanghai, China"
+              }
+            ],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "ORCID": "https://orcid.org/0000-0002-0433-6535",
+            "authenticated-orcid": false,
+            "given": "Xiaojun",
+            "family": "Yuan",
+            "sequence": "additional",
+            "affiliation": [
+              {
+                "name": "National Key Laboratory of Science and Technology on Communications, University of Electronic Science and Technology of China, Chengdu, China"
+              }
+            ],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          }
+        ],
+        "container-title": [
+          "IEEE Transactions on Communications"
+        ],
+        "published": {
+          "date-parts": [
+            [
+              2023,
+              4
+            ]
+          ]
+        },
+        "type": "journal-article",
+        "URL": "https://doi.org/10.1109/tcomm.2023.3244246",
+        "score": 36.801167
+      }
+    ]
+  },
+  {
+    "arxiv": "2407.03228",
+    "query": "Movable Antenna-enabled RIS-aided Integrated Sensing and Communication",
+    "url": "https://api.crossref.org/works?query.bibliographic=Movable+Antenna-enabled+RIS-aided+Integrated+Sensing+and+Communication&rows=3&select=title%2CDOI%2Cauthor%2Ccontainer-title%2Cpublished%2Ctype%2CURL%2Cscore",
+    "items": [
+      {
+        "title": [
+          "Movable Antenna-Enabled RIS-Aided Integrated Sensing and Communication"
+        ],
+        "DOI": "10.1109/tccn.2025.3559578",
+        "author": [
+          {
+            "ORCID": "https://orcid.org/0009-0008-3742-2115",
+            "authenticated-orcid": false,
+            "given": "Haisu",
+            "family": "Wu",
+            "sequence": "first",
+            "affiliation": [
+              {
+                "name": "National Mobile Communications Research Laboratory, Southeast University, Nanjing, China"
+              }
+            ],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "ORCID": "https://orcid.org/0000-0002-3477-1087",
+            "authenticated-orcid": false,
+            "given": "Hong",
+            "family": "Ren",
+            "sequence": "additional",
+            "affiliation": [
+              {
+                "name": "National Mobile Communications Research Laboratory, Southeast University, Nanjing, China"
+              }
+            ],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "ORCID": "https://orcid.org/0000-0001-5286-7958",
+            "authenticated-orcid": false,
+            "given": "Cunhua",
+            "family": "Pan",
+            "sequence": "additional",
+            "affiliation": [
+              {
+                "name": "National Mobile Communications Research Laboratory, Southeast University, Nanjing, China"
+              }
+            ],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "ORCID": "https://orcid.org/0009-0000-1659-1536",
+            "authenticated-orcid": false,
+            "given": "Yang",
+            "family": "Zhang",
+            "sequence": "additional",
+            "affiliation": [
+              {
+                "name": "National Mobile Communications Research Laboratory, Southeast University, Nanjing, China"
+              }
+            ],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          }
+        ],
+        "container-title": [
+          "IEEE Transactions on Cognitive Communications and Networking"
+        ],
+        "published": {
+          "date-parts": [
+            [
+              2025,
+              10
+            ]
+          ]
+        },
+        "type": "journal-article",
+        "URL": "https://doi.org/10.1109/tccn.2025.3559578",
+        "score": 53.511726
+      },
+      {
+        "title": [
+          "Secrecy Rate Maximization for Movable Antenna-Aided STAR-RIS in Integrated Sensing and Communication Systems"
+        ],
+        "DOI": "10.3390/e27121180",
+        "author": [
+          {
+            "given": "Guanyi",
+            "family": "Chen",
+            "sequence": "first",
+            "affiliation": [
+              {
+                "name": "Communication Research Center, Harbin Institute of Technology, Harbin 150001, China"
+              }
+            ],
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ]
+          },
+          {
+            "given": "Gang",
+            "family": "Wang",
+            "sequence": "additional",
+            "affiliation": [
+              {
+                "name": "Communication Research Center, Harbin Institute of Technology, Harbin 150001, China"
+              }
+            ],
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ]
+          },
+          {
+            "ORCID": "https://orcid.org/0000-0003-3835-4923",
+            "authenticated-orcid": false,
+            "given": "Jinlong",
+            "family": "Wang",
+            "sequence": "additional",
+            "affiliation": [
+              {
+                "name": "Communication Research Center, Harbin Institute of Technology, Harbin 150001, China"
+              },
+              {
+                "name": "School of Information Science and Engineering, Harbin Institute of Technology, Weihai 264209, China"
+              },
+              {
+                "name": "Shandong Provincial Key Laboratory of Marine Electronic Information and Intelligent Unmanned Systems, Harbin Institute of Technology, Weihai 264209, China"
+              },
+              {
+                "name": "Key Laboratory of Cross-Domain Synergy and Comprehensive Support for Unmanned Marine Systems, Ministry of Industry and Information Technology, Harbin Institute of Technology, Harbin 150001, China"
+              }
+            ],
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ]
+          },
+          {
+            "given": "Donglai",
+            "family": "Zhao",
+            "sequence": "additional",
+            "affiliation": [
+              {
+                "name": "School of Measurement-Control Technology and Communications Engineering, Harbin University of Science and Technology, Harbin 150080, China"
+              }
+            ],
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ]
+          },
+          {
+            "given": "Chenxu",
+            "family": "Wang",
+            "sequence": "additional",
+            "affiliation": [
+              {
+                "name": "School of Information Science and Engineering, Harbin Institute of Technology, Weihai 264209, China"
+              },
+              {
+                "name": "Shandong Provincial Key Laboratory of Marine Electronic Information and Intelligent Unmanned Systems, Harbin Institute of Technology, Weihai 264209, China"
+              },
+              {
+                "name": "Key Laboratory of Cross-Domain Synergy and Comprehensive Support for Unmanned Marine Systems, Ministry of Industry and Information Technology, Harbin Institute of Technology, Harbin 150001, China"
+              }
+            ],
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ]
+          },
+          {
+            "given": "Tao",
+            "family": "Jin",
+            "sequence": "additional",
+            "affiliation": [
+              {
+                "name": "School of Information Science and Engineering, Harbin Institute of Technology, Weihai 264209, China"
+              },
+              {
+                "name": "Shandong Provincial Key Laboratory of Marine Electronic Information and Intelligent Unmanned Systems, Harbin Institute of Technology, Weihai 264209, China"
+              },
+              {
+                "name": "Key Laboratory of Cross-Domain Synergy and Comprehensive Support for Unmanned Marine Systems, Ministry of Industry and Information Technology, Harbin Institute of Technology, Harbin 150001, China"
+              }
+            ],
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ]
+          },
+          {
+            "given": "Zhiquan",
+            "family": "Zhou",
+            "sequence": "additional",
+            "affiliation": [
+              {
+                "name": "School of Information Science and Engineering, Harbin Institute of Technology, Weihai 264209, China"
+              },
+              {
+                "name": "Shandong Provincial Key Laboratory of Marine Electronic Information and Intelligent Unmanned Systems, Harbin Institute of Technology, Weihai 264209, China"
+              },
+              {
+                "name": "Key Laboratory of Cross-Domain Synergy and Comprehensive Support for Unmanned Marine Systems, Ministry of Industry and Information Technology, Harbin Institute of Technology, Harbin 150001, China"
+              }
+            ],
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ]
+          }
+        ],
+        "container-title": [
+          "Entropy"
+        ],
+        "published": {
+          "date-parts": [
+            [
+              2025,
+              11,
+              21
+            ]
+          ]
+        },
+        "type": "journal-article",
+        "URL": "https://doi.org/10.3390/e27121180",
+        "score": 47.472046
+      },
+      {
+        "title": [
+          "Active RIS-Assisted Integrated Sensing and Communication with Movable Antenna Arrays"
+        ],
+        "DOI": "10.1109/globecom59602.2025.11431693",
+        "author": [
+          {
+            "given": "Ravi",
+            "family": "Patel",
+            "sequence": "first",
+            "affiliation": [
+              {
+                "name": "Indian Institute of Information Technology Guwahati,Department of ECE,Guwahati,India,781015"
+              }
+            ],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "given": "Keshav",
+            "family": "Singh",
+            "sequence": "additional",
+            "affiliation": [
+              {
+                "name": "National Sun Yat-Sen University,Institute of Communications Engineering,Taiwan,80424"
+              }
+            ],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "given": "Cunhua",
+            "family": "Pan",
+            "sequence": "additional",
+            "affiliation": [
+              {
+                "name": "Southeast University,School of Information Science and Engineering,China"
+              }
+            ],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "given": "Sudip",
+            "family": "Biswas",
+            "sequence": "additional",
+            "affiliation": [
+              {
+                "name": "Indian Institute of Information Technology Guwahati,Department of ECE,Guwahati,India,781015"
+              }
+            ],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          }
+        ],
+        "container-title": [
+          "GLOBECOM 2025 - 2025 IEEE Global Communications Conference"
+        ],
+        "published": {
+          "date-parts": [
+            [
+              2025,
+              12,
+              8
+            ]
+          ]
+        },
+        "type": "proceedings-article",
+        "URL": "https://doi.org/10.1109/globecom59602.2025.11431693",
+        "score": 44.634136
+      }
+    ]
+  },
+  {
+    "arxiv": "2407.11875",
+    "query": "Cramer-Rao Bound Minimization for Movable Antenna-Assisted Multiuser Integrated Sensing and Communications",
+    "url": "https://api.crossref.org/works?query.bibliographic=Cramer-Rao+Bound+Minimization+for+Movable+Antenna-Assisted+Multiuser+Integrated+Sensing+and+Communications&rows=3&select=title%2CDOI%2Cauthor%2Ccontainer-title%2Cpublished%2Ctype%2CURL%2Cscore",
+    "items": [
+      {
+        "title": [
+          "Cramér-Rao Bound Minimization for Movable Antenna-Assisted Multiuser Integrated Sensing and Communications"
+        ],
+        "DOI": "10.1109/lwc.2024.3468709",
+        "author": [
+          {
+            "ORCID": "https://orcid.org/0009-0007-4789-5488",
+            "authenticated-orcid": false,
+            "given": "Haoran",
+            "family": "Qin",
+            "sequence": "first",
+            "affiliation": [
+              {
+                "name": "Department of Electronic Engineering, Shanghai Jiao Tong University, Shanghai, China"
+              }
+            ],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "ORCID": "https://orcid.org/0000-0003-2133-8679",
+            "authenticated-orcid": false,
+            "given": "Wen",
+            "family": "Chen",
+            "sequence": "additional",
+            "affiliation": [
+              {
+                "name": "Department of Electronic Engineering, Shanghai Jiao Tong University, Shanghai, China"
+              }
+            ],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "ORCID": "https://orcid.org/0000-0002-0043-3266",
+            "authenticated-orcid": false,
+            "given": "Qingqing",
+            "family": "Wu",
+            "sequence": "additional",
+            "affiliation": [
+              {
+                "name": "Department of Electronic Engineering, Shanghai Jiao Tong University, Shanghai, China"
+              }
+            ],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "ORCID": "https://orcid.org/0000-0002-5263-1619",
+            "authenticated-orcid": false,
+            "given": "Ziheng",
+            "family": "Zhang",
+            "sequence": "additional",
+            "affiliation": [
+              {
+                "name": "Department of Electronic Engineering, Shanghai Jiao Tong University, Shanghai, China"
+              }
+            ],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "ORCID": "https://orcid.org/0000-0002-2928-193X",
+            "authenticated-orcid": false,
+            "given": "Zhendong",
+            "family": "Li",
+            "sequence": "additional",
+            "affiliation": [
+              {
+                "name": "School of Information and Communication Engineering, Xi&#x2019;an Jiaotong University, Xi&#x2019;an, China"
+              }
+            ],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "ORCID": "https://orcid.org/0000-0001-7907-2071",
+            "authenticated-orcid": false,
+            "given": "Nan",
+            "family": "Cheng",
+            "sequence": "additional",
+            "affiliation": [
+              {
+                "name": "State Key Laboratory of ISN, and the School of Telecommunications Engineering, Xidian University, Xi&#x2019;an, China"
+              }
+            ],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          }
+        ],
+        "container-title": [
+          "IEEE Wireless Communications Letters"
+        ],
+        "published": {
+          "date-parts": [
+            [
+              2024,
+              12
+            ]
+          ]
+        },
+        "type": "journal-article",
+        "URL": "https://doi.org/10.1109/lwc.2024.3468709",
+        "score": 65.59297
+      },
+      {
+        "title": [
+          "Cramer-Rao Bound Minimization for IRS-Enabled Multiuser Integrated Sensing and Communication with Extended Target"
+        ],
+        "DOI": "10.1109/icc45041.2023.10279464",
+        "author": [
+          {
+            "given": "Xianxin",
+            "family": "Song",
+            "sequence": "first",
+            "affiliation": [
+              {
+                "name": "School of Science and Engineering (SSE) and Future Network of Intelligence Institute (FNii), The Chinese University of Hong Kong (Shenzhen),Shenzhen,China"
+              }
+            ],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "given": "Tony Xiao",
+            "family": "Han",
+            "sequence": "additional",
+            "affiliation": [
+              {
+                "name": "Wireless Technology Lab,Huawei,Shenzhen,China"
+              }
+            ],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "given": "Jie",
+            "family": "Xu",
+            "sequence": "additional",
+            "affiliation": [
+              {
+                "name": "School of Science and Engineering (SSE) and Future Network of Intelligence Institute (FNii), The Chinese University of Hong Kong (Shenzhen),Shenzhen,China"
+              }
+            ],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          }
+        ],
+        "container-title": [
+          "ICC 2023 - IEEE International Conference on Communications"
+        ],
+        "published": {
+          "date-parts": [
+            [
+              2023,
+              5,
+              28
+            ]
+          ]
+        },
+        "type": "proceedings-article",
+        "URL": "https://doi.org/10.1109/icc45041.2023.10279464",
+        "score": 57.10166
+      },
+      {
+        "title": [
+          "Movable Antenna-Assisted Integrated Single-Target Passive Sensing and Multiuser Communication Systems"
+        ],
+        "DOI": "10.1109/apwcs67981.2025.11151861",
+        "author": [
+          {
+            "given": "Jaehong",
+            "family": "Kim",
+            "sequence": "first",
+            "affiliation": [
+              {
+                "name": "Chung-Ang University,School of Electrical and Electronics Engineering,Seoul,South Korea,06974"
+              }
+            ],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "given": "Jingon",
+            "family": "Joung",
+            "sequence": "additional",
+            "affiliation": [
+              {
+                "name": "Chung-Ang University,School of Electrical and Electronics Engineering,Seoul,South Korea,06974"
+              }
+            ],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          }
+        ],
+        "container-title": [
+          "2025 IEEE VTS Asia Pacific Wireless Communications Symposium (APWCS)"
+        ],
+        "published": {
+          "date-parts": [
+            [
+              2025,
+              8,
+              20
+            ]
+          ]
+        },
+        "type": "proceedings-article",
+        "URL": "https://doi.org/10.1109/apwcs67981.2025.11151861",
+        "score": 51.58013
+      }
+    ]
+  },
+  {
+    "arxiv": "2501.15880",
+    "query": "Movable Antennas Meet Intelligent Reflecting Surface: Friends or Foes?",
+    "url": "https://api.crossref.org/works?query.bibliographic=Movable+Antennas+Meet+Intelligent+Reflecting+Surface%3A+Friends+or+Foes%3F&rows=2&select=title%2CDOI%2Cauthor%2Ccontainer-title%2Cpublished%2Ctype%2CURL%2Cscore",
+    "items": [
+      {
+        "title": [
+          "Movable Antennas Meet Intelligent Reflecting Surface: Friends or Foes?"
+        ],
+        "DOI": "10.1109/tcomm.2025.3588579",
+        "author": [
+          {
+            "ORCID": "https://orcid.org/0009-0002-8458-4260",
+            "authenticated-orcid": false,
+            "given": "Xin",
+            "family": "Wei",
+            "sequence": "first",
+            "affiliation": [
+              {
+                "name": "National Key Laboratory of Wireless Communications, University of Electronic Science and Technology of China, Chengdu, China"
+              }
+            ],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "ORCID": "https://orcid.org/0000-0002-8113-4283",
+            "authenticated-orcid": false,
+            "given": "Weidong",
+            "family": "Mei",
+            "sequence": "additional",
+            "affiliation": [
+              {
+                "name": "National Key Laboratory of Wireless Communications, University of Electronic Science and Technology of China, Chengdu, China"
+              }
+            ],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "ORCID": "https://orcid.org/0000-0002-0043-3266",
+            "authenticated-orcid": false,
+            "given": "Qingqing",
+            "family": "Wu",
+            "sequence": "additional",
+            "affiliation": [
+              {
+                "name": "Department of Electronic Engineering, Shanghai Jiao Tong University, Shanghai, China"
+              }
+            ],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "given": "Qiaoran",
+            "family": "Jia",
+            "sequence": "additional",
+            "affiliation": [
+              {
+                "name": "Glasgow College, University of Electronic Science and Technology of China, Chengdu, China"
+              }
+            ],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "ORCID": "https://orcid.org/0000-0003-2864-373X",
+            "authenticated-orcid": false,
+            "given": "Boyu",
+            "family": "Ning",
+            "sequence": "additional",
+            "affiliation": [
+              {
+                "name": "National Key Laboratory of Wireless Communications, University of Electronic Science and Technology of China, Chengdu, China"
+              }
+            ],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "ORCID": "https://orcid.org/0000-0003-2943-9861",
+            "authenticated-orcid": false,
+            "given": "Zhi",
+            "family": "Chen",
+            "sequence": "additional",
+            "affiliation": [
+              {
+                "name": "National Key Laboratory of Wireless Communications, University of Electronic Science and Technology of China, Chengdu, China"
+              }
+            ],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "ORCID": "https://orcid.org/0000-0001-7427-4723",
+            "authenticated-orcid": false,
+            "given": "Jun",
+            "family": "Fang",
+            "sequence": "additional",
+            "affiliation": [
+              {
+                "name": "National Key Laboratory of Wireless Communications, University of Electronic Science and Technology of China, Chengdu, China"
+              }
+            ],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          }
+        ],
+        "container-title": [
+          "IEEE Transactions on Communications"
+        ],
+        "published": {
+          "date-parts": [
+            [
+              2025,
+              11
+            ]
+          ]
+        },
+        "type": "journal-article",
+        "URL": "https://doi.org/10.1109/tcomm.2025.3588579",
+        "score": 58.955925
+      },
+      {
+        "title": [
+          "Movable Antennas Meet Intelligent Reflecting Surface: When Do We Need Movable Antennas?"
+        ],
+        "DOI": "10.1109/wcnc61545.2025.10978634",
+        "author": [
+          {
+            "given": "Xin",
+            "family": "Wei",
+            "sequence": "first",
+            "affiliation": [
+              {
+                "name": "University of Electronic Science and Technology of China,National Key Laboratory of Wireless Communications,Chengdu,China"
+              }
+            ],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "given": "Weidong",
+            "family": "Mei",
+            "sequence": "additional",
+            "affiliation": [
+              {
+                "name": "University of Electronic Science and Technology of China,National Key Laboratory of Wireless Communications,Chengdu,China"
+              }
+            ],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "given": "Qingqing",
+            "family": "Wu",
+            "sequence": "additional",
+            "affiliation": [
+              {
+                "name": "Shanghai Jiao Tong University,Department of Electronic Engineering,Shanghai,China"
+              }
+            ],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "given": "Boyu",
+            "family": "Ning",
+            "sequence": "additional",
+            "affiliation": [
+              {
+                "name": "University of Electronic Science and Technology of China,National Key Laboratory of Wireless Communications,Chengdu,China"
+              }
+            ],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "given": "Zhi",
+            "family": "Chen",
+            "sequence": "additional",
+            "affiliation": [
+              {
+                "name": "University of Electronic Science and Technology of China,National Key Laboratory of Wireless Communications,Chengdu,China"
+              }
+            ],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          }
+        ],
+        "container-title": [
+          "2025 IEEE Wireless Communications and Networking Conference (WCNC)"
+        ],
+        "published": {
+          "date-parts": [
+            [
+              2025,
+              3,
+              24
+            ]
+          ]
+        },
+        "type": "proceedings-article",
+        "URL": "https://doi.org/10.1109/wcnc61545.2025.10978634",
+        "score": 50.05682
+      }
+    ]
+  },
+  {
+    "arxiv": "2503.06080",
+    "query": "Fluid Antenna Meets RIS: Random Matrix Analysis and Two-Timescale Design for Multi-User Communications",
+    "url": "https://api.crossref.org/works?query.bibliographic=Fluid+Antenna+Meets+RIS%3A+Random+Matrix+Analysis+and+Two-Timescale+Design+for+Multi-User+Communications&rows=2&select=title%2CDOI%2Cauthor%2Ccontainer-title%2Cpublished%2Ctype%2CURL%2Cscore",
+    "items": [
+      {
+        "title": [
+          "Fluid Antenna Meets RIS: Random Matrix Analysis and Two-Timescale Design for Multi-User Communications"
+        ],
+        "DOI": "10.1109/jsac.2025.3615911",
+        "author": [
+          {
+            "ORCID": "https://orcid.org/0000-0002-8414-3556",
+            "authenticated-orcid": false,
+            "given": "Xin",
+            "family": "Zhang",
+            "sequence": "first",
+            "affiliation": [
+              {
+                "name": "School of Cyber Science and Technology, Beihang University, Beijing, China"
+              }
+            ],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "ORCID": "https://orcid.org/0000-0001-6562-8470",
+            "authenticated-orcid": false,
+            "given": "Dongfang",
+            "family": "Xu",
+            "sequence": "additional",
+            "affiliation": [
+              {
+                "name": "Division of Integrative Systems and Design, The Hong Kong University of Science and Technology, Kowloon, Hong Kong"
+              }
+            ],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "ORCID": "https://orcid.org/0000-0003-3170-8952",
+            "authenticated-orcid": false,
+            "given": "Jingjing",
+            "family": "Wang",
+            "sequence": "additional",
+            "affiliation": [
+              {
+                "name": "School of Cyber Science and Technology, Beihang University, Beijing, China"
+              }
+            ],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "ORCID": "https://orcid.org/0000-0001-6316-8415",
+            "authenticated-orcid": false,
+            "given": "Shenghui",
+            "family": "Song",
+            "sequence": "additional",
+            "affiliation": [
+              {
+                "name": "Division of Integrative Systems and Design and the Department of Electronic and Computer Engineering, The Hong Kong University of Science and Technology, Kowloon, Hong Kong"
+              }
+            ],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "ORCID": "https://orcid.org/0000-0001-6400-712X",
+            "authenticated-orcid": false,
+            "given": "Derrick",
+            "family": "Wing Kwan Ng",
+            "sequence": "additional",
+            "affiliation": [
+              {
+                "name": "School of Electrical Engineering and Telecommunications, University of New South Wales, Sydney, NSW, Australia"
+              }
+            ],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "ORCID": "https://orcid.org/0000-0001-8941-8080",
+            "authenticated-orcid": false,
+            "given": "Mérouane",
+            "family": "Debbah",
+            "sequence": "additional",
+            "affiliation": [
+              {
+                "name": "Department of Computer and Information Engineering, KU 6G Research Center, Khalifa University, Abu Dhabi, United Arab Emirates"
+              }
+            ],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          }
+        ],
+        "container-title": [
+          "IEEE Journal on Selected Areas in Communications"
+        ],
+        "published": {
+          "date-parts": [
+            [
+              2026
+            ]
+          ]
+        },
+        "type": "journal-article",
+        "URL": "https://doi.org/10.1109/jsac.2025.3615911",
+        "score": 70.96489
+      },
+      {
+        "title": [
+          "FAS-RIS-Aided Multi-User Systems With Linear Precoding: Random Matrix Analysis and Two-Timescale Design"
+        ],
+        "DOI": "10.1109/globecom59602.2025.11432288",
+        "author": [
+          {
+            "given": "Xin",
+            "family": "Zhang",
+            "sequence": "first",
+            "affiliation": [
+              {
+                "name": "Beihang University,School of Cyber Science and Technology,Beijing,China"
+              }
+            ],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "given": "Dongfang",
+            "family": "Xu",
+            "sequence": "additional",
+            "affiliation": [
+              {
+                "name": "HKUST,Department of Electronic and Computer Engineering,Hong Kong,China"
+              }
+            ],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "given": "Jingjing",
+            "family": "Wang",
+            "sequence": "additional",
+            "affiliation": [
+              {
+                "name": "Beihang University,School of Cyber Science and Technology,Beijing,China"
+              }
+            ],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "given": "Shenghui",
+            "family": "Song",
+            "sequence": "additional",
+            "affiliation": [
+              {
+                "name": "HKUST,Department of Electronic and Computer Engineering,Hong Kong,China"
+              }
+            ],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "given": "Chi-Ying",
+            "family": "Tsui",
+            "sequence": "additional",
+            "affiliation": [
+              {
+                "name": "HKUST,Department of Electronic and Computer Engineering,Hong Kong,China"
+              }
+            ],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "given": "Derrick Wing",
+            "family": "Kwan Ng",
+            "sequence": "additional",
+            "affiliation": [
+              {
+                "name": "University of New South Wales,School of Electrical Engineering and Telecommunications,Sydney,Australia"
+              }
+            ],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "given": "Mérouane",
+            "family": "Debbah",
+            "sequence": "additional",
+            "affiliation": [
+              {
+                "name": "Khalifa University,Department of Computer and Information Engineering,Abu Dhabi,UAE"
+              }
+            ],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          }
+        ],
+        "container-title": [
+          "GLOBECOM 2025 - 2025 IEEE Global Communications Conference"
+        ],
+        "published": {
+          "date-parts": [
+            [
+              2025,
+              12,
+              8
+            ]
+          ]
+        },
+        "type": "proceedings-article",
+        "URL": "https://doi.org/10.1109/globecom59602.2025.11432288",
+        "score": 54.73998
+      }
+    ]
+  },
+  {
+    "arxiv": "2604.02181",
+    "query": "Grey-Box Bayesian Optimization for ISAC in Fluid-Antenna Assisted Air-Ground Network",
+    "url": "https://api.crossref.org/works?query.bibliographic=Grey-Box+Bayesian+Optimization+for+ISAC+in+Fluid-Antenna+Assisted+Air-Ground+Network&rows=2&select=title%2CDOI%2Cauthor%2Ccontainer-title%2Cpublished%2Ctype%2CURL%2Cscore",
+    "items": [
+      {
+        "title": [
+          "Grey-Box Bayesian Optimization for ISAC in Fluid-Antenna Assisted Air-Ground Network"
+        ],
+        "DOI": "10.1109/twc.2026.3743126",
+        "author": [
+          {
+            "ORCID": "https://orcid.org/0009-0002-6657-7200",
+            "authenticated-orcid": false,
+            "given": "Gangyong",
+            "family": "Zhu",
+            "sequence": "first",
+            "affiliation": [],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "ORCID": "https://orcid.org/0000-0002-1233-1507",
+            "authenticated-orcid": false,
+            "given": "Jia",
+            "family": "Yan",
+            "sequence": "additional",
+            "affiliation": [],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "ORCID": "https://orcid.org/0000-0002-9638-7048",
+            "authenticated-orcid": false,
+            "given": "Miaowen",
+            "family": "Wen",
+            "sequence": "additional",
+            "affiliation": [],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "ORCID": "https://orcid.org/0000-0002-8105-7927",
+            "authenticated-orcid": false,
+            "given": "Shijian",
+            "family": "Gao",
+            "sequence": "additional",
+            "affiliation": [],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          }
+        ],
+        "container-title": [
+          "IEEE Transactions on Wireless Communications"
+        ],
+        "published": {
+          "date-parts": [
+            [
+              2026
+            ]
+          ]
+        },
+        "type": "journal-article",
+        "URL": "https://doi.org/10.1109/twc.2026.3743126",
+        "score": 70.240524
+      },
+      {
+        "title": [
+          "Thinking Inside the Box: A Tutorial on Grey-Box Bayesian Optimization"
+        ],
+        "DOI": "10.1109/wsc52266.2021.9715343",
+        "author": [
+          {
+            "given": "Raul",
+            "family": "Astudillo",
+            "sequence": "first",
+            "affiliation": [
+              {
+                "name": "School of Operations Research and Information Engineering, Cornell University,Ithaca,NY,USA,14853"
+              }
+            ],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "given": "Peter I.",
+            "family": "Frazier",
+            "sequence": "additional",
+            "affiliation": [
+              {
+                "name": "School of Operations Research and Information Engineering, Cornell University,Ithaca,NY,USA,14853"
+              }
+            ],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          }
+        ],
+        "container-title": [
+          "2021 Winter Simulation Conference (WSC)"
+        ],
+        "published": {
+          "date-parts": [
+            [
+              2021,
+              12,
+              12
+            ]
+          ]
+        },
+        "type": "proceedings-article",
+        "URL": "https://doi.org/10.1109/wsc52266.2021.9715343",
+        "score": 33.793594
+      }
+    ]
+  },
+  {
+    "arxiv": "2409.20472",
+    "query": "Fluid Antenna-Assisted Near-Field System",
+    "url": "https://api.crossref.org/works?query.bibliographic=Fluid+Antenna-Assisted+Near-Field+System&rows=2&select=title%2CDOI%2Cauthor%2Ccontainer-title%2Cpublished%2Ctype%2CURL%2Cscore",
+    "items": [
+      {
+        "title": [
+          "Location Optimization for Fluid Antenna-Assisted Near-Field System"
+        ],
+        "DOI": "10.1109/gcwkshp64532.2024.11100945",
+        "author": [
+          {
+            "given": "Jingxuan",
+            "family": "Zhou",
+            "sequence": "first",
+            "affiliation": [
+              {
+                "name": "King&#x2019;s College London,Department of Engineering,London,UK"
+              }
+            ],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "given": "Yinchao",
+            "family": "Yang",
+            "sequence": "additional",
+            "affiliation": [
+              {
+                "name": "King&#x2019;s College London,Department of Engineering,London,UK"
+              }
+            ],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "given": "Zhaohui",
+            "family": "Yang",
+            "sequence": "additional",
+            "affiliation": [
+              {
+                "name": "Zhejiang University,College of Information Science and Electronic Engineering,Hangzhou,China"
+              }
+            ],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "given": "Wei",
+            "family": "Xu",
+            "sequence": "additional",
+            "affiliation": [
+              {
+                "name": "School of Information, Science and Engineering, Southeast University,Nanjing,China"
+              }
+            ],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "given": "Mohammad",
+            "family": "Shikh-Bahaei",
+            "sequence": "additional",
+            "affiliation": [
+              {
+                "name": "King&#x2019;s College London,Department of Engineering,London,UK"
+              }
+            ],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          }
+        ],
+        "container-title": [
+          "2024 IEEE Globecom Workshops (GC Wkshps)"
+        ],
+        "published": {
+          "date-parts": [
+            [
+              2024,
+              12,
+              8
+            ]
+          ]
+        },
+        "type": "proceedings-article",
+        "URL": "https://doi.org/10.1109/gcwkshp64532.2024.11100945",
+        "score": 35.501003
+      },
+      {
+        "title": [
+          "RIS-assisted Near-Field Localization with Multiple-Antenna User Equipment"
+        ],
+        "DOI": "10.2139/ssrn.6865802",
+        "author": [
+          {
+            "given": "Liang",
+            "family": "Yonglian",
+            "sequence": "first",
+            "affiliation": [],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "ORCID": "https://orcid.org/0000-0002-6612-3199",
+            "authenticated-orcid": true,
+            "given": "Huiqin",
+            "family": "Du",
+            "sequence": "additional",
+            "affiliation": [],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          }
+        ],
+        "published": {
+          "date-parts": [
+            [
+              2026
+            ]
+          ]
+        },
+        "type": "posted-content",
+        "URL": "https://doi.org/10.2139/ssrn.6865802",
+        "score": 30.300232
+      }
+    ]
+  },
+  {
+    "arxiv": "2501.01281",
+    "query": "Towards Intelligent Antenna Positioning: Leveraging DRL for FAS-Aided ISAC Systems",
+    "url": "https://api.crossref.org/works?query.bibliographic=Towards+Intelligent+Antenna+Positioning%3A+Leveraging+DRL+for+FAS-Aided+ISAC+Systems&rows=2&select=title%2CDOI%2Cauthor%2Ccontainer-title%2Cpublished%2Ctype%2CURL%2Cscore",
+    "items": [
+      {
+        "title": [
+          "Toward Intelligent Antenna Positioning: Leveraging DRL for FAS-Aided ISAC Systems"
+        ],
+        "DOI": "10.1109/jiot.2025.3576235",
+        "author": [
+          {
+            "given": "Shunxing",
+            "family": "Yang",
+            "sequence": "first",
+            "affiliation": [
+              {
+                "name": "China Telecom Research Institute, Guangzhou, China"
+              }
+            ],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "ORCID": "https://orcid.org/0009-0005-2390-0487",
+            "authenticated-orcid": false,
+            "given": "Junteng",
+            "family": "Yao",
+            "sequence": "additional",
+            "affiliation": [
+              {
+                "name": "Faculty of Electrical Engineering and Computer Science, Ningbo University, Ningbo, China"
+              }
+            ],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "ORCID": "https://orcid.org/0000-0003-0619-0338",
+            "authenticated-orcid": false,
+            "given": "Jie",
+            "family": "Tang",
+            "sequence": "additional",
+            "affiliation": [
+              {
+                "name": "School of Electronic and Information Engineering, South China University of Technology, Guangzhou, China"
+              }
+            ],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "ORCID": "https://orcid.org/0009-0003-7898-4441",
+            "authenticated-orcid": false,
+            "given": "Tuo",
+            "family": "Wu",
+            "sequence": "additional",
+            "affiliation": [
+              {
+                "name": "School of Electrical and Electronic Engineering, Nanyang Technological University, Jurong West, Singapore"
+              }
+            ],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "ORCID": "https://orcid.org/0000-0002-5168-0160",
+            "authenticated-orcid": false,
+            "given": "Maged",
+            "family": "Elkashlan",
+            "sequence": "additional",
+            "affiliation": [
+              {
+                "name": "School of Electronic Engineering and Computer Science, Queen Mary University of London, London, U.K."
+              }
+            ],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "ORCID": "https://orcid.org/0000-0002-9307-2120",
+            "authenticated-orcid": false,
+            "given": "Chau",
+            "family": "Yuen",
+            "sequence": "additional",
+            "affiliation": [
+              {
+                "name": "School of Electrical and Electronic Engineering, Nanyang Technological University, Jurong West, Singapore"
+              }
+            ],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "ORCID": "https://orcid.org/0000-0001-8941-8080",
+            "authenticated-orcid": false,
+            "given": "Mérouane",
+            "family": "Debbah",
+            "sequence": "additional",
+            "affiliation": [
+              {
+                "name": "Department of Computer and Information Engineering, KU 6G Research Center, Khalifa University, Abu Dhabi, UAE"
+              }
+            ],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "ORCID": "https://orcid.org/0000-0003-3364-8084",
+            "authenticated-orcid": false,
+            "given": "Hyundong",
+            "family": "Shin",
+            "sequence": "additional",
+            "affiliation": [
+              {
+                "name": "Department of Electronic Engineering, Kyung Hee University, Yongin, Gyeonggi, South Korea"
+              }
+            ],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "ORCID": "https://orcid.org/0000-0001-6089-0509",
+            "authenticated-orcid": false,
+            "given": "Matthew",
+            "family": "Valenti",
+            "sequence": "additional",
+            "affiliation": [
+              {
+                "name": "Lane Department of Computer Science and Electrical Engineering, West Virginia University, Morgantown, WV, USA"
+              }
+            ],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          }
+        ],
+        "container-title": [
+          "IEEE Internet of Things Journal"
+        ],
+        "published": {
+          "date-parts": [
+            [
+              2025,
+              8,
+              15
+            ]
+          ]
+        },
+        "type": "journal-article",
+        "URL": "https://doi.org/10.1109/jiot.2025.3576235",
+        "score": 59.999332
+      },
+      {
+        "title": [
+          "DRL-Assisted joint power allocation and antenna positioning in movable-Antenna systems with finite alphabet inputs"
+        ],
+        "DOI": "10.1016/j.phycom.2025.102965",
+        "author": [
+          {
+            "ORCID": "https://orcid.org/0000-0002-2253-6004",
+            "authenticated-orcid": false,
+            "given": "Ayaz",
+            "family": "Ahmad",
+            "sequence": "first",
+            "affiliation": [],
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ]
+          }
+        ],
+        "container-title": [
+          "Physical Communication"
+        ],
+        "published": {
+          "date-parts": [
+            [
+              2026,
+              2
+            ]
+          ]
+        },
+        "type": "journal-article",
+        "URL": "https://doi.org/10.1016/j.phycom.2025.102965",
+        "score": 33.76229
+      }
+    ]
+  },
+  {
+    "arxiv": "2506.07610",
+    "query": "Robust Transceiver Design for RIS Enhanced Dual-Functional Radar-Communication with Movable Antenna",
+    "url": "https://api.crossref.org/works?query.bibliographic=Robust+Transceiver+Design+for+RIS+Enhanced+Dual-Functional+Radar-Communication+with+Movable+Antenna&rows=2&select=title%2CDOI%2Cauthor%2Ccontainer-title%2Cpublished%2Ctype%2CURL%2Cscore",
+    "items": [
+      {
+        "title": [
+          "Joint Transceiver Design for RIS Enhanced Dual-Functional Radar-Communication with Movable Antenna"
+        ],
+        "DOI": "10.1109/iccworkshops67674.2025.11162245",
+        "author": [
+          {
+            "given": "Ran",
+            "family": "Yang",
+            "sequence": "first",
+            "affiliation": [
+              {
+                "name": "UESTC,National Key Laboratory of Wireless Communications,Chengdu,China"
+              }
+            ],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "given": "Zheng",
+            "family": "Dong",
+            "sequence": "additional",
+            "affiliation": [
+              {
+                "name": "Shandong University,School of Information Science and Engineering,Qingdao,China"
+              }
+            ],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "given": "Peng",
+            "family": "Cheng",
+            "sequence": "additional",
+            "affiliation": [
+              {
+                "name": "La Trobe University,Department of Computer Science and Information Technology,Australia"
+              }
+            ],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "given": "Yue",
+            "family": "Xiu",
+            "sequence": "additional",
+            "affiliation": [
+              {
+                "name": "UESTC,National Key Laboratory of Wireless Communications,Chengdu,China"
+              }
+            ],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "given": "Yan",
+            "family": "Li",
+            "sequence": "additional",
+            "affiliation": [
+              {
+                "name": "UESTC,National Key Laboratory of Wireless Communications,Chengdu,China"
+              }
+            ],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "given": "Ning",
+            "family": "Wei",
+            "sequence": "additional",
+            "affiliation": [
+              {
+                "name": "UESTC,National Key Laboratory of Wireless Communications,Chengdu,China"
+              }
+            ],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          }
+        ],
+        "container-title": [
+          "2025 IEEE International Conference on Communications Workshops (ICC Workshops)"
+        ],
+        "published": {
+          "date-parts": [
+            [
+              2025,
+              6,
+              8
+            ]
+          ]
+        },
+        "type": "proceedings-article",
+        "URL": "https://doi.org/10.1109/iccworkshops67674.2025.11162245",
+        "score": 66.118065
+      },
+      {
+        "title": [
+          "Robust Transceiver Design for RIS Enhanced Dual-Functional Radar-Communication With Movable Antenna"
+        ],
+        "DOI": "10.1109/tvt.2026.3662466",
+        "author": [
+          {
+            "ORCID": "https://orcid.org/0000-0002-0435-7926",
+            "authenticated-orcid": false,
+            "given": "Ran",
+            "family": "Yang",
+            "sequence": "first",
+            "affiliation": [
+              {
+                "name": "National Key Laboratory of Wireless Communications, University of Electronic Science and Technology of China, Chengdu, China"
+              }
+            ],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "ORCID": "https://orcid.org/0000-0002-9224-324X",
+            "authenticated-orcid": false,
+            "given": "Zheng",
+            "family": "Dong",
+            "sequence": "additional",
+            "affiliation": [
+              {
+                "name": "School of Information Science and Engineering, Shandong University, Qingdao, China"
+              }
+            ],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "ORCID": "https://orcid.org/0000-0002-8204-5389",
+            "authenticated-orcid": false,
+            "given": "Yue",
+            "family": "Xiu",
+            "sequence": "additional",
+            "affiliation": [
+              {
+                "name": "National Key Laboratory of Wireless Communications, University of Electronic Science and Technology of China, Chengdu, China"
+              }
+            ],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "ORCID": "https://orcid.org/0000-0002-8656-1946",
+            "authenticated-orcid": false,
+            "given": "Guangyi",
+            "family": "Liu",
+            "sequence": "additional",
+            "affiliation": [
+              {
+                "name": "China Mobile Research Institute, Beijing, China"
+              }
+            ],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "ORCID": "https://orcid.org/0000-0003-0510-2666",
+            "authenticated-orcid": false,
+            "given": "Wanting",
+            "family": "Lyu",
+            "sequence": "additional",
+            "affiliation": [
+              {
+                "name": "National Key Laboratory of Wireless Communications, University of Electronic Science and Technology of China, Chengdu, China"
+              }
+            ],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "given": "Xiangxin",
+            "family": "Meng",
+            "sequence": "additional",
+            "affiliation": [
+              {
+                "name": "National Key Laboratory of Wireless Communications, University of Electronic Science and Technology of China, Chengdu, China"
+              }
+            ],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "given": "Yan",
+            "family": "Li",
+            "sequence": "additional",
+            "affiliation": [
+              {
+                "name": "National Key Laboratory of Wireless Communications, University of Electronic Science and Technology of China, Chengdu, China"
+              }
+            ],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "ORCID": "https://orcid.org/0000-0002-3936-7526",
+            "authenticated-orcid": false,
+            "given": "Ning",
+            "family": "Wei",
+            "sequence": "additional",
+            "affiliation": [
+              {
+                "name": "National Key Laboratory of Wireless Communications, University of Electronic Science and Technology of China, Chengdu, China"
+              }
+            ],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          }
+        ],
+        "container-title": [
+          "IEEE Transactions on Vehicular Technology"
+        ],
+        "published": {
+          "date-parts": [
+            [
+              2026,
+              7
+            ]
+          ]
+        },
+        "type": "journal-article",
+        "URL": "https://doi.org/10.1109/tvt.2026.3662466",
+        "score": 65.31507
+      }
+    ]
+  }
+]
