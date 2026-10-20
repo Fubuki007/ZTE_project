@@ -5,6 +5,10 @@ RIS_stage3_ai/.venv*/
 RIS_stage3_ai/results_*/
 RIS_stage3_ai/data_*/
 RIS_stage3_ai/checkpoints_*/
+RIS_stage3_ai/.ai_server_resource_lock/
+RIS_stage3_ai/runs/
+RIS_stage3_ai/releases/
+RIS_stage3_ai/wheels/
 .matlab_prefs*/
 __pycache__/
 tmp/

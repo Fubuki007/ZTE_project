@@ -17,7 +17,7 @@
 - `run_comparison.py` / `aggregate.py`：冻结模型的六方法配对比较、统一目标匹配、三项 RMSE/CI、失败审计与固定配置耗时。
 - `profile_runtime.py` / `setup_server_env.sh`：独立 GPU 环境和全尺寸运行时间试验，试验不等于正式训练。
 
-G3 的数据、训练、验证选模及六方法 RMSE 比较脚本已实现，使用说明见 [G3_DATA.md](G3_DATA.md)、[G3_TRAINING.md](G3_TRAINING.md) 和 [G3_COMPARISON.md](G3_COMPARISON.md)。相同时间预算扫描、后台服务器调度仍待实现。当前本地冒烟训练不代表服务器正式训练完成，也不能证明 RMSE 改善。
+G3 的数据、训练、验证选模、六方法 RMSE、同时间预算扫描及后台执行脚本已实现。使用说明见 [G3_DATA.md](G3_DATA.md)、[G3_TRAINING.md](G3_TRAINING.md)、[G3_COMPARISON.md](G3_COMPARISON.md) 和 [G3_BUDGET_SERVER.md](G3_BUDGET_SERVER.md)。通俗原理见 [AI_EXPLAINED.md](AI_EXPLAINED.md)。本地冒烟训练不代表服务器正式训练完成，也不能证明 RMSE 改善。
 
 ## 本地运行（仅数学与冒烟检查）
 

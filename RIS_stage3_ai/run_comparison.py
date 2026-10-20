@@ -139,17 +139,20 @@ def design_method(method, ctx, model, trained, untrained, p):
 
 
 def run_method(method, case, cfg_sim, cfg_est, model, ctx, coarse, rc, variance,
-               trained, untrained, p, work, context_seconds, coarse_seconds):
+               trained, untrained, p, work, context_seconds, coarse_seconds, *, prepared=None):
     device = trained.raw_w_steps.device
     if device.type == 'cuda':
         torch.cuda.synchronize(device)
     started = time.perf_counter()
-    w, phase, design = design_method(method, ctx, model, trained, untrained, p)
+    w, phase, design = (design_method(method, ctx, model, trained, untrained, p)
+                        if prepared is None else prepared)
     if phase is not None and not audit_design(ctx, w, phase)['feasible']:
         raise InfeasibleDesign('Final independent transmit audit failed')
     if device.type == 'cuda':
         torch.cuda.synchronize(device)
     design_seconds = time.perf_counter()-started + (0. if method == 'dd_joint' else context_seconds)
+    if prepared is not None:
+        design_seconds = design['budget_timing']['candidate_ready_seconds']
     times = np.arange(cfg_sim.lc, cfg_sim.lc+cfg_sim.lf)*cfg_sim.symbol_time
     start = time.perf_counter()
     fine = simulate_block(cfg_sim, w, phase, times, variance, case['fine_seed'],

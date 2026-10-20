@@ -44,10 +44,13 @@ class RecordedResult(unittest.TextTestResult):
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--suite', choices=('design', 'dataset', 'training', 'comparison'), default='design')
+    parser.add_argument('--suite', choices=('design', 'dataset', 'training', 'comparison', 'budget'), default='design')
     parser.add_argument('--output', type=Path)
     args = parser.parse_args()
-    if args.suite == 'comparison':
+    if args.suite == 'budget':
+        from . import test_budget
+        module = test_budget
+    elif args.suite == 'comparison':
         from . import test_comparison
         module = test_comparison
     elif args.suite == 'training':
@@ -59,7 +62,7 @@ def main():
     else:
         module = test_design
     if args.output is None:
-        args.output = Path('RIS_stage3_ai/evidence')/dict(design='g2_design_checks.json', dataset='g3_dataset_checks.json', training='g3_training_checks.json', comparison='g3_comparison_checks.json')[args.suite]
+        args.output = Path('RIS_stage3_ai/evidence')/dict(design='g2_design_checks.json', dataset='g3_dataset_checks.json', training='g3_training_checks.json', comparison='g3_comparison_checks.json', budget='g3_budget_checks.json')[args.suite]
     root = Path(__file__).resolve().parent.parent
     files = sorted((root/'RIS_stage3_ai').glob('*.py'))+[root/'RIS_stage3/stage3_model.py', root/'RIS_stage3/streaming.py', root/'RIS_stage3_ai/requirements.txt', root/'RIS_stage3_ai/experiment_v1.json']
     files += [root/'RIS_stage3_ai/training_v1.json']
