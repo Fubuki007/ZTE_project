@@ -1,0 +1,14 @@
+{
+  "host": "jzm",
+  "release": "/home/jzm123/AAA_ZTEproject/RIS_stage3_ai/releases/pilot_20261020_g3c",
+  "environment": "/home/jzm123/AAA_ZTEproject/RIS_stage3_ai/.venv311",
+  "bundle_sha256": "6af017c52c55f7865ac18e8207aa377755d96b88701c5a9c2417fa45ba9bdd98",
+  "pilot_manifest_id": "11e392667d54180b85cbfc6cb0db398de780f96ab2aafcd7315a0c2dc87c3f39",
+  "full_dimensions_verified": true,
+  "local_source_matches_server": true,
+  "server_math_checks_passed": 9,
+  "formal_training_started": false,
+  "formal_comparison_started": false,
+  "profiling_complete": true,
+  "scope": "runtime pilot only; original simulation environment unchanged"
+}

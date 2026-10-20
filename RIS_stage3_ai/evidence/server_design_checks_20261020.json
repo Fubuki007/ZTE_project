@@ -1,0 +1,89 @@
+{
+  "scope": "LOCAL_SMOKE_NOT_FORMAL_TRAINING_OR_RMSE",
+  "suite": "design",
+  "passed": true,
+  "date": "2026-10-20T12:40:12.560153+08:00",
+  "python": "3.11.2 (main, May 12 2026, 05:17:27) [GCC 12.2.0]",
+  "platform": "Linux-6.1.0-52-amd64-x86_64-with-glibc2.36",
+  "torch": "2.8.0+cu126",
+  "numpy": "2.2.6",
+  "scipy": "1.15.3",
+  "device": "cpu",
+  "tests_run": 9,
+  "tests": [
+    {
+      "test": "RIS_stage3_ai.test_design.DesignTests.test_audit_checks_every_tone",
+      "status": "PASS",
+      "seconds": 0.0027752090245485306
+    },
+    {
+      "test": "RIS_stage3_ai.test_design.DesignTests.test_context_has_no_truth_dependency",
+      "status": "PASS",
+      "seconds": 0.0032402370125055313
+    },
+    {
+      "test": "RIS_stage3_ai.test_design.DesignTests.test_genuinely_infeasible_context_raises",
+      "status": "PASS",
+      "seconds": 0.0028437161818146706
+    },
+    {
+      "test": "RIS_stage3_ai.test_design.DesignTests.test_numpy_and_torch_match_existing_model",
+      "status": "PASS",
+      "seconds": 0.01314578391611576
+    },
+    {
+      "test": "RIS_stage3_ai.test_design.DesignTests.test_physical_complex_and_phase_gradients",
+      "status": "PASS",
+      "seconds": 0.5435097082518041
+    },
+    {
+      "test": "RIS_stage3_ai.test_design.DesignTests.test_projection_against_independent_slsqp",
+      "status": "PASS",
+      "seconds": 0.006485874764621258
+    },
+    {
+      "test": "RIS_stage3_ai.test_design.DesignTests.test_quantization_projection_correction_and_fallback",
+      "status": "PASS",
+      "seconds": 0.013881524093449116
+    },
+    {
+      "test": "RIS_stage3_ai.test_design.DesignTests.test_traditional_solver_matches_original_end_to_end",
+      "status": "PASS",
+      "seconds": 0.04467512900009751
+    },
+    {
+      "test": "RIS_stage3_ai.test_design.DesignTests.test_unfolded_parameter_gradient_and_update",
+      "status": "PASS",
+      "seconds": 1.1358145200647414
+    }
+  ],
+  "seconds": 2.3806824828498065,
+  "source_unchanged_during_checks": true,
+  "source_sha256": {
+    "RIS_stage3_ai/__init__.py": "590918098130cdfb07f2f9d8cba5e8b33df243b816ce1d0edf36ccd9cc9b2769",
+    "RIS_stage3_ai/aggregate.py": "d33e1453203195b777019bb52cb0b73e1a13f24f530b85a1fb43b306a84b4c3f",
+    "RIS_stage3_ai/context.py": "0b7546339ca5c06e7fff3b14b75775c801c076dad1e482933c5eda2b25c172ac",
+    "RIS_stage3_ai/generate_dataset.py": "4d2894a3f03535964415f8e467f09bf5fbb0c82a988be9b6e9757eb04413c08c",
+    "RIS_stage3_ai/physics_numpy.py": "5ecbdd66c12a3ce60e62e15da098879db44acd5a3410144de4f6bde93f9743a7",
+    "RIS_stage3_ai/physics_torch.py": "4fd468e55c9aed1edf6149e32e228bf20bcb1ead7657a366f8778fbc5709dc14",
+    "RIS_stage3_ai/profile_runtime.py": "d22ef0bd9962e55b02d4fbcd259e81bac2f8b5146291fcf6f9226db21d3c563b",
+    "RIS_stage3_ai/protocol.py": "a593c31b7163c81a8b1e0c122511a77bb0bb936682888a18418a77df5d1cbed6",
+    "RIS_stage3_ai/repair.py": "0b4efa601d65afb1b6578fd69d8505a24edfa9948d3fdc21acb135be2ad47a17",
+    "RIS_stage3_ai/run_checks.py": "e70720b85ba8ba2f718cee887fbdaefbba62654d263dd9d3ce1e13d7fe5fc6dd",
+    "RIS_stage3_ai/run_comparison.py": "ec38f079a843c70453bdcc45e4bfad1c1293c8f5f12546dd7782bd5a7f6763ba",
+    "RIS_stage3_ai/scenes.py": "7e01b6897616e9742214f8edbab6c1519e7a7373817eeece6da0418ecc72e515",
+    "RIS_stage3_ai/storage.py": "33480ba3bd405b198880ed3dcc106bc4e1c3c1ae027f206233956b065c9e580e",
+    "RIS_stage3_ai/test_comparison.py": "bf842dd5bd6a327f3b1f7c2f6591c97b0d740a3cb7803d276c9361e90eb14ef4",
+    "RIS_stage3_ai/test_dataset.py": "76335cbf33ff5bd86f561df18ea51de2bec206711c5106841e99ed020e8c9146",
+    "RIS_stage3_ai/test_design.py": "fe3743699226216120cb69927fd770b66c228a1fad0ebcdcdbc9dae267d6e84d",
+    "RIS_stage3_ai/test_training.py": "21467624a6a3abf87d193a0fbd2a89c4a579d8335ce40e1c11e8bc5ad1f24b27",
+    "RIS_stage3_ai/train.py": "20cf912ca1aefe560f2dd330b1768e2bc5299d134c9a5ed3e20d6e2d4470c293",
+    "RIS_stage3_ai/unfolded_design.py": "f9dafdb5f043c637e6af373906b1200e7886b75b78f6482af3d924cc315094ee",
+    "RIS_stage3/stage3_model.py": "f1fd1e4e3d611f38e05266f682fd3ff18bfd22d27ebf3bdbfb70e2a8580d150c",
+    "RIS_stage3/streaming.py": "5a30923cdff9055789614e46270fd937cd071725aaf5ee1272c40aa22eb744bb",
+    "RIS_stage3_ai/requirements.txt": "719fbba16289ea0cad49910db89920315793ff36f28ba81f58815dd5734bb7c3",
+    "RIS_stage3_ai/experiment_v1.json": "0103e651c70a442ade612c3de3d5e4e108c39fd72792dd42988a0c217cfd8acf",
+    "RIS_stage3_ai/training_v1.json": "41f4361a46bc0cdaa81462ffdf3990b29d132ec96616687d0d4ae5c917b56c7b"
+  },
+  "transcript": "test_audit_checks_every_tone (RIS_stage3_ai.test_design.DesignTests.test_audit_checks_every_tone) ... ok\ntest_context_has_no_truth_dependency (RIS_stage3_ai.test_design.DesignTests.test_context_has_no_truth_dependency) ... ok\ntest_genuinely_infeasible_context_raises (RIS_stage3_ai.test_design.DesignTests.test_genuinely_infeasible_context_raises) ... ok\ntest_numpy_and_torch_match_existing_model (RIS_stage3_ai.test_design.DesignTests.test_numpy_and_torch_match_existing_model) ... ok\ntest_physical_complex_and_phase_gradients (RIS_stage3_ai.test_design.DesignTests.test_physical_complex_and_phase_gradients) ... ok\ntest_projection_against_independent_slsqp (RIS_stage3_ai.test_design.DesignTests.test_projection_against_independent_slsqp) ... ok\ntest_quantization_projection_correction_and_fallback (RIS_stage3_ai.test_design.DesignTests.test_quantization_projection_correction_and_fallback) ... ok\ntest_traditional_solver_matches_original_end_to_end (RIS_stage3_ai.test_design.DesignTests.test_traditional_solver_matches_original_end_to_end) ... ok\ntest_unfolded_parameter_gradient_and_update (RIS_stage3_ai.test_design.DesignTests.test_unfolded_parameter_gradient_and_update) ... ok\n\n----------------------------------------------------------------------\nRan 9 tests in 2.377s\n\nOK\n"
+}

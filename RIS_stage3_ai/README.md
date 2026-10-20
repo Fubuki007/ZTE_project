@@ -14,8 +14,10 @@
 - `test_dataset.py`：真实粗估计链路、同噪声配对、分场景隔离、故障/断点/损坏检测，共 8 项本地检查。
 - `train.py` / `training_v1.json`：完整训练、验证集选模、逐样本模型/Adam/随机状态恢复；预先声明预算，拒绝不完整或身份冲突的模型。
 - `test_training.py`：真实小规模参数更新、精确恢复、提交中断、验证选模和模型隔离，共 7 项本地检查。
+- `run_comparison.py` / `aggregate.py`：冻结模型的六方法配对比较、统一目标匹配、三项 RMSE/CI、失败审计与固定配置耗时。
+- `profile_runtime.py` / `setup_server_env.sh`：独立 GPU 环境和全尺寸运行时间试验，试验不等于正式训练。
 
-G3 的数据、训练与验证选模脚本已实现，使用说明见 [G3_DATA.md](G3_DATA.md) 和 [G3_TRAINING.md](G3_TRAINING.md)。完整 RMSE 比较、服务器启动与作图脚本仍待实现。当前本地冒烟训练不代表服务器正式训练完成，也不能证明 RMSE 改善。
+G3 的数据、训练、验证选模及六方法 RMSE 比较脚本已实现，使用说明见 [G3_DATA.md](G3_DATA.md)、[G3_TRAINING.md](G3_TRAINING.md) 和 [G3_COMPARISON.md](G3_COMPARISON.md)。相同时间预算扫描、后台服务器调度仍待实现。当前本地冒烟训练不代表服务器正式训练完成，也不能证明 RMSE 改善。
 
 ## 本地运行（仅数学与冒烟检查）
 
@@ -27,6 +29,7 @@ uv pip install --python .venv-stage3-ai/Scripts/python.exe -r RIS_stage3_ai/requ
 .venv-stage3-ai/Scripts/python.exe -X utf8 -m RIS_stage3_ai.run_checks
 .venv-stage3-ai/Scripts/python.exe -X utf8 -m RIS_stage3_ai.run_checks --suite dataset
 .venv-stage3-ai/Scripts/python.exe -X utf8 -m RIS_stage3_ai.run_checks --suite training
+.venv-stage3-ai/Scripts/python.exe -X utf8 -m RIS_stage3_ai.run_checks --suite comparison
 ```
 
 已有环境时不要重复创建；后续直接执行检查命令。服务器单独使用 Python 3.11 AI 环境；CUDA wheel、设备与驱动信息将在部署时记录。

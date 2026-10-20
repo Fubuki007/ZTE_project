@@ -1,0 +1,588 @@
+{
+  "manifest_id": "11e392667d54180b85cbfc6cb0db398de780f96ab2aafcd7315a0c2dc87c3f39",
+  "complete": true,
+  "profile": "full",
+  "scope": "small sample count with all configured physical dimensions; no formal training or test RMSE",
+  "rates_seconds": {
+    "continuous_train": {
+      "median": 0.9806190230883658,
+      "minimum": 0.9387359591200948,
+      "maximum": 2.9565535080619156,
+      "samples": 3
+    },
+    "quantized_train": {
+      "median": 1.097140854690224,
+      "minimum": 1.0851577632129192,
+      "maximum": 1.124861874151975,
+      "samples": 3
+    },
+    "validation": {
+      "median": 0.8068062597885728,
+      "minimum": 0.8018426601774991,
+      "maximum": 1.0238989610224962,
+      "samples": 3
+    }
+  },
+  "operation_counts": {
+    "continuous_train": 1920,
+    "quantized_train": 5760,
+    "validation": 2016
+  },
+  "validation_failures": 0,
+  "projected_training_and_validation_hours": {
+    "median": 2.730233685299754,
+    "minimum": 2.685943489037454,
+    "maximum": 3.9499909544487792
+  },
+  "projected_data_generation_hours": 7.923535940071774,
+  "limitation": "Two geometries at the first SNR only. Min/max are scenario projections, NOT confidence intervals. Excludes checkpoint/log I/O, CPU/GPU contention, full six-method evaluation; fresh optimizer adds startup overhead.",
+  "measurements": [
+    {
+      "manifest_id": "11e392667d54180b85cbfc6cb0db398de780f96ab2aafcd7315a0c2dc87c3f39",
+      "mode": "continuous_train",
+      "replicate": 0,
+      "seconds": 2.9565535080619156,
+      "result": {
+        "loss": -0.8995841076690941,
+        "unclipped_gradient_norm": 0.027984171434927853,
+        "straight_through": false
+      },
+      "cuda_peak_allocated_bytes": 1934077952,
+      "includes": "context, fresh tiny network/Adam creation, computation; excludes checkpoint I/O",
+      "saved_at": "2026-10-20T04:42:19.666688+00:00",
+      "sha256": "34c9ccfc4920453a9f36e560586dc7aa7967d6e3d69bf464834c7fcdad93d2a7"
+    },
+    {
+      "manifest_id": "11e392667d54180b85cbfc6cb0db398de780f96ab2aafcd7315a0c2dc87c3f39",
+      "mode": "continuous_train",
+      "replicate": 1,
+      "seconds": 0.9387359591200948,
+      "result": {
+        "loss": -0.8995841076690941,
+        "unclipped_gradient_norm": 0.027984171434927853,
+        "straight_through": false
+      },
+      "cuda_peak_allocated_bytes": 1934077952,
+      "includes": "context, fresh tiny network/Adam creation, computation; excludes checkpoint I/O",
+      "saved_at": "2026-10-20T04:42:20.658481+00:00",
+      "sha256": "e0d1f1662b629b2ead279ea1a7cdd87531860f61f2646a67178193b66222e749"
+    },
+    {
+      "manifest_id": "11e392667d54180b85cbfc6cb0db398de780f96ab2aafcd7315a0c2dc87c3f39",
+      "mode": "continuous_train",
+      "replicate": 2,
+      "seconds": 0.9806190230883658,
+      "result": {
+        "loss": -0.8995841076690941,
+        "unclipped_gradient_norm": 0.027984171434927853,
+        "straight_through": false
+      },
+      "cuda_peak_allocated_bytes": 1934077952,
+      "includes": "context, fresh tiny network/Adam creation, computation; excludes checkpoint I/O",
+      "saved_at": "2026-10-20T04:42:21.694806+00:00",
+      "sha256": "e934118c279b0859daf4671f8d27d001fd7791465caf2cc5a2c6494c92dfb2c0"
+    },
+    {
+      "manifest_id": "11e392667d54180b85cbfc6cb0db398de780f96ab2aafcd7315a0c2dc87c3f39",
+      "mode": "quantized_train",
+      "replicate": 0,
+      "seconds": 1.097140854690224,
+      "result": {
+        "loss": -0.8993146648645038,
+        "unclipped_gradient_norm": 0.027898087075197163,
+        "straight_through": true
+      },
+      "cuda_peak_allocated_bytes": 1934077952,
+      "includes": "context, fresh tiny network/Adam creation, computation; excludes checkpoint I/O",
+      "saved_at": "2026-10-20T04:42:22.845017+00:00",
+      "sha256": "531bdb68a680dcdd4d855dba05c624ac9472187a04b5f32951a14d9669d032a0"
+    },
+    {
+      "manifest_id": "11e392667d54180b85cbfc6cb0db398de780f96ab2aafcd7315a0c2dc87c3f39",
+      "mode": "quantized_train",
+      "replicate": 1,
+      "seconds": 1.0851577632129192,
+      "result": {
+        "loss": -0.8993146648645038,
+        "unclipped_gradient_norm": 0.027898087075197163,
+        "straight_through": true
+      },
+      "cuda_peak_allocated_bytes": 1934077952,
+      "includes": "context, fresh tiny network/Adam creation, computation; excludes checkpoint I/O",
+      "saved_at": "2026-10-20T04:42:23.975392+00:00",
+      "sha256": "1368918387fef90788dddba80198ac1fd2ad3959c1224eb1c514bd4c9faae56d"
+    },
+    {
+      "manifest_id": "11e392667d54180b85cbfc6cb0db398de780f96ab2aafcd7315a0c2dc87c3f39",
+      "mode": "quantized_train",
+      "replicate": 2,
+      "seconds": 1.124861874151975,
+      "result": {
+        "loss": -0.8993146648645038,
+        "unclipped_gradient_norm": 0.027898087075197163,
+        "straight_through": true
+      },
+      "cuda_peak_allocated_bytes": 1934077952,
+      "includes": "context, fresh tiny network/Adam creation, computation; excludes checkpoint I/O",
+      "saved_at": "2026-10-20T04:42:25.162716+00:00",
+      "sha256": "7e25887e024746a579e0650bb574fd3481d8ae7acd17fe95818ba364cff06340"
+    },
+    {
+      "manifest_id": "11e392667d54180b85cbfc6cb0db398de780f96ab2aafcd7315a0c2dc87c3f39",
+      "mode": "validation",
+      "replicate": 0,
+      "seconds": 1.0238989610224962,
+      "result": {
+        "feasible": true,
+        "score": 0.5994473185265572,
+        "fallback_used": false,
+        "candidate_failure": null,
+        "candidate": {
+          "candidate_seconds": 0.09775282582268119,
+          "includes": "physics tensor transfer, initialization, gradient updates, output transfer",
+          "device": "cuda:0",
+          "config": {
+            "layers": 6,
+            "temperature": 0.03,
+            "qos_weight": 5.0,
+            "initial_w_step": 0.1,
+            "initial_phase_step": 0.2,
+            "max_w_step": 0.5,
+            "max_phase_step": 0.5,
+            "gradient_epsilon": 1e-12
+          },
+          "straight_through": true,
+          "w_steps": [
+            0.1,
+            0.1,
+            0.1,
+            0.1,
+            0.1,
+            0.1
+          ],
+          "phase_steps": [
+            0.2,
+            0.2,
+            0.2,
+            0.2,
+            0.2,
+            0.2
+          ]
+        },
+        "repair": {
+          "raw": {
+            "feasible": true,
+            "reasons": [],
+            "power": 12671.999999999998,
+            "power_budget": 12672.0,
+            "min_sinr": 43.5500990924583,
+            "min_illumination": 0.5106017714783752,
+            "illumination": [
+              0.5173845208216289,
+              0.5106017714783752
+            ],
+            "unit_modulus_error": 0.0,
+            "quantization_error": 4.9789962505147994e-17
+          },
+          "quantized": {
+            "feasible": true,
+            "reasons": [],
+            "power": 12671.999999999998,
+            "power_budget": 12672.0,
+            "min_sinr": 43.5500990924583,
+            "min_illumination": 0.5106017714783752,
+            "illumination": [
+              0.5173845208216289,
+              0.5106017714783752
+            ],
+            "unit_modulus_error": 0.0,
+            "quantization_error": 0.0
+          },
+          "final": {
+            "feasible": true,
+            "reasons": [],
+            "power": 12671.99999999999,
+            "power_budget": 12672.0,
+            "min_sinr": 26.672213908355623,
+            "min_illumination": 0.5994473185265572,
+            "illumination": [
+              0.5996334664231207,
+              0.5994473185265572
+            ],
+            "unit_modulus_error": 0.0,
+            "quantization_error": 0.0
+          },
+          "fallback_used": false,
+          "fallback_reason": null,
+          "correction": {
+            "history": [
+              0.5106017714783752,
+              0.5994347412368083,
+              0.5994473185265562
+            ],
+            "statuses": [
+              {
+                "solver": "single-user scalar dual",
+                "duality_gap": 7.919757072372136e-10,
+                "target_weight": 0.4552115012726338
+              }
+            ],
+            "final": {
+              "feasible": true,
+              "reasons": [],
+              "power": 12671.99999999999,
+              "power_budget": 12672.0,
+              "min_sinr": 26.672213908355623,
+              "min_illumination": 0.5994473185265572,
+              "illumination": [
+                0.5996334664231207,
+                0.5994473185265572
+              ],
+              "unit_modulus_error": 0.0,
+              "quantization_error": 0.0
+            },
+            "budget": {
+              "ao": 1,
+              "sca": 1,
+              "phase_sweeps": 1
+            },
+            "accepted_phase_updates": 1
+          },
+          "fallback": null,
+          "correction_seconds": 0.6074919840320945,
+          "fallback_seconds": 0.0,
+          "total_seconds": 0.6185398399829865
+        }
+      },
+      "cuda_peak_allocated_bytes": 159879680,
+      "includes": "context, fresh tiny network/Adam creation, computation; excludes checkpoint I/O",
+      "saved_at": "2026-10-20T04:42:26.232175+00:00",
+      "sha256": "01e55f3004ab763a1c2bce6ab70c96c3d941de8bf7e96bce02f4b012feb2a332"
+    },
+    {
+      "manifest_id": "11e392667d54180b85cbfc6cb0db398de780f96ab2aafcd7315a0c2dc87c3f39",
+      "mode": "validation",
+      "replicate": 1,
+      "seconds": 0.8068062597885728,
+      "result": {
+        "feasible": true,
+        "score": 0.5994473185265572,
+        "fallback_used": false,
+        "candidate_failure": null,
+        "candidate": {
+          "candidate_seconds": 0.08160451706498861,
+          "includes": "physics tensor transfer, initialization, gradient updates, output transfer",
+          "device": "cuda:0",
+          "config": {
+            "layers": 6,
+            "temperature": 0.03,
+            "qos_weight": 5.0,
+            "initial_w_step": 0.1,
+            "initial_phase_step": 0.2,
+            "max_w_step": 0.5,
+            "max_phase_step": 0.5,
+            "gradient_epsilon": 1e-12
+          },
+          "straight_through": true,
+          "w_steps": [
+            0.1,
+            0.1,
+            0.1,
+            0.1,
+            0.1,
+            0.1
+          ],
+          "phase_steps": [
+            0.2,
+            0.2,
+            0.2,
+            0.2,
+            0.2,
+            0.2
+          ]
+        },
+        "repair": {
+          "raw": {
+            "feasible": true,
+            "reasons": [],
+            "power": 12671.999999999998,
+            "power_budget": 12672.0,
+            "min_sinr": 43.5500990924583,
+            "min_illumination": 0.5106017714783752,
+            "illumination": [
+              0.5173845208216289,
+              0.5106017714783752
+            ],
+            "unit_modulus_error": 0.0,
+            "quantization_error": 4.9789962505147994e-17
+          },
+          "quantized": {
+            "feasible": true,
+            "reasons": [],
+            "power": 12671.999999999998,
+            "power_budget": 12672.0,
+            "min_sinr": 43.5500990924583,
+            "min_illumination": 0.5106017714783752,
+            "illumination": [
+              0.5173845208216289,
+              0.5106017714783752
+            ],
+            "unit_modulus_error": 0.0,
+            "quantization_error": 0.0
+          },
+          "final": {
+            "feasible": true,
+            "reasons": [],
+            "power": 12671.99999999999,
+            "power_budget": 12672.0,
+            "min_sinr": 26.672213908355623,
+            "min_illumination": 0.5994473185265572,
+            "illumination": [
+              0.5996334664231207,
+              0.5994473185265572
+            ],
+            "unit_modulus_error": 0.0,
+            "quantization_error": 0.0
+          },
+          "fallback_used": false,
+          "fallback_reason": null,
+          "correction": {
+            "history": [
+              0.5106017714783752,
+              0.5994347412368083,
+              0.5994473185265562
+            ],
+            "statuses": [
+              {
+                "solver": "single-user scalar dual",
+                "duality_gap": 7.919757072372136e-10,
+                "target_weight": 0.4552115012726338
+              }
+            ],
+            "final": {
+              "feasible": true,
+              "reasons": [],
+              "power": 12671.99999999999,
+              "power_budget": 12672.0,
+              "min_sinr": 26.672213908355623,
+              "min_illumination": 0.5994473185265572,
+              "illumination": [
+                0.5996334664231207,
+                0.5994473185265572
+              ],
+              "unit_modulus_error": 0.0,
+              "quantization_error": 0.0
+            },
+            "budget": {
+              "ao": 1,
+              "sca": 1,
+              "phase_sweeps": 1
+            },
+            "accepted_phase_updates": 1
+          },
+          "fallback": null,
+          "correction_seconds": 0.5051343441009521,
+          "fallback_seconds": 0.0,
+          "total_seconds": 0.5166293410584331
+        }
+      },
+      "cuda_peak_allocated_bytes": 159879680,
+      "includes": "context, fresh tiny network/Adam creation, computation; excludes checkpoint I/O",
+      "saved_at": "2026-10-20T04:42:27.086430+00:00",
+      "sha256": "6fd836e7ff017a882d9e144acc5112f2d4a4d8337e7074df77e455c1b948cfa4"
+    },
+    {
+      "manifest_id": "11e392667d54180b85cbfc6cb0db398de780f96ab2aafcd7315a0c2dc87c3f39",
+      "mode": "validation",
+      "replicate": 2,
+      "seconds": 0.8018426601774991,
+      "result": {
+        "feasible": true,
+        "score": 0.5994473185265572,
+        "fallback_used": false,
+        "candidate_failure": null,
+        "candidate": {
+          "candidate_seconds": 0.0797764640301466,
+          "includes": "physics tensor transfer, initialization, gradient updates, output transfer",
+          "device": "cuda:0",
+          "config": {
+            "layers": 6,
+            "temperature": 0.03,
+            "qos_weight": 5.0,
+            "initial_w_step": 0.1,
+            "initial_phase_step": 0.2,
+            "max_w_step": 0.5,
+            "max_phase_step": 0.5,
+            "gradient_epsilon": 1e-12
+          },
+          "straight_through": true,
+          "w_steps": [
+            0.1,
+            0.1,
+            0.1,
+            0.1,
+            0.1,
+            0.1
+          ],
+          "phase_steps": [
+            0.2,
+            0.2,
+            0.2,
+            0.2,
+            0.2,
+            0.2
+          ]
+        },
+        "repair": {
+          "raw": {
+            "feasible": true,
+            "reasons": [],
+            "power": 12671.999999999998,
+            "power_budget": 12672.0,
+            "min_sinr": 43.5500990924583,
+            "min_illumination": 0.5106017714783752,
+            "illumination": [
+              0.5173845208216289,
+              0.5106017714783752
+            ],
+            "unit_modulus_error": 0.0,
+            "quantization_error": 4.9789962505147994e-17
+          },
+          "quantized": {
+            "feasible": true,
+            "reasons": [],
+            "power": 12671.999999999998,
+            "power_budget": 12672.0,
+            "min_sinr": 43.5500990924583,
+            "min_illumination": 0.5106017714783752,
+            "illumination": [
+              0.5173845208216289,
+              0.5106017714783752
+            ],
+            "unit_modulus_error": 0.0,
+            "quantization_error": 0.0
+          },
+          "final": {
+            "feasible": true,
+            "reasons": [],
+            "power": 12671.99999999999,
+            "power_budget": 12672.0,
+            "min_sinr": 26.672213908355623,
+            "min_illumination": 0.5994473185265572,
+            "illumination": [
+              0.5996334664231207,
+              0.5994473185265572
+            ],
+            "unit_modulus_error": 0.0,
+            "quantization_error": 0.0
+          },
+          "fallback_used": false,
+          "fallback_reason": null,
+          "correction": {
+            "history": [
+              0.5106017714783752,
+              0.5994347412368083,
+              0.5994473185265562
+            ],
+            "statuses": [
+              {
+                "solver": "single-user scalar dual",
+                "duality_gap": 7.919757072372136e-10,
+                "target_weight": 0.4552115012726338
+              }
+            ],
+            "final": {
+              "feasible": true,
+              "reasons": [],
+              "power": 12671.99999999999,
+              "power_budget": 12672.0,
+              "min_sinr": 26.672213908355623,
+              "min_illumination": 0.5994473185265572,
+              "illumination": [
+                0.5996334664231207,
+                0.5994473185265572
+              ],
+              "unit_modulus_error": 0.0,
+              "quantization_error": 0.0
+            },
+            "budget": {
+              "ao": 1,
+              "sca": 1,
+              "phase_sweeps": 1
+            },
+            "accepted_phase_updates": 1
+          },
+          "fallback": null,
+          "correction_seconds": 0.4995701787993312,
+          "fallback_seconds": 0.0,
+          "total_seconds": 0.5108657400123775
+        }
+      },
+      "cuda_peak_allocated_bytes": 159879680,
+      "includes": "context, fresh tiny network/Adam creation, computation; excludes checkpoint I/O",
+      "saved_at": "2026-10-20T04:42:27.922999+00:00",
+      "sha256": "2ca42b431c377dcddbc7fdda4b8247f8d0a1da7271a84a764b13e4e68a24d1ee"
+    }
+  ],
+  "data_generation": [
+    {
+      "manifest_id": "82df7f1fa65e7d8af7135e28337a5c57ab967797d7d349b91bb8c8cbd54ac9b7",
+      "case": {
+        "sample_id": "train_0000_snr00_rep0000",
+        "scene_id": "train_0000",
+        "split": "train",
+        "snr_db": -30,
+        "replicate": 0,
+        "coarse_seed": 14162746678136441844,
+        "fine_seed": 16179039423261025129
+      },
+      "status": "COMPLETE",
+      "saved_at": "2026-10-20T04:41:30.886144+00:00",
+      "noise_reference_power": 12.53492010737122,
+      "noise_variance": 12534.920107371221,
+      "observation_shape": [
+        12672,
+        64,
+        128
+      ],
+      "estimator_truth": "unavailable_NaN",
+      "reference_reused": false,
+      "timings": {
+        "reference_seconds": 0.7457647318951786,
+        "simulation_seconds": 50.098346684128046,
+        "coarse_seconds": 23.053905203938484,
+        "total_seconds": 74.32186538726091
+      }
+    },
+    {
+      "manifest_id": "82df7f1fa65e7d8af7135e28337a5c57ab967797d7d349b91bb8c8cbd54ac9b7",
+      "case": {
+        "sample_id": "validation_0000_snr00_rep0000",
+        "scene_id": "validation_0000",
+        "split": "validation",
+        "snr_db": -30,
+        "replicate": 0,
+        "coarse_seed": 12411921898734756006,
+        "fine_seed": 15795454924033372363
+      },
+      "status": "COMPLETE",
+      "saved_at": "2026-10-20T04:42:16.511060+00:00",
+      "noise_reference_power": 10.581529569861834,
+      "noise_variance": 10581.529569861834,
+      "observation_shape": [
+        12672,
+        64,
+        128
+      ],
+      "estimator_truth": "unavailable_NaN",
+      "reference_reused": false,
+      "timings": {
+        "reference_seconds": 0.7361756581813097,
+        "simulation_seconds": 23.918117224704474,
+        "coarse_seconds": 20.45417519379407,
+        "total_seconds": 45.5191339738667
+      }
+    }
+  ],
+  "updated": "2026-10-20T04:42:27.954741+00:00"
+}

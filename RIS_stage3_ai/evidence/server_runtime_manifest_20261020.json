@@ -1,0 +1,278 @@
+{
+  "id": "11e392667d54180b85cbfc6cb0db398de780f96ab2aafcd7315a0c2dc87c3f39",
+  "identity": {
+    "kind": "runtime_pilot_only",
+    "protocol": {
+      "schema_version": 1,
+      "status": "PROPOSED_NOT_RUN",
+      "profile": "full",
+      "run_location": "server_only",
+      "source_backup_commit": "e3e18591a8ce868fc788a17ffedb7e8c0dddd556",
+      "physical": {
+        "fc": 28000000000.0,
+        "df": 120000.0,
+        "ns": 12672,
+        "lc": 128,
+        "lf": 128,
+        "tx_nx": 4,
+        "tx_ny": 4,
+        "rx_nx": 8,
+        "rx_ny": 8,
+        "ris_nx": 8,
+        "ris_ny": 8,
+        "bits": 2,
+        "cp_time": 6e-07,
+        "communication_noise": 0.02,
+        "gamma": 2.0,
+        "hop_amplitude": 0.7,
+        "user_ris_amplitude": 0.15,
+        "ris_position": [
+          12.0,
+          -10.0,
+          8.0
+        ],
+        "refinement_iterations": 12,
+        "dtype": "float64/complex128"
+      },
+      "learning": {
+        "architecture": "learned_projected_gradient_initialization",
+        "layers": 6,
+        "train_scenes": 128,
+        "validation_scenes": 32,
+        "snr_db": [
+          -30,
+          -5,
+          20
+        ],
+        "noise_replicates_per_scene_snr": 1,
+        "scene_seed": 2026102001,
+        "noise_seed": 2026102002,
+        "model_seed": 2026102003,
+        "input_truth": false,
+        "all_subcarriers_in_objective": true,
+        "split_unit": "geometry_scene",
+        "checkpoint_selection": "validation_only",
+        "hyperparameters_status": "finalize_on_training_and_validation_before_test"
+      },
+      "scene_domain": {
+        "range_m": [
+          160,
+          260
+        ],
+        "velocity_mps": [
+          -20,
+          20
+        ],
+        "theta_from_z_deg": [
+          15,
+          75
+        ],
+        "phi_deg": [
+          -50,
+          50
+        ],
+        "user_theta_from_z_deg": [
+          20,
+          65
+        ],
+        "user_phi_deg": [
+          -45,
+          45
+        ],
+        "min_target_range_gap_m": 6,
+        "min_target_direction_gap_deg": 5,
+        "exclude_legacy_geometry_from_training": true
+      },
+      "legacy_test": {
+        "snr_db": [
+          -30,
+          -25,
+          -20,
+          -15,
+          -10,
+          -5,
+          0,
+          5,
+          10,
+          15,
+          20
+        ],
+        "mc": 100,
+        "seed": 2026102004,
+        "expected_paired_cases": 1100,
+        "truth": [
+          [
+            200.6,
+            15.1,
+            60.83,
+            28.51
+          ],
+          [
+            210.4,
+            -5.4,
+            15.94,
+            11.53
+          ]
+        ],
+        "user_angles": [
+          35,
+          20
+        ]
+      },
+      "heldout_test": {
+        "scenes": 32,
+        "snr_db": [
+          -30,
+          -25,
+          -20,
+          -15,
+          -10,
+          -5,
+          0,
+          5,
+          10,
+          15,
+          20
+        ],
+        "mc_per_scene_snr": 3,
+        "scene_seed": 2026102005,
+        "noise_seed": 2026102006,
+        "expected_paired_cases": 1056
+      },
+      "methods": [
+        {
+          "id": "dd_joint",
+          "design": "zf_no_ris"
+        },
+        {
+          "id": "stage3_original",
+          "ao": 3,
+          "sca": 3,
+          "phase_sweeps": 2
+        },
+        {
+          "id": "stage3_short",
+          "ao": 1,
+          "sca": 1,
+          "phase_sweeps": 1
+        },
+        {
+          "id": "untrained_physics",
+          "layers": 6,
+          "repair_ao": 1,
+          "repair_sca": 1,
+          "repair_phase_sweeps": 1
+        },
+        {
+          "id": "learned_physics",
+          "layers": 6,
+          "repair_ao": 1,
+          "repair_sca": 1,
+          "repair_phase_sweeps": 1
+        },
+        {
+          "id": "stage3_extended",
+          "ao": 8,
+          "sca": 5,
+          "phase_sweeps": 3
+        }
+      ],
+      "evaluation": {
+        "noise_reference": "DD_ZF_full_CPI_per_scene_shared_across_methods",
+        "paired_noise": true,
+        "same_assignment_for_all_metrics": true,
+        "report_algorithm_failures": true,
+        "report_raw_and_repaired_feasibility": true,
+        "include_repair_and_fallback_in_latency": true,
+        "cuda_synchronize_for_timing": true,
+        "bootstrap_replicates": 2000,
+        "bootstrap_seed": 2026102007,
+        "heldout_resampling_unit": "geometry_scene",
+        "separate_latency_budget_sweep_required": true
+      },
+      "execution": {
+        "batch_subcarriers": 128,
+        "workers_initial": 1,
+        "blas_threads_per_worker": 4,
+        "full_size_pilot_required_before_parallelism": true,
+        "per_sample_checkpoints": true,
+        "source_and_model_hashes_required": true
+      }
+    },
+    "settings": {
+      "schema": 1,
+      "status": "PREDECLARED_NOT_FORMALLY_RUN",
+      "epochs": 20,
+      "continuous_epochs": 5,
+      "learning_rate": 0.01,
+      "gradient_clip_norm": 5.0,
+      "optimizer": "Adam",
+      "batch_size": 1,
+      "validation_every_epoch": true,
+      "selection": "fewest_failures_then_mean_repaired_min_illumination",
+      "include_initial_model_in_selection": true,
+      "checkpoint_every_sample": true,
+      "network": {
+        "layers": 6,
+        "temperature": 0.03,
+        "qos_weight": 5.0,
+        "initial_w_step": 0.1,
+        "initial_phase_step": 0.2,
+        "max_w_step": 0.5,
+        "max_phase_step": 0.5,
+        "gradient_epsilon": 1e-12
+      },
+      "repair": {
+        "ao": 1,
+        "sca": 1,
+        "phase_sweeps": 1
+      },
+      "fallback": {
+        "ao": 3,
+        "sca": 3,
+        "phase_sweeps": 2
+      }
+    },
+    "data_manifest_id": "82df7f1fa65e7d8af7135e28337a5c57ab967797d7d349b91bb8c8cbd54ac9b7",
+    "cases": [
+      {
+        "sample_id": "train_0000_snr00_rep0000",
+        "scene_id": "train_0000",
+        "split": "train",
+        "snr_db": -30,
+        "replicate": 0,
+        "coarse_seed": 14162746678136441844,
+        "fine_seed": 16179039423261025129
+      },
+      {
+        "sample_id": "validation_0000_snr00_rep0000",
+        "scene_id": "validation_0000",
+        "split": "validation",
+        "snr_db": -30,
+        "replicate": 0,
+        "coarse_seed": 12411921898734756006,
+        "fine_seed": 15795454924033372363
+      }
+    ],
+    "repeats": 3,
+    "device": "cuda:0",
+    "torch": "2.8.0+cu126",
+    "device_name": "NVIDIA GeForce RTX 3090",
+    "sources": {
+      "RIS_stage3/stage3_model.py": "f1fd1e4e3d611f38e05266f682fd3ff18bfd22d27ebf3bdbfb70e2a8580d150c",
+      "RIS_stage3/streaming.py": "5a30923cdff9055789614e46270fd937cd071725aaf5ee1272c40aa22eb744bb",
+      "RIS_stage3_ai/context.py": "0b7546339ca5c06e7fff3b14b75775c801c076dad1e482933c5eda2b25c172ac",
+      "RIS_stage3_ai/generate_dataset.py": "4d2894a3f03535964415f8e467f09bf5fbb0c82a988be9b6e9757eb04413c08c",
+      "RIS_stage3_ai/physics_numpy.py": "5ecbdd66c12a3ce60e62e15da098879db44acd5a3410144de4f6bde93f9743a7",
+      "RIS_stage3_ai/physics_torch.py": "4fd468e55c9aed1edf6149e32e228bf20bcb1ead7657a366f8778fbc5709dc14",
+      "RIS_stage3_ai/profile_runtime.py": "d22ef0bd9962e55b02d4fbcd259e81bac2f8b5146291fcf6f9226db21d3c563b",
+      "RIS_stage3_ai/protocol.py": "a593c31b7163c81a8b1e0c122511a77bb0bb936682888a18418a77df5d1cbed6",
+      "RIS_stage3_ai/repair.py": "0b4efa601d65afb1b6578fd69d8505a24edfa9948d3fdc21acb135be2ad47a17",
+      "RIS_stage3_ai/scenes.py": "7e01b6897616e9742214f8edbab6c1519e7a7373817eeece6da0418ecc72e515",
+      "RIS_stage3_ai/storage.py": "33480ba3bd405b198880ed3dcc106bc4e1c3c1ae027f206233956b065c9e580e",
+      "RIS_stage3_ai/train.py": "20cf912ca1aefe560f2dd330b1768e2bc5299d134c9a5ed3e20d6e2d4470c293",
+      "RIS_stage3_ai/unfolded_design.py": "f9dafdb5f043c637e6af373906b1200e7886b75b78f6482af3d924cc315094ee"
+    },
+    "scope": "small sample count with all configured physical dimensions; no formal training or test RMSE"
+  }
+}
