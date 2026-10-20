@@ -152,7 +152,9 @@ def run_method(method, case, cfg_sim, cfg_est, model, ctx, coarse, rc, variance,
         torch.cuda.synchronize(device)
     design_seconds = time.perf_counter()-started + (0. if method == 'dd_joint' else context_seconds)
     if prepared is not None:
-        design_seconds = design['budget_timing']['candidate_ready_seconds']
+        # Actual processing includes an atomic update's overrun. The earlier
+        # candidate availability time is reported separately in budget_timing.
+        design_seconds = design['budget_timing']['actual_stop_seconds']
     times = np.arange(cfg_sim.lc, cfg_sim.lc+cfg_sim.lf)*cfg_sim.symbol_time
     start = time.perf_counter()
     fine = simulate_block(cfg_sim, w, phase, times, variance, case['fine_seed'],
