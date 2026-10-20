@@ -1,0 +1,143 @@
+{
+  "scope": "SMOKE_NOT_FORMAL_RESULTS",
+  "date": "2026-10-20T05:40:09.969114+00:00",
+  "passed": true,
+  "pipeline_manifest": {
+    "id": "4ef5560e87e83f8c857e161adaf0c569b56ab2eac6dcc10906b0319b0d243ff3",
+    "identity": {
+      "schema": 1,
+      "profile": "smoke",
+      "device": "cpu",
+      "python": "D:\\AA 学习项目\\AAA 智能反射面辅助通信感知\\AAA ZTE_project\\.venv-stage3-ai\\Scripts\\python.exe",
+      "sources": {
+        "RIS_stage3_ai/__init__.py": "590918098130cdfb07f2f9d8cba5e8b33df243b816ce1d0edf36ccd9cc9b2769",
+        "RIS_stage3_ai/aggregate.py": "d33e1453203195b777019bb52cb0b73e1a13f24f530b85a1fb43b306a84b4c3f",
+        "RIS_stage3_ai/aggregate_budget.py": "94317871f4ae8fecf74a03d2f2df0d3ae10a35cfef98d1a882a8259e37ada75a",
+        "RIS_stage3_ai/audit_smoke_pipeline.py": "e8b531d516878cb6e686ac90ff787058c6a22badc2b8ab29a763b5944575bdb3",
+        "RIS_stage3_ai/budget_design.py": "ae5e09bb0445af65b0b1813366b862aceb704f7e2b28e772d6df582e0db88b23",
+        "RIS_stage3_ai/context.py": "0b7546339ca5c06e7fff3b14b75775c801c076dad1e482933c5eda2b25c172ac",
+        "RIS_stage3_ai/experiment_v1.json": "0103e651c70a442ade612c3de3d5e4e108c39fd72792dd42988a0c217cfd8acf",
+        "RIS_stage3_ai/generate_dataset.py": "4d2894a3f03535964415f8e467f09bf5fbb0c82a988be9b6e9757eb04413c08c",
+        "RIS_stage3_ai/physics_numpy.py": "5ecbdd66c12a3ce60e62e15da098879db44acd5a3410144de4f6bde93f9743a7",
+        "RIS_stage3_ai/physics_torch.py": "4fd468e55c9aed1edf6149e32e228bf20bcb1ead7657a366f8778fbc5709dc14",
+        "RIS_stage3_ai/profile_runtime.py": "d22ef0bd9962e55b02d4fbcd259e81bac2f8b5146291fcf6f9226db21d3c563b",
+        "RIS_stage3_ai/protocol.py": "a593c31b7163c81a8b1e0c122511a77bb0bb936682888a18418a77df5d1cbed6",
+        "RIS_stage3_ai/PROTOCOL_CHECK.json": "f96f1fb5db73cac068269987ed6c2c61a9d6a9b4a1ce30ebeeecab5b19402ce5",
+        "RIS_stage3_ai/repair.py": "0b4efa601d65afb1b6578fd69d8505a24edfa9948d3fdc21acb135be2ad47a17",
+        "RIS_stage3_ai/run_budget.py": "2986d8b810cb479eab327089d7c7264a47d93fdf1bf02700e1c6c8ef8f224d25",
+        "RIS_stage3_ai/run_checks.py": "aeb705758b4b60d0d7eb01bd6acb412dcd4345ba475379730682dd681ae8d4f6",
+        "RIS_stage3_ai/run_comparison.py": "c04a9a55abd4d159ab70d991bf11675a6e19d56c4221d5620e5f1f2b94709734",
+        "RIS_stage3_ai/run_server.sh": "9a6b3d8f40390daf86bfc034a85d548a28146131ea4e57fa832df7b49e615932",
+        "RIS_stage3_ai/scenes.py": "7e01b6897616e9742214f8edbab6c1519e7a7373817eeece6da0418ecc72e515",
+        "RIS_stage3_ai/server_pipeline.py": "54505bc873a1f77c77f3f5170a888381b3d036a04ad20ed704b69835cbb42e2a",
+        "RIS_stage3_ai/setup_server_env.sh": "efe6a172bcdd06c22a87347f762b28ed4aa892d6a394557c7e5c27487d681a0f",
+        "RIS_stage3_ai/status.py": "cea0845b78a0e2c951849e3e238ba429e1e1be56b2dc8397ad0193ca68e129b3",
+        "RIS_stage3_ai/storage.py": "33480ba3bd405b198880ed3dcc106bc4e1c3c1ae027f206233956b065c9e580e",
+        "RIS_stage3_ai/test_budget.py": "5045aa1e93604cf07e8ef2222d188c61e2c76de4990c3f451544e302cb2204ab",
+        "RIS_stage3_ai/test_comparison.py": "bf842dd5bd6a327f3b1f7c2f6591c97b0d740a3cb7803d276c9361e90eb14ef4",
+        "RIS_stage3_ai/test_dataset.py": "76335cbf33ff5bd86f561df18ea51de2bec206711c5106841e99ed020e8c9146",
+        "RIS_stage3_ai/test_design.py": "fe3743699226216120cb69927fd770b66c228a1fad0ebcdcdbc9dae267d6e84d",
+        "RIS_stage3_ai/test_training.py": "21467624a6a3abf87d193a0fbd2a89c4a579d8335ce40e1c11e8bc5ad1f24b27",
+        "RIS_stage3_ai/train.py": "20cf912ca1aefe560f2dd330b1768e2bc5299d134c9a5ed3e20d6e2d4470c293",
+        "RIS_stage3_ai/training_v1.json": "41f4361a46bc0cdaa81462ffdf3990b29d132ec96616687d0d4ae5c917b56c7b",
+        "RIS_stage3_ai/unfolded_design.py": "f9dafdb5f043c637e6af373906b1200e7886b75b78f6482af3d924cc315094ee",
+        "RIS_stage3/collect_rmse.py": "7819ba7a7278da7b18b85db6949915c1d5d7c20dccd15edf0825fde564250e83",
+        "RIS_stage3/run_server.sh": "ef32926d312c61e31fc998e0b7363af46368de0878d647ffdc5d321d372bec29",
+        "RIS_stage3/run_stage3.py": "d941298b37892b187a77675685c78e969e7aa2872993bad29a30c24affc29e9a",
+        "RIS_stage3/stage3_model.py": "f1fd1e4e3d611f38e05266f682fd3ff18bfd22d27ebf3bdbfb70e2a8580d150c",
+        "RIS_stage3/status_stage3.py": "8e1bb119568b4ebbc80d9fef85bcc06224a00fe63bbd459f31e58d4a64db0007",
+        "RIS_stage3/streaming.py": "5a30923cdff9055789614e46270fd937cd071725aaf5ee1272c40aa22eb744bb",
+        "RIS_stage3/test_collect_rmse.py": "9842053f5045e7fabb9557f9c16a212cf5ae88c7862b1dfec69d480544c132e6",
+        "RIS_stage3/test_stage3.py": "6255485f73ed4eb149653c680b8fec765a1a39adfec4c0a950c2ec7434e5fdd6"
+      },
+      "workers": 1,
+      "blas_threads": 4
+    }
+  },
+  "pipeline_state": {
+    "state": "COMPLETE",
+    "owner": {
+      "pid": 28424,
+      "host": "DESKTOP-Q49IHIA",
+      "started": "2026-10-20T05:37:44.340338+00:00"
+    },
+    "process": null,
+    "stage": "budget_metrics",
+    "through": "budget_metrics",
+    "completed_stages": [
+      "data",
+      "training",
+      "comparison",
+      "metrics",
+      "budget",
+      "budget_metrics"
+    ],
+    "started": "2026-10-20T05:37:44.360151+00:00",
+    "updated": "2026-10-20T05:39:46.628867+00:00",
+    "resources_at_start": {
+      "host": "DESKTOP-Q49IHIA",
+      "available_memory_gib": null,
+      "free_disk_gib": 29.158641815185547,
+      "gpu": []
+    },
+    "command": [
+      "D:\\AA 学习项目\\AAA 智能反射面辅助通信感知\\AAA ZTE_project\\.venv-stage3-ai\\Scripts\\python.exe",
+      "-X",
+      "utf8",
+      "-u",
+      "-m",
+      "RIS_stage3_ai.aggregate_budget",
+      "--source",
+      "D:\\AA 学习项目\\AAA 智能反射面辅助通信感知\\AAA ZTE_project\\RIS_stage3_ai\\results_smoke_pipeline_g3d_v2\\budget",
+      "--output",
+      "D:\\AA 学习项目\\AAA 智能反射面辅助通信感知\\AAA ZTE_project\\RIS_stage3_ai\\results_smoke_pipeline_g3d_v2\\budget_metrics"
+    ],
+    "log": "D:\\AA 学习项目\\AAA 智能反射面辅助通信感知\\AAA ZTE_project\\RIS_stage3_ai\\results_smoke_pipeline_g3d_v2\\logs\\budget_metrics_1792474776600032700.log",
+    "child": null,
+    "last_audit": {
+      "terminal": 18,
+      "expected": 18,
+      "complete": true,
+      "successful": 18,
+      "deadline_misses": 0,
+      "algorithm_failures": 0,
+      "updated": "2026-10-20T05:39:39.018045+00:00"
+    }
+  },
+  "budget_progress": {
+    "terminal": 18,
+    "expected": 18,
+    "complete": true,
+    "successful": 18,
+    "deadline_misses": 0,
+    "algorithm_failures": 0,
+    "updated": "2026-10-20T05:40:09.986474+00:00"
+  },
+  "checks": [
+    "completed sample resume does not recompute or overwrite",
+    "RMSE matches independent squared-error average",
+    "single unit has no CI",
+    "deadline failure suppresses headline RMSE",
+    "corrupt noise pairing rejected"
+  ],
+  "sample_hashes": {
+    "D:\\AA 学习项目\\AAA 智能反射面辅助通信感知\\AAA ZTE_project\\RIS_stage3_ai\\results_smoke_pipeline_g3d_v2\\budget\\samples\\heldout_0000_snr00_rep0000\\learned_anytime_0.5s.json": "71e2f6d2ca67ef7326d64abd285414cb9f6b94e170b559c936050d52e6dae27c",
+    "D:\\AA 学习项目\\AAA 智能反射面辅助通信感知\\AAA ZTE_project\\RIS_stage3_ai\\results_smoke_pipeline_g3d_v2\\budget\\samples\\heldout_0000_snr00_rep0000\\learned_anytime_2s.json": "efd796e7eb1f0775ef93eef053fc4ab4e064ee82783974c9232b6f4f7bc11248",
+    "D:\\AA 学习项目\\AAA 智能反射面辅助通信感知\\AAA ZTE_project\\RIS_stage3_ai\\results_smoke_pipeline_g3d_v2\\budget\\samples\\heldout_0000_snr00_rep0000\\learned_anytime_8s.json": "1702c1076c717b12cc6c4f1297d652228d95938698d84abee34e41d152037491",
+    "D:\\AA 学习项目\\AAA 智能反射面辅助通信感知\\AAA ZTE_project\\RIS_stage3_ai\\results_smoke_pipeline_g3d_v2\\budget\\samples\\heldout_0000_snr00_rep0000\\traditional_anytime_0.5s.json": "b654dbdabf419633f84859ee303a2672a18d9b42ec0deeb889a0a4e4cdb937ad",
+    "D:\\AA 学习项目\\AAA 智能反射面辅助通信感知\\AAA ZTE_project\\RIS_stage3_ai\\results_smoke_pipeline_g3d_v2\\budget\\samples\\heldout_0000_snr00_rep0000\\traditional_anytime_2s.json": "30a7c8b0361dc878ca740d16f866ec84a93876a693c31bf0ec466fa051635420",
+    "D:\\AA 学习项目\\AAA 智能反射面辅助通信感知\\AAA ZTE_project\\RIS_stage3_ai\\results_smoke_pipeline_g3d_v2\\budget\\samples\\heldout_0000_snr00_rep0000\\traditional_anytime_8s.json": "f7795b77a3ffb0f4ac851f020d302093bd8c27ea0d3dc8103d2afb5ba2ec672c",
+    "D:\\AA 学习项目\\AAA 智能反射面辅助通信感知\\AAA ZTE_project\\RIS_stage3_ai\\results_smoke_pipeline_g3d_v2\\budget\\samples\\heldout_0000_snr00_rep0000\\untrained_anytime_0.5s.json": "5b7b761397cdbebbd54e0b3e111737e60d4d591800b7150cbaea5f80172edc41",
+    "D:\\AA 学习项目\\AAA 智能反射面辅助通信感知\\AAA ZTE_project\\RIS_stage3_ai\\results_smoke_pipeline_g3d_v2\\budget\\samples\\heldout_0000_snr00_rep0000\\untrained_anytime_2s.json": "7f1b93860bdbe3407f69a118600f021fa1bbaea62b59ed1a5aa871240b5304bc",
+    "D:\\AA 学习项目\\AAA 智能反射面辅助通信感知\\AAA ZTE_project\\RIS_stage3_ai\\results_smoke_pipeline_g3d_v2\\budget\\samples\\heldout_0000_snr00_rep0000\\untrained_anytime_8s.json": "a10c0e12440b53180bf2453ff3ee2d1c013b1a5649f32078a2d6b74cb8b5bfa3",
+    "D:\\AA 学习项目\\AAA 智能反射面辅助通信感知\\AAA ZTE_project\\RIS_stage3_ai\\results_smoke_pipeline_g3d_v2\\budget\\samples\\legacy_0000_snr00_rep0000\\learned_anytime_0.5s.json": "8a40087e03347284140b9576340ac7653bd4c9a941ba46aa0140e6a4ce83e86c",
+    "D:\\AA 学习项目\\AAA 智能反射面辅助通信感知\\AAA ZTE_project\\RIS_stage3_ai\\results_smoke_pipeline_g3d_v2\\budget\\samples\\legacy_0000_snr00_rep0000\\learned_anytime_2s.json": "b346bd65a5474e613d58bc8b2931aef27f39c1f60a77cb66ddc29d8c925a9db7",
+    "D:\\AA 学习项目\\AAA 智能反射面辅助通信感知\\AAA ZTE_project\\RIS_stage3_ai\\results_smoke_pipeline_g3d_v2\\budget\\samples\\legacy_0000_snr00_rep0000\\learned_anytime_8s.json": "87e513f59608f5aa8584fd41c840ea451ad6c68a1ed8cfff79acc70c6720d758",
+    "D:\\AA 学习项目\\AAA 智能反射面辅助通信感知\\AAA ZTE_project\\RIS_stage3_ai\\results_smoke_pipeline_g3d_v2\\budget\\samples\\legacy_0000_snr00_rep0000\\traditional_anytime_0.5s.json": "d9d9f9632d553510f14719fdde1e966b59247a086ad8b72f418ed6ec77eb6104",
+    "D:\\AA 学习项目\\AAA 智能反射面辅助通信感知\\AAA ZTE_project\\RIS_stage3_ai\\results_smoke_pipeline_g3d_v2\\budget\\samples\\legacy_0000_snr00_rep0000\\traditional_anytime_2s.json": "ba9764cfec2e3e341696e4440dbe7ebfb505763cbae86a8967cca18f7f169aa3",
+    "D:\\AA 学习项目\\AAA 智能反射面辅助通信感知\\AAA ZTE_project\\RIS_stage3_ai\\results_smoke_pipeline_g3d_v2\\budget\\samples\\legacy_0000_snr00_rep0000\\traditional_anytime_8s.json": "abba8d52456f6a93ac396effe4cc00c15f309b48e95dc429d5dc4ee0c6e83528",
+    "D:\\AA 学习项目\\AAA 智能反射面辅助通信感知\\AAA ZTE_project\\RIS_stage3_ai\\results_smoke_pipeline_g3d_v2\\budget\\samples\\legacy_0000_snr00_rep0000\\untrained_anytime_0.5s.json": "a305b158ab471b897df9440aa4776e6668108dcdd08504c568994f7b3bac4243",
+    "D:\\AA 学习项目\\AAA 智能反射面辅助通信感知\\AAA ZTE_project\\RIS_stage3_ai\\results_smoke_pipeline_g3d_v2\\budget\\samples\\legacy_0000_snr00_rep0000\\untrained_anytime_2s.json": "efaf30e93a6f03513985beb3b1261479dcd4a52ac3823ee6e9936921ab9c2c3f",
+    "D:\\AA 学习项目\\AAA 智能反射面辅助通信感知\\AAA ZTE_project\\RIS_stage3_ai\\results_smoke_pipeline_g3d_v2\\budget\\samples\\legacy_0000_snr00_rep0000\\untrained_anytime_8s.json": "40c725720721c308451f522045f61c50c5a966247003040dab60a4e29fd2cb3f"
+  }
+}

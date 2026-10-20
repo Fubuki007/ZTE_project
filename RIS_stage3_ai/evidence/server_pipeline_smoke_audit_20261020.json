@@ -1,0 +1,153 @@
+{
+  "scope": "SMOKE_NOT_FORMAL_RESULTS",
+  "date": "2026-10-20T05:41:01.033429+00:00",
+  "passed": true,
+  "pipeline_manifest": {
+    "id": "ff3dedc73a32d5a742b06a49470395211e90a2b1272c50ff22db2bd401b5ae83",
+    "identity": {
+      "schema": 1,
+      "profile": "smoke",
+      "device": "cuda:0",
+      "python": "/home/jzm123/AAA_ZTEproject/RIS_stage3_ai/.venv311/bin/python",
+      "sources": {
+        "RIS_stage3_ai/PROTOCOL_CHECK.json": "f96f1fb5db73cac068269987ed6c2c61a9d6a9b4a1ce30ebeeecab5b19402ce5",
+        "RIS_stage3_ai/__init__.py": "590918098130cdfb07f2f9d8cba5e8b33df243b816ce1d0edf36ccd9cc9b2769",
+        "RIS_stage3_ai/aggregate.py": "d33e1453203195b777019bb52cb0b73e1a13f24f530b85a1fb43b306a84b4c3f",
+        "RIS_stage3_ai/aggregate_budget.py": "94317871f4ae8fecf74a03d2f2df0d3ae10a35cfef98d1a882a8259e37ada75a",
+        "RIS_stage3_ai/audit_smoke_pipeline.py": "e8b531d516878cb6e686ac90ff787058c6a22badc2b8ab29a763b5944575bdb3",
+        "RIS_stage3_ai/budget_design.py": "ae5e09bb0445af65b0b1813366b862aceb704f7e2b28e772d6df582e0db88b23",
+        "RIS_stage3_ai/context.py": "0b7546339ca5c06e7fff3b14b75775c801c076dad1e482933c5eda2b25c172ac",
+        "RIS_stage3_ai/experiment_v1.json": "0103e651c70a442ade612c3de3d5e4e108c39fd72792dd42988a0c217cfd8acf",
+        "RIS_stage3_ai/generate_dataset.py": "4d2894a3f03535964415f8e467f09bf5fbb0c82a988be9b6e9757eb04413c08c",
+        "RIS_stage3_ai/physics_numpy.py": "5ecbdd66c12a3ce60e62e15da098879db44acd5a3410144de4f6bde93f9743a7",
+        "RIS_stage3_ai/physics_torch.py": "4fd468e55c9aed1edf6149e32e228bf20bcb1ead7657a366f8778fbc5709dc14",
+        "RIS_stage3_ai/profile_runtime.py": "d22ef0bd9962e55b02d4fbcd259e81bac2f8b5146291fcf6f9226db21d3c563b",
+        "RIS_stage3_ai/protocol.py": "a593c31b7163c81a8b1e0c122511a77bb0bb936682888a18418a77df5d1cbed6",
+        "RIS_stage3_ai/repair.py": "0b4efa601d65afb1b6578fd69d8505a24edfa9948d3fdc21acb135be2ad47a17",
+        "RIS_stage3_ai/run_budget.py": "2986d8b810cb479eab327089d7c7264a47d93fdf1bf02700e1c6c8ef8f224d25",
+        "RIS_stage3_ai/run_checks.py": "aeb705758b4b60d0d7eb01bd6acb412dcd4345ba475379730682dd681ae8d4f6",
+        "RIS_stage3_ai/run_comparison.py": "c04a9a55abd4d159ab70d991bf11675a6e19d56c4221d5620e5f1f2b94709734",
+        "RIS_stage3_ai/run_server.sh": "9a6b3d8f40390daf86bfc034a85d548a28146131ea4e57fa832df7b49e615932",
+        "RIS_stage3_ai/scenes.py": "7e01b6897616e9742214f8edbab6c1519e7a7373817eeece6da0418ecc72e515",
+        "RIS_stage3_ai/server_pipeline.py": "54505bc873a1f77c77f3f5170a888381b3d036a04ad20ed704b69835cbb42e2a",
+        "RIS_stage3_ai/setup_server_env.sh": "efe6a172bcdd06c22a87347f762b28ed4aa892d6a394557c7e5c27487d681a0f",
+        "RIS_stage3_ai/status.py": "cea0845b78a0e2c951849e3e238ba429e1e1be56b2dc8397ad0193ca68e129b3",
+        "RIS_stage3_ai/storage.py": "33480ba3bd405b198880ed3dcc106bc4e1c3c1ae027f206233956b065c9e580e",
+        "RIS_stage3_ai/test_budget.py": "5045aa1e93604cf07e8ef2222d188c61e2c76de4990c3f451544e302cb2204ab",
+        "RIS_stage3_ai/test_comparison.py": "bf842dd5bd6a327f3b1f7c2f6591c97b0d740a3cb7803d276c9361e90eb14ef4",
+        "RIS_stage3_ai/test_dataset.py": "76335cbf33ff5bd86f561df18ea51de2bec206711c5106841e99ed020e8c9146",
+        "RIS_stage3_ai/test_design.py": "fe3743699226216120cb69927fd770b66c228a1fad0ebcdcdbc9dae267d6e84d",
+        "RIS_stage3_ai/test_training.py": "21467624a6a3abf87d193a0fbd2a89c4a579d8335ce40e1c11e8bc5ad1f24b27",
+        "RIS_stage3_ai/train.py": "20cf912ca1aefe560f2dd330b1768e2bc5299d134c9a5ed3e20d6e2d4470c293",
+        "RIS_stage3_ai/training_v1.json": "41f4361a46bc0cdaa81462ffdf3990b29d132ec96616687d0d4ae5c917b56c7b",
+        "RIS_stage3_ai/unfolded_design.py": "f9dafdb5f043c637e6af373906b1200e7886b75b78f6482af3d924cc315094ee",
+        "RIS_stage3/collect_rmse.py": "7819ba7a7278da7b18b85db6949915c1d5d7c20dccd15edf0825fde564250e83",
+        "RIS_stage3/stage3_model.py": "f1fd1e4e3d611f38e05266f682fd3ff18bfd22d27ebf3bdbfb70e2a8580d150c",
+        "RIS_stage3/streaming.py": "5a30923cdff9055789614e46270fd937cd071725aaf5ee1272c40aa22eb744bb"
+      },
+      "workers": 1,
+      "blas_threads": 4
+    }
+  },
+  "pipeline_state": {
+    "state": "COMPLETE",
+    "owner": {
+      "pid": 2412080,
+      "host": "jzm",
+      "started": "2026-10-20T05:38:30.040859+00:00"
+    },
+    "process": {
+      "pid": 2412080,
+      "start_ticks": "324634583",
+      "boot": "ae146489-2268-49e0-bf09-722ce9f4be2d"
+    },
+    "stage": "budget_metrics",
+    "through": "budget_metrics",
+    "completed_stages": [
+      "data",
+      "training",
+      "comparison",
+      "metrics",
+      "budget",
+      "budget_metrics"
+    ],
+    "started": "2026-10-20T05:38:30.088167+00:00",
+    "updated": "2026-10-20T05:40:38.011609+00:00",
+    "resources_at_start": {
+      "host": "jzm",
+      "available_memory_gib": 41.90690994262695,
+      "free_disk_gib": 3321.574924468994,
+      "gpu": [
+        {
+          "index": 0,
+          "free_mib": 24123,
+          "utilization_percent": 0
+        },
+        {
+          "index": 1,
+          "free_mib": 24123,
+          "utilization_percent": 0
+        }
+      ]
+    },
+    "command": [
+      "/home/jzm123/AAA_ZTEproject/RIS_stage3_ai/.venv311/bin/python",
+      "-X",
+      "utf8",
+      "-u",
+      "-m",
+      "RIS_stage3_ai.aggregate_budget",
+      "--source",
+      "/home/jzm123/AAA_ZTEproject/RIS_stage3_ai/runs/smoke_20261020_g3d_v2/budget",
+      "--output",
+      "/home/jzm123/AAA_ZTEproject/RIS_stage3_ai/runs/smoke_20261020_g3d_v2/budget_metrics"
+    ],
+    "log": "/home/jzm123/AAA_ZTEproject/RIS_stage3_ai/runs/smoke_20261020_g3d_v2/logs/budget_metrics_1792474827861593535.log",
+    "child": null,
+    "last_audit": {
+      "terminal": 18,
+      "expected": 18,
+      "complete": true,
+      "successful": 18,
+      "deadline_misses": 0,
+      "algorithm_failures": 0,
+      "updated": "2026-10-20T05:40:29.390698+00:00"
+    }
+  },
+  "budget_progress": {
+    "terminal": 18,
+    "expected": 18,
+    "complete": true,
+    "successful": 18,
+    "deadline_misses": 0,
+    "algorithm_failures": 0,
+    "updated": "2026-10-20T05:41:01.033792+00:00"
+  },
+  "checks": [
+    "completed sample resume does not recompute or overwrite",
+    "RMSE matches independent squared-error average",
+    "single unit has no CI",
+    "deadline failure suppresses headline RMSE",
+    "corrupt noise pairing rejected"
+  ],
+  "sample_hashes": {
+    "/home/jzm123/AAA_ZTEproject/RIS_stage3_ai/runs/smoke_20261020_g3d_v2/budget/samples/heldout_0000_snr00_rep0000/untrained_anytime_2s.json": "3b8f77c7dd58197931742283f6dc72dd61a670b62a4b1049b3ed711c199068a8",
+    "/home/jzm123/AAA_ZTEproject/RIS_stage3_ai/runs/smoke_20261020_g3d_v2/budget/samples/heldout_0000_snr00_rep0000/untrained_anytime_8s.json": "5b774f466526c1b2eaf5a69a5191b6f27e481055baa838b51b8ce8b7de8bb8ab",
+    "/home/jzm123/AAA_ZTEproject/RIS_stage3_ai/runs/smoke_20261020_g3d_v2/budget/samples/heldout_0000_snr00_rep0000/learned_anytime_2s.json": "71fc0f26f8308793e8f9c277c5c6beb94aa135546e3eccee5d99af30d86a2511",
+    "/home/jzm123/AAA_ZTEproject/RIS_stage3_ai/runs/smoke_20261020_g3d_v2/budget/samples/heldout_0000_snr00_rep0000/traditional_anytime_8s.json": "e376bf0af6709733c619ea5d3a78efa0206324ec5a3eed260de41d4b5b539ad7",
+    "/home/jzm123/AAA_ZTEproject/RIS_stage3_ai/runs/smoke_20261020_g3d_v2/budget/samples/heldout_0000_snr00_rep0000/untrained_anytime_0.5s.json": "b5ff55e9fe8d7872b2d55e837148dfe0d2afd8761b830e4b4996326739667e72",
+    "/home/jzm123/AAA_ZTEproject/RIS_stage3_ai/runs/smoke_20261020_g3d_v2/budget/samples/heldout_0000_snr00_rep0000/traditional_anytime_0.5s.json": "92f4e81479a3e189dbd607fa67d180f9c912b3e572c9cd8b0b98ec83940bb696",
+    "/home/jzm123/AAA_ZTEproject/RIS_stage3_ai/runs/smoke_20261020_g3d_v2/budget/samples/heldout_0000_snr00_rep0000/traditional_anytime_2s.json": "fa723ee2203a95b82ac6f43f9b9295e446b68736a509abe346ef13241be78870",
+    "/home/jzm123/AAA_ZTEproject/RIS_stage3_ai/runs/smoke_20261020_g3d_v2/budget/samples/heldout_0000_snr00_rep0000/learned_anytime_8s.json": "acbac5a993df068d92b5a1acbab8adc686656eb9863672e9adfc5b87feb711ce",
+    "/home/jzm123/AAA_ZTEproject/RIS_stage3_ai/runs/smoke_20261020_g3d_v2/budget/samples/heldout_0000_snr00_rep0000/learned_anytime_0.5s.json": "1e78c5f532db52e49fc3f1aeab12be6fb39ae2a84d2a64c777608cd090f539ce",
+    "/home/jzm123/AAA_ZTEproject/RIS_stage3_ai/runs/smoke_20261020_g3d_v2/budget/samples/legacy_0000_snr00_rep0000/untrained_anytime_2s.json": "d95bcee69194893cd3a05e2969b7bd7a3fc2f2f727d2211f4c04188a8bac6e16",
+    "/home/jzm123/AAA_ZTEproject/RIS_stage3_ai/runs/smoke_20261020_g3d_v2/budget/samples/legacy_0000_snr00_rep0000/untrained_anytime_8s.json": "7e8e60fc6fad3af964ad58ec83d90209aa3042f5a74de170735b62938328e813",
+    "/home/jzm123/AAA_ZTEproject/RIS_stage3_ai/runs/smoke_20261020_g3d_v2/budget/samples/legacy_0000_snr00_rep0000/learned_anytime_2s.json": "12df34cd6ed8a05197bd9b094b012d32a939e1fe38a5c260e74199a8bc658491",
+    "/home/jzm123/AAA_ZTEproject/RIS_stage3_ai/runs/smoke_20261020_g3d_v2/budget/samples/legacy_0000_snr00_rep0000/traditional_anytime_8s.json": "a3e33543695174edb2e98f070077cadfa35868c423201f95af44b2a4c99a0afe",
+    "/home/jzm123/AAA_ZTEproject/RIS_stage3_ai/runs/smoke_20261020_g3d_v2/budget/samples/legacy_0000_snr00_rep0000/untrained_anytime_0.5s.json": "d83b5ef338a415821f5666bd855fcbe1744331258cc65f48d927ef4546c19abc",
+    "/home/jzm123/AAA_ZTEproject/RIS_stage3_ai/runs/smoke_20261020_g3d_v2/budget/samples/legacy_0000_snr00_rep0000/traditional_anytime_0.5s.json": "a1a3351920368e385b7f112302c0789761842b5521810b0a4e210a5da3450005",
+    "/home/jzm123/AAA_ZTEproject/RIS_stage3_ai/runs/smoke_20261020_g3d_v2/budget/samples/legacy_0000_snr00_rep0000/traditional_anytime_2s.json": "f70d5763592c1dbb745c51c6223dcb3fda157ec720aea73002e988a8ab309fb5",
+    "/home/jzm123/AAA_ZTEproject/RIS_stage3_ai/runs/smoke_20261020_g3d_v2/budget/samples/legacy_0000_snr00_rep0000/learned_anytime_8s.json": "ca3ff9f2679f93ba959476e7e503460237238fd7aa223a1aec62bb54a11672c4",
+    "/home/jzm123/AAA_ZTEproject/RIS_stage3_ai/runs/smoke_20261020_g3d_v2/budget/samples/legacy_0000_snr00_rep0000/learned_anytime_0.5s.json": "c5804820b4f867a3bdb16788b82f4405d98811c12e44262bcb07012c0f02d5c1"
+  }
+}

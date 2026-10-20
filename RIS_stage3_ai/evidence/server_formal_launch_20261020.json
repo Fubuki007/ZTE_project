@@ -1,0 +1,154 @@
+{
+  "recorded_at": "2026-10-20T05:42:43.561256+00:00",
+  "scope": "FORMAL_FULL_SCALE_STARTED_NOT_COMPLETE",
+  "release": "/home/jzm123/AAA_ZTEproject/RIS_stage3_ai/releases/full_20261020_g3d_72403b7",
+  "run": "/home/jzm123/AAA_ZTEproject/RIS_stage3_ai/runs/full_20261020_g3d",
+  "code_commit": "72403b7dc087ef6514c38d68fbdae519108b45de",
+  "bundle_sha256": "27c0eb7bf5a1cb59a0c1310d85ce6cf237a9bf3d24acb0333a4d19a551303be6",
+  "deployed_files_checked": 34,
+  "deployed_sources_match_local": true,
+  "formal_training_started": false,
+  "formal_comparison_started": false,
+  "formal_dataset_generation_started": true,
+  "snapshot": {
+    "effective_state": "RUNNING",
+    "runner_alive": true,
+    "heartbeat_age_seconds": 0.517471,
+    "pipeline": {
+      "state": "RUNNING",
+      "owner": {
+        "pid": 2413170,
+        "host": "jzm",
+        "started": "2026-10-20T05:41:04.305519+00:00"
+      },
+      "process": {
+        "pid": 2413170,
+        "start_ticks": "324650016",
+        "boot": "ae146489-2268-49e0-bf09-722ce9f4be2d"
+      },
+      "stage": "data",
+      "through": "budget_metrics",
+      "completed_stages": [],
+      "started": "2026-10-20T05:41:04.352281+00:00",
+      "updated": "2026-10-20T05:42:43.561256+00:00",
+      "resources_at_start": {
+        "host": "jzm",
+        "available_memory_gib": 41.85238265991211,
+        "free_disk_gib": 3321.5698471069336,
+        "gpu": [
+          {
+            "index": 0,
+            "free_mib": 24123,
+            "utilization_percent": 0
+          },
+          {
+            "index": 1,
+            "free_mib": 24123,
+            "utilization_percent": 0
+          }
+        ]
+      },
+      "command": [
+        "/home/jzm123/AAA_ZTEproject/RIS_stage3_ai/.venv311/bin/python",
+        "-X",
+        "utf8",
+        "-u",
+        "-m",
+        "RIS_stage3_ai.generate_dataset",
+        "--output",
+        "/home/jzm123/AAA_ZTEproject/RIS_stage3_ai/runs/full_20261020_g3d/data"
+      ],
+      "log": "/home/jzm123/AAA_ZTEproject/RIS_stage3_ai/runs/full_20261020_g3d/logs/data_1792474864466508159.log",
+      "child": {
+        "pid": 2413300,
+        "start_ticks": "324650080",
+        "boot": "ae146489-2268-49e0-bf09-722ce9f4be2d"
+      }
+    },
+    "stages": {
+      "data": {
+        "state.json": {
+          "owner": {
+            "pid": 2413300,
+            "host": "jzm",
+            "started": "2026-10-20T05:41:04.763833+00:00"
+          },
+          "manifest_id": "82df7f1fa65e7d8af7135e28337a5c57ab967797d7d349b91bb8c8cbd54ac9b7",
+          "state": "RUNNING",
+          "updated": "2026-10-20T05:42:19.988479+00:00",
+          "current_sample": "train_0000_snr02_rep0000"
+        },
+        "progress.json": {
+          "manifest_id": "82df7f1fa65e7d8af7135e28337a5c57ab967797d7d349b91bb8c8cbd54ac9b7",
+          "profile": "full",
+          "completed": 2,
+          "expected": 480,
+          "complete": false,
+          "counts": {
+            "train": 2,
+            "validation": 0
+          },
+          "failure_attempts": 0,
+          "updated": "2026-10-20T05:42:19.928688+00:00"
+        }
+      },
+      "training": {},
+      "comparison": {},
+      "metrics": {},
+      "budget": {},
+      "budget_metrics": {}
+    },
+    "note": "Progress files are saved counts; COMPLETE may include retained algorithm/deadline failures."
+  },
+  "formal_data_identity": {
+    "manifest_id": "82df7f1fa65e7d8af7135e28337a5c57ab967797d7d349b91bb8c8cbd54ac9b7",
+    "physical": {
+      "fc": 28000000000.0,
+      "df": 120000.0,
+      "ns": 12672,
+      "lc": 128,
+      "lf": 128,
+      "tx_nx": 4,
+      "tx_ny": 4,
+      "rx_nx": 8,
+      "rx_ny": 8,
+      "ris_nx": 8,
+      "ris_ny": 8,
+      "bits": 2,
+      "cp_time": 6e-07,
+      "communication_noise": 0.02,
+      "gamma": 2.0,
+      "hop_amplitude": 0.7,
+      "user_ris_amplitude": 0.15,
+      "ris_position": [
+        12.0,
+        -10.0,
+        8.0
+      ],
+      "refinement_iterations": 12,
+      "dtype": "float64/complex128"
+    },
+    "learning": {
+      "architecture": "learned_projected_gradient_initialization",
+      "layers": 6,
+      "train_scenes": 128,
+      "validation_scenes": 32,
+      "snr_db": [
+        -30,
+        -5,
+        20
+      ],
+      "noise_replicates_per_scene_snr": 1,
+      "scene_seed": 2026102001,
+      "noise_seed": 2026102002,
+      "model_seed": 2026102003,
+      "input_truth": false,
+      "all_subcarriers_in_objective": true,
+      "split_unit": "geometry_scene",
+      "checkpoint_selection": "validation_only",
+      "hyperparameters_status": "finalize_on_training_and_validation_before_test"
+    },
+    "cases": 480,
+    "source_hashes_verified": true
+  }
+}
