@@ -44,19 +44,27 @@ class RecordedResult(unittest.TextTestResult):
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--output', type=Path, default=Path('RIS_stage3_ai/evidence/g2_design_checks.json'))
+    parser.add_argument('--suite', choices=('design', 'dataset'), default='design')
+    parser.add_argument('--output', type=Path)
     args = parser.parse_args()
+    if args.suite == 'dataset':
+        from . import test_dataset
+        module = test_dataset
+    else:
+        module = test_design
+    if args.output is None:
+        args.output = Path('RIS_stage3_ai/evidence')/('g3_dataset_checks.json' if args.suite == 'dataset' else 'g2_design_checks.json')
     root = Path(__file__).resolve().parent.parent
-    files = sorted((root/'RIS_stage3_ai').glob('*.py'))+[root/'RIS_stage3/stage3_model.py', root/'RIS_stage3_ai/requirements.txt']
+    files = sorted((root/'RIS_stage3_ai').glob('*.py'))+[root/'RIS_stage3/stage3_model.py', root/'RIS_stage3/streaming.py', root/'RIS_stage3_ai/requirements.txt', root/'RIS_stage3_ai/experiment_v1.json']
     hashes_before = {str(p.relative_to(root)).replace('\\', '/'): hashlib.sha256(p.read_bytes()).hexdigest() for p in files}
     stream = io.StringIO()
     started = time.perf_counter()
     result = unittest.TextTestRunner(stream=stream, verbosity=2, resultclass=RecordedResult).run(
-        unittest.defaultTestLoader.loadTestsFromModule(test_design))
+        unittest.defaultTestLoader.loadTestsFromModule(module))
     unchanged = all(hashlib.sha256((root/name).read_bytes()).hexdigest() == sha for name, sha in hashes_before.items())
     complete = result.wasSuccessful() and not result.skipped and unchanged and len(result.records) == result.testsRun
     report = dict(
-        scope='LOCAL_MATHEMATICAL_SMOKE_NOT_FORMAL_TRAINING_OR_RMSE', passed=complete,
+        scope='LOCAL_SMOKE_NOT_FORMAL_TRAINING_OR_RMSE', suite=args.suite, passed=complete,
         date=datetime.now(timezone(timedelta(hours=8))).isoformat(),
         python=sys.version, platform=platform.platform(), torch=torch.__version__,
         numpy=np.__version__, scipy=scipy.__version__, device='cpu',

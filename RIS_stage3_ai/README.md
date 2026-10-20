@@ -9,8 +9,11 @@
 - `unfolded_design.py`：默认 6 层交替波束/相位更新，每层各学习一个有界正步长，共 12 个可训练标量。初值采用现有几何量化相位与通信匹配波束。
 - `repair.py`：2 bit 量化、单用户通信与总功率联合投影、原 SCA/离散坐标更新校正，失败时回退并记录原因和耗时。
 - `test_design.py` / `run_checks.py`：本地数学验证与小规模反向传播冒烟。运行后保存实际测试名称、结果、版本和源码哈希。
+- `protocol.py` / `scenes.py`：全量物理配置校验、训练/验证/测试场景隔离、可重现噪声种子；正式计算限制在服务器 jzm。
+- `storage.py` / `generate_dataset.py`：原子 JSON、进程独占写锁、真实 DD 回波与粗估计、逐样本保存/校验/续跑；只生成训练和验证的粗输入。
+- `test_dataset.py`：真实粗估计链路、同噪声配对、分场景隔离、故障/断点/损坏检测，共 8 项本地检查。
 
-正式训练、完整 RMSE 比较、服务器启动与作图脚本属于 G3，尚待实现。当前网络初始化或本地四步参数更新测试都不代表正式训练完成。
+G3 的数据脚本已实现，使用说明见 [G3_DATA.md](G3_DATA.md)。正式训练、完整 RMSE 比较、服务器启动与作图脚本仍待实现。当前网络初始化或本地四步参数更新测试都不代表正式训练完成。
 
 ## 本地运行（仅数学与冒烟检查）
 
@@ -20,6 +23,7 @@
 uv venv --python .venv-stage3/Scripts/python.exe .venv-stage3-ai
 uv pip install --python .venv-stage3-ai/Scripts/python.exe -r RIS_stage3_ai/requirements.txt
 .venv-stage3-ai/Scripts/python.exe -X utf8 -m RIS_stage3_ai.run_checks
+.venv-stage3-ai/Scripts/python.exe -X utf8 -m RIS_stage3_ai.run_checks --suite dataset
 ```
 
 已有环境时不要重复创建；后续直接执行检查命令。服务器单独使用 Python 3.11 AI 环境；CUDA wheel、设备与驱动信息将在部署时记录。

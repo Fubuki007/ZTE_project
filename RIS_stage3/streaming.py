@@ -1,7 +1,10 @@
 """Memory-bounded exact contractions for the full 12672 x 64 x 256 experiment."""
 from pathlib import Path
 import numpy as np
-from stage3_model import Model
+if __package__:
+    from .stage3_model import Model
+else:
+    from stage3_model import Model
 
 
 def chunks(ns, batch=128):
