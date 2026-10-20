@@ -1,0 +1,74 @@
+{
+  "scope": "LOCAL_MATHEMATICAL_SMOKE_NOT_FORMAL_TRAINING_OR_RMSE",
+  "passed": false,
+  "date": "2026-10-20T11:57:45.721400+08:00",
+  "python": "3.12.14 (main, Aug 25 2026, 14:01:42) [MSC v.1944 64 bit (AMD64)]",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "torch": "2.8.0+cpu",
+  "numpy": "2.2.6",
+  "scipy": "1.15.3",
+  "device": "cpu",
+  "tests_run": 9,
+  "tests": [
+    {
+      "test": "RIS_stage3_ai.test_design.DesignTests.test_audit_checks_every_tone",
+      "status": "PASS",
+      "seconds": 0.0020140999695286155
+    },
+    {
+      "test": "RIS_stage3_ai.test_design.DesignTests.test_context_has_no_truth_dependency",
+      "status": "PASS",
+      "seconds": 0.0010995999909937382
+    },
+    {
+      "test": "RIS_stage3_ai.test_design.DesignTests.test_genuinely_infeasible_context_raises",
+      "status": "PASS",
+      "seconds": 0.0010149999870918691
+    },
+    {
+      "test": "RIS_stage3_ai.test_design.DesignTests.test_numpy_and_torch_match_existing_model",
+      "status": "PASS",
+      "seconds": 0.007389299978967756
+    },
+    {
+      "test": "RIS_stage3_ai.test_design.DesignTests.test_physical_complex_and_phase_gradients",
+      "status": "PASS",
+      "seconds": 7.483591600030195
+    },
+    {
+      "test": "RIS_stage3_ai.test_design.DesignTests.test_projection_against_independent_slsqp",
+      "status": "FAIL",
+      "seconds": 0.08210720005445182
+    },
+    {
+      "test": "RIS_stage3_ai.test_design.DesignTests.test_quantization_projection_correction_and_fallback",
+      "status": "PASS",
+      "seconds": 0.012383499997667968
+    },
+    {
+      "test": "RIS_stage3_ai.test_design.DesignTests.test_traditional_solver_matches_original_end_to_end",
+      "status": "PASS",
+      "seconds": 0.04454550001537427
+    },
+    {
+      "test": "RIS_stage3_ai.test_design.DesignTests.test_unfolded_parameter_gradient_and_update",
+      "status": "PASS",
+      "seconds": 5.20477110001957
+    }
+  ],
+  "seconds": 12.90934399998514,
+  "source_unchanged_during_checks": true,
+  "source_sha256": {
+    "RIS_stage3_ai/__init__.py": "590918098130cdfb07f2f9d8cba5e8b33df243b816ce1d0edf36ccd9cc9b2769",
+    "RIS_stage3_ai/context.py": "0b7546339ca5c06e7fff3b14b75775c801c076dad1e482933c5eda2b25c172ac",
+    "RIS_stage3_ai/physics_numpy.py": "5ecbdd66c12a3ce60e62e15da098879db44acd5a3410144de4f6bde93f9743a7",
+    "RIS_stage3_ai/physics_torch.py": "4fd468e55c9aed1edf6149e32e228bf20bcb1ead7657a366f8778fbc5709dc14",
+    "RIS_stage3_ai/repair.py": "0b4efa601d65afb1b6578fd69d8505a24edfa9948d3fdc21acb135be2ad47a17",
+    "RIS_stage3_ai/run_checks.py": "6022af3474d7e69d8010e199d0e1e6f6487f5625f33e7109ab3505c9588944a3",
+    "RIS_stage3_ai/test_design.py": "b41379abc8365f64144ef329a02cbcdd7088001afc435da0d59af2cd51999324",
+    "RIS_stage3_ai/unfolded_design.py": "f9dafdb5f043c637e6af373906b1200e7886b75b78f6482af3d924cc315094ee",
+    "RIS_stage3/stage3_model.py": "f1fd1e4e3d611f38e05266f682fd3ff18bfd22d27ebf3bdbfb70e2a8580d150c",
+    "RIS_stage3_ai/requirements.txt": "719fbba16289ea0cad49910db89920315793ff36f28ba81f58815dd5734bb7c3"
+  },
+  "transcript": "test_audit_checks_every_tone (RIS_stage3_ai.test_design.DesignTests.test_audit_checks_every_tone) ... ok\ntest_context_has_no_truth_dependency (RIS_stage3_ai.test_design.DesignTests.test_context_has_no_truth_dependency) ... ok\ntest_genuinely_infeasible_context_raises (RIS_stage3_ai.test_design.DesignTests.test_genuinely_infeasible_context_raises) ... ok\ntest_numpy_and_torch_match_existing_model (RIS_stage3_ai.test_design.DesignTests.test_numpy_and_torch_match_existing_model) ... ok\ntest_physical_complex_and_phase_gradients (RIS_stage3_ai.test_design.DesignTests.test_physical_complex_and_phase_gradients) ... ok\ntest_projection_against_independent_slsqp (RIS_stage3_ai.test_design.DesignTests.test_projection_against_independent_slsqp) ... FAIL\ntest_quantization_projection_correction_and_fallback (RIS_stage3_ai.test_design.DesignTests.test_quantization_projection_correction_and_fallback) ... ok\ntest_traditional_solver_matches_original_end_to_end (RIS_stage3_ai.test_design.DesignTests.test_traditional_solver_matches_original_end_to_end) ... ok\ntest_unfolded_parameter_gradient_and_update (RIS_stage3_ai.test_design.DesignTests.test_unfolded_parameter_gradient_and_update) ... ok\n\n======================================================================\nFAIL: test_projection_against_independent_slsqp (RIS_stage3_ai.test_design.DesignTests.test_projection_against_independent_slsqp)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"D:\\AA 学习项目\\AAA 智能反射面辅助通信感知\\AAA ZTE_project\\RIS_stage3_ai\\test_design.py\", line 112, in test_projection_against_independent_slsqp\n    self.assertTrue(solved.success, solved.message)\nAssertionError: np.False_ is not true : Positive directional derivative for linesearch\n\n----------------------------------------------------------------------\nRan 9 tests in 12.869s\n\nFAILED (failures=1)\n"
+}

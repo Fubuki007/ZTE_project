@@ -1,5 +1,10 @@
 # Local runtimes, credentials, and generated scratch files
 .venv-stage3/
+.venv-stage3-ai/
+RIS_stage3_ai/.venv*/
+RIS_stage3_ai/results_*/
+RIS_stage3_ai/data_*/
+RIS_stage3_ai/checkpoints_*/
 .matlab_prefs*/
 __pycache__/
 tmp/
