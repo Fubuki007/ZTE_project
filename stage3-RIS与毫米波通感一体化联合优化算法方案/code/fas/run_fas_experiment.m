@@ -1,6 +1,8 @@
 function run_fas_experiment(profile,output,worker,workers,mc,snrs)
 % Resumable runner. Each worker owns disjoint samples; no parallel toolbox needed.
 root=fileparts(mfilename('fullpath')); addpath(root,fileparts(root));
+assert(strcmp(which('build_default_params'),fullfile(fileparts(root),'build_default_params.m')), ...
+    'Wrong Stage-3 source on MATLAB path; change directory to this code/fas folder.');
 if nargin<1, profile='smoke'; end
 if nargin<2, output=fullfile(root,['results_',profile]); end
 if nargin<3, worker=0; end

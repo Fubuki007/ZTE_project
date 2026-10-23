@@ -18,6 +18,10 @@ u.V=u.V.*exp(-1j*2*pi*p.fc/p.c*(norm(p.ris_pos)+u.rr-p.user_R(:).'));
 A=cell(size(design));
 for s=1:numel(design)
     H=u.transmit+u.to_ris*conj(design{s}.phase.'*u.V);
-    A{s}=[g.transmit,g.to_ris,H];
+    if isfield(p,'ris_enabled') && ~p.ris_enabled
+        A{s}=[g.transmit,H]; % No unused RIS-feed constraint on the no-RIS control.
+    else
+        A{s}=[g.transmit,g.to_ris,H];
+    end
 end
 end

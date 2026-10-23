@@ -8,7 +8,7 @@
     [
       0,
       0,
-      11,
+      12,
       11
     ],
     [
@@ -22,6 +22,6 @@
     0,
     1
   ],
-  "resume_verified": "results_smoke_v2 double run logged resumed checkpoint",
-  "source_sha256": "c68394c721d116cda2cfabdc80617d5663fcf2715696e16686cb7f5aea501654"
+  "resume_verified": "results_smoke_final double run: all four checkpoints reused",
+  "source_sha256": "6851ee8fe45e298798647e35f4d61fadb2349be526d2a95eb8e86d0857e7f845"
 }
