@@ -16,3 +16,5 @@ RIS_stage3/.venv*/
 RIS_stage3/results_*/case_*/
 *.pem
 *.p12
+stage3-RIS*/code/fas/results_*/
+stage3-RIS*/code/fas/*.log

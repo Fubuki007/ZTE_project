@@ -1,0 +1,27 @@
+{
+  "passed": true,
+  "profile": "smoke_not_formal_performance",
+  "samples": 4,
+  "metrics_rows": 16,
+  "independent_position_rmse_max_error": 4.440892098500626e-15,
+  "locked_case_port_moves": [
+    [
+      0,
+      0,
+      11,
+      11
+    ],
+    [
+      0,
+      0,
+      13,
+      13
+    ]
+  ],
+  "unlocked_trials_retained": [
+    0,
+    1
+  ],
+  "resume_verified": "results_smoke_v2 double run logged resumed checkpoint",
+  "source_sha256": "c68394c721d116cda2cfabdc80617d5663fcf2715696e16686cb7f5aea501654"
+}

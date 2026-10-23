@@ -1,4 +1,4 @@
-function obs = prepare_ris_observation(initial,p,symbols)
+function obs = prepare_ris_observation(initial,p,symbols,known_symbols)
 % 精估计在整个带宽及观测时段抽取样本，投影基在精化过程中保持不变。
 
 % ---- 1. 抽取覆盖整个带宽和观测时段的样本，生成已知通信符号 ----
@@ -7,7 +7,12 @@ obs.time=symbols(:)*p.Ts; % 保留原始符号时刻，测速仍利用完整的�
 N=numel(obs.n); L=numel(obs.time); U=p.K_stream;
 obs.n_grid=repmat(obs.n,L,1); obs.time_grid=repelem(obs.time,N); % 按子载波优先的顺序展开时频网格。
 levels=[-3 -1 1 3]/sqrt(10);
-obs.symbol=levels(randi(4,U,N*L))+1j*levels(randi(4,U,N*L));
+if nargin<4
+    obs.symbol=levels(randi(4,U,N*L))+1j*levels(randi(4,U,N*L));
+else
+    assert(isequal(size(known_symbols),[U,N*L]));
+    obs.symbol=known_symbols; % 配对实验在共同采样时刻使用相同16QAM。
+end
 
 % ---- 2. 在粗位置附近构造回波模板及距离、速度变化方向 ----
 g=channel_geometry(initial,p);
