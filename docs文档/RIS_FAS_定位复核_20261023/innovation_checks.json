@@ -1,0 +1,36 @@
+{
+  "status": "ALGEBRA_ONLY_NOT_FAS_LOCALIZATION_PERFORMANCE",
+  "seed": 20261023,
+  "phase_order_code": {
+    "orders": [
+      0,
+      1,
+      2
+    ],
+    "two_phase_rank": 2,
+    "four_phase_rank": 3,
+    "four_phase_gram_error": 7.204529898187539e-17,
+    "RD_DR_same_order_not_separated_by_global_phase_alone": true,
+    "orthogonality_requires_static_or_doppler_aligned_factors": true
+  },
+  "periodic_code_slow_time_alias": {
+    "symbol_time_seconds": 8.933333333333333e-06,
+    "doppler_shift_hz": 27985.074626865673,
+    "direct_monostatic_apparent_velocity_shift_mps": 149.92004264392324,
+    "factor_identity_max_error": 1.5982970556924733e-14,
+    "one_aperiodic_example_correlation_at_this_offset": 0.176776695296637,
+    "full_dictionary_or_all_offsets_ambiguity_not_tested": true
+  },
+  "rank_one_reflected_feed_equivalence": {
+    "conditions": "RR-only target echo; rank-one constant-modulus BS-RIS; free per-frequency digital beams; no communication, SI, or port-dependent noise/loss constraints",
+    "blocks": 6,
+    "frequency_samples": 17,
+    "feed_max_error": 2.482534153247273e-16,
+    "positive_power_excess": 0.0
+  },
+  "independent_port_phase_gauge": {
+    "conditions": "narrowband single-path phase-only sequential aperture; known port coordinates; independent unknown scalar phase per sample",
+    "relative_projected_geometric_derivative": 3.0993836898084936e-16,
+    "claim_does_not_cover_wideband_delay_or_simultaneous_receive_information": true
+  }
+}
