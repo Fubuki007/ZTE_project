@@ -1,0 +1,118 @@
+{
+  "review_date": "2026-10-23",
+  "status": "EXISTING_RESULT_AUDIT_AND_GEOMETRY_ONLY",
+  "new_monte_carlo_run": false,
+  "existing_results": {
+    "source_profile": "full",
+    "source_manifest_id": "03a610c5c0eada886318f53262e052eeacf11492926d7ffdbfcc2bd22e487b5c",
+    "completed_cases": 1100,
+    "cases_per_snr": [
+      100,
+      100,
+      100,
+      100,
+      100,
+      100,
+      100,
+      100,
+      100,
+      100,
+      100
+    ],
+    "snr_db": [
+      -30.0,
+      -25.0,
+      -20.0,
+      -15.0,
+      -10.0,
+      -5.0,
+      0.0,
+      5.0,
+      10.0,
+      15.0,
+      20.0
+    ],
+    "optimized_angle_rmse_reduction_fraction_min_max": [
+      0.44914590182888414,
+      0.5194129379203191
+    ],
+    "max_angle_outlier_rate": 0.0,
+    "angle_outlier_definition": "any absolute theta/phi error above 5 degrees in a trial",
+    "max_range_outlier_rate": 0.0,
+    "max_velocity_outlier_rate": 0.0,
+    "range_velocity_outlier_definition": "Fraction of trials with any target error exceeding one native full-CPI FFT bin",
+    "range_outlier_threshold_m": 0.09864267676767677,
+    "velocity_outlier_threshold_mps": 2.3425006663113006,
+    "does_not_establish_zero_failure_probability_or_FAS_gain": true,
+    "selected_angle_rows": [
+      {
+        "snr_db": "-30.0",
+        "method": "DD joint refinement",
+        "mc_completed": "100",
+        "angle_rmse_deg": "0.03798803984853318",
+        "theta_rmse_deg": "0.026854856469602163",
+        "phi_rmse_deg": "0.046529550041501104",
+        "geodesic_rmse_deg": "0.03213568868785646",
+        "ci95_low": "0.03463719641294807",
+        "ci95_high": "0.04126518889280691",
+        "outlier_rate": "0.0"
+      },
+      {
+        "snr_db": "-30.0",
+        "method": "Stage-3 optimized RIS",
+        "mc_completed": "100",
+        "angle_rmse_deg": "0.020316897986973143",
+        "theta_rmse_deg": "0.018338291114332727",
+        "phi_rmse_deg": "0.022119217134250753",
+        "geodesic_rmse_deg": "0.01988376373064814",
+        "ci95_low": "0.018237093638601185",
+        "ci95_high": "0.022257503793729417",
+        "outlier_rate": "0.0"
+      }
+    ]
+  },
+  "plate_reference": {
+    "status": "IDEAL_PLATE_ORDER_OF_MAGNITUDE_NOT_CALIBRATED_CHANNEL_OR_PERFORMANCE",
+    "formula": "eta = A * R / (lambda * d_BR * d_RT); RR/direct field ratio approximately eta^2",
+    "derivation": "ideal broadside aperture RCS sigma_RIS approximately 4*pi*A^2/lambda^2; compare free-space propagation factors",
+    "assumptions": [
+      "64 half-wavelength cells occupy N*(lambda/2)^2 physical area",
+      "far-field ideal broadside coherent plate, unity reflection efficiency",
+      "comparable BS directional gains and target scattering for direct/reflected legs; no blockage",
+      "beam-dependent gains, angular projection, polarization, coupling, cell response and RCS are not calibrated",
+      "this is a favorable reference approximation, not a universal passive-RIS bound",
+      "normalized hop_amplitude is not measured physical reflection efficiency"
+    ],
+    "wavelength_m": 0.010714285714285714,
+    "assumed_area_m2": 0.0018367346938775511,
+    "bs_ris_distance_m": 17.549928774784245,
+    "configured_hop_amplitude": 0.7,
+    "targets": [
+      {
+        "target_range_m": 200.6,
+        "ris_target_distance_m": 192.25520385963915,
+        "one_reflected_leg_field_ratio": 0.010192029513241574,
+        "one_reflected_leg_power_ratio_db": -39.834786548252595,
+        "two_reflected_legs_field_ratio": 0.00010387746559878728,
+        "two_reflected_legs_power_ratio_db": -79.66957309650519
+      },
+      {
+        "target_range_m": 210.4,
+        "ris_target_distance_m": 200.52780499467391,
+        "one_reflected_leg_field_ratio": 0.010248940769547646,
+        "one_reflected_leg_power_ratio_db": -39.786420334527826,
+        "two_reflected_legs_field_ratio": 0.00010504078689769589,
+        "two_reflected_legs_power_ratio_db": -79.57284066905565
+      }
+    ]
+  },
+  "source_sha256": {
+    "server-results/stage3/results_full_mc100/manifest.json": "129f0465a88d82b397a4bb0dda9ca8c25542451e356dd5caa8f739b2fa814f57",
+    "server-results/stage3/results_full_mc100/progress.json": "0aa80db58dc24396cd305e1ba24f95e69c97d5422b167d7d1160d412abad91a8",
+    "server-results/stage3/results_full_mc100/angle_rmse_vs_snr.csv": "761150af91c0c6cedf198da2391493acbd9e334d15747819a922cbbd33727821",
+    "server-results/stage3/results_full_mc100/range_velocity_metrics/metrics_progress.json": "d528285f48e8257e7909998fd4b84d4ae19098e70dff97388fe2783638d33112",
+    "server-results/stage3/results_full_mc100/range_velocity_metrics/range_rmse_vs_snr.csv": "53b0c8857a8856619899ee6f25864bb50e799a2f303fed7752b29e7c8796c3bf",
+    "server-results/stage3/results_full_mc100/range_velocity_metrics/velocity_rmse_vs_snr.csv": "7073252df8556f741dc7a3e7ce64d595b8f49658d95f63860c475ccf082f4823",
+    "RIS_stage3/stage3_model.py": "f1fd1e4e3d611f38e05266f682fd3ff18bfd22d27ebf3bdbfb70e2a8580d150c"
+  }
+}
