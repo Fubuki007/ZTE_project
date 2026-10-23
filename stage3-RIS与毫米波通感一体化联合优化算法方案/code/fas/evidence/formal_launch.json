@@ -1,0 +1,38 @@
+{
+  "state": "RUNNING",
+  "completed": 9,
+  "expected": 3900,
+  "manifest_id": "65a63a2aa5f639006337eaaaa9d5b26c7a4dee035595d0208b12fdaacac23341",
+  "live_worker_pids": [
+    2828770,
+    2828771
+  ],
+  "workers": [
+    {
+      "worker": 0,
+      "workers": 2,
+      "pid": 2828770.0,
+      "manifest_id": "65a63a2aa5f639006337eaaaa9d5b26c7a4dee035595d0208b12fdaacac23341",
+      "state": "RUNNING",
+      "completed": 5,
+      "assigned": 1950,
+      "phase": "FAS_noRIS design complete; feasible=1",
+      "trial": 0,
+      "snr_db": 0,
+      "updated_utc": "2026-10-23T10:26:04Z"
+    },
+    {
+      "worker": 1,
+      "workers": 2,
+      "pid": 2828771.0,
+      "manifest_id": "65a63a2aa5f639006337eaaaa9d5b26c7a4dee035595d0208b12fdaacac23341",
+      "state": "RUNNING",
+      "completed": 4,
+      "assigned": 1950,
+      "phase": "Fixed_noRIS complete; position RMSE=0.160357 m",
+      "trial": 0,
+      "snr_db": -5,
+      "updated_utc": "2026-10-23T10:26:04Z"
+    }
+  ]
+}

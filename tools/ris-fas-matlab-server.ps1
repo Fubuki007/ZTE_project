@@ -36,7 +36,7 @@ switch($Action) {
         Remote "cd $remote/code/fas && /home/jzm123/MATLAB/R2022b/bin/matlab -batch test_fas > server_test.log 2>&1 && cat server_test.log"
     }
     run {
-        Remote "cd $remote/code/fas && mkdir -p results_$RunName && nohup env FAS_RUN_NAME=$RunName FAS_MC=$Mc FAS_WORKERS=$Workers FAS_SNR='$Snr' bash run_server.sh >> $run/supervisor.log 2>&1 < /dev/null &"
+        Remote "cd $remote/code/fas || exit 1; mkdir -p results_$RunName || exit 1; nohup env FAS_RUN_NAME=$RunName FAS_MC=$Mc FAS_WORKERS=$Workers FAS_SNR='$Snr' bash run_server.sh >> $run/supervisor.log 2>&1 < /dev/null &"
         Write-Output "Submitted release=$Release run=$RunName; use status to verify."
     }
     status {
