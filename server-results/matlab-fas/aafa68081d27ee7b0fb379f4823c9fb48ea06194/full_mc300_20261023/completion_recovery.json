@@ -1,0 +1,29 @@
+{
+  "manifest_id": "65a63a2aa5f639006337eaaaa9d5b26c7a4dee035595d0208b12fdaacac23341",
+  "complete": true,
+  "samples": 3900,
+  "counts": [
+    300,
+    300,
+    300,
+    300,
+    300,
+    300,
+    300,
+    300,
+    300,
+    300,
+    300,
+    300,
+    300
+  ],
+  "computation_completed_utc": "2026-10-23T17:21:48Z",
+  "aggregation_completed_utc": "2026-10-25T03:42:44.630657+00:00",
+  "recovery": "All checkpoints aggregated using unchanged MATLAB estimator and aggregator; only owned completed worker processes cleaned up.",
+  "cleaned_worker_pids": [
+    2828770,
+    2828771
+  ],
+  "metrics_rows": 104,
+  "paired_gain_rows": 78
+}

@@ -26,11 +26,11 @@ trap on_exit EXIT
 trap 'exit 130' INT TERM
 export OMP_NUM_THREADS=2 OPENBLAS_NUM_THREADS=2 MKL_NUM_THREADS=2
 for ((worker=0;worker<WORKERS;worker++)); do
-    "$MATLAB_BIN" -batch "run_fas_experiment('full','$OUT',$worker,$WORKERS,$MC,[$SNR])" \
+    "$MATLAB_BIN" -batch "run_fas_experiment('full','$OUT',$worker,$WORKERS,$MC,[$SNR]); exit(0)" \
         > "$OUT/logs/worker_$worker.log" 2>&1 &
     pids+=("$!")
 done
 printf '%s\n' "${pids[@]}" > "$OUT/workers.pid"
 for ((worker=0;worker<WORKERS;worker++)); do wait -n || exit 1; done
-"$MATLAB_BIN" -batch "aggregate_fas('$OUT',false)" > "$OUT/logs/aggregate.log" 2>&1
+"$MATLAB_BIN" -batch "aggregate_fas('$OUT',false); exit(0)" > "$OUT/logs/aggregate.log" 2>&1
 echo COMPLETE > "$OUT/state"

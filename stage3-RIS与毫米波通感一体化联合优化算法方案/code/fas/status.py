@@ -17,7 +17,9 @@ for pid in pids:
         alive.append(int(pid))
     except (ProcessLookupError, PermissionError):
         pass
-if state == 'RUNNING' and not alive and workers:
+if state == 'RUNNING' and workers and all(w.get('state') == 'COMPLETE' for w in workers):
+    state = 'SAMPLES_COMPLETE_AWAITING_FINALIZATION'
+elif state == 'RUNNING' and not alive and workers:
     state = 'NO_LIVE_WORKERS_CHECK_SUPERVISOR'
 print(json.dumps(dict(state=state,completed=len(samples),expected=manifest.get('total_cases'),
                      manifest_id=manifest.get('id'),live_worker_pids=alive,workers=workers),
