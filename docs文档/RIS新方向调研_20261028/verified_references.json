@@ -1,0 +1,261 @@
+{
+  "review_date": "2026-10-28",
+  "method": "Targeted public Crossref/OpenAlex/arXiv retrieval, not an exhaustive novelty search. Read scope recorded per item.",
+  "references": [
+    {
+      "title": [
+        "Cramér-Rao Bound Optimization for Active RIS-Empowered ISAC Systems"
+      ],
+      "authors": [
+        "Qi Zhu",
+        "Ming Li",
+        "Rang Liu",
+        "Qian Liu"
+      ],
+      "doi": "10.1109/twc.2024.3384501",
+      "published": {
+        "date-parts": [
+          [
+            2024,
+            9
+          ]
+        ]
+      },
+      "venue": [
+        "IEEE Transactions on Wireless Communications"
+      ],
+      "id": 1,
+      "doi_url": "https://doi.org/10.1109/twc.2024.3384501",
+      "metadata_source": "https://api.crossref.org/works/10.1109/twc.2024.3384501",
+      "checked_scope": "Crossref metadata and OpenAlex abstract only",
+      "abstract": "Integrated sensing and communication (ISAC), which simultaneously performs sensing and communication functions within a shared frequency band and hardware platform, has emerged as a promising technology for future wireless systems. Nevertheless, the weak echo signal received by the low-sensitivity ISAC receiver significantly constrains sensing performance in scenarios involving obstructed targets. Active reconfigurable intelligent surface (RIS) has become a prospective solution by situationally manipulating the wireless propagations and amplifying the signals. In this paper, we investigate active RIS-empowered ISAC systems to enhance radar echo signal quality as well as communication performance. In particular, we focus on the joint design of the base station (BS) transmit precoding and the active RIS reflection beamforming to optimize the parameter estimation performance in terms of Cramér-Rao bound (CRB) subject to the communication users’ signal-to-interference-plus-noise ratio (SINR) requirements. An efficient algorithm based on alternating optimization, semidefinite relaxation (SDR), and majorization-minimization (MM) is proposed to solve the formulated challenging non-convex problem. Finally, simulation results validate the effectiveness of the developed algorithm and the potential of employing active RIS in ISAC systems to enhance direct-of-arrival (DoA) estimation performance.",
+      "abstract_source": "https://api.openalex.org/works/https://doi.org/10.1109/twc.2024.3384501",
+      "limitation": "No numerical gain from this paper is claimed for the current MATLAB system."
+    },
+    {
+      "title": [
+        "Semi-Passive Intelligent Reflecting Surface-Enabled Sensing Systems"
+      ],
+      "authors": [
+        "Qiaoyan Peng",
+        "Qingqing Wu",
+        "Wen Chen",
+        "Shaodan Ma",
+        "Ming-Min Zhao",
+        "Octavia A. Dobre"
+      ],
+      "doi": "10.1109/tcomm.2024.3399202",
+      "published": {
+        "date-parts": [
+          [
+            2024,
+            12
+          ]
+        ]
+      },
+      "venue": [
+        "IEEE Transactions on Communications"
+      ],
+      "id": 2,
+      "doi_url": "https://doi.org/10.1109/tcomm.2024.3399202",
+      "metadata_source": "https://api.crossref.org/works/10.1109/tcomm.2024.3399202",
+      "checked_scope": "Crossref metadata; arXiv abstract, model-related passages and selected numerical discussion",
+      "public_manuscript": "https://arxiv.org/abs/2402.03042",
+      "abstract": "Intelligent reflecting surface (IRS) has garnered growing interest and attention due to its potential for facilitating and supporting wireless communications and sensing. This paper studies a semi-passive IRS-enabled sensing system, where an IRS consists of both passive reflecting elements and active sensors. Our goal is to minimize the Cramér-Rao bound (CRB) for parameter estimation under both point and extended target cases. Towards this goal, we begin by deriving the CRB for the direction-of-arrival (DoA) estimation in closed-form and then theoretically analyze the IRS reflecting elements and sensors allocation design based on the CRB under the point target case with a single-antenna base station (BS). To efficiently solve the corresponding optimization problem for the case with a multi-antenna BS, we propose an efficient algorithm by jointly optimizing the IRS phase shifts and the BS beamformers. Under the extended target case, the CRB for the target response matrix (TRM) estimation is minimized via the optimization of the BS transmit beamformers. Moreover, we explore the influence of various system parameters on the CRB and compare these effects to those observed under the point target case. Simulation results show the effectiveness of the semi-passive IRS and our proposed beamforming design for improving the performance of the sensing system.",
+      "abstract_source": "https://api.openalex.org/works/https://doi.org/10.1109/tcomm.2024.3399202",
+      "limitation": "No numerical gain from this paper is claimed for the current MATLAB system.",
+      "checked_excerpts": [
+        {
+          "url": "https://arxiv.org/html/2402.03042",
+          "find_text": "directly receive and process the target echo signals",
+          "verbatim_excerpt": "directly receive and process the target echo signals, thereby enabling the signals to travel through a less-hop link, i.e., the BS-IRS-target-sensor (BITS) link. As such, the intrinsic limitations on the sensing performance of the semi-passive IRS can be theoretically characterized by capturing the effect of the system parameters, e.g., the number of BS transmit antenna, IRS reflecting elements, and active sensors. Compared to the active IRS, the semi-passive IRS is incapable of proactively transmitting signals, thus the BS transmit beamforming needs to be jointly designed with the IRS phase shifts for CRB minimization. To this end, it remain"
+        },
+        {
+          "url": "https://arxiv.org/html/2402.03042",
+          "find_text": "One can observe that the semi-passive IRS architecture outperforms",
+          "verbatim_excerpt": "One can observe that the semi-passive IRS architecture outperforms the fully-passive IRS architecture. This can be attributed to the shorter signal propagation path in the former configuration, in which the signal traverses the BITS link. In contrast, the fully-passive IRS-enabled sensing system introduces significant signal attenuation through the BITIB link, which degrades the sensing performance. In addition, for the semi-passive IRS-enabled sensing system, it is observed that the scheme with random phase shifts exhibits inferior performance compared to the schemes with reflective beamforming design (i.e., isotropic transmission and propos"
+        }
+      ]
+    },
+    {
+      "title": [
+        "Fully-Passive Versus Semi-Passive IRS-Enabled Sensing: SNR and CRB Comparison"
+      ],
+      "authors": [
+        "Xianxin Song",
+        "Xinmin Li",
+        "Xiaoqi Qin",
+        "Jie Xu",
+        "Tony Xiao Han",
+        "Derrick Wing Kwan Ng"
+      ],
+      "doi": "10.1109/twc.2025.3577298",
+      "published": {
+        "date-parts": [
+          [
+            2025,
+            12
+          ]
+        ]
+      },
+      "venue": [
+        "IEEE Transactions on Wireless Communications"
+      ],
+      "id": 3,
+      "doi_url": "https://doi.org/10.1109/twc.2025.3577298",
+      "metadata_source": "https://api.crossref.org/works/10.1109/twc.2025.3577298",
+      "checked_scope": "Crossref metadata; arXiv abstract, receive-pattern comparison, CRB applicability and conclusion",
+      "public_manuscript": "https://arxiv.org/abs/2311.06002",
+      "abstract": "This paper investigates the sensing performance of two intelligent reflecting surface (IRS)-enabled non-line-of-sight (NLoS) sensing systems with fully- and semi-passive IRSs, respectively. In particular, we consider a fundamental setup with one base station (BS), one uniform linear array (ULA) IRS, and one point target in the NLoS region of the BS. Accordingly, we analyze both the sensing signal-to-noise ratio (SNR) and the Cramér-Rao bound (CRB) for estimating the target’s direction-of-arrival (DoA) with joint transmit and reflective beamforming optimization. First, we characterize the maximum sensing SNR when the BS-IRS channel follows line-of-sight (LoS) and Rayleigh fading, respectively. It is revealed that when the number of reflecting elementsNequipped at the IRS becomes sufficiently large, the maximum sensing SNR increases proportionally toN2andN4for the semi- and fully-passive IRSs, respectively. Then, we analyze the minimum CRB performance when the BS-IRS channel follows Rayleigh fading. It is shown that whenNgrows, the minimum CRB decreases inversely proportionally toN4andN6for the semi- and fully-passive IRS, respectively. Finally, numerical results are presented to corroborate our analysis across general channel conditions. It is shown that the fully-passive IRS outperforms the semi-passive counterpart whenNexceeds a certain threshold due to the additional reflective beamforming gain in the IRS-BS path, which efficiently compensates for the path loss.",
+      "abstract_source": "https://api.openalex.org/works/https://doi.org/10.1109/twc.2025.3577298",
+      "limitation": "No numerical gain from this paper is claimed for the current MATLAB system.",
+      "checked_excerpts": [
+        {
+          "url": "https://arxiv.org/html/2311.06002",
+          "find_text": "but different receive beam patterns",
+          "verbatim_excerpt": "but different receive beam patterns, i.e.,\n‖\n𝐆\nr\n​\n𝚽\nT\n​\n𝐚\n​\n(\nθ\n)\n‖\n2\n\\|\\mathbf{G}_{r}\\mathbf{\\Phi}^{T}\\mathbf{a}(\\theta)\\|^{2}\nversus\n‖\n𝐛\n⁡\n(\nθ\n)\n‖\n2\n\\|\\mathbf{b}(\\theta)\\|^{2}\n, respectively. By comparing the receive beam patterns, it is clear that fully-passive-IRS sensing system experiences additional\npath loss\ndue to the additionally multiplication by the channel matrix\n𝐆\nr\n\\mathbf{G}_{r}\nin\n‖\n𝐆\nr\n​\n𝚽\nT\n​\n𝐚\n​\n(\nθ\n)\n‖\n2\n\\|\\mathbf{G}_{r}\\mathbf{\\Phi}^{T}\\mathbf{a}(\\theta)\\|^{2}\n, but enjoys stronger reflective\nbeamforming gain\nthanks to the additional reflective beamformer\n𝚽\n\\mathbf{\\Phi}\ntherein. This introduces an interesting tradeoff in balancing between the\npath loss\nversus the reflective\nbeamforming gain\nin terms of sensing SNR performance.\nII-C\nTarget’s DoA Estimation Performance Measure\nNext, we introduce the estimation CRB performance by considering a particular target estima"
+        },
+        {
+          "url": "https://arxiv.org/html/2311.06002",
+          "find_text": "We thus only consider Rayleigh fading channel model",
+          "verbatim_excerpt": "We thus only consider Rayleigh fading channel model in this section.\nAccordingly, Section\nIV-A\nfirst approximates the estimation CRBs, then Section\nIV-B\ncompares the approximated CRBs performance of fully-passive and semi-passive-IRSs, and Section\nIV-C\nanalyzes the approximated CRBs with reflective beamforming optimization. Fina"
+        },
+        {
+          "url": "https://arxiv.org/html/2311.06002",
+          "find_text": "Thanks to the double reflective beamforming gains",
+          "verbatim_excerpt": "Thanks to the double reflective beamforming gains provided by the IRS over both the outgoing and returning links, fully-passive-IRS sensing outperforms its semi-passive counterpart when\nN\nN\nis larger than a certain threshold.\n-A\nProof of Lemma\n1\nFor this target detection problem with deterministic but unknown parameters, following the similar procedures as in\n[\n30\n]\n, we adopt the generalized likelihood ratio test (GLRT) method to detect the presence of the target. In particular, we first estima"
+        }
+      ]
+    },
+    {
+      "title": [
+        "Experimental Demonstration of Sensing Using Hybrid Reconfigurable Intelligent Surfaces"
+      ],
+      "authors": [
+        "Idban Alamzadeh",
+        "Mohammadreza F. Imani"
+      ],
+      "doi": "10.3390/s25061811",
+      "published": {
+        "date-parts": [
+          [
+            2025,
+            3,
+            14
+          ]
+        ]
+      },
+      "venue": [
+        "Sensors"
+      ],
+      "id": 4,
+      "doi_url": "https://doi.org/10.3390/s25061811",
+      "metadata_source": "https://api.crossref.org/works/10.3390/s25061811",
+      "checked_scope": "Crossref metadata and abstract only",
+      "abstract": "Acquiring information about the surrounding environment is crucial for reconfigurable intelligent surfaces (RISs) to effectively manipulate radio wave propagation. This operation can be fully automated by incorporating an integrated sensing mechanism, leading to a hybrid configuration known as a hybrid reconfigurable intelligent surface (HRIS). Several HRIS geometries have been studied in previous works, with full-wave simulations used to showcase their sensing capabilities. However, these simulated models often fail to address the practical design challenges associated with HRISs. This paper presents an experimental proof-of-concept for an HRIS, focusing on the design considerations that have been neglected in simulations but are vital for experimental validation. The HRIS prototype comprises two types of elements: a conventional element designed for reconfigurable reflection and a hybrid one for sensing and reconfigurable reflection. The metasurface can carry out the required sensing operations by utilizing signals coupled to several hybrid elements. This paper outlines the design considerations necessary to create a practical HRIS configuration that can be fabricated using standard PCB technology. The sensing capabilities of the HRIS are demonstrated experimentally through angle of arrival (AoA) detection. The proposed HRIS has the potential to facilitate smart, autonomous wireless communication networks, wireless power transfer, and sensing systems.",
+      "limitation": "No numerical gain from this paper is claimed for the current MATLAB system."
+    },
+    {
+      "title": [
+        "SNR/CRB-Constrained Joint Beamforming and Reflection Designs for RIS-ISAC Systems"
+      ],
+      "authors": [
+        "Rang Liu",
+        "Ming Li",
+        "Qian Liu",
+        "A. Lee Swindlehurst"
+      ],
+      "doi": "10.1109/twc.2023.3341429",
+      "published": {
+        "date-parts": [
+          [
+            2024,
+            7
+          ]
+        ]
+      },
+      "venue": [
+        "IEEE Transactions on Wireless Communications"
+      ],
+      "id": 5,
+      "doi_url": "https://doi.org/10.1109/twc.2023.3341429",
+      "metadata_source": "https://api.crossref.org/works/10.1109/twc.2023.3341429",
+      "checked_scope": "Crossref metadata; previously retrieved arXiv fulltext abstract, contributions and system-model paragraphs",
+      "public_manuscript": "https://arxiv.org/abs/2301.11134",
+      "limitation": "No numerical gain from this paper is claimed for the current MATLAB system."
+    },
+    {
+      "title": [
+        "RIS-Enabled Multi-Target Sensing: Performance Analysis and Space-Time Beamforming Design"
+      ],
+      "authors": [
+        "Zhen Wang",
+        "Xiaoling Hu",
+        "Chenxi Liu",
+        "Mugen Peng"
+      ],
+      "doi": "10.1109/twc.2024.3405575",
+      "published": {
+        "date-parts": [
+          [
+            2024,
+            10
+          ]
+        ]
+      },
+      "venue": [
+        "IEEE Transactions on Wireless Communications"
+      ],
+      "id": 6,
+      "doi_url": "https://doi.org/10.1109/twc.2024.3405575",
+      "metadata_source": "https://api.crossref.org/works/10.1109/twc.2024.3405575",
+      "checked_scope": "Crossref metadata and OpenAlex abstract only",
+      "abstract": "Recently, reconfigurable intelligent surface (RIS) has gained growing research interests in sensing fields. While extensive efforts have been devoted to designing RIS space beamforming for improving sensing accuracy, the potential of RIS in improving sensing resolution has so far not been fully dug. In this paper, we investigate the fundamental performance of RIS-enabled multi-target sensing, and exploit the potential of RIS in simultaneously boosting resolution and accuracy. Specifically, based on the identification that sensing is to obtain target state information from the received echo signals, we adopt the sensing mutual information as the performance metric, thus enabling comprehensive evaluation of both sensing resolution and accuracy. Then, we derive the analytical expression of the sensing mutual information in our considered systems, revealing that in addition to providing beamforming gains to enhance sensing accuracy in the space domain, RIS can also flexibly vary its beamforming in the time domain to improve sensing resolution. Based on this result, we propose a novel space-time beamforming, in which space-domain and time-domain beamforming gains are utilized for enhancing sensing accuracy and resolution, respectively. Numerical results demonstrate the significant advantages of the proposed space-time beamforming scheme over the traditional space-only beamforming scheme in terms of sensing resolution.",
+      "abstract_source": "https://api.openalex.org/works/https://doi.org/10.1109/twc.2024.3405575",
+      "limitation": "No numerical gain from this paper is claimed for the current MATLAB system."
+    },
+    {
+      "title": [
+        "Beyond Diagonal Reconfigurable Intelligent Surface Enabled Sensing: Cramér-Rao Bound Optimization"
+      ],
+      "authors": [
+        "Xiaoqi Zhang",
+        "Liang Liu",
+        "Shuowen Zhang",
+        "Haijun Zhang"
+      ],
+      "doi": "10.1109/lwc.2025.3599590",
+      "published": {
+        "date-parts": [
+          [
+            2025,
+            12
+          ]
+        ]
+      },
+      "venue": [
+        "IEEE Wireless Communications Letters"
+      ],
+      "id": 7,
+      "doi_url": "https://doi.org/10.1109/lwc.2025.3599590",
+      "metadata_source": "https://api.crossref.org/works/10.1109/lwc.2025.3599590",
+      "checked_scope": "Crossref metadata; arXiv abstract, non-diagonal unitary constraint, deployment discussion and conclusion",
+      "public_manuscript": "https://arxiv.org/abs/2508.11292",
+      "abstract": "Recently, beyond diagonal reconfigurable intelligent surface (BD-RIS) has emerged as a more flexible solution to engineer the wireless propagation channels, thanks to its non-diagonal reflecting matrix. Although the gain of the BD-RIS over the conventional RIS in communication has been revealed in many works, its gain in 6G sensing is still unknown. This motivates us to study the BD-RIS assisted sensing in this letter. Specifically, we derive the Cramér-Rao bound (CRB) for estimating the angle-of-arrival (AOA) from the target to the BD-RIS under the constraint that the BD-RIS scattering matrix is unitary. To minimize the CRB, we develop an optimization scheme based on an adaptive Riemannian steepest ascent algorithm that can satisfy the non-convex unitary constraint. Numerical results demonstrate that the proposed BD-RIS-assisted target localization method achieves superior sensing performance.",
+      "abstract_source": "https://api.openalex.org/works/https://doi.org/10.1109/lwc.2025.3599590",
+      "limitation": "No numerical gain from this paper is claimed for the current MATLAB system.",
+      "checked_excerpts": [
+        {
+          "url": "https://arxiv.org/html/2508.11292",
+          "find_text": "the circuits of various reflecting units",
+          "verbatim_excerpt": "the circuits of various reflecting units on the BD-RIS are inter-connected such that the scattering matrix is non-diagonal. Such a relaxation of the scattering matrix can lead to significant beamforming gain to the BD-RIS. Implementing BD-RIS hardware is challenging due to mismatches between ideal unitary constraints and practical circuit imperfections, such as complex layouts, synchronization, and calibration. Addressing these challenges requires low-complexity interconnection designs, reliable tunable components, and system-level optimization"
+        },
+        {
+          "url": "https://arxiv.org/html/2508.11292",
+          "find_text": "Future work will explore multi-target",
+          "verbatim_excerpt": "Future work will explore multi-target and distributed BD-RIS scenarios for broader applicability.\nAppendix A\nProof of Lemma 1\nAccording to\n[\n18\n]\n, we first give the standard definition to the derivative of\ng\n⁡\n(\n𝚽\n)\ng({"
+        }
+      ]
+    }
+  ]
+}

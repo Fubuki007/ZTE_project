@@ -216,3 +216,26 @@ Implement resumable per-MC outputs, stale-worker detection, and an aggregator th
 - Tags: matlab, monte-carlo, checkpoint, parallelism
 
 ---
+
+## [LRN-20261028-RIS-BASELINE] context_correction
+
+**Logged**: 2026-10-28
+**Priority**: high
+**Status**: recorded
+**Area**: research
+
+### Summary
+Check the current branch and completed experiment records before reusing older RIS research context.
+
+### Details
+The older Python AI/FAS discussion did not include the newer MATLAB FAS run. Current branch codex/matlab-fas-20261023 contains all 3900 completed samples' summaries: FAS versus Fixed_RIS position RMSE reductions range from -0.534% to 2.183%, with 11 of 13 paired intervals including zero. Initially treating FAS as untested was incorrect and was corrected during the literature review. The MATLAB baseline also has 256 RIS elements, physical reflection attenuation, and two optimized configurations; the separate Python AI configuration must not substitute for it.
+
+### Suggested Action
+Read current HEAD, the relevant README/RUN_STATUS, and completed metric files first. Tie literature recommendations to that model, and compare proposed methods with both Fixed_RIS and Fixed_noRIS. Distinguish algebraic diagnostics, pilot runs, and completed Monte Carlo evidence.
+
+### Metadata
+- Source: self-correction
+- Related Files: stage3-RIS与毫米波通感一体化联合优化算法方案/code/fas/RUN_STATUS.md, docs文档/RIS新方向调研_20261028/研究建议.md
+- Tags: ris, baseline, research, evidence, context
+
+---

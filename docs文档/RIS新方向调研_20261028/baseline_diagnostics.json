@@ -1,0 +1,198 @@
+{
+  "date": "2026-10-28",
+  "source_commit": "94b7a3349e363aa28150a5f683c916d9d4a45bd9",
+  "kind": "Existing CSV inspection and algebraic coefficient bound; no new Monte Carlo or server job.",
+  "source_sha256": {
+    "server-results/matlab-fas/aafa68081d27ee7b0fb379f4823c9fb48ea06194/full_mc300_20261023/metrics.csv": "2b557914d82d7f209ee13e0d25e19cc17abc486a757fff9b854ee6ec309cdb6d",
+    "stage3-RIS与毫米波通感一体化联合优化算法方案/code/channel_geometry.m": "c8e3d51b2e7f2de4ab5ea5b43b340a2e5bf7d431fe4ab0863dfe17ea7e968dc3",
+    "stage3-RIS与毫米波通感一体化联合优化算法方案/code/fas/fas_echo.m": "ccb66e32ebfc1b972782ac75c262b1d8ce417ebb7d4efa9f1437525729141165",
+    "stage3-RIS与毫米波通感一体化联合优化算法方案/code/fas/fas_run_case.m": "aef63637e643b8104015278d15d025658c32c0a359e55626a5e38951c0819702",
+    "stage3-RIS与毫米波通感一体化联合优化算法方案/code/refine_ris_parameters.m": "f998b2042e5ab6f96658935e626c668b997628b157c5585de4cb2cc85a483b71"
+  },
+  "existing_mc_metrics": [
+    {
+      "snr_db": -50.0,
+      "method": "Fixed_noRIS",
+      "mc_completed": 300.0,
+      "position_rmse_m": 660.423415403924,
+      "angle_rmse_deg": 72.4105147975675,
+      "failure_rate": 1.0,
+      "communication_feasible_rate": 0.0
+    },
+    {
+      "snr_db": -50.0,
+      "method": "Fixed_RIS",
+      "mc_completed": 300.0,
+      "position_rmse_m": 660.423415403924,
+      "angle_rmse_deg": 72.4105147975675,
+      "failure_rate": 1.0,
+      "communication_feasible_rate": 0.0
+    },
+    {
+      "snr_db": -45.0,
+      "method": "Fixed_noRIS",
+      "mc_completed": 300.0,
+      "position_rmse_m": 427.118070195051,
+      "angle_rmse_deg": 50.7849418049653,
+      "failure_rate": 1.0,
+      "communication_feasible_rate": 0.0
+    },
+    {
+      "snr_db": -45.0,
+      "method": "Fixed_RIS",
+      "mc_completed": 300.0,
+      "position_rmse_m": 427.118070195051,
+      "angle_rmse_deg": 50.7849418049653,
+      "failure_rate": 1.0,
+      "communication_feasible_rate": 0.0
+    },
+    {
+      "snr_db": -35.0,
+      "method": "Fixed_noRIS",
+      "mc_completed": 300.0,
+      "position_rmse_m": 22.0356242235432,
+      "angle_rmse_deg": 4.22261015076818,
+      "failure_rate": 0.593333333333333,
+      "communication_feasible_rate": 0.966666666666667
+    },
+    {
+      "snr_db": -35.0,
+      "method": "Fixed_RIS",
+      "mc_completed": 300.0,
+      "position_rmse_m": 26.2414627633806,
+      "angle_rmse_deg": 5.31658469710796,
+      "failure_rate": 0.916666666666667,
+      "communication_feasible_rate": 0.966666666666667
+    },
+    {
+      "snr_db": -30.0,
+      "method": "Fixed_noRIS",
+      "mc_completed": 300.0,
+      "position_rmse_m": 2.74325106795931,
+      "angle_rmse_deg": 0.457747776028023,
+      "failure_rate": 0.0833333333333333,
+      "communication_feasible_rate": 1.0
+    },
+    {
+      "snr_db": -30.0,
+      "method": "Fixed_RIS",
+      "mc_completed": 300.0,
+      "position_rmse_m": 4.11127866402685,
+      "angle_rmse_deg": 0.549663608128574,
+      "failure_rate": 0.343333333333333,
+      "communication_feasible_rate": 1.0
+    },
+    {
+      "snr_db": -25.0,
+      "method": "Fixed_noRIS",
+      "mc_completed": 300.0,
+      "position_rmse_m": 1.51270120994428,
+      "angle_rmse_deg": 0.258648975844248,
+      "failure_rate": 0.0,
+      "communication_feasible_rate": 1.0
+    },
+    {
+      "snr_db": -25.0,
+      "method": "Fixed_RIS",
+      "mc_completed": 300.0,
+      "position_rmse_m": 1.76742858172941,
+      "angle_rmse_deg": 0.269495934630625,
+      "failure_rate": 0.00666666666666667,
+      "communication_feasible_rate": 1.0
+    },
+    {
+      "snr_db": -20.0,
+      "method": "Fixed_noRIS",
+      "mc_completed": 300.0,
+      "position_rmse_m": 0.867165209584078,
+      "angle_rmse_deg": 0.140583499547355,
+      "failure_rate": 0.0,
+      "communication_feasible_rate": 1.0
+    },
+    {
+      "snr_db": -20.0,
+      "method": "Fixed_RIS",
+      "mc_completed": 300.0,
+      "position_rmse_m": 0.920415597437743,
+      "angle_rmse_deg": 0.144092513587559,
+      "failure_rate": 0.0,
+      "communication_feasible_rate": 1.0
+    },
+    {
+      "snr_db": 0.0,
+      "method": "Fixed_noRIS",
+      "mc_completed": 300.0,
+      "position_rmse_m": 0.0854089262649801,
+      "angle_rmse_deg": 0.0141241844410007,
+      "failure_rate": 0.0,
+      "communication_feasible_rate": 1.0
+    },
+    {
+      "snr_db": 0.0,
+      "method": "Fixed_RIS",
+      "mc_completed": 300.0,
+      "position_rmse_m": 0.0836622882163657,
+      "angle_rmse_deg": 0.0139930306362595,
+      "failure_rate": 0.0,
+      "communication_feasible_rate": 1.0
+    },
+    {
+      "snr_db": 10.0,
+      "method": "Fixed_noRIS",
+      "mc_completed": 300.0,
+      "position_rmse_m": 0.0262908361714611,
+      "angle_rmse_deg": 0.00440284517374374,
+      "failure_rate": 0.0,
+      "communication_feasible_rate": 1.0
+    },
+    {
+      "snr_db": 10.0,
+      "method": "Fixed_RIS",
+      "mc_completed": 300.0,
+      "position_rmse_m": 0.0256872546284733,
+      "angle_rmse_deg": 0.00437377368885815,
+      "failure_rate": 0.0,
+      "communication_feasible_rate": 1.0
+    }
+  ],
+  "bound_assumptions": {
+    "fc_hz": 28000000000.0,
+    "c_mps": 300000000.0,
+    "element_spacing_m": 0.005357142857142857,
+    "ris_elements": 256,
+    "ris_pos_m": [
+      20,
+      0,
+      0
+    ],
+    "ris_normal": [
+      -0.7071067811865475,
+      0,
+      0.7071067811865475
+    ],
+    "phase": "Ideal continuous phase alignment; ignores quantization, multi-target competition and communication restrictions.",
+    "formula": "abs(c_q) <= sum_n abs(V_nq) = 256*d^2/lambda*sqrt(ci*co)*R/(dBR*dRT)",
+    "interpretation": "Scalar coefficient bound at target mean positions only. It is not the complete echo SNR or a new RMSE result."
+  },
+  "bounds": [
+    {
+      "R_m": 600.8,
+      "theta_deg": 24.63,
+      "phi_deg": 30.99,
+      "per_element_amplitude": 7.369235915047471e-05,
+      "scalar_field_upper_bound": 0.018865243942521526,
+      "scalar_power_ratio_upper_bound": 0.00035589742901084517,
+      "scalar_power_ratio_db": -34.486751493112315
+    },
+    {
+      "R_m": 600.2,
+      "theta_deg": 15.94,
+      "phi_deg": 13.58,
+      "per_element_amplitude": 8.182365692459651e-05,
+      "scalar_field_upper_bound": 0.020946856172696707,
+      "scalar_power_ratio_upper_bound": 0.0004387707835196422,
+      "scalar_power_ratio_db": -33.57762298550922
+    }
+  ],
+  "coarse_gate": "fas_run_case performs no fine estimation unless coarse.locked and design feasible. Lowest two SNR rows have no feasible fine designs."
+}
