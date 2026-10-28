@@ -1,0 +1,802 @@
+{
+  "review_date": "2026-10-28",
+  "original_manuscript_status": {
+    "status": "submitted_under_review",
+    "source": "Direct user answer in this chat on 2026-10-28"
+  },
+  "basis_commit": "a7d56f45d50d0e41ffe9b321c6b8183acbe1dcf9",
+  "pre_change_backup": {
+    "branch": "codex/pre-passive-ris-paper-20261028",
+    "verified_remote_sha": "a7d56f45d50d0e41ffe9b321c6b8183acbe1dcf9"
+  },
+  "constraints": [
+    "passive RIS",
+    "original arrays, bandwidth and total CPI",
+    "no AI/FAS/new active hardware",
+    "original contributions treated as baseline"
+  ],
+  "verification_limits": [
+    "Targeted finite-cap Crossref/OpenAlex/arXiv retrieval, not exhaustive IEEE Xplore or Scopus novelty clearance.",
+    "Reading scope differs per paper and is recorded explicitly.",
+    "No new Monte Carlo, mathematical result, algorithm implementation or server job.",
+    "Selected metadata dates can describe online publication rather than issue date.",
+    "PDF text extraction was unreliable; original manuscript claims were checked through rendered pages 3,8,10,11."
+  ],
+  "original_pdf_visual_audit": {
+    "page_count": 18,
+    "pages_checked": [
+      3,
+      8,
+      10,
+      11
+    ],
+    "findings": {
+      "3": "Passive unit-modulus discrete phase model and per-subcarrier steering.",
+      "8": "Coarse-position-based multi-target illumination objective.",
+      "10": "Discrete phase optimization and four-path fine estimation model.",
+      "11": "Unknown path coefficients, joint geometry constraints, variable projection and effective Jacobian."
+    },
+    "renders_not_uploaded": true
+  },
+  "local_sources": [
+    {
+      "path": "stage3-RIS与毫米波通感一体化联合优化算法方案/RIS 与毫米波通感一体化联合优化算法方案.pdf",
+      "sha256": "5ac46c6de0b08cfa19e2c72021323bd1db5c9c807c2df33450890cec45465200"
+    },
+    {
+      "path": "stage3-RIS与毫米波通感一体化联合优化算法方案/code/README.md",
+      "sha256": "8d1da7d492fbae6933b59424e8e5b49c65da3972e272b43511594b21a56ed68a"
+    },
+    {
+      "path": "stage3-RIS与毫米波通感一体化联合优化算法方案/code/ris_sensing.m",
+      "sha256": "2ba494c6cfc2ce7024e5124ecb2aaa5ddcdb4118e6e18989449e91421f63f7f7"
+    },
+    {
+      "path": "stage3-RIS与毫米波通感一体化联合优化算法方案/code/refine_ris_parameters.m",
+      "sha256": "f998b2042e5ab6f96658935e626c668b997628b157c5585de4cb2cc85a483b71"
+    },
+    {
+      "path": "stage3-RIS与毫米波通感一体化联合优化算法方案/code/prepare_ris_observation.m",
+      "sha256": "c28cd0d8a08d9c75c0c55b91ac84e726bad24935b020640ca9a7918be6b07856"
+    },
+    {
+      "path": "stage3-RIS与毫米波通感一体化联合优化算法方案/code/channel_geometry.m",
+      "sha256": "c8e3d51b2e7f2de4ab5ea5b43b340a2e5bf7d431fe4ab0863dfe17ea7e968dc3"
+    },
+    {
+      "path": "stage3-RIS与毫米波通感一体化联合优化算法方案/code/optimize_ris_joint.m",
+      "sha256": "94db5a98836ddf21bf32b5719b39bf750d222f76d288ca2160610e133c6fa7ef"
+    },
+    {
+      "path": "docs文档/RIS新方向调研_20261028/baseline_diagnostics.json",
+      "sha256": "f97750d71ea463df05e24b886308ba4a1b32ae478b76e6afaef55e53014d67f3"
+    },
+    {
+      "path": "server-results/matlab-fas/aafa68081d27ee7b0fb379f4823c9fb48ea06194/full_mc300_20261023/metrics.csv",
+      "sha256": "2b557914d82d7f209ee13e0d25e19cc17abc486a757fff9b854ee6ec309cdb6d"
+    }
+  ],
+  "references": [
+    {
+      "title": "Fundamentals of RIS-Aided Localization in the Far-Field",
+      "doi": "https://doi.org/10.1109/twc.2023.3307818",
+      "authors": [
+        "Don-Roberts Emenonye",
+        "Harpreet S. Dhillon",
+        "Richard Michael Buehrer"
+      ],
+      "publication_date": "2023-08-29",
+      "publication_year": 2023,
+      "abstract": "This paper develops fundamental bounds for localization in orthogonal frequency division multiplexing (OFDM) systems aided by reconfigurable intelligent surfaces (RISs). Specifically, we start from the assumption that the position and orientation of a RIS can be viewed as prior information for RIS-aided localization in wireless systems and derive Bayesian bounds for the localization of a user equipment (UE). To do this, we first derive the Bayesian Fisher information matrix (FIM) for channel parameters to derive the Bayesian localization bounds. Then, to focus on the geometric channel parameters, we derive the equivalent Fisher information matrix (EFIM) and show that it has a definite structure. Subsequently, we show through the information loss associated with the EFIM that when the RIS reflection coefficients remain constant across all OFDM symbols, and there is no prior information about the nuisance parameters, the corresponding submatrix in the EFIM related to the RIS angle parameters is a zero matrix. As a result of the EFIM being a zero matrix, estimating the RIS-related angle channel parameters is not possible when the RIS reflection coefficients remain constant across all OFDM symbols. This observation is crucial for the estimation of the RIS-related angle parameters. It dictates that to estimate the RIS-related angle parameters, there must be more than one OFDM transmission with differing RIS reflection coefficients. Furthermore, due to this observation, we note that localization of a single antenna UE through the signals received from reflections from a single RIS to the UE is not feasible in the far-field when the RIS reflection coefficients remain constant across all OFDM symbols. We also show that the FIM for the RIS-related channel parameters can be decomposed into i) information provided by the receiver, ii) information provided by the transmitter, and iii) information provided by the RIS components. We then transform the Bayesian EFIM for geometric channel parameters to the Bayesian FIM for the UE position and orientation parameters and examine its specific structure under a particular class of RIS reflection coefficients.",
+      "url": "https://api.openalex.org/works/https://doi.org/10.1109/twc.2023.3307818",
+      "id": 1,
+      "checked_scope": "Metadata, abstract and public manuscript contribution/nuisance-information passages.",
+      "abstract_does_not_prove_gain_in_current_system": true,
+      "public_manuscript": {
+        "url": "https://arxiv.org/html/2206.01652",
+        "text_sha256": "ba4274d36d7a4e12da5b4823524fc473ad1eefacb2203dbf2c930ec4d78fbd52",
+        "text_characters": 201138,
+        "fulltext_not_uploaded": true
+      }
+    },
+    {
+      "title": "RIS-Assisted High Resolution Radar Sensing",
+      "doi": "https://doi.org/10.1109/tsp.2025.3586551",
+      "authors": [
+        "Martin Voigt Vejling",
+        "Hyowon Kim",
+        "Christophe A. N. Biscio",
+        "Henk Wymeersch",
+        "Petar Popovski"
+      ],
+      "publication_date": "2025-01-01",
+      "publication_year": 2025,
+      "abstract": "This paper analyzes monostatic sensing by a user equipment (UE) for a setting in which the UE is unable to resolve multiple targets due to their interference within a single resolution bin. It is shown how sensing accuracy, in terms of both detection rate and localization accuracy, can be boosted by a reconfigurable intelligent surface (RIS), which can be advantageously used to provide signal diversity and aid in resolving the targets. Specifically, assuming prior information on the presence of a cluster of targets, a RIS beam sweep procedure is used to facilitate the high resolution sensing. This setting requires a tailored Fisher analysis, as well as introduction of two new coherence concepts that are central to the derived theoretical bounds, namely the Cramér-Rao lower bound and a new upper bound on the detection probability. Next, we propose an orthogonal matching pursuit channel estimation algorithm combined with data association to fuse the information of the non-RIS signal and the RIS signal and perform sensing. Finally, we provide numerical results to verify the potential of RIS for improving sensor resolution, and to demonstrate that the proposed methods can realize this potential for RIS-assisted high resolution sensing.",
+      "url": "https://api.openalex.org/works/https://doi.org/10.1109/tsp.2025.3586551",
+      "id": 2,
+      "checked_scope": "Metadata, abstract, contributions, cluster prior and signal/precoder construction passages.",
+      "abstract_does_not_prove_gain_in_current_system": true,
+      "public_manuscript": {
+        "url": "https://arxiv.org/html/2407.11726",
+        "text_sha256": "61a6eee080996d4f9cd5246afdc377fdb1937454ced0a66fc584df2bbb19691a",
+        "text_characters": 113367,
+        "fulltext_not_uploaded": true
+      }
+    },
+    {
+      "title": "RIS-Aided Monostatic Sensing and Object Detection with Single and Double Bounce Multipath",
+      "doi": "https://doi.org/10.1109/iccworkshops57953.2023.10283494",
+      "authors": [
+        "Hyowon Kim",
+        "Alessio Fascista",
+        "Hui Chen",
+        "Yu Ge",
+        "George C. Alexandropoulos",
+        "Gonzalo Seco‐Granados",
+        "Henk Wymeersch"
+      ],
+      "publication_date": "2023-05-28",
+      "publication_year": 2023,
+      "abstract": "We propose a framework for monostatic sensing by a user equipment (UE), aided by a reconfigurable intelligent surface (RIS) in environments with single- and double-bounce signal propagation. We design appropriate UE-side precoding and combining, to facilitate signal separation. We derive the adaptive detection probabilities of the resolvable signals, based on the geometric channel parameters of the links. Then, we estimate the passive objects using both the double-bounce signals via passive RIS (i.e., RIS-sensing) and the single-bounce multipath direct to the objects (i.e., non-RIS-sensing), based on a mapping filter. Finally, we provide numerical results to demonstrate that effective sensing can be achieved through the proposed framework.",
+      "url": "https://api.openalex.org/works/https://doi.org/10.48550/arxiv.2212.07142",
+      "id": 3,
+      "checked_scope": "Journal/workshop metadata mapping, abstract, system model, negligible Doppler and signal-separation passages.",
+      "abstract_does_not_prove_gain_in_current_system": true,
+      "public_manuscript": {
+        "url": "https://arxiv.org/html/2212.07142",
+        "text_sha256": "6b92d7e897dc7afc7d1c482f9ce4746effe35768ae1f259fa38a11063991fce3",
+        "text_characters": 60572,
+        "fulltext_not_uploaded": true
+      }
+    },
+    {
+      "title": "RIS-Aided NLoS Monostatic Multi-Target Sensing Under Angle-Doppler Coupling",
+      "doi": "10.1109/tvt.2025.3585281",
+      "authors": [
+        "Mahmut Kemal Ercan",
+        "Alireza Pourafzal",
+        "Musa Furkan Keskin",
+        "Sinan Gezici",
+        "Henk Wymeersch"
+      ],
+      "publication_date": "2025-07-02",
+      "publication_year": 2025,
+      "abstract": "We investigate the problem of reconfigurable intelligent surface (RIS)-aided monostatic sensing of multiple mobile targets under LoS blockage using a dual-functional radar-communication base station. For the purpose of target detection and delay/Doppler/angle estimation, we derive a detector based on the generalized likelihood ratio test (GLRT), which entails a high-dimensional parameter search with high complexity due to angle-Doppler coupling. To circumvent the coupling effect, we introduce a repetitive RIS phase profile design accompanied by a multi-target detection/estimation algorithm based on orthogonal matching pursuit where each iteration solves the single-target GLRT problem and outputs the corresponding parameter estimates. Moreover, as a low-complexity alternative, we introduce a novel subspace-based algorithm based on two-dimensional unitary ESPRIT to retrieve target parameters in a non-iterative manner. The simulation results verify the effectiveness of the proposed algorithms, demonstrating their convergence to theoretical bounds and revealing significant improvements over the state-of-the-art benchmarks in complexity and performance.",
+      "url": "https://api.openalex.org/works/https://doi.org/10.1109/tvt.2025.3585281",
+      "id": 4,
+      "checked_scope": "Metadata and abstract only. No fulltext assumptions or numerical gains claimed.",
+      "abstract_does_not_prove_gain_in_current_system": true
+    },
+    {
+      "title": "Intelligent Reflecting Surface Aided Target Localization With Unknown Transceiver-IRS Channel State Information",
+      "doi": "https://doi.org/10.1109/tcomm.2024.3471973",
+      "authors": [
+        "Taotao Ji",
+        "Meng Hua",
+        "Xuanhong Yan",
+        "Chunguo Li",
+        "Yongming Huang",
+        "Lüxi Yang"
+      ],
+      "publication_date": "2024-10-02",
+      "publication_year": 2024,
+      "abstract": "Integrating wireless sensing capabilities into base stations (BSs) has become a widespread trend in the future beyond fifth-generation (B5G)/sixth-generation (6G) wireless networks. In this paper, we investigate intelligent reflecting surface (IRS) enabled wireless localization, in which an IRS is deployed to assist a BS in locating a target in its non-line-of-sight (NLoS) region. In particular, we consider the case where the BS-IRS channel state information (CSI) is unknown. Specifically, we first propose a separate BS-IRS channel estimation scheme in which the BS operates in full-duplex mode (FDM), i.e., a portion of the BS antennas send downlink pilot signals to the IRS, while the remaining BS antennas receive the uplink pilot signals reflected by the IRS. However, we can only obtain an incomplete BS-IRS channel matrix based on our developed iterative coordinate descent-based channel estimation algorithm due to the “sign ambiguity issue”. Then, we employ the multiple hypotheses testing framework to perform target localization based on the incomplete estimated channel, in which the probability of each hypothesis is updated using Bayesian inference at each cycle. Moreover, we formulate a joint BS transmit waveform and IRS phase shifts optimization problem to improve the target localization performance by maximizing the weighted sum distance between each two hypotheses. However, the objective function is essentially a quartic function of the IRS phase shift vector, thus motivating us to resort to the penalty-based method to tackle this challenge. Simulation results validate the effectiveness of our proposed target localization scheme and show that the scheme’s performance can be further improved by finely designing the BS transmit waveform and IRS phase shifts intending to maximize the weighted sum distance between different hypotheses.",
+      "url": "https://api.openalex.org/works/https://doi.org/10.48550/arxiv.2404.05149",
+      "id": 5,
+      "checked_scope": "Metadata mapping, abstract, contributions, target response model and hypothesis-distance design passages.",
+      "abstract_does_not_prove_gain_in_current_system": true,
+      "public_manuscript": {
+        "url": "https://arxiv.org/html/2404.05149",
+        "text_sha256": "8f8c1a7067e947f9b6e82f51024ed8cf2a3f9b8d933e2998af094e88d060c787",
+        "text_characters": 110881,
+        "fulltext_not_uploaded": true
+      }
+    },
+    {
+      "title": "Ziv–Zakai Bound for Uplink Time Delay Estimation in RIS-Assisted Massive MIMO Systems",
+      "doi": "10.1109/tvt.2025.3620554",
+      "authors": [
+        "Luchao Cheng",
+        "Yunfei Li",
+        "Ming Jiang",
+        "Zheng Shi",
+        "Shaodan Ma",
+        "Guanghua Yang"
+      ],
+      "publication_date": "2025-10-14",
+      "publication_year": 2025,
+      "abstract": "Evaluating time delay estimation performance is critical in reconfigurable intelligent surfaces (RIS)-assisted massive MIMO systems. However, classical performance bounds such as the CRB and BCRB are only locally tight. In this correspondence, we derive a simplified closed-form expression for the globally effective Ziv-Zakai bound (ZZB) by approximating the summation of discrete signal samples as an integral over continuous signals and applying the Fourier transform for frequency-domain analysis. Simulation results demonstrate that under uniform a priori distributions, snapshots don't affect the value of the ZZB. Furthermore, regardless of variations in the number of RIS passive elements and base station antennas, the ZZB consistently offers a tighter bound than CRB in the low SNR region.",
+      "url": "https://api.openalex.org/works/https://doi.org/10.1109/tvt.2025.3620554",
+      "id": 6,
+      "checked_scope": "Metadata and abstract only. Online/index year versus issue date explicitly distinguished.",
+      "abstract_does_not_prove_gain_in_current_system": true,
+      "crossref_issue_date": [
+        [
+          2026,
+          4
+        ]
+      ]
+    },
+    {
+      "title": "Faulty RIS-Aided Integrated Sensing and Communication: Modeling and Optimization",
+      "doi": "https://doi.org/10.1109/twc.2025.3646563",
+      "authors": [
+        "Lu Wang",
+        "Gui Zhou",
+        "Changheng Li",
+        "Luis Fernando Abanto-Leon",
+        "Nairy Moghadas Gholian",
+        "Matthias Hollick",
+        "Arash Asadi"
+      ],
+      "publication_date": "2025-12-30",
+      "publication_year": 2025,
+      "abstract": "This work investigates a practical reconfigurable intelligent surface (RIS)-aided integrated sensing and communication (ISAC) system, where a subset of RIS elements fail to function properly and reflect incident signals randomly towards unintended directions with attenuation, thereby degrading system performance. To date, no study has addressed such impairments caused by faulty RIS elements in ISAC systems. This work aims to fill the gap. First, to quantify the impact of faulty elements on ISAC performance, we derive the misspecified Cramér-Rao bound (MCRB) for sensing parameter estimation and signal-to-interference-and-noise ratio (SINR) for communication quality. Then, to mitigate the performance loss caused by faulty elements, we jointly design the remaining functional RIS phase shifts and transmit beamforming to minimize the MCRB, subject to the communication SINR and transmit power constraints. The resulting optimization problem is highly non-convex due to the intricate structure of the MCRB expression and constant-modulus constraint imposed on RIS. To address this, we reformulate it into a more tractable form and propose a block coordinate descent (BCD) algorithm that incorporates majorization-minimization (MM), successive convex approximation (SCA), and penalization techniques. Simulation results demonstrate that our proposed approach reduces the performance loss by 21.25% on average compared to the baseline where the presence of faulty elements is ignored. Furthermore, the performance gain becomes more evident as the number of faulty elements increases.",
+      "url": "https://api.openalex.org/works/https://doi.org/10.1109/twc.2025.3646563",
+      "id": 7,
+      "checked_scope": "Metadata, abstract, public manuscript contribution and identified-fault assumptions.",
+      "abstract_does_not_prove_gain_in_current_system": true,
+      "public_manuscript": {
+        "url": "https://arxiv.org/html/2505.17970",
+        "text_sha256": "ecca0f48c1dc711ebec0f4fadc01d53dd5352a25749c4c57f8cc6c71226aff91",
+        "text_characters": 148709,
+        "fulltext_not_uploaded": true
+      }
+    },
+    {
+      "title": "RIS-Aided Near-Field Localization Under Phase-Dependent Amplitude Variations",
+      "doi": "https://doi.org/10.1109/twc.2023.3235306",
+      "authors": [
+        "Cuneyd Ozturk",
+        "Musa Furkan Keskin",
+        "Henk Wymeersch",
+        "Sinan Gezici"
+      ],
+      "publication_date": "2023-01-13",
+      "publication_year": 2023,
+      "abstract": "We investigate the problem of reconfigurable intelligent surface (RIS)-aided near-field localization of a user equipment (UE) served by a base station (BS) under phase-dependent amplitude variations at each RIS element. Through a misspecified Cramér-Rao bound (MCRB) analysis and a resulting lower bound (LB) on localization, we show that when the UE is unaware of amplitude variations (i.e., assumes unit-amplitude responses), severe performance penalties can arise, especially at high signal-to-noise ratios (SNRs). Leveraging Jacobi-Anger expansion to decouple range-azimuth-elevation dimensions, we develop a low-complexity approximated mismatched maximum likelihood (AMML) estimator, which is asymptotically tight to the LB. To mitigate performance loss due to model mismatch, we propose to jointly estimate the UE location and the RIS amplitude model parameters. The corresponding Cramér-Rao bound (CRB) is derived, as well as an iterative refinement algorithm, which employs the AMML method as a subroutine and alternatingly updates individual parameters of the RIS amplitude model. Simulation results indicate fast convergence and performance close to the CRB. The proposed method can successfully recover the performance loss of the AMML under a wide range of RIS parameters and effectively calibrate the RIS amplitude model online with the help of a user that has an a-priori unknown location.",
+      "url": "https://api.openalex.org/works/https://doi.org/10.1109/twc.2023.3235306",
+      "id": 8,
+      "checked_scope": "Metadata and abstract only.",
+      "abstract_does_not_prove_gain_in_current_system": true
+    }
+  ],
+  "queries": [
+    {
+      "query": "RIS Ziv Zakai localization sensing",
+      "url": "https://api.crossref.org/works?query.title=RIS+Ziv+Zakai+localization+sensing&rows=7&select=title%2Cauthor%2CDOI%2Cpublished%2Ccontainer-title%2Cabstract%2CURL%2Clink",
+      "result_cap": 7,
+      "returned_count": 7,
+      "title_doi_hits": [
+        {
+          "title": [
+            "Ziv-Zakai Bound for Near-Field Localization and Sensing"
+          ],
+          "doi": "10.1109/ieeeconf67917.2025.11443819"
+        },
+        {
+          "title": [
+            "Ziv–Zakai Bound for Uplink Time Delay Estimation in RIS-Assisted Massive MIMO Systems"
+          ],
+          "doi": "10.1109/tvt.2025.3620554"
+        },
+        {
+          "title": [
+            "Ziv–Zakai Bounds on Image Registration"
+          ],
+          "doi": "10.1109/tsp.2008.2011822"
+        },
+        {
+          "title": [
+            "Ziv-Zakai Bound for DOAs Estimation"
+          ],
+          "doi": "10.1109/tsp.2022.3229946"
+        },
+        {
+          "title": [
+            "Ziv–Zakai Bound for Multisource DOA Estimation"
+          ],
+          "doi": "10.1002/9781394216956.ch14"
+        },
+        {
+          "title": [
+            "Ziv‐Zakai Bound for Direct Position Estimation"
+          ],
+          "doi": "10.1002/navi.259"
+        },
+        {
+          "title": [
+            "Ziv–Zakai Bound for 2D-DOAs Estimation"
+          ],
+          "doi": "10.1109/tsp.2024.3375636"
+        }
+      ]
+    },
+    {
+      "query": "RIS Barankin ambiguity estimation",
+      "url": "https://api.crossref.org/works?query.title=RIS+Barankin+ambiguity+estimation&rows=7&select=title%2Cauthor%2CDOI%2Cpublished%2Ccontainer-title%2Cabstract%2CURL%2Clink",
+      "result_cap": 7,
+      "returned_count": 7,
+      "title_doi_hits": [
+        {
+          "title": [
+            "Barankin Bounds on Parameter Estimation"
+          ],
+          "doi": "10.1109/9780470544198.ch6"
+        },
+        {
+          "title": [
+            "Barankin Bounds on Parameter Estimation"
+          ],
+          "doi": "10.1109/tit.1971.1054719"
+        },
+        {
+          "title": [
+            "Cross-Harmonic Ambiguity-Aligned Multiport Parameter Estimation for Time-Floquet RIS"
+          ],
+          "doi": "10.1109/lwc.2026.3727806"
+        },
+        {
+          "title": [
+            "Barankin-Type Bound for Constrained Parameter Estimation"
+          ],
+          "doi": "10.1109/tsp.2023.3322777"
+        },
+        {
+          "title": [
+            "Barankin Bound for Multiple Change-Point Estimation"
+          ],
+          "doi": "10.1109/camsap.2007.4497959"
+        },
+        {
+          "title": [
+            "The Barankin Bound for Time Estimation in TOF-PET"
+          ],
+          "doi": "10.1109/nss/mic44845.2022.10398979"
+        },
+        {
+          "title": [
+            "Ambiguity-Aware Segmented Estimation of Mutual Coupling in Large RIS: Algorithm and Experimental Validation"
+          ],
+          "doi": "10.1109/tcomm.2026.3653083"
+        }
+      ]
+    },
+    {
+      "query": "RIS sensing phase error calibration target",
+      "url": "https://api.crossref.org/works?query.title=RIS+sensing+phase+error+calibration+target&rows=7&select=title%2Cauthor%2CDOI%2Cpublished%2Ccontainer-title%2Cabstract%2CURL%2Clink",
+      "error": "<HTTPError 429: 'Too Many Requests'>",
+      "result_cap": 7,
+      "returned_count": 0,
+      "title_doi_hits": []
+    },
+    {
+      "query": "RIS sensing multipath separation Doppler coding",
+      "url": "https://api.crossref.org/works?query.title=RIS+sensing+multipath+separation+Doppler+coding&rows=7&select=title%2Cauthor%2CDOI%2Cpublished%2Ccontainer-title%2Cabstract%2CURL%2Clink",
+      "result_cap": 7,
+      "returned_count": 7,
+      "title_doi_hits": [
+        {
+          "title": [
+            "Spreading CDMA via RIS: Multipath Separation, Estimation, and Combination"
+          ],
+          "doi": "10.1109/jiot.2023.3242864"
+        },
+        {
+          "title": [
+            "RIS-V2V Communications: The Way to Mitigate Doppler Shifts and Multipath Spread"
+          ],
+          "doi": "10.1109/lwc.2023.3341454"
+        },
+        {
+          "title": [
+            "Beamforming Optimization for RIS-Assisted RF Sensing in Multipath NLOS Environments"
+          ],
+          "doi": "10.1109/lsens.2025.3581098"
+        },
+        {
+          "title": [
+            "Multipath Separation and Parameter Estimation by Single RIS Antenna in Fading Channel"
+          ],
+          "doi": "10.36227/techrxiv.15169701.v1"
+        },
+        {
+          "title": [
+            "Multipath Separation and Parameter Estimation by Single RIS Antenna in Fading Channel"
+          ],
+          "doi": "10.36227/techrxiv.15169701"
+        },
+        {
+          "title": [
+            "RIS-aided NOMA networks: Mitigating multipath fading and Doppler effects for beyond 5G wireless systems"
+          ],
+          "doi": "10.1016/j.phycom.2026.103025"
+        },
+        {
+          "title": [
+            "RIS-Aided NLoS Monostatic Multi-Target Sensing Under Angle-Doppler Coupling"
+          ],
+          "doi": "10.1109/tvt.2025.3585281"
+        }
+      ]
+    },
+    {
+      "query": "RIS target sensing multipath model selection",
+      "url": "https://api.crossref.org/works?query.title=RIS+target+sensing+multipath+model+selection&rows=7&select=title%2Cauthor%2CDOI%2Cpublished%2Ccontainer-title%2Cabstract%2CURL%2Clink",
+      "error": "<HTTPError 429: 'Too Many Requests'>",
+      "result_cap": 7,
+      "returned_count": 0,
+      "title_doi_hits": []
+    },
+    {
+      "query": "RIS localization adaptive training beamforming",
+      "url": "https://api.crossref.org/works?query.title=RIS+localization+adaptive+training+beamforming&rows=7&select=title%2Cauthor%2CDOI%2Cpublished%2Ccontainer-title%2Cabstract%2CURL%2Clink",
+      "error": "<HTTPError 429: 'Too Many Requests'>",
+      "result_cap": 7,
+      "returned_count": 0,
+      "title_doi_hits": []
+    },
+    {
+      "query": "RIS sensing localization robust uncertainty beamforming",
+      "url": "https://api.crossref.org/works?query.title=RIS+sensing+localization+robust+uncertainty+beamforming&rows=7&select=title%2Cauthor%2CDOI%2Cpublished%2Ccontainer-title%2Cabstract%2CURL%2Clink",
+      "error": "<HTTPError 429: 'Too Many Requests'>",
+      "result_cap": 7,
+      "returned_count": 0,
+      "title_doi_hits": []
+    },
+    {
+      "query": "RIS target vector velocity estimation",
+      "url": "https://api.crossref.org/works?query.title=RIS+target+vector+velocity+estimation&rows=7&select=title%2Cauthor%2CDOI%2Cpublished%2Ccontainer-title%2Cabstract%2CURL%2Clink",
+      "result_cap": 7,
+      "returned_count": 7,
+      "title_doi_hits": [
+        {
+          "title": [
+            "Estimation of velocity vector by target tracking"
+          ],
+          "doi": "10.1250/ast.36.161"
+        },
+        {
+          "title": [
+            "RIS-aided monostatic radar for NLOS target DOA estimation based on steering vector decoupling"
+          ],
+          "doi": "10.1016/j.sigpro.2026.110685"
+        },
+        {
+          "title": [
+            "Target Velocity Vector Estimation From Single Platform Dualchannel Squinted Synthetic Aperture Radar"
+          ],
+          "doi": "10.23919/irs64527.2025.11046182"
+        },
+        {
+          "title": [
+            "RIS-Assisted Target Height Estimation for 2D Radar"
+          ],
+          "doi": "10.1109/igarss53475.2024.10641397"
+        },
+        {
+          "title": [
+            "Vector velocity estimation using aperture domain data"
+          ],
+          "doi": "10.1109/ultsym.2005.1602820"
+        },
+        {
+          "title": [
+            "Velocity vector estimation in automotive radar networks"
+          ],
+          "doi": "10.1017/s175907872400117x"
+        },
+        {
+          "title": [
+            "A radial velocity estimation method of the underwater moving target based on vector sound field"
+          ],
+          "doi": "10.1016/j.oceaneng.2026.126483"
+        }
+      ]
+    },
+    {
+      "query": "RIS Ziv Zakai",
+      "url": "https://api.openalex.org/works?search=RIS+Ziv+Zakai&per-page=6&select=id%2Ctitle%2Cdoi%2Cpublication_year%2Cpublication_date%2Cabstract_inverted_index%2Clocations",
+      "result_cap": 6,
+      "returned_count": 6,
+      "title_doi_hits": [
+        {
+          "title": "Ziv–Zakai Bound for Uplink Time Delay Estimation in RIS-Assisted Massive MIMO Systems",
+          "doi": "https://doi.org/10.1109/tvt.2025.3620554"
+        },
+        {
+          "title": "Gridless Full-Space DOA Estimation for STAR-RIS-Assisted Wireless Systems",
+          "doi": "https://doi.org/10.48550/arxiv.2602.02893"
+        },
+        {
+          "title": "A Robust Range Accuracy Adaptation Criterion Based on Ziv-Zakai Lower Bound for Cognitive Positioning System",
+          "doi": "https://doi.org/10.12928/telkomnika.v14i1.2345"
+        },
+        {
+          "title": "Sparse RIS-Aided DOA Estimation for NLOS Scenario: A Pseudo-Inverse Vectorization Perspective",
+          "doi": "https://doi.org/10.1109/tvt.2025.3632831"
+        },
+        {
+          "title": "Joint Beamforming Design for RIS-enabled Integrated Positioning and Communication in Millimeter Wave Systems",
+          "doi": "https://doi.org/10.48550/arxiv.2305.12094"
+        },
+        {
+          "title": "Structured Tensor Decomposition Based Channel Estimation and Double Refinements for Active RIS Empowered Broadband Systems",
+          "doi": "https://doi.org/10.1109/tvt.2025.3555800"
+        }
+      ]
+    },
+    {
+      "query": "RIS sensing phase calibration",
+      "url": "https://api.openalex.org/works?search=RIS+sensing+phase+calibration&per-page=6&select=id%2Ctitle%2Cdoi%2Cpublication_year%2Cpublication_date%2Cabstract_inverted_index%2Clocations",
+      "result_cap": 6,
+      "returned_count": 6,
+      "title_doi_hits": [
+        {
+          "title": "On Performance of Non-diagonal STAR RIS with Integrated Sensing and Communications",
+          "doi": "https://doi.org/10.1109/gcwkshp64532.2024.11101643"
+        },
+        {
+          "title": "Joint RIS Calibration and Multi-User Positioning",
+          "doi": "https://doi.org/10.1109/vtc2022-fall57202.2022.10012776"
+        },
+        {
+          "title": "JrCUP: Joint RIS Calibration and User Positioning for 6G Wireless Systems",
+          "doi": "https://doi.org/10.1109/twc.2023.3336177"
+        },
+        {
+          "title": "RIS-Aided Sensing: Experimental Validation of Radar 3D Imaging in the mmWave Band",
+          "doi": null
+        },
+        {
+          "title": "RIS-Aided Sensing: Experimental Validation of Radar 3D Imaging in the mmWave Band",
+          "doi": "https://doi.org/10.48550/arxiv.2604.12466"
+        },
+        {
+          "title": "On-Site Beam Calibration for RIS-Aided Positioning Systems",
+          "doi": "https://doi.org/10.48550/arxiv.2607.24080"
+        }
+      ]
+    },
+    {
+      "query": "RIS sensing multipath model selection",
+      "url": "https://api.openalex.org/works?search=RIS+sensing+multipath+model+selection&per-page=6&select=id%2Ctitle%2Cdoi%2Cpublication_year%2Cpublication_date%2Cabstract_inverted_index%2Clocations",
+      "result_cap": 6,
+      "returned_count": 6,
+      "title_doi_hits": [
+        {
+          "title": "Localization in Multipath Environments via Active Sensing With Reconfigurable Intelligent Surfaces",
+          "doi": "https://doi.org/10.1109/lcomm.2024.3421370"
+        },
+        {
+          "title": "RIS-Aided Cooperative ISAC Networks for Structural Health Monitoring",
+          "doi": "https://doi.org/10.1109/jsac.2025.3610805"
+        },
+        {
+          "title": "Movable Antenna-Enabled RIS-Aided Integrated Sensing and Communication",
+          "doi": "https://doi.org/10.1109/tccn.2025.3559578"
+        },
+        {
+          "title": "Modeling and Analysis of MIMO Multipath Channels With Aerial Intelligent Reflecting Surface",
+          "doi": "https://doi.org/10.1109/jsac.2022.3196112"
+        },
+        {
+          "title": "RIS-Assisted Cell-Free Massive MIMO: RIS-MS Selection in FR1 and FR3",
+          "doi": "https://doi.org/10.48550/arxiv.2604.17634"
+        },
+        {
+          "title": "RIS-Assisted Integrated Sensing and Communication Systems: Joint Reflection and Beamforming Design",
+          "doi": "https://doi.org/10.1109/ojcoms.2024.3353770"
+        }
+      ]
+    },
+    {
+      "query": "RIS localization adaptive training",
+      "url": "https://api.openalex.org/works?search=RIS+localization+adaptive+training&per-page=6&select=id%2Ctitle%2Cdoi%2Cpublication_year%2Cpublication_date%2Cabstract_inverted_index%2Clocations",
+      "result_cap": 6,
+      "returned_count": 6,
+      "title_doi_hits": [
+        {
+          "title": "Adaptive Beamforming Design for mmWave RIS-Aided Joint Localization and Communication",
+          "doi": "https://doi.org/10.1109/wcncw48565.2020.9124848"
+        },
+        {
+          "title": "Beyond 5G RIS mmWave Systems: Where Communication and Localization Meet",
+          "doi": "https://doi.org/10.1109/access.2022.3186510"
+        },
+        {
+          "title": "Employing High-Dimensional RIS Information for RIS-Aided Localization Systems",
+          "doi": "https://doi.org/10.1109/lcomm.2024.3433517"
+        },
+        {
+          "title": "RIS-Aided Localization Under Pixel Failures",
+          "doi": "https://doi.org/10.1109/twc.2023.3348421"
+        },
+        {
+          "title": "On the Impact of Hardware Impairments on RIS-aided Localization",
+          "doi": "https://doi.org/10.1109/icc45855.2022.9838889"
+        },
+        {
+          "title": "RIS-Enabled SISO Localization Under User Mobility and Spatial-Wideband Effects",
+          "doi": "https://doi.org/10.1109/jstsp.2022.3175036"
+        }
+      ]
+    },
+    {
+      "query": "RIS localization robust uncertainty",
+      "url": "https://api.openalex.org/works?search=RIS+localization+robust+uncertainty&per-page=6&select=id%2Ctitle%2Cdoi%2Cpublication_year%2Cpublication_date%2Cabstract_inverted_index%2Clocations",
+      "result_cap": 6,
+      "returned_count": 6,
+      "title_doi_hits": [
+        {
+          "title": "Phase Design and Near-Field Target Localization for RIS-Assisted Regional Localization System",
+          "doi": "https://doi.org/10.1109/tvt.2021.3135275"
+        },
+        {
+          "title": "Toward Practical RIS-Assisted ISAC: A Robust Framework for Joint Localization and Communication",
+          "doi": "https://doi.org/10.1109/tnse.2025.3645084"
+        },
+        {
+          "title": "Robust Resource Allocation for RIS-Assisted Joint Localization and Communication System",
+          "doi": "https://doi.org/10.1109/globecom54140.2023.10437949"
+        },
+        {
+          "title": "Localization-assisted Communication for RIS-aided Distributed MIMO Systems Using Distributionally Robust Optimization",
+          "doi": "https://doi.org/10.1109/iccc62479.2024.10681852"
+        },
+        {
+          "title": "RIS-aided Joint Localization and Synchronization with a Single-Antenna Receiver: Beamforming Design and Low-Complexity Estimation",
+          "doi": "https://doi.org/10.1109/jstsp.2022.3177925"
+        },
+        {
+          "title": "Robust Design of Sensing-Assisted Secure Transmission for RIS-Aided ISAC System under Eavesdropper 3D Positioning Uncertainty",
+          "doi": "https://doi.org/10.48550/arxiv.2610.23139"
+        }
+      ]
+    },
+    {
+      "query": "RIS sensing angle Doppler coupling",
+      "url": "https://api.openalex.org/works?search=RIS+sensing+angle+Doppler+coupling&per-page=6&select=id%2Ctitle%2Cdoi%2Cpublication_year%2Cpublication_date%2Cabstract_inverted_index%2Clocations",
+      "result_cap": 6,
+      "returned_count": 6,
+      "title_doi_hits": [
+        {
+          "title": "RIS-Aided NLoS Monostatic Sensing Under Mobility and Angle-Doppler Coupling",
+          "doi": "https://doi.org/10.1109/wcnc57260.2024.10571183"
+        },
+        {
+          "title": "RIS-Aided NLoS Monostatic Multi-Target Sensing Under Angle-Doppler Coupling",
+          "doi": "https://doi.org/10.1109/tvt.2025.3585281"
+        },
+        {
+          "title": "Decoupled Delay-Doppler and Angle Estimation in BD-RIS Sensing via Nested Tucker Decomposition",
+          "doi": "https://doi.org/10.14209/sbrt.2026.1571299550"
+        },
+        {
+          "title": "STAR-RIS-Based Pulse-Doppler Radars",
+          "doi": "https://doi.org/10.23919/eusipco63174.2024.10715321"
+        },
+        {
+          "title": "Near-Field RIS-Assisted Localization Under Mutual Coupling",
+          "doi": "https://doi.org/10.1109/iccworkshops67674.2025.11162429"
+        },
+        {
+          "title": "6G RIS-aided Single-LEO Localization with Slow and Fast Doppler Effects",
+          "doi": "https://doi.org/10.1109/gcwkshp64532.2024.11100939"
+        }
+      ]
+    },
+    {
+      "query": "RIS sensing weak multipath nuisance",
+      "url": "https://api.openalex.org/works?search=RIS+sensing+weak+multipath+nuisance&per-page=5&select=id%2Ctitle%2Cdoi%2Cpublication_year%2Cabstract_inverted_index%2Clocations",
+      "result_cap": 5,
+      "returned_count": 5,
+      "title_doi_hits": [
+        {
+          "title": "RIS-Assisted High Resolution Radar Sensing",
+          "doi": "https://doi.org/10.1109/tsp.2025.3586551"
+        },
+        {
+          "title": "RIS-Aided Localization Under Position and Orientation Offsets in the Near and Far Field",
+          "doi": "https://doi.org/10.1109/twc.2023.3270029"
+        },
+        {
+          "title": "Cooperative Target Localization in RIS-Enabled ISAC Systems",
+          "doi": "https://doi.org/10.48550/arxiv.2609.39708"
+        },
+        {
+          "title": "RIS-Enabled NLoS Near-Field Joint Position and Velocity Estimation Under User Mobility",
+          "doi": "https://doi.org/10.1109/jstsp.2024.3414110"
+        },
+        {
+          "title": "GNSS Multipath Mitigation Using Channel Parameter Estimation Techniques",
+          "doi": "https://doi.org/10.11575/prism/26308"
+        }
+      ]
+    },
+    {
+      "query": "RIS localization model selection multipath",
+      "url": "https://api.openalex.org/works?search=RIS+localization+model+selection+multipath&per-page=5&select=id%2Ctitle%2Cdoi%2Cpublication_year%2Cabstract_inverted_index%2Clocations",
+      "result_cap": 5,
+      "returned_count": 5,
+      "title_doi_hits": [
+        {
+          "title": "Localization in Multipath Environments via Active Sensing With Reconfigurable Intelligent Surfaces",
+          "doi": "https://doi.org/10.1109/lcomm.2024.3421370"
+        },
+        {
+          "title": "Fundamentals of RIS-Aided Localization in the Far-Field",
+          "doi": "https://doi.org/10.1109/twc.2023.3307818"
+        },
+        {
+          "title": "Beyond 5G RIS mmWave Systems: Where Communication and Localization Meet",
+          "doi": "https://doi.org/10.1109/access.2022.3186510"
+        },
+        {
+          "title": "A Deep Learning Approach in RIS-based Indoor Localization",
+          "doi": "https://doi.org/10.1109/eucnc/6gsummit60053.2024.10597098"
+        },
+        {
+          "title": "RIS-Enabled SISO Localization Under User Mobility and Spatial-Wideband Effects",
+          "doi": "https://doi.org/10.1109/jstsp.2022.3175036"
+        }
+      ]
+    },
+    {
+      "query": "RIS sensing path selection Fisher information",
+      "url": "https://api.openalex.org/works?search=RIS+sensing+path+selection+Fisher+information&per-page=5&select=id%2Ctitle%2Cdoi%2Cpublication_year%2Cabstract_inverted_index%2Clocations",
+      "result_cap": 5,
+      "returned_count": 5,
+      "title_doi_hits": [
+        {
+          "title": "Joint Localization and Environment Sensing by Harnessing NLOS Components in RIS-Aided mmWave Communication Systems",
+          "doi": "https://doi.org/10.1109/twc.2023.3266343"
+        },
+        {
+          "title": "Near-Field Channel Reconstruction in Sensing RIS-Assisted Wireless Communication Systems",
+          "doi": "https://doi.org/10.1109/twc.2024.3389026"
+        },
+        {
+          "title": "Faulty RIS-Aided Integrated Sensing and Communication: Modeling and Optimization",
+          "doi": "https://doi.org/10.1109/twc.2025.3646563"
+        },
+        {
+          "title": "RIS-Aided Bistatic Radar for Rapid NLOS Sensing in the Teraharetz Band",
+          "doi": "https://doi.org/10.48550/arxiv.2408.08096"
+        },
+        {
+          "title": "Learning or Modeling? Virtual XL-RIS Observation Reconstruction for Near-Field Sensing",
+          "doi": "https://doi.org/10.48550/arxiv.2610.17566"
+        }
+      ]
+    },
+    {
+      "query": "RIS sensing misspecified Cramer Rao multipath",
+      "url": "https://api.openalex.org/works?search=RIS+sensing+misspecified+Cramer+Rao+multipath&per-page=5&select=id%2Ctitle%2Cdoi%2Cpublication_year%2Cabstract_inverted_index%2Clocations",
+      "result_cap": 5,
+      "returned_count": 5,
+      "title_doi_hits": [
+        {
+          "title": "On the Impact of Hardware Impairments on RIS-aided Localization",
+          "doi": "https://doi.org/10.1109/icc45855.2022.9838889"
+        },
+        {
+          "title": "RIS-Aided Near-Field Localization Under Phase-Dependent Amplitude Variations",
+          "doi": "https://doi.org/10.1109/twc.2023.3235306"
+        },
+        {
+          "title": "Privacy Preservation in Delay-Based Localization Systems: Artificial Noise or Artificial Multipath?",
+          "doi": "https://doi.org/10.1109/globecom52923.2024.10901443"
+        },
+        {
+          "title": "RIS-Aided Localization Under Position and Orientation Offsets in the Near and Far Field",
+          "doi": "https://doi.org/10.1109/twc.2023.3270029"
+        },
+        {
+          "title": "RIS-Aided Near-Field Localization and Channel Estimation for the Sub-Terahertz System",
+          "doi": "https://doi.org/10.48550/arxiv.2208.11343"
+        }
+      ]
+    }
+  ]
+}

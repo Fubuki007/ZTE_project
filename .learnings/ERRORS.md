@@ -526,3 +526,20 @@ Use bounded sequential requests with per-request error capture; retain arXiv pri
 - Reproducible: unknown
 
 ---
+
+## [ERR-20261028-RESEARCH] Repeated metadata throttling and unreliable PDF text extraction
+
+**Logged**: 2026-10-28
+**Priority**: medium
+**Status**: resolved
+**Area**: docs
+**See Also**: ERR-20261015-CRF
+
+Crossref title searches with four concurrent requests again returned HTTP 429 on four of eight queries. Successful records and individual errors were preserved, then OpenAlex and arXiv were used. Future Crossref requests should be sequential as the earlier record already advised; do not retry a concurrent burst.
+
+The system pdftotext resolved to MiKTeX and lacked the Adobe-GB1 language mapping. A presumed bundled pdftotext executable did not exist; bundled pypdf also produced mostly corrupted Chinese despite returning successfully. The existing pdftoppm executable rendered clean pages, allowing visual verification of original manuscript pages 3, 8, 10 and 11. Resolve each executable independently and inspect extracted text quality before relying on it.
+
+- Related Files: docs文档/无源RIS新论文选题_20261028/新论文选题建议.md
+- No document content was modified; extraction/render intermediates remain outside the selected Git backup.
+
+---
