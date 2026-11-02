@@ -43,7 +43,7 @@ def summarize(source, output):
                            "guard0_samples": sorted({int(r["guard0_samples"]) for r in selected}),
                            "guard4_samples": sorted({int(r["guard4_samples"]) for r in selected})})
     summary["FAS_RIS_by_snr"] = by_snr
-    output.write_text(json.dumps(summary, indent=2, allow_nan=False) + "\n", encoding="utf-8")
+    output.write_bytes((json.dumps(summary, indent=2, allow_nan=False) + "\n").encode("utf-8"))
     print(json.dumps(summary["methods"]["FAS_RIS"], indent=2))
 
 
