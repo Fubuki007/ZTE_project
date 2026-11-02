@@ -1,0 +1,371 @@
+{
+  "source": "3900 existing formal checkpoints; no new MC simulation",
+  "audit_code_commit": "1a3f0ea1400d57550c190a5b04ea644e2b33d0f8",
+  "methods": {
+    "Fixed_noRIS": {
+      "total": 3900,
+      "coarse_locked": 3053,
+      "skipped_at_coarse": 847,
+      "feasible_when_locked": 3053,
+      "samples_with_moves": 0,
+      "history_decreased_beyond_1e_minus8": 0,
+      "moves": {
+        "min": 0.0,
+        "median": 0.0,
+        "max": 0.0
+      },
+      "max_displacement_lambda": {
+        "min": 0.0,
+        "median": 0.0,
+        "max": 0.0
+      },
+      "moved_elements": {
+        "min": 0.0,
+        "median": 0.0,
+        "max": 0.0
+      },
+      "evaluations": {
+        "min": 0.0,
+        "median": 0.0,
+        "max": 0.0
+      },
+      "min_history_change": {
+        "min": -2.22044604925031e-16,
+        "median": 5.98404901053229e-06,
+        "max": 0.000722674494602837
+      },
+      "target_steering_change": {
+        "min": 0.0,
+        "median": 0.0,
+        "max": 0.0
+      },
+      "ris_feed_change": {
+        "min": 0.0,
+        "median": 0.0,
+        "max": 0.0
+      },
+      "min_target_correlation": {
+        "min": 1.0,
+        "median": 1.0,
+        "max": 1.0
+      }
+    },
+    "Fixed_RIS": {
+      "total": 3900,
+      "coarse_locked": 3053,
+      "skipped_at_coarse": 847,
+      "feasible_when_locked": 3053,
+      "samples_with_moves": 0,
+      "history_decreased_beyond_1e_minus8": 0,
+      "moves": {
+        "min": 0.0,
+        "median": 0.0,
+        "max": 0.0
+      },
+      "max_displacement_lambda": {
+        "min": 0.0,
+        "median": 0.0,
+        "max": 0.0
+      },
+      "moved_elements": {
+        "min": 0.0,
+        "median": 0.0,
+        "max": 0.0
+      },
+      "evaluations": {
+        "min": 0.0,
+        "median": 0.0,
+        "max": 0.0
+      },
+      "min_history_change": {
+        "min": -1.33781874467331e-12,
+        "median": 4.63485268908936e-06,
+        "max": 0.000724169930733654
+      },
+      "target_steering_change": {
+        "min": 0.0,
+        "median": 0.0,
+        "max": 0.0
+      },
+      "ris_feed_change": {
+        "min": 0.0,
+        "median": 0.0,
+        "max": 0.0
+      },
+      "min_target_correlation": {
+        "min": 1.0,
+        "median": 1.0,
+        "max": 1.0
+      }
+    },
+    "FAS_noRIS": {
+      "total": 3900,
+      "coarse_locked": 3053,
+      "skipped_at_coarse": 847,
+      "feasible_when_locked": 3053,
+      "samples_with_moves": 3050,
+      "history_decreased_beyond_1e_minus8": 0,
+      "moves": {
+        "min": 0.0,
+        "median": 18.0,
+        "max": 25.0
+      },
+      "max_displacement_lambda": {
+        "min": 0.0,
+        "median": 0.282842712474619,
+        "max": 0.282842712474619
+      },
+      "moved_elements": {
+        "min": 0.0,
+        "median": 13.0,
+        "max": 16.0
+      },
+      "evaluations": {
+        "min": 125.0,
+        "median": 150.0,
+        "max": 200.0
+      },
+      "min_history_change": {
+        "min": 0.0,
+        "median": 0.0116327768783714,
+        "max": 0.0583195280180063
+      },
+      "target_steering_change": {
+        "min": 0.0,
+        "median": 0.288144530846575,
+        "max": 0.529976964570079
+      },
+      "ris_feed_change": {
+        "min": 0.0,
+        "median": 0.603099292845976,
+        "max": 0.850866915820318
+      },
+      "min_target_correlation": {
+        "min": 0.817197983516502,
+        "median": 0.941755071403684,
+        "max": 1.0
+      },
+      "score_vs_fixed_percent": {
+        "min": 0.0,
+        "median": 3.42745807111529,
+        "max": 28.3571604850909
+      }
+    },
+    "FAS_RIS": {
+      "total": 3900,
+      "coarse_locked": 3053,
+      "skipped_at_coarse": 847,
+      "feasible_when_locked": 3053,
+      "samples_with_moves": 3043,
+      "history_decreased_beyond_1e_minus8": 0,
+      "moves": {
+        "min": 0.0,
+        "median": 17.0,
+        "max": 24.0
+      },
+      "max_displacement_lambda": {
+        "min": 0.0,
+        "median": 0.282842712474619,
+        "max": 0.282842712474619
+      },
+      "moved_elements": {
+        "min": 0.0,
+        "median": 12.0,
+        "max": 15.0
+      },
+      "evaluations": {
+        "min": 129.0,
+        "median": 155.0,
+        "max": 200.0
+      },
+      "min_history_change": {
+        "min": -1.11022302462516e-16,
+        "median": 0.0112524557685898,
+        "max": 0.0561462125088856
+      },
+      "target_steering_change": {
+        "min": 0.0,
+        "median": 0.260739246385644,
+        "max": 0.49405297994355
+      },
+      "ris_feed_change": {
+        "min": 0.0,
+        "median": 0.54047213611982,
+        "max": 0.850866915820318
+      },
+      "min_target_correlation": {
+        "min": 0.813900509752376,
+        "median": 0.949529851220409,
+        "max": 1.0
+      },
+      "score_vs_fixed_percent": {
+        "min": -0.0391393543894947,
+        "median": 3.33827048226227,
+        "max": 27.5212214619069
+      }
+    }
+  },
+  "FAS_RIS_by_snr": [
+    {
+      "snr_db": -50,
+      "mc": 300,
+      "coarse_locked": 0,
+      "fas_moved": 0,
+      "median_energy_gain_percent": null,
+      "guard0_samples": [],
+      "guard4_samples": []
+    },
+    {
+      "snr_db": -45,
+      "mc": 300,
+      "coarse_locked": 0,
+      "fas_moved": 0,
+      "median_energy_gain_percent": null,
+      "guard0_samples": [],
+      "guard4_samples": []
+    },
+    {
+      "snr_db": -40,
+      "mc": 300,
+      "coarse_locked": 63,
+      "fas_moved": 59,
+      "median_energy_gain_percent": 2.77219689952164,
+      "guard0_samples": [
+        16384
+      ],
+      "guard4_samples": [
+        16128
+      ]
+    },
+    {
+      "snr_db": -35,
+      "mc": 300,
+      "coarse_locked": 290,
+      "fas_moved": 286,
+      "median_energy_gain_percent": 2.9372020071428997,
+      "guard0_samples": [
+        16384
+      ],
+      "guard4_samples": [
+        16128
+      ]
+    },
+    {
+      "snr_db": -30,
+      "mc": 300,
+      "coarse_locked": 300,
+      "fas_moved": 300,
+      "median_energy_gain_percent": 3.266280320520125,
+      "guard0_samples": [
+        16384
+      ],
+      "guard4_samples": [
+        16128
+      ]
+    },
+    {
+      "snr_db": -25,
+      "mc": 300,
+      "coarse_locked": 300,
+      "fas_moved": 299,
+      "median_energy_gain_percent": 3.2629613028062003,
+      "guard0_samples": [
+        16384
+      ],
+      "guard4_samples": [
+        16128
+      ]
+    },
+    {
+      "snr_db": -20,
+      "mc": 300,
+      "coarse_locked": 300,
+      "fas_moved": 299,
+      "median_energy_gain_percent": 3.45686417231946,
+      "guard0_samples": [
+        16384
+      ],
+      "guard4_samples": [
+        16128
+      ]
+    },
+    {
+      "snr_db": -15,
+      "mc": 300,
+      "coarse_locked": 300,
+      "fas_moved": 300,
+      "median_energy_gain_percent": 3.5060036866076647,
+      "guard0_samples": [
+        16384
+      ],
+      "guard4_samples": [
+        16128
+      ]
+    },
+    {
+      "snr_db": -10,
+      "mc": 300,
+      "coarse_locked": 300,
+      "fas_moved": 300,
+      "median_energy_gain_percent": 3.444359359496,
+      "guard0_samples": [
+        16384
+      ],
+      "guard4_samples": [
+        16128
+      ]
+    },
+    {
+      "snr_db": -5,
+      "mc": 300,
+      "coarse_locked": 300,
+      "fas_moved": 300,
+      "median_energy_gain_percent": 3.4400242886638353,
+      "guard0_samples": [
+        16384
+      ],
+      "guard4_samples": [
+        16128
+      ]
+    },
+    {
+      "snr_db": 0,
+      "mc": 300,
+      "coarse_locked": 300,
+      "fas_moved": 300,
+      "median_energy_gain_percent": 3.48666424525139,
+      "guard0_samples": [
+        16384
+      ],
+      "guard4_samples": [
+        16128
+      ]
+    },
+    {
+      "snr_db": 5,
+      "mc": 300,
+      "coarse_locked": 300,
+      "fas_moved": 300,
+      "median_energy_gain_percent": 3.43164259470292,
+      "guard0_samples": [
+        16384
+      ],
+      "guard4_samples": [
+        16128
+      ]
+    },
+    {
+      "snr_db": 10,
+      "mc": 300,
+      "coarse_locked": 300,
+      "fas_moved": 300,
+      "median_energy_gain_percent": 3.490375721985215,
+      "guard0_samples": [
+        16384
+      ],
+      "guard4_samples": [
+        16128
+      ]
+    }
+  ]
+}
