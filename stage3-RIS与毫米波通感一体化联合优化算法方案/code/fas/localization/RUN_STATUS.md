@@ -48,6 +48,14 @@
 - 新增 `tools/finish_loc_run.sh`，等待原监督任务真正COMPLETE后，串行执行修正汇总及逐样本核验；独立锁避免重复执行，不重启原worker，不修改仿真源码或断点。服务器部署和实际运行状态需以 `results_full/audit/state`、监督PID和日志核实。
 - 新增 `tools/summarize_loc_results.py`，按整个MC几何做跨SNR配对bootstrap；全量结果出来前确定统计方案，见README。恒定±10%增益及非有限值计数的合成自检通过，不能当作正式性能证据。
 
+## 最新实测快照（2026-11-03 13:20:51，北京时间）
+
+- 正式实验111/3900，四个MATLAB worker真实存活，CPU约172%–177%；已运行25分35秒。按当前平均吞吐估计剩余约14.5小时，早期估计仍受几何难度影响，沿用12–24小时量级作为参考。
+- 收敛检查3/3已完成，数学/实现检查及本地核验smoke已通过。全量性能和全量断点核验尚未完成，不能据此宣布FAS方向可行或不可行。
+- 核验脚本版本 `d19ff7ad472897a4ea5275cdc5f3891426bc4ab0` 已推送并核对远端SHA。`audit_loc_results.m`、`finish_loc_run.sh`已部署到独立汇总目录，本地与服务器SHA-256一致；原两个汇总文件哈希也重新核对一致。
+- 自动收尾监督PID226911，真实进程已核实，`results_full/audit/state=WAITING`。此状态表示等待原实验全量完成，**不表示核验已经通过**。监督日志在独立汇总目录 `finish_run.log`；真正开始核验后MATLAB日志在 `results_full/audit/audit.log`。完成条件为原任务COMPLETE、`audit/state=COMPLETE`、`audit/verification.json.complete=true`且3900/300计数一致。
+- 如自动收尾失败，应读取上述日志修复核验或数据问题；不得直接跳过核验、改写完成标记或重新启动原仿真。
+
 ## 操作
 
 项目根目录PowerShell：
