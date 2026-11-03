@@ -18,3 +18,5 @@ RIS_stage3/results_*/case_*/
 *.p12
 stage3-RIS*/code/fas/results_*/
 stage3-RIS*/code/fas/*.log
+stage3-RIS*/code/fas/localization/results_*/
+stage3-RIS*/code/fas/localization/*.log

@@ -1,0 +1,1 @@
+{"passed":true,"profile":"smoke","echo_relative_error":5.0621341525440288E-16,"derivative_relative_error":3.3254407461349368E-8,"fisher_relative_error":1.4009138559151744E-9,"control_gradient_relative_error":1.1633095014052898E-10,"peb_noise1_m":0.41711336026331408,"cache_seconds":0.118627,"seconds_per_evaluation":0.0027013799999999998,"matlab":"9.13.0.2049777 (R2022b)"}
