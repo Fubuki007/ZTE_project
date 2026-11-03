@@ -43,7 +43,7 @@
 - MC0追加预算后，固定/FAS粗估计目标分别再改善0.200%/0.062%，相对增益由1.974%变为1.839%；oracle相对增益由1.871%变为1.802%。其余两例仍需完成和核查。
 - 修正新汇总器的边界情况：`Inf` PEB表示不可辨识，必须保留在均值并单独计数，只有未进行信息计算的`NaN`可排除。原正式运行的不可变release仍使用原汇总器，**完成后必须执行修正版重新汇总，再取回最终结果**。该修正不需要重跑定位或改动原始断点；是否实际出现Inf需从全量结果确认。
 - `tools/test_loc_aggregation.m`用本地smoke复制件注入一个Inf进行验证，检查Inf保留、奇异计数和缺失信息区分，测试已通过。注入数据仅存在于`tmp/localization_inf_smoke`，不用于性能结论。
-- 重新汇总使用 `tools/finalize_loc_aggregation.m` 与修正后的 `aggregate_localization.m`，放在独立服务器目录；调用 `finalize_loc_aggregation(original_code, run)`。它要求全量及300个oracle完成，先保存旧汇总到`summary_before_peb_fix/`，再汇总并写`aggregation_revision.json`记录实际聚合代码哈希。部署目录在后续记录中补充；不可覆盖正在运行release的源码。
+- 重新汇总使用 `tools/finalize_loc_aggregation.m` 与修正后的 `aggregate_localization.m`，已部署在独立服务器目录 `/home/jzm123/AAA_ZTEproject/RIS_stage3_matlab_fas/audits/aggregation_20261103_b40b3df/`，并核对本地/远端文件SHA-256一致。它要求全量及300个oracle完成，先保存旧汇总到`summary_before_peb_fix/`，再汇总并写`aggregation_revision.json`记录实际聚合代码哈希；正在运行release的源码未覆盖。
 
 ## 操作
 
@@ -51,7 +51,8 @@
 
 ```powershell
 tools/ris-localization-server.ps1 status -Release 554ff78b42b720939272c60e0d9f0cc37acd82a9
+tools/ris-localization-server.ps1 finalize -Release 554ff78b42b720939272c60e0d9f0cc37acd82a9
 tools/ris-localization-server.ps1 fetch -Release 554ff78b42b720939272c60e0d9f0cc37acd82a9
 ```
 
-fetch在汇总完成后运行；原始逐样本MAT保留服务器。运行代码位于独立release，后续本地文档修改不影响正在执行的源码。源码、脚本、文档与精选检查证据进入Git；环境、凭据、缓存、历史未跟踪文件和大批原始结果排除。
+原任务COMPLETE后先finalize，再fetch；fetch要求修正后汇总证据存在。原始逐样本MAT保留服务器。运行代码位于独立release，后续本地文档修改不影响正在执行的源码。源码、脚本、文档与精选检查证据进入Git；环境、凭据、缓存、历史未跟踪文件和大批原始结果排除。

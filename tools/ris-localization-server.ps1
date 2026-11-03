@@ -1,6 +1,6 @@
 [CmdletBinding()]
 param(
-    [Parameter(Position=0)][ValidateSet('upload','pilot','run','status','fetch')][string]$Action='status',
+    [Parameter(Position=0)][ValidateSet('upload','pilot','run','status','finalize','fetch')][string]$Action='status',
     [Parameter(Mandatory)][ValidatePattern('^[a-f0-9]{7,40}$')][string]$Release,
     [ValidateRange(1,4)][int]$Workers=4
 )
@@ -42,10 +42,16 @@ print('Supervisor PID',p.pid)
         if($LASTEXITCODE -ne 0){throw 'Localization launch failed'}
     }
     status { Remote "cd $remote && python3 ../status.py results_full" }
+    finalize {
+        $aggregation='/home/jzm123/AAA_ZTEproject/RIS_stage3_matlab_fas/audits/aggregation_20261103_b40b3df'
+        $originalCode="/home/jzm123/AAA_ZTEproject/RIS_stage3_matlab_fas/releases/$Release/code"
+        Remote "cd $aggregation && /home/jzm123/MATLAB/R2022b/bin/matlab -batch `"finalize_loc_aggregation('$originalCode','$remote/results_full'); exit(0);`""
+    }
     fetch {
+        Remote "test -f $remote/results_full/aggregation_revision.json"
         $dest=Join-Path $project "server-results/matlab-fas/localization/$Release"
         New-Item -ItemType Directory -Force -Path $dest | Out-Null
-        foreach($file in 'manifest.json','progress.json','metrics.csv','paired_gain.csv','oracle.csv','comparison.png') {
+        foreach($file in 'manifest.json','progress.json','metrics.csv','paired_gain.csv','oracle.csv','comparison.png','aggregation_revision.json') {
             & scp @sshOptions "${target}:$remote/results_full/$file" $dest
             if($LASTEXITCODE -ne 0){throw "Fetch failed: $file"}
         }
