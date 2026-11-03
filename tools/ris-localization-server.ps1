@@ -45,15 +45,21 @@ print('Supervisor PID',p.pid)
     finalize {
         $aggregation='/home/jzm123/AAA_ZTEproject/RIS_stage3_matlab_fas/audits/aggregation_20261103_b40b3df'
         $originalCode="/home/jzm123/AAA_ZTEproject/RIS_stage3_matlab_fas/releases/$Release/code"
-        Remote "cd $aggregation && /home/jzm123/MATLAB/R2022b/bin/matlab -batch `"finalize_loc_aggregation('$originalCode','$remote/results_full'); exit(0);`""
+        Remote "bash $aggregation/finish_loc_run.sh $originalCode $original $remote/results_full $aggregation"
     }
     fetch {
         Remote "test -f $remote/results_full/aggregation_revision.json"
+        Remote "test -f $remote/results_full/audit/verification.json"
         $dest=Join-Path $project "server-results/matlab-fas/localization/$Release"
         New-Item -ItemType Directory -Force -Path $dest | Out-Null
+        New-Item -ItemType Directory -Force -Path (Join-Path $dest 'audit') | Out-Null
         foreach($file in 'manifest.json','progress.json','metrics.csv','paired_gain.csv','oracle.csv','comparison.png','aggregation_revision.json') {
             & scp @sshOptions "${target}:$remote/results_full/$file" $dest
             if($LASTEXITCODE -ne 0){throw "Fetch failed: $file"}
+        }
+        foreach($file in 'verification.json','case_metrics.csv','design_checks.csv') {
+            & scp @sshOptions "${target}:$remote/results_full/audit/$file" (Join-Path $dest 'audit')
+            if($LASTEXITCODE -ne 0){throw "Audit fetch failed: $file"}
         }
     }
 }

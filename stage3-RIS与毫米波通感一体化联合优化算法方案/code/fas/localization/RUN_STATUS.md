@@ -40,10 +40,13 @@
 - 收敛核查脚本 `tools/loc_convergence_audit.m`，执行版本 `5de7e529c55cb4a07bdb26963686db9335c33201`。
   服务器目录 `/home/jzm123/AAA_ZTEproject/RIS_stage3_matlab_fas/audits/convergence_20261103_5de7e52/`，初始PID225258。
   `results/progress.json`记录真实阶段，每个几何单独保存MAT/JSON；未生成的正式输入会等待，不重算、不替换原正式结果。
-- MC0追加预算后，固定/FAS粗估计目标分别再改善0.200%/0.062%，相对增益由1.974%变为1.839%；oracle相对增益由1.871%变为1.802%。其余两例仍需完成和核查。
+- 收敛核查已于北京时间13:09完成3/3，精选JSON已保存到 `evidence/convergence/`。MC0/1/2粗估计设计的相对PEB增益由1.974%/2.774%/4.488%变为1.839%/2.451%/4.623%；oracle由1.871%/2.926%/4.793%变为1.802%/2.579%/4.782%。追加预算使单方目标最多再改善0.562%，未在这3例中发现迭代预算造成大幅潜在收益被遗漏；不据此宣称全局收敛或总体增益。
 - 修正新汇总器的边界情况：`Inf` PEB表示不可辨识，必须保留在均值并单独计数，只有未进行信息计算的`NaN`可排除。原正式运行的不可变release仍使用原汇总器，**完成后必须执行修正版重新汇总，再取回最终结果**。该修正不需要重跑定位或改动原始断点；是否实际出现Inf需从全量结果确认。
 - `tools/test_loc_aggregation.m`用本地smoke复制件注入一个Inf进行验证，检查Inf保留、奇异计数和缺失信息区分，测试已通过。注入数据仅存在于`tmp/localization_inf_smoke`，不用于性能结论。
 - 重新汇总使用 `tools/finalize_loc_aggregation.m` 与修正后的 `aggregate_localization.m`，已部署在独立服务器目录 `/home/jzm123/AAA_ZTEproject/RIS_stage3_matlab_fas/audits/aggregation_20261103_b40b3df/`，并核对本地/远端文件SHA-256一致。它要求全量及300个oracle完成，先保存旧汇总到`summary_before_peb_fix/`，再汇总并写`aggregation_revision.json`记录实际聚合代码哈希；正在运行release的源码未覆盖。
+- 新增 `tools/audit_loc_results.m`：完成后对全部3900个断点和300个oracle进行只读核验，输出 `audit/case_metrics.csv`、`audit/design_checks.csv` 和 `audit/verification.json`。本地仅对2例smoke复制件测试，含一个人工注入Inf，误差重算及有限/无穷/缺失PEB检查通过；证据 `evidence/result_audit_smoke.json`。
+- 新增 `tools/finish_loc_run.sh`，等待原监督任务真正COMPLETE后，串行执行修正汇总及逐样本核验；独立锁避免重复执行，不重启原worker，不修改仿真源码或断点。服务器部署和实际运行状态需以 `results_full/audit/state`、监督PID和日志核实。
+- 新增 `tools/summarize_loc_results.py`，按整个MC几何做跨SNR配对bootstrap；全量结果出来前确定统计方案，见README。恒定±10%增益及非有限值计数的合成自检通过，不能当作正式性能证据。
 
 ## 操作
 
@@ -55,4 +58,4 @@ tools/ris-localization-server.ps1 finalize -Release 554ff78b42b720939272c60e0d9f
 tools/ris-localization-server.ps1 fetch -Release 554ff78b42b720939272c60e0d9f0cc37acd82a9
 ```
 
-原任务COMPLETE后先finalize，再fetch；fetch要求修正后汇总证据存在。原始逐样本MAT保留服务器。运行代码位于独立release，后续本地文档修改不影响正在执行的源码。源码、脚本、文档与精选检查证据进入Git；环境、凭据、缓存、历史未跟踪文件和大批原始结果排除。
+如服务器等待脚本已启动，让其自动完成，无需重复finalize；否则原任务COMPLETE后先finalize，再fetch。fetch要求修正后汇总及完整核验证据存在。取回后用 `.venv-stage3/Scripts/python.exe tools/summarize_loc_results.py server-results/matlab-fas/localization/554ff78b42b720939272c60e0d9f0cc37acd82a9` 分析。原始逐样本MAT保留服务器。运行代码位于独立release，后续本地文档修改不影响正在执行的源码。源码、脚本、文档与精选检查证据进入Git；环境、凭据、缓存、历史未跟踪文件和大批原始结果排除。
