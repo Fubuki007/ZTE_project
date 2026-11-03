@@ -1,0 +1,1 @@
+{"passed":true,"profile":"smoke","constraint_gradient_relative_error":2.9939224632212047E-10,"initial_peb":0.3700700315423594,"fixed_peb":0.36665163442158888,"fas_peb":0.3700700315423594,"fas_continuous_peb":0.36659769250129687,"fixed_seconds":1.1324306,"fas_seconds":1.0098868,"settings":{"iterations":5,"ris_rounds":1}}
