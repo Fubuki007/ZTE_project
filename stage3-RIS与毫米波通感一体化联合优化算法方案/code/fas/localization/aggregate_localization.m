@@ -24,11 +24,12 @@ for si=1:ns
     bootstrap=randi(opt.mc,opt.mc,2000); boot=zeros(2000,nm);
     for m=1:nm
         errors=squared(:,m); boot(:,m)=sqrt(mean(errors(bootstrap),1)).'; ci=quantile(boot(:,m),[.025,.975]);
-        rmse(si,m)=sqrt(mean(errors)); valid=isfinite(pebs(:,m)); pebcurve(si,m)=sqrt(mean(pebs(valid,m).^2));
+        rmse(si,m)=sqrt(mean(errors)); valid=~isnan(pebs(:,m)); pebcurve(si,m)=sqrt(mean(pebs(valid,m).^2));
         entry=struct('snr_db',opt.snr_db(si),'method',names{m},'mc_completed',opt.mc, ...
             'position_rmse_m',rmse(si,m),'ci95_low',ci(1),'ci95_high',ci(2), ...
             'failure_rate',mean(failures(:,m)),'feasible_rate',mean(feasible(:,m)), ...
-            'peb_rms_m',pebcurve(si,m),'information_cases',sum(valid));
+            'peb_rms_m',pebcurve(si,m),'information_cases',sum(valid), ...
+            'singular_information_cases',sum(isinf(pebs(:,m))));
         if isempty(metrics), metrics=entry; else, metrics(end+1)=entry; end
     end
     comparisons=[4 1;5 4;6 4;5 2;6 3];

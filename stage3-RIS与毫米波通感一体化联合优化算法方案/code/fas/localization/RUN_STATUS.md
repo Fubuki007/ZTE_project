@@ -34,6 +34,17 @@
 5. 如发现明显FAS收益，补充合理的固定非均匀阵列对照，以判断是否需要在线位置自适应；如收益仍小，给出当前模型下的止损建议，不能把参考搜索当作经证明的理论上界。
 6. 写最终结论与限制，推送阶段成果；只有全部需求有证据满足才将用户goal标为complete。
 
+## 运行期间的追加核查（2026-11-03）
+
+- 试跑记录中部分SQP步骤用满40次迭代，但末尾变化很小，因此补做固定与FAS双方都增加至160次迭代、2轮RIS搜索的对照。预先指定MC0、1、2，10dB，分别检查粗估计设计和oracle设计；这3例只用于收敛诊断，不替代300MC正式统计。
+- 收敛核查脚本 `tools/loc_convergence_audit.m`，执行版本 `5de7e529c55cb4a07bdb26963686db9335c33201`。
+  服务器目录 `/home/jzm123/AAA_ZTEproject/RIS_stage3_matlab_fas/audits/convergence_20261103_5de7e52/`，初始PID225258。
+  `results/progress.json`记录真实阶段，每个几何单独保存MAT/JSON；未生成的正式输入会等待，不重算、不替换原正式结果。
+- MC0追加预算后，固定/FAS粗估计目标分别再改善0.200%/0.062%，相对增益由1.974%变为1.839%；oracle相对增益由1.871%变为1.802%。其余两例仍需完成和核查。
+- 修正新汇总器的边界情况：`Inf` PEB表示不可辨识，必须保留在均值并单独计数，只有未进行信息计算的`NaN`可排除。原正式运行的不可变release仍使用原汇总器，**完成后必须执行修正版重新汇总，再取回最终结果**。该修正不需要重跑定位或改动原始断点；是否实际出现Inf需从全量结果确认。
+- `tools/test_loc_aggregation.m`用本地smoke复制件注入一个Inf进行验证，检查Inf保留、奇异计数和缺失信息区分，测试已通过。注入数据仅存在于`tmp/localization_inf_smoke`，不用于性能结论。
+- 重新汇总使用 `tools/finalize_loc_aggregation.m` 与修正后的 `aggregate_localization.m`，放在独立服务器目录；调用 `finalize_loc_aggregation(original_code, run)`。它要求全量及300个oracle完成，先保存旧汇总到`summary_before_peb_fix/`，再汇总并写`aggregation_revision.json`记录实际聚合代码哈希。部署目录在后续记录中补充；不可覆盖正在运行release的源码。
+
 ## 操作
 
 项目根目录PowerShell：
