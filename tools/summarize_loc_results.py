@@ -93,7 +93,7 @@ def summarize(run):
         selected_rows = [row for row in designs if row["method"] == method]
         summary["design_checks"][method] = {key: distribution([float(row[key]) for row in selected_rows]) for key in
                                            ["max_displacement_lambda", "search_seconds", "iteration_limit_runs", "negative_exit_runs"]}
-    (run / "analysis.json").write_text(json.dumps(summary, indent=2, allow_nan=False) + "\n", encoding="utf-8")
+    (run / "analysis.json").write_bytes((json.dumps(summary, indent=2, allow_nan=False) + "\n").encode("utf-8"))
     plot(run, point, boot, oracle)
     print(json.dumps(summary["comparisons"], indent=2))
 

@@ -1,0 +1,350 @@
+{
+  "input_manifest_id": "cf61e890580211c181c88b89fed9638d6bbf0b03f69f3390040bfb1805919b0c",
+  "verification": {
+    "complete": true,
+    "profile": "full",
+    "count": 3900,
+    "oracle_count": 300,
+    "input_manifest_id": "cf61e890580211c181c88b89fed9638d6bbf0b03f69f3390040bfb1805919b0c",
+    "aggregation_sha256": "82720a8f381a107506027ca99849daeac1942fe3ea8f3894af17192d2b9a8a33",
+    "audit_sha256": "714c790858273be319fca2e3a2e9064f5bff5b10b2f278e1e9f52730b47682ab",
+    "rmse_max_difference": 4.831690603168681e-13,
+    "peb_max_relative_difference": 3.2488740597153564e-15,
+    "singular_information_entries": 0
+  },
+  "bootstrap": {
+    "resamples": 5000,
+    "seed": 2026110301,
+    "unit": "whole MC geometry, paired across all SNRs and methods"
+  },
+  "primary_metric": "unweighted mean of seven per-SNR RMSE reductions, including all failures",
+  "primary_snrs_db": [
+    -20,
+    -15,
+    -10,
+    -5,
+    0,
+    5,
+    10
+  ],
+  "comparisons": {
+    "FAS_localization_guard0": {
+      "reference": "Fixed_localization",
+      "primary_gain_percent": 3.5777936808707063,
+      "primary_paired_ci95_percent": [
+        3.163715461098994,
+        3.987469176112561
+      ],
+      "all_snr_gain_percent": [
+        0.0,
+        0.0,
+        0.18868596068583043,
+        -1.9974503366331886,
+        1.0198754057647808,
+        3.236806219379673,
+        3.75255050336053,
+        3.3511789401150627,
+        4.15452050576679,
+        3.664702384517482,
+        3.4310422328752144,
+        3.326075840812859,
+        3.364485358647007
+      ],
+      "all_snr_pointwise_ci95_percent": [
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          -0.02020294474159967,
+          0.6696039125399587
+        ],
+        [
+          -6.892750119160918,
+          1.7743419667864382
+        ],
+        [
+          -2.438475518768264,
+          4.437264551943093
+        ],
+        [
+          1.1674343173246071,
+          5.326426422624572
+        ],
+        [
+          2.4956028729268875,
+          4.942793327887085
+        ],
+        [
+          2.3538828412169988,
+          4.3545871471099
+        ],
+        [
+          3.2868432806883865,
+          4.986016260006667
+        ],
+        [
+          2.770324771305463,
+          4.589177969258001
+        ],
+        [
+          2.6563048959302775,
+          4.19400770380851
+        ],
+        [
+          2.448507215016409,
+          4.194479345337732
+        ],
+        [
+          2.4205278265059995,
+          4.366308962483429
+        ]
+      ],
+      "all_snr_simultaneous95_radius_percent": 4.45829590862341
+    },
+    "FAS_localization_guard4": {
+      "reference": "Fixed_localization",
+      "primary_gain_percent": 2.6208516105785273,
+      "primary_paired_ci95_percent": [
+        2.119570570378981,
+        3.118887477340294
+      ],
+      "all_snr_gain_percent": [
+        0.0,
+        0.0,
+        -0.48349984208739816,
+        -2.1417998709165387,
+        -0.43678251945349356,
+        3.2614567678737716,
+        2.8206910417737707,
+        2.3416411115015467,
+        3.5871360178270195,
+        2.346926575987396,
+        2.88227366397954,
+        2.068361422358289,
+        2.2989314406221317
+      ],
+      "all_snr_pointwise_ci95_percent": [
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          -1.6689348653782536,
+          0.012007466170893976
+        ],
+        [
+          -6.195126583409652,
+          0.8282778501468909
+        ],
+        [
+          -3.903836999808547,
+          2.8048049867200224
+        ],
+        [
+          1.1401638699170267,
+          5.426965142528048
+        ],
+        [
+          1.4114891873294533,
+          4.256585649662291
+        ],
+        [
+          1.0016996277699652,
+          3.666683318644471
+        ],
+        [
+          2.432620078352041,
+          4.7535638733601555
+        ],
+        [
+          1.2016273812192557,
+          3.501390108464082
+        ],
+        [
+          1.6687704461230948,
+          4.0916666011757785
+        ],
+        [
+          1.039344133912061,
+          3.109880250708358
+        ],
+        [
+          1.1207105299627727,
+          3.545039192163281
+        ]
+      ],
+      "all_snr_simultaneous95_radius_percent": 3.962873455686601
+    }
+  },
+  "oracle": {
+    "gain_percent": {
+      "total": 300,
+      "finite": 300,
+      "positive_infinity": 0,
+      "negative_infinity": 0,
+      "unavailable": 0,
+      "finite_quantiles_0_5_50_95_100": [
+        0.602914780207209,
+        0.9558827138149,
+        2.652097968221475,
+        6.728006323649231,
+        10.5364460631563
+      ]
+    },
+    "guard4_gain_percent": {
+      "total": 300,
+      "finite": 300,
+      "positive_infinity": 0,
+      "negative_infinity": 0,
+      "unavailable": 0,
+      "finite_quantiles_0_5_50_95_100": [
+        -0.132732254983559,
+        0.20088505180103486,
+        1.928781694062925,
+        6.025535330580986,
+        9.91177822029994
+      ]
+    },
+    "continuous_objective_gain_percent": {
+      "total": 300,
+      "finite": 300,
+      "positive_infinity": 0,
+      "negative_infinity": 0,
+      "unavailable": 0,
+      "finite_quantiles_0_5_50_95_100": [
+        0.78927108621224,
+        1.2148800830933717,
+        3.028958766623195,
+        7.471680737867313,
+        11.3443705748646
+      ]
+    }
+  },
+  "design_checks": {
+    "Fixed_localization": {
+      "max_displacement_lambda": {
+        "total": 3053,
+        "finite": 3053,
+        "positive_infinity": 0,
+        "negative_infinity": 0,
+        "unavailable": 0,
+        "finite_quantiles_0_5_50_95_100": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "search_seconds": {
+        "total": 3053,
+        "finite": 3053,
+        "positive_infinity": 0,
+        "negative_infinity": 0,
+        "unavailable": 0,
+        "finite_quantiles_0_5_50_95_100": [
+          13.322344,
+          18.720305,
+          27.481715,
+          36.561263,
+          53.472047
+        ]
+      },
+      "iteration_limit_runs": {
+        "total": 3053,
+        "finite": 3053,
+        "positive_infinity": 0,
+        "negative_infinity": 0,
+        "unavailable": 0,
+        "finite_quantiles_0_5_50_95_100": [
+          0.0,
+          1.0,
+          7.0,
+          9.0,
+          9.0
+        ]
+      },
+      "negative_exit_runs": {
+        "total": 3053,
+        "finite": 3053,
+        "positive_infinity": 0,
+        "negative_infinity": 0,
+        "unavailable": 0,
+        "finite_quantiles_0_5_50_95_100": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      }
+    },
+    "FAS_localization_guard0": {
+      "max_displacement_lambda": {
+        "total": 3053,
+        "finite": 3053,
+        "positive_infinity": 0,
+        "negative_infinity": 0,
+        "unavailable": 0,
+        "finite_quantiles_0_5_50_95_100": [
+          0.1,
+          0.3,
+          0.424264068711929,
+          0.58309518948453,
+          1.65529453572468
+        ]
+      },
+      "search_seconds": {
+        "total": 3053,
+        "finite": 3053,
+        "positive_infinity": 0,
+        "negative_infinity": 0,
+        "unavailable": 0,
+        "finite_quantiles_0_5_50_95_100": [
+          13.047256,
+          20.3409064,
+          27.160595,
+          34.879023800000006,
+          48.608323
+        ]
+      },
+      "iteration_limit_runs": {
+        "total": 3053,
+        "finite": 3053,
+        "positive_infinity": 0,
+        "negative_infinity": 0,
+        "unavailable": 0,
+        "finite_quantiles_0_5_50_95_100": [
+          1.0,
+          4.0,
+          6.0,
+          9.0,
+          9.0
+        ]
+      },
+      "negative_exit_runs": {
+        "total": 3053,
+        "finite": 3053,
+        "positive_infinity": 0,
+        "negative_infinity": 0,
+        "unavailable": 0,
+        "finite_quantiles_0_5_50_95_100": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      }
+    }
+  }
+}
