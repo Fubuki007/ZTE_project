@@ -1,0 +1,128 @@
+{
+  "1": {
+    "Fixed_best_RIS_refined": {
+      "radial_bound_m_median": 0.00170694622706048,
+      "angular_bound_m_median": 0.011392331718983548,
+      "median_angular_error_fraction": 0.9765373165410833,
+      "median_RIS_DD_power_ratio_db": 68.18041323953305
+    },
+    "FAS_RIS_guard0": {
+      "radial_bound_m_median": 0.00158980352715356,
+      "angular_bound_m_median": 0.01037393819705235,
+      "median_angular_error_fraction": 0.9764262850329193,
+      "median_RIS_DD_power_ratio_db": 68.13218056591465
+    },
+    "FAS_RIS_guard4": {
+      "radial_bound_m_median": 0.0016023711954869851,
+      "angular_bound_m_median": 0.0104560939336327,
+      "median_angular_error_fraction": 0.97642628496917,
+      "median_RIS_DD_power_ratio_db": 68.13218056591465
+    },
+    "Fixed_uniform_noRIS": {
+      "radial_bound_m_median": 0.000295759353975834,
+      "angular_bound_m_median": 0.6791053644882861,
+      "median_angular_error_fraction": 0.9999998097941938,
+      "median_RIS_DD_power_ratio_db": null
+    },
+    "Fixed_edge_RIS": {
+      "radial_bound_m_median": 0.001576746807696405,
+      "angular_bound_m_median": 0.0108508350051992,
+      "median_angular_error_fraction": 0.9770455192588561,
+      "median_RIS_DD_power_ratio_db": 66.56597558231155
+    },
+    "FAS_vs_refined": {
+      "median_DD_power_gain_db": 0.47059597912318907,
+      "DD_power_gain_q05_q95": [
+        -8.082726122995268,
+        11.54946031452968
+      ],
+      "moved_cases": 284,
+      "fallback_cases": 1,
+      "median_attempted_search_seconds": 0.4557985
+    }
+  },
+  "2": {
+    "Fixed_best_RIS_refined": {
+      "radial_bound_m_median": 0.00140945063035492,
+      "angular_bound_m_median": 0.0122757984397855,
+      "median_angular_error_fraction": 0.9853214263265058,
+      "median_RIS_DD_power_ratio_db": 79.63788863892965
+    },
+    "FAS_RIS_guard0": {
+      "radial_bound_m_median": 0.001289118610270075,
+      "angular_bound_m_median": 0.0120084512945565,
+      "median_angular_error_fraction": 0.9862935033317303,
+      "median_RIS_DD_power_ratio_db": 78.64876171126116
+    },
+    "FAS_RIS_guard4": {
+      "radial_bound_m_median": 0.001299309378991515,
+      "angular_bound_m_median": 0.01210337898978275,
+      "median_angular_error_fraction": 0.9862935041300148,
+      "median_RIS_DD_power_ratio_db": 78.64876171126116
+    },
+    "Fixed_uniform_noRIS": {
+      "radial_bound_m_median": 0.000295759353975834,
+      "angular_bound_m_median": 0.6791053644882861,
+      "median_angular_error_fraction": 0.9999998097941938,
+      "median_RIS_DD_power_ratio_db": null
+    },
+    "Fixed_edge_RIS": {
+      "radial_bound_m_median": 0.001005900371306595,
+      "angular_bound_m_median": 0.01037046191397515,
+      "median_angular_error_fraction": 0.9894013800093897,
+      "median_RIS_DD_power_ratio_db": 76.30784010501375
+    },
+    "FAS_vs_refined": {
+      "median_DD_power_gain_db": 0.4993652473071257,
+      "DD_power_gain_q05_q95": [
+        -2.32592135598464,
+        3.5252863664509624
+      ],
+      "moved_cases": 300,
+      "fallback_cases": 0,
+      "median_attempted_search_seconds": 0.653056
+    }
+  },
+  "3": {
+    "Fixed_best_RIS_refined": {
+      "radial_bound_m_median": 0.00118069561699259,
+      "angular_bound_m_median": 1.901999421828405,
+      "median_angular_error_fraction": 0.9999996006059069,
+      "median_RIS_DD_power_ratio_db": 78.40145581277281
+    },
+    "FAS_RIS_guard0": {
+      "radial_bound_m_median": 0.0009534479298217825,
+      "angular_bound_m_median": 1.49261044052054,
+      "median_angular_error_fraction": 0.9999996006482733,
+      "median_RIS_DD_power_ratio_db": 76.52998149055006
+    },
+    "FAS_RIS_guard4": {
+      "radial_bound_m_median": 0.0009609851870829725,
+      "angular_bound_m_median": 1.5044099582690849,
+      "median_angular_error_fraction": 0.9999996006464698,
+      "median_RIS_DD_power_ratio_db": 76.52998149055006
+    },
+    "Fixed_uniform_noRIS": {
+      "radial_bound_m_median": 0.000295759353975834,
+      "angular_bound_m_median": 0.6791053644882861,
+      "median_angular_error_fraction": 0.9999998097941938,
+      "median_RIS_DD_power_ratio_db": null
+    },
+    "Fixed_edge_RIS": {
+      "radial_bound_m_median": 0.00101810123338128,
+      "angular_bound_m_median": 1.60793554047884,
+      "median_angular_error_fraction": 0.9999996006059041,
+      "median_RIS_DD_power_ratio_db": 77.06770584141195
+    },
+    "FAS_vs_refined": {
+      "median_DD_power_gain_db": 2.610386088698118,
+      "DD_power_gain_q05_q95": [
+        0.0,
+        4.141487558800401
+      ],
+      "moved_cases": 209,
+      "fallback_cases": 0,
+      "median_attempted_search_seconds": 0.492621
+    }
+  }
+}

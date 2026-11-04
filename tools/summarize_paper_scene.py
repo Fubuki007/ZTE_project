@@ -52,17 +52,19 @@ def main():
     result = dict(manifest_id=manifest['id'], cases=900, actual_RMSE=False,
                   scope='Oracle gain-normalized paper-inspired DD/RR experiment', channels={})
     methods = ['Fixed_uniform_RIS', 'Fixed_edge_RIS', 'Fixed_best_RIS_refined',
-               'FAS_RIS_guard0', 'FAS_RIS_guard4']
-    labels = ['Uniform', 'Nonuniform', 'Refined fixed', 'FAS, guard 0', 'FAS, guard 4']
+               'FAS_RIS_guard0', 'FAS_RIS_guard4', 'Fixed_uniform_noRIS']
+    labels = ['Uniform', 'Nonuniform', 'Refined fixed', 'FAS, guard 0', 'FAS, guard 4', 'Fixed, no RIS']
     for ri, channel in enumerate(manifest['rice_labels'], 1):
         samples = [cases[ri, trial] for trial in range(300)]
         fixed = np.array([float(c['Fixed_best_RIS_refined']['peb_m']) for c in samples])
+        nonuniform = np.array([float(c['Fixed_edge_RIS']['peb_m']) for c in samples])
         fas = np.array([float(c['FAS_RIS_guard4']['peb_m']) for c in samples])
         fixed_best = np.array([min(float(c[m]['peb_m']) for m in methods[:3]) for c in samples])
         snr = np.array([float(c['FAS_RIS_guard4']['net_energy_snr_db']) -
                         float(c['Fixed_best_RIS_refined']['net_energy_snr_db']) for c in samples])
         with np.errstate(invalid='ignore', divide='ignore'):
             change = 100 * (1 - fas / fixed)
+            edge_change = 100 * (1 - fas / nonuniform)
             sensitivity = 100 * (1 - fas / fixed_best)
         absolute = {}
         for m in methods:
@@ -70,22 +72,28 @@ def main():
         result['channels'][channel] = dict(
             net_energy_gain_db=interval(snr, rng),
             peb_reduction_pct=interval(change, rng),
+            nonuniform_fixed_peb_reduction_pct=interval(edge_change, rng),
             wins_peb=int(np.sum(fas < fixed)),
+            wins_peb_vs_nonuniform=int(np.sum(fas < nonuniform)),
             sensitivity_best_fixed_peb_reduction_pct=interval(sensitivity, rng),
             absolute_peb_m=absolute)
-    (root / 'summary.json').write_text(json.dumps(result, ensure_ascii=False, indent=2, allow_nan=False) + '\n', encoding='utf-8')
+    (root / 'summary.json').write_text(json.dumps(result, ensure_ascii=False, indent=2, allow_nan=False) + '\n', encoding='utf-8', newline='\n')
     fig, axes = plt.subplots(1, 3, figsize=(13, 4.2), constrained_layout=True)
     channels = list(result['channels'])
     colors = ['#386cb0', '#f28e2b', '#59a14f']
     for i, channel in enumerate(channels):
         stats = result['channels'][channel]
-        for ax, key in zip(axes[:2], ['net_energy_gain_db', 'peb_reduction_pct']):
+        for ax, key, offset, marker in [
+            (axes[0], 'net_energy_gain_db', 0, 'o'),
+            (axes[1], 'peb_reduction_pct', -.08, 'o'),
+            (axes[1], 'nonuniform_fixed_peb_reduction_pct', .08, 's'),
+        ]:
             v = stats[key]
             if v['median'] is None:
                 continue
             low, high = v['ci95']
-            ax.errorbar(i, v['median'], yerr=[[v['median'] - low], [high - v['median']]],
-                        fmt='o', color=colors[i], capsize=4, markersize=7)
+            ax.errorbar(i + offset, v['median'], yerr=[[v['median'] - low], [high - v['median']]],
+                        fmt=marker, color=colors[i], capsize=4, markersize=7)
         medians = [stats['absolute_peb_m'][m]['median'] for m in methods]
         axes[2].plot(range(len(methods)), medians, 'o-', color=colors[i], label=channel)
     for ax in axes[:2]:
@@ -95,7 +103,10 @@ def main():
     axes[0].set_ylabel('Net sensing-energy gain (dB)')
     axes[0].set_title('FAS guard 4 vs refined fixed')
     axes[1].set_ylabel('Position-bound reduction (%)')
-    axes[1].set_title('Median and paired 95% interval')
+    axes[1].set_title('Position bound: baseline sensitivity')
+    axes[1].plot([], [], 'ko', label='vs refined fixed')
+    axes[1].plot([], [], 'ks', label='vs nonuniform fixed')
+    axes[1].legend(fontsize=8)
     axes[2].set_yscale('log')
     axes[2].set_ylabel('Median position bound (m)')
     axes[2].set_xticks(range(len(methods)), labels, rotation=25, ha='right')

@@ -1,0 +1,296 @@
+{
+  "manifest_id": "188647ad2a7151d1aae13207b7a68e2d7c9ff31e7fca17bfe643157919c07a37",
+  "cases": 900,
+  "actual_RMSE": false,
+  "scope": "Oracle gain-normalized paper-inspired DD/RR experiment",
+  "channels": {
+    "Rayleigh": {
+      "net_energy_gain_db": {
+        "median": 0.41899676948095177,
+        "ci95": [
+          0.35054095057529366,
+          0.4928452864279471
+        ],
+        "finite": 300,
+        "undefined": 0
+      },
+      "peb_reduction_pct": {
+        "median": 6.3234592387939275,
+        "ci95": [
+          4.880879081642708,
+          8.348746648281452
+        ],
+        "finite": 300,
+        "undefined": 0
+      },
+      "nonuniform_fixed_peb_reduction_pct": {
+        "median": 0.30014242479559083,
+        "ci95": [
+          -2.3649200107335733,
+          3.244263703376032
+        ],
+        "finite": 300,
+        "undefined": 0
+      },
+      "wins_peb": 197,
+      "wins_peb_vs_nonuniform": 152,
+      "sensitivity_best_fixed_peb_reduction_pct": {
+        "median": -4.8001849578209965,
+        "ci95": [
+          -8.615112622873355,
+          -1.9490966488075578
+        ],
+        "finite": 300,
+        "undefined": 0
+      },
+      "absolute_peb_m": {
+        "Fixed_uniform_RIS": {
+          "median": 0.0127966894142303,
+          "ci95": [
+            0.01204086975782795,
+            0.01351610559689775
+          ],
+          "finite": 300,
+          "undefined": 0
+        },
+        "Fixed_edge_RIS": {
+          "median": 0.0109696907773224,
+          "ci95": [
+            0.009976737520113277,
+            0.011504673225345902
+          ],
+          "finite": 300,
+          "undefined": 0
+        },
+        "Fixed_best_RIS_refined": {
+          "median": 0.011493952312096701,
+          "ci95": [
+            0.0108565340037146,
+            0.012306523648566556
+          ],
+          "finite": 300,
+          "undefined": 0
+        },
+        "FAS_RIS_guard0": {
+          "median": 0.01049761293059095,
+          "ci95": [
+            0.009991970554177141,
+            0.011363018789050884
+          ],
+          "finite": 300,
+          "undefined": 0
+        },
+        "FAS_RIS_guard4": {
+          "median": 0.0105805980281707,
+          "ci95": [
+            0.0100214626152175,
+            0.0112746243354342
+          ],
+          "finite": 300,
+          "undefined": 0
+        },
+        "Fixed_uniform_noRIS": {
+          "median": 0.6791054296749119,
+          "ci95": [
+            0.6778933526223875,
+            0.680525350516272
+          ],
+          "finite": 300,
+          "undefined": 0
+        }
+      }
+    },
+    "Rician_10dB": {
+      "net_energy_gain_db": {
+        "median": -0.05034964373565032,
+        "ci95": [
+          -0.05237407441100572,
+          -0.048067126661507587
+        ],
+        "finite": 300,
+        "undefined": 0
+      },
+      "peb_reduction_pct": {
+        "median": 1.2533194427505445,
+        "ci95": [
+          0.4110600465532577,
+          1.8726696402364713
+        ],
+        "finite": 300,
+        "undefined": 0
+      },
+      "nonuniform_fixed_peb_reduction_pct": {
+        "median": -9.291534902761878,
+        "ci95": [
+          -13.927528176802962,
+          -5.066952407394676
+        ],
+        "finite": 300,
+        "undefined": 0
+      },
+      "wins_peb": 172,
+      "wins_peb_vs_nonuniform": 91,
+      "sensitivity_best_fixed_peb_reduction_pct": {
+        "median": -10.101377906088839,
+        "ci95": [
+          -14.62217570038067,
+          -6.179057994266368
+        ],
+        "finite": 300,
+        "undefined": 0
+      },
+      "absolute_peb_m": {
+        "Fixed_uniform_RIS": {
+          "median": 0.01377970103886105,
+          "ci95": [
+            0.013314191192652538,
+            0.014105010373026017
+          ],
+          "finite": 300,
+          "undefined": 0
+        },
+        "Fixed_edge_RIS": {
+          "median": 0.01044847047506815,
+          "ci95": [
+            0.0100513987186677,
+            0.0108216621368922
+          ],
+          "finite": 300,
+          "undefined": 0
+        },
+        "Fixed_best_RIS_refined": {
+          "median": 0.0123686369924952,
+          "ci95": [
+            0.011994188810305735,
+            0.0129226346267462
+          ],
+          "finite": 300,
+          "undefined": 0
+        },
+        "FAS_RIS_guard0": {
+          "median": 0.01211644999875215,
+          "ci95": [
+            0.0116616515684233,
+            0.01247832910786855
+          ],
+          "finite": 300,
+          "undefined": 0
+        },
+        "FAS_RIS_guard4": {
+          "median": 0.0122122318445669,
+          "ci95": [
+            0.011733947215998027,
+            0.01256970647596415
+          ],
+          "finite": 300,
+          "undefined": 0
+        },
+        "Fixed_uniform_noRIS": {
+          "median": 0.6791054296749119,
+          "ci95": [
+            0.677932488463871,
+            0.680491843765162
+          ],
+          "finite": 300,
+          "undefined": 0
+        }
+      }
+    },
+    "LoS": {
+      "net_energy_gain_db": {
+        "median": -0.06838418985709893,
+        "ci95": [
+          -0.06838522026180271,
+          -0.06838250009501223
+        ],
+        "finite": 300,
+        "undefined": 0
+      },
+      "peb_reduction_pct": {
+        "median": 25.37191207918255,
+        "ci95": [
+          24.172028830661034,
+          26.04726993967692
+        ],
+        "finite": 300,
+        "undefined": 0
+      },
+      "nonuniform_fixed_peb_reduction_pct": {
+        "median": 14.915452562292792,
+        "ci95": [
+          -0.7905261523122209,
+          22.10611783271224
+        ],
+        "finite": 300,
+        "undefined": 0
+      },
+      "wins_peb": 207,
+      "wins_peb_vs_nonuniform": 152,
+      "sensitivity_best_fixed_peb_reduction_pct": {
+        "median": 13.969472278252255,
+        "ci95": [
+          -0.790526157459126,
+          21.892211791945094
+        ],
+        "finite": 300,
+        "undefined": 0
+      },
+      "absolute_peb_m": {
+        "Fixed_uniform_RIS": {
+          "median": 2.811272882753945,
+          "ci95": [
+            2.72994741515791,
+            2.91143017845893
+          ],
+          "finite": 300,
+          "undefined": 0
+        },
+        "Fixed_edge_RIS": {
+          "median": 1.6079358581165,
+          "ci95": [
+            1.5659254098056898,
+            1.65502143788168
+          ],
+          "finite": 300,
+          "undefined": 0
+        },
+        "Fixed_best_RIS_refined": {
+          "median": 1.901999788295005,
+          "ci95": [
+            1.7431836414619801,
+            2.00101161252001
+          ],
+          "finite": 300,
+          "undefined": 0
+        },
+        "FAS_RIS_guard0": {
+          "median": 1.49261074508214,
+          "ci95": [
+            1.280139470372185,
+            1.6604653231356301
+          ],
+          "finite": 300,
+          "undefined": 0
+        },
+        "FAS_RIS_guard4": {
+          "median": 1.504410265238315,
+          "ci95": [
+            1.2899482084997151,
+            1.673591720215915
+          ],
+          "finite": 300,
+          "undefined": 0
+        },
+        "Fixed_uniform_noRIS": {
+          "median": 0.6791054296749119,
+          "ci95": [
+            0.6778933526223875,
+            0.6804516841891378
+          ],
+          "finite": 300,
+          "undefined": 0
+        }
+      }
+    }
+  }
+}
