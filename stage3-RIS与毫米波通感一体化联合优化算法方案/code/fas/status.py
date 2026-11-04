@@ -7,7 +7,7 @@ import sys
 root = Path(sys.argv[1])
 manifest = json.loads((root / 'manifest.json').read_text()) if (root / 'manifest.json').exists() else {}
 workers = [json.loads(p.read_text()) for p in sorted(root.glob('worker_*.json'))]
-samples = [p for p in (root / 'samples').glob('snr_*_mc_*.mat') if '.tmp.' not in p.name]
+samples = [p for p in (root / 'samples').glob('*_mc_*.mat') if '.tmp.' not in p.name]
 state = (root / 'state').read_text().strip() if (root / 'state').exists() else 'NOT_STARTED'
 pids = (root / 'workers.pid').read_text().split() if (root / 'workers.pid').exists() else []
 alive = []

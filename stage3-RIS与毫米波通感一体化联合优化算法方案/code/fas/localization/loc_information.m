@@ -3,6 +3,11 @@ function [peb,out,gradient]=loc_information(cache,positions,design,noise_power)
 % both configurations, as in the original estimator. Singular cases cost Inf.
 if nargin<4, noise_power=1; end
 p=cache.p; z=cache.z; Q=size(z,1); U=p.K_stream; L=4*Q*U; g=cache.g;
+amplitudes=repmat(cache.amplitudes(:),1,4);
+if isfield(cache,'path_weights')
+    assert(isequal(size(cache.path_weights),[1 4]) && all(isfinite(cache.path_weights)) && all(cache.path_weights>=0));
+    amplitudes=amplitudes.*cache.path_weights;
+end
 at=exp(1j*2*pi/p.lambda*positions*g.u);
 ar=exp(1j*2*pi/p.lambda*positions*(p.ris_pos/norm(p.ris_pos)));
 carrier=exp(-1j*2*pi*p.fref/p.c*(norm(p.ris_pos)+g.rr-z(:,1).'));
@@ -24,8 +29,8 @@ for s=1:2
                     +c(q)*(-1j*2*pi*p.fref/p.c*(cache.dg{j}.rr(q)-(j==1)));
                 derivative=dw*c(q)^order;
                 if order>0, derivative=derivative+w*order*c(q)^(order-1)*dc; end
-                B(ix,q+(j-1)*Q)=cache.amplitudes(q)*derivative.';
-                T{j}(ix,q+(j-1)*Q)=cache.amplitudes(q)*coefficient.';
+                B(ix,q+(j-1)*Q)=amplitudes(q,a)*derivative.';
+                T{j}(ix,q+(j-1)*Q)=amplitudes(q,a)*coefficient.';
             end
         end
     end
@@ -37,7 +42,7 @@ norms=vecnorm(D); keep=norms>1e-15; Dn=D(:,keep)./norms(keep);
 [Ue,S,Ve]=svd(Dn,'econ'); singular=diag(S); active=singular>max(singular)*1e-10;
 Ue=Ue(:,active); Jraw=J; J=J-Ue*(Ue'*J);
 F=2/noise_power*real(J'*J); F=(F+F')/2;
-diagonal=diag(F); peb=Inf; min_eigenvalue=0;
+diagonal=diag(F); peb=Inf; min_eigenvalue=0; covariance=[];
 if all(diagonal>0) && all(isfinite(F),'all')
     scales=1./sqrt(diagonal); Fs=F.*(scales*scales');
     min_eigenvalue=min(eig(Fs));
@@ -48,7 +53,7 @@ if all(diagonal>0) && all(isfinite(F),'all')
     end
 end
 if nargout>1
-    out=struct('F',F,'min_eigenvalue',min_eigenvalue,'nuisance_rank',sum(active), ...
+    out=struct('F',F,'covariance',covariance,'min_eigenvalue',min_eigenvalue,'nuisance_rank',sum(active), ...
         'D',{Ds},'J_unprojected',{Js});
 end
 if nargout>2
@@ -72,8 +77,8 @@ if nargout>2
                 gb=gd(bx,column); gdb=zeros(U,4); dwave=zeros(1,4);
                 for j=1:4
                     k=q+(j-1)*Q;
-                    gb=gb+conj(cache.amplitudes(q))*gt{j}(bx,k);
-                    gdb(:,j)=conj(cache.amplitudes(q))*gj(bx,k);
+                    gb=gb+conj(amplitudes(q,a))*gt{j}(bx,k);
+                    gdb(:,j)=conj(amplitudes(q,a))*gj(bx,k);
                     dc=carrier(q)*(d.phase.'*cache.dg{j}.V(:,q)) ...
                         +c(q)*(-1j*2*pi*p.fref/p.c*(cache.dg{j}.rr(q)-(j==1)));
                     if order>0, dwave(j)=order*c(q)^(order-1)*dc; end

@@ -1,0 +1,1 @@
+{"complete":true,"profile":"smoke","manifest_id":"827f2a105af39158868a1dfc8c3bdc4756095911d114ff4194c06531068a2b36","cases":2,"noise_and_prior_constant":true,"constraints_checked":true,"limitations":"Conditional shared-prior fine localization; no blocked coarse acquisition or global optimality claim"}
