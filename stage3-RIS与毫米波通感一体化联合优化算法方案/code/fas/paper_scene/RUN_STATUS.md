@@ -1,6 +1,19 @@
 # 论文启发FAS验证：运行状态
 
-2026-11-04，北京时间。代码和本地smoke完成，准备服务器完整尺寸检查、pilot和正式900组。尚无正式统计结论。
+2026-11-04，北京时间。代码、本地smoke、服务器完整尺寸数学检查及三种信道pilot均通过，正式900组已启动。尚无正式统计结论。用户要求上传启动后结束对话，不再主动轮询；后续仅按用户要求检查。
+
+## 正式任务
+
+- 不可变源码release：`f7addf80f5752d129a968cf251b177c3ccda84bd`，已推送GitHub并核对远端；41个执行源文件本地/服务器哈希逐项一致，见`evidence/release_source_hashes.json`。
+- manifest：`188647ad2a7151d1aae13207b7a68e2d7c9ff31e7fca17bfe643157919c07a37`。
+- 目录：`/home/jzm123/AAA_ZTEproject/RIS_stage3_matlab_fas/releases/f7addf80f5752d129a968cf251b177c3ccda84bd/code/fas/paper_scene/results_full`。
+- 2026-11-04约13:23北京时间启动；监督PID252827，4个worker PID252831–252834。13:23:28核实36个逐样本断点及真实进程；13:24:28最后一次已读取状态为241/900、4个worker均RUNNING。此为历史状态快照，不能当作后续实时进度。
+- 完整尺寸数学检查：位置梯度误差5.13e-9、通信梯度1.09e-10、共位置空间场误差0；强RR且非零DD下PEB有限，纯LoS仅RR时不可定位，均通过。
+- 三种完整尺寸pilot各约2.96/1.57/0.98秒，通信与控制检查通过；只用于验证和计时，不代替正式300MC统计。日志和原始MAT留服务器。
+- 正式任务自动完成900组后汇总并重算约束/指标，验证成功才写COMPLETE；无人值守运行，不依赖对话持续开启。
+- 用户需要时可运行：`tools/ris-paper-scene-server.ps1 status -Release f7addf80f5752d129a968cf251b177c3ccda84bd`；完成后用同一脚本的`fetch`取回精选数据，再运行`tools/summarize_paper_scene.py`生成摘要和图。未取得完整核验结果前不报告性能结论。
+
+## 实现与验证
 
 - 修改前备份：`codex/pre-paper-fas-20261104`，远端SHA `a2df9010d87017bfc2575afaaae544e2707b7236` 已核对。
 - 本地仅缩小规模smoke：3/3、相同manifest断点续跑3/3均通过。逐样本功率、SINR、离散相位、端口网格、最小间距、接受步单调性和指标重算通过。
