@@ -1,6 +1,27 @@
 # 受控衰减机制验证：运行状态
 
-2026-11-04，北京时间。当前阶段：代码完成，本地smoke及断点续跑通过，准备服务器完整尺寸验证和正式部署；**尚无正式1500组结果**。
+2026-11-04，北京时间。当前阶段：本地smoke、断点续跑、服务器完整尺寸数学检查和两个端点pilot通过；正式1500组已启动，**尚未完成**。
+
+## 正式任务
+
+- 启动时间：2026-11-04 12:23:09，北京时间。
+- 不可变源码release：`d6c7b9bfdf0c9acda85f66ee56ba9140a69f5ba7`；已推送并核对GitHub远端，49个部署源文件的本地/服务器SHA-256逐项一致，清单见 `evidence/release_source_hashes.json`。
+- manifest：`3bba239aee0e5aa84e2b8c6a9194ab416e8eeba5025d938c0a5bf32e03d5f4c8`。
+- 服务器目录：`/home/jzm123/AAA_ZTEproject/RIS_stage3_matlab_fas/releases/d6c7b9bfdf0c9acda85f66ee56ba9140a69f5ba7/code/fas/mechanism/results_full`。
+- 监督PID248570，初始8个worker PID248574–248581，真实进程和日志已核实；每个最多2计算线程，初期每个约1.5–1.6GB内存。后续仍需按真实进程/断点核实，不以此PID记录单独认定存活。
+- 2026-11-04 12:26:41北京时间启动复核：8/1500个正式逐样本断点已保存；8个worker均已完成首组并继续计算，真实进程存活，未发现失败标记。仅为启动状态，不是统计结论。
+- 完整尺寸数学检查：零衰减回波误差0；加权回波误差3.77e−16，导数误差2.56e−7，FIM误差1.23e−7，控制梯度误差6.11e−10。见 `evidence/server_math.json`。
+- MC0的0/80 dB完整尺寸pilot均完成，每组约86.8秒；只是验证和计时，不代替正式统计。最强衰减端点实际误差达数十米并正确标记失败，说明不能只看相对增益。见 `evidence/server_pilot.json`。
+- 按试跑耗时及8路并行估计约5–8小时，后续需按真实吞吐更新。自动完成全量汇总与约束/误差核验；只有1500/1500且verification通过才能作总体结论。
+
+项目根目录操作：
+
+```powershell
+tools/ris-mechanism-server.ps1 status -Release d6c7b9bfdf0c9acda85f66ee56ba9140a69f5ba7
+tools/ris-mechanism-server.ps1 fetch -Release d6c7b9bfdf0c9acda85f66ee56ba9140a69f5ba7
+```
+
+fetch在正式核验文件生成后使用。原始MAT和日志保留服务器；当前仅上传源码、文档、数学/本地smoke/端点pilot证据和49文件哈希清单，不上传运行环境、凭据、缓存或大批原始结果。
 
 ## 已完成
 

@@ -1,0 +1,1 @@
+{"passed":true,"profile":"server-full-size-math-check","zero_loss_echo_error":0,"weighted_echo_error":3.7663390380602229E-16,"derivative_error":2.5645129855692421E-7,"fisher_error":1.2305182826211455E-7,"control_gradient_error":6.1079363763225319E-10,"peb":1.8172474334091557,"matlab":"9.13.0.2049777 (R2022b)"}
