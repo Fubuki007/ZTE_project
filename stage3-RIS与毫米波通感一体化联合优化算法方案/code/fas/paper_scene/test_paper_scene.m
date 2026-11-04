@@ -38,7 +38,15 @@ if ~full_size
 end
 % Removing a known number of samples cannot improve an unchanged design's bound.
 guard=4; pg=paper_information(c,d,guard); assert(pg>=peb*(1-1e-7));
-report.guard_peb=pg; report.passed=true;
+report.guard_peb=pg;
+los=paper_scene(p,2026110400,inf);
+vl=exp(1j*pi/2*round(angle(los.surface(:,1).*conj(los.a))*2/pi));
+bl=paper_controls(los,X,vl); [wl,~,ok]=paper_beam(los,bl); assert(ok);
+dl=struct('X',X,'v',vl,'w',wl); report.los_peb=paper_information(los,dl,0);
+assert(isfinite(report.los_peb),'A nonzero identifiable DD path must survive strong RR scaling.');
+los.direct=0; report.only_RR_los_peb=paper_information(los,dl,0);
+assert(isinf(report.only_RR_los_peb),'One rank-one RR path cannot identify all spatial directions.');
+report.passed=true;
 if nargin>=1 && ~isempty(output), fas_write_json(output,report); end
 disp(report);
 end

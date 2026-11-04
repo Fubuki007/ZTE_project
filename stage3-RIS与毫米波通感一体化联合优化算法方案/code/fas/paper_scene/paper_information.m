@@ -36,26 +36,27 @@ for j=1:4
 end
 K=zeros(6); for i=1:6, for j=1:6, K(i,j)=sum((C{i}'*C{j}).*G,'all'); end; end
 out=struct('gram',K,'dense_error',nan,'covariance',[],'finite',false);
+nn=repmat(n,numel(time),1); tt=repelem(time(:),numel(n)); T=zeros(numel(nn),6);
+for a=1:2
+    e=exp(-1j*2*pi*p.delta_f/p.c*nn*distance(a)+1j*2*pi*tt*doppler(a));
+    T(:,(a-1)*3+(1:3))=[e,nn.*e,tt.*e];
+end
 if dense
-    nn=repmat(n,numel(time),1); tt=repelem(time(:),numel(n)); T=zeros(numel(nn),6);
-    for a=1:2
-        e=exp(-1j*2*pi*p.delta_f/p.c*nn*distance(a)+1j*2*pi*tt*doppler(a));
-        T(:,(a-1)*3+(1:3))=[e,nn.*e,tt.*e];
-    end
     Z=zeros(M*numel(nn),6); for j=1:6, Y=C{j}*T.'; Z(:,j)=Y(:); end
     out.dense_error=norm(K-Z'*Z,'fro')/max(norm(K,'fro'),realmin);
 end
-active=find(real(diag(K(1:2,1:2)))>0); H=K(active,active);
-sc=sqrt(real(diag(H))); H=H./(sc*sc.'); cross=K(active,3:6)./sc;
-[V,E]=eig((H+H')/2,'vector'); keep=real(E)>1e-10;
-projected=cross'*(V(:,keep)./real(E(keep)).')*(V(:,keep)'*cross);
-F=2/c.radar_noise*real(K(3:6,3:6)-projected); F=(F+F')/2;
-scale=sqrt(max(real(diag(F)),0)); peb=inf;
+% QR compression and SVD avoid subtracting enormous nearly equal FIM terms.
+tscale=vecnorm(T); [~,R]=qr(T./tscale,0); R=R.*tscale;
+Z=zeros(M*6,6);
+for j=1:6, Y=C{j}*R.'; Z(:,j)=Y(:); end
+active=find(vecnorm(Z(:,1:2))>0); H=Z(:,active);
+[Qh,~]=qr(H./vecnorm(H),0); D=Z(:,3:6); D=D-Qh*(Qh'*D);
+A=sqrt(2/c.radar_noise)*[real(D);imag(D)]; scale=vecnorm(A); peb=inf;
 if any(scale==0), return; end
-normalized=F./(scale*scale.'); eigenvalues=eig(normalized);
-out.eigenvalues=eigenvalues;
-if min(eigenvalues)<=max(eigenvalues)*1e-10, return; end
-covariance=(normalized\eye(4))./(scale*scale.');
+[~,S,V]=svd(A./scale,0); singular=diag(S); out.singular_values=singular;
+out.eigenvalues=singular.^2;
+if min(singular)<=max(singular)*eps*max(size(A))*8, return; end
+covariance=((V./singular.')*(V./singular.')')./(scale.'*scale);
 z=c.z; u=c.u; r=z(1); t=z(3); a=z(4);
 P=[u,zeros(3,1),r*pi/180*[cosd(t)*cosd(a);cosd(t)*sind(a);-sind(t)], ...
     r*pi/180*[-sind(t)*sind(a);sind(t)*cosd(a);0]];
