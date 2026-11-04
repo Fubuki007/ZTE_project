@@ -22,3 +22,5 @@ stage3-RIS*/code/fas/localization/results_*/
 stage3-RIS*/code/fas/localization/*.log
 stage3-RIS*/code/fas/mechanism/results_*/
 stage3-RIS*/code/fas/mechanism/*.log
+stage3-RIS*/code/fas/paper_scene/results_*/
+stage3-RIS*/code/fas/paper_scene/*.log
