@@ -555,6 +555,8 @@ The system pdftotext resolved to MiKTeX and lacked the Adobe-GB1 language mappin
 Direct GitHub HTTPS failed with both Schannel and OpenSSL; the configured local proxy endpoint also failed. Server GitHub HTTPS remained available.
 
 ### Resolution
-Used a temporary loopback-only SSH SOCKS relay for the authorized Git push, preserving HTTPS certificate checks and local credential handling. Independently read the remote branch SHA with git ls-remote on the server. The pre-edit backup is codex/pre-path-reliability-20261115 at f62f8929fd2f8ee848af7339f4fa0374bdc7b23a. No global Git or proxy configuration was changed. Subsequent pushes can use the same temporary relay and server-side verification.
+Used a temporary loopback-only SSH SOCKS relay for the authorized Git push, preserving HTTPS certificate checks and local credential handling. Independently read the remote branch SHA with git ls-remote on the server. The pre-edit backup is codex/pre-path-reliability-20261115 at f62f8929fd2f8ee848af7339f4fa0374bdc7b23a. No global Git or proxy configuration was changed.
+
+Follow-up: the long-lived relay later stalled while direct server GitHub reads still worked. Local github.com DNS also resolved to loopback; a per-command verified DNS override did not make the push succeed. Restarting only the owned temporary SSH relay, adding ServerAliveInterval/ServerAliveCountMax, and explicitly selecting the Git executable restored the push of 05ceb490774157ee1df8ce7c4a11fa36e0a3a096. For future pushes, check relay freshness and independently verify remote SHA; do not assume that one successful relay remains usable indefinitely. Stop the owned relay after use, without touching unrelated local listeners.
 
 ---
