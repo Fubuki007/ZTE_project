@@ -543,3 +543,18 @@ The system pdftotext resolved to MiKTeX and lacked the Adobe-GB1 language mappin
 - No document content was modified; extraction/render intermediates remain outside the selected Git backup.
 
 ---
+
+## [ERR-20261115-GIT] Direct GitHub TLS unavailable; verified backup through SSH relay
+
+**Logged**: 2026-11-15
+**Priority**: medium
+**Status**: resolved
+**Area**: infra
+
+### Summary
+Direct GitHub HTTPS failed with both Schannel and OpenSSL; the configured local proxy endpoint also failed. Server GitHub HTTPS remained available.
+
+### Resolution
+Used a temporary loopback-only SSH SOCKS relay for the authorized Git push, preserving HTTPS certificate checks and local credential handling. Independently read the remote branch SHA with git ls-remote on the server. The pre-edit backup is codex/pre-path-reliability-20261115 at f62f8929fd2f8ee848af7339f4fa0374bdc7b23a. No global Git or proxy configuration was changed. Subsequent pushes can use the same temporary relay and server-side verification.
+
+---

@@ -24,3 +24,6 @@ stage3-RIS*/code/fas/mechanism/results_*/
 stage3-RIS*/code/fas/mechanism/*.log
 stage3-RIS*/code/fas/paper_scene/results_*/
 stage3-RIS*/code/fas/paper_scene/*.log
+stage3-RIS*/code/path_reliability/results_*/
+stage3-RIS*/code/path_reliability/pilot/
+stage3-RIS*/code/path_reliability/*.log
