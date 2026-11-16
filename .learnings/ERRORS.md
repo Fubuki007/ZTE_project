@@ -560,3 +560,19 @@ Used a temporary loopback-only SSH SOCKS relay for the authorized Git push, pres
 Follow-up: the long-lived relay later stalled while direct server GitHub reads still worked. Local github.com DNS also resolved to loopback; a per-command verified DNS override did not make the push succeed. Restarting only the owned temporary SSH relay, adding ServerAliveInterval/ServerAliveCountMax, and explicitly selecting the Git executable restored the push of 05ceb490774157ee1df8ce7c4a11fa36e0a3a096. For future pushes, check relay freshness and independently verify remote SHA; do not assume that one successful relay remains usable indefinitely. Stop the owned relay after use, without touching unrelated local listeners.
 
 ---
+
+## [ERR-20261116-PR-SUMMARY] Full simulation finished but summary structure assignment failed
+
+**Logged**: 2026-11-16
+**Priority**: medium
+**Status**: fixing
+**Area**: simulation reporting
+
+All 3900 case checkpoints finished; the finalizer passed the per-case audit loop and then failed at comparison-table construction with MATLAB's dissimilar-structures assignment error. The same empty-structure assignment was reproduced independently on server MATLAB R2022b. Reduced smoke tests had exercised the incomplete-run rejection, but not the completed summary path.
+
+Preallocate comparisons with its complete field schema rather than struct([]). Preserve the original source release, checkpoints, manifest and failed aggregation log; deploy the finalizer fix in a new immutable release and rerun aggregation only. Validate the completed JSON/CSV/statistics independently before marking COMPLETE. The reporting fix does not change candidates, estimates, SNR range, bootstrap seed, or primary statistic.
+
+- Pre-fix GitHub backup: codex/pre-path-summary-fix-20261116 at e1e95efa3750c30ff6e1a0019f98567ce8688f27; remote SHA verified before edits.
+- Related file: stage3-RIS与毫米波通感一体化联合优化算法方案/code/path_reliability/aggregate_path_reliability.m
+
+---
