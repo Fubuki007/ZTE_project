@@ -12,6 +12,7 @@ assert(max(abs(a-b),[],'all')<1e-8,'Single-channel receiver replay differs.');
 r=ud_case(old);
 assert(all(isfinite(r.position_errors),'all') && all(r.locked));
 assert(r.replay_error_m<1e-6 && r.synthesis_relative_error<1e-8);
+assert(all(r.projection_retention_db<=1e-7,'all'));
 assert(all(r.feasible([1:6,9:15])),'Smoke must reach every operational branch.');
 for condition=1:2
     bank=r.banks{condition}; [~,choice]=min(cellfun(@(f) f.bic,bank.fits));

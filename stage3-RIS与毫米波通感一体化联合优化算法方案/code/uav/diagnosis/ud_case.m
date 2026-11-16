@@ -13,7 +13,8 @@ r=struct('trial',old.trial,'rcs_index',old.rcs_index,'rcs_m2',old.rcs_m2,'seed',
     'diagnostic_only',logical([zeros(1,6),ones(1,5),zeros(1,4)]), ...
     'banks',{cell(1,2)},'fits',{cell(1,15)},'design',{cell(1,4)}, ...
     'noise_w',p.noise_w,'noise_power',p.noise_power,'replay_error_m',0, ...
-    'synthesis_relative_error',0,'path_snr_db',nan(2,4,2),'reflected_to_DD_db',nan(1,2));
+    'synthesis_relative_error',0,'path_snr_db',nan(2,4,2),'reflected_to_DD_db',nan(1,2), ...
+    'raw_path_snr_db',nan(2,4,2),'projection_retention_db',nan(2,4,2));
 r.estimates(:,:,1:2)=old.estimates(:,:,3:4);
 r.locked(1:11)=old.locked(3); r.locked(2)=old.locked(4);
 r.feasible(1:11)=old.feasible(3); r.feasible(2)=old.feasible(4);
@@ -45,7 +46,8 @@ if old.locked(3) && old.feasible(3)
     r.feasible(10:11)=r.feasible(3);
     r.frozen_sinr_db=min([sinr(frozen{1},pr),sinr(frozen{2},pr)],[],2);
     r.feasible(7:8)=all(r.frozen_sinr_db>=10);
-    [r.path_snr_db(:,:,1),r.reflected_to_DD_db(1),delta]=path_audit(pr,o,dr,cr);
+    [r.path_snr_db(:,:,1),r.reflected_to_DD_db(1),delta,r.raw_path_snr_db(:,:,1), ...
+        r.projection_retention_db(:,:,1)]=path_audit(pr,o,dr,cr);
     r.synthesis_relative_error=max(r.synthesis_relative_error,delta);
 end
 notify('receive-beam acquisition');
@@ -69,7 +71,8 @@ if info.locked && cd.feasible
     r.feasible(12)=all(cellfun(@(d) d.feasible,dn));
     r.feasible(13:15)=all(cellfun(@(d) d.feasible,dr));
     r.design{4}=struct('no_ris',{dn},'ris',{dr});
-    [r.path_snr_db(:,:,2),r.reflected_to_DD_db(2),delta]=path_audit(pr,o,dr,cr);
+    [r.path_snr_db(:,:,2),r.reflected_to_DD_db(2),delta,r.raw_path_snr_db(:,:,2), ...
+        r.projection_retention_db(:,:,2)]=path_audit(pr,o,dr,cr);
     r.synthesis_relative_error=max(r.synthesis_relative_error,delta);
 end
 for k=1:15
@@ -126,13 +129,27 @@ H=(g.transmit+g.to_ris*conj(c)).*(p.lambda./(4*pi*p.user_R));
 Y=H'*d.W; a=abs(diag(Y)).^2; db=10*log10(a./(sum(abs(Y).^2,2)-a+p.comm_noise));
 end
 
-function [snr,ratio,delta]=path_audit(p,o,d,clean)
+function [snr,ratio,delta,raw_snr,retention]=path_audit(p,o,d,clean)
 D=pr_dictionary(p.truth,o,d,p,false); g=channel_geometry(p.truth,p);
 c=exp(-1j*2*pi*p.fref/p.c*(norm(p.ris_pos)+g.rr-p.truth(:,1).'));
 a=zeros(4*p.Q,1);
 for q=1:p.Q, a((q-1)*4+(1:4))=p.alpha(q)*(d{1}.scale(q)*c(q)).^[0 1 1 2]; end
 delta=norm(D*a-clean)/max(norm(clean),realmin); assert(delta<1e-8);
-snr=reshape(10*log10(max(abs(a).'.^2.*vecnorm(D).^2/p.noise_power,realmin)),4,p.Q).';
+energy=reshape(abs(a).'.^2.*vecnorm(D).^2,4,p.Q).'; raw=zeros(p.Q,4);
+for s=1:2
+    for q=1:p.Q
+        geom=channel_geometry(p.truth(q,:),p);
+        illumination=[geom.transmit';geom.to_ris']*d{s}.W*o{s}.symbol;
+        response=d{s}.phase.'*geom.V;
+        raw(q,:)=raw(q,:)+abs(p.alpha(q))^2*p.Mx*p.My ...
+            *sum(abs(illumination([1 2 1 2],:)).^2,2).' ...
+            .*abs(response).^[0 2 2 4];
+    end
+end
+assert(all(energy<=raw*(1+1e-8)+1e-20,'all'),'Orthogonal projection cannot increase path energy.');
+snr=10*log10(max(energy/p.noise_power,realmin));
+raw_snr=10*log10(max(raw/p.noise_power,realmin));
+retention=10*log10(max(energy,realmin)./max(raw,realmin));
 direct=1:4:4*p.Q; reflected=setdiff(1:4*p.Q,direct);
 ratio=10*log10(max(norm(D(:,reflected)*a(reflected))^2,realmin)/max(norm(D(:,direct)*a(direct))^2,realmin));
 end

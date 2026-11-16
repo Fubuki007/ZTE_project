@@ -7,6 +7,7 @@ for k=1:numel(m.source), assert(strcmp(filehash(fullfile(code,m.source(k).file))
 assert(numel(dir(fullfile(output,'samples','mc_*_rcs_*.mat')))==m.total_cases);
 mse=zeros(nmc,nr,nm); fail=false(nmc,nr,nm); locked=fail; feasible=fail;
 path_snr=nan(nmc,nr,2,4,2); ratio=nan(nmc,nr,2); snr_gain=zeros(nmc,nr);
+raw_snr=path_snr; retention=path_snr;
 mask_counts=zeros(nr,8,2); rows=cell(m.total_cases*nm,15); row=0; seconds=0;
 max_delta=0; max_replay=0; max_synthesis=0; max_power=0; min_sinr=Inf;
 for trial=0:nmc-1
@@ -58,6 +59,8 @@ for trial=0:nmc-1
             end
         end
         path_snr(trial+1,ri,:,:,:)=reshape(r.path_snr_db,1,1,2,4,2);
+        raw_snr(trial+1,ri,:,:,:)=reshape(r.raw_path_snr_db,1,1,2,4,2);
+        retention(trial+1,ri,:,:,:)=reshape(r.projection_retention_db,1,1,2,4,2);
         ratio(trial+1,ri,:)=r.reflected_to_DD_db;
         snr_gain(trial+1,ri)=r.rx_info.input_snr_db-old.input_snr_db(3);
         max_replay=max(max_replay,r.replay_error_m); max_synthesis=max(max_synthesis,r.synthesis_relative_error);
@@ -74,6 +77,8 @@ summary=struct('manifest_id',m.id,'complete_cases',m.total_cases,'methods',{meth
     'bic_mask_counts',mask_counts,'bic_masks',bank_masks(),'path_conditions',{{'Original_acquisition','RxBeam_acquisition'}}, ...
     'path_order',{{'DD','RD','DR','RR'}},'median_rx_snr_gain_db',median(snr_gain,1), ...
     'median_path_snr_db',reshape(median(reshape(permute(path_snr,[1 3 2 4 5]),nmc*2,nr,4,2),1,'omitnan'),nr,4,2), ...
+    'median_raw_path_snr_db',reshape(median(reshape(permute(raw_snr,[1 3 2 4 5]),nmc*2,nr,4,2),1,'omitnan'),nr,4,2), ...
+    'median_projection_retention_db',reshape(median(reshape(permute(retention,[1 3 2 4 5]),nmc*2,nr,4,2),1,'omitnan'),nr,4,2), ...
     'median_reflected_to_DD_db',reshape(median(ratio,1,'omitnan'),nr,2),'total_compute_s',seconds);
 pairs=[2 3;3 4;3 5;3 6;1 7;1 8;3 10;1 9;10 11;1 12;12 13;13 15;12 15;12 14];
 names={'position_control','normalization','DD_fit','BIC_fit','frozenW_full','frozenW_DD', ...

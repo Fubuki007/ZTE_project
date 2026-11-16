@@ -81,6 +81,11 @@ Path diagnostics report projected, accumulated isolated DD/RD/DR/RR energies
 divided by thermal noise, plus the coherent reflected-only to DD energy ratio.
 They use truth only for offline diagnosis, never for beam/model selection.
 These are not per-antenna input SNRs and not detection probabilities.
+After the MC0 pilot showed very small projected RIS energies, raw path energies
+and orthogonal-projection retention were added as offline diagnostics before
+the formal run. No estimator, primary contrast, seed, noise or radio resource
+was changed in response to that pilot. This separates passive link weakness
+from loss when the coarse-initialized projection misses a reflected delay.
 
 `test_uav_diagnosis` is a reduced, high-RCS local smoke test. Run it from this
 module directory because the repository root contains a different function
