@@ -79,7 +79,10 @@ pairs=[2 3;3 4;3 5;3 6;1 7;1 8;3 10;1 9;10 11;1 12;12 13;13 15;12 15;12 14];
 names={'position_control','normalization','DD_fit','BIC_fit','frozenW_full','frozenW_DD', ...
     'RIS_remove_noise','NoRIS_remove_noise','noiseless_DD','receive_beam','RIS_after_receive_beam', ...
     'BIC_after_receive_beam','net_RIS_BIC','net_RIS_DD'};
-rng(m.bootstrap_seed,'twister'); ids=randi(nmc,nmc,4000); comparisons=struct([]); ix=0;
+rng(m.bootstrap_seed,'twister'); ids=randi(nmc,nmc,4000); ix=0;
+comparisons=repmat(struct('name','','rcs_m2',0,'rmse_reduction_percent',0, ...
+    'rmse_ci95_percent',[0 0],'failure_reduction_pp',0,'failure_ci95_pp',[0 0]),3*size(pairs,1),1);
+primary=repmat(struct('name','','estimate',0,'units','','ci975',[0 0]),2,1);
 for ri=1:3
     for k=1:size(pairs,1)
         ix=ix+1; a=mse(:,ri,pairs(k,1)); b=mse(:,ri,pairs(k,2));
