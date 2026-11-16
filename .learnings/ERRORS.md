@@ -559,13 +559,15 @@ Used a temporary loopback-only SSH SOCKS relay for the authorized Git push, pres
 
 Follow-up: the long-lived relay later stalled while direct server GitHub reads still worked. Local github.com DNS also resolved to loopback; a per-command verified DNS override did not make the push succeed. Restarting only the owned temporary SSH relay, adding ServerAliveInterval/ServerAliveCountMax, and explicitly selecting the Git executable restored the push of 05ceb490774157ee1df8ce7c4a11fa36e0a3a096. For future pushes, check relay freshness and independently verify remote SHA; do not assume that one successful relay remains usable indefinitely. Stop the owned relay after use, without touching unrelated local listeners.
 
+2026-11-16: SOCKS5h pushes stalled again despite working server GitHub reads. A per-command proxy of socks5://127.0.0.1:18765 (local resolution) combined with http.curloptResolve=github.com:443:20.27.163.208 succeeded while preserving TLS verification. Verify the GitHub address through a trusted resolver/server TLS read before reusing a pinned address. Both available Git builds support only Schannel; do not retry the unsupported OpenSSL backend. No global DNS, Git, proxy or certificate settings were changed.
+
 ---
 
 ## [ERR-20261116-PR-SUMMARY] Full simulation finished but summary structure assignment failed
 
 **Logged**: 2026-11-16
 **Priority**: medium
-**Status**: fixing
+**Status**: resolved
 **Area**: simulation reporting
 
 All 3900 case checkpoints finished; the finalizer passed the per-case audit loop and then failed at comparison-table construction with MATLAB's dissimilar-structures assignment error. The same empty-structure assignment was reproduced independently on server MATLAB R2022b. Reduced smoke tests had exercised the incomplete-run rejection, but not the completed summary path.
@@ -574,5 +576,7 @@ Preallocate comparisons with its complete field schema rather than struct([]). P
 
 - Pre-fix GitHub backup: codex/pre-path-summary-fix-20261116 at e1e95efa3750c30ff6e1a0019f98567ce8688f27; remote SHA verified before edits.
 - Related file: stage3-RIS与毫米波通感一体化联合优化算法方案/code/path_reliability/aggregate_path_reliability.m
+
+Resolved with finalizer release 88a8a3790887d706258af6d38d589907aaa16865 and an independent local construction/quantile/JSON smoke check. The new immutable finalizer was verified to differ from the original manifest only in aggregate_path_reliability.m. The first recovery command failed before executing the function because the Linux MATLAB launcher expanded the newline escape; use fprintf(f,'COMPLETE%c',10) instead. Retained both failed logs. All 3900 checkpoints passed the repaired full audit on 2026-11-16; both recomputed-error and legacy-replay differences were zero. Independent CSV checks over 62400 rows matched server RMSE within 2.27e-13 m. The bundled Python contained NumPy but no Matplotlib; used the existing D:/Python environment, with no package installation.
 
 ---

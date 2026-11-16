@@ -3,6 +3,10 @@
 2026-11-15. This is a screening experiment for a research hypothesis, not a
 newly established method, a proof of novelty, or an expected performance gain.
 
+Full run completed and audited on 2026-11-16: see
+[results and limitations](RESULTS_20261116.md). Original simulation release and
+checkpoints were preserved; a separate finalizer release repaired the report schema.
+
 Before editing, the unchanged tracked project was pushed to
 `codex/pre-path-reliability-20261115`; the remote SHA was independently read
 from the server and equals `f62f8929fd2f8ee848af7339f4fa0374bdc7b23a`.

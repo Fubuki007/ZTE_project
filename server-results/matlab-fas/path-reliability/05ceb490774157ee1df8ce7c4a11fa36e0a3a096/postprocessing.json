@@ -1,0 +1,19 @@
+{
+  "simulation_release": "05ceb490774157ee1df8ce7c4a11fa36e0a3a096",
+  "finalizer_release": "88a8a3790887d706258af6d38d589907aaa16865",
+  "manifest_id": "effa89b542b1e9a6b6ec2d9a53e11f58ca89e097e51a94af405d3111acbed5b3",
+  "only_changed_manifested_source": [
+    "path_reliability/aggregate_path_reliability.m"
+  ],
+  "original_manifested_sources_verified": true,
+  "original_samples_retained": 3900,
+  "submitted_utc": "2026-11-16T04:07:34.161112+00:00",
+  "pid": 790039,
+  "log": "/home/jzm123/AAA_ZTEproject/RIS_stage3_matlab_fas/releases/05ceb490774157ee1df8ce7c4a11fa36e0a3a096/code/path_reliability/results_full/logs/aggregate_recovery_20261116_retry.log",
+  "aggregate_sha256": "974d0e13c29a07e2a383e992076048e152c92e570c01feec8b835bc1f421127b",
+  "matlab_command": "aggregate_path_reliability('/home/jzm123/AAA_ZTEproject/RIS_stage3_matlab_fas/releases/05ceb490774157ee1df8ce7c4a11fa36e0a3a096/code/path_reliability/results_full','/home/jzm123/AAA_ZTEproject/RIS_stage3_matlab_fas/releases/aafa68081d27ee7b0fb379f4823c9fb48ea06194/code/fas/results_full_mc300_20261023','/home/jzm123/AAA_ZTEproject/RIS_stage3_matlab_fas/releases/554ff78b42b720939272c60e0d9f0cc37acd82a9/code/fas/localization/results_full'); v=jsondecode(fileread('/home/jzm123/AAA_ZTEproject/RIS_stage3_matlab_fas/releases/05ceb490774157ee1df8ce7c4a11fa36e0a3a096/code/path_reliability/results_full/verification.json')); assert(v.complete && strcmp(v.manifest_id,'effa89b542b1e9a6b6ec2d9a53e11f58ca89e097e51a94af405d3111acbed5b3')); f=fopen('/home/jzm123/AAA_ZTEproject/RIS_stage3_matlab_fas/releases/05ceb490774157ee1df8ce7c4a11fa36e0a3a096/code/path_reliability/results_full/state','w'); assert(f>=0); fprintf(f,'COMPLETE%c',10); fclose(f);",
+  "previous_attempt_record": "postprocessing_attempt_1.json",
+  "previous_attempt_failed_before_running_function": true,
+  "audit_complete": true,
+  "verification_written_utc": "2026-11-16T04:10:37.656378+00:00"
+}

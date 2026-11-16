@@ -1,0 +1,154 @@
+{
+  "manifest_id": "effa89b542b1e9a6b6ec2d9a53e11f58ca89e097e51a94af405d3111acbed5b3",
+  "cases": 3900,
+  "metric_rows": 62400,
+  "independent_csv_checks_passed": true,
+  "max_rmse_difference_from_server_m": 2.2737367544323206e-13,
+  "primary_snr_db": [
+    -20,
+    -15,
+    -10,
+    -5,
+    0,
+    5,
+    10
+  ],
+  "predeclared_comparisons": [
+    {
+      "method": "RIS_energy/DD_only",
+      "reference": "RIS_energy/Full_normalized",
+      "mean_of_seven_snr_rmse_reductions_percent": 0.11037437554180757,
+      "paired_bootstrap_95_percent": [
+        -0.5225702903723993,
+        0.7053718303085317
+      ]
+    },
+    {
+      "method": "RIS_energy/AIC",
+      "reference": "RIS_energy/Full_normalized",
+      "mean_of_seven_snr_rmse_reductions_percent": 0.8806256447500136,
+      "paired_bootstrap_95_percent": [
+        0.5677162639184093,
+        1.2078871108626152
+      ]
+    },
+    {
+      "method": "RIS_energy/BIC",
+      "reference": "RIS_energy/Full_normalized",
+      "mean_of_seven_snr_rmse_reductions_percent": 1.3140154843742233,
+      "paired_bootstrap_95_percent": [
+        0.8711068928737132,
+        1.7668429232906246
+      ]
+    },
+    {
+      "method": "RIS_energy/Ridge_GCV",
+      "reference": "RIS_energy/Full_normalized",
+      "mean_of_seven_snr_rmse_reductions_percent": 1.227413636560767,
+      "paired_bootstrap_95_percent": [
+        0.9443747746611707,
+        1.5169684434317534
+      ]
+    },
+    {
+      "method": "RIS_PEB/DD_only",
+      "reference": "RIS_PEB/Full_normalized",
+      "mean_of_seven_snr_rmse_reductions_percent": -0.51367815008867,
+      "paired_bootstrap_95_percent": [
+        -1.158608950172006,
+        0.12668633011683786
+      ]
+    },
+    {
+      "method": "RIS_PEB/AIC",
+      "reference": "RIS_PEB/Full_normalized",
+      "mean_of_seven_snr_rmse_reductions_percent": 1.041784558581398,
+      "paired_bootstrap_95_percent": [
+        0.7258658831003141,
+        1.3626270037664794
+      ]
+    },
+    {
+      "method": "RIS_PEB/BIC",
+      "reference": "RIS_PEB/Full_normalized",
+      "mean_of_seven_snr_rmse_reductions_percent": 1.1097713743345672,
+      "paired_bootstrap_95_percent": [
+        0.6752842844254783,
+        1.54824117162243
+      ]
+    },
+    {
+      "method": "RIS_PEB/Ridge_GCV",
+      "reference": "RIS_PEB/Full_normalized",
+      "mean_of_seven_snr_rmse_reductions_percent": 1.1747919149249266,
+      "paired_bootstrap_95_percent": [
+        0.9003825080157646,
+        1.4487684058009638
+      ]
+    }
+  ],
+  "mean_rmse_reductions_vs_NoRIS_PEB_percent_descriptive_only": {
+    "RIS_energy/Full_legacy": -0.48311996892129405,
+    "RIS_energy/Full_normalized": -0.4831198698042367,
+    "RIS_energy/DD_only": -0.2915783760115999,
+    "RIS_energy/AIC": 0.43581310876094226,
+    "RIS_energy/BIC": 0.8949047255278706,
+    "RIS_energy/Ridge_GCV": 0.8092368690522338,
+    "RIS_energy/Oracle_bank_hindsight": 6.682475210930128,
+    "RIS_PEB/Full_legacy": 0.19074192873391738,
+    "RIS_PEB/Full_normalized": 0.19074234354952463,
+    "RIS_PEB/DD_only": -0.2394247284119918,
+    "RIS_PEB/AIC": 1.2766582480771131,
+    "RIS_PEB/BIC": 1.3527929049753609,
+    "RIS_PEB/Ridge_GCV": 1.4238286147078718,
+    "RIS_PEB/Oracle_bank_hindsight": 7.2529597700932324,
+    "NoRIS_energy_refined": -0.31671721866948854,
+    "NoRIS_PEB_refined": 0.0
+  },
+  "additional_no_ris_comparisons_have_no_predeclared_confidence_intervals": true,
+  "locked_count_per_snr": [
+    0,
+    0,
+    63,
+    290,
+    300,
+    300,
+    300,
+    300,
+    300,
+    300,
+    300,
+    300,
+    300
+  ],
+  "locked_but_infeasible_count_per_method": {
+    "RIS_energy/Full_legacy": 0,
+    "RIS_energy/Full_normalized": 0,
+    "RIS_energy/DD_only": 0,
+    "RIS_energy/AIC": 0,
+    "RIS_energy/BIC": 0,
+    "RIS_energy/Ridge_GCV": 0,
+    "RIS_energy/Oracle_bank_hindsight": 0,
+    "RIS_PEB/Full_legacy": 0,
+    "RIS_PEB/Full_normalized": 0,
+    "RIS_PEB/DD_only": 0,
+    "RIS_PEB/AIC": 0,
+    "RIS_PEB/BIC": 0,
+    "RIS_PEB/Ridge_GCV": 0,
+    "RIS_PEB/Oracle_bank_hindsight": 0,
+    "NoRIS_energy_refined": 0,
+    "NoRIS_PEB_refined": 0
+  },
+  "input_sha256": {
+    "manifest.json": "1f2340915c43cfd5342b31e3b1691d7f14fb507fa3fd16461e2d1917bd486a53",
+    "verification.json": "ee01005b9abf43f3e01adaeb59e7f06040208c52e54678915c07bab0c005bc49",
+    "summary.json": "59e12da54f18fe1db8101d7dae7850e6e1ac214567a3d6853d0509c3921ad8df",
+    "case_metrics.csv": "bca889ae279a613d36e76c61cc6a7665654d096c21b2c91f99cd1b6cfa8186bd"
+  },
+  "analysis_script_sha256": "d6ce980da6721852c2f656d725228c16f4d21573218c2881e8f3ec0cbecb47e2",
+  "limits": [
+    "Original model and 300 geometries only",
+    "Marginal exploratory bootstrap intervals; no multiplicity correction",
+    "Hindsight selection uses test truth and is not achievable or a rigorous bound"
+  ]
+}
