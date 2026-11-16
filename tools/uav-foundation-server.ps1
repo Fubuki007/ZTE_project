@@ -2,7 +2,7 @@
 param(
     [Parameter(Position=0)][ValidateSet('upload','test','pilot','run','status','fetch')][string]$Action='status',
     [Parameter(Mandatory)][ValidatePattern('^[a-f0-9]{40}$')][string]$Release,
-    [ValidateSet('foundation','diagnosis')][string]$Experiment='foundation',
+    [ValidateSet('foundation','diagnosis','angle_fix')][string]$Experiment='foundation',
     [ValidateRange(1,8)][int]$Workers=8
 )
 $ErrorActionPreference='Stop'
@@ -14,6 +14,9 @@ $uav="$remote/code/uav"
 $runner='run_uav_foundation'; $tester='test_uav_foundation'
 if($Experiment -eq 'diagnosis') {
     $uav="$uav/diagnosis"; $runner='run_uav_diagnosis'; $tester='test_uav_diagnosis'
+}
+if($Experiment -eq 'angle_fix') {
+    $uav="$uav/angle_fix"; $runner='run_uav_angles'; $tester='test_uav_angles'
 }
 $sshOptions=@('-i',(Join-Path $env:USERPROFILE '.ssh/codex_zte_automation_ed25519'),
     '-o','BatchMode=yes','-o','IdentitiesOnly=yes','-o','StrictHostKeyChecking=yes','-o','ConnectTimeout=10')
@@ -30,6 +33,7 @@ switch($Action) {
         $bundle=Join-Path $staging "$Release.tar"
         $base=@('build_default_params.m','channel_geometry.m','joint_estimator_fast.m',
             'prepare_ris_observation.m','refine_ris_parameters.m','evaluate_estimation.m')
+        if(Test-Path (Join-Path $project "$relative/coarse_array_angles.m")){$base+='coarse_array_angles.m'}
         if($Experiment -eq 'diagnosis'){$base+=@('path_reliability/pr_dictionary.m','path_reliability/pr_refine.m')}
         $paths=@("$relative/uav")+@($base | ForEach-Object {"$relative/$_"})
         & git -C $project archive --format=tar "--output=$bundle" HEAD -- @paths
