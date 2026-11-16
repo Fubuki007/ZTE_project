@@ -29,3 +29,5 @@ stage3-RIS*/code/path_reliability/pilot/
 stage3-RIS*/code/path_reliability/*.log
 stage3-RIS*/code/uav/results_*/
 stage3-RIS*/code/uav/*.log
+stage3-RIS*/code/uav/diagnosis/results_*/
+stage3-RIS*/code/uav/diagnosis/*.log

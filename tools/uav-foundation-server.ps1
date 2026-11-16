@@ -2,6 +2,7 @@
 param(
     [Parameter(Position=0)][ValidateSet('upload','test','pilot','run','status','fetch')][string]$Action='status',
     [Parameter(Mandatory)][ValidatePattern('^[a-f0-9]{40}$')][string]$Release,
+    [ValidateSet('foundation','diagnosis')][string]$Experiment='foundation',
     [ValidateRange(1,8)][int]$Workers=8
 )
 $ErrorActionPreference='Stop'
@@ -10,6 +11,10 @@ $relative='stage3-RIS与毫米波通感一体化联合优化算法方案/code'
 $target='jzm123@100.120.122.2'
 $remote="/home/jzm123/AAA_ZTEproject/RIS_UAV_foundation/releases/$Release"
 $uav="$remote/code/uav"
+$runner='run_uav_foundation'; $tester='test_uav_foundation'
+if($Experiment -eq 'diagnosis') {
+    $uav="$uav/diagnosis"; $runner='run_uav_diagnosis'; $tester='test_uav_diagnosis'
+}
 $sshOptions=@('-i',(Join-Path $env:USERPROFILE '.ssh/codex_zte_automation_ed25519'),
     '-o','BatchMode=yes','-o','IdentitiesOnly=yes','-o','StrictHostKeyChecking=yes','-o','ConnectTimeout=10')
 function Remote([string]$command) {
@@ -25,6 +30,7 @@ switch($Action) {
         $bundle=Join-Path $staging "$Release.tar"
         $base=@('build_default_params.m','channel_geometry.m','joint_estimator_fast.m',
             'prepare_ris_observation.m','refine_ris_parameters.m','evaluate_estimation.m')
+        if($Experiment -eq 'diagnosis'){$base+=@('path_reliability/pr_dictionary.m','path_reliability/pr_refine.m')}
         $paths=@("$relative/uav")+@($base | ForEach-Object {"$relative/$_"})
         & git -C $project archive --format=tar "--output=$bundle" HEAD -- @paths
         if($LASTEXITCODE -ne 0){throw 'Source archive failed'}
@@ -52,10 +58,10 @@ print('Verified immutable archive:',len(checked),'files, release=$Release')
         if($LASTEXITCODE -ne 0){throw 'Deployment hash verification failed'}
     }
     test {
-        Remote "cd $uav && /home/jzm123/MATLAB/R2022b/bin/matlab -batch `"test_uav_foundation('server_smoke.json'); exit(0);`" > server_smoke.log 2>&1 && cat server_smoke.json"
+        Remote "cd $uav && /home/jzm123/MATLAB/R2022b/bin/matlab -batch `"${tester}('server_smoke.json'); exit(0);`" > server_smoke.log 2>&1 && cat server_smoke.json"
     }
     pilot {
-        Remote "cd $uav && /home/jzm123/MATLAB/R2022b/bin/matlab -batch `"run_uav_foundation('pilot','$uav/results_pilot'); exit(0);`" > pilot.log 2>&1 && cat results_pilot/verification.json && cat results_pilot/summary.json"
+        Remote "cd $uav && /home/jzm123/MATLAB/R2022b/bin/matlab -batch `"${runner}('pilot','$uav/results_pilot'); exit(0);`" > pilot.log 2>&1 && cat results_pilot/verification.json && cat results_pilot/summary.json"
     }
     run {
         $launch=@"
@@ -89,7 +95,7 @@ print(json.dumps({'state':state,'checkpoints':saved,'expected':900,'workers':wor
     }
     fetch {
         Remote "test -f $uav/results_full/verification.json && grep -qx COMPLETE $uav/results_full/state"
-        $dest=Join-Path $project "server-results/uav-foundation/$Release"
+        $dest=Join-Path $project "server-results/uav-$Experiment/$Release"
         New-Item -ItemType Directory -Force -Path $dest | Out-Null
         foreach($file in 'manifest.json','summary.json','verification.json','case_metrics.csv','comparison.png') {
             & scp @sshOptions "${target}:$uav/results_full/$file" $dest
