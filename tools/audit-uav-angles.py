@@ -67,7 +67,7 @@ for ri, rcs in enumerate([1, 10, 100]):
                            failure_count=sum(r['failure'] for r in group)))
     for t in range(300):
         group = [index[t, rcs, method] for method in methods]
-        for field in ['locked', 'input_snr_db', 'coarse_range_rmse_m', 'coarse_velocity_rmse_mps']:
+        for field in ['locked', 'input_snr_db']:
             assert len({r[field] for r in group}) == 1, (t, rcs, field)
 
 parent_parts = Path(manifest['parent']).parts

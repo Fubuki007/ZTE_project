@@ -10,7 +10,7 @@ pm=jsondecode(fileread(fullfile(parent,'manifest.json')));
 assert(pv.passed && pv.cases==900 && strcmp(strtrim(fileread(fullfile(parent,'state'))),'COMPLETE'));
 if strcmp(profile,'pilot'), trials=0; else, trials=0:299; end
 files=[dir(fullfile(root,'*.m'));dir(fullfile(root,'*.sh'));dir(fullfile(uav,'*.m'))];
-base={'build_default_params.m','channel_geometry.m','joint_estimator_fast.m','prepare_ris_observation.m', ...
+base={'build_default_params.m','channel_geometry.m','joint_estimator_fast.m','coarse_array_angles.m','prepare_ris_observation.m', ...
     'refine_ris_parameters.m','evaluate_estimation.m','path_reliability/pr_dictionary.m','path_reliability/pr_refine.m'};
 for k=1:numel(base), files(end+1)=dir(fullfile(code,base{k})); end
 source=struct('file',{},'sha256',{});

@@ -6,7 +6,7 @@ assert(~strcmp(profile,'full') || ~ispc,'Formal simulations run on the server.')
 assert(worker>=0 && worker<workers && worker==fix(worker));
 if strcmp(profile,'pilot'), trials=0; else, trials=0:cfg.mc-1; end
 files=[dir(fullfile(root,'*.m'));dir(fullfile(root,'*.sh'))];
-base={'build_default_params.m','channel_geometry.m','joint_estimator_fast.m', ...
+base={'build_default_params.m','channel_geometry.m','joint_estimator_fast.m','coarse_array_angles.m', ...
     'prepare_ris_observation.m','refine_ris_parameters.m','evaluate_estimation.m'};
 for k=1:numel(base), files(end+1)=dir(fullfile(code,base{k})); end
 source=struct('file',{},'sha256',{});
