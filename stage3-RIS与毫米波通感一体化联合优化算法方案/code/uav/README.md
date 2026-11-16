@@ -90,3 +90,8 @@ Before editing, GitHub backup `codex/pre-uav-foundation-20261116` was verified
 at `107082692b2c0e936e2aae5c78e02015e69d518d`. Only selected source/scripts,
 documentation and small audit summaries are backed up. Existing untracked
 outputs, credentials, environments, caches and large raw results stay in place.
+
+The completed 900-case server experiment and its limitations are reported in
+[RESULTS_20261116.md](RESULTS_20261116.md). The source release remains
+`ad35a777ca7f697f2ea369db834f60f9f9f24277`; later result-documentation commits
+do not replace that immutable simulation release.

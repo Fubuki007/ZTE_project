@@ -1,0 +1,111 @@
+{
+  "state": "COMPLETE",
+  "checkpoints": 900,
+  "expected": 900,
+  "workers": [
+    {
+      "worker": 0,
+      "workers": 8,
+      "pid": 792595,
+      "manifest_id": "2c4e15b4c6e77f03589d42c0ad23b92af4ce8b4fbbb41b49f23103a3f80efd87",
+      "state": "COMPLETE",
+      "completed": 113,
+      "assigned": 113,
+      "trial": 298,
+      "rcs_m2": 100,
+      "phase": "worker complete",
+      "updated_utc": "2026-11-16T06:26:31Z"
+    },
+    {
+      "worker": 1,
+      "workers": 8,
+      "pid": 792596,
+      "manifest_id": "2c4e15b4c6e77f03589d42c0ad23b92af4ce8b4fbbb41b49f23103a3f80efd87",
+      "state": "COMPLETE",
+      "completed": 113,
+      "assigned": 113,
+      "trial": 299,
+      "rcs_m2": 1,
+      "phase": "worker complete",
+      "updated_utc": "2026-11-16T06:26:07Z"
+    },
+    {
+      "worker": 2,
+      "workers": 8,
+      "pid": 792597,
+      "manifest_id": "2c4e15b4c6e77f03589d42c0ad23b92af4ce8b4fbbb41b49f23103a3f80efd87",
+      "state": "COMPLETE",
+      "completed": 113,
+      "assigned": 113,
+      "trial": 299,
+      "rcs_m2": 10,
+      "phase": "worker complete",
+      "updated_utc": "2026-11-16T06:26:29Z"
+    },
+    {
+      "worker": 3,
+      "workers": 8,
+      "pid": 792598,
+      "manifest_id": "2c4e15b4c6e77f03589d42c0ad23b92af4ce8b4fbbb41b49f23103a3f80efd87",
+      "state": "COMPLETE",
+      "completed": 113,
+      "assigned": 113,
+      "trial": 299,
+      "rcs_m2": 100,
+      "phase": "worker complete",
+      "updated_utc": "2026-11-16T06:26:21Z"
+    },
+    {
+      "worker": 4,
+      "workers": 8,
+      "pid": 792599,
+      "manifest_id": "2c4e15b4c6e77f03589d42c0ad23b92af4ce8b4fbbb41b49f23103a3f80efd87",
+      "state": "COMPLETE",
+      "completed": 112,
+      "assigned": 112,
+      "trial": 297,
+      "rcs_m2": 10,
+      "phase": "worker complete",
+      "updated_utc": "2026-11-16T06:26:33Z"
+    },
+    {
+      "worker": 5,
+      "workers": 8,
+      "pid": 792600,
+      "manifest_id": "2c4e15b4c6e77f03589d42c0ad23b92af4ce8b4fbbb41b49f23103a3f80efd87",
+      "state": "COMPLETE",
+      "completed": 112,
+      "assigned": 112,
+      "trial": 297,
+      "rcs_m2": 100,
+      "phase": "worker complete",
+      "updated_utc": "2026-11-16T06:26:23Z"
+    },
+    {
+      "worker": 6,
+      "workers": 8,
+      "pid": 792601,
+      "manifest_id": "2c4e15b4c6e77f03589d42c0ad23b92af4ce8b4fbbb41b49f23103a3f80efd87",
+      "state": "COMPLETE",
+      "completed": 112,
+      "assigned": 112,
+      "trial": 298,
+      "rcs_m2": 1,
+      "phase": "worker complete",
+      "updated_utc": "2026-11-16T06:26:22Z"
+    },
+    {
+      "worker": 7,
+      "workers": 8,
+      "pid": 792602,
+      "manifest_id": "2c4e15b4c6e77f03589d42c0ad23b92af4ce8b4fbbb41b49f23103a3f80efd87",
+      "state": "COMPLETE",
+      "completed": 112,
+      "assigned": 112,
+      "trial": 298,
+      "rcs_m2": 10,
+      "phase": "worker complete",
+      "updated_utc": "2026-11-16T06:26:04Z"
+    }
+  ]
+}
