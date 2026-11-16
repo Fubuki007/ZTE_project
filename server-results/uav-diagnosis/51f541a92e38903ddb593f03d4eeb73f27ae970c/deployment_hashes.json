@@ -1,0 +1,126 @@
+[
+  {
+    "file": "build_default_params.m",
+    "sha256": "a524559ed02d298cfef429290dd31e7a68f45123c8f64ed662fa974759b5561e"
+  },
+  {
+    "file": "channel_geometry.m",
+    "sha256": "c8e3d51b2e7f2de4ab5ea5b43b340a2e5bf7d431fe4ab0863dfe17ea7e968dc3"
+  },
+  {
+    "file": "evaluate_estimation.m",
+    "sha256": "a4295bbc859003db0f1835c135de0147dc52ae4a7369e1b34769dc2df7be600d"
+  },
+  {
+    "file": "joint_estimator_fast.m",
+    "sha256": "dfca977c003183daec1ac167a240cff76fc9df424b00098f4f8199a6b18de905"
+  },
+  {
+    "file": "path_reliability/pr_dictionary.m",
+    "sha256": "dff637986b6cf2cc8c41d61b61d0fc10aa50cf0b42dd70cc4d8ea0884b8607e2"
+  },
+  {
+    "file": "path_reliability/pr_refine.m",
+    "sha256": "eddebf47a7bcc3327f2010b26cc36c583dcf7eb6c102aaaa3d80892aee8256d4"
+  },
+  {
+    "file": "prepare_ris_observation.m",
+    "sha256": "c28cd0d8a08d9c75c0c55b91ac84e726bad24935b020640ca9a7918be6b07856"
+  },
+  {
+    "file": "refine_ris_parameters.m",
+    "sha256": "f998b2042e5ab6f96658935e626c668b997628b157c5585de4cb2cc85a483b71"
+  },
+  {
+    "file": "uav/README.md",
+    "sha256": "6f6cf44aa8dc91a4ef603bcf1187bc4c7ae12e073f3532b97ed24114a724ec96"
+  },
+  {
+    "file": "uav/RESULTS_20261116.md",
+    "sha256": "4c8f707dafe8c7983cf0ff0a97d0863af9fe9bbd88c1755fa4293213d369ef02"
+  },
+  {
+    "file": "uav/aggregate_uav_foundation.m",
+    "sha256": "4682dead5d07607caba03728e1eab47f1785af2704654cfa72ebbd0f495bbdc6"
+  },
+  {
+    "file": "uav/diagnosis/README.md",
+    "sha256": "8fe598c9b4bec7e06e8388dc213cc5a090dcbe196d55c634b1663e8b7bc2f075"
+  },
+  {
+    "file": "uav/diagnosis/aggregate_uav_diagnosis.m",
+    "sha256": "3752d24e691629746396a537389957383c9e266fce5b2a4ef31b3505d5e3f62b"
+  },
+  {
+    "file": "uav/diagnosis/local_smoke.json",
+    "sha256": "f4b9bb61f7e160b188ac3aecf7ae302af7fd348dbf0c7c18fc9ddaaed8a306b1"
+  },
+  {
+    "file": "uav/diagnosis/run_server.sh",
+    "sha256": "1b5d9284ed7431f8232ad88fa32490b8c7e8cf9ee2bfd600a49d888a57d33997"
+  },
+  {
+    "file": "uav/diagnosis/run_uav_diagnosis.m",
+    "sha256": "b7c6fb495197f20b8e15fd531645adc56903b6e60dbc08ad4bc6263befaca4d5"
+  },
+  {
+    "file": "uav/diagnosis/test_uav_diagnosis.m",
+    "sha256": "23ab9401bf5ac95a3484a8fb87c3861bacd2c7067f422f0eaab2fdb2c3e70f62"
+  },
+  {
+    "file": "uav/diagnosis/ud_case.m",
+    "sha256": "44edf469436905f1222c45ff348144ffd25e514f6c8d482dfd21e452ea0ccb0a"
+  },
+  {
+    "file": "uav/local_smoke.json",
+    "sha256": "9699b51ab30f366b051f803900065bbc7272b9d56a58ff309e25f02abd2ce998"
+  },
+  {
+    "file": "uav/run_server.sh",
+    "sha256": "6ee31aedb43bba2a3da4649fd989ecece707e5d1234f5834d78b5daf7b12981f"
+  },
+  {
+    "file": "uav/run_uav_foundation.m",
+    "sha256": "a454ed00e7b488c8009932d403ecfe259a977249c9f7f5ff2c79a7d0cc4b901b"
+  },
+  {
+    "file": "uav/test_uav_foundation.m",
+    "sha256": "a4693476a7427b03a5cf810b3259bbf4869ebfbe4873e552ac3d3fe633919a80"
+  },
+  {
+    "file": "uav/uav_case.m",
+    "sha256": "b2ec8e01868d4d60142a26205dd86647893c036c565d3ad6bae8809c47706cd0"
+  },
+  {
+    "file": "uav/uav_coarse.m",
+    "sha256": "2bf8c8ccd7b0bd91d56c32d5a677f180f83e99acfa45ae8dc0726fb1013350c4"
+  },
+  {
+    "file": "uav/uav_config.m",
+    "sha256": "9491828b4839a1908d30f06671e33728a660d65e2db64defa473ab9400ea8a80"
+  },
+  {
+    "file": "uav/uav_design.m",
+    "sha256": "190e8cff661dfde1cc199b773ea6439cfd49915147031fd4379105af5a46b9ef"
+  },
+  {
+    "file": "uav/uav_echo.m",
+    "sha256": "c62489aeb8e22ce22c38c28c5750a7ecd64d21eae29835e215f623e465c45969"
+  },
+  {
+    "file": "uav/uav_hash.m",
+    "sha256": "b2b1fed7bd77595b226f236f8f81bfd9168b13a83ccedef3cce47add08e8bfdb"
+  },
+  {
+    "file": "uav/uav_parameters.m",
+    "sha256": "08d240a9f3992a128bc918e8ac8a0c6190c7468c9cb73f8126d3e4eb4acb6c4e"
+  },
+  {
+    "file": "uav/uav_rx_weights.m",
+    "sha256": "b77189b4cdd0d18dae9a03b239b72ecc8d4921a8fb8b04751694fc1de6955d2a"
+  },
+  {
+    "file": "uav/uav_write_json.m",
+    "sha256": "260b1509b1f5abb68d1c8cc872b8d3a2fbb246e0a24395d22fa7127c9fa0832b"
+  }
+]

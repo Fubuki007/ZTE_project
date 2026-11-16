@@ -111,3 +111,7 @@ metrics, gating, retained failures, model choices, costs, radio dimensions,
 power, quantized phases and feasible-design SINR before writing verification.
 Large MATs and full logs stay on the server. Local retrieval is limited to
 selected CSV/JSON/PNG evidence. No package installation is needed.
+
+The full 900-case run and independent audits are complete. See the Chinese
+[results and cause diagnosis (2026-11-16)](RESULTS_20261116.md) for outcomes,
+confidence intervals, evidence links and limitations.

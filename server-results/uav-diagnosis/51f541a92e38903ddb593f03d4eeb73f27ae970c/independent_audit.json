@@ -1,0 +1,455 @@
+{
+  "passed": true,
+  "source_release": "51f541a92e38903ddb593f03d4eeb73f27ae970c",
+  "manifest_id": "f71b3325f8e976bb531d9a356deb0b0be36b24600e09fde784ccf9e08d9f03fa",
+  "rows": 13500,
+  "source_files_checked": 25,
+  "maximum_rmse_difference_m": 8.526512829121202e-14,
+  "groups": [
+    {
+      "rcs_m2": 1,
+      "method": "Original_NoRIS",
+      "position_rmse_m": 559.4094970466488,
+      "median_case_rmse_m": 502.9559269384015,
+      "capture_count": 0,
+      "feasible_count": 0,
+      "failure_count": 300
+    },
+    {
+      "rcs_m2": 1,
+      "method": "Original_RIS_own_position",
+      "position_rmse_m": 564.0573863174727,
+      "median_case_rmse_m": 509.3092110059535,
+      "capture_count": 0,
+      "feasible_count": 0,
+      "failure_count": 300
+    },
+    {
+      "rcs_m2": 1,
+      "method": "RIS_matched_full",
+      "position_rmse_m": 559.4094970466488,
+      "median_case_rmse_m": 502.9559269384015,
+      "capture_count": 0,
+      "feasible_count": 0,
+      "failure_count": 300
+    },
+    {
+      "rcs_m2": 1,
+      "method": "RIS_matched_normalized",
+      "position_rmse_m": 559.4094970466488,
+      "median_case_rmse_m": 502.9559269384015,
+      "capture_count": 0,
+      "feasible_count": 0,
+      "failure_count": 300
+    },
+    {
+      "rcs_m2": 1,
+      "method": "RIS_matched_DD",
+      "position_rmse_m": 559.4094970466488,
+      "median_case_rmse_m": 502.9559269384015,
+      "capture_count": 0,
+      "feasible_count": 0,
+      "failure_count": 300
+    },
+    {
+      "rcs_m2": 1,
+      "method": "RIS_matched_BIC",
+      "position_rmse_m": 559.4094970466488,
+      "median_case_rmse_m": 502.9559269384015,
+      "capture_count": 0,
+      "feasible_count": 0,
+      "failure_count": 300
+    },
+    {
+      "rcs_m2": 1,
+      "method": "RIS_frozenW_full",
+      "position_rmse_m": 559.4094970466488,
+      "median_case_rmse_m": 502.9559269384015,
+      "capture_count": 0,
+      "feasible_count": 0,
+      "failure_count": 300
+    },
+    {
+      "rcs_m2": 1,
+      "method": "RIS_frozenW_DD",
+      "position_rmse_m": 559.4094970466488,
+      "median_case_rmse_m": 502.9559269384015,
+      "capture_count": 0,
+      "feasible_count": 0,
+      "failure_count": 300
+    },
+    {
+      "rcs_m2": 1,
+      "method": "NoRIS_noiseless",
+      "position_rmse_m": 559.4094970466488,
+      "median_case_rmse_m": 502.9559269384015,
+      "capture_count": 0,
+      "feasible_count": 0,
+      "failure_count": 300
+    },
+    {
+      "rcs_m2": 1,
+      "method": "RIS_noiseless_full",
+      "position_rmse_m": 559.4094970466488,
+      "median_case_rmse_m": 502.9559269384015,
+      "capture_count": 0,
+      "feasible_count": 0,
+      "failure_count": 300
+    },
+    {
+      "rcs_m2": 1,
+      "method": "RIS_noiseless_DD",
+      "position_rmse_m": 559.4094970466488,
+      "median_case_rmse_m": 502.9559269384015,
+      "capture_count": 0,
+      "feasible_count": 0,
+      "failure_count": 300
+    },
+    {
+      "rcs_m2": 1,
+      "method": "RxBeam_NoRIS",
+      "position_rmse_m": 215.55957706385698,
+      "median_case_rmse_m": 196.372770012537,
+      "capture_count": 272,
+      "feasible_count": 272,
+      "failure_count": 300
+    },
+    {
+      "rcs_m2": 1,
+      "method": "RxBeam_RIS_full",
+      "position_rmse_m": 215.0087906283983,
+      "median_case_rmse_m": 196.5329124128665,
+      "capture_count": 272,
+      "feasible_count": 272,
+      "failure_count": 300
+    },
+    {
+      "rcs_m2": 1,
+      "method": "RxBeam_RIS_DD",
+      "position_rmse_m": 216.13099716300576,
+      "median_case_rmse_m": 197.00535603073502,
+      "capture_count": 272,
+      "feasible_count": 272,
+      "failure_count": 300
+    },
+    {
+      "rcs_m2": 1,
+      "method": "RxBeam_RIS_BIC",
+      "position_rmse_m": 216.09952012483805,
+      "median_case_rmse_m": 197.00535603073502,
+      "capture_count": 272,
+      "feasible_count": 272,
+      "failure_count": 300
+    },
+    {
+      "rcs_m2": 10,
+      "method": "Original_NoRIS",
+      "position_rmse_m": 159.9045722775592,
+      "median_case_rmse_m": 27.0345977460098,
+      "capture_count": 109,
+      "feasible_count": 109,
+      "failure_count": 271
+    },
+    {
+      "rcs_m2": 10,
+      "method": "Original_RIS_own_position",
+      "position_rmse_m": 179.3112747113468,
+      "median_case_rmse_m": 33.37434707506205,
+      "capture_count": 104,
+      "feasible_count": 104,
+      "failure_count": 292
+    },
+    {
+      "rcs_m2": 10,
+      "method": "RIS_matched_full",
+      "position_rmse_m": 160.00972495903707,
+      "median_case_rmse_m": 30.536851855840197,
+      "capture_count": 109,
+      "feasible_count": 109,
+      "failure_count": 290
+    },
+    {
+      "rcs_m2": 10,
+      "method": "RIS_matched_normalized",
+      "position_rmse_m": 160.00972495710286,
+      "median_case_rmse_m": 30.536851855840197,
+      "capture_count": 109,
+      "feasible_count": 109,
+      "failure_count": 290
+    },
+    {
+      "rcs_m2": 10,
+      "method": "RIS_matched_DD",
+      "position_rmse_m": 159.93622908131823,
+      "median_case_rmse_m": 27.902398522684102,
+      "capture_count": 109,
+      "feasible_count": 109,
+      "failure_count": 266
+    },
+    {
+      "rcs_m2": 10,
+      "method": "RIS_matched_BIC",
+      "position_rmse_m": 159.85413482112227,
+      "median_case_rmse_m": 27.902398522684102,
+      "capture_count": 109,
+      "feasible_count": 109,
+      "failure_count": 266
+    },
+    {
+      "rcs_m2": 10,
+      "method": "RIS_frozenW_full",
+      "position_rmse_m": 159.98945397595963,
+      "median_case_rmse_m": 29.97700425634485,
+      "capture_count": 109,
+      "feasible_count": 8,
+      "failure_count": 300
+    },
+    {
+      "rcs_m2": 10,
+      "method": "RIS_frozenW_DD",
+      "position_rmse_m": 159.90458150961362,
+      "median_case_rmse_m": 27.0345977460098,
+      "capture_count": 109,
+      "feasible_count": 8,
+      "failure_count": 299
+    },
+    {
+      "rcs_m2": 10,
+      "method": "NoRIS_noiseless",
+      "position_rmse_m": 159.86337534083364,
+      "median_case_rmse_m": 26.906751999906,
+      "capture_count": 109,
+      "feasible_count": 109,
+      "failure_count": 201
+    },
+    {
+      "rcs_m2": 10,
+      "method": "RIS_noiseless_full",
+      "position_rmse_m": 159.90271128096444,
+      "median_case_rmse_m": 29.74585375243985,
+      "capture_count": 109,
+      "feasible_count": 109,
+      "failure_count": 271
+    },
+    {
+      "rcs_m2": 10,
+      "method": "RIS_noiseless_DD",
+      "position_rmse_m": 159.86408029867644,
+      "median_case_rmse_m": 26.906751999906,
+      "capture_count": 109,
+      "feasible_count": 109,
+      "failure_count": 201
+    },
+    {
+      "rcs_m2": 10,
+      "method": "RxBeam_NoRIS",
+      "position_rmse_m": 125.59373919799339,
+      "median_case_rmse_m": 10.015723749826751,
+      "capture_count": 300,
+      "feasible_count": 300,
+      "failure_count": 259
+    },
+    {
+      "rcs_m2": 10,
+      "method": "RxBeam_RIS_full",
+      "position_rmse_m": 125.34147735449831,
+      "median_case_rmse_m": 27.780016279648798,
+      "capture_count": 300,
+      "feasible_count": 300,
+      "failure_count": 289
+    },
+    {
+      "rcs_m2": 10,
+      "method": "RxBeam_RIS_DD",
+      "position_rmse_m": 125.19235073044578,
+      "median_case_rmse_m": 9.7505280015679,
+      "capture_count": 300,
+      "feasible_count": 300,
+      "failure_count": 253
+    },
+    {
+      "rcs_m2": 10,
+      "method": "RxBeam_RIS_BIC",
+      "position_rmse_m": 125.05479687187245,
+      "median_case_rmse_m": 9.7505280015679,
+      "capture_count": 300,
+      "feasible_count": 300,
+      "failure_count": 253
+    },
+    {
+      "rcs_m2": 100,
+      "method": "Original_NoRIS",
+      "position_rmse_m": 5.139503385811092,
+      "median_case_rmse_m": 2.12969560536836,
+      "capture_count": 300,
+      "feasible_count": 300,
+      "failure_count": 53
+    },
+    {
+      "rcs_m2": 100,
+      "method": "Original_RIS_own_position",
+      "position_rmse_m": 8.423236797846057,
+      "median_case_rmse_m": 3.4471516928872097,
+      "capture_count": 300,
+      "feasible_count": 300,
+      "failure_count": 136
+    },
+    {
+      "rcs_m2": 100,
+      "method": "RIS_matched_full",
+      "position_rmse_m": 7.145239324952996,
+      "median_case_rmse_m": 3.4176151030398048,
+      "capture_count": 300,
+      "feasible_count": 300,
+      "failure_count": 132
+    },
+    {
+      "rcs_m2": 100,
+      "method": "RIS_matched_normalized",
+      "position_rmse_m": 7.145239343470463,
+      "median_case_rmse_m": 3.41761510364689,
+      "capture_count": 300,
+      "feasible_count": 300,
+      "failure_count": 132
+    },
+    {
+      "rcs_m2": 100,
+      "method": "RIS_matched_DD",
+      "position_rmse_m": 4.527956070994699,
+      "median_case_rmse_m": 2.00248653305807,
+      "capture_count": 300,
+      "feasible_count": 300,
+      "failure_count": 57
+    },
+    {
+      "rcs_m2": 100,
+      "method": "RIS_matched_BIC",
+      "position_rmse_m": 4.527956070994699,
+      "median_case_rmse_m": 2.00248653305807,
+      "capture_count": 300,
+      "feasible_count": 300,
+      "failure_count": 57
+    },
+    {
+      "rcs_m2": 100,
+      "method": "RIS_frozenW_full",
+      "position_rmse_m": 7.065207322115661,
+      "median_case_rmse_m": 3.3809178152020047,
+      "capture_count": 300,
+      "feasible_count": 27,
+      "failure_count": 283
+    },
+    {
+      "rcs_m2": 100,
+      "method": "RIS_frozenW_DD",
+      "position_rmse_m": 5.13941488421783,
+      "median_case_rmse_m": 2.129902128476215,
+      "capture_count": 300,
+      "feasible_count": 27,
+      "failure_count": 277
+    },
+    {
+      "rcs_m2": 100,
+      "method": "NoRIS_noiseless",
+      "position_rmse_m": 3.361816730374033,
+      "median_case_rmse_m": 1.00485917355762e-14,
+      "capture_count": 300,
+      "feasible_count": 300,
+      "failure_count": 1
+    },
+    {
+      "rcs_m2": 100,
+      "method": "RIS_noiseless_full",
+      "position_rmse_m": 5.066478511267558,
+      "median_case_rmse_m": 6.32002856197258e-14,
+      "capture_count": 300,
+      "feasible_count": 300,
+      "failure_count": 42
+    },
+    {
+      "rcs_m2": 100,
+      "method": "RIS_noiseless_DD",
+      "position_rmse_m": 3.3618179862253212,
+      "median_case_rmse_m": 0.000550427604810361,
+      "capture_count": 300,
+      "feasible_count": 300,
+      "failure_count": 1
+    },
+    {
+      "rcs_m2": 100,
+      "method": "RxBeam_NoRIS",
+      "position_rmse_m": 5.123954683899837,
+      "median_case_rmse_m": 2.039706432031665,
+      "capture_count": 300,
+      "feasible_count": 300,
+      "failure_count": 57
+    },
+    {
+      "rcs_m2": 100,
+      "method": "RxBeam_RIS_full",
+      "position_rmse_m": 7.228700064456236,
+      "median_case_rmse_m": 3.390146029727175,
+      "capture_count": 300,
+      "feasible_count": 300,
+      "failure_count": 131
+    },
+    {
+      "rcs_m2": 100,
+      "method": "RxBeam_RIS_DD",
+      "position_rmse_m": 4.496008278711745,
+      "median_case_rmse_m": 1.927971673503185,
+      "capture_count": 300,
+      "feasible_count": 300,
+      "failure_count": 53
+    },
+    {
+      "rcs_m2": 100,
+      "method": "RxBeam_RIS_BIC",
+      "position_rmse_m": 4.496008278711745,
+      "median_case_rmse_m": 1.927971673503185,
+      "capture_count": 300,
+      "feasible_count": 300,
+      "failure_count": 53
+    }
+  ],
+  "primary": [
+    {
+      "name": "receive_beam_failure_RCS10",
+      "estimate": 4,
+      "units": "percentage points",
+      "ci975": [
+        -0.33333333333333337,
+        8.333333333333332
+      ],
+      "independent_python_ci975": [
+        -0.3333333333333333,
+        8.666666666666666
+      ]
+    },
+    {
+      "name": "BIC_RMSE_RCS100",
+      "estimate": 36.62974933279109,
+      "units": "percent RMSE reduction",
+      "ci975": [
+        18.474150980518957,
+        57.64446775763466
+      ],
+      "independent_python_ci975": [
+        19.43422864704505,
+        57.322401295954485
+      ]
+    }
+  ],
+  "all_failures_retained": true,
+  "evidence_sha256": {
+    "case_metrics.csv": "41185d811ac5e7f075b048d2e68cb642e96b05b7e2703b288fa3b435f0737a24",
+    "comparison.png": "02ff79f466aaebdf31c24466efe5b62832d475aa7d034042876c504bd1cfeca1",
+    "completion_status.json": "d453e405e58c8dc49b7311de8f2180215bdc6fbae6faee7be5f8afebb6b77893",
+    "deployment_hashes.json": "2daf9336b46ab98063fdd8e3cc4edcc4df47beae0a193d55633e3a90b0800075",
+    "manifest.json": "06e212b15b1e6cecc286fbd6486cc808ce0066f6c0c954fcf484bd49f2e20997",
+    "optimizer_audit.json": "1102dbd38b6c1608f735120e24a42bb9be369d91d079c16007becdebce73798b",
+    "server_smoke.json": "58e387425e9189b8ab2599ca22159e3c9ea8b12e594c264508f7972dbe79e387",
+    "summary.json": "fc5bbb38bad3f678a10798aebc092f59abd258e2daf8994d0ca48774cdff547e",
+    "verification.json": "bd9fdcc2901557764baad080ed21f384f189ecd8ead59db1ef98d1f1092ff496"
+  }
+}
