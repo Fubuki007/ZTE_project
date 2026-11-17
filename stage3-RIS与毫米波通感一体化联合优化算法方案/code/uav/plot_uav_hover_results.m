@@ -9,15 +9,14 @@ t=readtable(fullfile(results_dir,'case_metrics.csv'),'TextType','string');
 assert(v.passed && v.cases==900 && height(t)==3600 && s.complete_cases==900);
 assert(strcmp(s.manifest_id,m.id) && strcmp(v.manifest_id,m.id));
 methods={'Fixed_NoRIS','Fixed_RIS','Selected_NoRIS','Selected_RIS'};
-labels={'固定点 NoRIS','固定点 RIS','优化点 NoRIS','优化点 RIS'};
+labels={'固定点 无RIS','固定点 有RIS','选点后 无RIS','选点后 有RIS'};
 colors=[0.12 0.38 0.58;0.78 0.36 0.19;0.12 0.58 0.49;0.63 0.28 0.43];
 rmse=s.position_rmse_m; failure=100*s.failure_rate; rcs=s.rcs_m2;
 assert(isequal(s.methods(:),methods(:)) && isequal(rcs(:),[1;10;100]));
 font='SimHei';
 
-fig=figure('Color','w','Units','inches','Position',[0.5 0.5 15 7.4]);
-layout=tiledlayout(fig,1,2,'TileSpacing','compact','Padding','compact');
-ax1=nexttile(layout); hold(ax1,'on');
+fig=figure('Color','w','Units','inches','Position',[0.5 0.5 15 8.4]);
+ax1=axes('Parent',fig,'Position',[0.105 0.20 0.37 0.58]); hold(ax1,'on');
 line_styles={'--','--','-','-'}; markers={'o','o','s','s'};
 for k=1:4
     plot(ax1,rcs,rmse(:,k),'LineStyle',line_styles{k},'Marker',markers{k}, ...
@@ -29,11 +28,9 @@ xlim(ax1,[0.8 125]); ylim(ax1,[2 1300]); grid(ax1,'on'); box(ax1,'on');
 xlabel(ax1,'目標 RCS (m^2)','FontName',font,'FontSize',13);
 ylabel(ax1,'三维定位 RMSE (m，对数坐标)','FontName',font,'FontSize',13);
 title(ax1,'悬停位置优化前后定位误差','FontName',font,'FontSize',15,'FontWeight','bold');
-legend(ax1,labels,'Location','southwest','FontName',font,'FontSize',10,'Box','off');
-text(ax1,10,rmse(2,3)*1.24,'NoRIS：降低 68.8%','FontName',font,'FontSize',10, ...
-    'Color',colors(3,:),'HorizontalAlignment','center','BackgroundColor','w');
-
-ax2=nexttile(layout); hold(ax2,'on');
+lgd=legend(ax1,labels,'Orientation','horizontal','FontName',font,'FontSize',10,'Box','off');
+lgd.Units='normalized'; lgd.Position=[0.16 0.84 0.68 0.04];
+ax2=axes('Parent',fig,'Position',[0.575 0.20 0.37 0.58]); hold(ax2,'on');
 b=bar(ax2,1:3,failure,'grouped','BarWidth',0.82);
 for k=1:4, b(k).FaceColor=colors(k,:); b(k).EdgeColor='none'; end
 set(ax2,'XTick',1:3,'XTickLabel',{'1','10','100'},'FontName',font, ...
@@ -43,16 +40,15 @@ grid(ax2,'on'); box(ax2,'on');
 xlabel(ax2,'目標 RCS (m^2)','FontName',font,'FontSize',13);
 ylabel(ax2,'严格失败率 (%)','FontName',font,'FontSize',13);
 title(ax2,'失败样本也计入统计','FontName',font,'FontSize',15,'FontWeight','bold');
-legend(ax2,labels,'Location','southwest','FontName',font,'FontSize',10,'Box','off');
-sgtitle(layout,'无人机悬停点选择：固定位置与优化位置对比', ...
-    'FontName',font,'FontSize',18,'FontWeight','bold');
-note='每个 RCS n=300；优化在 z=80 m 的 9 个候选点中选择。仿真静止悬停，不代表连续飞行轨迹。';
-annotation(fig,'textbox',[0.04 0.005 0.92 0.035],'String',note,'EdgeColor','none', ...
+annotation(fig,'textbox',[0.02 0.93 0.96 0.05],'String','无人机悬停点选择：固定位置与优化位置对比', ...
+    'EdgeColor','none','FontName',font,'FontSize',18,'FontWeight','bold', ...
+    'HorizontalAlignment','center','VerticalAlignment','middle');
+note='每个 RCS n=300；优化在 z=80 m 的 9 个位置中选择。仿真为静态悬停，不含飞行轨迹。';
+annotation(fig,'textbox',[0.04 0.015 0.92 0.045],'String',note,'EdgeColor','none', ...
     'FontName',font,'FontSize',9,'HorizontalAlignment','center');
 files=export_pair(fig,output_dir,'uav_hover_all_rcs'); close(fig);
 
 names={'position_without_RIS','position_with_RIS','RIS_at_fixed_position','RIS_after_position_selection'};
-contrast_labels={'选点收益：NoRIS','选点收益：RIS','RIS对比：固定点','RIS对比：分别选点'};
 effect=zeros(1,4); effect_ci=zeros(4,2); failure_effect=zeros(1,4); failure_ci=zeros(4,2);
 for k=1:4
     c=s.comparisons(strcmp({s.comparisons.name},names{k}) & [s.comparisons.rcs_m2]==10);
@@ -68,15 +64,16 @@ for k=1:4
     failure_ci(k,:)=[boot(100),boot(3900)];
 end
 
-fig=figure('Color','w','Units','inches','Position',[0.5 0.5 14 7.2]);
-layout=tiledlayout(fig,1,2,'TileSpacing','compact','Padding','compact');
+fig=figure('Color','w','Units','inches','Position',[0.5 0.5 15 8.4]);
 ypos=1:4; effect_color=[0.12 0.53 0.45]; ris_color=[0.76 0.39 0.20];
-ax1=nexttile(layout); hold(ax1,'on'); xline(ax1,0,'-','Color',[0.35 0.35 0.35],'LineWidth',1.2);
+ax1=axes('Parent',fig,'Position',[0.23 0.20 0.28 0.58]); hold(ax1,'on');
+xline(ax1,0,'-','Color',[0.35 0.35 0.35],'LineWidth',1.2);
 for k=1:4
     c=effect_color; if k>2, c=ris_color; end
     plot(ax1,effect_ci(k,:),[ypos(k) ypos(k)],'-','Color',c,'LineWidth',3);
     plot(ax1,effect(k),ypos(k),'o','Color',c,'MarkerFaceColor',c,'MarkerSize',8);
 end
+contrast_labels={'选点增益（无RIS）','选点增益（有RIS）','RIS增益（固定点）','RIS增益（分别选点）'};
 set(ax1,'YTick',ypos,'YTickLabel',contrast_labels,'YDir','reverse','FontName',font, ...
     'FontSize',10,'LineWidth',1,'Layer','top');
 xlim(ax1,[-100 100]); ylim(ax1,[0.4 4.6]); xticks(ax1,-100:25:100);
@@ -88,7 +85,8 @@ for k=1:4
         'FontName',font,'FontSize',9,'HorizontalAlignment','center');
 end
 
-ax2=nexttile(layout); hold(ax2,'on'); xline(ax2,0,'-','Color',[0.35 0.35 0.35],'LineWidth',1.2);
+ax2=axes('Parent',fig,'Position',[0.69 0.20 0.27 0.58]); hold(ax2,'on');
+xline(ax2,0,'-','Color',[0.35 0.35 0.35],'LineWidth',1.2);
 for k=1:4
     c=effect_color; if k>2, c=ris_color; end
     plot(ax2,failure_ci(k,:),[ypos(k) ypos(k)],'-','Color',c,'LineWidth',3);
@@ -104,10 +102,12 @@ for k=1:4
     text(ax2,failure_effect(k),ypos(k)-0.17,sprintf('%.1f',failure_effect(k)), ...
         'FontName',font,'FontSize',9,'HorizontalAlignment','center');
 end
-sgtitle(layout,'RCS=10：悬停位置收益与 RIS 对比需分开看', ...
-    'FontName',font,'FontSize',18,'FontWeight','bold');
-note='RMSE 区间来自 300 个配对场景的正式汇总；失败率区间用种子 20261117 重采样 4000 次。RIS“分别选点”同时改变了悬停位置。';
-annotation(fig,'textbox',[0.035 0.005 0.93 0.04],'String',note,'EdgeColor','none', ...
+annotation(fig,'textbox',[0.02 0.93 0.96 0.05], ...
+    'String','RCS=10：悬停位置收益与 RIS 对比需分开看', ...
+    'EdgeColor','none','FontName',font,'FontSize',18,'FontWeight','bold', ...
+    'HorizontalAlignment','center','VerticalAlignment','middle');
+note='每项 n=300 配对场景；失败率区间为 4000 次配对 bootstrap。RIS“分别选点”也改变了悬停位置。';
+annotation(fig,'textbox',[0.035 0.015 0.93 0.045],'String',note,'EdgeColor','none', ...
     'FontName',font,'FontSize',9,'HorizontalAlignment','center');
 files=[files,export_pair(fig,output_dir,'uav_hover_rcs10_paired_effects')]; close(fig);
 disp(files);
