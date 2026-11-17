@@ -1,0 +1,1 @@
+{"passed":true,"profile":"local_smoke","rcs_m2":1000,"reference_snr_db":-20.000000000000004,"ris_fine_used":true,"angle_error_deg":[0.0035149720004628172,0.0068327041949855279],"checks":["requested reference SNR","RIS phase quantization and feasibility","finite spherical angle error"]}

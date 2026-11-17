@@ -2,7 +2,7 @@
 param(
     [Parameter(Position=0)][ValidateSet('upload','test','pilot','run','status','fetch')][string]$Action='status',
     [Parameter(Mandatory)][ValidatePattern('^[a-f0-9]{40}$')][string]$Release,
-    [ValidateSet('foundation','diagnosis','angle_fix')][string]$Experiment='foundation',
+    [ValidateSet('foundation','diagnosis','angle_fix','snr_angle')][string]$Experiment='foundation',
     [ValidateRange(1,8)][int]$Workers=8
 )
 $ErrorActionPreference='Stop'
@@ -17,6 +17,9 @@ if($Experiment -eq 'diagnosis') {
 }
 if($Experiment -eq 'angle_fix') {
     $uav="$uav/angle_fix"; $runner='run_uav_angles'; $tester='test_uav_angles'
+}
+if($Experiment -eq 'snr_angle') {
+    $uav="$uav/snr_angle"; $runner='run_uav_snr_angle'; $tester='test_uav_snr_angle'
 }
 $sshOptions=@('-i',(Join-Path $env:USERPROFILE '.ssh/codex_zte_automation_ed25519'),
     '-o','BatchMode=yes','-o','IdentitiesOnly=yes','-o','StrictHostKeyChecking=yes','-o','ConnectTimeout=10')
@@ -73,7 +76,8 @@ import json,os,pathlib,subprocess
 root=pathlib.Path('$uav')
 assert json.loads((root/'server_smoke.json').read_text())['passed']
 pilot=json.loads((root/'results_pilot/verification.json').read_text())
-assert pilot['passed'] and pilot['cases']==3
+expected=27 if '$Experiment'=='snr_angle' else 3
+assert pilot['passed'] and pilot['cases']==expected
 environment=os.environ.copy(); environment['UAV_WORKERS']='$Workers'
 with (root/'supervisor.log').open('a') as log:
     p=subprocess.Popen(['bash','run_server.sh'],cwd=root,env=environment,stdin=subprocess.DEVNULL,
@@ -91,8 +95,10 @@ state=(root/'state').read_text().strip() if (root/'state').exists() else 'NOT_ST
 workers=[]
 for p in sorted(root.glob('worker_*.json')):
     x=json.loads(p.read_text()); workers.append(x)
-saved=len(list((root/'samples').glob('mc_*_rcs_*.mat')))
-print(json.dumps({'state':state,'checkpoints':saved,'expected':900,'workers':workers},indent=2))
+saved=len(list((root/'samples').glob('mc_*.mat')))
+manifest=root/'manifest.json'
+expected=json.loads(manifest.read_text())['total_cases'] if manifest.exists() else None
+print(json.dumps({'state':state,'checkpoints':saved,'expected':expected,'workers':workers},indent=2))
 "@
         $status | & ssh @sshOptions $target 'python3 -'
         if($LASTEXITCODE -ne 0){throw 'Status failed'}
@@ -101,7 +107,9 @@ print(json.dumps({'state':state,'checkpoints':saved,'expected':900,'workers':wor
         Remote "test -f $uav/results_full/verification.json && grep -qx COMPLETE $uav/results_full/state"
         $dest=Join-Path $project "server-results/uav-$Experiment/$Release"
         New-Item -ItemType Directory -Force -Path $dest | Out-Null
-        foreach($file in 'manifest.json','summary.json','verification.json','case_metrics.csv','comparison.png') {
+        $files=@('manifest.json','summary.json','verification.json','case_metrics.csv','comparison.png')
+        if($Experiment -eq 'snr_angle'){$files+=@('snr_summary.csv','comparison.pdf')}
+        foreach($file in $files) {
             & scp @sshOptions "${target}:$uav/results_full/$file" $dest
             if($LASTEXITCODE -ne 0){throw "Fetch failed: $file"}
         }
