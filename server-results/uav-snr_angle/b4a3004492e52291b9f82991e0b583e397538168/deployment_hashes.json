@@ -1,0 +1,198 @@
+[
+  {
+    "file": "build_default_params.m",
+    "sha256": "a524559ed02d298cfef429290dd31e7a68f45123c8f64ed662fa974759b5561e"
+  },
+  {
+    "file": "channel_geometry.m",
+    "sha256": "c8e3d51b2e7f2de4ab5ea5b43b340a2e5bf7d431fe4ab0863dfe17ea7e968dc3"
+  },
+  {
+    "file": "coarse_array_angles.m",
+    "sha256": "a527c71646e52a8ede37ee1ae3ce5643e3d0bc5289a6e355bf5d3e1668c2f7c0"
+  },
+  {
+    "file": "evaluate_estimation.m",
+    "sha256": "a4295bbc859003db0f1835c135de0147dc52ae4a7369e1b34769dc2df7be600d"
+  },
+  {
+    "file": "joint_estimator_fast.m",
+    "sha256": "bc83bc94cc0b8e2300426e80defa32f85b1938910f5c9921ee4f21bafd0ca6db"
+  },
+  {
+    "file": "prepare_ris_observation.m",
+    "sha256": "c28cd0d8a08d9c75c0c55b91ac84e726bad24935b020640ca9a7918be6b07856"
+  },
+  {
+    "file": "refine_ris_parameters.m",
+    "sha256": "f998b2042e5ab6f96658935e626c668b997628b157c5585de4cb2cc85a483b71"
+  },
+  {
+    "file": "uav/README.md",
+    "sha256": "6f6cf44aa8dc91a4ef603bcf1187bc4c7ae12e073f3532b97ed24114a724ec96"
+  },
+  {
+    "file": "uav/RESULTS_20261116.md",
+    "sha256": "4c8f707dafe8c7983cf0ff0a97d0863af9fe9bbd88c1755fa4293213d369ef02"
+  },
+  {
+    "file": "uav/RESULTS_20261117_HOVER.md",
+    "sha256": "aaa6fd7e4960bf52ad0efd5553b2d3c5b78f636d0365ee8ff8f13f2280d1fff9"
+  },
+  {
+    "file": "uav/aggregate_uav_foundation.m",
+    "sha256": "4682dead5d07607caba03728e1eab47f1785af2704654cfa72ebbd0f495bbdc6"
+  },
+  {
+    "file": "uav/angle_fix/README.md",
+    "sha256": "dea02a4780f18c403ad299f737d25ec47a7fc96a29a255fc49e89b868af0ede6"
+  },
+  {
+    "file": "uav/angle_fix/RESULTS_20261117.md",
+    "sha256": "300234680b46a4e7cbef00bc75eeba292ef37c29821213353e4c68f7e71ee570"
+  },
+  {
+    "file": "uav/angle_fix/aggregate_uav_angles.m",
+    "sha256": "71e159efc688c175086b9d2cb9ac50ad6296fd80db4c7fdfc74bbfcda15591d3"
+  },
+  {
+    "file": "uav/angle_fix/local_smoke.json",
+    "sha256": "e54c2a922eae31185b64a27dbd274e8c29c735b1539323c3219309ae6ba84fb6"
+  },
+  {
+    "file": "uav/angle_fix/run_server.sh",
+    "sha256": "01b914045b9a3651a87db202d191c0daa80191e80ad652047f25138f4c64ad82"
+  },
+  {
+    "file": "uav/angle_fix/run_uav_angles.m",
+    "sha256": "d85dd888f462d6d914c42d7be296ca11797835f117ccd53180698009f0f6ba0a"
+  },
+  {
+    "file": "uav/angle_fix/test_uav_angles.m",
+    "sha256": "b18ea7f1ea716eea6575ea45cb27e733264096eb08025397c6f9399e0f5b365b"
+  },
+  {
+    "file": "uav/angle_fix/ua_case.m",
+    "sha256": "20b2db893ccf4190cf484a10972aedad41374c8f4b28fa0767465eae7b35a9e4"
+  },
+  {
+    "file": "uav/diagnosis/README.md",
+    "sha256": "966d52dd2ac0d7f6fe39166dc9d69b2794d46f6185c359c8a5b1b8fe4d87de33"
+  },
+  {
+    "file": "uav/diagnosis/RESULTS_20261116.md",
+    "sha256": "4cc9705b820b26c972654334fd090db056823e5fea324563cae500d4d0c9aa3e"
+  },
+  {
+    "file": "uav/diagnosis/aggregate_uav_diagnosis.m",
+    "sha256": "3752d24e691629746396a537389957383c9e266fce5b2a4ef31b3505d5e3f62b"
+  },
+  {
+    "file": "uav/diagnosis/local_smoke.json",
+    "sha256": "f4b9bb61f7e160b188ac3aecf7ae302af7fd348dbf0c7c18fc9ddaaed8a306b1"
+  },
+  {
+    "file": "uav/diagnosis/run_server.sh",
+    "sha256": "1b5d9284ed7431f8232ad88fa32490b8c7e8cf9ee2bfd600a49d888a57d33997"
+  },
+  {
+    "file": "uav/diagnosis/run_uav_diagnosis.m",
+    "sha256": "687a6ea227ac1a161dc796b026597878693cfc04184a07f72655f6776292c909"
+  },
+  {
+    "file": "uav/diagnosis/test_uav_diagnosis.m",
+    "sha256": "23ab9401bf5ac95a3484a8fb87c3861bacd2c7067f422f0eaab2fdb2c3e70f62"
+  },
+  {
+    "file": "uav/diagnosis/ud_case.m",
+    "sha256": "44edf469436905f1222c45ff348144ffd25e514f6c8d482dfd21e452ea0ccb0a"
+  },
+  {
+    "file": "uav/local_smoke.json",
+    "sha256": "9699b51ab30f366b051f803900065bbc7272b9d56a58ff309e25f02abd2ce998"
+  },
+  {
+    "file": "uav/plot_uav_hover_results.m",
+    "sha256": "0257ba12a9556089e6a71971046d62530c86574a595027bf99746b7691f96c31"
+  },
+  {
+    "file": "uav/run_server.sh",
+    "sha256": "6ee31aedb43bba2a3da4649fd989ecece707e5d1234f5834d78b5daf7b12981f"
+  },
+  {
+    "file": "uav/run_uav_foundation.m",
+    "sha256": "4e0ece2a1c267906eb590c0e139389bbd8ed570fc8125bf19b692ecc961334f7"
+  },
+  {
+    "file": "uav/snr_angle/README.md",
+    "sha256": "aaeb5ce3b50d3c03a51aac54a4b3102ff21f90a36179e85ca76f6c41e6c55d0d"
+  },
+  {
+    "file": "uav/snr_angle/aggregate_uav_snr_angle.m",
+    "sha256": "946450aa652595e475ead9bc4b7f4296359d143603fbd68e758b7fcf0a301138"
+  },
+  {
+    "file": "uav/snr_angle/local_smoke.json",
+    "sha256": "fb45bdb6632fcfa75db7230a14a829baf88a18045cd3a8f56fa7f13477345e2d"
+  },
+  {
+    "file": "uav/snr_angle/run_server.sh",
+    "sha256": "8c666be6b9f094d663751c5b9e3bbed123388fcc42f05a73d42d6385691f38f8"
+  },
+  {
+    "file": "uav/snr_angle/run_uav_snr_angle.m",
+    "sha256": "5a2fbbd6e5f4a373e95295bb8879c9ef9fb5c1419ea8569fe79e4a8d48144213"
+  },
+  {
+    "file": "uav/snr_angle/test_uav_snr_angle.m",
+    "sha256": "7802fe845310e2fbff18534b14efcde0202d48f02295bd0b17a222af09ba6b38"
+  },
+  {
+    "file": "uav/snr_angle/uav_snr_angle_case.m",
+    "sha256": "ad12e81c1e35173328b5cf94fb7a3048b8e2b79ca2dd7c62a7fb16b63700dd60"
+  },
+  {
+    "file": "uav/snr_angle/uav_snr_angle_config.m",
+    "sha256": "7d62083b18c425210007e4b6c6517273242b909de6b00b36254ec9a7cea9e0b5"
+  },
+  {
+    "file": "uav/test_uav_foundation.m",
+    "sha256": "a4693476a7427b03a5cf810b3259bbf4869ebfbe4873e552ac3d3fe633919a80"
+  },
+  {
+    "file": "uav/uav_case.m",
+    "sha256": "b2ec8e01868d4d60142a26205dd86647893c036c565d3ad6bae8809c47706cd0"
+  },
+  {
+    "file": "uav/uav_coarse.m",
+    "sha256": "2bf8c8ccd7b0bd91d56c32d5a677f180f83e99acfa45ae8dc0726fb1013350c4"
+  },
+  {
+    "file": "uav/uav_config.m",
+    "sha256": "9491828b4839a1908d30f06671e33728a660d65e2db64defa473ab9400ea8a80"
+  },
+  {
+    "file": "uav/uav_design.m",
+    "sha256": "190e8cff661dfde1cc199b773ea6439cfd49915147031fd4379105af5a46b9ef"
+  },
+  {
+    "file": "uav/uav_echo.m",
+    "sha256": "c62489aeb8e22ce22c38c28c5750a7ecd64d21eae29835e215f623e465c45969"
+  },
+  {
+    "file": "uav/uav_hash.m",
+    "sha256": "b2b1fed7bd77595b226f236f8f81bfd9168b13a83ccedef3cce47add08e8bfdb"
+  },
+  {
+    "file": "uav/uav_parameters.m",
+    "sha256": "08d240a9f3992a128bc918e8ac8a0c6190c7468c9cb73f8126d3e4eb4acb6c4e"
+  },
+  {
+    "file": "uav/uav_rx_weights.m",
+    "sha256": "b77189b4cdd0d18dae9a03b239b72ecc8d4921a8fb8b04751694fc1de6955d2a"
+  },
+  {
+    "file": "uav/uav_write_json.m",
+    "sha256": "260b1509b1f5abb68d1c8cc872b8d3a2fbb246e0a24395d22fa7127c9fa0832b"
+  }
+]
