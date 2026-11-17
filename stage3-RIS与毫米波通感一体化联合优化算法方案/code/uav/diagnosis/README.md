@@ -115,3 +115,7 @@ selected CSV/JSON/PNG evidence. No package installation is needed.
 The full 900-case run and independent audits are complete. See the Chinese
 [results and cause diagnosis (2026-11-16)](RESULTS_20261116.md) for outcomes,
 confidence intervals, evidence links and limitations.
+
+The separate nine-point UAV hover-position test is also complete. See
+[the hover optimization results (2026-11-17)](../RESULTS_20261117_HOVER.md)
+for the paired fixed-versus-selected comparison and the RIS limitations.
