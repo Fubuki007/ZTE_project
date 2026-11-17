@@ -1,0 +1,109 @@
+{
+  "passed": true,
+  "source_release": "4f9433326972dd994d1bca6ad70ebc400b68f5de",
+  "manifest_id": "7317e9c4fd6039abf49aa9cc07098eab5c574dcf9b75177b3d90a3b6e22ce03f",
+  "rows": 3600,
+  "source_files_checked": 24,
+  "groups": [
+    {
+      "rcs_m2": 1,
+      "method": "legacy",
+      "position_rmse_m": 215.55957706385698,
+      "failure_count": 300
+    },
+    {
+      "rcs_m2": 1,
+      "method": "signed_null",
+      "position_rmse_m": 220.37309552109915,
+      "failure_count": 300
+    },
+    {
+      "rcs_m2": 1,
+      "method": "no_null",
+      "position_rmse_m": 217.8808731506817,
+      "failure_count": 300
+    },
+    {
+      "rcs_m2": 1,
+      "method": "matched_array",
+      "position_rmse_m": 191.6151161500489,
+      "failure_count": 300
+    },
+    {
+      "rcs_m2": 10,
+      "method": "legacy",
+      "position_rmse_m": 125.59373919799339,
+      "failure_count": 259
+    },
+    {
+      "rcs_m2": 10,
+      "method": "signed_null",
+      "position_rmse_m": 128.35214813730005,
+      "failure_count": 254
+    },
+    {
+      "rcs_m2": 10,
+      "method": "no_null",
+      "position_rmse_m": 122.65273756027034,
+      "failure_count": 249
+    },
+    {
+      "rcs_m2": 10,
+      "method": "matched_array",
+      "position_rmse_m": 36.90083431246875,
+      "failure_count": 233
+    },
+    {
+      "rcs_m2": 100,
+      "method": "legacy",
+      "position_rmse_m": 5.123954683899837,
+      "failure_count": 57
+    },
+    {
+      "rcs_m2": 100,
+      "method": "signed_null",
+      "position_rmse_m": 19.338623358893848,
+      "failure_count": 55
+    },
+    {
+      "rcs_m2": 100,
+      "method": "no_null",
+      "position_rmse_m": 4.585344459172668,
+      "failure_count": 53
+    },
+    {
+      "rcs_m2": 100,
+      "method": "matched_array",
+      "position_rmse_m": 4.835259660574299,
+      "failure_count": 53
+    }
+  ],
+  "primary": {
+    "rcs_m2": 10,
+    "method": "matched_array",
+    "rmse_reduction_percent": 70.61889028218509,
+    "rmse_ci95_percent": [
+      61.243866420910955,
+      81.04747987591887
+    ],
+    "failure_reduction_pp": 8.666666666666668,
+    "failure_ci95_pp": [
+      4.333333333333334,
+      13
+    ],
+    "independent_python_ci95_pp": [
+      4.333333333333334,
+      13.333333333333334
+    ]
+  },
+  "all_failures_retained": true,
+  "evidence_sha256": {
+    "case_metrics.csv": "292e04721f23dad67f722abb016f148bd057ec55c5e73abf7039169d23b04b07",
+    "comparison.png": "c507b7cfc94a692f8772313d4f6e6285ab402ecb4e2a6faed2a9bdbfce01a989",
+    "deployment_hashes.json": "82252ac332882b466e6c4c6ca89412242b9b17c7eff843c25be5edb23152d9c7",
+    "manifest.json": "bea94edaa594d97f47a678b0d67151277ac18eec2c5d992c97dc26cb26f86eba",
+    "server_smoke.json": "dbabd3b925f44ed75381eac2d3a2b8678689dedae868525bbecba5269dffc785",
+    "summary.json": "1be94ff5f715b02483854b92a9a592f3e978afcbe0acfdf1085191ed54ecba99",
+    "verification.json": "230891b6544932caa72109a464acdc8b303f1c45910439217a06351953432307"
+  }
+}
