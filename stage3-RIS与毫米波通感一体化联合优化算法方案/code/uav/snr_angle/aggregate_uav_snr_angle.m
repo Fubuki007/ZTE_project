@@ -7,7 +7,7 @@ for k=1:numel(m.source)
 end
 nt=numel(m.trials); nr=numel(cfg.rcs_m2); ns=numel(cfg.snr_db);
 assert(numel(dir(fullfile(output,'samples','mc_*.mat')))==m.total_cases);
-used=false(nt,nr,ns); angle=zeros(nt,nr,ns,2); failure=false(nt,nr,ns);
+used=false(nt,nr,ns); angle_errors=zeros(nt,nr,ns,2); failure=false(nt,nr,ns);
 capture=failure; feasible=failure; input_snr=nan(nt,nr,ns); seconds=0; max_angle_delta=0;
 rows=cell(m.total_cases,14); row=0;
 for ti=1:nt
@@ -36,7 +36,8 @@ for ti=1:nt
                     assert(all(d.sinr>=10^(r.p.comm_sinr_db(1)/10)-1e-8));
                 end
             end
-            used(ti,ri,si)=r.ris_fine_used; angle(ti,ri,si,:)=reshape(err,1,1,1,2);
+            used(ti,ri,si)=r.ris_fine_used;
+            angle_errors(ti,ri,si,:)=reshape(err,1,1,1,2);
             failure(ti,ri,si)=r.failure; capture(ti,ri,si)=r.coarse_locked;
             feasible(ti,ri,si)=r.ris_feasible; input_snr(ti,ri,si)=r.input_snr_db;
             seconds=seconds+r.seconds; row=row+1;
@@ -66,7 +67,7 @@ for ri=1:nr
         mean_input_snr(ri,si)=mean(input_snr(:,ri,si),'omitnan');
         ci=[NaN NaN]; value=NaN;
         if any(selected)
-            samples=squeeze(mean(angle(:,ri,si,:).^2,4)); samples(~selected)=NaN;
+            samples=squeeze(mean(angle_errors(:,ri,si,:).^2,4)); samples(~selected)=NaN;
             value=sqrt(mean(samples,'omitnan'));
             boot=sqrt(mean(samples(draw),'omitnan')); boot=sort(boot(isfinite(boot)));
             if ~isempty(boot)
