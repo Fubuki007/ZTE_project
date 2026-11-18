@@ -637,3 +637,56 @@ Preallocate comparisons with its complete field schema rather than struct([]). P
 Resolved with finalizer release 88a8a3790887d706258af6d38d589907aaa16865 and an independent local construction/quantile/JSON smoke check. The new immutable finalizer was verified to differ from the original manifest only in aggregate_path_reliability.m. The first recovery command failed before executing the function because the Linux MATLAB launcher expanded the newline escape; use fprintf(f,'COMPLETE%c',10) instead. Retained both failed logs. All 3900 checkpoints passed the repaired full audit on 2026-11-16; both recomputed-error and legacy-replay differences were zero. Independent CSV checks over 62400 rows matched server RMSE within 2.27e-13 m. The bundled Python contained NumPy but no Matplotlib; used the existing D:/Python environment, with no package installation.
 
 ---
+
+## [ERR-20261118-PRESENTATION-REF] Presentation skill reference path was incorrect
+
+**Logged**: 2026-11-18T17:26:59+08:00
+**Priority**: low
+**Status**: resolved
+**Area**: docs
+
+### Summary
+The first read used the skill's parent directory instead of its nested `presentations` directory.
+
+### Error
+`Get-Content` could not find the requested `references/template_following.md` and `style_guidelines.md` files.
+
+### Context
+- Resolved the skill location from the registered path and read both references from `skills/presentations/`.
+- No project files were changed by the failed read.
+
+### Suggested Fix
+Resolve reference paths against the directory containing `SKILL.md`.
+
+### Metadata
+- Reproducible: yes
+- Related Files: none
+
+---
+
+## [ERR-20261118-GIT-REMOTE] Git remote alias was assumed to be origin
+
+**Logged**: 2026-11-18T17:26:59+08:00
+**Priority**: low
+**Status**: resolved
+**Area**: infra
+
+### Summary
+The initial `git ls-remote origin` check failed because this checkout uses the remote name `ZTE_project`.
+
+### Error
+`fatal: 'origin' does not appear to be a git repository`
+
+### Context
+- `git remote` showed `ZTE_project` as the configured remote.
+- Re-running `git ls-remote ZTE_project` verified the pre-change backup branch at `64f289bd7d9d8c77150ffe96e12a8ecf2ff94d3f`.
+- No credential-bearing remote URL was printed.
+
+### Suggested Fix
+Inspect configured remote names before running remote checks or pushes.
+
+### Metadata
+- Reproducible: yes
+- Related Files: none
+
+---
