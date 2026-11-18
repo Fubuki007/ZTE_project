@@ -563,6 +563,25 @@ Follow-up: the long-lived relay later stalled while direct server GitHub reads s
 
 ---
 
+## [ERR-20261118-PPT-INSPECTION] Transient presentation-inspection command errors
+
+**Logged**: 2026-11-18
+**Priority**: low
+**Status**: resolved
+**Area**: infra
+
+### Summary
+The slide-inspection wrapper had a JavaScript parse error, Python's default GBK stdout could not encode a bullet character, and one preview lookup used a mistyped directory name.
+
+### Resolution
+Used simpler inspection calls, selected UTF-8 for Python output, and corrected the preview path. No presentation content was modified during inspection.
+
+### Metadata
+- Reproducible: no
+- Related Files: stage3-RIS与毫米波通感一体化联合优化算法方案/ppt/deliverables/RIS_通感一体化_定位全流程_结果补充_20261118_v2.pptx
+
+---
+
 ## [ERR-20261118-PS-LINENUMBER] PowerShell line-number formatter rejected a nested span value
 
 **Logged**: 2026-11-18
