@@ -1,5 +1,16 @@
 # Errors
 
+## [ERR-20261118-UAV-MAIN-FLOW] Slide renumbering and table validation
+
+**Logged**: 2026-11-18
+**Priority**: low
+**Status**: resolved
+**Area**: docs
+
+The merge initially searched for footer `5` where the source used `05`. Inspect and match the source's two-digit footer format. The finalizer also rejected declared table-owner slides without matching layout flags; derive both lists from the same source mapping and include one `--require-native-table-slide` flag per owner. The revised merge and finalizer passed.
+
+---
+
 Command failures and integration errors.
 
 ---
