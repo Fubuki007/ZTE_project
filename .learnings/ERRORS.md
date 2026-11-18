@@ -563,6 +563,25 @@ Follow-up: the long-lived relay later stalled while direct server GitHub reads s
 
 ---
 
+## [ERR-20261118-PS-LINENUMBER] PowerShell line-number formatter rejected a nested span value
+
+**Logged**: 2026-11-18
+**Priority**: low
+**Status**: resolved
+**Area**: infra
+
+### Summary
+The README line-number helper failed while iterating a nested array; source reads and simulation inspection were unaffected. The first attempt to append this entry used stale patch context and was retried against a unique heading.
+
+### Resolution
+Read the document with a simple `Get-Content` pipeline and incrementing counter instead of a nested span array.
+
+### Metadata
+- Reproducible: unknown
+- Related Files: stage3-RIS与毫米波通感一体化联合优化算法方案/code/uav/README.md
+
+---
+
 ## [ERR-20261116-PR-SUMMARY] Full simulation finished but summary structure assignment failed
 
 **Logged**: 2026-11-16
