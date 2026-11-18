@@ -563,6 +563,25 @@ Follow-up: the long-lived relay later stalled while direct server GitHub reads s
 
 ---
 
+## [ERR-20261118-ARTIFACT-IMPORT] Artifact Tool could not import a local PPTX without Node adapter
+
+**Logged**: 2026-11-18
+**Priority**: low
+**Status**: resolved
+**Area**: docs
+
+### Summary
+`Presentation.load(path)` rejected the bundled local Node runtime because the required `@oai/granola/node` adapter package was unavailable.
+
+### Resolution
+Authored the requested editable slide with `Presentation.create`, then use PowerPoint's native `InsertFromFile` to add it to a copy of the source deck. This preserves the existing deck's charts and masters.
+
+### Metadata
+- Reproducible: yes
+- Related Files: stage3-RIS与毫米波通感一体化联合优化算法方案/ppt/deliverables/RIS_通感一体化_定位全流程_结果补充_20261118_v2.pptx
+
+---
+
 ## [ERR-20261118-PPT-INSPECTION] Transient presentation-inspection command errors
 
 **Logged**: 2026-11-18
