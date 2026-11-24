@@ -61,12 +61,25 @@
 | `Proposed` vs `GridSelect_RIS`（连续 CRB-BCD vs 离散网格） | **+39.06%** `[19.91%, 54.16%]` | **+15.33 pp** `[10.67, 20.33]` | **+16.00 pp** `[11.00, 21.00]` |
 | `FixedOpt_RIS` vs `FixedOpt_RandomRIS`（相移优化 vs 漫反射） | **+9.87%** `[7.57%, 12.60%]` | **+33.00 pp** `[27.67, 38.33]` | **+36.67 pp** `[31.33, 42.33]` |
 
+### 3.4 专题消融与敏感度实验结果（40 个独立纯 NLoS 场景，[ablations.json](../../../../server-results/uav-nlos_crb/691743ee8ef239e5aeeefa2adb03b5379b5abb5a/ablations.json)）
+
+1. **A1（宽带真频变 vs 窄带中心频率波束斜视）**：中位 3D 误差为宽带 **`0.0625 m`** vs 窄带 **`0.0786 m`**（窄带近似引入 **+25.6%** 中位定位误差，对比中位理论 PEB `0.0289 m`；全样本 RMSE 为 `1.407 m` vs `1.370 m`，主要受 4/40 未捕获失准样本先验误差支配）。
+2. **A2（先验误差 $\sigma_{\text{prior}}$ 敏感度与波束失准率）**：
+   - $\sigma_{\text{prior}} = 1\text{ m}$：捕获率 **`92.5%`**、波束失准率 **`0.0%`**、T2 RMSE **`0.527 m`**；
+   - $\sigma_{\text{prior}} = 2\text{ m}$：捕获率 **`90.0%`**、波束失准率 **`10.0%`**、T2 RMSE **`1.407 m`**；
+   - $\sigma_{\text{prior}} = 4\text{ m}$：捕获率 **`62.5%`**、波束失准率 **`27.5%`**、T2 RMSE **`4.351 m`**（明确刻画了 `5×5` 满口径粗扫码本在 $\sigma > 2\text{ m}$ 后的失准边界）。
+3. **A3（RIS 位置标定误差 $\pm 0.05\sim 0.20\text{ m}$ 敏感度，20 场景）**：T2 RMSE 在 `0 / 0.05 / 0.10 / 0.20 m` 标定误差下为 `1.83 / 2.21 / 2.01 / 1.94 m`，未出现估计器发散。
+4. **A4（通信 SINR vs 感知 PEB Pareto 折中 & 检测 ROC）**：
+   - 通信门限 `10 → 13 → 16 dB` 时，可行率 `100% → 100% → 96%`，中位最差 PEB 从 **`0.039 m`** 升至 **`0.079 m`** 再陡升至 **`0.320 m`**，清晰体现 1 W 功率预算下的通感折中拐点；
+   - 25 波束并集 $P_{fa}=10^{-6}$ ROC：单波束 SNR `14 / 15 / 16 / 17 dB` 对应检测概率 `91.0% / 98.5% / 99.91% / 100%`，直接验证优化问题中 C2 检测裕量硬约束的合理性。
+5. **A5（UAV 换位推进能耗 vs 驻留时长）**：换位 `25–50 m` 耗时 `2.5–5.0 s`、耗能 `0.40–0.80 kJ`；悬停服务 `15–60 s` 覆盖 **`3,279–13,118` 个 CPI**（单 CPI `4.574 ms`，悬停耗能 `2.78–11.10 kJ`），单次重部署能耗仅占 30 s 准静态会话总能耗的 `7%–13%`。
+
 ---
 
 ## 4. 适用边界与证据可追溯性
 
 - **明确边界**：本实验验证的是 3GPP UMi 街谷中**静止地面目标（$v_q=0$）、准静态悬停重部署**下的单次通感感知定位性能（每次移动就位后服务数秒至数十秒持续会话），未模拟 CPI 内机体运动、高速动态目标追踪、杂波多径绕射或硬件互耦。
-- **专题消融状态**：40 纯 NLoS 场景专题消融（`run_nlos_ablations.m`，含宽带/窄带斜视偏差、先验误差敏感度、RIS 位置标定误差、ROC/Pareto 与飞行能耗表）仍在服务器后台收尾运行中，待完成后另行归档，本文暂不提前宣称其结论。
+- **专题消融状态**：40 纯 NLoS 场景专题消融（A1–A5）已全部完成并拉取归档至 [ablations.json](../../../../server-results/uav-nlos_crb/691743ee8ef239e5aeeefa2adb03b5379b5abb5a/ablations.json)。
 - **精选小体积证据目录**：[server-results/uav-nlos_crb/691743ee8ef239e5aeeefa2adb03b5379b5abb5a/](../../../../server-results/uav-nlos_crb/691743ee8ef239e5aeeefa2adb03b5379b5abb5a/)（含 `case_metrics.csv`、`summary.json`、`verification.json`、`independent_audit.json`、`manifest.json`、`deployment_hashes.json`、`server_smoke.json`、`comparison.png`）。原始 900 个 `.mat` 断点与完整 worker 日志保留在服务器 `/home/jzm123/AAA_ZTEproject/RIS_UAV_foundation/releases/691743ee8ef239e5aeeefa2adb03b5379b5abb5a/code/uav/nlos_crb/results_full/`，未纳入 Git。
 
 ![900工况正式对比图](../../../../server-results/uav-nlos_crb/691743ee8ef239e5aeeefa2adb03b5379b5abb5a/comparison.png)
