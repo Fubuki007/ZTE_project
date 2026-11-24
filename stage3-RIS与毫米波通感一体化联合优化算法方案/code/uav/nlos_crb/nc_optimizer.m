@@ -193,7 +193,24 @@ if ~nc_geometry('feasible_pos', q, cfg)
 end
 
 los1 = ~nc_geometry('blocked', q, prior_pos(1, :).', cfg.buildings);
-los2 = ~nc_geometry('blocked', q, prior_pos(2, :).', cfg.buildings);
+los2_center = ~nc_geometry('blocked', q, prior_pos(2, :).', cfg.buildings);
+% Sigma-point blockage robustness (Proposal v2.0 §4.2): for Proposed_Joint_CRB with RIS,
+% only treat Target 2 as guaranteed LoS if ALL 5 horizontal Sigma-points (+/-1.5*sigma_prior)
+% clear the building corner; otherwise treat it as NLoS-safe (RIS-assisted) to prevent
+% knife-edge building-shadow miss-locks!
+if use_ris && strcmp(mode_tag, 'proposed') && los2_center
+    sig_r = 1.5 * cfg.prior_sigma_m;
+    sp_off = [sig_r, 0, 0; -sig_r, 0, 0; 0, sig_r, 0; 0, -sig_r, 0];
+    los2 = true;
+    for k_sp = 1:4
+        if nc_geometry('blocked', q, (prior_pos(2, :) + sp_off(k_sp, :)).', cfg.buildings)
+            los2 = false;
+            break;
+        end
+    end
+else
+    los2 = los2_center;
+end
 ris_vis = use_ris && (~nc_geometry('blocked', q, pR, cfg.buildings)) ...
                   && (~nc_geometry('blocked', pR, prior_pos(2, :).', cfg.buildings));
 

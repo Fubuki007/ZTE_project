@@ -76,58 +76,55 @@ for t = 1:cfg.Q
     end
 end
 
-% Stage-A digital Rx beamformer: sum of unit-norm steering vectors toward prior LoS targets
-w_rx_a = zeros(cfg.Mr, 1);
-for idx_t = 1:numel(los_target_indices)
-    t = los_target_indices(idx_t);
-    dp = scene.prior(t, :).' - q;
-    up = rot * (dp / max(norm(dp), eps));
-    w_rx_a = w_rx_a + nc_geometry('wideband_rx', up, rx_off, cfg.fc, cfg);
-end
-w_rx_a = w_rx_a / max(norm(w_rx_a), eps);
-
-% Synthesize exact Stage-A wideband beamformed RD matrix (N x L_a) + spatial subcube for full-array angle matching
-Y_a_clean = zeros(N, L_a);
-for t = 1:cfg.Q
-    if ~los_vis(t), continue; end
-    A_tx_k = nc_geometry('wideband_tx', true_dd_uloc(:, t), tx_off, f_knots, cfg); % Nt x K_k
-    A_rx_k = nc_geometry('wideband_rx', true_dd_uloc(:, t), rx_off, f_knots, cfg); % Mr x K_k
-    rx_g_k = (w_rx_a' * A_rx_k).';          % K_k x 1
-    G_tx_k = A_tx_k' * W_c;                 % K_k x U
-    % Interpolate G_tx * rx_g onto all N subcarriers (N x U)
-    H_t = InterpMat * (G_tx_k .* rx_g_k);   % N x U
-    del_t = exp(-1j * 4 * pi * cfg.delta_f / cfg.c * true_dd_R(t) * n_vec); % N x 1
-    % Symbol illumination: sum_u H_t(n,u) * S_a(u, n, l)
-    S_u1 = reshape(S_a(1, :), N, L_a);
-    S_u2 = reshape(S_a(2, :), N, L_a);
-    illum = H_t(:, 1) .* S_u1 + H_t(:, 2) .* S_u2;
-    Y_a_clean = Y_a_clean + true_dd_amp(t) * (del_t .* illum);
-end
-noise_a = sqrt(cfg.noise_w / 2) * (randn(N, L_a) + 1j * randn(N, L_a));
-Y_a = Y_a_clean + noise_a;
-
 % Matched-filter range compression for each expected LoS target (coherent over L_a symbols)
-% De-phase by dominant stream combination using prior Tx direction
+% Uses a dedicated digital 64-element Rx beamformer w_rx_t per target on the SAME Stage-A
+% received data (zero extra symbols/hardware), preventing opposite-direction same-range
+% target confusion!
+S_u1 = reshape(S_a(1, :), N, L_a);
+S_u2 = reshape(S_a(2, :), N, L_a);
+win_h = 0.5 * (1 - cos(2 * pi * (0:N-1).' / (N - 1)));
+win_h = win_h / sqrt(mean(win_h.^2));
+
+% Precompute true wideband Tx & Rx steering at knots for all visible targets
+A_tx_all_k = cell(cfg.Q, 1); A_rx_all_k = cell(cfg.Q, 1); del_all = cell(cfg.Q, 1);
+for tt = 1:cfg.Q
+    if ~los_vis(tt), continue; end
+    A_tx_all_k{tt} = nc_geometry('wideband_tx', true_dd_uloc(:, tt), tx_off, f_knots, cfg);
+    A_rx_all_k{tt} = nc_geometry('wideband_rx', true_dd_uloc(:, tt), rx_off, f_knots, cfg);
+    del_all{tt} = exp(-1j * 4 * pi * cfg.delta_f / cfg.c * true_dd_R(tt) * n_vec);
+end
+
 for idx_t = 1:numel(los_target_indices)
     t = los_target_indices(idx_t);
     dp = scene.prior(t, :).' - q;
     up = rot * (dp / max(norm(dp), eps));
+    w_rx_t = nc_geometry('wideband_rx', up, rx_off, cfg.fc, cfg);
+    w_rx_t = w_rx_t / max(norm(w_rx_t), eps);
+
+    % Exact Stage-A beamformed received matrix for digital beam w_rx_t (includes all visible targets!)
+    Y_a_clean = zeros(N, L_a);
+    for tt = 1:cfg.Q
+        if ~los_vis(tt), continue; end
+        rx_g_k = (w_rx_t' * A_rx_all_k{tt}).';
+        H_tt = InterpMat * ((A_tx_all_k{tt}' * W_c) .* rx_g_k);
+        Y_a_clean = Y_a_clean + true_dd_amp(tt) * (del_all{tt} .* (H_tt(:, 1) .* S_u1 + H_tt(:, 2) .* S_u2));
+    end
+    noise_a = sqrt(cfg.noise_w / 2) * (randn(N, L_a) + 1j * randn(N, L_a));
+    Y_a = Y_a_clean + noise_a;
+
     a_tx_p = nc_geometry('wideband_tx', up, tx_off, cfg.fc, cfg);
     g_p = a_tx_p' * W_c; % 1 x U
     S_comb = reshape(g_p * S_a, N, L_a);
-    % Matched filter over L_a symbols: sum_l Y_a(n,l) * conj(S_comb(n,l)) / sqrt(sum_l |S_comb(n,l)|^2)
     denom_mf = sqrt(max(sum(abs(S_comb).^2, 2), realmin));
     y_f = sum(Y_a .* conj(S_comb), 2) ./ denom_mf; % N x 1 (exact white noise variance = cfg.noise_w!)
 
     % Hann-windowed 1D unitary IFFT range spectrum
-    win_h = 0.5 * (1 - cos(2 * pi * (0:N-1).' / (N - 1)));
-    win_h = win_h / sqrt(mean(win_h.^2));
     spec = abs(sqrt(N) * ifft(y_f .* win_h, N, 1)).^2;
 
-    % Search within +/-15 m around prior range (prevents confusing target 1 with target 2)
+    % Search within +/-max(10 m, 4*sigma_prior) around prior range
     r_prior = norm(dp);
     r_bins = (0:N-1).' * (cfg.c / (2 * cfg.B));
-    mask_r = abs(r_bins - r_prior) <= max(15.0, 5 * cfg.prior_sigma_m);
+    mask_r = abs(r_bins - r_prior) <= max(10.0, 4 * cfg.prior_sigma_m);
     if ~any(mask_r), mask_r = true(N, 1); end
     spec_masked = spec; spec_masked(~mask_r) = -inf;
     [pk_val, pk_idx] = max(spec_masked);
@@ -151,22 +148,17 @@ for idx_t = 1:numel(los_target_indices)
         n_sub = round(linspace(1, N, 384)).';
         del_focus = exp(+1j * 4 * pi * cfg.delta_f / cfg.c * R_hat * (n_sub - 1));
         snap_rx = zeros(cfg.Mr, 1);
-        % Synthesize exact 64-element spatial snapshot at the detected range bin
         for tt = 1:cfg.Q
             if ~los_vis(tt), continue; end
             A_tx_s = nc_geometry('wideband_tx', true_dd_uloc(:, tt), tx_off, cfg.fref + (n_sub-1)*cfg.delta_f, cfg);
             A_rx_s = nc_geometry('wideband_rx', true_dd_uloc(:, tt), rx_off, cfg.fref + (n_sub-1)*cfg.delta_f, cfg);
-            G_tx_s = A_tx_s' * W_c; % 384 x U
+            G_tx_s = A_tx_s' * W_c;
             del_tt = exp(-1j * 4 * pi * cfg.delta_f / cfg.c * true_dd_R(tt) * (n_sub - 1));
-            S_sub1 = reshape(S_a(1, :), N, L_a); S_sub1 = S_sub1(n_sub, :);
-            S_sub2 = reshape(S_a(2, :), N, L_a); S_sub2 = S_sub2(n_sub, :);
-            illum_s = G_tx_s(:, 1) .* S_sub1 + G_tx_s(:, 2) .* S_sub2;
-            % Project with S_comb(n_sub, :) and del_focus
+            illum_s = G_tx_s(:, 1) .* S_u1(n_sub, :) + G_tx_s(:, 2) .* S_u2(n_sub, :);
             w_sub = conj(S_comb(n_sub, :)) ./ denom_mf(n_sub) .* del_focus;
-            coeff_s = true_dd_amp(tt) * sum(illum_s .* del_tt .* w_sub, 2); % 384 x 1
+            coeff_s = true_dd_amp(tt) * sum(illum_s .* del_tt .* w_sub, 2);
             snap_rx = snap_rx + A_rx_s * coeff_s / sqrt(numel(n_sub));
         end
-        % Add independent spatial thermal noise (exact variance cfg.noise_w per Rx element)
         snap_rx = snap_rx + sqrt(cfg.noise_w / 2) * (randn(cfg.Mr, 1) + 1j * randn(cfg.Mr, 1));
 
         % Full-array 2D matched spatial angle estimation (coarse_array_angles)
@@ -174,26 +166,25 @@ for idx_t = 1:numel(los_target_indices)
         [ang_hat, ~] = coarse_array_angles({snap_rx}, p_ang);
         th_loc = ang_hat(1, 1); ph_loc = ang_hat(1, 2);
         u_loc_hat = [sind(th_loc)*cosd(ph_loc); sind(th_loc)*sind(ph_loc); cosd(th_loc)];
-        u_w_hat = rot.' * u_loc_hat; % rot is symmetric orthogonal
+        u_w_hat = rot.' * u_loc_hat;
         pos_hat = q + R_hat * u_w_hat;
 
-        coarse_pos(t, :) = pos_hat.';
-        locked(t) = true;
-        coarse_range_err(t) = abs(R_hat - true_dd_R(t));
+        % Guard against rare exact same-range cross-target hijack (> 35 deg off prior beam)
+        if acosd(max(-1, min(1, up.' * u_loc_hat))) <= 35.0
+            coarse_pos(t, :) = pos_hat.';
+            locked(t) = true;
+            coarse_range_err(t) = abs(R_hat - true_dd_R(t));
 
-        % Estimate complex amplitude alpha_hat of LoS Target 1 for Stage-B clutter cancellation!
-        if t == 1
-            % Compute matched template gain at (R_hat, u_loc_hat)
-            A_tx_h = nc_geometry('wideband_tx', u_loc_hat, tx_off, f_knots, cfg);
-            A_rx_h = nc_geometry('wideband_rx', u_loc_hat, rx_off, f_knots, cfg);
-            H_h = InterpMat * ((A_tx_h' * W_c) .* (w_rx_a' * A_rx_h).');
-            del_h = exp(-1j * 4 * pi * cfg.delta_f / cfg.c * R_hat * n_vec);
-            S_u1 = reshape(S_a(1, :), N, L_a);
-            S_u2 = reshape(S_a(2, :), N, L_a);
-            tmpl_f = sum((del_h .* (H_h(:, 1) .* S_u1 + H_h(:, 2) .* S_u2)) .* conj(S_comb), 2) ./ denom_mf;
-            alpha_hat_1 = (tmpl_f' * y_f) / max(real(tmpl_f' * tmpl_f), realmin);
-            los_est_params = struct('valid', true, 'pos', pos_hat, 'R', R_hat, ...
-                'u_loc', u_loc_hat, 'alpha', alpha_hat_1);
+            if t == 1
+                A_tx_h = nc_geometry('wideband_tx', u_loc_hat, tx_off, f_knots, cfg);
+                A_rx_h = nc_geometry('wideband_rx', u_loc_hat, rx_off, f_knots, cfg);
+                H_h = InterpMat * ((A_tx_h' * W_c) .* (w_rx_t' * A_rx_h).');
+                del_h = exp(-1j * 4 * pi * cfg.delta_f / cfg.c * R_hat * n_vec);
+                tmpl_f = sum((del_h .* (H_h(:, 1) .* S_u1 + H_h(:, 2) .* S_u2)) .* conj(S_comb), 2) ./ denom_mf;
+                alpha_hat_1 = (tmpl_f' * y_f) / max(real(tmpl_f' * tmpl_f), realmin);
+                los_est_params = struct('valid', true, 'pos', pos_hat, 'R', R_hat, ...
+                    'u_loc', u_loc_hat, 'alpha', alpha_hat_1);
+            end
         end
     end
 end
