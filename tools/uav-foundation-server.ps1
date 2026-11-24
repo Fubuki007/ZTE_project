@@ -1,9 +1,9 @@
-[CmdletBinding()]
+﻿[CmdletBinding()]
 param(
     [Parameter(Position=0)][ValidateSet('upload','test','pilot','run','status','fetch')][string]$Action='status',
     [Parameter(Mandatory)][ValidatePattern('^[a-f0-9]{40}$')][string]$Release,
-    [ValidateSet('foundation','diagnosis','angle_fix','snr_angle')][string]$Experiment='foundation',
-    [ValidateRange(1,8)][int]$Workers=8
+    [ValidateSet('foundation','diagnosis','angle_fix','snr_angle','nlos_crb')][string]$Experiment='foundation',
+    [ValidateRange(1,16)][int]$Workers=8
 )
 $ErrorActionPreference='Stop'
 $project=Split-Path $PSScriptRoot -Parent
@@ -20,6 +20,9 @@ if($Experiment -eq 'angle_fix') {
 }
 if($Experiment -eq 'snr_angle') {
     $uav="$uav/snr_angle"; $runner='run_uav_snr_angle'; $tester='test_uav_snr_angle'
+}
+if($Experiment -eq 'nlos_crb') {
+    $uav="$uav/nlos_crb"; $runner='run_nlos_crb'; $tester='test_gate2_pipeline'
 }
 $sshOptions=@('-i',(Join-Path $env:USERPROFILE '.ssh/codex_zte_automation_ed25519'),
     '-o','BatchMode=yes','-o','IdentitiesOnly=yes','-o','StrictHostKeyChecking=yes','-o','ConnectTimeout=10')
@@ -76,7 +79,7 @@ import json,os,pathlib,subprocess
 root=pathlib.Path('$uav')
 assert json.loads((root/'server_smoke.json').read_text())['passed']
 pilot=json.loads((root/'results_pilot/verification.json').read_text())
-expected=27 if '$Experiment'=='snr_angle' else 3
+expected=27 if '$Experiment'=='snr_angle' else (9 if '$Experiment'=='nlos_crb' else 3)
 assert pilot['passed'] and pilot['cases']==expected
 environment=os.environ.copy(); environment['UAV_WORKERS']='$Workers'
 with (root/'supervisor.log').open('a') as log:
