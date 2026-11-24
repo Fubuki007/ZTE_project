@@ -1,5 +1,16 @@
 # Errors
 
+## [ERR-20261118-UAV-ANGLE-PATH] Project code was searched under the presentation directory
+
+**Logged**: 2026-11-18
+**Priority**: low
+**Status**: resolved
+**Area**: docs
+
+An initial read-only source lookup mistakenly used the presentation subdirectory as the project root. The corrected lookup used the repository-level `code/uav/angle_fix` paths and verified the implementation and result report. No project source was modified.
+
+---
+
 ## [ERR-20261118-UAV-MAIN-FLOW] Slide renumbering and table validation
 
 **Logged**: 2026-11-18
