@@ -86,12 +86,12 @@ METHOD_EN = {
 }
 
 METHOD_ZH = {
-    "FixedOpt_NoRIS": "固定站(无镜)",
-    "FixedOpt_RIS": "最强固定站(带镜)",
-    "FixedOpt_RandomRIS": "固定站(随机镜)",
-    "OnlineUAV_NoRIS": "无人机(无镜)",
-    "MatchedPos_NoRIS": "同位置(拆镜子)",
-    "GridSelect_RIS": "网格选点(带镜)",
+    "FixedOpt_NoRIS": "固定站(无RIS)",
+    "FixedOpt_RIS": "最优固定站(带RIS)",
+    "FixedOpt_RandomRIS": "固定站(随机RIS)",
+    "OnlineUAV_NoRIS": "无人机(无RIS)",
+    "MatchedPos_NoRIS": "同位置(无RIS)",
+    "GridSelect_RIS": "网格选点(带RIS)",
     "Lit_EnergyMax_AO": "现有法(照最亮)",
     "Proposed_Joint_CRB": "本文联合方案",
 }
@@ -305,7 +305,7 @@ def plot_fig1_geometry_ecdf(by_rm: dict, lang: str = "en") -> None:
 
     ax.scatter(
         qx[via_ris], qy[via_ris], s=18, color=PAL["teal"], alpha=0.55, edgecolors="none", zorder=4,
-        label="无人机最优悬停位 (经镜子看盲区)" if is_zh else "Optimal UAV (RR-only via RIS)"
+        label="无人机最优悬停位 (经RIS看盲区)" if is_zh else "Optimal UAV (RR-only via RIS)"
     )
     ax.scatter(
         qx[~via_ris], qy[~via_ris], s=22, color=PAL["orange"], alpha=0.75, edgecolors="none", zorder=4,
@@ -348,10 +348,10 @@ def plot_fig1_geometry_ecdf(by_rm: dict, lang: str = "en") -> None:
         ax.text(14, -78, "30米高大楼\n(挡住视线)", ha="center", va="center", fontsize=9.5, fontweight="bold", color="#334155", zorder=8)
         ax.text(20.0, 0.0, "12m 窄小巷\n盲区目标2", ha="center", va="center", fontsize=8.0, fontweight="bold", color="#991B1B", zorder=9,
                 bbox=dict(boxstyle="round,pad=0.20", fc="#FFFBEB", ec="#F59E0B", lw=0.7, alpha=0.95))
-        ax.annotate("墙上智能反光镜\n(17cm 不插电RIS)", xy=(-20, 0), xytext=(-37, 38),
+        ax.annotate("墙面无源 RIS\n(32×32, 17.1cm)", xy=(-20, 0), xytext=(-37, 38),
                     fontsize=8.3, fontweight="bold", color=PAL["teal"],
                     arrowprops=dict(arrowstyle="->", color=PAL["teal"], lw=1.1))
-        ax.annotate("经镜子拐弯看到目标", xy=(-12.5, -12), xytext=(-38, -28),
+        ax.annotate("经 RIS 反射绕开大楼", xy=(-12.5, -12), xytext=(-38, -28),
                     fontsize=8.0, color=PAL["teal"], fontweight="bold",
                     arrowprops=dict(arrowstyle="->", color=PAL["teal"], lw=1.0))
         ax.annotate("直接看被墙挡住", xy=(2.0, -12.0), xytext=(4.8, -36),
@@ -624,7 +624,7 @@ def plot_fig3_pareto_nlos(by_rm: dict, lang: str = "en") -> None:
              ha="center", va="center", fontsize=7.1, color=PAL["blue"], fontweight="bold")
     ax1.annotate("", xy=(px - 1.8, py + 0.03), xytext=(mx + 2.0, my + 0.05),
                  arrowprops=dict(arrowstyle="->", color=PAL["slate"], lw=1.1, ls=":", connectionstyle="arc3,rad=-0.22"))
-    ax1.text(46, 0.56, "+69.3% (装镜子的纯功劳)" if is_zh else "+69.3 pp (Pure RIS Gain)",
+    ax1.text(46, 0.56, "+69.3% (纯RIS净增益)" if is_zh else "+69.3 pp (Pure RIS Gain)",
              ha="center", va="center", fontsize=7.1, color=PAL["slate"], fontweight="bold")
 
     ax1.set_yscale("log")
@@ -689,12 +689,12 @@ def plot_fig4_bootstrap_cond(by_rm: dict, lang: str = "en") -> None:
     is_zh = lang == "zh"
 
     contrasts = [
-        ("Proposed_Joint_CRB", "MatchedPos_NoRIS", "比“同位置拆镜子”\n(装镜子的纯功劳)" if is_zh else "vs Matched-Pos NoRIS\n(Pure RIS Gain)"),
-        ("Proposed_Joint_CRB", "OnlineUAV_NoRIS", "比“无人机不带镜”\n(加装镜子的收益)" if is_zh else "vs Online UAV NoRIS\n(RIS on Mobile BS)"),
-        ("Proposed_Joint_CRB", "FixedOpt_RIS", "比“最强固定站带镜”\n(会飞的纯功劳)" if is_zh else "vs Fixed-Opt RIS\n(Mobility Gain)"),
-        ("Proposed_Joint_CRB", "Lit_EnergyMax_AO", "比“现有论文照最亮”\n(斜看8眼算法功劳)" if is_zh else "vs Lit. EnergyMax-AO\n(CRB + Monopulse)"),
-        ("Proposed_Joint_CRB", "GridSelect_RIS", "比“网格选点带镜”\n(连续选位优化功劳)" if is_zh else "vs Grid-Select RIS\n(Continuous BCD)"),
-        ("FixedOpt_RIS", "FixedOpt_RandomRIS", "调优镜子 vs 随机镜\n(精细调角度功劳)" if is_zh else "Fixed RIS vs RandRIS\n(Phase Opt. Gain)"),
+        ("Proposed_Joint_CRB", "MatchedPos_NoRIS", "比“同位置无RIS”\n(纯RIS净增益)" if is_zh else "vs Matched-Pos NoRIS\n(Pure RIS Gain)"),
+        ("Proposed_Joint_CRB", "OnlineUAV_NoRIS", "比“无人机无RIS”\n(加装RIS的收益)" if is_zh else "vs Online UAV NoRIS\n(RIS on Mobile BS)"),
+        ("Proposed_Joint_CRB", "FixedOpt_RIS", "比“最优固定站带RIS”\n(移动性净增益)" if is_zh else "vs Fixed-Opt RIS\n(Mobility Gain)"),
+        ("Proposed_Joint_CRB", "Lit_EnergyMax_AO", "比“现有论文照最亮”\n(8组斜扫算法增益)" if is_zh else "vs Lit. EnergyMax-AO\n(CRB + Monopulse)"),
+        ("Proposed_Joint_CRB", "GridSelect_RIS", "比“网格选点带RIS”\n(连续选位优化增益)" if is_zh else "vs Grid-Select RIS\n(Continuous BCD)"),
+        ("FixedOpt_RIS", "FixedOpt_RandomRIS", "调优RIS vs 随机RIS\n(相移优化增益)" if is_zh else "Fixed RIS vs RandRIS\n(Phase Opt. Gain)"),
     ]
 
     stats = []
@@ -747,9 +747,9 @@ def plot_fig4_bootstrap_cond(by_rm: dict, lang: str = "en") -> None:
 
     # --- Panel B: Angular EFIM Condition Number CDF (Pure-NLoS RR-Only, RCS=30) ---
     cond_methods = [
-        ("Proposed_Joint_CRB", "本文：斜看8眼法" if is_zh else "Proposed (8-Cfg Monopulse)", PAL["teal"], "-", 2.3),
-        ("FixedOpt_RIS", "固定站：斜看8眼法" if is_zh else "Fixed-Opt RIS (8-Cfg)", PAL["blue"], "-.", 1.7),
-        ("FixedOpt_RandomRIS", "随机反光镜" if is_zh else "Random Diffuse RIS", PAL["slate"], ":", 1.7),
+        ("Proposed_Joint_CRB", "本文：RIS 8组斜扫" if is_zh else "Proposed (8-Cfg Monopulse)", PAL["teal"], "-", 2.3),
+        ("FixedOpt_RIS", "固定站：RIS 8组斜扫" if is_zh else "Fixed-Opt RIS (8-Cfg)", PAL["blue"], "-.", 1.7),
+        ("FixedOpt_RandomRIS", "随机相移 RIS" if is_zh else "Random Diffuse RIS", PAL["slate"], ":", 1.7),
         ("Lit_EnergyMax_AO", "现有法：只管照最亮" if is_zh else "Lit. EnergyMax-AO (1-Beam)", PAL["rose"], "--", 2.1),
     ]
     for m, lbl, col, ls, lw in cond_methods:
