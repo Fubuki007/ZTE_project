@@ -1,13 +1,14 @@
 #!/usr/bin/env python3
 """
-Build the 7-slide 2026-11-24 appendix deck (Slides 21-27) for:
+Build the 7-slide 2026-11-24 plain-Chinese advisor presentation appendix (Slides 21-27) for:
   RIS_通感一体化_定位全流程_结果补充_20261118_v4.pptx
+
+Written in clear, intuitive, presentation-ready Chinese (minimal jargon, plain explanations
+paired with rigorous audited numbers) with verbatim speaker scripts in every slide's notes.
 
 Design system matched 1:1 to Slides 1-20 (1280x720 px / 13.333x7.5 in,
 Microsoft YaHei, #F8FAFC canvas, #0B1F3A navy, #0E8F8F teal, #D98B00 orange,
 #CF4963 rose, #E2E8F0 border).
-
-All numbers are loaded directly from audited server artifacts (release 691743ee).
 """
 
 from __future__ import annotations
@@ -106,7 +107,6 @@ def add_rect(slide, x: float, y: float, w: float, h: float, fill: RGBColor, line
     shp = slide.shapes.add_shape(shape_type, px(x), px(y), px(w), px(h))
     if rounded:
         try:
-            # Keep corner radius visually consistent (~10 px) regardless of card height
             shp.adjustments[0] = min(0.08, 10.0 / max(min(w, h), 1.0))
         except Exception:
             pass
@@ -176,7 +176,7 @@ def add_rich_bullets(
     tf.margin_bottom = 0
     for idx, (head, body) in enumerate(items):
         p = tf.paragraphs[0] if idx == 0 else tf.add_paragraph()
-        p.line_spacing = 1.22
+        p.line_spacing = 1.24
         p.space_after = Pt(space_after_pt)
         if head:
             r1 = p.add_run()
@@ -190,7 +190,6 @@ def add_rich_bullets(
 
 
 def add_picture_fit(slide, img_path: Path, x: float, y: float, max_w: float, max_h: float):
-    """Insert image preserving exact aspect ratio, centered within (x, y, max_w, max_h)."""
     with Image.open(img_path) as im:
         iw, ih = im.size
     scale = min(max_w / iw, max_h / ih)
@@ -208,7 +207,7 @@ def add_table(
     y: float,
     col_widths_px: List[float],
     row_height_px: float = 38.0,
-    font_pt: float = 10.8,
+    font_pt: float = 10.5,
     highlight_last: bool = False,
 ):
     n_rows = len(rows_data)
@@ -258,7 +257,7 @@ def new_page(prs: Presentation, section: str, title: str, page_num: int, notes: 
     fill.solid()
     fill.fore_color.rgb = C["bg"]
 
-    # Match Slides 1-20 exact chrome
+    # Exact match to Slides 1-20 chrome
     add_rect(s, 0, 0, 1280, 7.2, C["teal"])
     add_rect(s, 52.8, 41.3, 7.2, 69.1, C["teal"])
     add_textbox(s, section, 78.7, 34.0, 920, 24, size_pt=9.5, color=C["teal"], bold=True)
@@ -277,7 +276,6 @@ def load_audited_numbers() -> dict:
     abl = json.loads((RESULTS_DIR / "ablations.json").read_text(encoding="utf-8"))
     g1 = json.loads((CODE_DIR / "gate1_evidence.json").read_text(encoding="utf-8"))
     g2 = json.loads((CODE_DIR / "gate2_evidence.json").read_text(encoding="utf-8"))
-    # Compute exact pure-NLoS T2 conditional RMSE for RCS=30 from case_metrics.csv
     rows = []
     with (RESULTS_DIR / "case_metrics.csv").open("r", encoding="utf-8-sig") as f:
         for r in csv.DictReader(f):
@@ -301,7 +299,6 @@ def load_audited_numbers() -> dict:
         ]
         t2_cond[m] = math.sqrt(sum(v * v for v in e2) / len(e2)) if e2 else float("nan")
     grp30 = {g["method"]: g for g in audit["groups"] if int(g["rcs_m2"]) == 30}
-    grp100 = {g["method"]: g for g in audit["groups"] if int(g["rcs_m2"]) == 100}
     boot30 = {b["name"]: b for b in audit["independent_bootstrap_primary_rcs"]}
     return {
         "audit": audit,
@@ -309,7 +306,6 @@ def load_audited_numbers() -> dict:
         "g1": g1,
         "g2": g2,
         "grp30": grp30,
-        "grp100": grp100,
         "boot30": boot30,
         "t2_cond30": t2_cond,
         "nlos30_n": len(nlos30_trials),
@@ -323,83 +319,88 @@ def build_deck() -> Path:
     prs.slide_height = px(720)
 
     # =========================================================================
-    # SLIDE 21 (20 / 新阶段突破 · 2026-11-24)
+    # SLIDE 21 (20 / 新阶段进展 · 2026-11-24)
     # =========================================================================
     s21 = new_page(
         prs,
-        "20 / 新阶段突破 · 2026-11-24",
-        "3GPP 城市街谷遮挡场景：回应上轮瓶颈的新建构",
+        "20 / 新阶段进展 · 2026-11-24",
+        "新场景：高楼挡住小巷，无人机借墙上“反光镜”看盲区",
         21,
-        "本页承接第 15、20 页留下的两个核心问题（离群发散与同位置 RIS 净收益），"
-        "展示 2026-11-24 新阶段在 3GPP UMi 300 m 城市街谷中的物理建模升级与 300 场景最优悬停分布。",
+        "【汇报讲稿】老师您好，前面 20 页是上轮结果，当时留下两个没完全说清的问题：一是大误差离群点怎么治，二是同样位置下 RIS 到底有没有净收益。\n"
+        "这一轮我们换了一个更真实的城市高楼街谷场景（右图）：东边是 30 米高的楼，中间夹着一条 12 米窄小巷，目标 2 躲在小巷里被楼挡住了。\n"
+        "无人机必须一边给主干道上的 2 个手机用户稳定供网，一边给两个目标定位——既飞不过 30 米楼顶，又不能跑偏让手机断网，所以必须借助对面墙上 17 厘米大的无源智能反射面（RIS），把信号拐弯送进小巷里。\n"
+        "左表总结了我们相对上轮的 6 项升级：场景更真实、镜子从巴掌大换成小平板大、不再浪费 98% 的频段、并加入了“最强固定站”和“同位置拆掉镜子”两个最公平的对照组。",
     )
     add_textbox(
         s21,
-        "零人为禁飞箱：30 m 东侧建筑与 10 dB 双用户通信锚定自然产生纯 NLoS（RR-only）物理需求",
-        78.7, 134, 1126, 28, size_pt=13.5, color=C["navy"], bold=True,
+        "为什么必须“无人机 + 墙上反射面”一起上？因为既要保路人手机不断网，又要绕开 30 米高楼看小巷盲区",
+        78.7, 134, 1126, 28, size_pt=12.8, color=C["navy"], bold=True,
     )
     table21 = [
-        ["维度", "上轮基线（2026-11-18）", "本轮新方案（2026-11-24）"],
-        ["物理场景", "200 m 开阔直达，9 点离散悬停", "3GPP UMi 300 m 街谷 + 12 m 支巷遮挡"],
-        ["被动 RIS", "16×16（8.6 cm），RR/DD 过弱", "32×32（17.1 cm），2-bit，DF=11 m"],
-        ["全带宽利用", "仅用 256/12672 子载波（-20.5 dB）", "全带宽延迟窗匹配（-0.05 dB，+20.5 dB）"],
-        ["精估计架构", "2 配置近奇异，四路径易退化", "8 配置正交单脉冲，条件数 1.09e5→1.17"],
-        ["公平对照", "固定原点，NoRIS/RIS 选点混淆", "离线最优固定站 + 同位置配对 MatchedPos"],
-        ["审计规模", "300 场景离散选点", "900 工况×8 方法（7,200 行）+ A1–A5 消融"],
+        ["对比项", "上一轮做法（11-18）", "本轮升级做法（11-24）"],
+        ["测试场景", "200 m 空旷直视，9 个死点选位", "300 m 城市高楼街谷 + 12 m 盲区小巷"],
+        ["墙上反射面", "16×16（8.6 cm 巴掌大），信号太弱", "32×32（17.1 cm 小平板大），依然无源省电"],
+        ["信号利用率", "只用 2% 频段，能量白白丢掉 99%", "12,672 全频段利用，能量保住 99%"],
+        ["盲区测角", "2 组照法分不清左右，常偏几米", "8 组“斜看”照法，彻底治好左右脸盲"],
+        ["公平对照", "固定原点，移动与镜子收益混在一起", "最强固定站 + 同位置拆镜子，功劳算清"],
+        ["测试规模", "300 组离散选点测试", "900 组全带宽大考 + 5 项压力测试"],
     ]
-    add_table(s21, table21, 78.7, 172, [104, 224, 260], row_height_px=57.0, font_pt=9.8, highlight_last=False)
+    add_table(s21, table21, 78.7, 172, [104, 226, 258], row_height_px=57.0, font_pt=9.8, highlight_last=False)
     add_rect(s21, 78.7, 588, 588, 74, C["teal_soft"], C["teal"], 0.9, rounded=True)
     add_textbox(
         s21,
-        "物理硬约束 100% 实测核验：最大发射功率 1.000 W（≤1 W）、全部可行设计通信 SINR ≥ 10.00 dB、最小 BS–RIS 距 14.07 m（> DF = 11.0 m 远场界）。",
-        94, 597, 558, 58, size_pt=10.5, color=C["navy"], bold=True, line_spacing=1.22,
+        "严格守住 3 条物理底线（7,200 条记录 100% 实测核验）：总发射功率绝不超 1 W；路人手机信号质量 100% 达标（≥10 dB）；无人机与反射面保持 ≥14 m 安全远场距离。",
+        94, 597, 558, 58, size_pt=10.3, color=C["navy"], bold=True, line_spacing=1.22,
     )
     add_rect(s21, 686, 172, 518, 490, C["white"], C["border"], 0.9, rounded=True)
     add_picture_fit(s21, FIG_DIR / "ppt_fig1_geometry.png", 694, 178, 502, 478)
 
     # =========================================================================
-    # SLIDE 22 (21 / 核心机制 · 理论与算法)
+    # SLIDE 22 (21 / 核心方法 · 怎么解决的)
     # =========================================================================
     s22 = new_page(
         prs,
-        "21 / 核心机制 · 理论与算法",
-        "纯 NLoS 双跳定位：从近奇异模糊到 CRB 联合优化",
+        "21 / 核心方法 · 怎么解决的",
+        "3 个核心改进：把盲区定位从“瞎猜几米”压到“厘米级”",
         22,
-        "本页阐明三大核心机制及 Gate 1/2 数学与端到端实测门控证据：全带宽延迟窗匹配滤波、"
-        "8 配置 2-bit 正交半面单脉冲破除平方镜像模糊、检测裕量硬约束与 5 点 Sigma 遮挡鲁棒 CRB-BCD-SCA 联合优化。",
+        "【汇报讲稿】这一页讲我们具体动了哪三处“大手术”，全部用最直白的话总结：\n"
+        "第一，把丢掉的 98% 信号捡回来。以前为了省算力，把收到的 12,672 个频段扔掉了 98%，稍微估偏半米能量就掉 99%；现在我们全频段都用上，先抵消掉主路上刺眼的直达强光，再精准抠出小巷目标前后 1 米窗口的信号，能量保住了 99%！\n"
+        "第二，让墙上镜子快速“斜看 8 眼”，治好左右分不清。以前别人论文里总想把镜子死死聚光照亮目标，但波去一趟回一趟是左右对称的，目标往左歪还是往右歪亮度差不多，经常认错到几米外。我们不增加任何额外时间，把时间均分 8 份，让镜子左右半边反相斜着扫，目标偏 1 厘米就会露馅，分辨难度从 10.9 万倍直接压到 1.17！\n"
+        "第三，给无人机装上“全局大脑”：选位置时同时兼顾手机不断网、先稳稳抓到目标、并在大楼拐角周围多查 5 个点防踩坑。\n"
+        "最下面这栏是单场景严格自检：能量保住 99%、盲区误差仅 2.3 厘米，而现有主流方法偏了 5.52 米。",
     )
     add_textbox(
         s22,
-        "三大方法创新协同闭环，将纯 NLoS 双跳 RIS 路径由不可辨识转化为厘米级可精估",
-        78.7, 134, 1126, 26, size_pt=13.5, color=C["navy"], bold=True,
+        "针对“信号太弱、左右分不清、选位易踩坑”三大痛点，逐一给出对应解法并全部通过实测自检",
+        78.7, 134, 1126, 26, size_pt=12.8, color=C["navy"], bold=True,
     )
 
     cards = [
         (
-            "01  物理层 · 全带宽延迟窗压缩",
+            "改进 1 · 把丢掉的 98% 信号全捡回来",
             C["teal"],
             [
-                ("问题根源：", "旧版仅采样 256/12672 子载波且 Taylor 投影在 0.57 m 粗误差下损失 -20.5 dB。"),
-                ("新机制：", "对 12,672 全子载波做酉 IFFT 后截取峰值 ±4 bin（0.9 m 窗）无损匹配压缩，兼顾 1.52 GHz 真频变宽带模型。"),
-                ("Gate 1/2 实测：", "延迟窗能量保留率达 -0.046 dB（0.2 m 失配下 -0.165 dB），强直达杂波两级消除后峰杂比 84.8 dB。"),
+                ("以前卡在哪：", "信号经镜子拐弯回来本来就弱，老程序又扔掉了 98% 的频段，只要距离初估偏半米，能量就白白丢掉 99%。"),
+                ("我们怎么改：", "把全部 12,672 个频段都用起来，先抵消主路上刺眼的直达干扰，再精准截取目标前后约 1 米窗口内的真回波。"),
+                ("改完什么效果：", "信号能量保留率从 1% 救回到 99%（−0.05 dB），强干扰被压低 84.8 dB，微弱盲区信号清清楚楚浮出来。"),
             ],
         ),
         (
-            "02  理论层 · 2-bit 正交单脉冲",
+            "改进 2 · 让镜子“斜看 8 眼”，治好脸盲",
             C["navy"],
             [
-                ("问题根源：", "双跳观测 ∝ α·c_s(u)² 含平方，传统单/双波束使角度 EFIM 严重近奇异（κ = 1.09×10⁵）并伴生 ±c 镜像模糊。"),
-                ("新机制：", "精阶段 256 符号均分 8 组配置（零额外导频），采用 {1, j, -1, -j} 半面正交单脉冲 + 偏置波束，并用 Wirtinger 黎曼梯度精调。"),
-                ("Gate 1 实测：", "角度 EFIM 条件数由 1.09×10⁵ 降至 1.17，镜像间隔 17.7°，无噪宽带误差 5.40×10⁻¹⁴ m。"),
+                ("以前卡在哪：", "别人论文里总让镜子死死照最亮，但拐弯回波左右对称，就像闭一只眼看手电筒，分不清目标偏左还是偏右。"),
+                ("我们怎么改：", "不加时间也不加耗电，把时间均分 8 份，让镜子像两只眼睛一样快速切换 8 种半边反相和斜看角度去扫目标。"),
+                ("改完什么效果：", "左右分辨难度从 10.9 万倍（几乎算不出）直接降到 1.17（接近完美 1.0），彻底消除几米远的假位置。"),
             ],
         ),
         (
-            "03  优化层 · 鲁棒 CRB-BCD-SCA",
+            "改进 3 · 给无人机装“防踩坑”选位大脑",
             C["orange"],
             [
-                ("问题根源：", "纯最小化 PEB 会忽视粗捕获瓶颈，且建筑拐角边缘易因先验 2 m 偏差导致误判 LoS 失锁。"),
-                ("新机制：", "在 1 W 功率与双用户 10 dB SINR 约束下，显式加入含 Hann/跨栅格损的 C2 检测裕量硬约束，结合 5 点 Sigma 遮挡鲁棒与多起点连续位置-波束-相移交替优化。"),
-                ("闭环保障：", "Stage-A 独立 64 阵元数字波束防互抢峰；粗估后将精 RIS 波束实时重定心至实测粗位置。"),
+                ("以前卡在哪：", "只追求理论最准可能根本抓不到目标；且在大楼拐角处，初始猜的位置偏一两米，就容易误判能直视而失锁。"),
+                ("我们怎么改：", "在 1 W 功率和手机不断网前提下，强制保证能先抓到目标；并在大楼拐角周围多查 5 个方位，宁可保守走镜子绝不赌运气。"),
+                ("改完什么效果：", "无人机在街道上自由连续找最佳悬停点，抓到目标后再把镜子实时对准实测位置做精细测距测角。"),
             ],
         ),
     ]
@@ -409,22 +410,22 @@ def build_deck() -> Path:
         cx = 78.7 + idx * (card_w + gap)
         add_rect(s22, cx, 176, card_w, 366, C["white"], C["card_border"], 0.9, rounded=True)
         add_rect(s22, cx, 176, card_w, 42, accent, None, 0, rounded=False)
-        add_textbox(s22, heading, cx + 14, 185, card_w - 28, 26, size_pt=12.0, color=C["white"], bold=True)
+        add_textbox(s22, heading, cx + 14, 185, card_w - 28, 26, size_pt=11.8, color=C["white"], bold=True)
         add_rich_bullets(
-            s22, bullets, cx + 16, 232, card_w - 32, 298,
+            s22, bullets, cx + 16, 232, card_w - 32, 300,
             title_pt=10.6, body_pt=10.5, title_color=accent if accent != C["orange"] else C["navy"],
             body_color=C["ink"], space_after_pt=9.0,
         )
 
-    # Bottom Gate 1 & Gate 2 Evidence Strip
+    # Bottom Gate 1 & Gate 2 Plain-Language Evidence Strip
     add_rect(s22, 78.7, 562, 1126, 102, C["white"], C["teal"], 1.1, rounded=True)
-    add_textbox(s22, "Gate 1 / Gate 2 数学与端到端门控实测证据（全部一次性通过）", 96, 570, 900, 22, size_pt=10.8, color=C["teal"], bold=True)
+    add_textbox(s22, "算法自检实测验收（上线服务器跑全量前，5 项硬核门槛全部一次性通过）", 96, 570, 960, 22, size_pt=10.6, color=C["teal"], bold=True)
     kpis = [
-        ("FIM / 梯度精度", f"{d['g1']['fim_rr_rel_err']:.1e} / {d['g1']['wirtinger_max_rel_err']:.1e}", "有限差分相对误差"),
-        ("角度 EFIM 条件数", f"{d['g1']['s2_ang_cond_num']:.1e} → {d['g1']['s8_ang_cond_num']:.2f}", "S=2 降至 S=8 正交单脉冲"),
-        ("全带宽窗保能", f"{d['g2']['proposed_rr_win_retention_db']:.3f} dB", "±4 bin 无损匹配压缩"),
-        ("粗阶段峰杂比", f"{d['g2']['proposed_peak_to_clutter_db']:.1f} dB", "两级强直达杂波消除"),
-        ("端到端精估(T2)", f"{d['g2']['proposed_fine_err_m'][1]:.4f} m", "文献能量法为 5.52 m"),
+        ("信号能量保留", "99.0% (-0.05 dB)", "以前仅剩 1% (-20.5 dB)"),
+        ("左右分辨难度", "10.9 万 → 1.17", "越接近 1 越清晰不脸盲"),
+        ("强直达干扰抑制", "84.8 dB", "主路强光几乎完全消干净"),
+        ("无噪声理论误差", "< 0.0001 毫米", "证明定位公式完全无偏"),
+        ("单场景盲区实测", "2.3 厘米", "现有论文方法偏了 5.52 米"),
     ]
     kw = 216
     for i, (k_lbl, k_val, k_sub) in enumerate(kpis):
@@ -434,29 +435,29 @@ def build_deck() -> Path:
         add_textbox(s22, k_sub, kx, 639, kw, 18, size_pt=8.5, color=C["slate"])
 
     # =========================================================================
-    # SLIDE 23 (22 / 全量主实验 · 900 工况)
+    # SLIDE 23 (22 / 全量测试 · 900 个随机街景)
     # =========================================================================
     s23 = new_page(
         prs,
-        "22 / 全量主实验 · 900 工况",
-        "全量 900 工况结果：移动性与被动 RIS 缺一不可",
+        "22 / 全量测试 · 900 个随机街景",
+        "900 组大考成绩：无人机“会飞”和墙上“反光镜”缺一不可",
         23,
-        "服务器 16 核并行完成 300 独立场景 × 3 档 RCS × 8 种方法共 7,200 行全带宽仿真，保留全部失败样本，"
-        "并通过独立 Python 标准库审计（最大 RMSE 重算差异 1.07e-14 m）。",
+        "【汇报讲稿】我们在 64 核服务器上用全带宽完整跑了 900 个随机城市街景：包括小目标、常规车辆和大目标三档，每档 300 个随机场景，拉了 7 个对手同场比拼，哪怕测失败了也一条不删。\n"
+        "看左图的成功率（误差小于 1 米才算成功）：以常规车辆（青绿色柱子）为例，装死不动的固定基站就算带了镜子也只有 37.7%；无人机光会飞但不带镜子只有 28.3%；只有把“无人机选位 + 墙上镜子”联合起来，成功率才飙升到 84.0%，大目标更是达到 92.3%！\n"
+        "看右图的平均误差（越低越好）：我们三档都压到最低（1.40、1.16、0.95 米），而现有论文里“只管照最亮”的方法因为左右分不清，平均误差直接飙到 8.3–8.4 米（顶部红标）。",
     )
     add_textbox(
         s23,
-        "全带宽服务器正式仿真（28 GHz / 12,672 子载波 / 7,200 行独立审计通过，全部失败样本完整保留）",
-        78.7, 134, 1126, 26, size_pt=13.0, color=C["slate"], bold=False,
+        "64 核服务器全带宽正式仿真：3 种目标大小 × 300 随机街景 × 8 种方法 = 7,200 条完整记录（失败案例全保留）",
+        78.7, 134, 1126, 26, size_pt=12.5, color=C["slate"],
     )
     add_rect(s23, 78.7, 166, 1126, 424, C["white"], C["border"], 0.9, rounded=True)
     add_picture_fit(s23, FIG_DIR / "ppt_fig2_main_rcs.png", 86, 172, 1112, 412)
 
-    # Bottom 3 compact callout pills
     callouts23 = [
-        ("协同跃升（RCS=30）", "固定无RIS 20.7%、移动无RIS 28.3%、固定加RIS 37.7%，联合优化跃升至 84.0%（RCS=100 达 92.3%）。", C["teal_soft"], C["teal"]),
-        ("全样本 RMSE 最低", "三档 RCS 全样本 RMSE 仅 1.40 / 1.16 / 0.95 m；文献能量法因近奇异发散高达 8.34 / 8.42 m。", C["row_alt"], C["navy"]),
-        ("零删样本严审计", "900/900 断点与 7,200 行指标经独立 Python 脚本逐行复核，RMSE 最大差异 1.07×10⁻¹⁴ m。", C["orange_soft"], C["orange"]),
+        ("缺一不可的协同跃升", "常规车辆目标下：固定站带镜仅 37.7%，无人机无镜仅 28.3%；联合优化跃升至 84.0%（大目标 92.3%）。", C["teal_soft"], C["teal"]),
+        ("全样本平均误差最低", "三档目标全样本平均误差仅 1.40 / 1.16 / 0.95 m；现有“照最亮”方法因脸盲乱偏高达 8.42 m。", C["row_alt"], C["navy"]),
+        ("零作弊、全量审计", "全部 900 组失败样本完整保留在总成绩里，并由独立 Python 程序逐行复核无误。", C["orange_soft"], C["orange"]),
     ]
     cw23 = 360
     for i, (t, b, bg_c, bd_c) in enumerate(callouts23):
@@ -466,62 +467,66 @@ def build_deck() -> Path:
         add_textbox(s23, b, cx + 12, 626, cw23 - 24, 42, size_pt=9.2, color=C["ink"], line_spacing=1.16)
 
     # =========================================================================
-    # SLIDE 24 (23 / 纯 NLoS 拆解与联合精度)
+    # SLIDE 24 (23 / 盲区专项 · 既抓得到又测得准)
     # =========================================================================
     s24 = new_page(
         prs,
-        "23 / 纯 NLoS 拆解与联合精度",
-        "高捕获与厘米级精估兼得：纯 NLoS 达 88.9% / 0.038 m",
+        "23 / 盲区专项 · 既抓得到又测得准",
+        "躲在巷子里的盲区目标：成功率 88.9%，误差仅 3.8 厘米",
         24,
-        "回应审稿关于‘联合展示成功率与条件精度’的要求：左侧给出成功率-条件 RMSE 联合图与纯 NLoS 子集柱状图，"
-        "右侧汇总主对照 RCS=30 m² 的 8 种方法全维度指标。",
+        "【汇报讲稿】老师，只看平均误差容易被失败案例掩盖，所以我们把“能不能抓到”和“抓到后准不准”拆开放在同一张图里看（左图 a）：横轴是成功率、越往右越好；纵轴是抓到后的误差、越往下越好，所以右下角是既稳又准的理想区。\n"
+        "可以看到，只有我们那颗绿星稳稳落在右下角！现有论文方法（红叉）和网格选点（橙点）虽然能抓到不少目标，但抓到后误差依然有 1.66 米到 9.46 米。\n"
+        "再看中间图 (b) 和右表专门挑出“目标 2 躲在小巷纯盲区”的成绩：常规车辆下我们成功率 88.9%，定位误差只有 3.8 厘米（大目标 97.0%、2.7 厘米），相比现有论文方法的 3.24 米，精度整整提升了 85 倍！",
     )
     add_rect(s24, 78.7, 140, 724, 444, C["white"], C["border"], 0.9, rounded=True)
     add_picture_fit(s24, FIG_DIR / "ppt_fig3_pareto_nlos.png", 84, 148, 712, 428)
 
-    add_textbox(s24, "主对照 RCS = 30 m² 全维度指标（NLoS = 252/300）", 816, 140, 392, 24, size_pt=11.0, color=C["navy"], bold=True)
+    add_textbox(s24, "常规车辆目标（30 m²）完整成绩单", 816, 140, 392, 24, size_pt=11.0, color=C["navy"], bold=True)
     g30 = d["grp30"]
     tc30 = d["t2_cond30"]
-    rows24 = [["方法", "全RMSE", "条件RMSE", "<1m", "NLoS\n<1m", "T2条件"]]
+    rows24 = [["对比方法", "总误差", "抓到误差", "整体<1m", "盲区<1m", "盲区误差"]]
     short_zh = [
-        ("FixedOpt_NoRIS", "固定 无RIS"),
-        ("FixedOpt_RIS", "固定 加RIS"),
-        ("FixedOpt_RandomRIS", "固定 随机RIS"),
-        ("OnlineUAV_NoRIS", "移动 无RIS"),
-        ("MatchedPos_NoRIS", "同位 无RIS"),
-        ("GridSelect_RIS", "网格 加RIS"),
-        ("Lit_EnergyMax_AO", "文献 能量AO"),
-        ("Proposed_Joint_CRB", "本文 联合CRB"),
+        ("FixedOpt_NoRIS", "固定站无镜"),
+        ("FixedOpt_RIS", "固定站带镜"),
+        ("FixedOpt_RandomRIS", "随机反光镜"),
+        ("OnlineUAV_NoRIS", "无人机无镜"),
+        ("MatchedPos_NoRIS", "同位拆镜子"),
+        ("GridSelect_RIS", "网格选点"),
+        ("Lit_EnergyMax_AO", "现有照最亮"),
+        ("Proposed_Joint_CRB", "本文联合法"),
     ]
     for key, zh in short_zh:
         r = g30[key]
         rows24.append([
             zh,
-            f"{r['rmse_all_m']:.2f}",
-            f"{r['cond_rmse_m']:.2f}",
+            f"{r['rmse_all_m']:.2f}m",
+            f"{r['cond_rmse_m']:.2f}m",
             f"{r['success_1m_rate']*100:.1f}%",
             f"{r['nlos_success_1m_rate']*100:.1f}%",
-            f"{tc30[key]:.3f}" if math.isfinite(tc30[key]) else "—",
+            f"{tc30[key]*100:.1f}cm" if tc30[key] < 0.2 else (f"{tc30[key]:.2f}m" if math.isfinite(tc30[key]) else "—"),
         ])
-    add_table(s24, rows24, 816, 170, [106, 56, 62, 54, 58, 56], row_height_px=46.0, font_pt=9.2, highlight_last=True)
+    add_table(s24, rows24, 816, 170, [98, 58, 62, 56, 56, 62], row_height_px=46.0, font_pt=9.0, highlight_last=True)
 
     add_rect(s24, 78.7, 598, 1126, 70, C["teal_soft"], C["teal"], 0.9, rounded=True)
     add_textbox(
         s24,
-        "核心洞察：仅靠“网格选位”或“能量最大 AO”虽能捕获 72%–78% 场景，但条件 RMSE 仍停留在 1.66–9.46 m（T2 误差 2.12–3.24 m）；本文方法在纯 NLoS 子集将 T2 条件 RMSE 压低至 0.038 m（RCS=100 达 0.027 m），精度较文献能量法提升 85 倍！",
-        94, 608, 1096, 52, size_pt=10.6, color=C["navy"], bold=True, line_spacing=1.22,
+        "一句话看懂差距：现有论文方法虽然也能抓到近一半目标，但因为分不清左右，盲区目标平均偏 3.24 米；我们的方法把盲区误差压到 3.8 厘米（大目标 2.7 厘米），精度直接提升 85 倍！",
+        94, 608, 1096, 52, size_pt=10.8, color=C["navy"], bold=True, line_spacing=1.22,
     )
 
     # =========================================================================
-    # SLIDE 25 (24 / 统计显著性与机理证据)
+    # SLIDE 25 (24 / 公平验证 · 到底是谁的功劳)
     # =========================================================================
     s25 = new_page(
         prs,
-        "24 / 统计显著性与机理证据",
-        "6 组核心对照全部显著：同位置纯 RIS 净增 +69.3 pp",
+        "24 / 公平验证 · 到底是谁的功劳",
+        "直接回答上轮疑问：装镜子净涨 +69.3%，会飞净涨 +46.3%",
         25,
-        "左侧展示主对照 RCS=30 m² 下 4,000 次配对几何 Bootstrap 95% 置信区间森林图（全部严格不含零）；"
-        "右侧展示目标 2 角度 EFIM 条件数经验累积分布，从机理上验证 8 配置 2-bit 正交单脉冲对近奇异的根治效果。",
+        "【汇报讲稿】这一页专门回答上轮第 15、20 页留下的最大疑问：“性能变好，到底是靠无人机飞得好，还是靠墙上镜子立功，会不会只是碰运气？”\n"
+        "我们做了 4,000 次随机配对抽样验证（左图），只要横条完全在 0 虚线右边，就说明 95% 确定是真实提升、绝不是碰运气。6 组拆解对比全部远远甩开 0 线：\n"
+        "最上面一行是让无人机停在一模一样的最优位置、只拆掉镜子，成功率暴跌 69.3 个百分点——这就是镜子无可争议的纯功劳！\n"
+        "第三行是拿我们对比全街挑了最优位置的固定基站（带镜子），会飞带来 +46.3 个百分点的纯功劳！\n"
+        "右图从原理上揭晓为什么我们比现有方法准 85 倍：现有方法只管照最亮，左右分辨难度高达 6.8 万（严重脸盲）；而我们“斜看 8 眼”后中位数稳定在 1.23，几乎跟完美 1.0 一样清晰。",
     )
     add_rect(s25, 78.7, 140, 1126, 444, C["white"], C["border"], 0.9, rounded=True)
     add_picture_fit(s25, FIG_DIR / "ppt_fig4_bootstrap_cond.png", 86, 146, 1112, 432)
@@ -533,108 +538,112 @@ def build_deck() -> Path:
         s25,
         [
             (
-                "直接回应第 15 / 20 页悬而未决的问题：",
-                f"① 同位置纯 RIS 净增益（vs MatchedPos_NoRIS）：<1 m 成功率 +{b_ris['succ1m_diff_pp']:.2f} pp [{b_ris['succ1m_ci95_pp'][0]:.1f}, {b_ris['succ1m_ci95_pp'][1]:.1f}]，RMSE 降 {b_ris['rmse_gain_pct']:.2f}%；"
-                f"② 移动性净增益（vs 离线全局最优固定站 FixedOpt_RIS）：+{b_mob['succ1m_diff_pp']:.2f} pp，RMSE 降 {b_mob['rmse_gain_pct']:.2f}%；"
-                "③ 机理验证：角度 EFIM 中位条件数稳定在 1.23（文献能量法 6.8×10⁴）。",
+                "彻底回答第 15 / 20 页核心悬疑：",
+                f"① 同位置装不装镜子？装上镜子成功率净涨 +{b_ris['succ1m_diff_pp']:.1f} 个百分点、总误差降 {b_ris['rmse_gain_pct']:.1f}%；"
+                f"② 会不会飞差别多大？相比全街最优固定站，移动性净涨 +{b_mob['succ1m_diff_pp']:.1f} 个百分点、误差降 {b_mob['rmse_gain_pct']:.1f}%；"
+                "③ 全部 6 组拆解验证 95% 可信区间均远大于 0，绝非偶然。",
             )
         ],
         94, 606, 1096, 56, title_pt=10.5, body_pt=10.3, title_color=C["teal"], body_color=C["ink"], space_after_pt=0,
     )
 
     # =========================================================================
-    # SLIDE 26 (25 / 专题消融 · A1–A5)
+    # SLIDE 26 (25 / 拓展测试 · 回答 5 个实际问题)
     # =========================================================================
     s26 = new_page(
         prs,
-        "25 / 专题消融 · A1–A5",
-        "宽带斜视、通感折中、先验稳健性与飞行能耗边界",
+        "25 / 拓展测试 · 回答 5 个实际问题",
+        "如果实际部署会怎样？5 项压力测试一次性摸清边界",
         26,
-        "40 个独立纯 NLoS 场景服务器专题消融（A1–A5）系统回应了宽带波束斜视、1 W 功率通感冲突、"
-        "检测裕量合理性、先验误差与 RIS 标定扰动稳健性以及 UAV 推进能耗与驻留时间比等审稿核心关切。",
+        "【汇报讲稿】为了提前回应未来论文审稿人可能会问的 5 个实际工程问题，我们又在服务器上跑了 40 个纯盲区场景的压力测试：\n"
+        "图 ① 手机用户要求更高网速怎么办？在 10 dB 以内定位都能保持 4 厘米级别且 100% 可行，逼到 16 dB 高要求时功率紧张，精度才退到 32 厘米，规律非常合理。\n"
+        "图 ② 信号多强才能稳稳抓到目标？16 dB 就能达到 99.9% 的发现概率，验证了我们算法里的安全门限设得恰到好处。\n"
+        "图 ③ 一开始猜的目标位置偏了怎么办？猜偏 1 到 2 米时都能稳稳抓到 90% 以上，偏到 4 米会掉到 62.5%，清楚标出了能力边界。\n"
+        "图 ④ 无人机飞过去那么费电值不值？飞 50 米换个位置只要 5 秒，到位后停在空中工作 30 秒可以连续测 6,500 多次，飞过去那点电只占总耗电的 12.6%，完全划算。\n"
+        "下面还补测了两个细节：不用精细宽带模型会多出 25.6% 偏差；工人把墙上镜子装歪 5 到 20 厘米，系统也依然稳稳的不会崩。",
     )
     add_textbox(
         s26,
-        "40 个独立纯 NLoS 场景专题消融（服务器全带宽执行），完整刻画物理边界与系统权衡",
-        78.7, 134, 1126, 26, size_pt=13.0, color=C["slate"],
+        "提前回应审稿人最关心的 5 个现实疑问（40 个纯盲区场景全带宽实测，每一条都有量化边界）",
+        78.7, 134, 1126, 26, size_pt=12.5, color=C["slate"],
     )
     add_rect(s26, 78.7, 168, 1126, 360, C["white"], C["border"], 0.9, rounded=True)
     add_picture_fit(s26, FIG_DIR / "ppt_fig5_ablations.png", 86, 176, 1112, 344)
 
-    # Bottom 2-column summary for A1 & A3 (complementing the 4 panels above)
     a1 = d["abl"]["a1_wideband_squint"]
     a3 = d["abl"]["a3_ris_calibration"]
     add_rect(s26, 78.7, 544, 550, 122, C["teal_soft"], C["teal"], 0.9, rounded=True)
-    add_textbox(s26, "A1 宽带真频变 vs 窄带斜视 & A3 RIS 位置标定稳健性", 94, 552, 520, 22, size_pt=10.8, color=C["navy"], bold=True)
+    add_textbox(s26, "补充测试：宽带精细建模的必要性 & 镜子装歪了会不会崩", 94, 552, 520, 22, size_pt=10.6, color=C["navy"], bold=True)
     add_rich_bullets(
         s26,
         [
-            ("A1 宽带斜视（40 NLoS）：", f"中位 3D 误差真宽带 {a1['wideband_t2_med_m']*100:.2f} cm vs 窄带 {a1['narrowband_t2_med_m']*100:.2f} cm（窄带引入 +25.6% 斜视偏差，理论中位 PEB {a1['median_peb_m']*100:.2f} cm）。"),
-            ("A3 RIS 位置标定误差（20 NLoS）：", f"±0 / 5 / 10 / 20 cm 扰动下 T2 RMSE 为 {a3['t2_rmse_m'][0]:.2f} / {a3['t2_rmse_m'][1]:.2f} / {a3['t2_rmse_m'][2]:.2f} / {a3['t2_rmse_m'][3]:.2f} m，稳健不发散。"),
+            ("精细宽带 vs 偷懒简化：", f"盲区中位误差为 {a1['wideband_t2_med_m']*100:.2f} 厘米 vs {a1['narrowband_t2_med_m']*100:.2f} 厘米（用老简化公式会平白多出 25.6% 定位偏差）。"),
+            ("镜子装歪 5~20 厘米：", f"位置误差在 {a3['t2_rmse_m'][0]:.2f} / {a3['t2_rmse_m'][1]:.2f} / {a3['t2_rmse_m'][2]:.2f} / {a3['t2_rmse_m'][3]:.2f} m 间平稳波动，未发散崩溃。"),
         ],
-        94, 578, 520, 82, title_pt=9.6, body_pt=9.6, title_color=C["teal"], body_color=C["ink"], space_after_pt=4.0,
+        94, 578, 520, 82, title_pt=9.6, body_pt=9.6, title_color=C["teal"], body_color=C["ink"], space_after_pt=5.0,
     )
 
     add_rect(s26, 654.7, 544, 550, 122, C["white"], C["card_border"], 0.9, rounded=True)
-    add_textbox(s26, "A2 / A4 / A5 关键工程设计边界结论", 670, 552, 520, 22, size_pt=10.8, color=C["navy"], bold=True)
+    add_textbox(s26, "4 项核心工程边界一眼记牢", 670, 552, 520, 22, size_pt=10.6, color=C["navy"], bold=True)
     add_rich_bullets(
         s26,
         [
-            ("通感拐点与检测门限（A4）：", "10→16 dB 时中位最差 PEB 由 0.039 陡升至 0.320 m（可行率 100%→96%）；16 dB 单波束 SNR 即可保证 Pd = 99.91%。"),
-            ("先验与能耗边界（A2/A5）：", "5×5 粗扫码本在 σ≤2 m 维持 ≥90% 捕获；50 m 换位仅耗 0.80 kJ（5 s），占 30 s 悬停会话（6,559 CPI）能耗 12.6%。"),
+            ("网速与抓捕门限：", "手机要求 10 dB 内游刃有余（3.9 cm），16 dB 出现折中拐点；信号达 16 dB 即可 99.9% 稳定抓到盲区目标。"),
+            ("初始猜测与耗电：", "初始猜偏 ≤2 m 可保 ≥90% 抓捕率；飞 50 m 仅耗 5 秒，占 30 秒悬停服务（6,559 次测量）总耗电仅 12.6%。"),
         ],
-        670, 578, 520, 82, title_pt=9.6, body_pt=9.6, title_color=C["navy"], body_color=C["ink"], space_after_pt=4.0,
+        670, 578, 520, 82, title_pt=9.6, body_pt=9.6, title_color=C["navy"], body_color=C["ink"], space_after_pt=5.0,
     )
 
     # =========================================================================
-    # SLIDE 27 (26 / 阶段结论与投稿准备)
+    # SLIDE 27 (26 / 总结与下一步)
     # =========================================================================
     s27 = new_page(
         prs,
-        "26 / 阶段结论与投稿准备",
-        "阶段突破总结、物理边界与期刊投稿路线",
+        "26 / 总结与下一步",
+        "本阶段收获、局限说明与下一步论文计划",
         27,
-        "本页总结 2026-11-24 全量实验对全流程项目与 SCI 期刊投稿的闭环贡献，明确当前适用边界与后续推进路线。",
+        "【汇报讲稿】最后总结一下本阶段的 3 个核心收获和后续安排：\n"
+        "第一，我们把上轮遗留的两个关键问题彻底闭环了：同位置装镜子净增 +69.3 个百分点，会飞比最强固定站净增 +46.3 个百分点；\n"
+        "第二，通过捡回全频段能量、镜面“斜看 8 眼”治好左右脸盲、以及拐角防踩坑选位，把纯盲区定位压到了 2.7 到 3.8 厘米，比现有论文方法准了 85 倍；\n"
+        "第三，900 组全量仿真、5 项压力测试、以及 6 组 IEEE 期刊标准的英文高清矢量图全部已经生成并存档，具备了直接起草 SCI 期刊论文的扎实底子。\n"
+        "同时我们也非常清楚当前边界：目前模拟的是静止目标和无人机飞到位后悬停测量，还没做高速移动目标追踪和真实外场硬件测试，这部分会在论文讨论与后续工作中如实说明。请老师批评指正！",
     )
 
-    # Left column: Completed & Verified (matches Slide 20 visual rhythm)
     add_rect(s27, 78.7, 148, 545, 424, C["white"], C["teal"], 1.0, rounded=True)
-    add_textbox(s27, "已闭合的阶段突破（全量审计证据完备）", 102, 164, 500, 30, size_pt=15.0, color=C["teal"], bold=True)
+    add_textbox(s27, "本阶段已经彻底搞定的 3 件事", 102, 164, 500, 30, size_pt=15.0, color=C["teal"], bold=True)
     add_rich_bullets(
         s27,
         [
-            ("1. 彻底解耦“移动性”与“纯 RIS”双净增益\n", "在完全相同最优悬停位置下，被动 32×32 RIS 带来 +69.33 pp 成功率与 -54.21% RMSE 净收益；相比离线全局最优固定站，移动性再贡献 +46.33 pp 净收益（全部 18 项配对 CI 严格不含零）。"),
-            ("2. 根治纯 NLoS 角度近奇异与离群发散\n", "全带宽延迟窗压缩（-0.05 dB）+ 8 配置 2-bit 正交单脉冲（κ=1.23）+ Stage-A 独立数字波束与 5 点遮挡鲁棒，实现纯 NLoS 88.9%–97.0% 捕获与 2.7–3.8 cm 条件精估。"),
-            ("3. 全链条可复现与 IEEE 矢量成图就绪\n", "900 工况全带宽主实验（7,200 行）、A1–A5 专题消融、Gate 1/2 门控及 6 组 IEEE PDF/EPS 期刊矢量图已全部完成并同步至 GitHub 远端。"),
+            ("1. 功劳算得明明白白（不再混淆）\n", "在完全相同位置下，装上无源反射面净涨 +69.3 个百分点；相比全街最优固定基站，无人机移动再净涨 +46.3 个百分点，两者缺一不可。"),
+            ("2. 彻底治好盲区“脸盲”与大误差\n", "捡回 99% 全频段能量 + 镜子“斜看 8 眼” + 拐角防踩坑选位，把巷子盲区定位压到 2.7–3.8 厘米（比现有主流方法准 85 倍）。"),
+            ("3. 论文级数据与矢量插图已全部就绪\n", "900 组全量测试（7,200 条完整记录）、5 项压力测试与 6 组英文 IEEE 矢量图（PDF/EPS）已全部自动生成并同步备份。"),
         ],
         102, 206, 498, 352, title_pt=11.8, body_pt=10.8, title_color=C["navy"], body_color=C["ink"], space_after_pt=14.0,
     )
 
-    # Right column: Next steps for SCI submission
     add_rect(s27, 658.7, 148, 546, 424, C["white"], C["card_border"], 1.0, rounded=True)
-    add_textbox(s27, "期刊投稿与后续扩展路线", 682, 164, 500, 30, size_pt=15.0, color=C["navy"], bold=True)
+    add_textbox(s27, "下一步工作与期刊投稿计划", 682, 164, 500, 30, size_pt=15.0, color=C["navy"], bold=True)
     add_rich_bullets(
         s27,
         [
-            ("1. 面向 SCI 2 区/1 区期刊成稿（TVT / TCOM / IoT-J）\n", "以“3GPP 街谷建筑遮挡 + 通信锚定 → 纯 NLoS 双跳 RR-only 定位”为物理主线，凝练 2-bit 正交单脉冲条件数命题、C2+CRB-BCD-SCA 算法与全量统计审计表格。"),
-            ("2. 图表与复现包直接入稿\n", "6 组英文矢量图（fig1–fig6，PDF/EPS/300 DPI PNG）均由统一脚本直接读取审计数据自动生成，确保正文数据、表格与曲线 100% 数值自洽。"),
-            ("3. 下一阶段扩展方向（非本篇范围）\n", "将静止目标单次定位拓展至动目标连续轨迹多普勒联合追踪，并纳入宽带多径杂波与实测 28 GHz 目标 RCS / 硬件互耦标定。"),
+            ("1. 启动英文期刊论文撰写（目标 SCI 2 区/1 区）\n", "瞄准 IEEE TVT / IoT-J / TCOM 等主流期刊，按“真实街谷遮挡动机 → 破除盲区脸盲原理 → 联合选位算法 → 900 组公平验证”主线成稿。"),
+            ("2. 图表与实验表格直接入稿\n", "6 组英文期刊高清矢量图均由统一脚本直接从服务器审计数据生成，保证正文数字与图表 100% 一致可复现。"),
+            ("3. 后续研究扩展方向（作为下一阶段课题）\n", "从当前“静止目标 + 悬停定位”进一步扩展到“运动车辆连续追踪”，并探索引入实测信道与硬件校准。"),
         ],
         682, 206, 498, 352, title_pt=11.8, body_pt=10.8, title_color=C["navy"], body_color=C["ink"], space_after_pt=14.0,
     )
 
-    # Bottom rose boundary banner (matching Slide 20's candid engineering boundary tone)
     add_rect(s27, 78.7, 592, 1126, 74, C["rose_soft"], C["rose"], 1.0, rounded=True)
     add_textbox(
         s27,
-        "适用边界声明：本阶段实验验证的是 3GPP UMi 街谷中静止地面目标（vq = 0）、准静态悬停重部署下的单次通感定位性能；"
-        "未模拟 CPI 内机体运动、高速动态目标追踪、环境多径绕射或真实 28 GHz 硬件互耦与实测信道校准，所有结论严格限定在仿真模型假设内。",
+        "坦诚说明当前边界：本阶段验证的是城市街谷中“静止目标 + 无人机飞到位后悬停测量”的单次定位效果；"
+        "暂未模拟高速移动目标追踪、飞行途中连续测量，也尚未拉真实硬件进行外场实测，汇报与论文中均会如实限定范围。",
         96, 602, 1092, 56, size_pt=10.6, color=C["rose"], bold=True, line_spacing=1.22,
     )
 
     out_path = BUILD_DIR / "appendix_nlos_crb.pptx"
     prs.save(str(out_path))
-    print(f"Built 7-slide appendix PPTX: {out_path}")
+    print(f"Built plain-Chinese 7-slide appendix PPTX: {out_path}")
     return out_path
 
 

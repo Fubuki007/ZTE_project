@@ -86,14 +86,14 @@ METHOD_EN = {
 }
 
 METHOD_ZH = {
-    "FixedOpt_NoRIS": "固定最优 无RIS",
-    "FixedOpt_RIS": "固定最优 加RIS",
-    "FixedOpt_RandomRIS": "固定最优 随机RIS",
-    "OnlineUAV_NoRIS": "移动UAV 无RIS",
-    "MatchedPos_NoRIS": "同位置对照 无RIS",
-    "GridSelect_RIS": "离散网格 加RIS",
-    "Lit_EnergyMax_AO": "文献 能量最大AO",
-    "Proposed_Joint_CRB": "本文 联合CRB优化",
+    "FixedOpt_NoRIS": "固定站(无镜)",
+    "FixedOpt_RIS": "最强固定站(带镜)",
+    "FixedOpt_RandomRIS": "固定站(随机镜)",
+    "OnlineUAV_NoRIS": "无人机(无镜)",
+    "MatchedPos_NoRIS": "同位置(拆镜子)",
+    "GridSelect_RIS": "网格选点(带镜)",
+    "Lit_EnergyMax_AO": "现有法(照最亮)",
+    "Proposed_Joint_CRB": "本文联合方案",
 }
 
 METHOD_COLOR = {
@@ -305,11 +305,11 @@ def plot_fig1_geometry_ecdf(by_rm: dict, lang: str = "en") -> None:
 
     ax.scatter(
         qx[via_ris], qy[via_ris], s=18, color=PAL["teal"], alpha=0.55, edgecolors="none", zorder=4,
-        label="UAV 最优位 (纯NLoS经RIS)" if is_zh else "Optimal UAV (RR-only via RIS)"
+        label="无人机最优悬停位 (经镜子看盲区)" if is_zh else "Optimal UAV (RR-only via RIS)"
     )
     ax.scatter(
         qx[~via_ris], qy[~via_ris], s=22, color=PAL["orange"], alpha=0.75, edgecolors="none", zorder=4,
-        label="UAV 最优位 (双LoS直达)" if is_zh else "Optimal UAV (Dual-LoS)"
+        label="无人机最优悬停位 (两目标均直视)" if is_zh else "Optimal UAV (Dual-LoS)"
     )
 
     # Offline-optimal fixed BS from case_metrics.csv
@@ -319,7 +319,7 @@ def plot_fig1_geometry_ecdf(by_rm: dict, lang: str = "en") -> None:
     if fx:
         ax.scatter(
             [fx[0]], [fy[0]], s=110, marker="D", color=PAL["blue"], edgecolor="white", linewidth=1.1, zorder=7,
-            label="离线最优固定站" if is_zh else "Offline-Opt Fixed BS"
+            label="全街最强固定基站位置" if is_zh else "Offline-Opt Fixed BS"
         )
 
     # Illustrative active block zones (South block example)
@@ -344,26 +344,26 @@ def plot_fig1_geometry_ecdf(by_rm: dict, lang: str = "en") -> None:
 
     # Clean text callouts
     if is_zh:
-        ax.text(14, 78, "东侧建筑\n(高 30 m)", ha="center", va="center", fontsize=9.5, fontweight="bold", color="#334155", zorder=8)
-        ax.text(14, -78, "东侧建筑\n(高 30 m)", ha="center", va="center", fontsize=9.5, fontweight="bold", color="#334155", zorder=8)
-        ax.text(20.0, 0.0, "12m 支巷\n目标2(NLoS)", ha="center", va="center", fontsize=8.0, fontweight="bold", color="#991B1B", zorder=9,
+        ax.text(14, 78, "30米高大楼\n(挡住视线)", ha="center", va="center", fontsize=9.5, fontweight="bold", color="#334155", zorder=8)
+        ax.text(14, -78, "30米高大楼\n(挡住视线)", ha="center", va="center", fontsize=9.5, fontweight="bold", color="#334155", zorder=8)
+        ax.text(20.0, 0.0, "12m 窄小巷\n盲区目标2", ha="center", va="center", fontsize=8.0, fontweight="bold", color="#991B1B", zorder=9,
                 bbox=dict(boxstyle="round,pad=0.20", fc="#FFFBEB", ec="#F59E0B", lw=0.7, alpha=0.95))
-        ax.annotate("32×32 被动 RIS\n(-20, 0, 12 m)", xy=(-20, 0), xytext=(-35, 36),
-                    fontsize=8.5, fontweight="bold", color=PAL["teal"],
+        ax.annotate("墙上智能反光镜\n(17cm 不插电RIS)", xy=(-20, 0), xytext=(-37, 38),
+                    fontsize=8.3, fontweight="bold", color=PAL["teal"],
                     arrowprops=dict(arrowstyle="->", color=PAL["teal"], lw=1.1))
-        ax.annotate("双跳 RR 绕射链路", xy=(-12.5, -12), xytext=(-37, -26),
-                    fontsize=8.2, color=PAL["teal"], fontweight="bold",
+        ax.annotate("经镜子拐弯看到目标", xy=(-12.5, -12), xytext=(-38, -28),
+                    fontsize=8.0, color=PAL["teal"], fontweight="bold",
                     arrowprops=dict(arrowstyle="->", color=PAL["teal"], lw=1.0))
-        ax.annotate("DD 直达遮挡", xy=(2.0, -12.0), xytext=(5.5, -34),
-                    fontsize=8.2, color=PAL["rose"], fontweight="bold",
+        ax.annotate("直接看被墙挡住", xy=(2.0, -12.0), xytext=(4.8, -36),
+                    fontsize=8.0, color=PAL["rose"], fontweight="bold",
                     arrowprops=dict(arrowstyle="->", color=PAL["rose"], lw=1.0))
-        ax.text(-10, -48, "近端通信用户", ha="center", va="center", fontsize=7.8, color=PAL["blue"], fontweight="bold")
-        ax.text(-10, -139, "远端通信用户", ha="center", va="center", fontsize=7.8, color=PAL["blue"], fontweight="bold")
-        ax.text(-10, -108, "目标1 (LoS)", ha="center", va="center", fontsize=7.8, color=PAL["navy"], fontweight="bold",
+        ax.text(-10, -48, "近处手机用户", ha="center", va="center", fontsize=7.8, color=PAL["blue"], fontweight="bold")
+        ax.text(-10, -139, "远处手机用户", ha="center", va="center", fontsize=7.8, color=PAL["blue"], fontweight="bold")
+        ax.text(-10, -108, "主路目标1 (可见)", ha="center", va="center", fontsize=7.8, color=PAL["navy"], fontweight="bold",
                 bbox=dict(boxstyle="round,pad=0.16", fc="white", ec="none", alpha=0.88), zorder=9)
-        ax.set_xlabel("X 坐标 / m（主干道 [-20, 0] · 支巷 [0, 12]）", fontsize=9.8, fontweight="bold")
-        ax.set_ylabel("Y 坐标 / m（300 m 3GPP UMi 街谷）", fontsize=9.8, fontweight="bold")
-        ax.set_title("3GPP UMi 街谷遮挡拓扑与 300 场景最优悬停分布", fontsize=10.8, fontweight="bold", color=PAL["navy"], pad=8)
+        ax.set_xlabel("街道宽度方向 X / m（左为主干道，右为小巷）", fontsize=9.5, fontweight="bold")
+        ax.set_ylabel("街道长度方向 Y / m（全长 300 m）", fontsize=9.5, fontweight="bold")
+        ax.set_title("城市高楼街谷示意图与 300 次测试无人机悬停分布", fontsize=10.5, fontweight="bold", color=PAL["navy"], pad=8)
     else:
         ax.text(14, 82, "East Bldg.\n(30 m tall)", ha="center", va="center", fontsize=8.5, fontweight="bold", color="#334155", zorder=8)
         ax.text(14, -82, "East Bldg.\n(30 m tall)", ha="center", va="center", fontsize=8.5, fontweight="bold", color="#334155", zorder=8)
@@ -460,6 +460,7 @@ def plot_fig2_main_rcs(by_rm: dict, lang: str = "en") -> None:
     rcs_colors = {10: "#94A3B8", 30: PAL["teal"], 100: PAL["navy"]}
     rcs_hatches = {10: "", 30: "", 100: ""}
 
+    rcs_lbl = {10: "小目标 (10m²)", 30: "常规车辆 (30m²)", 100: "大目标 (100m²)"} if is_zh else {10: "RCS = 10 m²", 30: "RCS = 30 m²", 100: "RCS = 100 m²"}
     # Panel A: <1 m Success Rate across RCS
     vals_by_rcs = {rcs: [compute_metrics(by_rm[(rcs, m)])["succ1"] for m in METHODS] for rcs in rcs_list}
     for i, rcs in enumerate(rcs_list):
@@ -467,7 +468,7 @@ def plot_fig2_main_rcs(by_rm: dict, lang: str = "en") -> None:
         bars = ax1.bar(
             x + (i - 1) * width, vals, width=width * 0.94,
             color=rcs_colors[rcs], edgecolor="white", linewidth=0.5,
-            label=f"RCS = {rcs} m²", zorder=3,
+            label=rcs_lbl[rcs], zorder=3,
         )
         if rcs == 30:
             for j, (b, m, v) in enumerate(zip(bars, METHODS, vals)):
@@ -496,12 +497,12 @@ def plot_fig2_main_rcs(by_rm: dict, lang: str = "en") -> None:
     ax1.set_xticks(x)
     ax1.set_xticklabels([labels[m] for m in METHODS], rotation=26, ha="right", fontsize=8.1 if not is_zh else 8.4)
     ax1.set_ylim(0, 108)
-    ax1.set_ylabel("<1 m 严格成功率 (%)" if is_zh else "<1 m Strict Success Rate (%)", fontsize=9.5, fontweight="bold" if is_zh else "normal")
-    ax1.set_title("(a) 三档 RCS 下 <1 m 严格定位成功率（全量 300 场景）" if is_zh else "(a) <1 m Strict Success Rate Across RCS", fontsize=10.2, fontweight="bold", color=PAL["navy"])
+    ax1.set_ylabel("定位误差 <1 米的成功率 (%)" if is_zh else "<1 m Strict Success Rate (%)", fontsize=9.5, fontweight="bold" if is_zh else "normal")
+    ax1.set_title("(a) 三种目标大小下的定位成功率（越高越好）" if is_zh else "(a) <1 m Strict Success Rate Across RCS", fontsize=10.2, fontweight="bold", color=PAL["navy"])
     ax1.grid(True, axis="y", alpha=0.6, zorder=0)
     ax1.spines["top"].set_visible(False)
     ax1.spines["right"].set_visible(False)
-    ax1.legend(loc="upper left", fontsize=8.2, ncol=3, columnspacing=0.9)
+    ax1.legend(loc="upper left", fontsize=7.8 if is_zh else 8.2, ncol=3, columnspacing=0.7)
 
     # Panel B: All-Sample 3D RMSE with 95% Bootstrap CI across RCS (capped axis with crisp annotation for Lit_EnergyMax_AO)
     y_cap = 3.45
@@ -521,7 +522,7 @@ def plot_fig2_main_rcs(by_rm: dict, lang: str = "en") -> None:
             color=rcs_colors[rcs], edgecolor="white", linewidth=0.5,
             yerr=[disp_lo, disp_hi], capsize=2.0,
             error_kw=dict(ecolor="#334155", elinewidth=0.75, capthick=0.75),
-            label=f"RCS = {rcs} m²", zorder=3,
+            label=rcs_lbl[rcs], zorder=3,
         )
         for b, m, p, hi_d in zip(bars, METHODS, pts, disp_hi):
             if p > y_cap and m == "Lit_EnergyMax_AO":
@@ -544,12 +545,12 @@ def plot_fig2_main_rcs(by_rm: dict, lang: str = "en") -> None:
     ax2.set_xticks(x)
     ax2.set_xticklabels([labels[m] for m in METHODS], rotation=26, ha="right", fontsize=8.1 if not is_zh else 8.4)
     ax2.set_ylim(0, 3.65)
-    ax2.set_ylabel("全样本 3D 定位 RMSE / m（保留失败样本）" if is_zh else "All-Sample 3D RMSE (m, Failures Retained)", fontsize=9.5, fontweight="bold" if is_zh else "normal")
-    ax2.set_title("(b) 全样本定位 RMSE（含 95% Bootstrap 区间）" if is_zh else "(b) All-Sample 3D RMSE with 95% Bootstrap CI", fontsize=10.2, fontweight="bold", color=PAL["navy"])
+    ax2.set_ylabel("平均定位误差 / 米（失败案例全保留）" if is_zh else "All-Sample 3D RMSE (m, Failures Retained)", fontsize=9.5, fontweight="bold" if is_zh else "normal")
+    ax2.set_title("(b) 全样本平均定位误差（越低越好）" if is_zh else "(b) All-Sample 3D RMSE with 95% Bootstrap CI", fontsize=10.2, fontweight="bold", color=PAL["navy"])
     ax2.grid(True, axis="y", alpha=0.6, zorder=0)
     ax2.spines["top"].set_visible(False)
     ax2.spines["right"].set_visible(False)
-    ax2.legend(loc="upper left", fontsize=8.2, ncol=3, columnspacing=0.9)
+    ax2.legend(loc="upper left", fontsize=7.8 if is_zh else 8.2, ncol=3, columnspacing=0.7)
 
     fig.tight_layout(w_pad=2.2)
     save_fig(fig, "fig2_rcs_comparison" if not is_zh else "ppt_fig2_main_rcs", lang)
@@ -568,7 +569,7 @@ def plot_fig3_pareto_nlos(by_rm: dict, lang: str = "en") -> None:
     # --- Panel A: Joint (Success Rate, Conditional RMSE) at Primary RCS = 30 m^2 ---
     # Ideal corner shading (bottom-right)
     ax1.axvspan(75, 100, ymin=0, ymax=0.38, color=PAL["teal_light"], alpha=0.65, zorder=0)
-    ax1.text(87.5, 0.095, "理想区\n(高捕获+高精度)" if is_zh else "Ideal Region\n(High Succ. & Precision)",
+    ax1.text(87.5, 0.095, "最理想区域\n(抓得稳+测得准)" if is_zh else "Ideal Region\n(High Succ. & Precision)",
              ha="center", va="center", fontsize=7.6, color=PAL["teal"], fontweight="bold")
 
     coords = {}
@@ -619,19 +620,19 @@ def plot_fig3_pareto_nlos(by_rm: dict, lang: str = "en") -> None:
     mx, my = coords["MatchedPos_NoRIS"]
     ax1.annotate("", xy=(px - 1.6, py), xytext=(fx + 2.2, fy),
                  arrowprops=dict(arrowstyle="->", color=PAL["blue"], lw=1.25, ls="--", connectionstyle="arc3,rad=0.14"))
-    ax1.text(61, 0.112, "+46.3 pp\n(移动增益)" if is_zh else "+46.3 pp\n(Mobility)",
+    ax1.text(61, 0.112, "+46.3%\n(会飞的功劳)" if is_zh else "+46.3 pp\n(Mobility)",
              ha="center", va="center", fontsize=7.1, color=PAL["blue"], fontweight="bold")
     ax1.annotate("", xy=(px - 1.8, py + 0.03), xytext=(mx + 2.0, my + 0.05),
                  arrowprops=dict(arrowstyle="->", color=PAL["slate"], lw=1.1, ls=":", connectionstyle="arc3,rad=-0.22"))
-    ax1.text(46, 0.56, "+69.3 pp (纯RIS净增益)" if is_zh else "+69.3 pp (Pure RIS Gain)",
+    ax1.text(46, 0.56, "+69.3% (装镜子的纯功劳)" if is_zh else "+69.3 pp (Pure RIS Gain)",
              ha="center", va="center", fontsize=7.1, color=PAL["slate"], fontweight="bold")
 
     ax1.set_yscale("log")
     ax1.set_xlim(0, 96)
     ax1.set_ylim(0.07, 18.0)
-    ax1.set_xlabel("<1 m 严格成功率 (%)" if is_zh else "<1 m Strict Success Rate (%)", fontsize=9.2, fontweight="bold" if is_zh else "normal")
-    ax1.set_ylabel("捕获条件下 3D RMSE / m (对数轴)" if is_zh else "Conditional 3D RMSE (m, log scale)", fontsize=9.2, fontweight="bold" if is_zh else "normal")
-    ax1.set_title("(a) 成功率–条件精度联合图（RCS = 30 m²）" if is_zh else "(a) Joint Success Rate vs. Conditional RMSE (RCS = 30 m²)", fontsize=9.8, fontweight="bold", color=PAL["navy"])
+    ax1.set_xlabel("整体定位成功率 (%，越靠右越好)" if is_zh else "<1 m Strict Success Rate (%)", fontsize=9.0, fontweight="bold" if is_zh else "normal")
+    ax1.set_ylabel("抓到目标后的平均误差 / 米（越低越好）" if is_zh else "Conditional 3D RMSE (m, log scale)", fontsize=9.0, fontweight="bold" if is_zh else "normal")
+    ax1.set_title("(a) 既抓得稳、又测得准综合对比（常规目标）" if is_zh else "(a) Joint Success Rate vs. Conditional RMSE (RCS = 30 m²)", fontsize=9.6, fontweight="bold", color=PAL["navy"])
     ax1.grid(True, which="both", alpha=0.5)
     ax1.spines["top"].set_visible(False)
     ax1.spines["right"].set_visible(False)
@@ -663,10 +664,14 @@ def plot_fig3_pareto_nlos(by_rm: dict, lang: str = "en") -> None:
 
     nlos_counts = [sum(1 for r in by_rm[(rcs, "Proposed_Joint_CRB")] if r["t2_via_ris"] > 0.5) for rcs in rcs_list]
     ax2.set_xticks(x)
-    ax2.set_xticklabels([f"RCS={r} m²\n(N={n})" for r, n in zip(rcs_list, nlos_counts)], fontsize=8.3)
+    if is_zh:
+        sz_names = ["小目标", "常规车辆", "大目标"]
+        ax2.set_xticklabels([f"{nm}\n({n}个盲区)" for nm, n in zip(sz_names, nlos_counts)], fontsize=8.2)
+    else:
+        ax2.set_xticklabels([f"RCS={r} m²\n(N={n})" for r, n in zip(rcs_list, nlos_counts)], fontsize=8.3)
     ax2.set_ylim(0, 114)
-    ax2.set_ylabel("纯 NLoS 子集 <1 m 成功率 (%)" if is_zh else "Pure-NLoS <1 m Success Rate (%)", fontsize=9.2, fontweight="bold" if is_zh else "normal")
-    ax2.set_title("(b) 纯 NLoS 子集表现（标注为 T2 条件误差）" if is_zh else "(b) Pure-NLoS (RR-Only) Subset & T2 Cond. RMSE", fontsize=9.8, fontweight="bold", color=PAL["navy"])
+    ax2.set_ylabel("纯盲区定位成功率 (%)" if is_zh else "Pure-NLoS <1 m Success Rate (%)", fontsize=9.0, fontweight="bold" if is_zh else "normal")
+    ax2.set_title("(b) 巷子盲区专项成绩（括号为盲区误差）" if is_zh else "(b) Pure-NLoS (RR-Only) Subset & T2 Cond. RMSE", fontsize=9.6, fontweight="bold", color=PAL["navy"])
     ax2.grid(True, axis="y", alpha=0.55)
     ax2.spines["top"].set_visible(False)
     ax2.spines["right"].set_visible(False)
@@ -684,12 +689,12 @@ def plot_fig4_bootstrap_cond(by_rm: dict, lang: str = "en") -> None:
     is_zh = lang == "zh"
 
     contrasts = [
-        ("Proposed_Joint_CRB", "MatchedPos_NoRIS", "vs 同位置无RIS\n(纯RIS净增益)" if is_zh else "vs Matched-Pos NoRIS\n(Pure RIS Gain)"),
-        ("Proposed_Joint_CRB", "OnlineUAV_NoRIS", "vs 移动无RIS\n(移动端加RIS)" if is_zh else "vs Online UAV NoRIS\n(RIS on Mobile BS)"),
-        ("Proposed_Joint_CRB", "FixedOpt_RIS", "vs 离线最优固定RIS\n(移动性净增益)" if is_zh else "vs Fixed-Opt RIS\n(Mobility Gain)"),
-        ("Proposed_Joint_CRB", "Lit_EnergyMax_AO", "vs 文献能量最大AO\n(CRB+单脉冲)" if is_zh else "vs Lit. EnergyMax-AO\n(CRB + Monopulse)"),
-        ("Proposed_Joint_CRB", "GridSelect_RIS", "vs 离散网格加RIS\n(连续BCD优化)" if is_zh else "vs Grid-Select RIS\n(Continuous BCD)"),
-        ("FixedOpt_RIS", "FixedOpt_RandomRIS", "固定RIS vs 随机RIS\n(相移优化增益)" if is_zh else "Fixed RIS vs RandRIS\n(Phase Opt. Gain)"),
+        ("Proposed_Joint_CRB", "MatchedPos_NoRIS", "比“同位置拆镜子”\n(装镜子的纯功劳)" if is_zh else "vs Matched-Pos NoRIS\n(Pure RIS Gain)"),
+        ("Proposed_Joint_CRB", "OnlineUAV_NoRIS", "比“无人机不带镜”\n(加装镜子的收益)" if is_zh else "vs Online UAV NoRIS\n(RIS on Mobile BS)"),
+        ("Proposed_Joint_CRB", "FixedOpt_RIS", "比“最强固定站带镜”\n(会飞的纯功劳)" if is_zh else "vs Fixed-Opt RIS\n(Mobility Gain)"),
+        ("Proposed_Joint_CRB", "Lit_EnergyMax_AO", "比“现有论文照最亮”\n(斜看8眼算法功劳)" if is_zh else "vs Lit. EnergyMax-AO\n(CRB + Monopulse)"),
+        ("Proposed_Joint_CRB", "GridSelect_RIS", "比“网格选点带镜”\n(连续选位优化功劳)" if is_zh else "vs Grid-Select RIS\n(Continuous BCD)"),
+        ("FixedOpt_RIS", "FixedOpt_RandomRIS", "调优镜子 vs 随机镜\n(精细调角度功劳)" if is_zh else "Fixed RIS vs RandRIS\n(Phase Opt. Gain)"),
     ]
 
     stats = []
@@ -728,24 +733,24 @@ def plot_fig4_bootstrap_cond(by_rm: dict, lang: str = "en") -> None:
     ax1.set_yticklabels([s["label"] for s in stats], fontsize=8.0)
     ax1.set_xlim(-5, 108)
     ax1.set_ylim(-0.65, len(stats) - 0.35)
-    ax1.set_xlabel("配对净增益及 95% Bootstrap 置信区间（4,000 次重采样）" if is_zh else "Paired Gain with 95% Bootstrap CI (4,000 Resamples)", fontsize=9.0, fontweight="bold" if is_zh else "normal")
-    ax1.set_title("(a) 主对照（RCS = 30 m²）配对显著性检验" if is_zh else "(a) Paired 95% Bootstrap CIs (RCS = 30 m²)", fontsize=9.8, fontweight="bold", color=PAL["navy"])
+    ax1.set_xlabel("净提升幅度及 95% 可信区间（全部远大于 0，绝非碰运气）" if is_zh else "Paired Gain with 95% Bootstrap CI (4,000 Resamples)", fontsize=8.8, fontweight="bold" if is_zh else "normal")
+    ax1.set_title("(a) 6 组拆解对照：谁的功劳清清楚楚" if is_zh else "(a) Paired 95% Bootstrap CIs (RCS = 30 m²)", fontsize=9.8, fontweight="bold", color=PAL["navy"])
     ax1.grid(True, axis="x", alpha=0.55)
     ax1.spines["top"].set_visible(False)
     ax1.spines["right"].set_visible(False)
 
     leg_handles = [
-        Line2D([0], [0], marker="o", color=PAL["teal"], lw=2.0, markersize=6, label="<1 m 成功率提升 (+pp)" if is_zh else "<1 m Success Gain (+pp)"),
-        Line2D([0], [0], marker="s", color=PAL["orange"], lw=2.0, markersize=5.5, label="全样本 RMSE 降幅 (%)" if is_zh else "All-Sample RMSE Reduction (%)"),
+        Line2D([0], [0], marker="o", color=PAL["teal"], lw=2.0, markersize=6, label="定位成功率净提升 (+百分点)" if is_zh else "<1 m Success Gain (+pp)"),
+        Line2D([0], [0], marker="s", color=PAL["orange"], lw=2.0, markersize=5.5, label="平均误差净下降 (%)" if is_zh else "All-Sample RMSE Reduction (%)"),
     ]
     ax1.legend(handles=leg_handles, loc="lower right", fontsize=7.8)
 
     # --- Panel B: Angular EFIM Condition Number CDF (Pure-NLoS RR-Only, RCS=30) ---
     cond_methods = [
-        ("Proposed_Joint_CRB", "本文 8配置正交单脉冲" if is_zh else "Proposed (8-Cfg Monopulse)", PAL["teal"], "-", 2.3),
-        ("FixedOpt_RIS", "固定站 8配置单脉冲" if is_zh else "Fixed-Opt RIS (8-Cfg)", PAL["blue"], "-.", 1.7),
-        ("FixedOpt_RandomRIS", "随机漫反射 RIS" if is_zh else "Random Diffuse RIS", PAL["slate"], ":", 1.7),
-        ("Lit_EnergyMax_AO", "文献 能量最大(单波束)" if is_zh else "Lit. EnergyMax-AO (1-Beam)", PAL["rose"], "--", 2.1),
+        ("Proposed_Joint_CRB", "本文：斜看8眼法" if is_zh else "Proposed (8-Cfg Monopulse)", PAL["teal"], "-", 2.3),
+        ("FixedOpt_RIS", "固定站：斜看8眼法" if is_zh else "Fixed-Opt RIS (8-Cfg)", PAL["blue"], "-.", 1.7),
+        ("FixedOpt_RandomRIS", "随机反光镜" if is_zh else "Random Diffuse RIS", PAL["slate"], ":", 1.7),
+        ("Lit_EnergyMax_AO", "现有法：只管照最亮" if is_zh else "Lit. EnergyMax-AO (1-Beam)", PAL["rose"], "--", 2.1),
     ]
     for m, lbl, col, ls, lw in cond_methods:
         vals = np.array([
@@ -755,17 +760,17 @@ def plot_fig4_bootstrap_cond(by_rm: dict, lang: str = "en") -> None:
         vals = np.sort(vals)
         cdf = np.arange(1, len(vals) + 1) / len(vals) * 100.0
         med = float(np.median(vals))
-        med_str = f"{med:.2f}" if med < 100 else f"{med:.1e}"
-        ax2.plot(vals, cdf, label=f"{lbl} (med={med_str})", color=col, linestyle=ls, linewidth=lw)
+        med_str = f"{med:.2f}" if med < 100 else (f"{med/1e4:.1f}万" if is_zh else f"{med:.1e}")
+        ax2.plot(vals, cdf, label=f"{lbl} (中位={med_str})" if is_zh else f"{lbl} (med={med_str})", color=col, linestyle=ls, linewidth=lw)
 
     ax2.set_xscale("log")
     ax2.set_xlim(1.0, 2e6)
     ax2.set_ylim(0, 103)
     ax2.axvline(10.0, color="#64748B", linestyle=":", linewidth=1.0)
-    ax2.text(12.5, 10, "良态区 κ < 10" if is_zh else "Well-conditioned κ < 10", fontsize=7.6, color="#475569")
-    ax2.set_xlabel("目标 2 角度 EFIM 条件数 κ_ang (对数轴)" if is_zh else "Target-2 Angular EFIM Condition Number $\\kappa_{\\mathrm{ang}}$ (log)", fontsize=9.0, fontweight="bold" if is_zh else "normal")
-    ax2.set_ylabel("经验累积分布 ECDF (%)" if is_zh else "Empirical CDF (%)", fontsize=9.0, fontweight="bold" if is_zh else "normal")
-    ax2.set_title("(b) 破解 RR 角度近奇异：条件数分布对比" if is_zh else "(b) Breaking RR Angular Ill-Conditioning", fontsize=9.8, fontweight="bold", color=PAL["navy"])
+    ax2.text(12.5, 10, "清晰可辨区 (<10)" if is_zh else "Well-conditioned κ < 10", fontsize=7.6, color="#475569")
+    ax2.set_xlabel("左右分辨难度（数值越接近 1 越清晰，越大越脸盲）" if is_zh else "Target-2 Angular EFIM Condition Number $\\kappa_{\\mathrm{ang}}$ (log)", fontsize=8.8, fontweight="bold" if is_zh else "normal")
+    ax2.set_ylabel("场景累计占比 (%)" if is_zh else "Empirical CDF (%)", fontsize=9.0, fontweight="bold" if is_zh else "normal")
+    ax2.set_title("(b) 为什么我们这么准：彻底治好“左右脸盲”" if is_zh else "(b) Breaking RR Angular Ill-Conditioning", fontsize=9.8, fontweight="bold", color=PAL["navy"])
     ax2.grid(True, which="both", alpha=0.5)
     ax2.spines["top"].set_visible(False)
     ax2.spines["right"].set_visible(False)
@@ -972,9 +977,9 @@ def plot_ppt_fig5_ablations(ablations: dict) -> None:
     ax1.text(10.3, 0.28, "默认10 dB\n(100%可行)", fontsize=7.4, color=PAL["slate"])
     ax1.set_xticks(sinr)
     ax1.set_ylim(0, 0.39)
-    ax1.set_xlabel("通信 SINR 门限 / dB", fontsize=8.8, fontweight="bold")
-    ax1.set_ylabel("中位最差 PEB / m", fontsize=8.8, fontweight="bold")
-    ax1.set_title("A4 通感 Pareto 折中", fontsize=9.6, fontweight="bold", color=PAL["navy"])
+    ax1.set_xlabel("手机信号质量要求 / dB", fontsize=8.8, fontweight="bold")
+    ax1.set_ylabel("最优定位精度 / 米", fontsize=8.8, fontweight="bold")
+    ax1.set_title("① 手机要求更高网速的影响", fontsize=9.5, fontweight="bold", color=PAL["navy"])
     ax1.grid(True, alpha=0.55)
     ax1.spines["top"].set_visible(False)
     ax1.spines["right"].set_visible(False)
@@ -983,15 +988,15 @@ def plot_ppt_fig5_ablations(ablations: dict) -> None:
     snr = np.array(a4["roc_snr_db"])
     pd = np.array(a4["roc_pd"]) * 100.0
     ax2.plot(snr, pd, marker="o", color=PAL["navy"], linewidth=2.1, markersize=4.5)
-    ax2.axvspan(14.5, 16.5, color=PAL["teal_light"], alpha=0.85, label="C2 约束区")
+    ax2.axvspan(14.5, 16.5, color=PAL["teal_light"], alpha=0.85, label="设定安全区")
     ax2.axhline(99.0, color=PAL["teal"], linestyle="--", lw=1.1)
-    ax2.annotate("16 dB:\n99.91%", xy=(16, 99.91), xytext=(16.8, 72), fontsize=7.8, fontweight="bold", color=PAL["teal"],
+    ax2.annotate("16 dB:\n99.9%抓到", xy=(16, 99.91), xytext=(16.5, 70), fontsize=7.8, fontweight="bold", color=PAL["teal"],
                  arrowprops=dict(arrowstyle="->", color=PAL["teal"], lw=1.0))
     ax2.set_xlim(6, 22)
     ax2.set_ylim(-2, 106)
-    ax2.set_xlabel("单波束相干 SNR / dB", fontsize=8.8, fontweight="bold")
-    ax2.set_ylabel("检测概率 Pd (%)", fontsize=8.8, fontweight="bold")
-    ax2.set_title("A4 25波束检测 ROC", fontsize=9.6, fontweight="bold", color=PAL["navy"])
+    ax2.set_xlabel("单波束信号强度 / dB", fontsize=8.8, fontweight="bold")
+    ax2.set_ylabel("发现目标概率 (%)", fontsize=8.8, fontweight="bold")
+    ax2.set_title("② 信号多强才能稳稳抓到", fontsize=9.5, fontweight="bold", color=PAL["navy"])
     ax2.grid(True, alpha=0.55)
     ax2.spines["top"].set_visible(False)
     ax2.spines["right"].set_visible(False)
@@ -1003,14 +1008,14 @@ def plot_ppt_fig5_ablations(ablations: dict) -> None:
     x3 = np.arange(len(sig))
     bars = ax3.bar(x3, cap, width=0.46, color=[PAL["teal"], PAL["teal"], PAL["rose"]], edgecolor="white")
     for b, c_val, r_val in zip(bars, cap, rmse):
-        ax3.text(b.get_x() + b.get_width() / 2, c_val + 2.0, f"{c_val:.1f}%\n({r_val:.2f}m)",
-                 ha="center", va="bottom", fontsize=7.5, fontweight="bold", color=PAL["navy"])
+        ax3.text(b.get_x() + b.get_width() / 2, c_val + 2.0, f"{c_val:.1f}%\n(偏{r_val:.2f}m)",
+                 ha="center", va="bottom", fontsize=7.4, fontweight="bold", color=PAL["navy"])
     ax3.set_xticks(x3)
-    ax3.set_xticklabels([f"σ={int(s)}m" for s in sig], fontsize=8.6)
-    ax3.set_ylim(0, 116)
-    ax3.set_xlabel("先验标准差 σ_prior", fontsize=8.8, fontweight="bold")
-    ax3.set_ylabel("T2 捕获率 (%)", fontsize=8.8, fontweight="bold")
-    ax3.set_title("A2 先验边界（括号为RMSE）", fontsize=9.6, fontweight="bold", color=PAL["navy"])
+    ax3.set_xticklabels([f"猜偏{int(s)}m" for s in sig], fontsize=8.5)
+    ax3.set_ylim(0, 118)
+    ax3.set_xlabel("初始猜测位置偏差", fontsize=8.8, fontweight="bold")
+    ax3.set_ylabel("盲区抓到比例 (%)", fontsize=8.8, fontweight="bold")
+    ax3.set_title("③ 初始猜得不准会怎样", fontsize=9.5, fontweight="bold", color=PAL["navy"])
     ax3.grid(True, axis="y", alpha=0.55)
     ax3.spines["top"].set_visible(False)
     ax3.spines["right"].set_visible(False)
@@ -1020,17 +1025,17 @@ def plot_ppt_fig5_ablations(ablations: dict) -> None:
     hover_e = np.array(a5["hover_energy_kj"])
     reloc_e50 = a5["relocation_energy_kj"][2]
     x4 = np.arange(len(dwell_t))
-    ax4.bar(x4, hover_e, width=0.48, color=PAL["navy"], label="悬停服务")
-    ax4.bar(x4, np.full_like(hover_e, reloc_e50), bottom=hover_e, width=0.48, color=PAL["orange"], label="50m换位(0.8kJ)")
+    ax4.bar(x4, hover_e, width=0.48, color=PAL["navy"], label="悬停干活耗电")
+    ax4.bar(x4, np.full_like(hover_e, reloc_e50), bottom=hover_e, width=0.48, color=PAL["orange"], label="飞50m换位(5秒)")
     for xi, he in zip(x4, hover_e):
         pct = reloc_e50 / (he + reloc_e50) * 100.0
-        ax4.text(xi, he + reloc_e50 + 0.35, f"{pct:.1f}%", ha="center", va="bottom", fontsize=7.8, fontweight="bold", color=PAL["orange"])
+        ax4.text(xi, he + reloc_e50 + 0.35, f"占{pct:.1f}%", ha="center", va="bottom", fontsize=7.6, fontweight="bold", color=PAL["orange"])
     ax4.set_xticks(x4)
-    ax4.set_xticklabels([f"{int(t)}s" for t in dwell_t], fontsize=8.6)
+    ax4.set_xticklabels([f"悬停{int(t)}秒" for t in dwell_t], fontsize=8.3)
     ax4.set_ylim(0, 13.8)
-    ax4.set_xlabel("悬停服务时长（换位占比）", fontsize=8.8, fontweight="bold")
-    ax4.set_ylabel("推进能耗 / kJ", fontsize=8.8, fontweight="bold")
-    ax4.set_title("A5 换位 vs 悬停能耗", fontsize=9.6, fontweight="bold", color=PAL["navy"])
+    ax4.set_xlabel("悬停工作时长（标换位占比）", fontsize=8.8, fontweight="bold")
+    ax4.set_ylabel("总耗电量 / kJ", fontsize=8.8, fontweight="bold")
+    ax4.set_title("④ 飞过去换位到底费不费电", fontsize=9.5, fontweight="bold", color=PAL["navy"])
     ax4.grid(True, axis="y", alpha=0.55)
     ax4.spines["top"].set_visible(False)
     ax4.spines["right"].set_visible(False)
