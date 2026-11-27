@@ -249,6 +249,86 @@ def add_table(
     return tbl_shape
 
 
+def add_flow_box(
+    slide,
+    x: float,
+    y: float,
+    w: float,
+    h: float,
+    title: str,
+    subtitle: str,
+    fill: RGBColor,
+    border: RGBColor,
+    border_pt: float = 1.35,
+    title_pt: float = 12.2,
+    sub_pt: float = 9.6,
+):
+    shp = add_rect(slide, x, y, w, h, fill, border, border_pt, rounded=True)
+    tf = shp.text_frame
+    tf.word_wrap = True
+    tf.vertical_anchor = MSO_ANCHOR.MIDDLE
+    tf.margin_left = px(10)
+    tf.margin_right = px(10)
+    tf.margin_top = px(6)
+    tf.margin_bottom = px(6)
+    p0 = tf.paragraphs[0]
+    p0.alignment = PP_ALIGN.CENTER
+    p0.space_after = Pt(4)
+    r0 = p0.add_run()
+    r0.text = title
+    set_run_font(r0, title_pt, C["navy"], bold=True)
+    for line in subtitle.split("\n"):
+        p = tf.add_paragraph()
+        p.alignment = PP_ALIGN.CENTER
+        p.line_spacing = 1.18
+        r = p.add_run()
+        r.text = line
+        set_run_font(r, sub_pt, C["slate"], bold=False)
+    return shp
+
+
+def add_flow_diamond(slide, x: float, y: float, w: float, h: float, text: str, fill: RGBColor, border: RGBColor):
+    shp = slide.shapes.add_shape(MSO_SHAPE.DIAMOND, px(x), px(y), px(w), px(h))
+    shp.fill.solid()
+    shp.fill.fore_color.rgb = fill
+    shp.line.color.rgb = border
+    shp.line.width = Pt(1.5)
+    shp.shadow.inherit = False
+    tf = shp.text_frame
+    tf.word_wrap = True
+    tf.vertical_anchor = MSO_ANCHOR.MIDDLE
+    tf.margin_left = px(14)
+    tf.margin_right = px(14)
+    for idx, line in enumerate(text.split("\n")):
+        p = tf.paragraphs[0] if idx == 0 else tf.add_paragraph()
+        p.alignment = PP_ALIGN.CENTER
+        p.line_spacing = 1.15
+        r = p.add_run()
+        r.text = line
+        set_run_font(r, 11.5 if idx == 0 else 12.0, C["navy"], bold=True)
+    return shp
+
+
+def add_flow_arrow(slide, direction: str, x: float, y: float, w: float, h: float, color: RGBColor):
+    shape_map = {
+        "right": MSO_SHAPE.RIGHT_ARROW,
+        "left": MSO_SHAPE.LEFT_ARROW,
+        "down": MSO_SHAPE.DOWN_ARROW,
+    }
+    shp = slide.shapes.add_shape(shape_map[direction], px(x), px(y), px(w), px(h))
+    shp.fill.solid()
+    shp.fill.fore_color.rgb = color
+    shp.line.fill.background()
+    shp.shadow.inherit = False
+    try:
+        # Slimmer shaft, clean arrowhead matching Slide 5
+        shp.adjustments[0] = 0.42
+        shp.adjustments[1] = 0.48
+    except Exception:
+        pass
+    return shp
+
+
 def new_page(prs: Presentation, section: str, title: str, page_num: int, notes: str):
     blank_layout = prs.slide_layouts[6]
     s = prs.slides.add_slide(blank_layout)
@@ -356,13 +436,134 @@ def build_deck() -> Path:
     add_picture_fit(s21, FIG_DIR / "ppt_fig1_geometry.png", 694, 178, 502, 478)
 
     # =========================================================================
-    # SLIDE 22 (21 / 核心方法 · 怎么解决的)
+    # SLIDE 22 (21 / 新方案全流程 · 怎么定位的) — Editable Native Snake Flowchart
+    # =========================================================================
+    s22_flow = new_page(
+        prs,
+        "21 / 新方案全流程 · 怎么定位的",
+        "新方案定位全流程：联合选位 → 分阶段粗捕获 → 8 组斜扫精定位",
+        22,
+        "【汇报讲稿】老师，这一页把我们新方案从头到尾的定位流程画成了一张直观的流程图，方便和前面第 5 页的旧流程直接对照。\n"
+        "整个流程分三大步：第一步是任务前联合选位（左上两个青色框）——输入目标大概位置后，先在大楼拐角多查 5 个点防遮挡踩坑，然后在保住 1 W 功率和两个手机用户 SINR ≥ 10 dB 的前提下，在街道上连续选出最优悬停点，飞到位停稳。\n"
+        "第二步是到位悬停后的 256 符号分阶段粗捕获（右上两个框）——先用 81 个符号关闭 RIS，快速锁定主干道上能直视的目标 1；再用 175 个符号打开 RIS，先抵消主路上刺眼的直达强干扰，再用 5×5 波束扫小巷，把躲在盲区里的目标 2 抓出来。\n"
+        "第三步看右下角菱形判断：如果没抓到，就退回粗估并保留在失败统计里、绝不删样本；一旦抓到，马上进入精定位（下面一行从右往左）——先把 RIS 实时对准刚测出的粗位置，不加任何时间切分 8 组半面反相“斜扫”相移，结合全带宽 12,672 频段的 ±4 格延迟窗联合解算，最终输出两个目标的 3D 坐标，盲区误差压到 2.7 到 3.8 厘米。",
+    )
+
+    # Phase headers + thin teal guide lines (matching Slide 5 style)
+    add_textbox(s22_flow, "阶段 1：任务前 · 联合选位与遮挡规划", 78.7, 148, 540, 24, size_pt=12.0, color=C["teal"], bold=True)
+    add_rect(s22_flow, 78.7, 176, 540.7, 1.2, C["teal"])
+
+    add_textbox(s22_flow, "阶段 2：到位悬停 · 256 符号分阶段粗捕获", 664.0, 148, 540, 24, size_pt=12.0, color=C["teal"], bold=True)
+    add_rect(s22_flow, 664.0, 176, 540.7, 1.2, C["teal"])
+
+    # Top row (4 equal-width columns: 248 px each, gaps 44.7 px)
+    bx = [78.7, 371.4, 664.0, 956.7]
+    bw, bh = 248.0, 118.0
+    y_top = 192.0
+
+    add_flow_box(
+        s22_flow, bx[0], y_top, bw, bh,
+        "01  目标先验与遮挡检查",
+        "输入目标大致位置（±2 m）\n大楼拐角多查 5 点判遮挡",
+        C["teal_soft"], C["teal"],
+    )
+    add_flow_box(
+        s22_flow, bx[1], y_top, bw, bh,
+        "02  连续选位、飞抵并悬停",
+        "保功率 ≤1 W、SINR ≥10 dB\n街道连续选最优位并停稳",
+        C["teal_soft"], C["teal"],
+    )
+    add_flow_box(
+        s22_flow, bx[2], y_top, bw, bh,
+        "03  Stage-A：直达粗捕获",
+        "81 符号关闭 RIS，独立波束\n先锁定主干道直视目标 1",
+        C["white"], C["card_border"],
+    )
+    add_flow_box(
+        s22_flow, bx[3], y_top, bw, bh,
+        "04  Stage-B：盲区 RIS 粗扫",
+        "175 符号：消直达干扰 84.8 dB\n5×5 扫小巷，锁定盲区目标 2",
+        C["teal_soft"], C["teal"],
+    )
+
+    # Top row arrows (Left -> Right)
+    for ax in (335.0, 628.0, 920.0):
+        add_flow_arrow(s22_flow, "right", ax, y_top + 50.0, 28.0, 18.0, C["teal"])
+
+    # Down arrow from Box 04 -> Diamond 05
+    add_flow_arrow(s22_flow, "down", 1071.5, 320.0, 18.0, 44.0, C["teal"])
+
+    # Phase 3 header above bottom row (Boxes 08..06)
+    add_textbox(s22_flow, "阶段 3：锁定后 · 256 符号全带宽精定位（零额外导频）", 78.7, 336, 834, 24, size_pt=12.0, color=C["teal"], bold=True)
+    add_rect(s22_flow, 78.7, 364, 833.3, 1.2, C["teal"])
+
+    # Bottom row (Right -> Left: Diamond 05 -> Box 06 -> Box 07 -> Box 08)
+    y_bot = 378.0
+    add_flow_diamond(s22_flow, 974.0, 372.0, 213.4, 130.0, "05\n捕获成功?", C["orange_soft"], C["orange"])
+
+    add_textbox(s22_flow, "是", 928.0, 404.0, 28, 20, size_pt=10.5, color=C["teal"], bold=True, align=PP_ALIGN.CENTER)
+    add_flow_arrow(s22_flow, "left", 920.0, y_bot + 50.0, 38.0, 18.0, C["teal"])
+
+    add_flow_box(
+        s22_flow, bx[2], y_bot, bw, bh,
+        "06  精 RIS 实时重定心",
+        "按实测粗位置实时对准盲区\n均分 8 组半面反相“斜扫”",
+        C["teal_soft"], C["teal"],
+    )
+    add_flow_arrow(s22_flow, "left", 628.0, y_bot + 50.0, 28.0, 18.0, C["teal"])
+
+    add_flow_box(
+        s22_flow, bx[1], y_bot, bw, bh,
+        "07  全带宽延迟窗精定位",
+        "12,672 频段截 ±4 格（保能 99%）\n8 组联算彻底破除左右模糊",
+        C["teal_soft"], C["teal"],
+    )
+    add_flow_arrow(s22_flow, "left", 335.0, y_bot + 50.0, 28.0, 18.0, C["teal"])
+
+    add_flow_box(
+        s22_flow, bx[0], y_bot, bw, bh,
+        "08  输出 3D 坐标与精度",
+        "输出目标 1 + 目标 2 三维坐标\n纯盲区误差压至 2.7–3.8 cm",
+        C["white"], C["navy"], border_pt=1.6,
+    )
+
+    # Fallback branch (Down from Diamond 05 -> Fallback Box)
+    add_flow_arrow(s22_flow, "down", 1071.5, 508.0, 18.0, 34.0, C["orange"])
+    add_textbox(s22_flow, "否", 1096.0, 513.0, 26, 20, size_pt=10.5, color=C["orange"], bold=True)
+    add_flow_box(
+        s22_flow, bx[3], 548.0, bw, 76.0,
+        "退回粗估计并保留统计",
+        "跳过 RIS 精定位，不删失败样本",
+        C["orange_soft"], C["orange"], border_pt=1.4, title_pt=11.4, sub_pt=9.2,
+    )
+
+    # Bottom-left comparison note card (next to Fallback box)
+    add_rect(s22_flow, 78.7, 548.0, 833.3, 76.0, C["white"], C["card_border"], 0.9, rounded=True)
+    add_rich_bullets(
+        s22_flow,
+        [
+            ("资源零增加：", "全程仍只用原 256 粗（81 直达 + 175 RIS）+ 256 精（8 组 × 32 符号），单次测量仅 4.57 ms，不额外增加导频。"),
+            ("对比第 5 页旧流程：", "不再依赖 9 点离散选址和直达单路径；即便小巷目标被大楼完全遮挡，也能经 Stage-B 粗扫 + 8 组斜扫精估闭环。"),
+        ],
+        96.0, 557.0, 800.0, 60.0, title_pt=10.0, body_pt=9.8, title_color=C["teal"], body_color=C["ink"], space_after_pt=4.0,
+    )
+
+    # Bottom takeaway line (matching Slide 5)
+    add_rect(s22_flow, 78.7, 636.0, 1126.0, 1.0, C["border"])
+    add_textbox(
+        s22_flow,
+        "核心思路：先保证“通信不断网、盲区抓得到”，再通过“全带宽延迟窗 + RIS 8 组斜扫”把盲区定位压到厘米级。",
+        78.7, 645.0, 1126.0, 26.0, size_pt=12.0, color=C["navy"], bold=True,
+    )
+
+    # =========================================================================
+    # SLIDE 23 (22 / 核心方法 · 怎么解决的)
     # =========================================================================
     s22 = new_page(
         prs,
-        "21 / 核心方法 · 怎么解决的",
+        "22 / 核心方法 · 怎么解决的",
         "3 个核心改进：把盲区定位从“瞎猜几米”压到“厘米级”",
-        22,
+        23,
         "【汇报讲稿】这一页讲我们具体动了哪三处“大手术”，全部用最直白的话总结：\n"
         "第一，把丢掉的 98% 信号捡回来。以前为了省算力，把收到的 12,672 个频段扔掉了 98%，稍微估偏半米能量就掉 99%；现在我们全频段都用上，先抵消掉主路上刺眼的直达强干扰，再精准抠出小巷目标前后 1 米窗口的信号，能量保住了 99%！\n"
         "第二，让 RIS 快速“斜扫 8 组配置”，治好左右分不清。以前别人论文里总想把 RIS 死死聚光照亮目标，但波经 RIS 去一趟回一趟是左右对称的，目标往左歪还是往右歪亮度差不多，经常认错到几米外。我们不增加任何额外时间，把时间均分 8 份，让 RIS 左右半边反相斜着扫，目标偏 1 厘米就会露馅，左右分辨难度从 10.9 万倍直接压到 1.17！\n"
@@ -435,13 +636,13 @@ def build_deck() -> Path:
         add_textbox(s22, k_sub, kx, 639, kw, 18, size_pt=8.5, color=C["slate"])
 
     # =========================================================================
-    # SLIDE 23 (22 / 全量测试 · 900 个随机街景)
+    # SLIDE 24 (23 / 全量测试 · 900 个随机街景)
     # =========================================================================
     s23 = new_page(
         prs,
-        "22 / 全量测试 · 900 个随机街景",
+        "23 / 全量测试 · 900 个随机街景",
         "900 组大考成绩：无人机移动与墙面 RIS 缺一不可",
-        23,
+        24,
         "【汇报讲稿】我们在 64 核服务器上用全带宽完整跑了 900 个随机城市街景：包括小目标、常规车辆和大目标三档，每档 300 个随机场景，拉了 7 个对手同场比拼，哪怕测失败了也一条不删。\n"
         "看左图的成功率（误差小于 1 米才算成功）：以常规车辆（青绿色柱子）为例，装死不动的固定基站就算带了 RIS 也只有 37.7%；无人机光会飞但不带 RIS 只有 28.3%；只有把“无人机选位 + 墙面 RIS”联合起来，成功率才飙升到 84.0%，大目标更是达到 92.3%！\n"
         "看右图的平均误差（越低越好）：我们三档都压到最低（1.40、1.16、0.95 米），而现有论文里“只管照最亮”的方法因为左右分不清，平均误差直接飙到 8.3–8.4 米（顶部红标）。",
@@ -467,13 +668,13 @@ def build_deck() -> Path:
         add_textbox(s23, b, cx + 12, 626, cw23 - 24, 42, size_pt=9.2, color=C["ink"], line_spacing=1.16)
 
     # =========================================================================
-    # SLIDE 24 (23 / 盲区专项 · 既抓得到又测得准)
+    # SLIDE 25 (24 / 盲区专项 · 既抓得到又测得准)
     # =========================================================================
     s24 = new_page(
         prs,
-        "23 / 盲区专项 · 既抓得到又测得准",
+        "24 / 盲区专项 · 既抓得到又测得准",
         "躲在巷子里的盲区目标：成功率 88.9%，误差仅 3.8 厘米",
-        24,
+        25,
         "【汇报讲稿】老师，只看平均误差容易被失败案例掩盖，所以我们把“能不能抓到”和“抓到后准不准”拆开放在同一张图里看（左图 a）：横轴是成功率、越往右越好；纵轴是抓到后的误差、越往下越好，所以右下角是既稳又准的理想区。\n"
         "可以看到，只有我们那颗绿星稳稳落在右下角！现有论文方法（红叉）和网格选点（橙点）虽然能抓到不少目标，但抓到后误差依然有 1.66 米到 9.46 米。\n"
         "再看中间图 (b) 和右表专门挑出“目标 2 躲在小巷纯盲区”的成绩：常规车辆下我们成功率 88.9%，定位误差只有 3.8 厘米（大目标 97.0%、2.7 厘米），相比现有论文方法的 3.24 米，精度整整提升了 85 倍！",
@@ -515,13 +716,13 @@ def build_deck() -> Path:
     )
 
     # =========================================================================
-    # SLIDE 25 (24 / 公平验证 · 到底是谁的功劳)
+    # SLIDE 26 (25 / 公平验证 · 到底是谁的功劳)
     # =========================================================================
     s25 = new_page(
         prs,
-        "24 / 公平验证 · 到底是谁的功劳",
+        "25 / 公平验证 · 到底是谁的功劳",
         "直接回答上轮疑问：纯 RIS 净涨 +69.3%，移动性净涨 +46.3%",
-        25,
+        26,
         "【汇报讲稿】这一页专门回答上轮第 15、20 页留下的最大疑问：“性能变好，到底是靠无人机飞得好，还是靠墙面 RIS 立功，会不会只是碰运气？”\n"
         "我们做了 4,000 次随机配对抽样验证（左图），只要横条完全在 0 虚线右边，就说明 95% 确定是真实提升、绝不是碰运气。6 组拆解对比全部远远甩开 0 线：\n"
         "最上面一行是让无人机停在一模一样的最优位置、只关掉 RIS，成功率暴跌 69.3 个百分点——这就是 RIS 无可争议的纯净收益！\n"
@@ -548,13 +749,13 @@ def build_deck() -> Path:
     )
 
     # =========================================================================
-    # SLIDE 26 (25 / 拓展测试 · 回答 5 个实际问题)
+    # SLIDE 27 (26 / 拓展测试 · 回答 5 个实际问题)
     # =========================================================================
     s26 = new_page(
         prs,
-        "25 / 拓展测试 · 回答 5 个实际问题",
+        "26 / 拓展测试 · 回答 5 个实际问题",
         "如果实际部署会怎样？5 项压力测试一次性摸清边界",
-        26,
+        27,
         "【汇报讲稿】为了提前回应未来论文审稿人可能会问的 5 个实际工程问题，我们又在服务器上跑了 40 个纯盲区场景的压力测试：\n"
         "图 ① 手机用户要求更高网速怎么办？在 10 dB 以内定位都能保持 4 厘米级别且 100% 可行，逼到 16 dB 高要求时功率紧张，精度才退到 32 厘米，规律非常合理。\n"
         "图 ② 信号多强才能稳稳抓到目标？16 dB 就能达到 99.9% 的发现概率，验证了我们算法里的安全门限设得恰到好处。\n"
@@ -595,13 +796,13 @@ def build_deck() -> Path:
     )
 
     # =========================================================================
-    # SLIDE 27 (26 / 总结与下一步)
+    # SLIDE 28 (27 / 总结与下一步)
     # =========================================================================
     s27 = new_page(
         prs,
-        "26 / 总结与下一步",
+        "27 / 总结与下一步",
         "本阶段收获、局限说明与下一步论文计划",
-        27,
+        28,
         "【汇报讲稿】最后总结一下本阶段的 3 个核心收获和后续安排：\n"
         "第一，我们把上轮遗留的两个关键问题彻底闭环了：同位置加 RIS 净增 +69.3 个百分点，无人机移动比最优固定站净增 +46.3 个百分点；\n"
         "第二，通过捡回全频段能量、RIS “斜扫 8 组”治好左右模糊、以及拐角防踩坑选位，把纯盲区定位压到了 2.7 到 3.8 厘米，比现有论文方法准了 85 倍；\n"
@@ -643,7 +844,7 @@ def build_deck() -> Path:
 
     out_path = BUILD_DIR / "appendix_nlos_crb.pptx"
     prs.save(str(out_path))
-    print(f"Built plain-Chinese 7-slide appendix PPTX: {out_path}")
+    print(f"Built plain-Chinese {len(prs.slides)}-slide appendix PPTX: {out_path}")
     return out_path
 
 

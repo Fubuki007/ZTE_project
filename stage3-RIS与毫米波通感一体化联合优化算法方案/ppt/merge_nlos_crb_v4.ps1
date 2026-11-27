@@ -38,13 +38,13 @@ try {
         $deck = $null
     }
 
-    # 2. Merge appendix (7 slides) after Slide 20 into candidate -> overwrite TargetPpt atomically
+    # 2. Merge appendix (8 slides) after Slide 20 into candidate -> overwrite TargetPpt atomically
     if (Test-Path -LiteralPath $candidate) { Remove-Item -LiteralPath $candidate -Force }
     $deck = $app.Presentations.Open($backupCopy, -1, 0, 0)
     if ($deck.Slides.Count -ne 20) { throw "Unexpected baseline slide count: $($deck.Slides.Count)" }
     $deck.SaveAs($candidate, 24)
     $inserted = $deck.Slides.InsertFromFile($appendix, 20)
-    if ($inserted -ne 7 -or $deck.Slides.Count -ne 27) {
+    if ($inserted -lt 1 -or $deck.Slides.Count -ne (20 + $inserted)) {
         throw "InsertFromFile mismatch: inserted=$inserted total=$($deck.Slides.Count)"
     }
     $deck.Save()
